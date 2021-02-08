@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -13,6 +14,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        Model::unguard();
+        $this->call(LocationSeeder::class);
+        $this->call(AnnouncementSeeder::class);
+        $this->call(JobSeeder::class);
+        $this->call(RoleSeeder::class);
+        $this->call(StartDateSeeder::class);
+        $this->call(UserRoleSeeder::class);
     }
 }
