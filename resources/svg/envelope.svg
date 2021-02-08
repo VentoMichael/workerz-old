@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="34px" height="25px" viewBox="0 0 34 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>envelope</title>
+    <defs>
+        <linearGradient x1="49.2337305%" y1="19.6882096%" x2="50.7962305%" y2="81.4977309%" id="linearGradient-1">
+            <stop stop-color="#959595" offset="0%"></stop>
+            <stop stop-color="#5BA6D7" offset="0%"></stop>
+            <stop stop-color="#5A69E0" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="workers-personnal-desktop" transform="translate(-833.000000, -871.000000)" fill="url(#linearGradient-1)" fill-rule="nonzero">
+            <g id="envelope" transform="translate(833.000000, 871.000000)">
+                <path d="M30.8125,0 L3.1875,0 C1.42773438,0 0,1.39973958 0,3.125 L0,21.875 C0,23.6002604 1.42773438,25 3.1875,25 L30.8125,25 C32.5722656,25 34,23.6002604 34,21.875 L34,3.125 C34,1.39973958 32.5722656,0 30.8125,0 Z M30.8125,2.08333333 C30.9585937,2.08333333 31.0914062,2.11588542 31.2175781,2.16145833 L17,14.2447917 L2.78242188,2.16145833 C2.90859375,2.109375 3.04804688,2.08333333 3.1875,2.08333333 L30.8125,2.08333333 Z M30.8125,22.9166667 L3.1875,22.9166667 C2.603125,22.9166667 2.125,22.4479167 2.125,21.875 L2.125,4.36197917 L16.3027344,16.40625 C16.5019531,16.5755208 16.7542969,16.6601562 17,16.6601562 C17.2457031,16.6601562 17.4980469,16.5755208 17.6972656,16.40625 L31.875,4.36197917 L31.875,21.875 C31.875,22.4479167 31.396875,22.9166667 30.8125,22.9166667 Z" id="Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>
