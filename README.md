@@ -1,5 +1,5 @@
-![Workerz logo](https://raw.githubusercontent.com/VentoMichael/workerz/beee9bc8ba754747a91ea08d95c5c06a99818bb3/resources/svg/logo.svg?token=AHVSYRPSPMWKQLDOWTCBHY3AEGBQK)
-    
+![Workerz logo](https://raw.githubusercontent.com/VentoMichael/workerz/596b551bef156837b5398d6282e9fd5b011c7f1a/resources/svg/logo.svg?token=AHVSYRNRPWREGEDVSK25G6LAEGFLM)
+
 # PFE(Workerz)
 
 Des milliers de personnes sont à la recherche de petits indépendants soit pour économiser un maximum soit pour les aider soit les deux bien entendus, surtout durant cette période de la [Covid](https://fr.wikipedia.org/wiki/Maladie_%C3%A0_coronavirus_2019).
