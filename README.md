@@ -48,4 +48,3 @@ Les indépendants peuvent s'inscrire et y entrer toutes les informations requise
 ## Mes inspirations
 
 [Inspirations](https://dribbble.com/TotoVento/collections/4413855-pfe-worker?utm_source=Clipboard_clipboard_collection&utm_campaign=TotoVento&utm_content=pfe-worker&utm_medium=Social_Share)
-# workerz
