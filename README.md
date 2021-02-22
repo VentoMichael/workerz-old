@@ -1,4 +1,4 @@
-![Workerz logo](https://raw.githubusercontent.com/VentoMichael/workerz/596b551bef156837b5398d6282e9fd5b011c7f1a/resources/svg/logo.svg?token=AHVSYRNRPWREGEDVSK25G6LAEGFLM)
+![Workerz logo](https://raw.githubusercontent.com/VentoMichael/workerz/28906108188b8a90f2f5f084482ccef0b8ef1f43/resources/svg/logo.svg?token=AHVSYRPGWUAD2BQWCYZTHH3AGP7JW)
 
 # PFE(Workerz)
 
