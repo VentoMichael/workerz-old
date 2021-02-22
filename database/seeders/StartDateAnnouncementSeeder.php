@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\Job;
+use App\Models\StartDateAnnouncement;
 use Illuminate\Database\Seeder;
 
-class JobSeeder extends Seeder
+class StartDateAnnouncementSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,6 +14,6 @@ class JobSeeder extends Seeder
      */
     public function run()
     {
-        Job::factory()->count(20)->create();
+        StartDateAnnouncement::factory(10)->create();
     }
 }

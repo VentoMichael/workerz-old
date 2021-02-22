@@ -2,17 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Models\StartDate;
+use App\Models\Phone;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class StartDateFactory extends Factory
+class PhoneFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = StartDate::class;
+    protected $model = Phone::class;
 
     /**
      * Define the model's default state.
@@ -22,7 +22,8 @@ class StartDateFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'number' => $this->faker->phoneNumber,
+             'user_id' => $this->faker->numberBetween($min = 1, $max = 10)
         ];
     }
 }

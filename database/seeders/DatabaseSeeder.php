@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\PlanAnnouncement;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Seeder;
 
@@ -15,11 +16,19 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         Model::unguard();
-        $this->call(LocationSeeder::class);
-        $this->call(AnnouncementSeeder::class);
-        $this->call(JobSeeder::class);
+        $this->call(CategorySeeder::class);
+        $this->call(ProvinceSeeder::class);
+        $this->call(PlanUserSeeder::class);
+        $this->call(PlanAnnouncementSeeder::class);
         $this->call(RoleSeeder::class);
+        $this->call(UserSeeder::class);
+        $this->call(CategoryUserSeeder::class);
+        $this->call(WebsiteSeeder::class);
+        $this->call(PhoneSeeder::class);
+        $this->call(ContactSeeder::class);
         $this->call(StartDateSeeder::class);
-        $this->call(UserRoleSeeder::class);
+        $this->call(StartDateUserSeeder::class);
+        $this->call(AnnouncementSeeder::class);
+        $this->call(StartDateAnnouncementSeeder::class);
     }
 }

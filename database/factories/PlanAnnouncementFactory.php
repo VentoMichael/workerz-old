@@ -2,17 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Models\Location;
+use App\Models\PlanAnnouncement;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class LocationFactory extends Factory
+class PlanAnnouncementFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Location::class;
+    protected $model = PlanAnnouncement::class;
 
     /**
      * Define the model's default state.
@@ -22,7 +22,7 @@ class LocationFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->word,
+            //
         ];
     }
 }

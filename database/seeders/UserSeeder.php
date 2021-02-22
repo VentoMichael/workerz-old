@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\Location;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
-class LocationSeeder extends Seeder
+class UserSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,10 +14,6 @@ class LocationSeeder extends Seeder
      */
     public function run()
     {
-        Location::create([
-            'id'=>1,
-            'name'=>'Liège',
-            'user_id'=>1,
-        ]);
+        User::factory()->count(10)->create();
     }
 }

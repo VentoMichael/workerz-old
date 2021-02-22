@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\UserRole;
+use App\Models\CategoryUser;
 use Illuminate\Database\Seeder;
 
-class UserRoleSeeder extends Seeder
+class CategoryUserSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,6 +14,6 @@ class UserRoleSeeder extends Seeder
      */
     public function run()
     {
-        UserRole::factory()->count(10)->create();
+        CategoryUser::factory(10)->create();
     }
 }

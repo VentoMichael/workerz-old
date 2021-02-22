@@ -14,6 +14,33 @@ class StartDateSeeder extends Seeder
      */
     public function run()
     {
-        StartDate::factory()->count(10)->create();
+        StartDate::create([
+            'id'=>1,
+            'name'=>'Lundi',
+        ]);
+        StartDate::create([
+            'id'=>2,
+            'name'=>'Mardi',
+        ]);
+        StartDate::create([
+            'id'=>3,
+            'name'=>'Mercredi',
+        ]);
+        StartDate::create([
+            'id'=>4,
+            'name'=>'Jeudi',
+        ]);
+        StartDate::create([
+            'id'=>5,
+            'name'=>'Vendredi',
+        ]);
+        StartDate::create([
+            'id'=>6,
+            'name'=>'Samedi',
+        ]);
+        StartDate::create([
+            'id'=>7,
+            'name'=>'Dimanche',
+        ]);
     }
 }

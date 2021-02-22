@@ -2,17 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Models\UserRole;
+use App\Models\PlanUser;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class UserRoleFactory extends Factory
+class PlanUserFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = UserRole::class;
+    protected $model = PlanUser::class;
 
     /**
      * Define the model's default state.
@@ -22,7 +22,7 @@ class UserRoleFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->word()
+            //
         ];
     }
 }

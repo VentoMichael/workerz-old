@@ -2,17 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Models\Job;
+use App\Models\province;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class JobFactory extends Factory
+class ProvinceFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Job::class;
+    protected $model = province::class;
 
     /**
      * Define the model's default state.
@@ -22,7 +22,7 @@ class JobFactory extends Factory
     public function definition()
     {
         return [
-            'categories' => $this->faker->word,
+            //
         ];
     }
 }

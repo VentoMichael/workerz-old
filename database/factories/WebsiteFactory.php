@@ -2,17 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Models\StartDate;
+use App\Models\Website;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class StartDateFactory extends Factory
+class WebsiteFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = StartDate::class;
+    protected $model = Website::class;
 
     /**
      * Define the model's default state.
@@ -22,7 +22,8 @@ class StartDateFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'link' => $this->faker->url,
+            'user_id' => $this->faker->numberBetween($min = 1, $max = 10)
         ];
     }
 }

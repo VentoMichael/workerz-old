@@ -2,17 +2,18 @@
 
 namespace Database\Factories;
 
-use App\Models\StartDate;
+use App\Models\Category_user;
+use App\Models\CategoryUser;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class StartDateFactory extends Factory
+class CategoryUserFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = StartDate::class;
+    protected $model = CategoryUser::class;
 
     /**
      * Define the model's default state.
@@ -22,7 +23,8 @@ class StartDateFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'user_id' => $this->faker->numberBetween($min = 1, $max = 10),
+            'category_id' => $this->faker->numberBetween($min = 1, $max = 10),
         ];
     }
 }

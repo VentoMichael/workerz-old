@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Location;
+use App\Models\province;
 use Illuminate\Http\Request;
 
-class LocationController extends Controller
+class ProvinceController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class LocationController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Location  $location
+     * @param  \App\Models\province  $province
      * @return \Illuminate\Http\Response
      */
-    public function show(Location $location)
+    public function show(province $province)
     {
         //
     }
@@ -52,10 +52,10 @@ class LocationController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Location  $location
+     * @param  \App\Models\province  $province
      * @return \Illuminate\Http\Response
      */
-    public function edit(Location $location)
+    public function edit(province $province)
     {
         //
     }
@@ -64,10 +64,10 @@ class LocationController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Location  $location
+     * @param  \App\Models\province  $province
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Location $location)
+    public function update(Request $request, province $province)
     {
         //
     }
@@ -75,10 +75,10 @@ class LocationController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Location  $location
+     * @param  \App\Models\province  $province
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Location $location)
+    public function destroy(province $province)
     {
         //
     }
