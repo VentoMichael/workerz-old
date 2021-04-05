@@ -1,0 +1,10 @@
+@font-face {
+    font-family: roboto;
+    src: url(../font/roboto/roboto-medium-webfont.eot);
+    src: url(../font/roboto/roboto-medium-webfont.eot?#iefix) format('embedded-opentype'), url(../font/roboto/roboto-medium-webfont.woff2) format('woff2'), url(../font/roboto/roboto-medium-webfont.woff) format('woff'), url(../font/roboto/roboto-medium-webfont.ttf) format('truetype'), url(../font/roboto/roboto-medium-webfont.svg#loraB) format('svg')
+}
+@font-face {
+    font-family: ubuntu;
+    src: url(../font/ubuntu/ubuntu-m-webfont.eot);
+    src: url(../font/ubuntu/ubuntu-m-webfont.eot?#iefix) format('embedded-opentype'), url(../font/ubuntu/ubuntu-m-webfont.woff2) format('woff2'), url(../font/ubuntu/ubuntu-m-webfont.woff) format('woff'), url(../font/ubuntu/ubuntu-m-webfont.ttf) format('truetype'), url(../font/ubuntu/ubuntu-m-webfont.svg#loraB) format('svg')
+}

@@ -1,0 +1,212 @@
+@import "header.css";
+@import "responsive.css";
+
+.container-home {
+    background-image: url('../svg/background.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.container-home_image {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    padding: 150px 0 3% 0;
+    grid-gap: 50px;
+}
+
+.submit-category-home {
+    text-indent: -9999px;
+    background-image: url("../svg/search.svg");
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
+    background-color: var(--orange);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 70%;
+    border: 1px solid var(--orange);
+    transform: translateX(-50px) translateY(9px);
+    cursor: pointer;transition: .3s;
+    box-shadow: var(--shadow);
+}
+
+.container-home_image form {
+    display: flex
+}
+
+.search-home {
+    width: 300px;
+    padding: 20px 55px 20px 15px;
+    box-shadow: var(--shadow);
+    border: 1px solid #F0F1F0;
+    border-radius: 5px;
+}
+
+.container-home_image div:nth-child(2) {
+    justify-self: flex-end;
+}
+
+.container-home_image div:first-child {
+    max-width: 87%;
+    justify-self: flex-start;
+}
+
+.container-home-text p {
+    margin: 10px 0 20px;
+}
+
+.container-categories-home {
+    margin: 0 auto
+}
+
+.container-categories-text-home {
+    max-width: 374px;
+    margin: auto
+}
+
+.container-six-category-home {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    grid-template-rows: repeat(auto-fit, minmax(80px, 1fr));
+    grid-gap: 30px
+}
+
+.box-category {
+    position: relative;
+    transition: .3s;
+    box-shadow: var(--shadow);
+    padding: 40px 10px 10px;
+    justify-self: center;
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+    min-width: 250px;
+    width: 95%;
+    overflow: hidden;
+}
+
+.box-category:after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    right: 0;
+    width: 0;
+    top: 0px;
+    background: var(--blueLight);
+    height: 4px;
+    transition-property: width;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-out;
+}
+
+.box-category:hover:after,
+.box-category:focus:after,
+.box-category:active:after {
+    left: 0;
+    right: auto;
+    width: 100%;
+}
+
+.box-category img {
+    align-self: center;
+    margin-bottom: 30px;
+}
+
+.text-categories-home {
+    margin: 10px 0 50px;
+}
+
+.last-box-category {
+    background: var(--gradientLightBlue);
+    display: flex;
+    justify-content: center;
+    position: relative;
+    align-items: center;
+    border-radius: 5px;
+    overflow: hidden;
+    padding: 10px;
+}
+
+.last-box-category h3 {
+    color: white;    text-align: center;
+    font-size: 1.8em
+}
+
+.last-box-category:hover {
+    transform: scale(1)
+}
+
+.container-title-why {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin: 100px 0 20px
+}
+
+.container-why {
+    grid-gap: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.button-cta button {
+    padding: 10px 15px;
+    background: var(--gradientLightBlue);
+    border: 0;
+    border-radius: 15px;
+    color: white;
+    margin-top: 15px;
+    font-size: 1em;
+    position: relative;
+    cursor: pointer;
+    display: inline-block;
+    transition: 0.5s;
+}
+
+.text-why {
+    margin: 10px 0 5px;
+}
+
+.container-home, .container-categories-home, .container-home-why{
+    padding: 0 7%;
+}
+.container-title-why h2 {
+    margin-bottom: 10px
+}
+button:after {
+    content: "";
+    background-position: center;
+    background-image: url(../svg/arrow-right.svg);
+    background-repeat: no-repeat;
+    position: absolute;
+    opacity: 0;
+    width: 20px;
+    height: 20px;
+    right: -20px;
+    top: 12px;
+    transition: 0.5s;
+}
+
+button:hover{
+    padding: 10px 30px 10px 15px;
+}
+
+button:hover:after {
+    opacity: 1;
+    right: 5px;
+    top: 12px;
+}
+.container-home-why{    margin-bottom: 50px;}
+
+.submit-category-home:hover{
+    transform: scale(1.05) translateX(-50px) translateY(9px);
+}
+
+
+
+.container-home-why .container-why:last-child{
+    margin-top: 30px;
+}
+.container-why img{    max-width: 100%;}

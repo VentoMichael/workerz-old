@@ -14,5 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $users = \App\Models\User::with('phones')->get();
+    $categories = \App\Models\Category::orderBy('name')->get();
+    return view('home.index',compact('users','categories'));
 });

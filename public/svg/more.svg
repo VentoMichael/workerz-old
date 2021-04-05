@@ -1,45 +1,14 @@
-<?xml version="1.0" encoding="iso-8859-1"?>
-<!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-<g>
-	<g>
-		<g>
-			<path d="M256,0C114.615,0,0,114.615,0,256s114.615,256,256,256s256-114.615,256-256S397.385,0,256,0z M256,480
-				C132.288,480,32,379.712,32,256S132.288,32,256,32s224,100.288,224,224S379.712,480,256,480z"/>
-			<circle cx="256" cy="256" r="32"/>
-			<circle cx="368" cy="256" r="32"/>
-			<circle cx="144" cy="256" r="32"/>
-		</g>
-	</g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="22px" height="21px" viewBox="0 0 22 21" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>more</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="announcement-editing-desktop" transform="translate(-1113.000000, -951.000000)" fill="#FFFFFF" fill-rule="nonzero">
+            <g id="more" transform="translate(1114.296296, 951.251639)">
+                <path d="M9.74235105,-9.88581198e-14 C4.21949948,-9.88581198e-14 -0.257648953,4.47714844 -0.257648953,10 C-0.257648953,15.5228516 4.21949948,20 9.74235105,20 C15.2652026,20 19.742351,15.5228516 19.742351,10 C19.742351,4.47714844 15.2652026,-9.88581198e-14 9.74235105,-9.88581198e-14 Z M9.74235105,18.75 C4.90985105,18.75 0.992351047,14.8325 0.992351047,10 C0.992351047,5.1675 4.90985105,1.25 9.74235105,1.25 C14.574851,1.25 18.492351,5.1675 18.492351,10 C18.492351,14.8325 14.574851,18.75 9.74235105,18.75 Z" id="Shape"></path>
+                <circle id="Oval" cx="9.74235105" cy="10" r="1.30434783"></circle>
+                <circle id="Oval" cx="14.0901771" cy="10" r="1.30434783"></circle>
+                <circle id="Oval" cx="5.39452496" cy="10" r="1.30434783"></circle>
+            </g>
+        </g>
+    </g>
 </svg>

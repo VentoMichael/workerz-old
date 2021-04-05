@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\CatchPhraseAnnouncement;
+use App\Models\CatchPhraseUser;
 use App\Models\PlanAnnouncement;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Seeder;
@@ -30,5 +32,7 @@ class DatabaseSeeder extends Seeder
         $this->call(StartDateUserSeeder::class);
         $this->call(AnnouncementSeeder::class);
         $this->call(StartDateAnnouncementSeeder::class);
+        $this->call(CatchPhraseAnnouncementSeeder::class);
+        $this->call(CatchPhraseUserSeeder::class);
     }
 }
