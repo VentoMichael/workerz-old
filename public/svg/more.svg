@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="22px" height="21px" viewBox="0 0 22 21" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="22px" height="20px" viewBox="0 0 22 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <title>more</title>
     <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="announcement-editing-desktop" transform="translate(-1113.000000, -951.000000)" fill="#FFFFFF" fill-rule="nonzero">
-            <g id="more" transform="translate(1114.296296, 951.251639)">
+        <g id="workers-desktop" transform="translate(-955.000000, -946.000000)" fill="#FFFFFF" fill-rule="nonzero">
+            <g id="more" transform="translate(956.296296, 946.000000)">
                 <path d="M9.74235105,-9.88581198e-14 C4.21949948,-9.88581198e-14 -0.257648953,4.47714844 -0.257648953,10 C-0.257648953,15.5228516 4.21949948,20 9.74235105,20 C15.2652026,20 19.742351,15.5228516 19.742351,10 C19.742351,4.47714844 15.2652026,-9.88581198e-14 9.74235105,-9.88581198e-14 Z M9.74235105,18.75 C4.90985105,18.75 0.992351047,14.8325 0.992351047,10 C0.992351047,5.1675 4.90985105,1.25 9.74235105,1.25 C14.574851,1.25 18.492351,5.1675 18.492351,10 C18.492351,14.8325 14.574851,18.75 9.74235105,18.75 Z" id="Shape"></path>
                 <circle id="Oval" cx="9.74235105" cy="10" r="1.30434783"></circle>
                 <circle id="Oval" cx="14.0901771" cy="10" r="1.30434783"></circle>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="14px" height="25px" viewBox="0 0 14 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>arrow-left</title>
+    <defs>
+        <linearGradient x1="49.8844746%" y1="99.5815405%" x2="50.280607%" y2="-0.0200476737%" id="linearGradient-1">
+            <stop stop-color="#5870E0" offset="0%"></stop>
+            <stop stop-color="#4DBBED" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="workers-desktop" transform="translate(-532.000000, -1814.000000)" fill="url(#linearGradient-1)" fill-rule="nonzero">
+            <g id="arrow-left" transform="translate(532.000000, 1814.353279)">
+                <path d="M0,11.6467213 C0,11.2164424 0.168412883,10.7861635 0.50523865,10.4568143 L11.0609236,0.140745216 C11.7345751,-0.517953323 12.8211098,-0.517953323 13.4947614,0.140745216 C14.1684129,0.799443755 14.1684129,1.86186075 13.4947614,2.51524721 L4.15056267,11.6467213 L13.4893287,20.7781954 C14.1629802,21.436894 14.1629802,22.499311 13.4893287,23.1526974 C12.8156771,23.8113959 11.7291424,23.8113959 11.0554909,23.1526974 L0.50523865,12.8366283 C0.168412883,12.5072791 0,12.0770002 0,11.6467213 Z" id="Path"></path>
+            </g>
+        </g>
+    </g>
+</svg>
