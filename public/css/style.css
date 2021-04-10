@@ -1,18 +1,19 @@
 @import "header.css";
 @import "responsive.css";
 
-.container-home {
-    background-image: url('../svg/background.svg');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
 .container-home_image {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     padding: 150px 0 3% 0;
     grid-gap: 50px;
+}
+
+.img-cover {
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    max-width: 1300px;
+    right: 0;
 }
 
 .submit-category-home {
@@ -27,7 +28,8 @@
     background-size: 70%;
     border: 1px solid var(--orange);
     transform: translateX(-50px) translateY(9px);
-    cursor: pointer;transition: .3s;
+    cursor: pointer;
+    transition: .3s;
     box-shadow: var(--shadow);
 }
 
@@ -49,6 +51,7 @@
 
 .container-home_image div:first-child {
     max-width: 87%;
+    min-width: 55%;
     justify-self: flex-start;
 }
 
@@ -129,7 +132,8 @@
 }
 
 .last-box-category h3 {
-    color: white;    text-align: center;
+    color: white;
+    text-align: center;
     font-size: 1.8em
 }
 
@@ -151,7 +155,7 @@
     align-items: center;
 }
 
-.button-cta button {
+.button-cta, .button-cta button {
     padding: 10px 15px;
     background: var(--gradientLightBlue);
     border: 0;
@@ -169,17 +173,20 @@
     margin: 10px 0 5px;
 }
 
-.container-home, .container-categories-home, .container-home-why{
+.container-home, .container-categories-home, .container-home-why {
     padding: 0 7%;
 }
+
 .container-title-why h2 {
     margin-bottom: 10px
 }
+
 button:after {
     content: "";
     background-position: center;
     background-image: url(../svg/arrow-right.svg);
     background-repeat: no-repeat;
+    background-size: 50%;
     position: absolute;
     opacity: 0;
     width: 20px;
@@ -189,7 +196,7 @@ button:after {
     transition: 0.5s;
 }
 
-button:hover{
+button:hover {
     padding: 10px 30px 10px 15px;
 }
 
@@ -198,15 +205,163 @@ button:hover:after {
     right: 5px;
     top: 12px;
 }
-.container-home-why{    margin-bottom: 50px;}
 
-.submit-category-home:hover{
+.container-home-why {
+    margin-bottom: 50px;
+}
+
+.submit-category-home:hover {
     transform: scale(1.05) translateX(-50px) translateY(9px);
 }
 
-
-
-.container-home-why .container-why:last-child{
+.container-home-why .container-why:last-child {
     margin-top: 30px;
 }
-.container-why img{    max-width: 100%;}
+
+.container-why img {
+    max-width: 100%;
+}
+
+
+div .form-login {
+    display: block
+}
+
+.form-login .email-label {
+    padding: 11px 10px 11px 5px;
+    min-width: 200px;
+    font-size: 1em;
+    border: 1px solid #69696969;
+    border-radius: 4px;
+    margin: 10px 0 20px;
+}
+
+.container-connexion p {
+    margin: 10px 0 40px;
+}
+
+.inscription-links {
+    display: flex;
+    flex-direction: column;
+}
+
+.inscription-links a {
+    margin: 15px 0;
+    position: relative
+}
+
+.container-why .button-cta {
+    padding: 0;
+    background: none;
+    border: 0;
+    color: inherit;
+    margin-top: 0;
+}
+
+
+.password {
+    height: 40px;
+    border-radius: 5px;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #69696969;
+    margin-top: 10px;
+}
+
+div .password--visibleToggle {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    right: 6px;
+    top: -1px;
+    z-index: 2;
+    appearance: none;
+    outline: none;
+    min-width: 40px;
+}
+
+.password--visibleToggle-eye {
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    right: 17px;
+    top: 7px;
+    perspective: 1000px;
+    overflow: hidden;
+}
+
+.password--visibleToggle-eye.close {
+    transition: 0.4s all ease-in-out;
+    z-index: 1;
+}
+
+.password--visibleToggle-eye.open {
+    transition: 0.2s 0.2s all ease-out;
+    z-index: 1;
+}
+
+.password--visibleToggle-eye img {
+    width: 100%;
+}
+
+.password--lock {
+    width: 20px;
+    height: 20px;
+    fill: #111;
+    transition: all 0.5s;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 25px;
+}
+
+.password--input {
+    width: 74%;
+    font-size: 1em;
+    transition: all 0.5s;
+    position: absolute;
+    outline: none;
+    -webkit-text-security: none;
+    padding: 10px;
+    top: 0;
+    left: 0;
+    border: 0;
+}
+
+.password--visibleToggle:checked ~ .password--background {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    right: 12.5px;
+    top: 7.5px;
+}
+
+.password--visibleToggle:checked ~ .password--input {
+    -webkit-text-security: circle;
+
+}
+
+.password--visibleToggle:checked ~ .password--visibleToggle-eye.close {
+    transform: rotateX(180deg);
+}
+
+.password--visibleToggle:checked ~ .password--visibleToggle-eye.open {
+    opacity: 0;
+}
+
+.inscription-links a:first-child:after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 50px;
+    height: 3px;
+    background: var(--blueLight);
+    bottom: -15px;
+    border-radius: 5px;
+}
+
+form .form-group .email-label {
+    margin-bottom: 0;
+}
+.container-form-email{    display: flex;
+    flex-direction: column;}

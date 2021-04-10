@@ -11,7 +11,9 @@
     <meta name="language" content="French">
     <meta name="author" content="Vento Michael"/>
     <title>
-        {{ 'Workerz' }}{{ Request::is('/') ? " | Accueil" : "" }}{{ Request::is('exposants/*') || Request::is('exposants') ? ' | Exposants' : "" }}{{ Request::is('gallery') ? ' | Album photos' : "" }}{{ Request::is('restaurant') ? ' | Restaurant' : "" }}{{ Request::is('about') ? ' | À propos de nous' : "" }}{{ Request::is('contact') ? ' | Contact' : "" }}{{ Request::is('tickets') ? ' | Billets' : "" }}
+        {{ 'Workerz' }}{{ Request::is('/') ? " | Accueil" : "" }}
+        {{ Request::is('login') ? ' | Connexion' : "" }}
+        {{ Request::is('forgot-password') ? ' | Mot de passe oublié' : "" }}
     </title>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -100,7 +102,7 @@
                     <li>
                         <ul class="container-list-menu">
                             <li class="logo">
-                                <a href="#">
+                                <a href="{{ url('/') }}">
                                     <svg version="1.1" id="Calque_1" xmlns="http://www.w3.org/2000/svg"
                                          xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                                          viewBox="0 0 162.5 33.2" style="enable-background:new 0 0 162.5 33.2;"
@@ -167,7 +169,7 @@
                     <li>
                         <ul class="container-list-menu container-list-menu-principal">
                             <li><a class="{{ Request::is('/') ? "current_page_item" : "" }}"
-                                   aria-current="{{ Request::is('/') ? "page" : "" }}" href="#">Accueil</a></li>
+                                   aria-current="{{ Request::is('/') ? "page" : "" }}" href="{{ url('/') }}">Accueil</a></li>
                             <li><a class="{{ Request::is('sign-in') ? "current_page_item" : "" }}"
                                    aria-current="{{ Request::is('workers') ? "page" : "" }}" href="#">Travailleurs</a>
                             </li>
@@ -179,10 +181,10 @@
                     <li>
                         <ul class="container-list-menu">
                             <li class="{{ Request::is('sign-in') ? "current_page_item" : "" }}"
-                                aria-current="{{ Request::is('sign-in') ? "page" : "" }}"><a href="#">Se connecter</a>
+                                aria-current="{{ Request::is('sign-in') ? "page" : "" }}"><a href="{{ route('login') }}">Se connecter</a>
                             </li>
                             <li class="last-menu-item"
-                                aria-current="{{ Request::is('sign-up') ? "page" : "" }}"><a href="#">S'inscrire</a>
+                                aria-current="{{ Request::is('sign-up') ? "page" : "" }}"><a href="{{ route('register') }}">S'inscrire</a>
                             </li>
                         </ul>
                     </li>
@@ -191,10 +193,11 @@
         </nav>
     </div>
 </header>
-<main>
+<main class="content">
+    <img class="img-cover" src="{{asset('../svg/background.svg')}}" alt="">
     @yield('content')
 </main>
-<footer>
+<footer class="footer">
     <h2 aria-level="2" class="notVisible">
         Informations du pied de page
     </h2>
@@ -223,7 +226,7 @@
             <form action="" method="get" class="form-newsletter-container">
                 <div class="form-newsletter">
                     <label for="email" class="notVisible">Votre mail</label>
-                    <input type="email" name="email" id="email" class="input-newsletter"
+                    <input type="email" name="email" id="newsletter" class="input-newsletter"
                            placeholder="Albert01@gmail.com" required>
                 </div>
                 <div class="form-example">

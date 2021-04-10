@@ -19,5 +19,4 @@ Route::get('/', function () {
     return view('home.index',compact('users','categories'));
 });
 
-Route::get('/login', [\App\Http\Controllers\DashboardController::class, 'index'])->middleware('auth')->name('dashboardUser.index');
 

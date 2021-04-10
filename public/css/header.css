@@ -125,7 +125,7 @@ ul li .current_page_item {
     padding: 11px 16px;
     margin-bottom: 8px;
     border: 2px solid var(--blueLight);
-    transition: .3s
+    transition: .5s
 }
 
 .last-menu-item a:hover {
@@ -135,12 +135,11 @@ ul li .current_page_item {
     border-radius: 20px;
     padding: 11px 16px;
     margin-bottom: 8px;
-    transition: .3s
+    transition: .5s
 }
 
 .logo a:hover {
     border: none;
-    padding: 0 5px 8px
 }
 
 .btnAddAnnouncement {
@@ -188,4 +187,3 @@ ul li .current_page_item {
     display: block;
     position: absolute;
 }
-.logo a{padding: 0 5px 8px 0}
