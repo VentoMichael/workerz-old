@@ -19,7 +19,7 @@
 .submit-category-home {
     text-indent: -9999px;
     background-image: url("../svg/search.svg");
-    width: 40px;
+    min-width: 40px;
     height: 40px;
     border-radius: 5px;
     background-color: var(--orange);
@@ -65,7 +65,8 @@
 
 .container-categories-text-home {
     max-width: 374px;
-    margin: auto
+    margin: auto;
+    text-align: center;
 }
 
 .container-six-category-home {
@@ -124,7 +125,7 @@
 }
 
 .text-categories-home {
-    margin: 10px 0 50px;
+    margin: 10px 0 20px;
 }
 
 .last-box-category {
@@ -137,7 +138,9 @@
     overflow: hidden;
     padding: 10px;
 }
-
+.container-categories-text-home h2{
+    margin-top: 50px;
+}
 .last-box-category h3 {
     color: white;
     text-align: center;
@@ -414,9 +417,9 @@ form .form-group .email-label {
 }
 
 .container-svg, .svg-icon {
-    width: 100%
+    width: 100%;
 }
-
+.svg-icon{max-height: 400px;}
 .form-register .container-error {
     margin: 0 0 10px;
 }
@@ -610,4 +613,32 @@ form .form-group .email-label {
 
 .form-login .input-field {
     padding: 9px 5px;
+}
+.container-policy{
+    box-shadow: var(--shadow);
+    padding: 20px 10px;
+    max-width: 1000px;
+    margin: 15px auto 50px;
+}
+.container-policy li{
+    color: var(--grey);
+}
+.container-policy section{
+    margin: 35px 0 50px;
+}
+.container-policy section:last-child{
+    margin-bottom: 0;
+}
+.container-policy section:first-child{
+    margin-top: 0;
+}
+.container-policy h3{
+    margin-bottom: 10px;
+}
+.container-policy ul{
+    line-height: 1.6;
+}
+.container-policy p{
+    margin: 15px 0;
+    max-width: inherit;
 }

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
     <section class="container-home margin">
-        <div class="container-home_image">
+        <div class="container-home_image container-home-page">
             <div>
                 <div class="container-home-text">
                     <h2 aria-level="2">

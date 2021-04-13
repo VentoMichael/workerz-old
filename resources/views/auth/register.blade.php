@@ -2,12 +2,13 @@
 
 @section('content')
     @if(isset($_GET["company"]) || isset($_GET["user"]))
+        @if(isset($_GET["company"]))
         <div class="container-home">
             <section class="container-home_image">
                 <div class="container-connexion">
 
                     <h2 aria-level="2">On vous attend</h2>
-                    <p>Vous ne trouvez pas le bon travailleur ? Inscrivez-vous et poster une annonce !</p>
+                    <p>Vous recherchez du travail ? Engagez-vous !</p>
                     <div>
                         <a href="{{ route('login') }}">
                             <button role="button" class="button-cta" type="submit">
@@ -17,11 +18,34 @@
                     </div>
                 </div>
                 <div class="container-svg">
-                    <img class="svg-icon" src="{{asset('svg/Information_carousel_Isometric_second.svg')}}"
+                    <img class="svg-icon" src="{{asset('svg/Waiting_Monochromatic.svg')}}"
                          alt="icone d'ampoule">
                 </div>
             </section>
         </div>
+            @endif
+        @if(isset($_GET["user"]))
+            <div class="container-home">
+                <section class="container-home_image">
+                    <div class="container-connexion">
+
+                        <h2 aria-level="2">On vous attend</h2>
+                        <p>Vous ne trouvez pas le bon travailleur ? Inscrivez-vous et poster une annonce !</p>
+                        <div>
+                            <a href="{{ route('login') }}">
+                                <button role="button" class="button-cta" type="submit">
+                                    J'ai déjà un compte
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="container-svg">
+                        <img class="svg-icon" src="{{asset('svg/Waiting_Monochromatic.svg')}}"
+                             alt="icone d'ampoule">
+                    </div>
+                </section>
+            </div>
+            @endif
     @else
         <div class="container-home">
             <section class="container-home_image">

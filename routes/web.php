@@ -23,5 +23,23 @@ Route::get('/announcements', function () {
     return view('announcements.index');
 })->name('announcements');
 
+Route::get('/conditions', function () {
+    return view('conditions.index');
+})->name('conditions');
+
+Route::get('/policy', function () {
+    return view('policy.index');
+})->name('policy');
+
+Route::get('/contact', function () {
+    return view('contact.index');
+})->name('contact');
+
+Route::get('/about', function () {
+    return view('about.index');
+})->name('about');
+
+
+
 
 

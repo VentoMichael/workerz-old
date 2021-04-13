@@ -209,13 +209,13 @@
             </h3>
             <nav>
                 <ul>
-                    <li><a href="#">Contact</li>
+                    <li><a href="{{route('contact')}}">Contact</li>
                     </a>
-                    <li><a href="#">À propos</li>
+                    <li><a href="{{route('about')}}">À propos</li>
                     </a>
-                    <li><a href="#">Politique de confidentialité</li>
+                    <li><a href="{{route('policy')}}">Politique de confidentialité</li>
                     </a>
-                    <li><a href="#">Conditions d’utilisations</li>
+                    <li><a href="{{route('conditions')}}">Conditions d’utilisations</li>
                     </a>
                 </ul>
             </nav>
@@ -224,10 +224,10 @@
             <h3 aria-level="3" class="util-links">
                 La newsletter immanquable
             </h3>
-            <form action="" method="get" class="form-newsletter-container">
+            <form action="#" method="get" class="form-newsletter-container">
                 <div class="form-newsletter">
-                    <label for="email" class="notVisible">Votre mail</label>
-                    <input type="email" name="email" id="newsletter" class="input-newsletter"
+                    <label for="newsletter" class="notVisible">Votre mail</label>
+                    <input type="email" name="newsletter" id="newsletter" class="input-newsletter"
                            placeholder="Albert01@gmail.com" required>
                 </div>
                 <div class="form-example">
