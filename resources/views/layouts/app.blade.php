@@ -13,6 +13,7 @@
     <title>
         {{ 'Workerz' }}{{ Request::is('/') ? " | Accueil" : "" }}
         {{ Request::is('login') ? ' | Connexion' : "" }}
+        {{ Request::is('register') ? ' | S\'enregistrer' : "" }}
         {{ Request::is('forgot-password') ? ' | Mot de passe oublié' : "" }}
     </title>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -33,7 +34,7 @@
                 Navigation Principale
             </h2>
             <li class="logo-mobile">
-                <a href="#">
+                <a href="{{ url('/') }}">
                     <svg version="1.1" id="Calque_1" xmlns="http://www.w3.org/2000/svg"
                          xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 162.5 33.2"
                          style="enable-background:new 0 0 162.5 33.2;" xml:space="preserve" width="162.5"

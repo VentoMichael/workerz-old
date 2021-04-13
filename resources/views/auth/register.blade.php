@@ -1,114 +1,297 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container md:mx-auto md:w-9/12 md:max-w-3xl"">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-body flex">
-                    <form aria-label="Enregistrement d'un compte" role="form" method="POST" class="w-full m-3" action="{{ route('register') }}">
-                        @csrf
-                        <div class="sm:flex sm:justify-between">
-                            <div class="form-group row sm:w-5/12 mb-6">
-                                <label for="name"
-                                       class="col-md-4 col-form-label text-md-right">{{ __('Nom') }}</label>
-                                <div class="col-md-6">
-                                    <input id="name" type="text"
-                                           class="text-lg form-control rounded-xl p-2 px-3 w-full border border-orange-900 @error('name') is-invalid @enderror"
-                                           name="name"
-                                           value="{{ old('name') }}" required autocomplete="name" autofocus>
-                                    @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="form-group row sm:w-5/12 mb-6">
-                                <label for="surname"
-                                       class="col-md-4 col-form-label text-md-right">{{ __('Prénom') }}</label>
-                                <div class="col-md-6">
-                                    <input id="surname" type="text"
-                                           class="text-lg form-control rounded-xl p-2 px-3 w-full border border-orange-900 @error('surname') is-invalid @enderror"
-                                           name="surname"
-                                           value="{{ old('surname') }}" required autocomplete="surname" autofocus>
-                                    @error('surname')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-                            </div>
-                        </div>
-                        <div class="sm:flex sm:justify-between">
-                            <div class="form-group row sm:w-5/12 mb-6">
-                                <label for="email"
-                                       class="text-lg col-md-4 col-form-label text-md-right">{{ __('Email') }}</label>
-                                <div class="col-md-6">
-                                    <input id="email" type="email"
-                                           class="form-control rounded-xl p-2 px-3 w-full border border-orange-900 @error('email') is-invalid @enderror"
-                                           name="email"
-                                           value="{{ old('email') }}" required autocomplete="email">
-                                    @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="form-group row sm:w-5/12 mb-6">
-                                <label for="password"
-                                       class="text-lg col-md-4 col-form-label text-md-right">{{ __('Mot de passe') }}</label>
-                                <div class="col-md-6">
-                                    <input id="password" type="password"
-                                           class="form-control rounded-xl p-2 px-3 w-full border border-orange-900 @error('password') is-invalid @enderror"
-                                           name="password"
-                                           required autocomplete="new-password">
-                                    <ul role="list" class="mt-2">
-                                        <li role="listitem" class="text-xs">
-                                            Minimum 8 caractères
-                                        </li>
-                                        <li role="listitem" class="text-xs">
-                                            Minimum 1 minuscule
-                                        </li>
-                                        <li role="listitem" class="text-xs">
-                                            Minimum 1 majuscule
-                                        </li>
-                                        <li role="listitem" class="text-xs">
-                                            Minimum 1 chiffre
-                                        </li>
-                                    </ul>
-                                    @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <div>
-                                <button role="button" type="submit">
-                                    {{ __('S\'enregistrer') }}
-                                </button>
-                            </div>
-                        </div>
-                        <div class="flex justify-between">
-                            @if (Route::has('login'))
-                                <a class="btn btn-link underline mt-6" href="{{ route('login') }}">
-                                    J'ai déjà un compte
-                                </a>
-                            @endif
-                            @if (Route::has('password.request'))
-                                <a class="btn btn-link underline mt-6" href="{{ route('password.request') }}">
-                                    J'ai oublié mon mot de passe
-                                </a>
-                            @endif
-                        </div>
-                    </form>
+    @if(isset($_GET["company"]) || isset($_GET["user"]))
+        <div class="container-home">
+            <section class="container-home_image">
+                <div class="container-connexion">
+
+                    <h2 aria-level="2">On vous attend</h2>
+                    <p>Vous ne trouvez pas le bon travailleur ? Inscrivez-vous et poster une annonce !</p>
+                    <div>
+                        <a href="{{ route('login') }}">
+                            <button role="button" class="button-cta" type="submit">
+                                J'ai déjà un compte
+                            </button>
+                        </a>
+                    </div>
                 </div>
-            </div>
+                <div class="container-svg">
+                    <img class="svg-icon" src="{{asset('svg/Information_carousel_Isometric_second.svg')}}"
+                         alt="icone d'ampoule">
+                </div>
+            </section>
         </div>
-    </div>
-    </div>
+    @else
+        <div class="container-home">
+            <section class="container-home_image">
+                <div class="container-connexion">
+
+                    <h2 aria-level="2">L'inscription à bout de main !</h2>
+                    <p>Êtes vous un utilisateur ou un indépendant ?</p>
+                    <div>
+                        <a href="{{ route('login') }}">
+                            <button role="button" class="button-cta" type="submit">
+                                J'ai déjà un compte
+                            </button>
+                        </a>
+                    </div>
+                </div>
+                <div class="container-svg">
+                    <img class="svg-icon" src="{{asset('svg/Information_carousel_Isometric.svg')}}"
+                         alt="icone d'ampoule">
+                </div>
+            </section>
+        </div>
+    @endif
+    <section class="container-form-register container-home">
+        <div class="title-first-step-register">
+            <h2 aria-level="2">Formulaire d'inscription</h2>
+            @if(isset($_GET["company"]) || isset($_GET["user"]))
+                <p>Après cette étape, vous serez immédiatement inscris et pourrez y intégrer des annonces !</p>
+            @else
+                <p>Vous êtes à la première étape du formulaire d'inscription</p>
+            @endif
+        </div>
+        @if(isset($_GET["company"]) || isset($_GET["user"]))
+            <a class="link-back" href="{{route('register')}}">
+                <button class="button-back button-cta">
+                    Retour
+                </button>
+            </a>
+        @else
+            <div>
+                <form class="form-choice" method="GET"
+                      action="{{ route('register') }}">
+                    <section class="container-role">
+                        <div class="container-img-register">
+
+                            <img src="{{asset('svg/user.svg')}}" alt="Avatar par défaut d'un utilisateur"></div>
+                        <h3 aria-level="3">
+                            Je cherche un professionnel
+                        </h3>
+                        <section>
+                            <h4 aria-level="4">
+                                @if(!isset($_GET["show-advantage-user"]))
+                                    <button class="advantage-btn" name="show-advantage-user">Quels avantages ?</button>
+                                @else
+                                    <button class="advantage-btn list-advantages-hide" name="hide-advantage-user">Masquer ses avantages
+                                    </button>
+                                @endif
+                            </h4>
+                            <ul class="list-advantages @if(isset($_GET["show-advantage-user"])) show @endif @if(isset($_GET["hide-advantage-user"])) hidden @endif">
+                                <li><span>&bull;</span> Accès à un tableau de bord personnel</li>
+                                <li><span>&bull;</span> Intègration d'une annonce</li>
+                                <li><span>&bull;</span> Choix parmi une multitude d'entreprises</li>
+                                <li><span>&bull;</span> Pleins d'autres avantages</li>
+                            </ul>
+                        </section>
+                        <div class="container-button-register">
+                            <button class="button-cta" name="user">
+                                Je fais ce choix
+                            </button>
+                        </div>
+                    </section>
+                    <section class="container-role">
+                        <div class="container-img-register">
+                            <img src="{{asset('svg/suitcase.svg')}}" alt="Avatar par défaut d'un professionnel"></div>
+                        <h3 aria-level="3">
+                            Je suis un professionnel
+                        </h3>
+                        <section class="container-advantages">
+                            <h4 aria-level="4">
+                                @if(!isset($_GET["show-advantage-pro"]))
+                                    <button class="advantage-btn" name="show-advantage-pro">Quels avantages ?</button>
+                                @else
+                                    <button class="advantage-btn list-advantages-hide" name="hide-advantage-pro">Masquer ses avantages
+                                    </button>
+                                @endif
+                            </h4>
+                            <ul class="list-advantages @if(isset($_GET["show-advantage-pro"])) show @endif @if(isset($_GET["hide-advantage-pro"])) list-advantages-hide hidden @endif">
+                                <li><span>&bull;</span> Accès à un tableau de bord personnel</li>
+                                <li><span>&bull;</span> Intègration d'une annonce & de votre entreprise</li>
+                                <li><span>&bull;</span> Des centaines de clients potentiels</li>
+                                <li><span>&bull;</span> Pleins d'autres avantages</li>
+                            </ul>
+                        </section>
+                        <div class="container-button-register">
+                            <button class="button-cta" name="company">
+                                Je fais ce choix
+                            </button>
+                        </div>
+                    </section>
+                </form>
+            </div>
+        @endif
+        @if(isset($_GET["company"]))
+            <div>
+                <form class="form-login form-register" enctype="multipart/form-data"
+                      aria-label="Enregistrement d'un compte" role="form" method="POST"
+                      action="{{ route('register') }}">
+                    @csrf
+                    <div class="container-register-form">
+                        <div class="container-form-email">
+                            <div>
+                                <label for="avatar">Photo du commerce</label>
+                                <img id="output" class="preview-picture"/>
+                            </div>
+                            <input type="file"
+                                   id="avatar" class="input-field @error('avatar') is-invalid @enderror email-label"
+                                   name="avatar"
+                                   accept="image/png, image/jpeg">
+                        </div>
+                        <div class="container-form-email">
+                            <label for="name">Nom du commerce <span class="required">*</span></label>
+                            <input type="text" id="name" value="{{old("name")}}"
+                                   class=" @error('name') is-invalid @enderror email-label" name="name" required>
+                        </div>
+                    </div>
+
+                    <div class="container-register-form">
+                        <div class="container-form-email">
+                            <label for="adress">Adresse postale</label>
+                            <input type="text" id="adress" value="{{old("email")}}"
+                                   class=" @error('email') is-invalid @enderror email-label" name="adress">
+                        </div>
+                        <div class="container-form-email">
+                            <label for="phone">Numéro de téléphone <span class="required">*</span></label>
+                            <input type="tel" id="phone" value="{{old("phone")}}"
+                                   class=" @error('phone') is-invalid @enderror email-label" name="phone" required>
+                        </div>
+                    </div>
+
+                    <div class="container-register-form">
+                        <div class="container-form-email">
+                            <label for="website">Site internet</label>
+                            <input type="text" id="website" value="{{old("website")}}"
+                                   class=" @error('website') is-invalid @enderror email-label" name="website">
+                        </div>
+                        <div class="container-form-email selectdiv">
+                            <label for="disponibilities">Disponibilités</label>
+                            <select class="select-register" multiple name="disponibilities[]" id="disponibilities">
+                                <option value="monday">Lundi</option>
+                                <option value="tuesday">Mardi</option>
+                                <option value="wednesday">Mercredi</option>
+                                <option value="thursday">Jeudi</option>
+                                <option value="friday">Vendredi</option>
+                                <option value="saturday">Samedi</option>
+                                <option value="sunday">Dimanche</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="container-register-form">
+                        <div class="container-form-email selectdiv">
+                            <label for="location">Région <span class="required">*</span></label>
+                            <select class="select-register" multiple name="location[]" id="location">
+                                <option value="liege">Liège</option>
+                                <option value="tuesday">Mardi</option>
+                                <option value="wednesday">Mercredi</option>
+                                <option value="thursday">Jeudi</option>
+                                <option value="friday">Vendredi</option>
+                                <option value="saturday">Samedi</option>
+                                <option value="sunday">Dimanche</option>
+                            </select>
+                        </div>
+                        <div class="container-form-email">
+                            <label for="job">Metier <span class="required">*</span></label>
+                            <input type="text" id="job" value="{{old("job")}}"
+                                   class=" @error('job') is-invalid @enderror email-label" name="job"
+                                   placeholder="Menuisier"
+                                   required>
+                        </div>
+                    </div>
+
+                    <div class="container-register-form">
+                        <div class="container-form-email selectdiv">
+                            <label for="category-job">Catégorie de métier <span class="required">*</span></label>
+                            <select class="select-register" multiple name="category-job[]" id="category-job">
+                                <option value="education">Éducation</option>
+                                <option value="tuesday">Mardi</option>
+                                <option value="wednesday">Mercredi</option>
+                                <option value="thursday">Jeudi</option>
+                                <option value="friday">Vendredi</option>
+                                <option value="saturday">Samedi</option>
+                                <option value="sunday">Dimanche</option>
+                            </select>
+                        </div>
+                        <div class="container-form-email">
+                            <label for="price-h">Votre prix horaire <span class="required">*</span></label>
+                            <input type="text" id="price-h" name="price-h" value="{{old("price-h")}}"
+                                   class=" @error('price-h') is-invalid @enderror email-label" placeholder="55"><span
+                                class="horary-cost">€/h</span>
+                        </div>
+                    </div>
+
+                    <div class="container-register-form">
+                        <div class="container-form-email">
+                            <label for="description">Description</label>
+                            <textarea id="description" name="description"
+                                      class=" @error('description') is-invalid @enderror email-label"
+                                      placeholder="Description détailée de votre profil..."
+                                      rows="5" cols="33">{{old("description")}}</textarea>
+                        </div>
+                    </div>
+
+
+                    @include('partials.register')
+
+                </form>
+            </div>
+        @endif
+        @if(isset($_GET["user"]))
+            <div>
+                <form class="form-login form-register" enctype="multipart/form-data"
+                      aria-label="Enregistrement d'un compte" role="form" method="POST"
+                      action="{{ route('register') }}">
+                    @csrf
+                    <div class="container-register-form">
+                        <div class="container-form-email">
+                            <div class="avatar-container">
+                                <label for="avatar">Photo de profil</label>
+                                <img id="output" class="preview-picture"/>
+                            </div>
+                            <input type="file"
+                                   id="avatar" class="input-field @error('avatar') is-invalid @enderror email-label"
+                                   name="avatar"
+                                   accept="image/png, image/jpeg">
+
+                        </div>
+                        <div class="container-form-email">
+                            <label for="phone">Numéro de téléphone <span class="required">*</span></label>
+                            <input type="tel" id="phone" value="{{old("phone")}}"
+                                   class=" @error('phone') is-invalid @enderror email-label" name="phone" required>
+                        </div>
+                    </div>
+                    <div class="container-register-form">
+                        <div class="container-form-email">
+                            <label for="name">Nom<span class="required">*</span></label>
+                            <input type="text" id="name" value="{{old("name")}}"
+                                   class=" @error('name') is-invalid @enderror email-label" name="name" required>
+                        </div>
+                        <div class="container-form-email">
+                            <label for="surname">Prénom<span class="required">*</span></label>
+                            <input type="text" id="surname" value="{{old("surname")}}"
+                                   class=" @error('surname') is-invalid @enderror email-label" name="surname" required>
+                        </div>
+
+                    </div>
+
+
+                    @include('partials.register')
+                </form>
+            </div>
+        @endif
+    </section>
 @endsection
+@if(isset($_GET["company"]) || isset($_GET["user"]))
+@section('scripts')
+    <script src="{{asset('js/passwordCheck.js')}}"></script>
+    <script>document.getElementById("avatar").addEventListener("change", e => {
+            let t = document.getElementById("output");
+            t.src = URL.createObjectURL(e.target.files[0]), t.onload = function () {
+                URL.revokeObjectURL(t.src)
+            }
+        });</script>
+@endsection
+@endif

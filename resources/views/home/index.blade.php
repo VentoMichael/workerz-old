@@ -19,7 +19,6 @@
                 </div>
             </div>
             <div>
-
                 <img src="{{asset('svg/Profiling_Monochromatic.svg')}}"
                      alt="Personne choissisant la catégorie de métier">
             </div>
@@ -35,36 +34,46 @@
         <div class="container-six-category-home"><a href="#">
                 <section class="box-category">
                     <img src="{{asset('svg/barber.svg')}}" alt="">
-                    <h3 aria-level="3">Développeur</h3>
-                    <p>104 professionnels</p>
+                    <div>
+                        <h3 aria-level="3">Développeur</h3>
+                        <p>104 professionnels</p>
+                    </div>
                 </section>
             </a>
             <a href="#">
                 <section class="box-category">
                     <img src="{{asset('svg/barber.svg')}}" alt="">
-                    <h3 aria-level="3">Développeur</h3>
-                    <p>104 professionnels</p>
+                    <div>
+                        <h3 aria-level="3">Développeur</h3>
+                        <p>104 professionnels</p>
+                    </div>
                 </section>
             </a>
             <a href="#">
                 <section class="box-category">
                     <img src="{{asset('svg/barber.svg')}}" alt="">
-                    <h3 aria-level="3">Développeur</h3>
-                    <p>104 professionnels</p>
+                    <div>
+                        <h3 aria-level="3">Développeur</h3>
+                        <p>104 professionnels</p>
+                    </div>
                 </section>
             </a>
             <a href="#">
                 <section class="box-category">
                     <img src="{{asset('svg/barber.svg')}}" alt="">
-                    <h3 aria-level="3">Développeur</h3>
-                    <p>104 professionnels</p>
+                    <div>
+                        <h3 aria-level="3">Développeur</h3>
+                        <p>104 professionnels</p>
+                    </div>
                 </section>
             </a>
             <a href="#">
                 <section class="box-category">
                     <img src="{{asset('svg/barber.svg')}}" alt="">
-                    <h3 aria-level="3">Développeur</h3>
-                    <p>104 professionnels</p>
+                    <div>
+                        <h3 aria-level="3">Développeur</h3>
+                        <p>104 professionnels</p>
+                    </div>
                 </section>
             </a>
             <a href="#" class="last-box-category box-category">
@@ -118,7 +127,7 @@
                 </a>
             </div>
             <div>
-                <img src="{{asset('svg/Information_carousel_Monochromatic.svg')}}"
+                <img src="{{asset('svg/Information carousel_Monochromatic.svg')}}"
                      alt="Personne réflechissant et assis sur un coussin">
             </div>
         </section>

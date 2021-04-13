@@ -6,7 +6,7 @@
             {{ session('status') }}
         </div>
     @endif
-    <section class="container-home">
+    <div class="container-home">
         <section class="container-home_image">
             <div class="container-connexion">
                 <h2 aria-level="2">Mot de passe oublié ?</h2>
@@ -22,9 +22,11 @@
                                name="email" value="{{ old('email') }}" required autocomplete="email"
                                autofocus>
                         @error('email')
-                        <span role="alert">
+                        <div class="container-error">
+                <span role="alert" class="error">
                                         <strong>{{ $message }}</strong>
                                     </span>
+                        </div>
                         @enderror
                     </div>
                     <div>
@@ -36,7 +38,7 @@
                             @endif
                             @if (Route::has('register'))
                                 <a href="{{ route('register') }}">
-                                    Je m'inscris
+                                    S'inscrire
                                 </a>
                             @endif
                         </div>
@@ -47,10 +49,10 @@
                     </div>
                 </form>
             </div>
-            <div>
+            <div class="container-svg">
                 <img class="svg-icon" src="{{asset('svg/Password_Monochromatic.svg')}}"
                      alt="icone d'un ordinateur avec un mot de passe">
             </div>
         </section>
-    </section>
+    </div>
 @endsection

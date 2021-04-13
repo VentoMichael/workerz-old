@@ -19,4 +19,9 @@ Route::get('/', function () {
     return view('home.index',compact('users','categories'));
 });
 
+Route::get('/announcements', function () {
+    return view('announcements.index');
+})->name('announcements');
+
+
 

@@ -20,9 +20,11 @@
                                     <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ request()->get('email') ?? old('email') }}" required autocomplete="email" autofocus>
 
                                     @error('email')
-                                    <span class="invalid-feedback" role="alert">
+                                    <div class="container-error">
+                <span role="alert" class="error">
                                         <strong>{{ $message }}</strong>
                                     </span>
+                                    </div>
                                     @enderror
                                 </div>
                             </div>

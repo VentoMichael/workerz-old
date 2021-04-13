@@ -2,10 +2,9 @@
 
 @section('content')
     @if(Session::has('messageBanned'))
-        <div id="sucessMessage"
-             class="fixed top-0 bg-red-500 w-full p-4 right-0 text-center text-white">{{ Session::get('messageBanned') }}</div>
+        <div id="sucessMessage">{{ Session::get('messageBanned') }}</div>
     @endif
-    <section class="container-home">
+    <div class="container-home">
         <section class="container-home_image">
             <div class="container-connexion">
                 <h2 aria-level="2">Connexion</h2>
@@ -15,21 +14,25 @@
                     <div class="container-form-email">
                         <label for="email"
                         >Adresse email</label>
-                            <input id="email" type="email"
-                                   class="email-label @error('email') is-invalid @enderror"
-                                   name="email" value="{{ old('email') }}" required autocomplete="email"
-                                   autofocus>
-                            @error('email')
-                            <span role="alert">
+                        <input id="email" type="email"
+                               class="@error('email') is-invalid @enderror email-label"
+                               name="email" value="{{ old('email') }}" required autocomplete="email"
+                               autofocus>
+
+                        @error('email')
+                        <div class="container-error">
+                <span role="alert" class="error">
                                         <strong>{{ $message }}</strong>
                                     </span>
-                            @enderror
+                        </div>
+                        @enderror
                     </div>
+
                     <div>
 
                         <label for="password"
                         >Mot de passe</label>
-                        <div class="password">
+                        <div class="@error('password')is-invalid @enderror password">
 
                             <input type="checkbox" class="password--visibleToggle" checked>
                             <div class="password--visibleToggle-eye open">
@@ -40,15 +43,16 @@
                             </div>
 
                             <input id="password" type="text"
-                                   class="password--input @error('password')is-invalid @enderror"
+                                   class="password--input"
                                    name="password" required autocomplete="current-password">
                             @error('password')
-                            <span role="alert">
+                                <div class="container-error">
+                                    <span role="alert" class="error">
                                         <strong>{{ $message }}</strong>
                                     </span>
+                                </div>
                             @enderror
                         </div>
-
                     </div>
                     <div>
                         <div class="inscription-links">
@@ -72,10 +76,10 @@
                 </form>
 
             </div>
-            <div>
-                <img class="svg-icon" src="{{asset('svg/Innovation_Monochromatic.svg')}}"
+            <div class="container-svg">
+                <img class="svg-icon" src="{{asset('svg/Innovation _Monochromatic.svg')}}"
                      alt="icone d'ampoule">
             </div>
         </section>
-    </section>
+    </div>
 @endsection

@@ -121,7 +121,7 @@
         margin-top: 10px;
     }
 
-    section .container-home_image {
+    div .container-home_image {
         display: flex;
         justify-content: center;
         flex-direction: column-reverse;
@@ -145,6 +145,11 @@
 
     .password {
         min-width: 100%;
+    }
+    section .container-why div{width: 100%}
+    div .selectdiv{padding: 0}
+    .container-home .container-home_image .container-connexion{
+        max-width: 100%;
     }
 }
 
@@ -171,12 +176,13 @@
     }
 
     .container-six-category-home {
-        display: grid;
         grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     }
-
+    .container-register-form{
+        grid-template-columns: repeat(2, minmax(220px, 1fr));
+    }
     .container-six-category-home section {
-        min-height: 250px;
+        min-height: 200px;
     }
 
     .last-box-category section {
@@ -187,15 +193,47 @@
     .img-cover {
         width: 150%;
     }
+    form .container-register-form{
+        grid-template-columns: repeat(1, minmax(270px, 1fr));
+    }
+    section .link-back{
+        position: inherit;
+    }
+    div .form-register{
+        margin-top: 30px;
+    }
+    main .container-form-register {
+        margin-top: 80px;
+    }
+    form .container-register-form{
+        margin-bottom: 0;
+        grid-gap: 0;
+    }
+    div .form-choice {
+        grid-template-columns: repeat(1, minmax(270px, 1fr));
+    }
+    .password--input{z-index: 10}
+    div .password .password--visibleToggle-eye{
+        z-index: 20;
+    }
+    .password .password--visibleToggle{
+        z-index: 21;
+    }
 }
 
 @media (max-width: 450px) {
     section .container-home_image div:first-child {
         max-width: inherit;
     }
-
+    .container-role h3 {
+        text-align: center;
+    }
     .search-home {
         min-width: 100%;
+    }
+
+    main .container-home_image div:first-child {
+        max-width: 100%;
     }
 
     form .submit-category-home {
@@ -203,7 +241,7 @@
         right: 0;
         transform: translateX(-25px) translateY(9px);
     }
-
+    form .container-inscriptin-logins:before{    margin-left: -24%;width: 50%;}
     main .container-home, main .container-categories-home, main .container-home-why {
         padding: 0 3%
     }
@@ -214,6 +252,9 @@
 
     .img-cover {
         width: 200%;
+    }
+    .container-register-form{
+        grid-template-columns: repeat(1, minmax(270px, 1fr));
     }
 }
 

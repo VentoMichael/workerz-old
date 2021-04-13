@@ -12,7 +12,7 @@
     position: absolute;
     z-index: -1;
     top: 0;
-    max-width: 1300px;
+    max-width: 1100px;
     right: 0;
 }
 
@@ -50,7 +50,7 @@
 }
 
 .container-home_image div:first-child {
-    max-width: 87%;
+    max-width: 70%;
     min-width: 55%;
     justify-self: flex-start;
 }
@@ -73,6 +73,13 @@
     grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
     grid-template-rows: repeat(auto-fit, minmax(80px, 1fr));
     grid-gap: 30px
+}
+
+.container-register-form, .form-choice {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(270px, 1fr));
+    grid-gap: 30px;
+    margin-bottom: 15px;
 }
 
 .box-category {
@@ -146,6 +153,12 @@
     align-items: center;
     flex-direction: column;
     margin: 100px 0 20px
+}
+
+.horary-cost {
+    position: absolute;
+    right: 15px;
+    top: 40px;
 }
 
 .container-why {
@@ -260,7 +273,7 @@ div .form-login {
 
 
 .password {
-    height: 40px;
+    height: 42px;
     border-radius: 5px;
     position: relative;
     overflow: hidden;
@@ -272,6 +285,7 @@ div .password--visibleToggle {
     position: absolute;
     width: 40px;
     height: 40px;
+    cursor: pointer;
     right: 6px;
     top: -1px;
     z-index: 2;
@@ -316,7 +330,7 @@ div .password--visibleToggle {
 }
 
 .password--input {
-    width: 74%;
+    width: 95%;
     font-size: 1em;
     transition: all 0.5s;
     position: absolute;
@@ -363,5 +377,237 @@ div .password--visibleToggle {
 form .form-group .email-label {
     margin-bottom: 0;
 }
-.container-form-email{    display: flex;
-    flex-direction: column;}
+
+.container-form-email {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+}
+
+.list-password-required li {
+    position: relative;
+}
+
+.list-password-required img {
+    opacity: 1;
+    display: none;
+    margin-right: 10px;
+    max-width: 20px;
+    transition: 2s;
+}
+
+.list-password-required p, .list-advantages p {
+    margin: 0;
+    color: black
+}
+
+.list-password-required span, .list-advantages span {
+    color: var(--blue)
+}
+
+.list-password-required li {
+    margin: -3px 0
+}
+
+.list-password-required {
+    margin: 7px 0 15px;
+}
+
+.container-svg, .svg-icon {
+    width: 100%
+}
+
+.form-register .container-error {
+    margin: 0 0 10px;
+}
+
+.container-why div {
+    width: 50%
+}
+
+.container-inscriptin-logins {
+    margin-top: 100px;
+    position: relative;
+}
+
+.container-inscriptin-logins:before {
+    background: var(--blue);
+    content: "";
+    position: absolute;
+    width: 30%;
+    height: 3px;
+    left: 50%;
+    margin-left: -14%;
+    top: -50px;
+}
+
+.container-role {
+    box-shadow: var(--shadow);
+    padding: 20px;
+    position: relative;
+    min-height: 300px;
+}
+
+.container-form-register {
+    margin-bottom: 50px;
+    margin-top: 50px;
+    position: relative
+}
+
+.preview-picture {
+    width: 100px;
+    align-self: flex-end;
+    height: auto;
+    border-radius: 7px;
+}
+
+.title-first-step-register {
+    max-width: 400px;
+    margin: auto auto 20px;
+
+}
+
+.title-first-step-register h2 {
+    margin-bottom: 10px;
+}
+
+.container-img-register img {
+    width: 100%;
+    max-width: 230px;
+    max-height: 120px;
+    margin-bottom: 10px;
+}
+
+.container-img-register h3 {
+    margin: 15px 0 7px;
+}
+
+.container-img-register {
+    display: flex;
+    justify-content: center;
+}
+
+.list-advantages {
+    display: none;
+    margin-bottom: 80px;
+}
+
+.show {
+    display: inherit;
+    line-height: 1.5;
+    margin-top: 10px;
+}
+
+.button-back:after {
+    background-image: url(../svg/arrow-left.svg);
+    background-size: 50%;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: block;
+    position: absolute;
+    left: 5px;
+    width: 20px;
+    height: 20px;
+    content: "";
+}
+
+.button-back {
+    position: relative
+}
+
+.button-back:hover {
+    padding: 10px 15px 10px 30px;
+}
+
+.link-back {
+    position: absolute;
+    top: -10px;
+}
+
+.avatar-container label {
+    align-self: flex-end;
+}
+
+.avatar-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.advantage-btn {
+    background: transparent;
+    border-radius: 15px;
+    color: var(--blueLight);
+    margin-top: 15px;
+    border: 2px solid var(--blueLight);
+    font-size: .8em;
+    padding: 5px 10px;
+    position: relative;
+    cursor: pointer;
+    display: inline-block;
+    transition: 0.5s;
+}
+
+.advantage-btn:hover {
+    padding: 5px 10px 23px;
+}
+
+.advantage-btn:after {
+    opacity: 0;
+    top: inherit;
+    left: 50%;
+    margin-left: -10px;
+    transition: .5s;
+    right: inherit;
+    bottom: 10px
+}
+
+.advantage-btn:hover:after {
+    background-image: url(../svg/arrow-b-color.svg);
+    background-size: 80%;
+    display: block;
+    top: inherit;
+    left: 50%;
+    margin-left: -10px;
+    content: "";
+    bottom: 4px;
+    opacity: 1;
+}
+.list-advantages-hide:hover:after{
+    background-image: url(../svg/arrow-t-color.svg);
+}
+.container-role h4, .container-role h3 {
+    display: flex;
+    justify-content: center;
+}
+
+.container-button-register {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+}
+
+.form-register .container-register-form:nth-child(7) {
+    grid-template-columns: repeat(1, minmax(270px, 1fr));
+}
+
+.select-register {
+    padding: 9px 5px 9px 5px;
+    min-width: 200px;
+    font-size: 1em;
+    border: 1px solid #69696969;
+    border-radius: 4px;
+    margin: 10px 0 20px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    height: 44px;
+    transition: .3s;
+}
+
+.select-register:hover {
+    height: 100px;
+}
+
+.form-login .input-field {
+    padding: 9px 5px;
+}
