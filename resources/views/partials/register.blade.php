@@ -4,7 +4,7 @@
         <input id="email" type="email"
                class=" @error('email') is-invalid @enderror email-label"
                name="email"
-               value="{{ old('email') }}" required autocomplete="email">
+               value="{{ old('email') }}" placeholder="danielrotis@gmail.com" required autocomplete="email">
         @error('email')
         <div class="container-error">
                 <span role="alert" class="error">
@@ -27,7 +27,7 @@
                 <img src="{{asset('svg/eye-close.svg')}}"/>
             </div>
 
-            <input id="password" type="text"
+            <input id="password" type="text" placeholder="Xxxxxxx1"
                    class="password--input"
                    name="password" required>
 

@@ -58,4 +58,5 @@ form .container-form-email .is-invalid{border: 1px solid #FF0000}
     text-decoration: line-through;
 }
 .required{color: red}
-.hidden{display: none;transition: .3s;}
+.hidden{
+    position: absolute;color: transparent;top:-9999px;transition: .3s;}

@@ -19,7 +19,7 @@
                 </div>
                 <div class="container-svg">
                     <img class="svg-icon" src="{{asset('svg/Waiting_Monochromatic.svg')}}"
-                         alt="icone d'ampoule">
+                         alt="Main cliquant sur un écran mobile">
                 </div>
             </section>
         </div>
@@ -41,7 +41,7 @@
                     </div>
                     <div class="container-svg">
                         <img class="svg-icon" src="{{asset('svg/Waiting_Monochromatic.svg')}}"
-                             alt="icone d'ampoule">
+                             alt="Femme attendant sur un sablier">
                     </div>
                 </section>
             </div>
@@ -63,7 +63,7 @@
                 </div>
                 <div class="container-svg">
                     <img class="svg-icon" src="{{asset('svg/Information_carousel_Isometric.svg')}}"
-                         alt="icone d'ampoule">
+                         alt="Main cliquant sur un ecran mobile">
                 </div>
             </section>
         </div>
@@ -90,7 +90,7 @@
                     <section class="container-role">
                         <div class="container-img-register">
 
-                            <img src="{{asset('svg/user.svg')}}" alt="Avatar par défaut d'un utilisateur"></div>
+                            <img src="{{asset('svg/user.svg')}}" alt="Photo de profil par défaut d'un utilisateur"></div>
                         <h3 aria-level="3">
                             Je cherche un professionnel
                         </h3>
@@ -118,7 +118,7 @@
                     </section>
                     <section class="container-role">
                         <div class="container-img-register">
-                            <img src="{{asset('svg/suitcase.svg')}}" alt="Avatar par défaut d'un professionnel"></div>
+                            <img src="{{asset('svg/suitcase.svg')}}" alt="Photo de profil par défaut d'un professionnel"></div>
                         <h3 aria-level="3">
                             Je suis un professionnel
                         </h3>
@@ -155,9 +155,9 @@
                     @csrf
                     <div class="container-register-form">
                         <div class="container-form-email">
-                            <div>
+                            <div class="avatar-container">
                                 <label for="avatar">Photo du commerce</label>
-                                <img id="output" class="preview-picture"/>
+                                <img id="output" class="preview-picture" alt="Photo du commerce"/>
                             </div>
                             <input type="file"
                                    id="avatar" class="input-field @error('avatar') is-invalid @enderror email-label"
@@ -166,7 +166,7 @@
                         </div>
                         <div class="container-form-email">
                             <label for="name">Nom du commerce <span class="required">*</span></label>
-                            <input type="text" id="name" value="{{old("name")}}"
+                            <input placeholder="Le cocoter SRL" type="text" id="name" value="{{old("name")}}"
                                    class=" @error('name') is-invalid @enderror email-label" name="name" required>
                         </div>
                     </div>
@@ -175,11 +175,11 @@
                         <div class="container-form-email">
                             <label for="adress">Adresse postale</label>
                             <input type="text" id="adress" value="{{old("email")}}"
-                                   class=" @error('email') is-invalid @enderror email-label" name="adress">
+                                   class=" @error('email') is-invalid @enderror email-label" name="adress" placeholder="Rue des cocotier, 21">
                         </div>
                         <div class="container-form-email">
                             <label for="phone">Numéro de téléphone <span class="required">*</span></label>
-                            <input type="tel" id="phone" value="{{old("phone")}}"
+                            <input placeholder="0494827263" minlength="6" maxlength="15" type="tel" pattern="^[0-9-+\s()]*$" id="phone" value="{{old("phone")}}"
                                    class=" @error('phone') is-invalid @enderror email-label" name="phone" required>
                         </div>
                     </div>
@@ -187,7 +187,7 @@
                     <div class="container-register-form">
                         <div class="container-form-email">
                             <label for="website">Site internet</label>
-                            <input type="text" id="website" value="{{old("website")}}"
+                            <input placeholder="www.workerz.be" type="text" id="website" value="{{old("website")}}"
                                    class=" @error('website') is-invalid @enderror email-label" name="website">
                         </div>
                         <div class="container-form-email selectdiv">
@@ -240,7 +240,7 @@
                             </select>
                         </div>
                         <div class="container-form-email">
-                            <label for="price-h">Votre prix horaire <span class="required">*</span></label>
+                            <label for="price-h">Votre prix horaire</label>
                             <input type="text" id="price-h" name="price-h" value="{{old("price-h")}}"
                                    class=" @error('price-h') is-invalid @enderror email-label" placeholder="55"><span
                                 class="horary-cost">€/h</span>
@@ -249,15 +249,13 @@
 
                     <div class="container-register-form">
                         <div class="container-form-email">
-                            <label for="description">Description</label>
-                            <textarea id="description" name="description"
+                            <label for="description">Description <span class="required">*</span></label>
+                            <textarea id="description" name="description" required
                                       class=" @error('description') is-invalid @enderror email-label"
                                       placeholder="Description détailée de votre profil..."
                                       rows="5" cols="33">{{old("description")}}</textarea>
                         </div>
                     </div>
-
-
                     @include('partials.register')
 
                 </form>
@@ -273,7 +271,7 @@
                         <div class="container-form-email">
                             <div class="avatar-container">
                                 <label for="avatar">Photo de profil</label>
-                                <img id="output" class="preview-picture"/>
+                                <img id="output" class="preview-picture" alt="photo du commerce"/>
                             </div>
                             <input type="file"
                                    id="avatar" class="input-field @error('avatar') is-invalid @enderror email-label"
@@ -283,19 +281,19 @@
                         </div>
                         <div class="container-form-email">
                             <label for="phone">Numéro de téléphone <span class="required">*</span></label>
-                            <input type="tel" id="phone" value="{{old("phone")}}"
+                            <input minlength="6" maxlength="15" type="tel" id="phone" pattern="^[0-9-+\s()]*$" value="{{old("phone")}}" placeholder="0494827235"
                                    class=" @error('phone') is-invalid @enderror email-label" name="phone" required>
                         </div>
                     </div>
                     <div class="container-register-form">
                         <div class="container-form-email">
                             <label for="name">Nom<span class="required">*</span></label>
-                            <input type="text" id="name" value="{{old("name")}}"
+                            <input type="text" id="name" value="{{old("name")}}" placeholder="Rotis"
                                    class=" @error('name') is-invalid @enderror email-label" name="name" required>
                         </div>
                         <div class="container-form-email">
                             <label for="surname">Prénom<span class="required">*</span></label>
-                            <input type="text" id="surname" value="{{old("surname")}}"
+                            <input type="text" id="surname" placeholder="Daniel" value="{{old("surname")}}"
                                    class=" @error('surname') is-invalid @enderror email-label" name="surname" required>
                         </div>
 
@@ -311,11 +309,6 @@
 @if(isset($_GET["company"]) || isset($_GET["user"]))
 @section('scripts')
     <script src="{{asset('js/passwordCheck.js')}}"></script>
-    <script>document.getElementById("avatar").addEventListener("change", e => {
-            let t = document.getElementById("output");
-            t.src = URL.createObjectURL(e.target.files[0]), t.onload = function () {
-                URL.revokeObjectURL(t.src)
-            }
-        });</script>
+    <script>let a=document.getElementById("avatar"),t=document.getElementById("output");a.addEventListener("change",e=>{t.style.display="block",t.src=URL.createObjectURL(e.target.files[0]),t.onload=function(){URL.revokeObjectURL(t.src)}});</script>
 @endsection
 @endif

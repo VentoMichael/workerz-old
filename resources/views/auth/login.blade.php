@@ -36,10 +36,10 @@
 
                             <input type="checkbox" class="password--visibleToggle" checked>
                             <div class="password--visibleToggle-eye open">
-                                <img src="{{asset('svg/eye-open.svg')}}"/>
+                                <img src="{{asset('svg/eye-open.svg')}}" alt="icone de yeux ouvert"/>
                             </div>
                             <div class="password--visibleToggle-eye close">
-                                <img src="{{asset('svg/eye-close.svg')}}"/>
+                                <img src="{{asset('svg/eye-close.svg')}}" alt="icone de yeux fermé"/>
                             </div>
 
                             <input id="password" type="text"

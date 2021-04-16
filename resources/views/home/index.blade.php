@@ -18,7 +18,7 @@
                     </form>
                 </div>
             </div>
-            <div>
+            <div class="container-svg">
                 <img src="{{asset('svg/Profiling_Monochromatic.svg')}}"
                      alt="Personne choissisant la catégorie de métier">
             </div>

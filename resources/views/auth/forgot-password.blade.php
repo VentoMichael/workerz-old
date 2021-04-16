@@ -51,7 +51,7 @@
             </div>
             <div class="container-svg">
                 <img class="svg-icon" src="{{asset('svg/Password_Monochromatic.svg')}}"
-                     alt="icone d'un ordinateur avec un mot de passe">
+                     alt="Icone d'un ordinateur avec un mot de passe crypter">
             </div>
         </section>
     </div>
