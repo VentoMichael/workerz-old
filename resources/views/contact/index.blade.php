@@ -33,7 +33,7 @@
             <p>Il n'y a pas de mauvaises questions, la réponse sera presque imminente !</p>
         </div>
         <div>
-            <form class="form-login form-register form-message" enctype="multipart/form-data"
+            <form class="show-content form-login form-register form-message" enctype="multipart/form-data"
                   aria-label="Enregistrement d'un compte" role="form" method="POST"
                   action="{{ route('register') }}">
                 @csrf

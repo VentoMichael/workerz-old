@@ -32,7 +32,7 @@
                 Le meilleur pour vous étendre
             </h2>
         </div>
-        <div class="container-six-category-home">
+        <div class="container-six-category-home show-content">
             <section class="box-category box-about">
                 <img src="{{asset('svg/Video tutorial _Monochromatic.svg')}}" alt="Icone d'un cahier avec une personne voulant écrire dedans">
                 <div>
@@ -60,7 +60,7 @@
             </section>
         </div>
     </section>
-    <section class="container-home margin container-about-why">
+    <section class="container-home margin container-about-why show-content">
         <div class="container-home_image container-home-page">
             <div>
                 <div class="container-home-text">

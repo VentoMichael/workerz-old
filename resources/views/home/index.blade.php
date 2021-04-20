@@ -31,7 +31,8 @@
             </h2>
             <p class="text-categories-home">Choisissez une catégorie parmi les plus populaires</p>
         </div>
-        <div class="container-six-category-home"><a href="#">
+        <div class="container-six-category-home show-content">
+            <a href="#">
                 <section class="box-category">
                     <img src="{{asset('svg/barber.svg')}}" alt="">
                     <div>
@@ -83,7 +84,7 @@
             </a>
         </div>
     </section>
-    <section class="container-home-why">
+    <section class="container-home-why show-content">
         <div class="container-title-why">
             <h2 aria-level="2">
                 Pourquoi Workerz ?

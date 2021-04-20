@@ -3,27 +3,27 @@
 @section('content')
     @if(isset($_GET["company"]) || isset($_GET["user"]))
         @if(isset($_GET["company"]))
-        <div class="container-home">
-            <section class="container-home_image">
-                <div class="container-connexion">
+            <div class="container-home">
+                <section class="container-home_image">
+                    <div class="container-connexion">
 
-                    <h2 aria-level="2">On vous attend</h2>
-                    <p>Vous recherchez du travail ? Engagez-vous !</p>
-                    <div>
-                        <a href="{{ route('login') }}">
-                            <button role="button" class="button-cta" type="submit">
-                                J'ai déjà un compte
-                            </button>
-                        </a>
+                        <h2 aria-level="2">On vous attend</h2>
+                        <p>Vous recherchez du travail ? Engagez-vous !</p>
+                        <div>
+                            <a href="{{ route('login') }}">
+                                <button role="button" class="button-cta" type="submit">
+                                    J'ai déjà un compte
+                                </button>
+                            </a>
+                        </div>
                     </div>
-                </div>
-                <div class="container-svg">
-                    <img class="svg-icon" src="{{asset('svg/Waiting_Monochromatic.svg')}}"
-                         alt="Main cliquant sur un écran mobile">
-                </div>
-            </section>
-        </div>
-            @endif
+                    <div class="container-svg">
+                        <img class="svg-icon" src="{{asset('svg/Waiting_Monochromatic.svg')}}"
+                             alt="Main cliquant sur un écran mobile">
+                    </div>
+                </section>
+            </div>
+        @endif
         @if(isset($_GET["user"]))
             <div class="container-home">
                 <section class="container-home_image">
@@ -45,7 +45,7 @@
                     </div>
                 </section>
             </div>
-            @endif
+        @endif
     @else
         <div class="container-home">
             <section class="container-home_image">
@@ -84,68 +84,69 @@
                 </button>
             </a>
         @else
-            <div>
-                <form class="form-choice" method="GET"
-                      action="{{ route('register') }}">
-                    <section class="container-role">
-                        <div class="container-img-register">
+            <form class="form-choice" method="GET"
+                  action="{{ route('register') }}">
+                <section class="container-role">
+                    <div class="container-img-register">
 
-                            <img src="{{asset('svg/user.svg')}}" alt="Photo de profil par défaut d'un utilisateur"></div>
-                        <h3 aria-level="3">
-                            Je cherche un professionnel
-                        </h3>
-                        <section>
-                            <h4 aria-level="4">
-                                @if(!isset($_GET["show-advantage-user"]))
-                                    <button class="advantage-btn" name="show-advantage-user">Quels avantages ?</button>
-                                @else
-                                    <button class="advantage-btn list-advantages-hide" name="hide-advantage-user">Masquer ses avantages
-                                    </button>
-                                @endif
-                            </h4>
-                            <ul class="list-advantages @if(isset($_GET["show-advantage-user"])) show @endif @if(isset($_GET["hide-advantage-user"])) hidden @endif">
-                                <li><span>&bull;</span> Accès à un tableau de bord personnel</li>
-                                <li><span>&bull;</span> Intègration d'une annonce</li>
-                                <li><span>&bull;</span> Choix parmi une multitude d'entreprises</li>
-                                <li><span>&bull;</span> Pleins d'autres avantages</li>
-                            </ul>
-                        </section>
-                        <div class="container-button-register">
-                            <button class="button-cta" name="user">
-                                Je fais ce choix
-                            </button>
-                        </div>
+                        <img src="{{asset('svg/user.svg')}}" alt="Photo de profil par défaut d'un utilisateur"></div>
+                    <h3 aria-level="3">
+                        Je cherche un professionnel
+                    </h3>
+                    <section>
+                        <h4 aria-level="4">
+                            @if(!isset($_GET["show-advantage-user"]))
+                                <button class="advantage-btn" name="show-advantage-user">Quels avantages ?</button>
+                            @else
+                                <button class="advantage-btn list-advantages-hide" name="hide-advantage-user">Masquer
+                                    ses avantages
+                                </button>
+                            @endif
+                        </h4>
+                        <ul class="list-advantages @if(isset($_GET["show-advantage-user"])) show @endif @if(isset($_GET["hide-advantage-user"])) hidden @endif">
+                            <li><span>&bull;</span> Accès à un tableau de bord personnel</li>
+                            <li><span>&bull;</span> Intègration d'une annonce</li>
+                            <li><span>&bull;</span> Choix parmi une multitude d'entreprises</li>
+                            <li><span>&bull;</span> Pleins d'autres avantages</li>
+                        </ul>
                     </section>
-                    <section class="container-role">
-                        <div class="container-img-register">
-                            <img src="{{asset('svg/suitcase.svg')}}" alt="Photo de profil par défaut d'un professionnel"></div>
-                        <h3 aria-level="3">
-                            Je suis un professionnel
-                        </h3>
-                        <section class="container-advantages">
-                            <h4 aria-level="4">
-                                @if(!isset($_GET["show-advantage-pro"]))
-                                    <button class="advantage-btn" name="show-advantage-pro">Quels avantages ?</button>
-                                @else
-                                    <button class="advantage-btn list-advantages-hide" name="hide-advantage-pro">Masquer ses avantages
-                                    </button>
-                                @endif
-                            </h4>
-                            <ul class="list-advantages @if(isset($_GET["show-advantage-pro"])) show @endif @if(isset($_GET["hide-advantage-pro"])) list-advantages-hide hidden @endif">
-                                <li><span>&bull;</span> Accès à un tableau de bord personnel</li>
-                                <li><span>&bull;</span> Intègration d'une annonce & de votre entreprise</li>
-                                <li><span>&bull;</span> Des centaines de clients potentiels</li>
-                                <li><span>&bull;</span> Pleins d'autres avantages</li>
-                            </ul>
-                        </section>
-                        <div class="container-button-register">
-                            <button class="button-cta" name="company">
-                                Je fais ce choix
-                            </button>
-                        </div>
+                    <div class="container-button-register">
+                        <button class="button-cta" name="user">
+                            Je fais ce choix
+                        </button>
+                    </div>
+                </section>
+                <section class="container-role">
+                    <div class="container-img-register">
+                        <img src="{{asset('svg/suitcase.svg')}}" alt="Photo de profil par défaut d'un professionnel">
+                    </div>
+                    <h3 aria-level="3">
+                        Je suis un professionnel
+                    </h3>
+                    <section class="container-advantages">
+                        <h4 aria-level="4">
+                            @if(!isset($_GET["show-advantage-pro"]))
+                                <button class="advantage-btn" name="show-advantage-pro">Quels avantages ?</button>
+                            @else
+                                <button class="advantage-btn list-advantages-hide" name="hide-advantage-pro">Masquer ses
+                                    avantages
+                                </button>
+                            @endif
+                        </h4>
+                        <ul class="list-advantages @if(isset($_GET["show-advantage-pro"])) show @endif @if(isset($_GET["hide-advantage-pro"])) list-advantages-hide hidden @endif">
+                            <li><span>&bull;</span> Accès à un tableau de bord personnel</li>
+                            <li><span>&bull;</span> Intègration d'une annonce & de votre entreprise</li>
+                            <li><span>&bull;</span> Des centaines de clients potentiels</li>
+                            <li><span>&bull;</span> Pleins d'autres avantages</li>
+                        </ul>
                     </section>
-                </form>
-            </div>
+                    <div class="container-button-register">
+                        <button class="button-cta" name="company">
+                            Je fais ce choix
+                        </button>
+                    </div>
+                </section>
+            </form>
         @endif
         @if(isset($_GET["company"]))
             <div>
@@ -175,11 +176,13 @@
                         <div class="container-form-email">
                             <label for="adress">Adresse postale</label>
                             <input type="text" id="adress" value="{{old("email")}}"
-                                   class=" @error('email') is-invalid @enderror email-label" name="adress" placeholder="Rue des cocotier, 21">
+                                   class=" @error('email') is-invalid @enderror email-label" name="adress"
+                                   placeholder="Rue des cocotier, 21">
                         </div>
                         <div class="container-form-email">
                             <label for="phone">Numéro de téléphone <span class="required">*</span></label>
-                            <input placeholder="0494827263" minlength="6" maxlength="15" type="tel" pattern="^[0-9-+\s()]*$" id="phone" value="{{old("phone")}}"
+                            <input placeholder="0494827263" minlength="6" maxlength="15" type="tel"
+                                   pattern="^[0-9-+\s()]*$" id="phone" value="{{old("phone")}}"
                                    class=" @error('phone') is-invalid @enderror email-label" name="phone" required>
                         </div>
                     </div>
@@ -281,7 +284,8 @@
                         </div>
                         <div class="container-form-email">
                             <label for="phone">Numéro de téléphone <span class="required">*</span></label>
-                            <input minlength="6" maxlength="15" type="tel" id="phone" pattern="^[0-9-+\s()]*$" value="{{old("phone")}}" placeholder="0494827235"
+                            <input minlength="6" maxlength="15" type="tel" id="phone" pattern="^[0-9-+\s()]*$"
+                                   value="{{old("phone")}}" placeholder="0494827235"
                                    class=" @error('phone') is-invalid @enderror email-label" name="phone" required>
                         </div>
                     </div>
@@ -309,6 +313,11 @@
 @if(isset($_GET["company"]) || isset($_GET["user"]))
 @section('scripts')
     <script src="{{asset('js/passwordCheck.js')}}"></script>
-    <script>let a=document.getElementById("avatar"),t=document.getElementById("output");a.addEventListener("change",e=>{t.style.display="block",t.src=URL.createObjectURL(e.target.files[0]),t.onload=function(){URL.revokeObjectURL(t.src)}});</script>
+    <script>let a = document.getElementById("avatar"), t = document.getElementById("output");
+        a.addEventListener("change", e => {
+            t.style.display = "block", t.src = URL.createObjectURL(e.target.files[0]), t.onload = function () {
+                URL.revokeObjectURL(t.src)
+            }
+        });</script>
 @endsection
 @endif

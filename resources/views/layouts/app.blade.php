@@ -19,6 +19,8 @@
         {{ Request::is('about') ? ' | À propos de nous' : "" }}
         {{ Request::is('policy') ? ' | Politique de confidentialité' : "" }}
         {{ Request::is('conditions') ? ' | Conditions d’utilisations' : "" }}
+        {{ Request::is('announcements') ? ' | Annonces' : "" }}
+        {{ Request::is('workerz') ? ' | Travailleurs' : "" }}
     </title>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -27,7 +29,7 @@
 </head>
 <body>
 <div class="containerBtnAddAnnouncment">
-    <a href="#" class="btnAddAnnouncement"></a>
+    <a href="{{route('announcements')}}" class="btnAddAnnouncement"></a>
 </div>
 <header>
     <h1 aria-level="1" class="hidden">Bienvenu sur Workerz</h1>
@@ -177,10 +179,12 @@
                                    aria-current="{{ Request::is('/') ? "page" : "" }}" href="{{ url('/') }}">Accueil</a>
                             </li>
                             <li><a class="{{ Request::is('sign-in') ? "current_page_item" : "" }}"
-                                   aria-current="{{ Request::is('workers') ? "page" : "" }}" href="#">Travailleurs</a>
+                                   aria-current="{{ Request::is('workers') ? "page" : "" }}"
+                                   href="{{route('workerz')}}">Travailleurs</a>
                             </li>
                             <li><a class="{{ Request::is('announcements') ? "current_page_item" : "" }}"
-                                   aria-current="{{ Request::is('announcements') ? "page" : "" }}" href="#">Annonces</a>
+                                   aria-current="{{ Request::is('announcements') ? "page" : "" }}"
+                                   href="{{route('announcements')}}">Annonces</a>
                             </li>
                         </ul>
                     </li>
@@ -224,15 +228,15 @@
                     <li>
                         <a href="{{route('about')}}">
                             À propos
-                    </a></li>
+                        </a></li>
                     <li>
                         <a href="{{route('policy')}}">
                             Politique de confidentialité
-                    </a></li>
+                        </a></li>
                     <li>
                         <a href="{{route('conditions')}}">
                             Conditions d’utilisations
-                    </a></li>
+                        </a></li>
                 </ul>
             </nav>
         </section>
@@ -257,6 +261,7 @@ animated">
         <small>{{date('Y')}} Workerz. Tous droits réservés.</small>
     </div>
 </footer>
+<script>const nodeList=document.querySelectorAll(".show-content"),scroll=Array.from(nodeList);if(scroll){let l=function(){let l=window.scrollY;for(let o=0;scroll.length-1>=o;o++)l>=scroll[o].offsetTop-450?(scroll[o].style.opacity=1,scroll[o].style.transition="1s"):scroll[o].style.opacity=0};window.addEventListener("scroll",l)}</script>
 @yield('scripts')
 </body>
 </html>

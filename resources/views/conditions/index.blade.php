@@ -23,7 +23,7 @@
         <h2 class="container-categories-text-home">
             Conditions d'utilisations
         </h2>
-        <div class="container-policy">
+        <div class="container-policy show-content">
             <section>
                 <h3 aria-level="3">ARTICLE 1 : Objet</h3>
 

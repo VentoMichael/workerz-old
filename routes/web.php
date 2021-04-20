@@ -23,6 +23,10 @@ Route::get('/announcements', function () {
     return view('announcements.index');
 })->name('announcements');
 
+Route::get('/workerz', function () {
+    return view('workerz.index');
+})->name('workerz');
+
 Route::get('/conditions', function () {
     return view('conditions.index');
 })->name('conditions');
