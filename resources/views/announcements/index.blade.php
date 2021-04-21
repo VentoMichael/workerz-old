@@ -25,93 +25,306 @@
             <input type="submit" class="submit-category-home submit-ad" value="Recherchez">
         </form>
     </div>
-    <section>
+    <section class="container-home container-announcements show-content">
         <h2 class="hidden" aria-level="2">
             Toutes les annonces
         </h2>
-        <div class="container-all-announcement container-home show-content">
-            <section class="container-announcement" id="showmgs">
-                <div class="container-infos-announcement">
-                    <div class="containerPrice">
-                        <img src="{{asset('svg/euro.svg')}}" alt="icone d'euro">Max: 5000 €
-                    </div>
-                    <div class="container-image-announcement">
-                        <img src="{{asset('svg/ad.svg')}}" alt="icone d'annonces">
-                    </div>
-                    <h3>
-                        Je recherche un coach en nutrition
-                    </h3>
-                    <p class="paragraph-ann">
-                        @php
-                            $str = 'fefzefzefjnezjfnzkejnfkjzenfzefefzefzefjnezjfnzkejnfkjzenfzefefzefzefjnezjfnzkejnfkjzenfzefefzefzefjnezjfnzkejnfkjzenfzefefzefzefjnezjfnzkejnfkjzenfze';
-
-                        @endphp
-                        @if (strlen($str) > 50 && !isset($_GET['showmore']))
+        <div class="container-all-announcement">
+            @for($i =0;$i <= 3; $i++)
+                <section class="container-announcement" id="showmgs{{$i}}">
+                    <div class="container-infos-announcement">
+                        <div class="containerPrice">
+                            <img src="{{asset('svg/euro.svg')}}" alt="icone d'euro">Max: 5000 €
+                        </div>
+                        <div class="container-image-announcement">
+                            <img src="{{asset('svg/ad.svg')}}" alt="icone d'annonces">
+                        </div>
+                        <h3>
+                            Je recherche un coach en nutrition
+                        </h3>
+                        <p class="paragraph-ann">
                             @php
-                                $str = substr($str, 0, 50) . '...';
+                                $str = 'fefzefzefjnezjfnzkejnfkjzefefzefzefjnezjfnzkejnfkjzefefzefzefjnezjfnzkejnfkjzefefzefzefjnezjfnzkejnfkjze';
+
                             @endphp
+                            @if (strlen($str) > 60 && !isset($_GET['showmore'.$i]))
+                                @php
+                                    $str = substr($str, 0, 60) . '...';
+                                @endphp
+                            @endif
                             {{$str}}
-                        @else
-                            {{$str}}
-                        @endif
 
-                    </p>
-                    @if (strlen($str) > 50)
-                        @if(!isset($_GET['showmore']))
-                        <form action="#" method="get">
-                            <button class="button-more-text" name="showmore">
-
-                            </button>
-                        </form>
-                    @endif
-                    @endif
-                    <div class="container-infos">
-                        <div class="container-info-announcement">
-                            <img src="{{asset('svg/suitcase.svg')}}" alt="icone de malette de travail">
-                            <p>fezfezfLorem ipsum dolor sit amet</p>
-                        </div>
-                        <div class="container-info-announcement">
-                            <img src="{{asset('svg/placeholder.svg')}}" alt="icone de localité">
-                            <p>Lorem ipsum dolor sit amet</p>
-                        </div>
-                    </div>
-                </div>
-                <a href="#" class="button-personnal-announcement">
-
-                </a>
-            </section>
-            <section class="container-announcement">
-                <div class="container-infos-announcement">
-                    <h3>
-                        Je recherche un coach en nutrition
-                    </h3>
-                    @php $string = "Je n'arrive pas à faire des séances de sport, il faut m'aider, même devant la" @endphp
-                    <p class="paragraph-ann">
-                        @php echo $string @endphp
-                    </p>
-
-                    @if(strlen($string) > 30)
-                        <p class="showmore">
-                            <a class="button-more-text">
-
-                            </a>
                         </p>
-                    @endif
-                    <div class="container-infos">
-                        <div class="container-info-announcement">
-                            <img src="{{asset('svg/suitcase.svg')}}" alt="icone de malette de travail">
-                            <p>Lorem ipsum dolor sit amet</p>
-                        </div>
-                        <div class="container-info-announcement">
-                            <img src="{{asset('svg/placeholder.svg')}}" alt="icone de localité">
-                            <p>Lorem ipsum dolor sit amet</p>
+                        @if (strlen($str) > 60)
+                            @if(!isset($_GET['showmore'.$i]))
+                                <form action="#showmgs{{$i}}" method="get">
+                                    <button class="button-more-text" name="showmore{{$i}}">
+                                    </button>
+                                </form>
+                            @endif
+                        @endif
+                        <div class="container-infos">
+                            <div class="container-info-announcement">
+                                <img src="{{asset('svg/suitcase.svg')}}" alt="icone de malette de travail">
+                                <p>fezfezfLorem ipsum dolor sit amet</p>
+                            </div>
+                            <div class="container-info-announcement">
+                                <img src="{{asset('svg/placeholder.svg')}}" alt="icone de localité">
+                                <p>Lorem ipsum dolor sit amet</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <a href="#" class="button-personnal-announcement">
+                    <a href="#" class="button-personnal-announcement">
 
-                </a>
-            </section>
+                    </a>
+                </section>
+            @endfor
+        </div>
+        <div class="container-filters">
+            <form action="#" method="get">
+                <section>
+                    <h2 aria-level="2">
+                        Filtres
+                    </h2>
+                    <section class="container-filter-categories">
+                        <h3 aria-level="3">
+                            Catégories
+                        </h3>
+                        <ul class="list-categories">
+                            <li>
+                                <input class="inp-cbx" id="test1" name="test1" type="checkbox" style="display: none;"/>
+                                <label class="cbx" for="test1">
+                                <span>
+                                    <svg width="12px" height="9px" viewbox="0 0 12 9">
+                                      <polyline points="1 5 4 8 11 1"></polyline>
+                                    </svg>
+                                </span>
+                                    <span>test1</span>
+                                </label>
+                            </li>
+                            <li>
+                                <input class="inp-cbx" id="test2" name="test2" type="checkbox" style="display: none;"/>
+                                <label class="cbx" for="test2">
+                                <span>
+                                    <svg width="12px" height="9px" viewbox="0 0 12 9">
+                                      <polyline points="1 5 4 8 11 1"></polyline>
+                                    </svg>
+                                </span>
+                                    <span>test2</span>
+                                </label>
+                            </li>
+                            <li>
+                                <input class="inp-cbx" id="test3" name="test3" type="checkbox" style="display: none;"/>
+                                <label class="cbx" for="test3">
+                                <span>
+                                    <svg width="12px" height="9px" viewbox="0 0 12 9">
+                                      <polyline points="1 5 4 8 11 1"></polyline>
+                                    </svg>
+                                </span>
+                                    <span>test3</span>
+                                </label>
+                            </li>
+                            <li>
+                                <input class="inp-cbx" id="test4" name="test4" type="checkbox" style="display: none;"/>
+                                <label class="cbx" for="test4">
+                                <span>
+                                    <svg width="12px" height="9px" viewbox="0 0 12 9">
+                                      <polyline points="1 5 4 8 11 1"></polyline>
+                                    </svg>
+                                </span>
+                                    <span>test4</span>
+                                </label>
+                            </li>
+                        </ul>
+                    </section>
+                    <section class="container-filter-categories">
+                        <h3 aria-level="3">
+                            Régions
+                        </h3>
+                        <ul class="list-categories">
+                            <li>
+                                <input class="inp-cbx" id="test1" name="test1" type="checkbox" style="display: none;"/>
+                                <label class="cbx" for="test1">
+                                <span>
+                                    <svg width="12px" height="9px" viewbox="0 0 12 9">
+                                      <polyline points="1 5 4 8 11 1"></polyline>
+                                    </svg>
+                                </span>
+                                    <span>test1</span>
+                                </label>
+                            </li>
+                            <li>
+                                <input class="inp-cbx" id="test2" name="test2" type="checkbox" style="display: none;"/>
+                                <label class="cbx" for="test2">
+                                <span>
+                                    <svg width="12px" height="9px" viewbox="0 0 12 9">
+                                      <polyline points="1 5 4 8 11 1"></polyline>
+                                    </svg>
+                                </span>
+                                    <span>test2</span>
+                                </label>
+                            </li>
+                            <li>
+                                <input class="inp-cbx" id="test3" name="test3" type="checkbox" style="display: none;"/>
+                                <label class="cbx" for="test3">
+                                <span>
+                                    <svg width="12px" height="9px" viewbox="0 0 12 9">
+                                      <polyline points="1 5 4 8 11 1"></polyline>
+                                    </svg>
+                                </span>
+                                    <span>test3</span>
+                                </label>
+                            </li>
+                            <li>
+                                <input class="inp-cbx" id="test4" name="test4" type="checkbox" style="display: none;"/>
+                                <label class="cbx" for="test4">
+                                <span>
+                                    <svg width="12px" height="9px" viewbox="0 0 12 9">
+                                      <polyline points="1 5 4 8 11 1"></polyline>
+                                    </svg>
+                                </span>
+                                    <span>test4</span>
+                                </label>
+                            </li>
+                            <li>
+                                <input class="inp-cbx" id="test1" name="test1" type="checkbox" style="display: none;"/>
+                                <label class="cbx" for="test1">
+                                <span>
+                                    <svg width="12px" height="9px" viewbox="0 0 12 9">
+                                      <polyline points="1 5 4 8 11 1"></polyline>
+                                    </svg>
+                                </span>
+                                    <span>test1</span>
+                                </label>
+                            </li>
+                            <li>
+                                <input class="inp-cbx" id="test2" name="test2" type="checkbox" style="display: none;"/>
+                                <label class="cbx" for="test2">
+                                <span>
+                                    <svg width="12px" height="9px" viewbox="0 0 12 9">
+                                      <polyline points="1 5 4 8 11 1"></polyline>
+                                    </svg>
+                                </span>
+                                    <span>test2</span>
+                                </label>
+                            </li>
+                            <li>
+                                <input class="inp-cbx" id="test3" name="test3" type="checkbox" style="display: none;"/>
+                                <label class="cbx" for="test3">
+                                <span>
+                                    <svg width="12px" height="9px" viewbox="0 0 12 9">
+                                      <polyline points="1 5 4 8 11 1"></polyline>
+                                    </svg>
+                                </span>
+                                    <span>test3</span>
+                                </label>
+                            </li>
+                            <li>
+                                <input class="inp-cbx" id="test4" name="test4" type="checkbox" style="display: none;"/>
+                                <label class="cbx" for="test4">
+                                <span>
+                                    <svg width="12px" height="9px" viewbox="0 0 12 9">
+                                      <polyline points="1 5 4 8 11 1"></polyline>
+                                    </svg>
+                                </span>
+                                    <span>test4</span>
+                                </label>
+                            </li>
+                            <li>
+                                <input class="inp-cbx" id="test1" name="test1" type="checkbox" style="display: none;"/>
+                                <label class="cbx" for="test1">
+                                <span>
+                                    <svg width="12px" height="9px" viewbox="0 0 12 9">
+                                      <polyline points="1 5 4 8 11 1"></polyline>
+                                    </svg>
+                                </span>
+                                    <span>test1</span>
+                                </label>
+                            </li>
+                            <li>
+                                <input class="inp-cbx" id="test2" name="test2" type="checkbox" style="display: none;"/>
+                                <label class="cbx" for="test2">
+                                <span>
+                                    <svg width="12px" height="9px" viewbox="0 0 12 9">
+                                      <polyline points="1 5 4 8 11 1"></polyline>
+                                    </svg>
+                                </span>
+                                    <span>test2</span>
+                                </label>
+                            </li>
+                            <li>
+                                <input class="inp-cbx" id="test3" name="test3" type="checkbox" style="display: none;"/>
+                                <label class="cbx" for="test3">
+                                <span>
+                                    <svg width="12px" height="9px" viewbox="0 0 12 9">
+                                      <polyline points="1 5 4 8 11 1"></polyline>
+                                    </svg>
+                                </span>
+                                    <span>test3</span>
+                                </label>
+                            </li>
+                            <li>
+                                <input class="inp-cbx" id="test4" name="test4" type="checkbox" style="display: none;"/>
+                                <label class="cbx" for="test4">
+                                <span>
+                                    <svg width="12px" height="9px" viewbox="0 0 12 9">
+                                      <polyline points="1 5 4 8 11 1"></polyline>
+                                    </svg>
+                                </span>
+                                    <span>test4</span>
+                                </label>
+                            </li>
+                            <li>
+                                <input class="inp-cbx" id="test1" name="test1" type="checkbox" style="display: none;"/>
+                                <label class="cbx" for="test1">
+                                <span>
+                                    <svg width="12px" height="9px" viewbox="0 0 12 9">
+                                      <polyline points="1 5 4 8 11 1"></polyline>
+                                    </svg>
+                                </span>
+                                    <span>test1</span>
+                                </label>
+                            </li>
+                            <li>
+                                <input class="inp-cbx" id="test2" name="test2" type="checkbox" style="display: none;"/>
+                                <label class="cbx" for="test2">
+                                <span>
+                                    <svg width="12px" height="9px" viewbox="0 0 12 9">
+                                      <polyline points="1 5 4 8 11 1"></polyline>
+                                    </svg>
+                                </span>
+                                    <span>test2</span>
+                                </label>
+                            </li>
+                            <li>
+                                <input class="inp-cbx" id="test3" name="test3" type="checkbox" style="display: none;"/>
+                                <label class="cbx" for="test3">
+                                <span>
+                                    <svg width="12px" height="9px" viewbox="0 0 12 9">
+                                      <polyline points="1 5 4 8 11 1"></polyline>
+                                    </svg>
+                                </span>
+                                    <span>test3</span>
+                                </label>
+                            </li>
+                            <li>
+                                <input class="inp-cbx" id="test4" name="test4" type="checkbox" style="display: none;"/>
+                                <label class="cbx" for="test4">
+                                <span>
+                                    <svg width="12px" height="9px" viewbox="0 0 12 9">
+                                      <polyline points="1 5 4 8 11 1"></polyline>
+                                    </svg>
+                                </span>
+                                    <span>test4</span>
+                                </label>
+                            </li>
+                        </ul>
+                    </section>
+                    <button>
+                        Appliquer les filtres
+                    </button>
+                </section>
+            </form>
         </div>
     </section>
 @endsection
