@@ -19,9 +19,12 @@ Route::get('/', function () {
     return view('home.index',compact('users','categories'));
 });
 
-Route::get('/announcements', function () {
-    return view('announcements.index');
-})->name('announcements');
+Route::get('/announcements', [\App\Http\Controllers\AnnouncementController::class, 'index'])->name('announcements');
+
+Route::get('/announcements/create',[\App\Http\Controllers\AnnouncementController::class, 'create'])->name('announcements.create');
+
+
+
 
 Route::get('/workerz', function () {
     return view('workerz.index');

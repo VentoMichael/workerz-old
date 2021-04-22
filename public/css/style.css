@@ -234,7 +234,8 @@ button:hover:after {
 }
 
 .submit-category-home:hover {
-    transform: scale(1.05) translateX(-50px) translateY(9px);top: 2px;
+    transform: scale(1.05) translateX(-50px) translateY(9px);
+    top: 2px;
 }
 
 .container-home-why .container-why:last-child {
@@ -584,6 +585,7 @@ form .form-group .email-label {
     right: inherit;
     bottom: 10px
 }
+
 .advantage-btn:hover:after {
     background-image: url(../svg/arrow-b-color.svg);
     background-size: 80%;
@@ -595,17 +597,21 @@ form .form-group .email-label {
     bottom: 4px;
     opacity: 1;
 }
-.containerLove img{
+
+.containerLove img {
     max-width: 29px;
     width: 100%;
 }
-.containerLove:hover .heart{
+
+.containerLove:hover .heart {
     display: none;
 }
-.heartFul{
+
+.heartFul {
     display: none;
 }
-.containerLove:hover .heartFul{
+
+.containerLove:hover .heartFul {
     display: inherit;
 }
 
@@ -647,6 +653,7 @@ form .form-group .email-label {
     padding: 9px 5px 9px 5px;
     min-width: 200px;
     font-size: 1em;
+    background: white;
     border: 1px solid #69696969;
     border-radius: 4px;
     margin: 10px 0 20px;
@@ -810,7 +817,9 @@ form .search-announcement {
     border: 1px solid var(--gradientLightBlue);
     position: relative;
 }
-
+.container-announcement-create .select-register:hover {
+    height: 44px;
+}
 .button-more-text:after {
     content: "";
     display: block;
@@ -1048,6 +1057,12 @@ form .search-announcement {
     position: sticky;
     top: 100px;
 }
-.containerLove{
+
+.containerLove {
     right: inherit;
+}
+.help{
+    font-size: .8em;
+    margin-top: -20px;
+    margin-bottom: 10px;
 }

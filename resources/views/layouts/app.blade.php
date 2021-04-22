@@ -29,7 +29,7 @@
 </head>
 <body>
 <div class="containerBtnAddAnnouncment">
-    <a href="{{route('announcements')}}" class="btnAddAnnouncement"></a>
+    <a href="{{route('announcements.create')}}" class="btnAddAnnouncement"></a>
 </div>
 <header>
     <h1 aria-level="1" class="hidden">Bienvenu sur Workerz</h1>
