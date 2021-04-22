@@ -25,11 +25,11 @@
             <input type="submit" class="submit-category-home submit-ad" value="Recherchez">
         </form>
     </div>
-    <section class="container-home container-announcements show-content">
+    <section class="container-home container-announcements">
         <h2 class="hidden" aria-level="2">
             Toutes les annonces
         </h2>
-        <div class="container-all-announcement">
+        <div class="container-all-announcement show-content">
             @for($i =0;$i <= 3; $i++)
                 <section class="container-announcement" id="showmgs{{$i}}">
                     <div class="container-infos-announcement">

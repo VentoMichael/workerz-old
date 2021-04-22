@@ -217,12 +217,23 @@
         overflow-x: scroll;
         overflow-y: inherit;
     }
+
     .container-filters button {
         margin-bottom: 90px;
     }
-    section .container-all-announcement{
+
+    section .container-all-announcement {
         width: 100%;
         grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+
+    div .horary-cost {
+        top: inherit;
+        bottom: 45px;
+    }
+
+    body main .container-create-ads {
+        flex-direction: column;
     }
 }
 
@@ -318,8 +329,35 @@
     section .container-home_image div:first-child {
         max-width: 100%;
     }
+
     section .form-choice {
         grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    }
+
+    .radioButtons {
+        margin-bottom: 30px;
+    }
+
+    div .help {
+        margin-top: -30px;
+        margin-bottom: 30px;
+    }
+
+    div .select-register {
+        margin: 10px 0 30px;
+    }
+
+    div .form-login .email-label {
+        margin-bottom: 30px;
+    }
+
+    .container-home-create {
+        margin-bottom: 0;
+    }
+
+    div div .horary-cost {
+        top: inherit;
+        bottom: 64px;
     }
 }
 
