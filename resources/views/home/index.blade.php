@@ -32,51 +32,17 @@
             <p class="text-categories-home">Choisissez une catégorie parmi les plus populaires</p>
         </div>
         <div class="container-six-category-home show-content">
+            @foreach($categories as $categorie)
             <a href="#">
                 <section class="box-category">
-                    <img src="{{asset('svg/barber.svg')}}" alt="">
+                    <img src="{{asset('svg/'.$categorie->profil)}}" alt="{{$categorie->alt}}">
                     <div>
-                        <h3 aria-level="3">Développeur</h3>
-                        <p>104 professionnels</p>
+                        <h3 aria-level="3">{{$categorie->name}}</h3>
+                        <p>{{$categorie->users->count()}} professionnels</p>
                     </div>
                 </section>
             </a>
-            <a href="#">
-                <section class="box-category">
-                    <img src="{{asset('svg/barber.svg')}}" alt="">
-                    <div>
-                        <h3 aria-level="3">Développeur</h3>
-                        <p>104 professionnels</p>
-                    </div>
-                </section>
-            </a>
-            <a href="#">
-                <section class="box-category">
-                    <img src="{{asset('svg/barber.svg')}}" alt="">
-                    <div>
-                        <h3 aria-level="3">Développeur</h3>
-                        <p>104 professionnels</p>
-                    </div>
-                </section>
-            </a>
-            <a href="#">
-                <section class="box-category">
-                    <img src="{{asset('svg/barber.svg')}}" alt="">
-                    <div>
-                        <h3 aria-level="3">Développeur</h3>
-                        <p>104 professionnels</p>
-                    </div>
-                </section>
-            </a>
-            <a href="#">
-                <section class="box-category">
-                    <img src="{{asset('svg/barber.svg')}}" alt="">
-                    <div>
-                        <h3 aria-level="3">Développeur</h3>
-                        <p>104 professionnels</p>
-                    </div>
-                </section>
-            </a>
+            @endforeach
             <a href="#" class="last-box-category box-category">
                 <section>
                     <h3 aria-level="3">Toutes les catégories</h3>

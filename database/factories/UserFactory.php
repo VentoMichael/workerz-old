@@ -26,7 +26,7 @@ class UserFactory extends Factory
             'picture' => $this->faker->imageUrl($width = 640, $height = 480, 'cats'),
             'name' => $this->faker->name,
             'province_id' => $this->faker->numberBetween($min = 1, $max = 11),
-            'category_id' => $this->faker->numberBetween($min = 1, $max = 27),
+            'category_id' => $this->faker->numberBetween($min = 1, $max = 24),
             'plan_user_id' => $this->faker->numberBetween($min = 1, $max = 3),
             'role_id' => $this->faker->numberBetween($min = 1, $max = 2),
             'description' => $this->faker->text($maxNbChars = 200),

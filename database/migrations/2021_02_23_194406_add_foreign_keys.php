@@ -41,7 +41,7 @@ class AddForeignKeys extends Migration
                 ->references('id')
                 ->on('start_dates');
         });
-        Schema::table('category_users', function(Blueprint $table) {
+        Schema::table('category_user', function(Blueprint $table) {
             $table->bigInteger('user_id')->unsigned();
             $table->bigInteger('category_id')->unsigned();
             $table->foreign('user_id')

@@ -12,6 +12,11 @@ class AnnouncementController extends Controller
      *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
+    public function plans()
+    {
+        return view('announcements.plans');
+    }
+
     public function index()
     {
         return view('announcements.index');
@@ -24,7 +29,12 @@ class AnnouncementController extends Controller
      */
     public function create()
     {
-        return view('announcements.create');
+        if (isset($_GET['plan1']) || isset($_GET['plan2']) || isset($_GET['plan3'])) {
+            return view('announcements.create');
+        }else{
+            return redirect(route('announcements.plans'));
+        }
+
     }
 
     /**

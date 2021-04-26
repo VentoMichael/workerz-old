@@ -253,7 +253,8 @@
         margin-right: 0;
     }
     section .container-plans section:nth-child(2):after {
-        right: 30%;
+        right: 50%;
+        margin-right: -60px;
     }
     section .container-plans section:nth-child(2) h3 {
         padding-top: 45px;

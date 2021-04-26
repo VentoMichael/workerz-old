@@ -127,6 +127,7 @@
 .box-category img {
     align-self: center;
     margin-bottom: 30px;
+    max-width: 120px;
 }
 
 .text-categories-home {
@@ -1155,7 +1156,8 @@ form .search-announcement {
 }
 
 .container-plans {
-    display: flex;margin-top: 70px;
+    display: flex;
+    margin-top: 70px;
 }
 
 .container-plan button:after {
@@ -1173,6 +1175,7 @@ form .search-announcement {
     font-size: 1em;
     transition: .3s;
 }
+
 .container-plan button:before {
     content: "";
     position: absolute;
@@ -1234,14 +1237,19 @@ form .search-announcement {
     margin: 10px 0 15px;
 }
 
-.container-plans h3{
+.container-plans h3 {
     font-size: 1.8em;
     padding-top: 10px;
 }
-.container-plan-price p{
+
+.container-plan-price p {
     font-size: 1.5em;
 }
-.container-plans section {    padding: 15px 20px 30px;}
+
+.container-plans section {
+    padding: 15px 20px 30px;
+}
+
 .container-plans section:nth-child(2):after {
     content: "";
     display: block;
@@ -1256,11 +1264,16 @@ form .search-announcement {
     background-position: center;
     background-image: url("../svg/hot.svg");
 }
-.container-plans section:nth-child(2) {    position:relative;margin: -40px -30px;padding: 15px 20px 30px;
+
+.container-plans section:nth-child(2) {
+    position: relative;
+    margin: -40px -30px;
+    padding: 15px 20px 30px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
+
 .container-plans section:nth-child(2) h3 {
     font-size: 2.5em;
     padding-top: 15px;
@@ -1276,14 +1289,17 @@ form .search-announcement {
     justify-content: center;
     margin-top: 20px;
 }
-.hepling span{
+
+.hepling span {
     display: none;
 }
-.hepling{
+
+.hepling {
     position: relative;
     cursor: help;
 }
-.hepling:hover span{
+
+.hepling:hover span {
     display: block;
     position: absolute;
     top: -5px;

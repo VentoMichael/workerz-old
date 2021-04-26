@@ -15,12 +15,15 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     $users = \App\Models\User::with('phones')->get();
-    $categories = \App\Models\Category::orderBy('name')->get();
+    $categories = \App\Models\Category::with('users')->orderBy('name','ASC')->get()->sortByDesc(function($categories)
+    {
+        return $categories->users->count();
+    })->take(5);
     return view('home.index',compact('users','categories'));
 });
 
 Route::get('/announcements', [\App\Http\Controllers\AnnouncementController::class, 'index'])->name('announcements');
-
+Route::get('/announcements/plans', [\App\Http\Controllers\AnnouncementController::class, 'plans'])->name('announcements.plans');
 Route::get('/announcements/create',[\App\Http\Controllers\AnnouncementController::class, 'create'])->name('announcements.create');
 
 

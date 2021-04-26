@@ -56,7 +56,7 @@ class User extends Authenticatable
         return $this->hasMany(Website::class);
     }
     public function categories(){
-        return $this->belongsToMany(Category::class);
+        return $this->belongsToMany(Category::class)->withPivot('user_id');
     }
     public function startDateUser(){
         return $this->belongsToMany(StartDate::class);
