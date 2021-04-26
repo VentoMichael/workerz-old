@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Session;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,11 +20,16 @@ Route::get('/', function () {
     {
         return $categories->users->count();
     })->take(5);
+    Session::flash('success', 'Here is your success message');
     return view('home.index',compact('users','categories'));
 });
 
 Route::get('/announcements', [\App\Http\Controllers\AnnouncementController::class, 'index'])->name('announcements');
+
 Route::get('/announcements/plans', [\App\Http\Controllers\AnnouncementController::class, 'plans'])->name('announcements.plans');
+
+Route::get('/announcements/{announcement}', [\App\Http\Controllers\AnnouncementController::class, 'show'])->name('announcements.show');
+
 Route::get('/announcements/create',[\App\Http\Controllers\AnnouncementController::class, 'create'])->name('announcements.create');
 
 
@@ -32,6 +38,10 @@ Route::get('/announcements/create',[\App\Http\Controllers\AnnouncementController
 Route::get('/workerz', function () {
     return view('workerz.index');
 })->name('workerz');
+
+Route::get('/dashboard', function () {
+    return view('dashboard.index');
+})->name('dashboard');
 
 Route::get('/conditions', function () {
     return view('conditions.index');

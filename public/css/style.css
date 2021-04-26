@@ -97,8 +97,10 @@
     display: flex;
     flex-direction: column;
     border-radius: 5px;
+    justify-content: space-between;
     min-width: 250px;
     width: 95%;
+    min-height: 200px;
     overflow: hidden;
 }
 
@@ -614,6 +616,7 @@ form .form-group .email-label {
 
 .containerLove:hover .heartFul {
     display: inherit;
+    cursor: pointer;
 }
 
 .container-filters button:after {
@@ -1309,6 +1312,32 @@ form .search-announcement {
     border-radius: 5px;
     background: white;
 }
-
-
-
+.profil-item{
+    background-image: url("../svg/user-w.svg");
+}
+.successMsg img{
+    margin-right: 10px;
+}
+.successMsg p{
+    margin-right: 20px;
+}
+.successMsg{
+    position: fixed;
+    bottom: 20px;
+    display: flex;
+    align-items: center;
+    left: 4em;
+    padding: 20px;
+    box-shadow: var(--shadow);
+    border-radius: 5px;
+    z-index: 1;
+    background: white;
+}
+.crossHide{
+    color: red;
+    top: 10px;
+    font-size: 1.5em;
+    cursor:pointer;
+    position: absolute;
+    right: 10px;
+}

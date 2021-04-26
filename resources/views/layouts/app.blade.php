@@ -188,6 +188,7 @@
                             </li>
                         </ul>
                     </li>
+                    @if(!Auth::check())
                     <li>
                         <ul class="container-list-menu">
                             <li class="{{ Request::is('sign-in') ? "current_page_item" : "" }}"
@@ -200,6 +201,19 @@
                             </li>
                         </ul>
                     </li>
+                    @else
+                        <li>
+                            <ul class="container-list-menu">
+                                <li><a
+                                        href="{{ auth()->logout() }}">Se déconnecter</a>
+                                </li>
+                                <li class="last-menu-item profil-item"
+                                    aria-current="{{ Request::is('sign-up') ? "page" : "" }}"><a
+                                        href="{{route('dashboard')}}">Oui</a>
+                                </li>
+                            </ul>
+                        </li>
+                    @endif
                 </ul>
             </div>
         </nav>

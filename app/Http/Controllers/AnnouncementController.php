@@ -21,6 +21,10 @@ class AnnouncementController extends Controller
     {
         return view('announcements.index');
     }
+    public function show()
+    {
+        return view('announcements.show');
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -48,16 +52,6 @@ class AnnouncementController extends Controller
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Announcement  $announcement
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Announcement $announcement)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.

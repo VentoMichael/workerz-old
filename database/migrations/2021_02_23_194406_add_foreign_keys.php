@@ -14,10 +14,10 @@ class AddForeignKeys extends Migration
     public function up()
     {
         Schema::table('users', function(Blueprint $table) {
-            $table->foreignId("province_id")->constrained('provinces');
-            $table->foreignId("plan_user_id")->constrained('plan_users');
-            $table->foreignId("role_id")->constrained('roles');
-            $table->foreignId("category_id")->constrained('categories');
+            $table->foreignId("province_id")->nullable()->constrained('provinces');
+            $table->foreignId("plan_user_id")->nullable()->constrained('plan_users');
+            $table->foreignId("role_id")->nullable()->constrained('roles');
+            $table->foreignId("category_id")->nullable()->constrained('categories');
         });
         Schema::table('phones', function(Blueprint $table) {
             $table->foreignId("user_id")->constrained('users');

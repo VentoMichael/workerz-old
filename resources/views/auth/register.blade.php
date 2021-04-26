@@ -156,12 +156,12 @@
                     <div class="container-register-form">
                         <div class="container-form-email">
                             <div class="avatar-container">
-                                <label for="avatar">Photo du commerce</label>
+                                <label for="picture">Photo du commerce</label>
                                 <img id="output" class="preview-picture" alt="Photo du commerce"/>
                             </div>
                             <input type="file"
-                                   id="avatar" class="input-field @error('avatar') is-invalid @enderror email-label"
-                                   name="avatar"
+                                   id="picture" class="input-field @error('picture') is-invalid @enderror email-label"
+                                   name="picture"
                                    accept="image/png, image/jpeg">
                         </div>
                         <div class="container-form-email">
@@ -272,12 +272,12 @@
                     <div class="container-register-form">
                         <div class="container-form-email">
                             <div class="avatar-container">
-                                <label for="avatar">Photo de profil</label>
+                                <label for="picture">Photo de profil</label>
                                 <img id="output" class="preview-picture" alt="photo du commerce"/>
                             </div>
                             <input type="file"
-                                   id="avatar" class="input-field @error('avatar') is-invalid @enderror email-label"
-                                   name="avatar"
+                                   id="picture" class="input-field @error('picture') is-invalid @enderror email-label"
+                                   name="picture"
                                    accept="image/png, image/jpeg">
 
                         </div>
@@ -301,7 +301,7 @@
                         </div>
 
                     </div>
-
+                    <input id="role_id" name="role_id" type="hidden" value="3">
 
                     @include('partials.register')
                 </form>

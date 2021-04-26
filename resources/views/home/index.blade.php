@@ -1,5 +1,15 @@
 @extends('layouts.app')
 @section('content')
+    @if (Session::has('success-inscription'))
+        <div id="sucessMessage" class="successMsg"><img src="{{asset('svg/good.svg')}}"
+                                                        alt="">{{Session::get('success-inscription')}}</div>
+    @endif
+    @if (Session::has('success'))
+        <div id="successMsg" class="successMsg"><img src="{{asset('svg/good.svg')}}" alt="">
+            <p>{{Session::get('success')}}</p>
+            <span class="crossHide" onclick="this.parentElement.style.display='none';">&times;</span>
+        </div>
+    @endif
     <section class="container-home margin">
         <div class="container-home_image container-home-page">
             <div>
@@ -33,15 +43,15 @@
         </div>
         <div class="container-six-category-home show-content">
             @foreach($categories as $categorie)
-            <a href="#">
-                <section class="box-category">
-                    <img src="{{asset('svg/'.$categorie->profil)}}" alt="{{$categorie->alt}}">
-                    <div>
-                        <h3 aria-level="3">{{$categorie->name}}</h3>
-                        <p>{{$categorie->users->count()}} professionnels</p>
-                    </div>
-                </section>
-            </a>
+                <a href="#">
+                    <section class="box-category">
+                        <img src="{{asset('svg/'.$categorie->profil)}}" alt="{{$categorie->alt}}">
+                        <div>
+                            <h3 aria-level="3">{{$categorie->name}}</h3>
+                            <p>{{$categorie->users->count()}} professionnels</p>
+                        </div>
+                    </section>
+                </a>
             @endforeach
             <a href="#" class="last-box-category box-category">
                 <section>
@@ -100,3 +110,8 @@
         </section>
     </section>
 @endsection
+<script>
+    setTimeout(function () {
+        document.getElementById('successMsg').style.display = 'none';
+    }, 10000);
+</script>
