@@ -914,6 +914,7 @@ form .search-announcement {
     padding: 8px;
     border-radius: 7px;
     display: flex;
+    z-index: 1;
     align-items: center;
     position: absolute;
     top: -23px;

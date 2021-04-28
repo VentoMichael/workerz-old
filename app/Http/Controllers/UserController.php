@@ -17,7 +17,7 @@ class UserController extends Controller
     }
     public function index()
     {
-        $workerz = User::Independent()->with('loves')->orderBy('role_id', 'DESC')->orderBy('created_at', 'DESC')->paginate(4)->onEachSide(0);
+        $workerz = User::Independent()->with('loves')->orderBy('role_id', 'DESC')->orderBy('created_at', 'ASC')->orderBy('name', 'ASC')->paginate(4)->onEachSide(0);
         foreach($workerz as $worker){
             if (strlen($worker->description) > 60 && !isset($_GET['showmore'.$worker->id])) {
                 $worker->description = substr($worker->description, 0, 60).'...';
@@ -26,11 +26,15 @@ class UserController extends Controller
             $q->Independent();
         }]))->withCount("users")->get()->sortBy('name');
 
+        $loves = Loves::with((['user' => function ($q) {
+            $q->Independent();
+        }]))->withCount("user")->get()->sortBy('name');
+
         $regions = Province::with((['users' => function ($q) {
             $q->Independent();
         }]))->withCount("users")->withCount("users")->get()->sortBy('name');
 
-        return view('workerz.index',compact('workerz','categories','regions'));
+        return view('workerz.index',compact('workerz','categories','loves','regions'));
     }
     public function show(User $name)
     {

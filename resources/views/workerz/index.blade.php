@@ -33,15 +33,21 @@
             @foreach($workerz as $worker)
                 <section class="container-announcement" id="showmgs{{$worker->id}}">
                     <div class="container-infos-announcement">
+
                         <div class="containerPrice">
                             <img src="{{asset('svg/euro.svg')}}" alt="icone d'euro">Max: {{$worker->pricemax}}€
                         </div>
                         <div class="containerPrice containerLove">
-                            @foreach($worker->loves as $wl)
-                                <img class="heart" src="{{asset('svg/heart.svg')}}" alt="icone de coeur">
-                                <img class="heartFul" src="{{asset('svg/heartFul.svg')}}" alt="icone de coeur">
-                                <span> {{$worker->number}}</span>
+                                    <img class="heart" src="{{asset('svg/heart.svg')}}" alt="icone de coeur">
+                                    <img class="heartFul" src="{{asset('svg/heartFul.svg')}}" alt="icone de coeur">
+                            @foreach($loves as $l)
+
+                            @if(\Illuminate\Support\Facades\Auth::id() == $l->user_id)
+                                    <img class="heartFul" src="{{asset('svg/heartFul.svg')}}" alt="icone de coeur">
+                                @endif
                             @endforeach
+                                <span> {{$worker->number}}</span>
+
                         </div>
                         <div class="container-image-announcement">
                             @if($worker->picture)
