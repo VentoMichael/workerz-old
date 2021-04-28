@@ -17,6 +17,9 @@ class CreateAnnouncementsTable extends Migration
             $table->id();
             $table->string('title');
             $table->text('description');
+            $table->string('job');
+            $table->boolean('allNumbers')->default(false);
+            $table->unsignedFloat('pricemax')->nullable();
             $table->boolean('is_draft');
             $table->timestamps();
         });

@@ -197,7 +197,7 @@
                             </li>
                             <li class="last-menu-item"
                                 aria-current="{{ Request::is('sign-up') ? "page" : "" }}"><a
-                                    href="{{ route('register') }}">S'inscrire</a>
+                                    href="{{ route('users.plans') }}">S'inscrire</a>
                             </li>
                         </ul>
                     </li>
@@ -208,8 +208,8 @@
                                         href="{{ auth()->logout() }}">Se déconnecter</a>
                                 </li>
                                 <li class="last-menu-item profil-item"
-                                    aria-current="{{ Request::is('sign-up') ? "page" : "" }}"><a
-                                        href="{{route('dashboard')}}">Oui</a>
+                                    aria-current="{{ Request::is('sign-up') ? "page" : "" }}">
+                                    <a class="profil-user" href="{{route('dashboard')}}">Dashboard</a>
                                 </li>
                             </ul>
                         </li>

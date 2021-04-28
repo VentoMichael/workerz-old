@@ -1,13 +1,9 @@
 @extends('layouts.app')
 @section('content')
     @if (Session::has('success-inscription'))
-        <div id="sucessMessage" class="successMsg"><img src="{{asset('svg/good.svg')}}"
-                                                        alt="">{{Session::get('success-inscription')}}</div>
-    @endif
-    @if (Session::has('success'))
-        <div id="successMsg" class="successMsg"><img src="{{asset('svg/good.svg')}}" alt="">
-            <p>{{Session::get('success')}}</p>
-            <span class="crossHide" onclick="this.parentElement.style.display='none';">&times;</span>
+        <div id="successMsg" class="successMsg"><img src="{{asset('svg/good.svg')}}" alt="good icone">
+            <p>{{Session::get('success-inscription')}}</p>
+            <span class="crossHide" id="crossHide">&times;</span>
         </div>
     @endif
     <section class="container-home margin">
@@ -110,8 +106,6 @@
         </section>
     </section>
 @endsection
-<script>
-    setTimeout(function () {
-        document.getElementById('successMsg').style.display = 'none';
-    }, 10000);
-</script>
+@section('scripts')
+    <script>let e=document.getElementById("successMsg");if (e){setTimeout(function(){e.style.opacity="0",e.style.transition=".5s"},1e4);let cross=document.getElementById("crossHide");cross.addEventListener("click",()=>{cross.parentNode.style.opacity="0",cross.parentNode.style.transition=".5s"})};</script>
+@endsection

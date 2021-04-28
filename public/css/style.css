@@ -87,7 +87,12 @@
     grid-gap: 30px;
     margin-bottom: 15px;
 }
-
+.containerJobAds{
+    display: flex;flex-direction: column;
+}
+.categoryJob{
+    font-size: .9em;
+}
 .box-category {
     position: relative;
     transition: .3s;
@@ -100,7 +105,7 @@
     justify-content: space-between;
     min-width: 250px;
     width: 95%;
-    min-height: 200px;
+    min-height: 230px;
     overflow: hidden;
 }
 
@@ -936,6 +941,7 @@ form .search-announcement {
 .container-filter-categories h3 {
     position: sticky;
     top: -10px;
+    left: 0;
     background: white;
     z-index: 1;
     padding: 15px 10px 13px 10px;
@@ -955,7 +961,11 @@ form .search-announcement {
 .list-categories {
     margin-top: 33px;
     color: var(--grey);
-    line-height: 2;
+    line-height: 1.8;
+}
+
+.list-categories li{
+    margin: 10px 0;
 }
 
 
@@ -964,18 +974,21 @@ form .search-announcement {
     user-select: none;
     -webkit-tap-highlight-color: transparent;
     cursor: pointer;
+    display: flex;
+    flex-direction: row;
 }
 
 .cbx span {
     display: inline-block;
     vertical-align: middle;
+    align-self: center;
     transform: translate3d(0, 0, 0);
 }
 
 .cbx span:first-child {
     position: relative;
-    width: 17px;
-    height: 17px;
+    min-width: 17px;
+    min-height: 17px;
     border-radius: 5px;
     transform: scale(1);
     vertical-align: middle;
@@ -1333,11 +1346,66 @@ form .search-announcement {
     z-index: 1;
     background: white;
 }
+.pagination{
+    display: flex;
+    box-shadow: var(--shadow);
+    justify-content: center;
+    padding: 10px;
+    font-size: 1.2em;
+    align-items: center;
+    border-radius: 5px;
+}
+.pagination div:nth-child(1),.pagination div:nth-child(3){
+    min-width: 30px;
+    color: var(--blueLight);
+}
+
+.pagination div a svg:nth-child(1),.pagination div a svg:nth-child(3){
+    color: var(--blueLight);
+}
+.container-links-pagination span,.container-links-pagination a{
+    margin: 0 5px;
+    padding: 0 5px 2px;
+}
+.container-links-pagination{
+    display:flex;
+}
+.current_page_item-nav span{
+    border-bottom: 2px solid var(--blueLight);
+    margin: 0;
+    display: inline-block;
+}
+div .current_page_item-nav{
+    margin: 0;
+    margin-bottom: -5px;
+}
+div .last-item-pagination{
+    margin-right: 10px;
+}
 .crossHide{
     color: red;
     top: 10px;
     font-size: 1.5em;
     cursor:pointer;
     position: absolute;
-    right: 10px;
+    right: 15px;
+}
+
+
+.profil-item{
+    position: relative;
+}
+.profil-item .profil-user{
+    text-indent: -9999px;
+}
+.profil-item .profil-user:before{
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-image: url("../svg/user-w.svg");
+    display: block;
+    width: 20px;
+    height: 20px;
+    background-size: 100%;
+    background-position: center;
 }

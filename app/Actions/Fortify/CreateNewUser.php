@@ -47,17 +47,18 @@ class CreateNewUser implements CreatesNewUsers
             'picture' => $input['picture'],
             'role_id' => $input['role_id'],
             //'phone' => $input['phone'],
-            //'adress' => $input['adress'],
+            //'phone_id' => $input['adress'],
             //'website' => $input['website'],
-            //'disponibilities' => $input['disponibilities[]'],
-            //'location' => $input['location[]'],
+            //'disponibilities' => $input['disponibilities'],
+            //'province_id' => $input['location'],
             //'category-job' => $input['category-job[]'],
             //'job' => $input['job'],
             //'price-h' => $input['price-h'],
             //'description' => $input['description'],
             'password' => Hash::make($input['password']),
         ]);
-        Session::flash('success-inscription', 'Here is your success message');
+        dd($_GET['plan_id']);
+        Session::flash('success-inscription', 'Votre inscription à été un succés !');
         return $user;
     }
 }

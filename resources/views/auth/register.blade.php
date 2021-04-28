@@ -63,7 +63,7 @@
                 </div>
                 <div class="container-svg">
                     <img class="svg-icon" src="{{asset('svg/Information_carousel_Isometric.svg')}}"
-                         alt="Main cliquant sur un ecran mobile">
+                         alt="Main cliquant sur un écran mobile">
                 </div>
             </section>
         </div>
@@ -258,6 +258,8 @@
                                       rows="5" cols="33">{{old("description")}}</textarea>
                         </div>
                     </div>
+                    <input id="role_id" name="role_id" type="hidden" value="2">
+
                     @include('partials.register')
 
                 </form>
@@ -312,11 +314,6 @@
 @if(isset($_GET["company"]) || isset($_GET["user"]))
 @section('scripts')
     <script src="{{asset('js/passwordCheck.js')}}"></script>
-    <script>let a = document.getElementById("avatar"), t = document.getElementById("output");
-        a.addEventListener("change", e => {
-            t.style.display = "block", t.src = URL.createObjectURL(e.target.files[0]), t.onload = function () {
-                URL.revokeObjectURL(t.src)
-            }
-        });</script>
+    <script>let a=document.getElementById("picture"),t=document.getElementById("output");a.addEventListener("change",e=>{t.style.display="block",t.src=URL.createObjectURL(e.target.files[0]),t.onload=function(){URL.revokeObjectURL(t.src)}});</script>
 @endsection
 @endif

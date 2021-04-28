@@ -17,12 +17,14 @@ class AddForeignKeys extends Migration
             $table->foreignId("province_id")->nullable()->constrained('provinces');
             $table->foreignId("plan_user_id")->nullable()->constrained('plan_users');
             $table->foreignId("role_id")->nullable()->constrained('roles');
-            $table->foreignId("category_id")->nullable()->constrained('categories');
         });
         Schema::table('phones', function(Blueprint $table) {
             $table->foreignId("user_id")->constrained('users');
         });
         Schema::table('websites', function(Blueprint $table) {
+            $table->foreignId("user_id")->constrained('users');
+        });
+        Schema::table('loves', function(Blueprint $table) {
             $table->foreignId("user_id")->constrained('users');
         });
         Schema::table('announcements', function(Blueprint $table) {
@@ -47,6 +49,16 @@ class AddForeignKeys extends Migration
             $table->foreign('user_id')
                 ->references('id')
                 ->on('users');
+            $table->foreign('category_id')
+                ->references('id')
+                ->on('categories');
+        });
+        Schema::table('announcement_category', function(Blueprint $table) {
+            $table->bigInteger('announcement_id')->unsigned();
+            $table->bigInteger('category_id')->unsigned();
+            $table->foreign('announcement_id')
+                ->references('id')
+                ->on('announcements');
             $table->foreign('category_id')
                 ->references('id')
                 ->on('categories');

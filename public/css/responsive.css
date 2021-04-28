@@ -184,9 +184,6 @@
         padding-left: 0;
     }
 
-    section .list-categories {
-        display: flex;
-    }
 
     li .cbx span:last-child {
         margin-left: 0;
@@ -197,25 +194,32 @@
     }
 
     section .container-filter-categories::-webkit-scrollbar {
-        width: 2px;
-        height: 10px;
+        width: 13px;
     }
 
-    .container-filter-categories::-webkit-scrollbar-track {
-        background: #fff;
-        border-radius: 5px;
-        border: 1px solid var(--blueLight);
-        margin: 5px 50px 5px 50px
-    }
-
-    .container-filter-categories::-webkit-scrollbar-thumb {
-        background: var(--blueLight);
-        border-radius: 5px
+    .container-filter-categories::-webkit-scrollbar {
+        width: 10px
     }
 
     section .container-filter-categories {
-        overflow-x: scroll;
-        overflow-y: inherit;
+        overflow-x: hidden;
+        overflow-y: scroll;
+    }
+
+    .cbx {
+        min-width: 200px;
+    }
+
+    .container-filter-categories::-webkit-scrollbar-track {
+        margin: 40px 5px 20px 0
+    }
+
+    section .list-categories li {
+        margin-left: 10px;
+    }
+
+    section .list-categories li label span:nth-child(2) {
+        margin-left: 7px;
     }
 
     .container-filters button {
@@ -249,15 +253,26 @@
     div .container-plan {
         width: auto;
     }
-    section .container-create-ads-infos{
+
+    section .container-create-ads-infos {
         margin-right: 0;
     }
+
     section .container-plans section:nth-child(2):after {
         right: 50%;
         margin-right: -60px;
     }
+
     section .container-plans section:nth-child(2) h3 {
         padding-top: 45px;
+    }
+
+    main .container-announcements {
+        margin-top: 30px;
+    }
+
+    .container-all-announcement nav {
+        grid-column: 2/ 3;
     }
 }
 
@@ -318,6 +333,16 @@
 
     main .container-form-register {
         margin-top: 80px;
+    }
+
+    section .container-all-announcement {
+        flex-direction: column;
+        display: flex;
+    }
+
+    .container-pagination {
+        display: flex;
+        justify-content: flex-end;
     }
 
     form .container-register-form {

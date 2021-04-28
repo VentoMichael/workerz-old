@@ -24,6 +24,8 @@ Route::get('/', function () {
     return view('home.index',compact('users','categories'));
 });
 
+Route::get('/register/plans', [\App\Http\Controllers\UserController::class, 'plans'])->name('users.plans');
+
 Route::get('/announcements', [\App\Http\Controllers\AnnouncementController::class, 'index'])->name('announcements');
 
 Route::get('/announcements/plans', [\App\Http\Controllers\AnnouncementController::class, 'plans'])->name('announcements.plans');
@@ -38,6 +40,10 @@ Route::get('/announcements/create',[\App\Http\Controllers\AnnouncementController
 Route::get('/workerz', function () {
     return view('workerz.index');
 })->name('workerz');
+
+Route::get('/workerz/{workerz}', function () {
+    return view('workerz.show');
+})->name('workerz.perso');
 
 Route::get('/dashboard', function () {
     return view('dashboard.index');
