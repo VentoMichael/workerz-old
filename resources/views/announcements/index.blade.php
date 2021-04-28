@@ -37,7 +37,11 @@
                             <img src="{{asset('svg/euro.svg')}}" alt="icone d'euro">Max: {{$announcement->pricemax}}€
                         </div>
                         <div class="container-image-announcement">
-                            <img src="{{asset('svg/ad.svg')}}" alt="icone d'annonces">
+                            @if($announcement->picture)
+                                <img src="{{ $announcement->picture }}" />
+                            @else
+                                <img src="{{asset('svg/ad.svg')}}" alt="icone d'annonces">
+                            @endif
                         </div>
                         <h3>
                             {{$announcement->title}}
@@ -55,7 +59,7 @@
                         @endif
                         <div class="container-infos">
                             <div class="container-info-announcement">
-                                <img src="{{asset('svg/suitcase.svg')}}" alt="icone de malette de travail">
+                                    <img src="{{asset('svg/suitcase.svg')}}" alt="icone de malette de travail">
                                 <div class="containerJobAds">
                                     <p>{{$announcement->job}}</p>
                                     <p class="categoryJob">({{$announcement->category->name}})</p>
@@ -67,7 +71,7 @@
                             </div>
                         </div>
                     </div>
-                    <a href="/announcements/{{$announcement->id}}" class="button-personnal-announcement">
+                    <a href="/announcements/{{$announcement->title}}" class="button-personnal-announcement">
                     </a>
                 </section>
             @endforeach

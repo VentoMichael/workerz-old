@@ -35,15 +35,10 @@ Route::get('/announcements/{announcement}', [\App\Http\Controllers\AnnouncementC
 Route::get('/announcements/create',[\App\Http\Controllers\AnnouncementController::class, 'create'])->name('announcements.create');
 
 
+Route::get('/workerz', [\App\Http\Controllers\UserController::class, 'index'])->name('workerz');
 
+Route::get('/workerz/{workerz}',[\App\Http\Controllers\UserController::class, 'show'])->name('workerz.show');
 
-Route::get('/workerz', function () {
-    return view('workerz.index');
-})->name('workerz');
-
-Route::get('/workerz/{workerz}', function () {
-    return view('workerz.show');
-})->name('workerz.perso');
 
 Route::get('/dashboard', function () {
     return view('dashboard.index');

@@ -53,11 +53,10 @@ class CreateNewUser implements CreatesNewUsers
             //'province_id' => $input['location'],
             //'category-job' => $input['category-job[]'],
             //'job' => $input['job'],
-            //'price-h' => $input['price-h'],
+            //'pricemax' => $input['pricemax'],
             //'description' => $input['description'],
             'password' => Hash::make($input['password']),
         ]);
-        dd($_GET['plan_id']);
         Session::flash('success-inscription', 'Votre inscription à été un succés !');
         return $user;
     }

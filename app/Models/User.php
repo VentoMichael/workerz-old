@@ -36,6 +36,16 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    public function getRouteKeyName()
+    {
+        return 'name';
+    }
+
+    public function scopeIndependent($query)
+    {
+        return $query->where('role_id', '=', '2');
+    }
+
     public function announcements(){
         return $this->hasMany(Announcement::class);
     }
@@ -51,8 +61,11 @@ class User extends Authenticatable
     public function websites(){
         return $this->hasMany(Website::class);
     }
+    public function loves(){
+        return $this->hasMany(Loves::class);
+    }
     public function categories(){
-        return $this->belongsToMany(Category::class)->withPivot('user_id');
+        return $this->belongsToMany(Category::class);
     }
     public function startDateUser(){
         return $this->belongsToMany(StartDate::class);

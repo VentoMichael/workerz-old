@@ -29,60 +29,65 @@
         <h2 class="hidden" aria-level="2">
             Toutes les annonces
         </h2>
-        <div class="container-all-announcement">
-            @for($i =0;$i <= 3; $i++)
-                <section class="container-announcement" id="showmgs{{$i}}">
+        <div class="container-all-announcement show-content">
+            @foreach($workerz as $worker)
+                <section class="container-announcement" id="showmgs{{$worker->id}}">
                     <div class="container-infos-announcement">
                         <div class="containerPrice">
-                            <img src="{{asset('svg/euro.svg')}}" alt="icone d'euro"><span>Max: 5000 €</span>
+                            <img src="{{asset('svg/euro.svg')}}" alt="icone d'euro">Max: {{$worker->pricemax}}€
                         </div>
                         <div class="containerPrice containerLove">
-                            <img class="heart" src="{{asset('svg/heart.svg')}}" alt="icone de coeur">
-                            <img class="heartFul" src="{{asset('svg/heartFul.svg')}}" alt="icone de coeur">                             <span>100</span>
+                            @foreach($worker->loves as $wl)
+                                <img class="heart" src="{{asset('svg/heart.svg')}}" alt="icone de coeur">
+                                <img class="heartFul" src="{{asset('svg/heartFul.svg')}}" alt="icone de coeur">
+                                <span> {{$worker->number}}</span>
+                            @endforeach
                         </div>
                         <div class="container-image-announcement">
-                            <img src="{{asset('svg/market.svg')}}" alt="icone d'un magasin">
+                            @if($worker->picture)
+                                <img src="{{ $worker->picture }}" alt="image de profil de {{$worker->pricemax}}">
+                            @else
+                                <img src="{{asset('svg/market.svg')}}" alt="icone d'un magasin">
+                            @endif
                         </div>
                         <h3>
-                            Je recherche un coach en nutrition
+                            {{$worker->name}}
                         </h3>
                         <p class="paragraph-ann">
-                            @php
-                                $str = 'fefzefzefjnezjfnzkejnfkjzefefzefzefjnezjfnzkejnfkjzefefzefzefjnezjfnzkejnfkjzefefzefzefjnezjfnzkejnfkjze';
-
-                            @endphp
-                            @if (strlen($str) > 60 && !isset($_GET['showmore'.$i]))
-                                @php
-                                    $str = substr($str, 0, 60) . '...';
-                                @endphp
-                            @endif
-                            {{$str}}
-
+                            {{$worker->description}}
                         </p>
-                        @if (strlen($str) > 60)
-                            @if(!isset($_GET['showmore'.$i]))
-                                <form action="#showmgs{{$i}}" method="get">
-                                    <button class="button-more-text" name="showmore{{$i}}">
+                        @if (strlen($worker->description) > 60)
+                            @if(!isset($_GET['showmore'.$worker->id]))
+                                <form action="#showmgs{{$worker->id}}" method="get">
+                                    <button class="button-more-text" name="showmore{{$worker->id}}">
                                     </button>
                                 </form>
                             @endif
                         @endif
                         <div class="container-infos">
+
                             <div class="container-info-announcement">
                                 <img src="{{asset('svg/suitcase.svg')}}" alt="icone de malette de travail">
-                                <p>fezfezfLorem ipsum dolor sit amet</p>
+                                <div class="containerJobAds">
+                                    <p>{{$worker->job}}</p>
+                                    @if($worker->categories->count())
+                                        <p class="categoryJob">
+                                            (@foreach($worker->categories as $w){{$w->name}}{{ ($loop->last ? '' : ', ') }}@endforeach)
+                                        </p>
+                                    @endif
+                                </div>
                             </div>
                             <div class="container-info-announcement">
                                 <img src="{{asset('svg/placeholder.svg')}}" alt="icone de localité">
-                                <p>Lorem ipsum dolor sit amet</p>
+                                <p>{{$worker->province->name}}</p>
                             </div>
                         </div>
                     </div>
-                    <a href="#" class="button-personnal-announcement">
-
+                    <a href="/workerz/{{$worker->name}}" class="button-personnal-announcement">
                     </a>
                 </section>
-            @endfor
+            @endforeach
+            {{ $workerz->links() }}
         </div>
         <div class="container-filters">
             <form action="#" method="get">
@@ -95,50 +100,22 @@
                             Catégories
                         </h3>
                         <ul class="list-categories">
-                            <li>
-                                <input class="inp-cbx" id="test1" name="test1" type="checkbox" style="display: none;"/>
-                                <label class="cbx" for="test1">
+                            @foreach($categories as $category)
+                                @if($category->users_count !=0)
+                                    <li>
+                                        <input class="inp-cbx" id="{{$category->id}}" name="{{$category->id}}"
+                                               type="checkbox" style="display: none;"/>
+                                        <label class="cbx" for="{{$category->id}}">
                                 <span>
                                     <svg width="12px" height="9px" viewbox="0 0 12 9">
                                       <polyline points="1 5 4 8 11 1"></polyline>
                                     </svg>
                                 </span>
-                                    <span>test1</span>
-                                </label>
-                            </li>
-                            <li>
-                                <input class="inp-cbx" id="test2" name="test2" type="checkbox" style="display: none;"/>
-                                <label class="cbx" for="test2">
-                                <span>
-                                    <svg width="12px" height="9px" viewbox="0 0 12 9">
-                                      <polyline points="1 5 4 8 11 1"></polyline>
-                                    </svg>
-                                </span>
-                                    <span>test2</span>
-                                </label>
-                            </li>
-                            <li>
-                                <input class="inp-cbx" id="test3" name="test3" type="checkbox" style="display: none;"/>
-                                <label class="cbx" for="test3">
-                                <span>
-                                    <svg width="12px" height="9px" viewbox="0 0 12 9">
-                                      <polyline points="1 5 4 8 11 1"></polyline>
-                                    </svg>
-                                </span>
-                                    <span>test3</span>
-                                </label>
-                            </li>
-                            <li>
-                                <input class="inp-cbx" id="test4" name="test4" type="checkbox" style="display: none;"/>
-                                <label class="cbx" for="test4">
-                                <span>
-                                    <svg width="12px" height="9px" viewbox="0 0 12 9">
-                                      <polyline points="1 5 4 8 11 1"></polyline>
-                                    </svg>
-                                </span>
-                                    <span>test4</span>
-                                </label>
-                            </li>
+                                            <span>{{$category->name}}</span>
+                                        </label>
+                                    </li>
+                                @endif
+                            @endforeach
                         </ul>
                     </section>
                     <section class="container-filter-categories">
@@ -146,182 +123,23 @@
                             Régions
                         </h3>
                         <ul class="list-categories">
-                            <li>
-                                <input class="inp-cbx" id="test1" name="test1" type="checkbox" style="display: none;"/>
-                                <label class="cbx" for="test1">
+                            @foreach($regions as $region)
+                                @if($region->users_count !=0)
+                                    <li>
+                                        <input class="inp-cbx" id="{{$region->id}}" name="{{$region->id}}"
+                                               type="checkbox"
+                                               style="display: none;"/>
+                                        <label class="cbx" for="{{$region->id}}">
                                 <span>
                                     <svg width="12px" height="9px" viewbox="0 0 12 9">
                                       <polyline points="1 5 4 8 11 1"></polyline>
                                     </svg>
                                 </span>
-                                    <span>test1</span>
-                                </label>
-                            </li>
-                            <li>
-                                <input class="inp-cbx" id="test2" name="test2" type="checkbox" style="display: none;"/>
-                                <label class="cbx" for="test2">
-                                <span>
-                                    <svg width="12px" height="9px" viewbox="0 0 12 9">
-                                      <polyline points="1 5 4 8 11 1"></polyline>
-                                    </svg>
-                                </span>
-                                    <span>test2</span>
-                                </label>
-                            </li>
-                            <li>
-                                <input class="inp-cbx" id="test3" name="test3" type="checkbox" style="display: none;"/>
-                                <label class="cbx" for="test3">
-                                <span>
-                                    <svg width="12px" height="9px" viewbox="0 0 12 9">
-                                      <polyline points="1 5 4 8 11 1"></polyline>
-                                    </svg>
-                                </span>
-                                    <span>test3</span>
-                                </label>
-                            </li>
-                            <li>
-                                <input class="inp-cbx" id="test4" name="test4" type="checkbox" style="display: none;"/>
-                                <label class="cbx" for="test4">
-                                <span>
-                                    <svg width="12px" height="9px" viewbox="0 0 12 9">
-                                      <polyline points="1 5 4 8 11 1"></polyline>
-                                    </svg>
-                                </span>
-                                    <span>test4</span>
-                                </label>
-                            </li>
-                            <li>
-                                <input class="inp-cbx" id="test1" name="test1" type="checkbox" style="display: none;"/>
-                                <label class="cbx" for="test1">
-                                <span>
-                                    <svg width="12px" height="9px" viewbox="0 0 12 9">
-                                      <polyline points="1 5 4 8 11 1"></polyline>
-                                    </svg>
-                                </span>
-                                    <span>test1</span>
-                                </label>
-                            </li>
-                            <li>
-                                <input class="inp-cbx" id="test2" name="test2" type="checkbox" style="display: none;"/>
-                                <label class="cbx" for="test2">
-                                <span>
-                                    <svg width="12px" height="9px" viewbox="0 0 12 9">
-                                      <polyline points="1 5 4 8 11 1"></polyline>
-                                    </svg>
-                                </span>
-                                    <span>test2</span>
-                                </label>
-                            </li>
-                            <li>
-                                <input class="inp-cbx" id="test3" name="test3" type="checkbox" style="display: none;"/>
-                                <label class="cbx" for="test3">
-                                <span>
-                                    <svg width="12px" height="9px" viewbox="0 0 12 9">
-                                      <polyline points="1 5 4 8 11 1"></polyline>
-                                    </svg>
-                                </span>
-                                    <span>test3</span>
-                                </label>
-                            </li>
-                            <li>
-                                <input class="inp-cbx" id="test4" name="test4" type="checkbox" style="display: none;"/>
-                                <label class="cbx" for="test4">
-                                <span>
-                                    <svg width="12px" height="9px" viewbox="0 0 12 9">
-                                      <polyline points="1 5 4 8 11 1"></polyline>
-                                    </svg>
-                                </span>
-                                    <span>test4</span>
-                                </label>
-                            </li>
-                            <li>
-                                <input class="inp-cbx" id="test1" name="test1" type="checkbox" style="display: none;"/>
-                                <label class="cbx" for="test1">
-                                <span>
-                                    <svg width="12px" height="9px" viewbox="0 0 12 9">
-                                      <polyline points="1 5 4 8 11 1"></polyline>
-                                    </svg>
-                                </span>
-                                    <span>test1</span>
-                                </label>
-                            </li>
-                            <li>
-                                <input class="inp-cbx" id="test2" name="test2" type="checkbox" style="display: none;"/>
-                                <label class="cbx" for="test2">
-                                <span>
-                                    <svg width="12px" height="9px" viewbox="0 0 12 9">
-                                      <polyline points="1 5 4 8 11 1"></polyline>
-                                    </svg>
-                                </span>
-                                    <span>test2</span>
-                                </label>
-                            </li>
-                            <li>
-                                <input class="inp-cbx" id="test3" name="test3" type="checkbox" style="display: none;"/>
-                                <label class="cbx" for="test3">
-                                <span>
-                                    <svg width="12px" height="9px" viewbox="0 0 12 9">
-                                      <polyline points="1 5 4 8 11 1"></polyline>
-                                    </svg>
-                                </span>
-                                    <span>test3</span>
-                                </label>
-                            </li>
-                            <li>
-                                <input class="inp-cbx" id="test4" name="test4" type="checkbox" style="display: none;"/>
-                                <label class="cbx" for="test4">
-                                <span>
-                                    <svg width="12px" height="9px" viewbox="0 0 12 9">
-                                      <polyline points="1 5 4 8 11 1"></polyline>
-                                    </svg>
-                                </span>
-                                    <span>test4</span>
-                                </label>
-                            </li>
-                            <li>
-                                <input class="inp-cbx" id="test1" name="test1" type="checkbox" style="display: none;"/>
-                                <label class="cbx" for="test1">
-                                <span>
-                                    <svg width="12px" height="9px" viewbox="0 0 12 9">
-                                      <polyline points="1 5 4 8 11 1"></polyline>
-                                    </svg>
-                                </span>
-                                    <span>test1</span>
-                                </label>
-                            </li>
-                            <li>
-                                <input class="inp-cbx" id="test2" name="test2" type="checkbox" style="display: none;"/>
-                                <label class="cbx" for="test2">
-                                <span>
-                                    <svg width="12px" height="9px" viewbox="0 0 12 9">
-                                      <polyline points="1 5 4 8 11 1"></polyline>
-                                    </svg>
-                                </span>
-                                    <span>test2</span>
-                                </label>
-                            </li>
-                            <li>
-                                <input class="inp-cbx" id="test3" name="test3" type="checkbox" style="display: none;"/>
-                                <label class="cbx" for="test3">
-                                <span>
-                                    <svg width="12px" height="9px" viewbox="0 0 12 9">
-                                      <polyline points="1 5 4 8 11 1"></polyline>
-                                    </svg>
-                                </span>
-                                    <span>test3</span>
-                                </label>
-                            </li>
-                            <li>
-                                <input class="inp-cbx" id="test4" name="test4" type="checkbox" style="display: none;"/>
-                                <label class="cbx" for="test4">
-                                <span>
-                                    <svg width="12px" height="9px" viewbox="0 0 12 9">
-                                      <polyline points="1 5 4 8 11 1"></polyline>
-                                    </svg>
-                                </span>
-                                    <span>test4</span>
-                                </label>
-                            </li>
+                                            <span>{{$region->name}}</span>
+                                        </label>
+                                    </li>
+                                @endif
+                            @endforeach
                         </ul>
                     </section>
                     <button>

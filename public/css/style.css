@@ -774,7 +774,7 @@ form .search-announcement {
     color: white;
     right: -40px;
     padding-right: 15px;
-    top: 3px;
+    top: 2px;
 }
 
 .container-announcement {
@@ -787,7 +787,11 @@ form .search-announcement {
 
     justify-content: space-between;
 }
-
+.container-image-announcement img {
+    max-width: 200px;
+    border-radius: 5px;
+    max-height: 200px;
+}
 .container-all-announcement {
     grid-gap: 30px;
     margin-right: 20px;
@@ -1147,7 +1151,9 @@ form .search-announcement {
     margin-top: 10px;
     margin-bottom: 5px;
 }
-
+.container-links-pagination a:nth-child(5), .container-links-pagination a:nth-child(4){
+    display: none;
+}
 .container-create-ads {
     flex-direction: column;
     margin-top: 0;

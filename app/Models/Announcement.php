@@ -9,6 +9,11 @@ class Announcement extends Model
 {
     use HasFactory;
 
+    public function getRouteKeyName()
+    {
+        return 'title';
+    }
+
     public function user(){
         return $this->belongsTo(User::class);
     }

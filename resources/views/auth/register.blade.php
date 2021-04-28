@@ -242,9 +242,9 @@
                             </select>
                         </div>
                         <div class="container-form-email">
-                            <label for="price-h">Votre prix horaire</label>
-                            <input type="text" id="price-h" name="price-h" value="{{old("price-h")}}"
-                                   class=" @error('price-h') is-invalid @enderror email-label" placeholder="55"><span
+                            <label for="pricemax">Votre prix horaire</label>
+                            <input type="text" id="pricemax" name="pricemax" value="{{old("pricemax")}}"
+                                   class=" @error('pricemax') is-invalid @enderror email-label" placeholder="55"><span
                                 class="horary-cost">€/h</span>
                         </div>
                     </div>

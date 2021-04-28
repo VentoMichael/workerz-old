@@ -206,10 +206,6 @@
         overflow-y: scroll;
     }
 
-    .cbx {
-        min-width: 200px;
-    }
-
     .container-filter-categories::-webkit-scrollbar-track {
         margin: 40px 5px 20px 0
     }
@@ -462,6 +458,12 @@
     .container-svg img {
         max-width: 300px;
     }
+    span .container-links-pagination{
+        display: block;
+        line-height: 2;
+    }
+    .current_page_item-nav span {
+        max-height: 30px;}
 }
 
 @media (min-width: 1300px) {

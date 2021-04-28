@@ -21,21 +21,20 @@ class AnnouncementController extends Controller
 
     public function index()
     {
-        //$announcements = Announcement::all()->sortByDesc('timestamps');
-        $announcements = Announcement::orderBy('created_at', 'DESC')->paginate(4)->onEachSide(-1);
+        $announcements = Announcement::orderBy('created_at', 'DESC')->paginate(4)->onEachSide(0);
+        $rq = \request()->query();
         foreach($announcements as $announcement){
         if (strlen($announcement->description) > 60 && !isset($_GET['showmore'.$announcement->id])) {
             $announcement->description = substr($announcement->description, 0, 60).'...';
         }}
         $categories = Category::with('announcements')->withCount("announcements")->get()->sortBy('name');
         $regions = Province::with('announcements')->withCount("announcements")->get()->sortBy('name');
-        return view('announcements.index', compact('announcements','categories','regions'));
+        return view('announcements.index', compact('announcements','rq','categories','regions'));
     }
 
-    public function show($id)
+    public function show(Announcement $name)
     {
-        $announcement = Announcement::find($id);
-        return view('announcements.show', compact('announcement'));
+        return view('announcements.show', compact('name'));
     }
 
     /**

@@ -8,8 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Category extends Model
 {
     use HasFactory;
+    protected $guarded = [];
+
     public function users(){
-        return $this->belongsToMany(User::class)->withPivot('category_id');
+        return $this->belongsToMany(User::class);
     }
     public function announcements(){
         return $this->belongsToMany(Announcement::class);

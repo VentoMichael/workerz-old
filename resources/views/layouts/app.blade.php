@@ -204,9 +204,10 @@
                     @else
                         <li>
                             <ul class="container-list-menu">
+                                <!--
                                 <li><a
                                         href="{{ auth()->logout() }}">Se déconnecter</a>
-                                </li>
+                                </li> -->
                                 <li class="last-menu-item profil-item"
                                     aria-current="{{ Request::is('sign-up') ? "page" : "" }}">
                                     <a class="profil-user" href="{{route('dashboard')}}">Dashboard</a>
