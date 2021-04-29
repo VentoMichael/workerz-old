@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Announcement extends Model
 {
     use HasFactory;
-
+    protected $guarded = [];
     public function getRouteKeyName()
     {
         return 'title';
@@ -17,19 +17,23 @@ class Announcement extends Model
     {
         return $query->where('is_draft', '=', '0');
     }
+    public function scopeAdspayed($query)
+    {
+        return $query->where('plan_announcement_id', '!=', '1');
+    }
     public function user(){
         return $this->belongsTo(User::class);
     }
     public function province(){
         return $this->belongsTo(Province::class);
     }
-    public function startDateAnnouncement(){
-        return $this->belongsToMany(StartDate::class);
+    public function startmonth(){
+        return $this->belongsTo(StartMonth::class,'start_month_id');
     }
     public function plan(){
         return $this->belongsTo(PlanAnnouncement::class);
     }
-    public function category(){
-        return $this->belongsTo(Category::class);
+    public function categories(){
+        return $this->belongsToMany(Category::class);
     }
 }

@@ -2,7 +2,7 @@
     <nav role="navigation" aria-label="{{ __('Pagination Navigation') }}">
 
         <div class="container-pagination">
-                <span class="pagination">
+                <span class="pagination" @if ($paginator->onFirstPage()) style="justify-content: inherit;" @endif>
                     {{-- Previous Page Link --}}
                                             <div>
 

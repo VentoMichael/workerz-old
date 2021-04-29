@@ -6,6 +6,7 @@ use App\Models\Announcement;
 use App\Models\CatchPhraseAnnouncement;
 use App\Models\Category;
 use App\Models\Province;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AnnouncementController extends Controller
@@ -22,8 +23,9 @@ class AnnouncementController extends Controller
 
     public function index()
     {
-        $announcements = Announcement::Published()->with('user')->orderBy('created_at', 'DESC')->paginate(4)->onEachSide(0);
+        $announcements = Announcement::Published()->with('user','startmonth')->orderBy('created_at', 'DESC')->paginate(4)->onEachSide(0);
         $rq = \request()->query();
+
         foreach($announcements as $announcement){
         if (strlen($announcement->description) > 60 && !isset($_GET['showmore'.$announcement->id])) {
             $announcement->description = substr($announcement->description, 0, 60).'...';
@@ -35,8 +37,11 @@ class AnnouncementController extends Controller
 
     public function show(Announcement $announcement)
     {
+        $randomAds = Announcement::Published()->orderBy('plan_announcement_id','DESC')->limit(2)->inRandomOrder()->get();
+        //$phones = User::with('announcements','phones')->get();
+
         $randomPhrasing = CatchPhraseAnnouncement::all()->random();
-        return view('announcements.show', compact('randomPhrasing','announcement'));
+        return view('announcements.show', compact('randomPhrasing','randomAds','announcement'));
     }
 
     /**

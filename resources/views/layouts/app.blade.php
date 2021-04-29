@@ -19,7 +19,7 @@
         {{ Request::is('about') ? ' | À propos de nous' : "" }}
         {{ Request::is('policy') ? ' | Politique de confidentialité' : "" }}
         {{ Request::is('conditions') ? ' | Conditions d’utilisations' : "" }}
-        {{ Request::is('announcements') ? ' | Annonces' : "" }}
+        {{ Request::is('announcements') || Request::is('announcements/*') ? ' | Annonces' : "" }}
         {{ Request::is('workerz') ? ' | Travailleurs' : "" }}
     </title>
     <link href="{{ asset('../css/app.css') }}" rel="stylesheet">

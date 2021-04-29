@@ -61,8 +61,12 @@
                             <div class="container-info-announcement">
                                     <img src="{{asset('svg/suitcase.svg')}}" alt="icone de malette de travail">
                                 <div class="containerJobAds">
-                                    <p>{{$announcement->job}}</p>
-                                    <p class="categoryJob">({{$announcement->category->name}})</p>
+                                    <span>{{$announcement->job}}</span>
+                                    @if($announcement->categories->count())
+                                        <span class="categoryJob">
+                                (@foreach($announcement->categories as $a){{$a->name}}{{ ($loop->last ? '' : ', ') }}@endforeach)
+                            </span>
+                                        @endif
                                 </div>
                             </div>
                             <div class="container-info-announcement">

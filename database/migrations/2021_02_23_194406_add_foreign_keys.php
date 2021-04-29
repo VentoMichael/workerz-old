@@ -29,8 +29,8 @@ class AddForeignKeys extends Migration
         });
         Schema::table('announcements', function(Blueprint $table) {
             $table->foreignId("user_id")->constrained('users');
-            $table->foreignId("category_id")->constrained('categories');
             $table->foreignId("province_id")->constrained('provinces');
+            $table->foreignId("start_month_id")->constrained('start_months');
             $table->foreignId("plan_announcement_id")->constrained('plan_announcements');
         });
         Schema::table('start_date_users', function(Blueprint $table) {
