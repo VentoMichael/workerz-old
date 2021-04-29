@@ -92,17 +92,11 @@
                     <h3 aria-level="3">
                         Je cherche un professionnel
                     </h3>
-                    <section>
+                    <section class="container-advantages">
                         <h4 aria-level="4">
-                            @if(!isset($_GET["show-advantage-user"]))
-                                <button class="advantage-btn" name="show-advantage-user">Quels avantages ?</button>
-                            @else
-                                <button class="advantage-btn list-advantages-hide" name="hide-advantage-user">Masquer
-                                    ses avantages
-                                </button>
-                            @endif
+                                Les avantages
                         </h4>
-                        <ul class="list-advantages @if(isset($_GET["show-advantage-user"])) show @endif @if(isset($_GET["hide-advantage-user"])) hidden @endif">
+                        <ul class="list-advantages">
                             <li><span>&bull;</span> Accès à un tableau de bord personnel</li>
                             <li><span>&bull;</span> Intègration d'une annonce</li>
                             <li><span>&bull;</span> Choix parmi une multitude d'entreprises</li>
@@ -124,15 +118,9 @@
                     </h3>
                     <section class="container-advantages">
                         <h4 aria-level="4">
-                            @if(!isset($_GET["show-advantage-pro"]))
-                                <button class="advantage-btn" name="show-advantage-pro">Quels avantages ?</button>
-                            @else
-                                <button class="advantage-btn list-advantages-hide" name="hide-advantage-pro">Masquer ses
-                                    avantages
-                                </button>
-                            @endif
+                            Les avantages
                         </h4>
-                        <ul class="list-advantages @if(isset($_GET["show-advantage-pro"])) show @endif @if(isset($_GET["hide-advantage-pro"])) list-advantages-hide hidden @endif">
+                        <ul class="list-advantages">
                             <li><span>&bull;</span> Accès à un tableau de bord personnel</li>
                             <li><span>&bull;</span> Intègration d'une annonce & de votre entreprise</li>
                             <li><span>&bull;</span> Des centaines de clients potentiels</li>
@@ -314,6 +302,7 @@
 @if(isset($_GET["company"]) || isset($_GET["user"]))
 @section('scripts')
     <script src="{{asset('js/passwordCheck.js')}}"></script>
+    <script src="{{asset('js/passwordSee.js')}}"></script>
     <script>let a=document.getElementById("picture"),t=document.getElementById("output");a.addEventListener("change",e=>{t.style.display="block",t.src=URL.createObjectURL(e.target.files[0]),t.onload=function(){URL.revokeObjectURL(t.src)}});</script>
 @endsection
 @endif

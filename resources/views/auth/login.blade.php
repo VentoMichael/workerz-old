@@ -34,7 +34,7 @@
                         >Mot de passe</label>
                         <div class="@error('password')is-invalid @enderror password">
 
-                            <input type="checkbox" class="password--visibleToggle" checked>
+                            <input type="checkbox" class="password--visibleToggle" id="checkPass" checked>
                             <div class="password--visibleToggle-eye open">
                                 <img src="{{asset('svg/eye-open.svg')}}" alt="icone de yeux ouvert"/>
                             </div>
@@ -42,7 +42,7 @@
                                 <img src="{{asset('svg/eye-close.svg')}}" alt="icone de yeux fermé"/>
                             </div>
 
-                            <input id="password" type="text"
+                            <input id="password" type="password"
                                    class="password--input"
                                    name="password" required autocomplete="current-password">
                             @error('password')
@@ -82,4 +82,7 @@
             </div>
         </section>
     </div>
+@endsection
+@section('scripts')
+    <script src="{{asset('js/passwordSee.js')}}"></script>
 @endsection

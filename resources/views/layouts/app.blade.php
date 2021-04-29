@@ -22,7 +22,7 @@
         {{ Request::is('announcements') ? ' | Annonces' : "" }}
         {{ Request::is('workerz') ? ' | Travailleurs' : "" }}
     </title>
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('../css/app.css') }}" rel="stylesheet">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="manifest" href="/site.webmanifest">
     <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
@@ -189,22 +189,22 @@
                         </ul>
                     </li>
                     @if(!Auth::check())
-                    <li>
-                        <ul class="container-list-menu">
-                            <li class="{{ Request::is('sign-in') ? "current_page_item" : "" }}"
-                                aria-current="{{ Request::is('sign-in') ? "page" : "" }}"><a
-                                    href="{{ route('login') }}">Se connecter</a>
-                            </li>
-                            <li class="last-menu-item"
-                                aria-current="{{ Request::is('sign-up') ? "page" : "" }}"><a
-                                    href="{{ route('users.plans') }}">S'inscrire</a>
-                            </li>
-                        </ul>
-                    </li>
+                        <li>
+                            <ul class="container-list-menu">
+                                <li class="{{ Request::is('sign-in') ? "current_page_item" : "" }}"
+                                    aria-current="{{ Request::is('sign-in') ? "page" : "" }}"><a
+                                        href="{{ route('login') }}">Se connecter</a>
+                                </li>
+                                <li class="last-menu-item"
+                                    aria-current="{{ Request::is('sign-up') ? "page" : "" }}"><a
+                                        href="{{ route('users.plans') }}">S'inscrire</a>
+                                </li>
+                            </ul>
+                        </li>
                     @else
                         <li>
                             <ul class="container-list-menu">
-                                <!--
+                            <!--
                                 <li><a
                                         href="{{ auth()->logout() }}">Se déconnecter</a>
                                 </li> -->

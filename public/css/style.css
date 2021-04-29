@@ -87,12 +87,16 @@
     grid-gap: 30px;
     margin-bottom: 15px;
 }
-.containerJobAds{
-    display: flex;flex-direction: column;
+
+.containerJobAds {
+    display: flex;
+    flex-direction: column;
 }
-.categoryJob{
+
+.categoryJob {
     font-size: .9em;
 }
+
 .box-category {
     position: relative;
     transition: .3s;
@@ -354,7 +358,6 @@ div .password--visibleToggle {
     transition: all 0.5s;
     position: absolute;
     outline: none;
-    -webkit-text-security: none;
     padding: 10px;
     top: 0;
     left: 0;
@@ -369,10 +372,6 @@ div .password--visibleToggle {
     top: 7.5px;
 }
 
-.password--visibleToggle:checked ~ .password--input {
-    -webkit-text-security: circle;
-
-}
 
 .password--visibleToggle:checked ~ .password--visibleToggle-eye.close {
     transform: rotateX(180deg);
@@ -520,9 +519,13 @@ form .form-group .email-label {
     justify-content: center;
 }
 
+.container-advantages h4 {
+    margin: 15px 10px;
+}
+
 .list-advantages {
-    display: none;
     margin-bottom: 80px;
+    line-height: 1.5;
 }
 
 .show {
@@ -551,7 +554,9 @@ form .form-group .email-label {
 .button-back:hover {
     padding: 10px 15px 10px 30px;
 }
-
+.container-checkpass{
+    display: none;
+}
 .link-back {
     position: absolute;
     top: -10px;
@@ -611,6 +616,10 @@ form .form-group .email-label {
     width: 100%;
 }
 
+.containerLove:hover {
+    cursor: pointer;
+}
+
 .containerLove:hover .heart {
     display: none;
 }
@@ -621,7 +630,6 @@ form .form-group .email-label {
 
 .containerLove:hover .heartFul {
     display: inherit;
-    cursor: pointer;
 }
 
 .container-filters button:after {
@@ -787,11 +795,13 @@ form .search-announcement {
 
     justify-content: space-between;
 }
+
 .container-image-announcement img {
     max-width: 200px;
     border-radius: 5px;
     max-height: 200px;
 }
+
 .container-all-announcement {
     grid-gap: 30px;
     margin-right: 20px;
@@ -969,7 +979,7 @@ form .search-announcement {
     line-height: 1.8;
 }
 
-.list-categories li{
+.list-categories li {
     margin: 10px 0;
 }
 
@@ -1152,9 +1162,11 @@ form .search-announcement {
     margin-top: 10px;
     margin-bottom: 5px;
 }
-.container-links-pagination a:nth-child(5), .container-links-pagination a:nth-child(4){
+
+.container-links-pagination a:nth-child(5), .container-links-pagination a:nth-child(4) {
     display: none;
 }
+
 .container-create-ads {
     flex-direction: column;
     margin-top: 0;
@@ -1180,7 +1192,7 @@ form .search-announcement {
 
 .container-plans {
     display: flex;
-    margin-top: 70px;
+    margin-top: 20px;
 }
 
 .container-plan button:after {
@@ -1325,35 +1337,40 @@ form .search-announcement {
 .hepling:hover span {
     display: block;
     position: absolute;
-    top: -5px;
     left: 50px;
     box-shadow: var(--shadow);
     padding: 10px;
     border-radius: 5px;
     background: white;
 }
-.profil-item{
+
+.profil-item {
     background-image: url("../svg/user-w.svg");
 }
-.successMsg img{
+
+.successMsg img {
     margin-right: 10px;
 }
-.successMsg p{
+
+.successMsg p {
     margin-right: 20px;
 }
-.successMsg{
+
+.successMsg {
     position: fixed;
     bottom: 20px;
     display: flex;
     align-items: center;
-    left: 4em;
+    left: 7%;
+    margin-right: 7%;
     padding: 20px;
     box-shadow: var(--shadow);
     border-radius: 5px;
     z-index: 1;
     background: white;
 }
-.pagination{
+
+.pagination {
     display: flex;
     box-shadow: var(--shadow);
     justify-content: center;
@@ -1362,50 +1379,60 @@ form .search-announcement {
     align-items: center;
     border-radius: 5px;
 }
-.pagination div:nth-child(1),.pagination div:nth-child(3){
+
+.pagination div:nth-child(1), .pagination div:nth-child(3) {
     min-width: 30px;
     color: var(--blueLight);
 }
 
-.pagination div a svg:nth-child(1),.pagination div a svg:nth-child(3){
+.pagination div a svg:nth-child(1), .pagination div a svg:nth-child(3) {
     color: var(--blueLight);
 }
-.container-links-pagination span,.container-links-pagination a{
+
+.container-links-pagination span, .container-links-pagination a {
     margin: 0 5px;
     padding: 0 5px 2px;
 }
-.container-links-pagination{
-    display:flex;
+
+.container-links-pagination {
+    display: flex;
 }
-.current_page_item-nav span{
+
+.current_page_item-nav span {
     border-bottom: 2px solid var(--blueLight);
     margin: 0;
     display: inline-block;
 }
-div .current_page_item-nav{
+
+div .current_page_item-nav {
     margin: 0;
     margin-bottom: -5px;
 }
-div .last-item-pagination{
+
+div .last-item-pagination {
     margin-right: 10px;
 }
-.crossHide{
+
+.crossHide {
     color: red;
     top: 10px;
     font-size: 1.5em;
-    cursor:pointer;
+    cursor: pointer;
     position: absolute;
     right: 15px;
+    display: none;
 }
 
 
-.profil-item{
+.profil-item {
     position: relative;
 }
-.profil-item .profil-user{
+
+.profil-item .profil-user {
     text-indent: -9999px;
 }
-.profil-item .profil-user:before{
+
+.profil-item .profil-user:before {
     position: absolute;
     top: 0;
     right: 0;
@@ -1415,4 +1442,7 @@ div .last-item-pagination{
     height: 20px;
     background-size: 100%;
     background-position: center;
+}
+.successMsg p {
+    margin-bottom: 0;
 }

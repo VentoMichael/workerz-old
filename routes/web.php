@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ContactController;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 
@@ -20,8 +22,11 @@ Route::get('/', function () {
     {
         return $categories->users->count();
     })->take(5);
+    $workerz = User::Independent()
+        ->inRandomOrder()
+        ->first();
     Session::flash('success', 'Here is your success message');
-    return view('home.index',compact('users','categories'));
+    return view('home.index',compact('users','categories','workerz'));
 });
 
 Route::get('/register/plans', [\App\Http\Controllers\UserController::class, 'plans'])->name('users.plans');
@@ -52,9 +57,9 @@ Route::get('/policy', function () {
     return view('policy.index');
 })->name('policy');
 
-Route::get('/contact', function () {
-    return view('contact.index');
-})->name('contact');
+Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
+Route::get('/contact',[\App\Http\Controllers\ContactController::class, 'create'])->name('contact');
+
 
 Route::get('/about', function () {
     return view('about.index');

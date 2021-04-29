@@ -4,82 +4,48 @@ namespace App\Http\Controllers;
 
 use App\Models\Contact;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\URL;
 
 class ContactController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
     public function create()
     {
-        //
+        return view('contact.index');
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
-    {
-        //
+    public function store(Request $request) {
+        request()->validate([
+            'name'=> 'required',
+            'message'=> 'required',
+            'email'=> 'required|email',
+            'subject'=> 'required',
+        ]);
+        $message = new Contact();
+        $message->name = request('name');
+        $message->surname = request('surname');
+        $message->email = request('email');
+        $message->subject = request('subject');
+        $message->message = request('message');
+        $message->save();
+        //Mail::to(env('MAIL_FROM_ADDRESS'))
+        //    ->send(new \App\Mail\contact());
+        //Mail::to(request('email'))
+        //    ->send(new notificationForUser());
+        return Redirect::to(URL::previous() . "#createMsg")->with('success-send', 'Votre message a été envoyé avec succès.
+        Nous vous contacterons bientôt !');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Contact  $contact
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Contact $contact)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Contact  $contact
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Contact $contact)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Contact  $contact
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Contact $contact)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Contact  $contact
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Contact $contact)
-    {
-        //
-    }
 }

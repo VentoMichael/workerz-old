@@ -7,8 +7,7 @@
                                             <div>
 
                     @if ($paginator->onFirstPage())
-                                                    <span aria-disabled="true"
-                                                          aria-label="{{ __('pagination.previous') }}">
+                        <span aria-disabled="true" class="@if ($paginator->onFirstPage()) hidden @endif" aria-label="{{ __('pagination.previous') }}">
                             <span aria-hidden="true">
                                 <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd"

@@ -14,20 +14,20 @@
         @enderror
     </div>
     <div>
-
         <label for="password"
         >Mot de passe</label>
         <div class="@error('password')is-invalid @enderror password">
-
-            <input type="checkbox" class="password--visibleToggle" checked>
-            <div class="password--visibleToggle-eye open">
-                <img src="{{asset('svg/eye-open.svg')}}"/>
+            <div id="container-checkpass" class="container-checkpass">
+                <input type="checkbox" class="password--visibleToggle" id="checkPass" checked>
+                <div class="password--visibleToggle-eye open">
+                    <img src="{{asset('svg/eye-open.svg')}}"/>
+                </div>
+                <div class="password--visibleToggle-eye close">
+                    <img src="{{asset('svg/eye-close.svg')}}"/>
+                </div>
             </div>
-            <div class="password--visibleToggle-eye close">
-                <img src="{{asset('svg/eye-close.svg')}}"/>
-            </div>
 
-            <input id="password" type="text" placeholder="Xxxxxxx1"
+            <input id="password" type="password" placeholder="Xxxxxxx1"
                    class="password--input"
                    name="password" required>
 

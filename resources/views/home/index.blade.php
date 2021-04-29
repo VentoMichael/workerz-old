@@ -19,7 +19,7 @@
                 </div>
                 <div>
                     <form action="#" method="get">
-                        <input type="search" placeholder="Ex: menuisier" class="search-home">
+                        <input type="search" placeholder="Ex: {{$workerz->name}}" class="search-home">
                         <input type="submit" class="submit-category-home" value="Recherchez">
                     </form>
                 </div>
@@ -49,7 +49,7 @@
                     </section>
                 </a>
             @endforeach
-            <a href="#" class="last-box-category box-category">
+            <a href="{{route('workerz')}}" class="last-box-category box-category">
                 <section>
                     <h3 aria-level="3">Toutes les catégories</h3>
                 </section>
@@ -78,7 +78,7 @@
                     Vous êtes indépendant et souhaitez vendre vos services au monde entier ?
                 </p>
                 <p>On vous aide à trouvez du travail !</p>
-                <a href="#" class="button-cta">
+                <a href="{{route('register')}}" class="button-cta">
                     <button>
                         Je m'inscris
                     </button>
@@ -93,7 +93,7 @@
                 <p class="text-why">
                     Nous recueillons les meilleurs indépendants, avec une vaste gamme de catégories.
                 </p>
-                <a href="#" class="button-cta">
+                <a href="{{route('workerz')}}" class="button-cta">
                     <button>
                         Les indépendants
                     </button>
