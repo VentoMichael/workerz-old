@@ -29,6 +29,7 @@ class DatabaseSeeder extends Seeder
         $this->call(PhoneSeeder::class);
         $this->call(ContactSeeder::class);
         $this->call(StartDateSeeder::class);
+        $this->call(StartMonthSeeder::class);
         $this->call(StartDateUserSeeder::class);
         $this->call(AnnouncementSeeder::class);
         $this->call(AnnouncementCategorySeeder::class);

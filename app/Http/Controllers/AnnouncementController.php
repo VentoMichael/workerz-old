@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Announcement;
+use App\Models\CatchPhraseAnnouncement;
 use App\Models\Category;
 use App\Models\Province;
 use Illuminate\Http\Request;
@@ -21,7 +22,7 @@ class AnnouncementController extends Controller
 
     public function index()
     {
-        $announcements = Announcement::orderBy('created_at', 'DESC')->paginate(4)->onEachSide(0);
+        $announcements = Announcement::Published()->with('user')->orderBy('created_at', 'DESC')->paginate(4)->onEachSide(0);
         $rq = \request()->query();
         foreach($announcements as $announcement){
         if (strlen($announcement->description) > 60 && !isset($_GET['showmore'.$announcement->id])) {
@@ -32,9 +33,10 @@ class AnnouncementController extends Controller
         return view('announcements.index', compact('announcements','rq','categories','regions'));
     }
 
-    public function show(Announcement $name)
+    public function show(Announcement $announcement)
     {
-        return view('announcements.show', compact('name'));
+        $randomPhrasing = CatchPhraseAnnouncement::all()->random();
+        return view('announcements.show', compact('randomPhrasing','announcement'));
     }
 
     /**

@@ -65,13 +65,13 @@ class AddForeignKeys extends Migration
         });
         Schema::table('start_date_announcements', function(Blueprint $table) {
             $table->bigInteger('announcement_id')->unsigned();
-            $table->bigInteger('start_date_id')->unsigned();
+            $table->bigInteger('start_month_id')->unsigned();
             $table->foreign('announcement_id')
                 ->references('id')
                 ->on('announcements');
-            $table->foreign('start_date_id')
+            $table->foreign('start_month_id')
                 ->references('id')
-                ->on('start_dates');
+                ->on('start_months');
         });
     }
 

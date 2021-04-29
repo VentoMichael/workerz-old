@@ -53,7 +53,7 @@
 }
 
 .container-home_image div:first-child {
-    max-width: 70%;
+    max-width: 75%;
     min-width: 55%;
     width: 100%;
     justify-self: flex-start;
@@ -1445,4 +1445,28 @@ div .last-item-pagination {
 }
 .successMsg p {
     margin-bottom: 0;
+}
+.container-personnal-ads{
+    box-shadow: var(--shadow);
+    padding: 25px 50px;
+    display: flex;
+    margin-top: 30px;
+    justify-content: space-between;
+    grid-gap: 50px;
+}
+.container-perso-infos img{
+    min-width: 40px;
+    max-width: 40px;
+    height: 40px;
+}
+.container-perso-infos div{
+    box-shadow: var(--shadow);
+    padding: 10px;
+    align-items: center;
+    display: flex;
+    grid-gap: 10px;
+    border-radius: 5px;
+}
+div .container-perso-infos{
+    grid-template-columns: repeat(2, minmax(100px, 1fr));
 }

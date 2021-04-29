@@ -13,7 +13,10 @@ class Announcement extends Model
     {
         return 'title';
     }
-
+    public function scopePublished($query)
+    {
+        return $query->where('is_draft', '=', '0');
+    }
     public function user(){
         return $this->belongsTo(User::class);
     }

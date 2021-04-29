@@ -2,17 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Models\StartDateAnnouncement;
+use App\Models\StartMonth;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class StartDateAnnouncementFactory extends Factory
+class StartMonthFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = StartDateAnnouncement::class;
+    protected $model = StartMonth::class;
 
     /**
      * Define the model's default state.
@@ -22,8 +22,7 @@ class StartDateAnnouncementFactory extends Factory
     public function definition()
     {
         return [
-            'announcement_id' => $this->faker->numberBetween($min = 1, $max = 10),
-            'start_month_id' => $this->faker->numberBetween($min = 1, $max = 12),
+            //
         ];
     }
 }
