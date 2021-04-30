@@ -33,7 +33,7 @@ class AddForeignKeys extends Migration
             $table->foreignId("start_month_id")->constrained('start_months');
             $table->foreignId("plan_announcement_id")->constrained('plan_announcements');
         });
-        Schema::table('start_date_users', function(Blueprint $table) {
+        Schema::table('start_date_user', function(Blueprint $table) {
             $table->bigInteger('user_id')->unsigned();
             $table->bigInteger('start_date_id')->unsigned();
             $table->foreign('user_id')

@@ -16,7 +16,7 @@ class CatchPhraseUserSeeder extends Seeder
     {
         CatchPhraseUser::create([
             'id'=>1,
-            'name'=>'par excellence'
+            'name'=>' par excellence'
         ]);
         CatchPhraseUser::create([
             'id'=>2,
@@ -24,15 +24,15 @@ class CatchPhraseUserSeeder extends Seeder
         ]);
         CatchPhraseUser::create([
             'id'=>3,
-            'name'=>'qui vous faut'
+            'name'=>' qui vous faut'
         ]);
         CatchPhraseUser::create([
             'id'=>4,
-            'name'=>'qui a du temps pour vous'
+            'name'=>' qui a du temps pour vous'
         ]);
         CatchPhraseUser::create([
             'id'=>5,
-            'name'=>'qui sera aussi rapide que professionnel'
+            'name'=>' qui sera aussi rapide que professionnel'
         ]);
     }
 }

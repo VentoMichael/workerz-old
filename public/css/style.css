@@ -1490,11 +1490,15 @@ div .container-perso-infos {
 .container-picture-ads {
     display: flex;
     justify-content: center;
+    align-self: center;
 }
 
 .container-picture-ads img {
     max-width: 200px;
+    width: auto;
+    max-height: 300px;
     height: auto;
+    border-radius: 5px;
 }
 
 .container-ads-others {

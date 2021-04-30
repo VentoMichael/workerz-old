@@ -68,7 +68,7 @@ class User extends Authenticatable
         return $this->belongsToMany(Category::class);
     }
     public function startDateUser(){
-        return $this->belongsToMany(StartDate::class);
+        return $this->belongsToMany(StartDate::class)->orderBy('id', 'ASC');
     }
     public function province(){
         return $this->belongsTo(Province::class);

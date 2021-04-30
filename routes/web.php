@@ -42,7 +42,7 @@ Route::get('/announcements/create',[\App\Http\Controllers\AnnouncementController
 
 Route::get('/workerz', [\App\Http\Controllers\UserController::class, 'index'])->name('workerz');
 
-Route::get('/workerz/{workerz}',[\App\Http\Controllers\UserController::class, 'show'])->name('workerz.show');
+Route::get('/workerz/{worker}',[\App\Http\Controllers\UserController::class, 'show'])->name('workerz.show');
 
 
 Route::get('/dashboard', function () {

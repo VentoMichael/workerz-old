@@ -38,8 +38,6 @@ class AnnouncementController extends Controller
     public function show(Announcement $announcement)
     {
         $randomAds = Announcement::Published()->orderBy('plan_announcement_id','DESC')->limit(2)->inRandomOrder()->get();
-        //$phones = User::with('announcements','phones')->get();
-
         $randomPhrasing = CatchPhraseAnnouncement::all()->random();
         return view('announcements.show', compact('randomPhrasing','randomAds','announcement'));
     }

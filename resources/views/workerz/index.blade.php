@@ -35,7 +35,7 @@
                     <div class="container-infos-announcement">
 
                         <div class="containerPrice">
-                            <img src="{{asset('svg/euro.svg')}}" alt="icone d'euro">Max: {{$worker->pricemax}}€
+                            <img src="{{asset('svg/euro.svg')}}" alt="icone d'euro">{{$worker->pricemax}}€/h
                         </div>
                         <div class="containerPrice containerLove">
                                     <img class="heart" src="{{asset('svg/heart.svg')}}" alt="icone de coeur">
