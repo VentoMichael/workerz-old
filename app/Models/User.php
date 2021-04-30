@@ -56,7 +56,7 @@ class User extends Authenticatable
         return $this->belongsTo(Role::class);
     }
     public function phones(){
-        return $this->hasMany(Phone::class);
+        return $this->hasMany(Phone::class,'user_id');
     }
     public function websites(){
         return $this->hasMany(Website::class);

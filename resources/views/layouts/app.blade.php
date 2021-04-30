@@ -221,7 +221,7 @@
     </div>
 </header>
 <main class="content">
-    <img class="img-cover" src="{{asset('../svg/background.svg')}}" alt="">
+    <img class="img-cover" src="{{asset('../svg/background.svg')}}" alt="photo de couverture">
     @yield('content')
 </main>
 <footer class="footer">

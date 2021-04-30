@@ -22,7 +22,7 @@
                                     @error('email')
                                     <div class="container-error">
                 <span role="alert" class="error">
-                                        <strong>{{ $message }}</strong>
+                                        <strong>{{ ucfirst($message) }}</strong>
                                     </span>
                                     </div>
                                     @enderror
@@ -37,7 +37,7 @@
 
                                     @error('password')
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
+                                        <strong>{{ ucfirst($message) }}</strong>
                                     </span>
                                     @enderror
                                 </div>

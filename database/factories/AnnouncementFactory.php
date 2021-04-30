@@ -24,6 +24,7 @@ class AnnouncementFactory extends Factory
         return [
             'title' => $this->faker->word,
             'job' => $this->faker->word,
+            'picture' => $this->faker->imageUrl($width = 640, $height = 480, 'cats'),
             'description' => $this->faker->text($maxNbChars = 200),
             'province_id' => $this->faker->numberBetween($min = 1, $max = 11),
             'start_month_id' => $this->faker->numberBetween($min = 1, $max = 12),

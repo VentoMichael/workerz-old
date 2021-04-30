@@ -2,7 +2,7 @@
     <nav role="navigation" aria-label="{{ __('Pagination Navigation') }}">
 
         <div class="container-pagination">
-                <span class="pagination" @if ($paginator->onFirstPage()) style="justify-content: inherit;" @endif>
+                <span class="pagination">
                     {{-- Previous Page Link --}}
                                             <div>
 
@@ -28,7 +28,7 @@
                                                 @endif
                                                     </div>
 
-                        <div class="container-links-pagination">
+                        <div class="container-links-pagination" @if ($paginator->onFirstPage()) style="margin-left: -15px" @endif>
                                         {{-- Pagination Elements --}}
                             @foreach ($elements as $element)
                                 {{-- "Three Dots" Separator --}}

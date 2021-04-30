@@ -16,6 +16,7 @@ class CreateAnnouncementsTable extends Migration
         Schema::create('announcements', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->string('picture')->nullable();
             $table->text('description');
             $table->string('job');
             $table->boolean('allNumbers')->default(false);

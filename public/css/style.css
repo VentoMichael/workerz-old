@@ -94,10 +94,12 @@
 }
 
 .categoryJob {
-    font-size: .9em;
+    font-size: .8em;
     margin-top: 6px;
 }
-
+.containerJobAds p:last-child{
+    margin-top: 0;
+}
 .box-category {
     position: relative;
     transition: .3s;
@@ -1166,8 +1168,9 @@ form .search-announcement {
     margin-bottom: 5px;
 }
 
-.container-links-pagination a:nth-child(5), .container-links-pagination a:nth-child(4) {
-    display: none;
+
+.container-all-announcement nav {
+    grid-column: 1/ 3;
 }
 
 .container-create-ads {
@@ -1461,7 +1464,7 @@ div .last-item-pagination {
     grid-gap: 50px;
 }
 
-.container-perso-infos img {
+.container-perso-infos img,.container-infos-ads-randomm img {
     min-width: 40px;
     max-width: 40px;
     height: 40px;
@@ -1501,22 +1504,70 @@ div .container-perso-infos {
 .container-ads-random {
     display: grid;
     grid-gap: 50px;
-    grid-template-columns: repeat(2, minmax(100px, 1fr));
+    margin-top: 20px;
+    margin-bottom: 90px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 }
 
 .container-ad-random {
     box-shadow: var(--shadow);
     border-radius: 5px;
-    min-height: 200px;
-    padding: 10px;
+    padding: 20px 10px 25px;
     position: relative;
 }
-.job-cat-ads{
+.container-infos-perso-ads h3{
+    font-size: 1.6em;
+    margin-bottom: 10px;
+}
+.container-ad-random:after {
+    content: "";
+    background-position: center;
+    background-image: url(../svg/addd.svg);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    right: 0;
+    top: -45px;
+}
+
+.job-cat-ads {
     display: flex;
     flex-direction: column;
 }
+
 .btn-ads {
     position: absolute;
     left: 0;
-    bottom: 0;
+    bottom: -30px;
+}
+
+.container-title-ads {
+    margin: 80px auto 70px;
+    max-width: 374px;
+    text-align: center;
+}
+
+.container-adss-random {
+    margin-bottom: 50px;
+}
+
+.container-ad-random h3 {
+    margin-top: 10px;
+}
+
+.container-position-ads {
+    display: flex;
+    align-items: center;
+    grid-gap: 10px;
+    margin-top: 10px;
+    word-break: break-all;
+}
+.container-position-ads img{
+    min-width: 30px;
+}
+.container-infos-ads-randomm{
+    display: grid;
+    grid-gap: 10px;
 }

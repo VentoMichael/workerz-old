@@ -44,10 +44,10 @@
                             @endif
                         </div>
                         <h3>
-                            {{$announcement->title}}
+                            {{ucfirst($announcement->title)}}
                         </h3>
                         <p class="paragraph-ann">
-                            {{$announcement->description}}
+                            {{ucfirst($announcement->description)}}
                         </p>
                         @if (strlen($announcement->description) > 60)
                             @if(!isset($_GET['showmore'.$announcement->id]))
@@ -61,12 +61,14 @@
                             <div class="container-info-announcement">
                                     <img src="{{asset('svg/suitcase.svg')}}" alt="icone de malette de travail">
                                 <div class="containerJobAds">
-                                    <span>{{$announcement->job}}</span>
+                                    <p>
+                                        {{ucfirst($announcement->job)}}
+                                    </p>
                                     @if($announcement->categories->count())
-                                        <span class="categoryJob">
-                                (@foreach($announcement->categories as $a){{$a->name}}{{ ($loop->last ? '' : ', ') }}@endforeach)
-                            </span>
-                                        @endif
+                                        <p class="categoryJob">
+                                            (@foreach($announcement->categories as $a){{$a->name}}{{ ($loop->last ? '' : ', ') }}@endforeach)
+                                        </p>
+                                    @endif
                                 </div>
                             </div>
                             <div class="container-info-announcement">
@@ -96,9 +98,9 @@
                             @foreach($categories as $category)
                                 @if($category->announcements_count !=0)
                                     <li>
-                                        <input class="inp-cbx" id="{{$category->id}}" name="{{$category->id}}"
+                                        <input class="inp-cbx" id="category{{$category->id}}" name="category{{$category->id}}"
                                                type="checkbox" style="display: none;"/>
-                                        <label class="cbx" for="{{$category->id}}">
+                                        <label class="cbx" for="category{{$category->id}}">
                                 <span>
                                     <svg width="12px" height="9px" viewbox="0 0 12 9">
                                       <polyline points="1 5 4 8 11 1"></polyline>
@@ -119,10 +121,10 @@
                             @foreach($regions as $region)
                                 @if($region->announcements_count !=0)
                                     <li>
-                                        <input class="inp-cbx" id="{{$region->id}}" name="{{$region->id}}"
+                                        <input class="inp-cbx" id="region{{$region->id}}" name="region{{$region->id}}"
                                                type="checkbox"
                                                style="display: none;"/>
-                                        <label class="cbx" for="{{$region->id}}">
+                                        <label class="cbx" for="region{{$region->id}}">
                                 <span>
                                     <svg width="12px" height="9px" viewbox="0 0 12 9">
                                       <polyline points="1 5 4 8 11 1"></polyline>

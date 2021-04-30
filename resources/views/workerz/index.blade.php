@@ -57,10 +57,10 @@
                             @endif
                         </div>
                         <h3>
-                            {{$worker->name}}
+                            {{ucfirst($worker->name)}}
                         </h3>
                         <p class="paragraph-ann">
-                            {{$worker->description}}
+                            {{ucfirst($worker->description)}}
                         </p>
                         @if (strlen($worker->description) > 60)
                             @if(!isset($_GET['showmore'.$worker->id]))
@@ -75,10 +75,10 @@
                             <div class="container-info-announcement">
                                 <img src="{{asset('svg/suitcase.svg')}}" alt="icone de malette de travail">
                                 <div class="containerJobAds">
-                                    <p>{{$worker->job}}</p>
+                                    <p>{{ucfirst($worker->job)}}</p>
                                     @if($worker->categories->count())
                                         <p class="categoryJob">
-                                            (@foreach($worker->categories as $w){{$w->name}}{{ ($loop->last ? '' : ', ') }}@endforeach)
+                                            (@foreach($worker->categories as $w){{ucfirst($w->name)}}{{ ($loop->last ? '' : ', ') }}@endforeach)
                                         </p>
                                     @endif
                                 </div>
@@ -109,9 +109,9 @@
                             @foreach($categories as $category)
                                 @if($category->users_count !=0)
                                     <li>
-                                        <input class="inp-cbx" id="{{$category->id}}" name="{{$category->id}}"
+                                        <input class="inp-cbx" id="category{{$category->id}}" name="category{{$category->id}}"
                                                type="checkbox" style="display: none;"/>
-                                        <label class="cbx" for="{{$category->id}}">
+                                        <label class="cbx" for="category{{$category->id}}">
                                 <span>
                                     <svg width="12px" height="9px" viewbox="0 0 12 9">
                                       <polyline points="1 5 4 8 11 1"></polyline>
@@ -132,10 +132,10 @@
                             @foreach($regions as $region)
                                 @if($region->users_count !=0)
                                     <li>
-                                        <input class="inp-cbx" id="{{$region->id}}" name="{{$region->id}}"
+                                        <input class="inp-cbx" id="region{{$region->id}}" name="region{{$region->id}}"
                                                type="checkbox"
                                                style="display: none;"/>
-                                        <label class="cbx" for="{{$region->id}}">
+                                        <label class="cbx" for="region{{$region->id}}">
                                 <span>
                                     <svg width="12px" height="9px" viewbox="0 0 12 9">
                                       <polyline points="1 5 4 8 11 1"></polyline>

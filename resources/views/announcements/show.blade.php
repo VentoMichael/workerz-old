@@ -5,9 +5,9 @@
             <div>
                 <div class="container-home-text">
                     <h2 aria-level="2">
-                        Aidons {{$announcement->user->name}} {{$announcement->user->surname}}
+                        Aidons {{ucfirst($announcement->user->name)}} {{ucfirst($announcement->user->surname)}}
                     </h2>
-                    <p>Prenez contact avec {{$announcement->user->name}} {{$announcement->user->surname}}, soit par mail
+                    <p>Prenez contact avec {{ucfirst($announcement->user->name)}} {{ucfirst($announcement->user->surname)}}, soit par mail
                         soit par téléphone. Il s'enverra ravir !</p>
                 </div>
             </div>
@@ -26,27 +26,29 @@
         <section class="container-personnal-ads show-content">
             <div class="container-picture-ads">
                 @if($announcement->picture)
-                    <img src="{{ $announcement->picture }}" alt="photo de profil de {{$announcement->name}}"/>
+                    <img src="{{ $announcement->picture }}" alt="photo de profil de {{ucfirst($announcement->name)}}"/>
                 @else
                     <img src="{{asset('svg/ad.svg')}}" alt="icone d'annonces">
                 @endif
             </div>
             <div class="container-infos-perso-ads">
                 <h3>
-                    {{$announcement->title}}
+                    {{ucfirst($announcement->title)}}
                 </h3>
                 <p>
-                    {{$announcement->description}}
+                    {{ucfirst($announcement->description)}}
                 </p>
                 <div class="container-perso-infos container-six-category-home">
                     <div>
                         <img src="{{asset('svg/envelope.svg')}}" alt="icone de mail">
                         <a href="mailto:{{$announcement->user->email}}">{{$announcement->user->email}}</a>
                     </div>
+                @foreach($announcement->user->phones as $up)
                     <div>
                         <img src="{{asset('svg/phone.svg')}}" alt="icone de téléphone">
-                        <span>{{$announcement->user->email}}</span>
+                        <a href="tel:{{$up->number}}">{{$up->number}}</a>
                     </div>
+                    @endforeach
                     <div>
                         <img src="{{asset('svg/calendar.svg')}}" alt="icone de calendrier">
                         <span>
@@ -56,7 +58,7 @@
                     <div>
                         <img src="{{asset('svg/suitcase.svg')}}" alt="icone de malette">
                         <span class="job-cat-ads">
-                        <span>{{$announcement->job}}</span>
+                        <span>{{ucfirst($announcement->job)}}</span>
                         @if($announcement->categories->count())
                                 <span class="categoryJob">
                                 (@foreach($announcement->categories as $a){{$a->name}}{{ ($loop->last ? '' : ', ') }}@endforeach)
@@ -76,33 +78,51 @@
             </div>
         </section>
     </section>
-    <section class="container-categories-home margin show-content">
-        <h2>
-            Ca pourrait vous intéresser
-        </h2>
+    <section class="container-categories-home margin show-content container-adss-random">
+        <div class="container-title-ads">
+            <h2>
+                Ca pourrait vous intéresser
+            </h2>
+        </div>
         <div class="container-ads-random">
-        @foreach($randomAds as $ra)
-            <section class="container-infos-perso-ads container-ad-random">
-                <div class="container-picture-ads">
-                    @if($announcement->picture)
-                        <img src="{{ $announcement->picture }}" alt="photo de profil de {{$announcement->name}}"/>
-                    @else
-                        <img src="{{asset('svg/ad.svg')}}" alt="icone d'annonces">
-                    @endif
-                </div>
-                <div>
-                    <h3>
-                        {{$ra->title}}
-                    </h3>
-                </div>
-                <div>
-                    <img src="{{asset('svg/placeholder.svg')}}" alt="icone de position">
-                    <span>{{$ra->province->name}}</span>
-                </div>
-                <a href="/announcements/{{$ra->title}}" class="btn-ads button-personnal-announcement">
-                </a>
-            </section>
-        @endforeach
+            @foreach($randomAds as $ra)
+                <section class="container-infos-perso-ads container-ad-random">
+                    <div class="container_title__province">
+                        <div class="container-picture-ads">
+                            @if($announcement->picture)
+                                <img src="{{ $announcement->picture }}"
+                                     alt="photo de profil de {{$announcement->name}}"/>
+                            @else
+                                <img src="{{asset('svg/ad.svg')}}" alt="icone d'annonces">
+                            @endif
+                        </div>
+                        <div>
+                            <h3>
+                                {{ucfirst($ra->title)}}
+                            </h3>
+                        </div>
+                        <div class="container-infos-ads-randomm">
+                            <div class="container-position-ads">
+                                <img src="{{asset('svg/placeholder.svg')}}" alt="icone de position">
+                                <span>{{$ra->province->name}}</span>
+                            </div>
+                            <div class="container-position-ads">
+                                <img src="{{asset('svg/suitcase.svg')}}" alt="icone de malette">
+                                <span class="job-cat-ads">
+                                    <span>{{ucfirst($ra->job)}}</span>
+                                    @if($ra->categories->count())
+                                                    <span class="categoryJob">
+                                            (@foreach($ra->categories as $a){{$a->name}}{{ ($loop->last ? '' : ', ') }}@endforeach)
+                                        </span>
+                                                @endif
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="/announcements/{{$ra->title}}" class="btn-ads button-personnal-announcement">
+                    </a>
+                </section>
+            @endforeach
         </div>
     </section>
 @endsection

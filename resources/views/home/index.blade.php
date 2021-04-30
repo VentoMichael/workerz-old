@@ -19,7 +19,7 @@
                 </div>
                 <div>
                     <form action="#" method="get">
-                        <input type="search" placeholder="Ex: {{$workerz->name}}" class="search-home">
+                        <input type="search" placeholder="Ex: {{ucfirst($workerz->name)}}" class="search-home">
                         <input type="submit" class="submit-category-home" value="Recherchez">
                     </form>
                 </div>
@@ -43,7 +43,7 @@
                     <section class="box-category">
                         <img src="{{asset('svg/'.$categorie->profil)}}" alt="{{$categorie->alt}}">
                         <div>
-                            <h3 aria-level="3">{{$categorie->name}}</h3>
+                            <h3 aria-level="3">{{ucfirst($categorie->name)}}</h3>
                             <p>{{$categorie->users->count()}} professionnels</p>
                         </div>
                     </section>
