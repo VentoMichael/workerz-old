@@ -7,8 +7,9 @@
                     <h2 aria-level="2">
                         Aidons {{ucfirst($announcement->user->name)}} {{ucfirst($announcement->user->surname)}}
                     </h2>
-                    <p>Prenez contact avec {{ucfirst($announcement->user->name)}} {{ucfirst($announcement->user->surname)}}, soit par mail
-                        soit par téléphone. Il s'enverra ravir !</p>
+                    <p>Prenez contact avec {{ucfirst($announcement->name)}}, soit par <a
+                            href="mailto:{{$announcement->user->email}}">mail</a> soit par <a
+                            href="tel:{{$announcement->user->phones->first()->number}}">téléphone</a>. Cette personne s'enverra ravir !</p>
                 </div>
             </div>
             <div class="container-svg">
@@ -38,7 +39,8 @@
                 <p>
                     {{ucfirst($announcement->description)}}
                 </p>
-                <div class="container-perso-infos container-six-category-home">
+                <section class="container-perso-infos container-six-category-home">
+                    <h4 aria-level="4" class="hidden">Information de contact</h4>
                     <div>
                         <img src="{{asset('svg/envelope.svg')}}" alt="icone de mail">
                         <a href="mailto:{{$announcement->user->email}}">{{$announcement->user->email}}</a>
@@ -74,7 +76,7 @@
                         <img src="{{asset('svg/placeholder.svg')}}" alt="icone de position">
                         <span>{{$announcement->province->name}}</span>
                     </div>
-                </div>
+                </section>
             </div>
         </section>
     </section>

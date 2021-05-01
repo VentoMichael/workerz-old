@@ -7,8 +7,10 @@
                     <h2 aria-level="2">
                         Vous avez fais le bon choix !
                     </h2>
-                    <p>Prenez contact avec {{ucfirst($worker->name)}}, soit par mail
-                        soit par téléphone. Cette entreprise s'enverra ravir !</p>
+                    <p>Prenez contact avec {{ucfirst($worker->name)}}, soit par <a
+                            href="mailto:{{$worker->email}}">mail</a> soit par <a
+                            href="tel:{{$worker->phones()->first()->number}}">téléphone</a>. Cette entreprise s'enverra
+                        ravir !</p>
                 </div>
             </div>
             <div class="container-svg">
@@ -38,16 +40,17 @@
                 <p>
                     {{ucfirst($worker->description)}}
                 </p>
-                <div class="container-perso-infos container-six-category-home">
+                <section class="container-perso-infos container-six-category-home">
+                    <h4 aria-level="4" class="hidden">Information de contact</h4>
                     <div>
                         <img src="{{asset('svg/envelope.svg')}}" alt="icone de mail">
                         <a href="mailto:{{$worker->email}}">{{$worker->email}}</a>
                     </div>
-                @foreach($worker->phones as $up)
-                    <div>
-                        <img src="{{asset('svg/phone.svg')}}" alt="icone de téléphone">
-                        <a href="tel:{{$up->number}}">{{$up->number}}</a>
-                    </div>
+                    @foreach($worker->phones as $up)
+                        <div>
+                            <img src="{{asset('svg/phone.svg')}}" alt="icone de téléphone">
+                            <a href="tel:{{$up->number}}">{{$up->number}}</a>
+                        </div>
                     @endforeach
                     <div>
                         <img src="{{asset('svg/calendar.svg')}}" alt="icone de calendrier">
@@ -74,7 +77,7 @@
                         <img src="{{asset('svg/placeholder.svg')}}" alt="icone de position">
                         <span>{{$worker->province->name}}</span>
                     </div>
-                </div>
+                </section>
             </div>
         </section>
     </section>
@@ -112,10 +115,10 @@
                                 <span class="job-cat-ads">
                                     <span>{{ucfirst($ra->job)}}</span>
                                     @if($ra->categories->count())
-                                                    <span class="categoryJob">
+                                        <span class="categoryJob">
                                             (@foreach($ra->categories as $a){{$a->name}}{{ ($loop->last ? '' : ', ') }}@endforeach)
                                         </span>
-                                                @endif
+                                    @endif
                                 </span>
                             </div>
                         </div>

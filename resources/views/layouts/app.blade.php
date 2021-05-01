@@ -225,7 +225,7 @@
     @yield('content')
 </main>
 <footer class="footer">
-    <h2 aria-level="2" class="notVisible">
+    <h2 aria-level="2" class="hidden">
         Informations du pied de page
     </h2>
     <div class="container-footer">

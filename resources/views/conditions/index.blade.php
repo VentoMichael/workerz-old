@@ -18,14 +18,13 @@
                      alt="Personne choissisant la catégorie de métier">
             </div>
         </div>
-    </section>
     <section class="container-categories-home">
-        <h2 class="container-categories-text-home">
+        <h3 aria-level="3" class="container-categories-text-home title-policy">
             Conditions d'utilisations
-        </h2>
+        </h3>
         <div class="container-policy show-content">
             <section>
-                <h3 aria-level="3">ARTICLE 1 : Objet</h3>
+                <h4 aria-level="4">{{ucfirst(strtolower('ARTICLE 1 : Objet'))}}</h4>
 
                 <p>
                     Les présentes « conditions générales d'utilisation » ont pour objet l'encadrement juridique de
@@ -47,7 +46,7 @@
 
 
             <section>
-                <h3 aria-level="3">ARTICLE 2 : Mentions légales</h3>
+                <h4 aria-level="4">{{ucfirst(strtolower('ARTICLE 2 : Mentions légales'))}}</h4>
 
                 <p>
                     Pour les personnes morales :
@@ -66,7 +65,7 @@
 
 
             <section>
-                <h3 aria-level="3">ARTICLE 3 : accès aux services</h3>
+                <h4 aria-level="4">{{ucfirst(strtolower('ARTICLE 3 : accès aux services'))}}</h4>
 
                 <p>
                     L’Utilisateur du site workerz a accès aux services suivants : </p>
@@ -97,7 +96,7 @@
             </section>
 
             <section>
-                <h3 aria-level="3">ARTICLE 4 : Responsabilité de l’Utilisateur</h3>
+                <h4 aria-level="4">{{ucfirst(strtolower('ARTICLE 4 : Responsabilité de l’Utilisateur'))}}</h4>
 
                 <p>
                     L'Utilisateur est responsable des risques liés à l’utilisation de son identifiant de connexion et de
@@ -144,7 +143,7 @@
 
 
             <section>
-                <h3 aria-level="3">ARTICLE 5 : Responsabilité de l’Éditeur</h3>
+                <h4 aria-level="4">{{ucfirst(strtolower('ARTICLE 5 : Responsabilité de l’éditeur'))}}</h4>
                 <p>Tout dysfonctionnement du serveur ou du réseau ne peut engager la responsabilité de l’Éditeur.</p>
 
                 <p>
@@ -164,7 +163,7 @@
 
 
             <section>
-                <h3 aria-level="3">ARTICLE 6 : Propriété intellectuelle</h3>
+                <h4 aria-level="4">{{ucfirst(strtolower('ARTICLE 6 : Propriété intellectuelle'))}}</h4>
 
                 <p>
                     Les contenus du site workerz (logos, textes, éléments graphiques, vidéos, etc.) son protégés par le
@@ -190,7 +189,7 @@
 
 
             <section>
-                <h3 aria-level="3">ARTICLE 7 : Données personnelles</h3>
+                <h4 aria-level="4">{{ucfirst(strtolower('ARTICLE 7 : Données personnelles'))}}</h4>
 
                 <p>
                     L’Utilisateur doit obligatoirement fournir des informations personnelles pour procéder à son
@@ -216,7 +215,7 @@
 
 
             <section>
-                <h3 aria-level="3">ARTICLE 8 : Liens hypertextes</h3>
+                <h4 aria-level="4">{{ucfirst(strtolower('ARTICLE 8 : Liens hypertextes'))}}</h4>
 
                 <p>
                     Les domaines vers lesquels mènent les liens hypertextes présents sur le site n’engagent pas la
@@ -229,7 +228,7 @@
 
 
             <section>
-                <h3 aria-level="3">ARTICLE 9 : Évolution des conditions générales d’utilisation</h3>
+                <h4 aria-level="4">{{ucfirst(strtolower('ARTICLE 9 : évolution des conditions générales d’utilisation'))}}</h4>
 
 
                 <p>Le site workerz se réserve le droit de modifier les clauses de ces conditions générales d’utilisation à
@@ -238,7 +237,7 @@
 
 
             <section>
-                <h3 aria-level="3">ARTICLE 10 : Durée du contrat</h3>
+                <h4 aria-level="4">{{ucfirst(strtolower('ARTICLE 10 : Durée du contrat'))}}</h4>
 
 <p>
                 La durée du présent contrat est indéterminée. Le contrat produit ses effets à l'égard de l'Utilisateur à
@@ -247,7 +246,7 @@
 
 
             <section>
-                <h3 aria-level="3">ARTICLE 11 : Droit applicable et juridiction compétente</h3>
+                <h4 aria-level="4">{{ucfirst(strtolower('ARTICLE 11 : Droit applicable et juridiction compétente'))}}</h4>
 
 <p>
                 Le présent contrat dépend de la législation belge.
@@ -256,4 +255,6 @@
             </section>
         </div>
     </section>
+    </section>
+
 @endsection

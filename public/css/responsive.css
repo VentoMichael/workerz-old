@@ -469,8 +469,8 @@
     }
 
     div .successMsg {
-        left: 3%;
-        margin-right: 3%;
+        right: 3%;
+        margin-left: 3%;
     }
 
     .svg-icon {

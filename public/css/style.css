@@ -141,7 +141,7 @@
 .box-category img {
     align-self: center;
     margin-bottom: 30px;
-    max-width: 120px;
+    max-width: 200px;
 }
 
 .text-categories-home {
@@ -1096,7 +1096,9 @@ form .search-announcement {
     position: sticky;
     top: 100px;
 }
-
+.title-policy{
+    font-size: 2em;
+}
 .containerLove {
     right: inherit;
 }
@@ -1367,8 +1369,9 @@ form .search-announcement {
     bottom: 20px;
     display: flex;
     align-items: center;
-    left: 7%;
-    margin-right: 7%;
+    right: 6.8%;
+    margin-left: 7%;
+    max-width: 300px;
     padding: 20px;
     box-shadow: var(--shadow);
     border-radius: 5px;

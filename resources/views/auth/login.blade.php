@@ -33,24 +33,26 @@
                         <label for="password"
                         >Mot de passe</label>
                         <div class="@error('password')is-invalid @enderror password">
-
-                            <input type="checkbox" class="password--visibleToggle" id="checkPass" checked>
-                            <div class="password--visibleToggle-eye open">
-                                <img src="{{asset('svg/eye-open.svg')}}" alt="icone de yeux ouvert"/>
+                            <div id="container-checkpass" class="container-checkpass">
+                                <input type="checkbox" class="password--visibleToggle" id="checkPass" checked>
+                                <div class="password--visibleToggle-eye open">
+                                    <img src="{{asset('svg/eye-open.svg')}}"/>
+                                </div>
+                                <div class="password--visibleToggle-eye close">
+                                    <img src="{{asset('svg/eye-close.svg')}}"/>
+                                </div>
                             </div>
-                            <div class="password--visibleToggle-eye close">
-                                <img src="{{asset('svg/eye-close.svg')}}" alt="icone de yeux fermé"/>
-                            </div>
 
-                            <input id="password" type="password"
+                            <input id="password" type="password" placeholder="Xxxxxxx1"
                                    class="password--input"
-                                   name="password" required autocomplete="current-password">
+                                   name="password" required>
+
                             @error('password')
-                                <div class="container-error">
+                            <div class="container-error">
                                     <span role="alert" class="error">
                                         <strong>{{ ucfirst($message) }}</strong>
                                     </span>
-                                </div>
+                            </div>
                             @enderror
                         </div>
                     </div>

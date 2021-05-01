@@ -18,14 +18,13 @@
                      alt="Personne choissisant la catégorie de métier">
             </div>
         </div>
-    </section>
     <section class="container-categories-home">
-        <h2 class="container-categories-text-home">
+        <h3 aria-level="3" class="container-categories-text-home title-policy">
             Déclaration de confidentialité
-        </h2>
+        </h3>
         <div class="container-policy show-content">
             <section>
-                <h3 aria-level="3">ARTICLE 1 – RENSEIGNEMENTS PERSONNELS RECUEILLIS</h3>
+                <h4 aria-level="4">{{ucfirst(strtolower('ARTICLE 1 – RENSEIGNEMENTS PERSONNELS RECUEILLIS'))}}</h4>
                 <p>
                     Lorsque vous naviguez sur notre boutique, nous recevons automatiquement l’adresse de protocole
                     Internet
@@ -41,7 +40,7 @@
 
 
             <section>
-                <h3 aria-level="3">ARTICLE 2 - CONSENTEMENT</h3>
+                <h4 aria-level="4">{{ucfirst(strtolower('ARTICLE 2 - CONSENTEMENT'))}}</h4>
                 <section>
                     <h4 aria-level="4">Comment obtenez-vous mon consentement?</h4>
 
@@ -65,7 +64,7 @@
 
 
             <section>
-                <h3 aria-level="3">ARTICLE 3 – DIVULGATION</h3>
+                <h4 aria-level="4">{{ucfirst(strtolower('ARTICLE 3 – DIVULGATION'))}}</h4>
                 <p>
                     Nous pouvons divulguer vos renseignements personnels si la loi nous oblige à le faire ou si vous
                     violez nos
@@ -74,7 +73,7 @@
 
 
             <section>
-                <h3 aria-level="3">ARTICLE 4 – SERVICES FOURNIS PAR DES TIERS</h3>
+                <h4 aria-level="4">{{ucfirst(strtolower('ARTICLE 4 – SERVICES FOURNIS PAR DES TIERS'))}}</h4>
                 <p>
                     Une fois que vous quittez le site de notre boutique ou que vous êtes redirigé vers le site web ou
                     l’application d’un tiers, vous n’êtes plus régi par la présente Politique de Confidentialité ni par
@@ -95,7 +94,7 @@
 
 
             <section>
-                <h3 aria-level="3">ARTICLE 5 – SÉCURITÉ</h3>
+                <h4 aria-level="4">{{ucfirst(strtolower('ARTICLE 5 – SéCURITé'))}}</h4>
                 <p>
                     Pour protéger vos données personnelles, nous prenons des précautions raisonnables et suivons les
                     meilleures
@@ -105,7 +104,7 @@
             </section>
 
             <section>
-                <h3 aria-level="3">ARTICLE 6 – ÂGE DE CONSENTEMENT</h3>
+                <h4 aria-level="4">{{ucfirst(strtolower('ARTICLE 6 – âGE DE CONSENTEMENT'))}}</h4>
                 <p>
                     En utilisant ce site, vous déclarez que vous avez au moins l’âge de la majorité dans votre État ou
                     province
@@ -116,7 +115,7 @@
 
 
             <section>
-                <h3 aria-level="3">ARTICLE 7 – MODIFICATIONS APPORTÉES À LA PRÉSENTE POLITIQUE DE CONFIDENTIALITÉ</h3>
+                <h4 aria-level="4">{{ucfirst(strtolower('ARTICLE 7 – MODIFICATIONS APPORTéES À LA PRéSENTE POLITIQUE DE CONFIDENTIALITé'))}}</h4>
                 <p>
                     Nous nous réservons le droit de modifier la présente politique de confidentialité à tout moment,
                     donc
@@ -132,7 +131,7 @@
 
 
             <section>
-                <h3 aria-level="3">QUESTIONS ET COORDONNÉES</h3>
+                <h4 aria-level="4">{{ucfirst(strtolower('QUESTIONS ET COORDONNéES'))}}</h4>
                 <p>
                     Si vous souhaitez: accéder à, corriger, modifier ou supprimer toute information personnelle que nous
                     avons à
@@ -143,4 +142,6 @@
 
         </div>
     </section>
+    </section>
+
 @endsection

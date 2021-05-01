@@ -18,7 +18,7 @@ class UserController extends Controller
     }
     public function index()
     {
-        $workerz = User::Independent()->with('loves','startDateUser')->orderBy('role_id', 'DESC')->orderBy('created_at', 'ASC')->orderBy('name', 'ASC')->paginate(4)->onEachSide(0);
+        $workerz = User::Independent()->with('loves','startDateUser','phones')->orderBy('role_id', 'DESC')->orderBy('created_at', 'ASC')->orderBy('name', 'ASC')->paginate(4)->onEachSide(0);
         foreach($workerz as $worker){
             if (strlen($worker->description) > 60 && !isset($_GET['showmore'.$worker->id])) {
                 $worker->description = substr($worker->description, 0, 60).'...';
@@ -39,9 +39,10 @@ class UserController extends Controller
     }
     public function show(User $worker)
     {
+        $phone = $worker->load('phones');
         $worker->load('startDateUser');
         $randomUsers = User::Independent()->orderBy('role_id', 'DESC')->limit(2)->inRandomOrder()->get();
         $randomPhrasing = CatchPhraseUser::all()->random();
-        return view('workerz.show', compact('worker','randomPhrasing','randomUsers'));
+        return view('workerz.show', compact('worker','phone','randomPhrasing','randomUsers'));
     }
 }
