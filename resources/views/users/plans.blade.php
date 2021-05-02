@@ -5,10 +5,10 @@
             <div>
                 <div class="container-home-text">
                     <h2 aria-level="2">
-                        Des clients vous attendent
+                        Le succès est juste derrière !
                     </h2>
                     <p>
-                        Après cette étape, votre annonce sera visible parmis beaucoup de potentiels clients !
+                        Après cette étape, votre chiffre d'affaire ne peut qu'augmenter !
                     </p>
                 </div>
             </div>
@@ -20,7 +20,7 @@
     </section>
     <section class="container-home container-announcements container-create-ads">
         <div class="title-first-step-register">
-            <h2 aria-level="2">Plan pour votre annonce</h2>
+            <h2 aria-level="2">Plan pour votre inscription</h2>
         </div>
         <div class="container-all-announcement show-content container-create-ads-infos container-plans">
             @for($i=1;$i<= 3;$i++)
@@ -55,7 +55,7 @@
                     <form action="{{route('register')}}" method="post">
                         @method('get')
                         @csrf
-                        <input id="plan_id" name="plan_id" type="hidden" value="{{$i}}">
+                        <input id="plan_user_id" name="plan_user_id" type="hidden" value="{{$i}}">
                         <button>
                             Je séléctionne TITRE
                         </button>

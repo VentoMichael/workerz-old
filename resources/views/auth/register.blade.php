@@ -94,7 +94,7 @@
                     </h3>
                     <section class="container-advantages">
                         <h4 aria-level="4">
-                                Les avantages
+                            Les avantages
                         </h4>
                         <ul class="list-advantages">
                             <li><span>&bull;</span> Accès à un tableau de bord personnel</li>
@@ -104,9 +104,10 @@
                         </ul>
                     </section>
                     <div class="container-button-register">
-                        <button class="button-cta" name="user">
-                            Je fais ce choix
-                        </button>
+                            <input id="plan_user_id" name="plan_user_id" type="hidden" value="{{$plan}}">
+                            <button class="button-cta" name="user">
+                                Je fais ce choix
+                            </button>
                     </div>
                 </section>
                 <section class="container-role">
@@ -128,6 +129,7 @@
                         </ul>
                     </section>
                     <div class="container-button-register">
+                        <input id="plan_user_id" name="plan_user_id" type="hidden" value="{{$plan}}">
                         <button class="button-cta" name="company">
                             Je fais ce choix
                         </button>
@@ -247,6 +249,7 @@
                         </div>
                     </div>
                     <input id="role_id" name="role_id" type="hidden" value="2">
+                    <input id="plan_user_id" name="plan_user_id" type="hidden" value="{{$plan}}">
 
                     @include('partials.register')
 
@@ -276,6 +279,7 @@
                             <input minlength="6" maxlength="15" type="tel" id="phone" pattern="^[0-9-+\s()]*$"
                                    value="{{old("phone")}}" placeholder="0494827235"
                                    class=" @error('phone') is-invalid @enderror email-label" name="phone" required>
+                            <p class="help">Vous aurez la possibilité d'en intégrer plusieurs via votre profil</p>
                         </div>
                     </div>
                     <div class="container-register-form">
@@ -292,7 +296,7 @@
 
                     </div>
                     <input id="role_id" name="role_id" type="hidden" value="3">
-
+                    <input id="plan_user_id" name="plan_user_id" type="hidden" value="{{$plan}}">
                     @include('partials.register')
                 </form>
             </div>
@@ -303,6 +307,11 @@
 @section('scripts')
     <script src="{{asset('js/passwordCheck.js')}}"></script>
     <script src="{{asset('js/passwordSee.js')}}"></script>
-    <script>let a=document.getElementById("picture"),t=document.getElementById("output");a.addEventListener("change",e=>{t.style.display="block",t.src=URL.createObjectURL(e.target.files[0]),t.onload=function(){URL.revokeObjectURL(t.src)}});</script>
+    <script>let a = document.getElementById("picture"), t = document.getElementById("output");
+        a.addEventListener("change", e => {
+            t.style.display = "block", t.src = URL.createObjectURL(e.target.files[0]), t.onload = function () {
+                URL.revokeObjectURL(t.src)
+            }
+        });</script>
 @endsection
 @endif

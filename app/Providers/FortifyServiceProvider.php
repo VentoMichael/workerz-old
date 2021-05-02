@@ -36,7 +36,8 @@ class FortifyServiceProvider extends ServiceProvider
             return view('auth.login')->with('success-inscription', 'Connexion réussie !');
         });
         Fortify::registerView(function () {
-            return view('auth.register');
+            $plan = \request('plan_user_id');
+            return view('auth.register',compact('plan'));
         });
         Fortify::requestPasswordResetLinkView(function () {
             return view('auth.forgot-password');

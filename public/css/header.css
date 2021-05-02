@@ -1,1 +1,59 @@
-.nav-container-ul{display:flex;justify-content:space-between}.container-list-menu li{margin:0 10px;align-self:center}.container-list-menu{display:flex}header nav a{display:inline-block;outline:0;color:#1f2227;font-size:16px;text-decoration:none;letter-spacing:.04em;font-family:ubuntu,sans-serif}.nav-container-ul{align-items:center}header{background:linear-gradient(0deg,#fff 0,transparent 800%);position:fixed;width:100%;min-height:75px;z-index:2}.container-menu{margin:20px 3% 10px}.logo svg{max-width:150px}ul .logo{margin-left:0}ul .last-menu-item{margin-right:0}nav ul li a:hover{color:grey;text-decoration:none}.nav:checked+.nav-open{transform:rotate(45deg)}.nav:checked+.nav-open i{background:var(--blueLight);transition:transform .2s ease}.nav:checked+.nav-open i:nth-child(1){transform:translateY(6px) rotate(180deg)}.nav:checked+.nav-open i:nth-child(2){opacity:0}.nav:checked+.nav-open i:nth-child(3){transform:translateY(-9px) rotate(90deg)}.nav:checked~.nav-container{z-index:0;opacity:1;display:inherit}.nav:checked~.nav-container ul li a{opacity:1;transform:translateY(0)}.nav-label-open{position:absolute;color:transparent;text-indent:-9999px}.container-list-menu a{color:var(--blueLight);padding:0 5px}.logo-mobile{position:absolute;text-indent:-9999px;color:transparent}.container-list-menu a:hover{border-bottom:3px solid var(--blueLight);padding:0 5px 5px;color:var(--blueLight);transition:.1s}.container-list-menu a{padding:0 5px 8px}ul li .current_page_item{padding-bottom:5px;border-bottom:3px solid var(--blueLight)}.last-menu-item a{background:var(--gradientDarkBlue);color:#fff;border-radius:20px;padding:11px 16px;margin-bottom:8px;border:2px solid var(--blueLight);transition:.5s}.last-menu-item a:hover{background:#fff;color:var(--blueLight);border:2px solid var(--blueLight);border-radius:20px;padding:11px 16px;margin-bottom:8px;transition:.5s}.logo a:hover{border:none}.btnAddAnnouncement{position:fixed;top:150px;right:0;background:var(--gradientDarkBlue);color:#fff;padding:15px;border-radius:10px;transform:translateX(10px);width:25px;transition:.4s;height:16px;z-index:100}.btnAddAnnouncement:hover{width:120px;text-align:end;transition:.4s;padding:15px 2em 15px 3em}.btnAddAnnouncement:before{content:"";display:block;width:30px;height:30px;position:absolute;top:8px;left:10px;background:url(../svg/plusicon.svg) no-repeat center;background-size:100%}.btnAddAnnouncement:hover:after{opacity:1;transition:.1s}.btnAddAnnouncement:after{opacity:0;transition:.1s;left:25%;content:"Ajout d'annonce";width:115px;display:block;position:absolute}
+.nav-container-ul{display:flex;justify-content:space-between}.container-list-menu li{margin:0 10px;align-self:center}.container-list-menu{display:flex;position:relative}header nav a{display:inline-block;outline:0;color:#1f2227;font-size:16px;text-decoration:none;letter-spacing:.04em;font-family:ubuntu,sans-serif}.nav-container-ul{align-items:center}header{background:linear-gradient(0deg,#fff 0,transparent 800%);position:fixed;width:100%;min-height:75px;z-index:2}.container-menu{margin:20px 3% 10px}.logo svg{max-width:150px}ul .logo{margin-left:0}ul .last-menu-item{margin-right:0}nav ul li a:hover{color:grey;text-decoration:none}.nav:checked+.nav-open{transform:rotate(45deg)}.nav:checked+.nav-open i{background:var(--blueLight);transition:transform .2s ease}.nav:checked+.nav-open i:nth-child(1){transform:translateY(6px) rotate(180deg)}.nav:checked+.nav-open i:nth-child(2){opacity:0}.nav:checked+.nav-open i:nth-child(3){transform:translateY(-9px) rotate(90deg)}.nav:checked~.nav-container{z-index:0;opacity:1;display:inherit}.nav:checked~.nav-container ul li a{opacity:1;transform:translateY(0)}.nav-label-open{position:absolute;color:transparent;text-indent:-9999px}.container-list-menu a{color:var(--blueLight);padding:0 5px}.logo-mobile{position:absolute;text-indent:-9999px;color:transparent}.container-list-menu a:hover{border-bottom:3px solid var(--blueLight);padding:0 5px 5px;color:var(--blueLight);transition:.1s}.container-list-menu a{padding:0 5px 8px}ul li .current_page_item{padding-bottom:5px;border-bottom:3px solid var(--blueLight)}.last-menu-item a{background:var(--gradientDarkBlue);color:#fff;border-radius:15px;padding:13px 20px;margin-bottom:8px;border:2px solid var(--blueLight);transition:.5s}.last-menu-item a:hover{background:#fff;color:var(--blueLight);border:2px solid var(--blueLight);border-radius:20px;padding:13px 20px;margin-bottom:8px;transition:.5s}.logo a:hover{border:none}.btnAddAnnouncement{position:fixed;top:150px;right:0;background:var(--gradientDarkBlue);color:#fff;padding:15px;border-radius:10px;transform:translateX(10px);width:25px;transition:.4s;height:16px;z-index:100}.btnAddAnnouncement:hover{width:120px;text-align:end;transition:.4s;padding:15px 2em 15px 3em}.btnAddAnnouncement:before{content:"";display:block;width:30px;height:30px;position:absolute;top:8px;left:10px;background:url(../svg/plusicon.svg) no-repeat center;background-size:100%}.btnAddAnnouncement:hover:after{opacity:1;transition:.1s}.btnAddAnnouncement:after{opacity:0;transition:.1s;left:25%;content:"Ajout d'annonce";width:115px;display:block;position:absolute}
+
+.profil-item {
+    position: relative;
+}
+
+.profil-item .profil-user {
+    text-indent: -9999px;
+    position: relative;
+}
+.profil-item .profil-user:hover {
+    text-indent: -9999px;
+    position: relative;
+    background: inherit;
+    border-bottom: inherit;
+    background: var(--gradientDarkBlue);
+    color: #fff;
+    border-radius: 15px;
+    padding: 13px 20px;
+    margin-bottom: 8px;
+    border: 2px solid var(--blueLight);
+    transition: .5s;
+}
+.profil-item:hover + .nav-dashboard,.nav-dashboard:hover{
+    display: inherit;
+    box-shadow: var(--shadow);
+    border-radius: 5px;
+    padding: 10px 0;
+    position: absolute;
+    top: 55px;
+    right: 0;
+    background: white;
+    font-family: 'roboto',sans-serif;
+    line-height: 1.5;
+}
+
+.profil-item .profil-user:before {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-image: url("../svg/user-w.svg");
+    display: block;
+    width: 20px;
+    height: 20px;
+    background-size: 100%;
+    background-position: center;
+}
+.profil-user:after{
+    content: "";
+    background-position: center;
+    background-image: url(../svg/user-w.svg);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    position: absolute;
+    width: 25px;
+    height: 32px;
+    top: 4px;
+    right: 8px;
+}

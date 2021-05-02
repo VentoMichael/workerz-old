@@ -4,17 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Models\CatchPhraseUser;
 use App\Models\Category;
-use App\Models\CategoryUser;
 use App\Models\Loves;
+use App\Models\PlanUser;
 use App\Models\Province;
 use App\Models\User;
-use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
     public function plans()
     {
-        return view('users.plans');
+        $plans = PlanUser::all();
+            return view('users.plans',compact('plans'));
     }
     public function index()
     {

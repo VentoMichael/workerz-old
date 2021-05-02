@@ -112,7 +112,7 @@
     justify-content: space-between;
     min-width: 250px;
     width: 95%;
-    min-height: 230px;
+    min-height: 300px;
     overflow: hidden;
 }
 
@@ -498,7 +498,7 @@ form .form-group .email-label {
 
 .title-first-step-register {
     max-width: 400px;
-    margin: auto auto 20px;
+    margin: auto auto 70px;
 
 }
 
@@ -1430,27 +1430,6 @@ div .last-item-pagination {
     position: absolute;
     right: 15px;
     display: none;
-}
-
-
-.profil-item {
-    position: relative;
-}
-
-.profil-item .profil-user {
-    text-indent: -9999px;
-}
-
-.profil-item .profil-user:before {
-    position: absolute;
-    top: 0;
-    right: 0;
-    background-image: url("../svg/user-w.svg");
-    display: block;
-    width: 20px;
-    height: 20px;
-    background-size: 100%;
-    background-position: center;
 }
 
 .successMsg p {

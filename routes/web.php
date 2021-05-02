@@ -29,7 +29,6 @@ Route::get('/', function () {
     return view('home.index',compact('users','categories','workerz'));
 });
 
-Route::get('/register/plans', [\App\Http\Controllers\UserController::class, 'plans'])->name('users.plans');
 
 Route::get('/announcements', [\App\Http\Controllers\AnnouncementController::class, 'index'])->name('announcements');
 
@@ -39,6 +38,8 @@ Route::get('/announcements/{announcement}', [\App\Http\Controllers\AnnouncementC
 
 Route::get('/announcements/create',[\App\Http\Controllers\AnnouncementController::class, 'create'])->name('announcements.create');
 
+
+Route::get('/register/plans', [\App\Http\Controllers\UserController::class, 'plans'])->name('users.plans');
 
 Route::get('/workerz', [\App\Http\Controllers\UserController::class, 'index'])->name('workerz');
 

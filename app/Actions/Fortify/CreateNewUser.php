@@ -2,8 +2,11 @@
 
 namespace App\Actions\Fortify;
 
+use App\Models\Phone;
+use App\Models\PlanUser;
 use App\Models\Role;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
@@ -47,7 +50,7 @@ class CreateNewUser implements CreatesNewUsers
             'picture' => $input['picture'],
             'role_id' => $input['role_id'],
             //'phone' => $input['phone'],
-            //'phone_id' => $input['adress'],
+            'plan_user_id' => $input['plan_user_id'],
             //'website' => $input['website'],
             //'disponibilities' => $input['disponibilities'],
             //'province_id' => $input['location'],
@@ -58,6 +61,19 @@ class CreateNewUser implements CreatesNewUsers
             'password' => Hash::make($input['password']),
         ]);
         Session::flash('success-inscription', 'Votre inscription à été un succés !');
-        return $user;
+        if (!isset($_POST['plan_user_id'])) {
+            return view('users.plans');
+        } else {
+            $ids = User::latest()->first('id');
+            foreach ($ids as $id) {
+
+            }
+            $phone = Phone::create([
+                'number' => $input['phone'],
+                'user_id' => $id
+            ]);
+            $user->phones()->save($phone);
+            return $user;
+        }
     }
 }

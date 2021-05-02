@@ -7,7 +7,7 @@
                     <h2 aria-level="2">
                         Aidons {{ucfirst($announcement->user->name)}} {{ucfirst($announcement->user->surname)}}
                     </h2>
-                    <p>Prenez contact avec {{ucfirst($announcement->name)}}, soit par <a
+                    <p>Prenez contact avec {{ucfirst($announcement->user->name)}} {{ucfirst($announcement->user->surname)}}, soit par <a
                             href="mailto:{{$announcement->user->email}}">mail</a> soit par <a
                             href="tel:{{$announcement->user->phones->first()->number}}">téléphone</a>. Cette personne s'enverra ravir !</p>
                 </div>
