@@ -43,11 +43,16 @@ class CreateNewUser implements CreatesNewUsers
                 'regex:/[A-Z]/'
             ],
         ])->validate();
+        if (request('picture')){
+            $pic = $input['picture'];
+        }else{
+            $pic = null;
+        }
         $user = User::create([
             'name' => $input['name'],
             'surname' => $input['surname'],
             'email' => $input['email'],
-            'picture' => $input['picture'],
+            'picture' => $pic,
             'role_id' => $input['role_id'],
             //'phone' => $input['phone'],
             'plan_user_id' => $input['plan_user_id'],
@@ -60,19 +65,20 @@ class CreateNewUser implements CreatesNewUsers
             //'description' => $input['description'],
             'password' => Hash::make($input['password']),
         ]);
+
+        $ids = User::latest()->first('id');
+        foreach ($ids as $id) {
+
+        }
+        $phone = Phone::create([
+            'number' => $input['phone'],
+            'user_id' => $id
+        ]);
+        $user->phones()->save($phone);
         Session::flash('success-inscription', 'Votre inscription à été un succés !');
         if (!isset($_POST['plan_user_id'])) {
             return view('users.plans');
         } else {
-            $ids = User::latest()->first('id');
-            foreach ($ids as $id) {
-
-            }
-            $phone = Phone::create([
-                'number' => $input['phone'],
-                'user_id' => $id
-            ]);
-            $user->phones()->save($phone);
             return $user;
         }
     }
