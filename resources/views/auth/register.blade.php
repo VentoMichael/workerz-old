@@ -137,6 +137,52 @@
                 </section>
             </form>
         @endif
+
+        @if(isset($_GET["user"]))
+            <div>
+                <form class="form-login form-register" enctype="multipart/form-data"
+                      aria-label="Enregistrement d'un compte" role="form" method="POST"
+                      action="{{ route('register') }}">
+                    @csrf
+                    <div class="container-register-form">
+                        <div class="container-form-email">
+                            <div class="avatar-container">
+                                <label for="picture">Photo de profil</label>
+                                <img id="output" class="preview-picture" alt="photo du commerce"/>
+                            </div>
+                            <input type="file"
+                                   id="picture" class="input-field @error('picture') is-invalid @enderror email-label"
+                                   name="picture"
+                                   accept="image/png, image/jpeg">
+
+                        </div>
+                        <div class="container-form-email">
+                            <label for="phone">Numéro de téléphone <span class="required">*</span></label>
+                            <input minlength="6" maxlength="15" type="tel" id="phone" pattern="^[0-9-+\s()]*$"
+                                   value="{{old("phone")}}" placeholder="0494827235"
+                                   class=" @error('phone') is-invalid @enderror email-label" name="phone" required>
+                            <p class="help">Vous aurez la possibilité d'en intégrer plusieurs via votre profil</p>
+                        </div>
+                    </div>
+                    <div class="container-register-form">
+                        <div class="container-form-email">
+                            <label for="name">Nom<span class="required">*</span></label>
+                            <input type="text" id="name" value="{{old("name")}}" placeholder="Rotis"
+                                   class=" @error('name') is-invalid @enderror email-label" name="name" required>
+                        </div>
+                        <div class="container-form-email">
+                            <label for="surname">Prénom<span class="required">*</span></label>
+                            <input type="text" id="surname" placeholder="Daniel" value="{{old("surname")}}"
+                                   class=" @error('surname') is-invalid @enderror email-label" name="surname" required>
+                        </div>
+
+                    </div>
+                    <input id="role_id" name="role_id" type="hidden" value="3">
+                    <input id="plan_user_id" name="plan_user_id" type="hidden" value="{{$plan}}">
+                    @include('partials.register')
+                </form>
+            </div>
+        @endif
         @if(isset($_GET["company"]))
             <div>
                 <form class="form-login form-register" enctype="multipart/form-data"
@@ -147,25 +193,25 @@
                         <div class="container-form-email">
                             <div class="avatar-container">
                                 <label for="picture">Photo du commerce</label>
-                                <img id="output" class="preview-picture" alt="Photo du commerce"/>
+                                <img id="output" class="preview-picture" alt="photo du commerce"/>
                             </div>
                             <input type="file"
                                    id="picture" class="input-field @error('picture') is-invalid @enderror email-label"
                                    name="picture"
                                    accept="image/png, image/jpeg">
+
                         </div>
                         <div class="container-form-email">
                             <label for="name">Nom du commerce <span class="required">*</span></label>
-                            <input placeholder="Le cocoter SRL" type="text" id="name" value="{{old("name")}}"
+                            <input type="text" id="name" value="{{old("name")}}" placeholder="Rotis"
                                    class=" @error('name') is-invalid @enderror email-label" name="name" required>
                         </div>
                     </div>
-
                     <div class="container-register-form">
                         <div class="container-form-email">
                             <label for="adress">Adresse postale</label>
-                            <input type="text" id="adress" value="{{old("email")}}"
-                                   class=" @error('email') is-invalid @enderror email-label" name="adress"
+                            <input type="text" id="adress" value="{{old("adress")}}"
+                                   class=" @error('adress') is-invalid @enderror email-label" name="adress"
                                    placeholder="Rue des cocotier, 21">
                         </div>
                         <div class="container-form-email">
@@ -233,7 +279,7 @@
                         </div>
                         <div class="container-form-email">
                             <label for="pricemax">Votre prix horaire</label>
-                            <input type="text" id="pricemax" name="pricemax" value="{{old("pricemax")}}"
+                            <input type="text" id="pricemax" pattern="^[0-9-+\s()]*$" name="pricemax" value="{{old("pricemax")}}"
                                    class=" @error('pricemax') is-invalid @enderror email-label" placeholder="55"><span
                                 class="horary-cost">€/h</span>
                         </div>
@@ -251,52 +297,6 @@
                     <input id="role_id" name="role_id" type="hidden" value="2">
                     <input id="plan_user_id" name="plan_user_id" type="hidden" value="{{$plan}}">
 
-                    @include('partials.register')
-
-                </form>
-            </div>
-        @endif
-        @if(isset($_GET["user"]))
-            <div>
-                <form class="form-login form-register" enctype="multipart/form-data"
-                      aria-label="Enregistrement d'un compte" role="form" method="POST"
-                      action="{{ route('register') }}">
-                    @csrf
-                    <div class="container-register-form">
-                        <div class="container-form-email">
-                            <div class="avatar-container">
-                                <label for="picture">Photo de profil</label>
-                                <img id="output" class="preview-picture" alt="photo du commerce"/>
-                            </div>
-                            <input type="file"
-                                   id="picture" class="input-field @error('picture') is-invalid @enderror email-label"
-                                   name="picture"
-                                   accept="image/png, image/jpeg">
-
-                        </div>
-                        <div class="container-form-email">
-                            <label for="phone">Numéro de téléphone <span class="required">*</span></label>
-                            <input minlength="6" maxlength="15" type="tel" id="phone" pattern="^[0-9-+\s()]*$"
-                                   value="{{old("phone")}}" placeholder="0494827235"
-                                   class=" @error('phone') is-invalid @enderror email-label" name="phone" required>
-                            <p class="help">Vous aurez la possibilité d'en intégrer plusieurs via votre profil</p>
-                        </div>
-                    </div>
-                    <div class="container-register-form">
-                        <div class="container-form-email">
-                            <label for="name">Nom<span class="required">*</span></label>
-                            <input type="text" id="name" value="{{old("name")}}" placeholder="Rotis"
-                                   class=" @error('name') is-invalid @enderror email-label" name="name" required>
-                        </div>
-                        <div class="container-form-email">
-                            <label for="surname">Prénom<span class="required">*</span></label>
-                            <input type="text" id="surname" placeholder="Daniel" value="{{old("surname")}}"
-                                   class=" @error('surname') is-invalid @enderror email-label" name="surname" required>
-                        </div>
-
-                    </div>
-                    <input id="role_id" name="role_id" type="hidden" value="3">
-                    <input id="plan_user_id" name="plan_user_id" type="hidden" value="{{$plan}}">
                     @include('partials.register')
                 </form>
             </div>

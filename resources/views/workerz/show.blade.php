@@ -75,7 +75,7 @@
                     </div>
                     <div>
                         <img src="{{asset('svg/placeholder.svg')}}" alt="icone de position">
-                        <span>{{$worker->province->name}}</span>
+                        <span>{{$worker->postal_adress}} ({{$worker->province->name}})</span>
                     </div>
                 </section>
             </div>

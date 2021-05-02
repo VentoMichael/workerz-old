@@ -26,6 +26,8 @@ class CreateNewUser implements CreatesNewUsers
      */
     public function create(array $input)
     {
+        //dd(request()->all());
+
         Validator::make($input, [
             'name' => ['required', 'string', 'max:255'],
             'surname' => ['required', 'string', 'max:255'],
@@ -40,13 +42,40 @@ class CreateNewUser implements CreatesNewUsers
             'password' => [
                 'required',
                 'min:8',
-                'regex:/[A-Z]/'
+                'regex:/[A-Z]/',
+                'regex:/[0-9]/',
             ],
         ])->validate();
-        if (request('picture')){
+
+        if (request('picture')) {
             $pic = $input['picture'];
-        }else{
+        } else {
             $pic = null;
+        }
+        if (request('website')) {
+            $web = $input['website'];
+        } else {
+            $web = null;
+        }
+        if (request('job')) {
+            $job = $input['job'];
+        } else {
+            $job = null;
+        }
+        if (request('pricemax')) {
+            $pricemax = $input['pricemax'];
+        } else {
+            $pricemax = null;
+        }
+        if (request('description')) {
+            $description = $input['description'];
+        } else {
+            $description = null;
+        }
+        if (request('adress')) {
+            $adress = $input['adress'];
+        } else {
+            $adress = null;
         }
         $user = User::create([
             'name' => $input['name'],
@@ -54,15 +83,15 @@ class CreateNewUser implements CreatesNewUsers
             'email' => $input['email'],
             'picture' => $pic,
             'role_id' => $input['role_id'],
-            //'phone' => $input['phone'],
             'plan_user_id' => $input['plan_user_id'],
-            //'website' => $input['website'],
+            'website' => $web,
             //'disponibilities' => $input['disponibilities'],
             //'province_id' => $input['location'],
             //'category-job' => $input['category-job[]'],
-            //'job' => $input['job'],
-            //'pricemax' => $input['pricemax'],
-            //'description' => $input['description'],
+            'job' => $job,
+            'postal_adress' => $adress,
+            'pricemax' => $pricemax,
+            'description' => $description,
             'password' => Hash::make($input['password']),
         ]);
 
