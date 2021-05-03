@@ -6,6 +6,7 @@ use App\Models\CategoryUser;
 use App\Models\Phone;
 use App\Models\PlanUser;
 use App\Models\Role;
+use App\Models\StartDateUser;
 use App\Models\User;
 use http\Env\Request;
 use Illuminate\Support\Facades\Auth;
@@ -28,7 +29,6 @@ class CreateNewUser implements CreatesNewUsers
      */
     public function create(array $input)
     {
-
         Validator::make($input, [
             'name' => ['required', 'string', 'max:255'],
             'picture' => ['image:jpg,jpeg,png,svg'],
@@ -122,7 +122,12 @@ class CreateNewUser implements CreatesNewUsers
         if (!isset($_POST['plan_user_id'])) {
             return view('users.plans');
         } else {
-            return $user;
+            if ($_POST['plan_user_id'] = 2 || $_POST['plan_user_id'] = 3) {
+                return $user;
+                //return view('users.payed');
+            } else {
+                return $user;
+            }
         }
     }
 }

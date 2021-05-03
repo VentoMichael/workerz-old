@@ -52,7 +52,7 @@ class CategorySeeder extends Seeder
         ]);
         Category::create([
             'id' => 7,
-            'name' => 'Éducation et formation',
+            'name' => 'Education et formation',
             'profil' => 'career.svg',
             'alt' => 'icone représentant l\'éducation'
         ]);

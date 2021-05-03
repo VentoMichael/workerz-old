@@ -6,6 +6,10 @@ use App\Actions\Fortify\CreateNewUser;
 use App\Actions\Fortify\ResetUserPassword;
 use App\Actions\Fortify\UpdateUserPassword;
 use App\Actions\Fortify\UpdateUserProfileInformation;
+use App\Models\Category;
+use App\Models\Province;
+use App\Models\StartDate;
+use App\Models\StartDateUser;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
@@ -37,7 +41,10 @@ class FortifyServiceProvider extends ServiceProvider
         });
         Fortify::registerView(function () {
             $plan = \request('plan_user_id');
-            return view('auth.register',compact('plan'));
+            $disponibilities = StartDate::all()->sortBy('id');
+            $regions = Province::all()->sortBy('name');
+            $categories = Category::all()->sortBy('name');
+            return view('auth.register',compact('plan','disponibilities','regions','categories'));
         });
         Fortify::requestPasswordResetLinkView(function () {
             return view('auth.forgot-password');

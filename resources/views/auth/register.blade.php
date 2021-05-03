@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    @if(isset($_POST['user']))
+    @if(isset($_POST['user']) || isset($_POST['company']))
         @if(isset($_POST['company']))
             <div class="container-home">
                 <section class="container-home_image">
@@ -46,96 +46,20 @@
                 </section>
             </div>
         @endif
-    @else
-        <div class="container-home">
-            <section class="container-home_image">
-                <div class="container-connexion">
-
-                    <h2 aria-level="2">L'inscription à bout de main !</h2>
-                    <p>Êtes vous un utilisateur ou un indépendant ?</p>
-                    <div>
-                        <a href="{{ route('login') }}">
-                            <button role="button" class="button-cta" type="submit">
-                                J'ai déjà un compte
-                            </button>
-                        </a>
-                    </div>
-                </div>
-                <div class="container-svg">
-                    <img class="svg-icon" src="{{asset('svg/Information_carousel_Isometric.svg')}}"
-                         alt="Main cliquant sur un écran mobile">
-                </div>
-            </section>
-        </div>
     @endif
     <section class="container-form-register container-home">
         <div class="title-first-step-register">
             <h2 aria-level="2">Formulaire d'inscription</h2>
             @if(isset($_POST['company']) || isset($_POST['user']))
                 <p>Après cette étape, vous serez immédiatement inscris et pourrez y intégrer des annonces !</p>
-            @else
-                <p>Vous êtes à la première étape du formulaire d'inscription</p>
             @endif
         </div>
         @if(isset($_POST['company']) || isset($_POST['user']))
-            <a class="link-back" href="{{route('register')}}">
+            <a class="link-back" href="{{route('users.type')}}">
                 <button class="button-back button-cta">
                     Retour
                 </button>
             </a>
-        @else
-            <form class="form-choice" method="GET"
-                  action="{{ route('register') }}">
-                <section class="container-role">
-                    <div class="container-img-register">
-                        <img src="{{asset('svg/user.svg')}}" alt="Photo de profil par défaut d'un utilisateur"></div>
-                    <h3 aria-level="3">
-                        Je cherche un professionnel
-                    </h3>
-                    <section class="container-advantages">
-                        <h4 aria-level="4">
-                            Les avantages
-                        </h4>
-                        <ul class="list-advantages">
-                            <li><span>&bull;</span> Accès à un tableau de bord personnel</li>
-                            <li><span>&bull;</span> Intègration d'une annonce</li>
-                            <li><span>&bull;</span> Choix parmi une multitude d'entreprises</li>
-                            <li><span>&bull;</span> Pleins d'autres avantages</li>
-                        </ul>
-                    </section>
-                    <div class="container-button-register">
-                            <input id="plan_user_id" name="plan_user_id" type="hidden" value="{{$plan}}">
-                            <button class="button-cta" name="user">
-                                Je fais ce choix
-                            </button>
-                    </div>
-                </section>
-                <section class="container-role">
-                    <div class="container-img-register">
-                        <img src="{{asset('svg/suitcase.svg')}}" alt="Photo de profil par défaut d'un professionnel">
-                    </div>
-                    <h3 aria-level="3">
-                        Je suis un professionnel
-                    </h3>
-                    <section class="container-advantages">
-                        <h4 aria-level="4">
-                            Les avantages
-                        </h4>
-                        <ul class="list-advantages">
-                            <li><span>&bull;</span> Accès à un tableau de bord personnel</li>
-                            <li><span>&bull;</span> Intègration d'une annonce & de votre entreprise</li>
-                            <li><span>&bull;</span> Des centaines de clients potentiels</li>
-                            <li><span>&bull;</span> Pleins d'autres avantages</li>
-                        </ul>
-                    </section>
-                    <div class="container-button-register">
-                        <input id="plan_user_id" name="plan_user_id" type="hidden" value="{{$plan}}">
-                        <button class="button-cta" name="company">
-                            Je fais ce choix
-                        </button>
-                    </div>
-                </section>
-            </form>
         @endif
 
         @if(isset($_POST['user']))
@@ -231,13 +155,9 @@
                         <div class="container-form-email selectdiv">
                             <label for="disponibilities">Disponibilités</label>
                             <select class="select-register" multiple name="disponibilities[]" id="disponibilities">
-                                <option value="1">Lundi</option>
-                                <option value="2">Mardi</option>
-                                <option value="3">Mercredi</option>
-                                <option value="4">Jeudi</option>
-                                <option value="1">Vendredi</option>
-                                <option value="1">Samedi</option>
-                                <option value="1">Dimanche</option>
+                                @foreach($disponibilities as $d)
+                                    <option value="{{$d->id}}">{{$d->name}}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>
@@ -246,13 +166,9 @@
                         <div class="container-form-email selectdiv">
                             <label for="location">Région <span class="required">*</span></label>
                             <select class="select-register select-region" name="location" id="location">
-                                <option value="1">Liège</option>
-                                <option value="1">Mardi</option>
-                                <option value="1">Mercredi</option>
-                                <option value="1">Jeudi</option>
-                                <option value="1">Vendredi</option>
-                                <option value="1">Samedi</option>
-                                <option value="1">Dimanche</option>
+                                @foreach($regions as $r)
+                                    <option value="{{$r->id}}">{{$r->name}}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="container-form-email">
@@ -268,18 +184,15 @@
                         <div class="container-form-email selectdiv">
                             <label for="category-job">Catégorie de métier <span class="required">*</span></label>
                             <select class="select-register" multiple name="category-job[]" id="category-job">
-                                <option value="1">Éducation</option>
-                                <option value="1">Mardi</option>
-                                <option value="1">Mercredi</option>
-                                <option value="thursday">Jeudi</option>
-                                <option value="friday">Vendredi</option>
-                                <option value="saturday">Samedi</option>
-                                <option value="sunday">Dimanche</option>
+                                @foreach($categories as $c)
+                                    <option value="{{$c->id}}">{{$c->name}}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="container-form-email">
                             <label for="pricemax">Votre prix horaire</label>
-                            <input type="text" id="pricemax" pattern="^[0-9-+\s()]*$" name="pricemax" value="{{old("pricemax")}}"
+                            <input type="text" id="pricemax" pattern="^[0-9-+\s()]*$" name="pricemax"
+                                   value="{{old("pricemax")}}"
                                    class=" @error('pricemax') is-invalid @enderror email-label" placeholder="55"><span
                                 class="horary-cost">€/h</span>
                         </div>
