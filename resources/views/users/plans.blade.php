@@ -52,7 +52,7 @@
                             <img src="{{asset('svg/cross.svg')}}" alt="Icone négative">Grande visibilité
                         </li>
                     </ul>
-                    <form action="{{route('register')}}" method="post">
+                    <form action="{{route('users.type')}}" method="post">
                         @method('get')
                         @csrf
                         <input id="plan_user_id" name="plan_user_id" type="hidden" value="{{$i}}">

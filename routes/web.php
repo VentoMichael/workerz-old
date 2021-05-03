@@ -40,6 +40,7 @@ Route::get('/announcements/create',[\App\Http\Controllers\AnnouncementController
 
 
 Route::get('/register/plans', [\App\Http\Controllers\UserController::class, 'plans'])->name('users.plans');
+Route::get('/register/plans/registration_type', [\App\Http\Controllers\UserController::class, 'registration_type'])->name('users.type');
 
 Route::get('/workerz', [\App\Http\Controllers\UserController::class, 'index'])->name('workerz');
 

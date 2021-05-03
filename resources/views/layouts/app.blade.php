@@ -6,7 +6,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="title" content="Workerz - l'indépendant à quelques clics">
     <meta name="description"
-          content="Workerz.be est la plateforme qui vous aide à trouver des professionnels fiables et professionnel pour vos projets quel qu'il soit"/>
+          content="Workerz.be est la plateforme qui vous aide à trouver des professionnels fiables et compétentes pour vos projets quel qu'il soit"/>
     <meta name="keywords" content="Vins, fromages, marché, exposants, billets">
     <meta name="language" content="French">
     <meta name="author" content="Vento Michael"/>
@@ -20,9 +20,9 @@
         {{ Request::is('policy') ? ' | Politique de confidentialité' : "" }}
         {{ Request::is('conditions') ? ' | Conditions d’utilisations' : "" }}
         {{ Request::is('announcements') || Request::is('announcements/*') ? ' | Annonces' : "" }}
-        {{ Request::is('workerz') ? ' | Travailleurs' : "" }}
+        {{ Request::is('workerz') || Request::is('workerz/*') ? ' | Travailleurs' : "" }}
     </title>
-    <link href="{{ asset('../css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="manifest" href="/site.webmanifest">
     <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">

@@ -53,7 +53,7 @@
 }
 
 .container-home_image div:first-child {
-    max-width: 75%;
+    max-width: 73%;
     min-width: 55%;
     width: 100%;
     justify-self: flex-start;
@@ -689,7 +689,9 @@ form .form-group .email-label {
 .select-register:hover {
     height: 100px;
 }
-
+div .select-region:hover{
+    height: 44px;
+}
 .form-login .input-field {
     padding: 9px 5px;
 }

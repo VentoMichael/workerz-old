@@ -14,7 +14,11 @@ class UserController extends Controller
     public function plans()
     {
         $plans = PlanUser::all();
-            return view('users.plans',compact('plans'));
+        return view('users.plans',compact('plans'));
+    }
+    public function registration_type(){
+        $plan = request('plan_user_id');
+        return view('auth.registration_type',compact('plan'));
     }
     public function index()
     {

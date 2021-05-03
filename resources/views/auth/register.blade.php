@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-    @if(isset($_GET["company"]) || isset($_GET["user"]))
-        @if(isset($_GET["company"]))
+    @if(isset($_POST['user']))
+        @if(isset($_POST['company']))
             <div class="container-home">
                 <section class="container-home_image">
                     <div class="container-connexion">
@@ -24,7 +24,7 @@
                 </section>
             </div>
         @endif
-        @if(isset($_GET["user"]))
+        @if(isset($_POST['user']))
             <div class="container-home">
                 <section class="container-home_image">
                     <div class="container-connexion">
@@ -71,13 +71,13 @@
     <section class="container-form-register container-home">
         <div class="title-first-step-register">
             <h2 aria-level="2">Formulaire d'inscription</h2>
-            @if(isset($_GET["company"]) || isset($_GET["user"]))
+            @if(isset($_POST['company']) || isset($_POST['user']))
                 <p>Après cette étape, vous serez immédiatement inscris et pourrez y intégrer des annonces !</p>
             @else
                 <p>Vous êtes à la première étape du formulaire d'inscription</p>
             @endif
         </div>
-        @if(isset($_GET["company"]) || isset($_GET["user"]))
+        @if(isset($_POST['company']) || isset($_POST['user']))
             <a class="link-back" href="{{route('register')}}">
                 <button class="button-back button-cta">
                     Retour
@@ -138,7 +138,7 @@
             </form>
         @endif
 
-        @if(isset($_GET["user"]))
+        @if(isset($_POST['user']))
             <div>
                 <form class="form-login form-register" enctype="multipart/form-data"
                       aria-label="Enregistrement d'un compte" role="form" method="POST"
@@ -183,7 +183,7 @@
                 </form>
             </div>
         @endif
-        @if(isset($_GET["company"]))
+        @if(isset($_POST['company']))
             <div>
                 <form class="form-login form-register" enctype="multipart/form-data"
                       aria-label="Enregistrement d'un compte" role="form" method="POST"
@@ -231,13 +231,13 @@
                         <div class="container-form-email selectdiv">
                             <label for="disponibilities">Disponibilités</label>
                             <select class="select-register" multiple name="disponibilities[]" id="disponibilities">
-                                <option value="monday">Lundi</option>
-                                <option value="tuesday">Mardi</option>
-                                <option value="wednesday">Mercredi</option>
-                                <option value="thursday">Jeudi</option>
-                                <option value="friday">Vendredi</option>
-                                <option value="saturday">Samedi</option>
-                                <option value="sunday">Dimanche</option>
+                                <option value="1">Lundi</option>
+                                <option value="2">Mardi</option>
+                                <option value="3">Mercredi</option>
+                                <option value="4">Jeudi</option>
+                                <option value="1">Vendredi</option>
+                                <option value="1">Samedi</option>
+                                <option value="1">Dimanche</option>
                             </select>
                         </div>
                     </div>
@@ -245,14 +245,14 @@
                     <div class="container-register-form">
                         <div class="container-form-email selectdiv">
                             <label for="location">Région <span class="required">*</span></label>
-                            <select class="select-register" multiple name="location[]" id="location">
-                                <option value="liege">Liège</option>
-                                <option value="tuesday">Mardi</option>
-                                <option value="wednesday">Mercredi</option>
-                                <option value="thursday">Jeudi</option>
-                                <option value="friday">Vendredi</option>
-                                <option value="saturday">Samedi</option>
-                                <option value="sunday">Dimanche</option>
+                            <select class="select-register select-region" name="location" id="location">
+                                <option value="1">Liège</option>
+                                <option value="1">Mardi</option>
+                                <option value="1">Mercredi</option>
+                                <option value="1">Jeudi</option>
+                                <option value="1">Vendredi</option>
+                                <option value="1">Samedi</option>
+                                <option value="1">Dimanche</option>
                             </select>
                         </div>
                         <div class="container-form-email">
@@ -268,9 +268,9 @@
                         <div class="container-form-email selectdiv">
                             <label for="category-job">Catégorie de métier <span class="required">*</span></label>
                             <select class="select-register" multiple name="category-job[]" id="category-job">
-                                <option value="education">Éducation</option>
-                                <option value="tuesday">Mardi</option>
-                                <option value="wednesday">Mercredi</option>
+                                <option value="1">Éducation</option>
+                                <option value="1">Mardi</option>
+                                <option value="1">Mercredi</option>
                                 <option value="thursday">Jeudi</option>
                                 <option value="friday">Vendredi</option>
                                 <option value="saturday">Samedi</option>
@@ -303,7 +303,7 @@
         @endif
     </section>
 @endsection
-@if(isset($_GET["company"]) || isset($_GET["user"]))
+@if(isset($_POST['company']) || isset($_POST['user']))
 @section('scripts')
     <script src="{{asset('js/passwordCheck.js')}}"></script>
     <script src="{{asset('js/passwordSee.js')}}"></script>
