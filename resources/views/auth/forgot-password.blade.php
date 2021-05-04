@@ -37,7 +37,7 @@
                                 </a>
                             @endif
                             @if (Route::has('register'))
-                                <a href="{{ route('register') }}">
+                                <a href="{{ route('users.plans') }}">
                                     S'inscrire
                                 </a>
                             @endif

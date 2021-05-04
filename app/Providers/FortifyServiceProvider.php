@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Fortify\Fortify;
+use Symfony\Component\Console\Input\Input;
 
 class FortifyServiceProvider extends ServiceProvider
 {
@@ -39,12 +40,12 @@ class FortifyServiceProvider extends ServiceProvider
         Fortify::loginView(function () {
             return view('auth.login')->with('success-inscription', 'Connexion réussie !');
         });
-        Fortify::registerView(function () {
+        Fortify::registerView(function (Request $request) {
             $plan = \request('plan_user_id');
             $disponibilities = StartDate::all()->sortBy('id');
             $regions = Province::all()->sortBy('name');
             $categories = Category::all()->sortBy('name');
-            return view('auth.register',compact('plan','disponibilities','regions','categories'));
+            return view('auth.register',compact('plan','disponibilities','regions','categories','request'));
         });
         Fortify::requestPasswordResetLinkView(function () {
             return view('auth.forgot-password');

@@ -2,17 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Models\Loves;
+use App\Models\Like;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class LovesFactory extends Factory
+class LikeFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Loves::class;
+    protected $model = Like::class;
 
     /**
      * Define the model's default state.
@@ -23,6 +23,8 @@ class LovesFactory extends Factory
     {
         return [
             'user_id' => $this->faker->numberBetween($min = 1, $max = 99),
+            'announcement_id' => $this->faker->numberBetween($min = 1, $max = 99),
+            'liked' => $this->faker->boolean(50),
         ];
     }
 }

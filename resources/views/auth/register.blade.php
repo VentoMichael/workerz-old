@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-    @if(isset($_POST['user']) || isset($_POST['company']))
-        @if(isset($_POST['company']))
+    @if($request->has('user') || $request->has('company'))
+        @if($request->has('company'))
             <div class="container-home">
                 <section class="container-home_image">
                     <div class="container-connexion">
@@ -24,7 +24,7 @@
                 </section>
             </div>
         @endif
-        @if(isset($_POST['user']))
+        @if($request->has('user'))
             <div class="container-home">
                 <section class="container-home_image">
                     <div class="container-connexion">
@@ -50,11 +50,11 @@
     <section class="container-form-register container-home">
         <div class="title-first-step-register">
             <h2 aria-level="2">Formulaire d'inscription</h2>
-            @if(isset($_POST['company']) || isset($_POST['user']))
+            @if($request->has('company') || $request->has('user'))
                 <p>Après cette étape, vous serez immédiatement inscris et pourrez y intégrer des annonces !</p>
             @endif
         </div>
-        @if(isset($_POST['company']) || isset($_POST['user']))
+        @if($request->has('company') || $request->has('user'))
             <a class="link-back" href="{{route('users.type')}}">
                 <button class="button-back button-cta">
                     Retour
@@ -62,7 +62,7 @@
             </a>
         @endif
 
-        @if(isset($_POST['user']))
+        @if($request->has('user'))
             <div>
                 <form class="form-login form-register" enctype="multipart/form-data"
                       aria-label="Enregistrement d'un compte" role="form" method="POST"
@@ -107,7 +107,7 @@
                 </form>
             </div>
         @endif
-        @if(isset($_POST['company']))
+        @if($request->has('company'))
             <div>
                 <form class="form-login form-register" enctype="multipart/form-data"
                       aria-label="Enregistrement d'un compte" role="form" method="POST"
@@ -143,6 +143,7 @@
                             <input placeholder="0494827263" minlength="6" maxlength="15" type="tel"
                                    pattern="^[0-9-+\s()]*$" id="phone" value="{{old("phone")}}"
                                    class=" @error('phone') is-invalid @enderror email-label" name="phone" required>
+                            <p class="help">Vous aurez la possibilité d'en intégrer plusieurs via votre profil</p>
                         </div>
                     </div>
 
@@ -151,6 +152,7 @@
                             <label for="website">Site internet</label>
                             <input placeholder="www.workerz.be" type="text" id="website" value="{{old("website")}}"
                                    class=" @error('website') is-invalid @enderror email-label" name="website">
+                            <p class="help">Vous aurez la possibilité d'en intégrer plusieurs via votre profil</p>
                         </div>
                         <div class="container-form-email selectdiv">
                             <label for="disponibilities">Disponibilités</label>
@@ -159,6 +161,7 @@
                                     <option value="{{$d->id}}">{{$d->name}}</option>
                                 @endforeach
                             </select>
+                            <p class="help">Avec la touche ctrl vous en sélectionner plusieurs</p>
                         </div>
                     </div>
 
@@ -188,6 +191,7 @@
                                     <option value="{{$c->id}}">{{$c->name}}</option>
                                 @endforeach
                             </select>
+                            <p class="help">Avec la touche ctrl vous en sélectionner plusieurs</p>
                         </div>
                         <div class="container-form-email">
                             <label for="pricemax">Votre prix horaire</label>
@@ -195,6 +199,7 @@
                                    value="{{old("pricemax")}}"
                                    class=" @error('pricemax') is-invalid @enderror email-label" placeholder="55"><span
                                 class="horary-cost">€/h</span>
+                            <p class="help">Ce prix donne un aperçu au client</p>
                         </div>
                     </div>
 
@@ -216,7 +221,7 @@
         @endif
     </section>
 @endsection
-@if(isset($_POST['company']) || isset($_POST['user']))
+@if($request->has('company') || $request->has('user'))
 @section('scripts')
     <script src="{{asset('js/passwordCheck.js')}}"></script>
     <script src="{{asset('js/passwordSee.js')}}"></script>

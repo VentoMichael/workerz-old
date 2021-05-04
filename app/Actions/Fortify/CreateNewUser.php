@@ -25,7 +25,7 @@ class CreateNewUser implements CreatesNewUsers
      * Validate and create a newly registered user.
      *
      * @param  array  $input
-     * @return User|\Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @return string
      */
     public function create(array $input)
     {
@@ -87,6 +87,11 @@ class CreateNewUser implements CreatesNewUsers
         } else {
             $location = null;
         }
+        if (request('pricemax')) {
+            $pricemax = $input['pricemax'];
+        } else {
+            $pricemax = null;
+        }
         $user = User::create([
             'name' => $input['name'],
             'surname' => $sur,
@@ -119,10 +124,10 @@ class CreateNewUser implements CreatesNewUsers
         $user->phones()->save($phone);
         $user->categories()->attach($ct->category_id);
         Session::flash('success-inscription', 'Votre inscription à été un succés !');
-        if (!isset($_POST['plan_user_id'])) {
+        if (!isset($input['plan_user_id'])) {
             return view('users.plans');
         } else {
-            if ($_POST['plan_user_id'] = 2 || $_POST['plan_user_id'] = 3) {
+            if ($input['plan_user_id'] = 2 || $input['plan_user_id'] = 3) {
                 return $user;
                 //return view('users.payed');
             } else {

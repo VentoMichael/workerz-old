@@ -78,7 +78,7 @@
                     Vous êtes indépendant et souhaitez vendre vos services au monde entier ?
                 </p>
                 <p>On vous aide à trouvez du travail !</p>
-                <a href="{{route('register')}}" class="button-cta">
+                <a href="{{route('users.plans')}}" class="button-cta">
                     <button>
                         Je m'inscris
                     </button>

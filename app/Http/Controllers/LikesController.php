@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Loves;
+use App\Models\Like;
 use Illuminate\Http\Request;
 
-class LovesController extends Controller
+class LikesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class LovesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Loves  $loves
+     * @param  \App\Models\Like  $likes
      * @return \Illuminate\Http\Response
      */
-    public function show(Loves $loves)
+    public function show(Like $likes)
     {
         //
     }
@@ -52,10 +52,10 @@ class LovesController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Loves  $loves
+     * @param  \App\Models\Like  $likes
      * @return \Illuminate\Http\Response
      */
-    public function edit(Loves $loves)
+    public function edit(Like $likes)
     {
         //
     }
@@ -64,10 +64,10 @@ class LovesController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Loves  $loves
+     * @param  \App\Models\Like  $likes
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Loves $loves)
+    public function update(Request $request, Like $likes)
     {
         //
     }
@@ -75,10 +75,10 @@ class LovesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Loves  $loves
+     * @param  \App\Models\Like  $likes
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Loves $loves)
+    public function destroy(Like $likes)
     {
         //
     }

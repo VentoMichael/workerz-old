@@ -205,12 +205,6 @@
                         <li>
                             <ul class="container-list-menu">
 
-                                <li>
-                                    <a
-                                        href="{{ auth()->logout() }}">
-                                        Se déconnecter
-                                    </a>
-                                </li>
                                 <li class="last-menu-item profil-item"
                                     aria-current="{{ Request::is('sign-up') ? "page" : "" }}">
                                     <a class="profil-user" href="{{route('dashboard')}}">Dashboard</a>
@@ -295,5 +289,6 @@ animated">
         window.addEventListener("scroll", l)
     }</script>
 @yield('scripts')
+
 </body>
 </html>

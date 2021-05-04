@@ -40,12 +40,6 @@
                         <div class="containerPrice containerLove">
                                     <img class="heart" src="{{asset('svg/heart.svg')}}" alt="icone de coeur">
                                     <img class="heartFul" src="{{asset('svg/heartFul.svg')}}" alt="icone de coeur">
-                            @foreach($loves as $l)
-
-                            @if(\Illuminate\Support\Facades\Auth::id() == $l->user_id)
-                                    <img class="heartFul" src="{{asset('svg/heartFul.svg')}}" alt="icone de coeur">
-                                @endif
-                            @endforeach
                                 <span> {{$worker->number}}</span>
 
                         </div>

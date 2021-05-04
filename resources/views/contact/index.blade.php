@@ -12,7 +12,7 @@
                     </p>
                 </div>
                 <div>
-                    <a href="{{ route('register') }}">
+                    <a href="{{ route('users.plans') }}">
                         <button role="button" class="button-cta" type="submit">
                             Je m'inscris
                         </button>

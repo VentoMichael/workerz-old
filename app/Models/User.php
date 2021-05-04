@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Http\Request;
 
 class User extends Authenticatable
 {
@@ -61,8 +62,8 @@ class User extends Authenticatable
     public function websites(){
         return $this->hasMany(Website::class);
     }
-    public function loves(){
-        return $this->hasMany(Loves::class);
+    public function likes(){
+        return $this->hasMany(Like::class);
     }
     public function categories(){
         return $this->belongsToMany(Category::class);

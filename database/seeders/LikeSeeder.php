@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\Loves;
+use App\Models\Like;
 use Illuminate\Database\Seeder;
 
-class LovesSeeder extends Seeder
+class LikeSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,6 +14,6 @@ class LovesSeeder extends Seeder
      */
     public function run()
     {
-        Loves::factory()->count(10)->create();
+        Like::factory()->count(10)->create();
     }
 }

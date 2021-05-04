@@ -23,45 +23,47 @@
             <h2 aria-level="2">Plan pour votre inscription</h2>
         </div>
         <div class="container-all-announcement show-content container-create-ads-infos container-plans">
-            @for($i=1;$i<= 3;$i++)
+            @foreach($plans as $plan)
                 <section class="container-plan">
                     <div class="container-plan-price">
                         <h3>
-                            Free
+                            {{ucfirst($plan->name)}}
                         </h3>
                         <span class="planPrice">
-                                0€
-                            </span>
-                        <p class="reductionPrice">
-                            10€
-                        </p>
+                             {{number_format((float)$plan->price, 2, ',', '')}} €
+                        </span>
+                        @if($plan->oldprice)
+                            <p class="reductionPrice">
+                                {{$plan->oldprice}} €
+                            </p>
+                        @endif
                     </div>
                     <ul>
                         <li>
-                            <img src="{{asset('svg/good.svg')}}" alt="Icone correct">Durée : X jours
+                            <img src="{{asset('svg/good.svg')}}" alt="Icone correct">Durée : {{$plan->duration}} jours
                         </li>
                         <li>
-                            <img src="{{asset('svg/cross.svg')}}" alt="Icone négative">Support prioritaire
+                            @if($plan->priority) <img src="{{asset('svg/good.svg')}}" alt="Icone correct"> @else <img src="{{asset('svg/cross.svg')}}" alt="Icone négative"> @endif Support prioritaire
                         </li>
                         <li class="hepling">
-                            <img src="{{asset('svg/cross.svg')}}" alt="Icone négative">
+                            @if($plan->directly_visible) <img src="{{asset('svg/good.svg')}}" alt="Icone correct"> @else <img src="{{asset('svg/cross.svg')}}" alt="Icone négative"> @endif
                             Directement visible
                             <span>Visible après approbation de l'administrateur</span>
                         </li>
                         <li>
-                            <img src="{{asset('svg/cross.svg')}}" alt="Icone négative">Grande visibilité
+                            @if($plan->hight_visibility) <img src="{{asset('svg/good.svg')}}" alt="Icone correct"> @else <img src="{{asset('svg/cross.svg')}}" alt="Icone négative"> @endif Grande visibilité
                         </li>
                     </ul>
                     <form action="{{route('users.type')}}" method="post">
                         @method('get')
                         @csrf
-                        <input id="plan_user_id" name="plan_user_id" type="hidden" value="{{$i}}">
+                        <input id="plan_user_id" name="plan_user_id" type="hidden" value="{{$plan->id}}">
                         <button>
-                            Je séléctionne TITRE
+                            Je séléctionne {{ucfirst($plan->name)}}
                         </button>
                     </form>
                 </section>
-            @endfor
+            @endforeach
         </div>
     </section>
 @endsection

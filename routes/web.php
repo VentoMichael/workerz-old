@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\TweetLikesController;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
@@ -38,9 +39,12 @@ Route::get('/announcements/{announcement}', [\App\Http\Controllers\AnnouncementC
 
 Route::get('/announcements/create',[\App\Http\Controllers\AnnouncementController::class, 'create'])->name('announcements.create');
 
+Route::post('announcements/{announcement}/like',[\App\Http\Controllers\AnnouncementLikeController::class,'store']);
+Route::delete('announcements/{announcement}/like',[\App\Http\Controllers\AnnouncementLikeController::class,'delete']);
 
 Route::get('/register/plans', [\App\Http\Controllers\UserController::class, 'plans'])->name('users.plans');
 Route::get('/register/plans/registration_type', [\App\Http\Controllers\UserController::class, 'registration_type'])->name('users.type');
+Route::get('/register/payed', [\App\Http\Controllers\UserController::class, 'payed'])->name('users.payed');
 
 Route::get('/workerz', [\App\Http\Controllers\UserController::class, 'index'])->name('workerz');
 

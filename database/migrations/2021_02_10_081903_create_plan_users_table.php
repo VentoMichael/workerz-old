@@ -19,7 +19,7 @@ class CreatePlanUsersTable extends Migration
             $table->decimal('price');
             $table->decimal('oldprice')->nullable();
             $table->string('duration');
-            $table->boolean('hight-visibility');
+            $table->boolean('hight_visibility');
             $table->boolean('priority');
             $table->boolean('directly_visible');
             $table->timestamps();

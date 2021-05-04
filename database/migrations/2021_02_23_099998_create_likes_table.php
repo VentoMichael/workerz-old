@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLovesTable extends Migration
+class CreateLikesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class CreateLovesTable extends Migration
      */
     public function up()
     {
-        Schema::create('loves', function (Blueprint $table) {
+        Schema::create('likes', function (Blueprint $table) {
             $table->id();
+            $table->boolean('liked');
             $table->timestamps();
         });
     }
@@ -26,6 +27,6 @@ class CreateLovesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('loves');
+        Schema::dropIfExists('likes');
     }
 }

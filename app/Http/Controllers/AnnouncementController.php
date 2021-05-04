@@ -23,16 +23,17 @@ class AnnouncementController extends Controller
 
     public function index()
     {
-        $announcements = Announcement::Published()->with('user','startmonth')->orderBy('created_at', 'DESC')->paginate(4)->onEachSide(0);
+        $announcements = Announcement::Published()->with('user','startmonth')->orderBy('created_at', 'DESC')->withLikes()->paginate(4)->onEachSide(0);
         $rq = \request()->query();
-
         foreach($announcements as $announcement){
         if (strlen($announcement->description) > 60 && !isset($_GET['showmore'.$announcement->id])) {
             $announcement->description = substr($announcement->description, 0, 60).'...';
         }}
         $categories = Category::with('announcements')->withCount("announcements")->get()->sortBy('name');
         $regions = Province::with('announcements')->withCount("announcements")->get()->sortBy('name');
-        return view('announcements.index', compact('announcements','rq','categories','regions'));
+        $user = auth()->user();
+
+        return view('announcements.index', compact('announcements','rq','categories','regions','user'));
     }
 
     public function show(Announcement $announcement)

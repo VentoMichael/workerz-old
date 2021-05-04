@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\CatchPhraseUser;
 use App\Models\Category;
+use App\Models\Like;
 use App\Models\Loves;
 use App\Models\PlanUser;
 use App\Models\Province;
@@ -22,7 +23,7 @@ class UserController extends Controller
     }
     public function index()
     {
-        $workerz = User::Independent()->with('loves','startDateUser','phones')->orderBy('role_id', 'DESC')->orderBy('created_at', 'ASC')->orderBy('name', 'ASC')->paginate(4)->onEachSide(0);
+        $workerz = User::Independent()->with('likes','startDateUser','phones')->orderBy('role_id', 'DESC')->orderBy('created_at', 'ASC')->orderBy('name', 'ASC')->paginate(4)->onEachSide(0);
         foreach($workerz as $worker){
             if (strlen($worker->description) > 60 && !isset($_GET['showmore'.$worker->id])) {
                 $worker->description = substr($worker->description, 0, 60).'...';
@@ -31,15 +32,10 @@ class UserController extends Controller
             $q->Independent();
         }]))->withCount("users")->get()->sortBy('name');
 
-        $loves = Loves::with((['user' => function ($q) {
-            $q->Independent();
-        }]))->withCount("user")->get()->sortBy('name');
-
         $regions = Province::with((['users' => function ($q) {
             $q->Independent();
         }]))->withCount("users")->withCount("users")->get()->sortBy('name');
-
-        return view('workerz.index',compact('workerz','categories','loves','regions'));
+        return view('workerz.index',compact('workerz','categories','regions'));
     }
     public function show(User $worker)
     {
@@ -48,5 +44,12 @@ class UserController extends Controller
         $randomUsers = User::Independent()->orderBy('role_id', 'DESC')->limit(2)->inRandomOrder()->get();
         $randomPhrasing = CatchPhraseUser::all()->random();
         return view('workerz.show', compact('worker','phone','randomPhrasing','randomUsers'));
+    }
+    public function payed(User $user)
+    {
+        $payed = $_POST['payed'];
+        if ($payed) {
+            return $user;
+        }
     }
 }

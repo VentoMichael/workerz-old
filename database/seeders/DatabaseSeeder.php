@@ -33,7 +33,7 @@ class DatabaseSeeder extends Seeder
         $this->call(StartDateUserSeeder::class);
         $this->call(AnnouncementSeeder::class);
         $this->call(AnnouncementCategorySeeder::class);
-        $this->call(LovesSeeder::class);
+        $this->call(LikeSeeder::class);
         $this->call(StartDateAnnouncementSeeder::class);
         $this->call(CatchPhraseAnnouncementSeeder::class);
         $this->call(CatchPhraseUserSeeder::class);

@@ -85,7 +85,7 @@
     display: grid;
     grid-template-columns: repeat(2, minmax(270px, 1fr));
     grid-gap: 30px;
-    margin-bottom: 15px;
+    margin-bottom: 25px;
 }
 
 .containerJobAds {
@@ -1263,12 +1263,12 @@ form .search-announcement {
 .reductionPrice:before {
     content: "";
     display: block;
-    width: 50px;
+    width: 130%;
     height: 3px;
     position: absolute;
     background: red;
     bottom: 17px;
-    left: -5px;
+    left: -14%;
     border-radius: 10px;
 }
 
@@ -1352,6 +1352,7 @@ form .search-announcement {
     padding: 10px;
     border-radius: 5px;
     background: white;
+    line-height: 1.4;
 }
 
 .profil-item {
@@ -1559,4 +1560,23 @@ div .container-perso-infos {
 .container-infos-ads-randomm{
     display: grid;
     grid-gap: 10px;
+}
+.notHoverHeart:hover{
+    cursor: inherit;
+}
+.notHoverHeart:hover .heart{
+    display: inherit;
+}
+.button-loves {
+    background: transparent;
+    border: 0;
+}
+.button-loves:hover {
+    padding: 1px 6px;
+}
+.button-loves:after{
+    display: none;
+}
+button .heartLiked{
+    display: inherit;
 }

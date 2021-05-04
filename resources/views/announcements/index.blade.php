@@ -31,14 +31,35 @@
         </h2>
         <div class="container-all-announcement show-content">
             @foreach($announcements as $announcement)
-                <section class="container-announcement" id="showmgs{{$announcement->id}}">
+
+                    <section class="container-announcement" id="showmgs{{$announcement->id}}">
                     <div class="container-infos-announcement">
+                        <div class="containerPrice containerLove @guest notHoverHeart @endguest">
+@if(!$announcement->isLikedBy($user))
+                            <form method="POST" action="/announcements/{{$announcement->title}}/like">
+                                @csrf
+
+                                    <button type="submit" class="button-loves">
+                                        <img class="heart" src="{{asset('svg/heart.svg')}}" alt="icone de coeur">
+                                        <img class="heartFul" src="{{asset('svg/heartFul.svg')}}" alt="icone de coeur">
+                                        {{$announcement->likes? : 0}}</button>
+                            </form>
+@else
+                            <form method="POST" action="/announcements/{{$announcement->title}}/like">
+                                @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="button-loves">
+                                        <img class="heartFul heartLiked" src="{{asset('svg/heartFul.svg')}}" alt="icone de coeur">
+                                        {{$announcement->likes ? $announcement->likes : 0}}</button>
+                            </form>
+@endif
+                        </div>
                         <div class="containerPrice">
                             <img src="{{asset('svg/euro.svg')}}" alt="icone d'euro">Max: {{$announcement->pricemax}}€
                         </div>
                         <div class="container-image-announcement">
                             @if($announcement->picture)
-                                <img src="{{ $announcement->picture }}" />
+                                <img src="{{ $announcement->picture }}"/>
                             @else
                                 <img src="{{asset('svg/ad.svg')}}" alt="icone d'annonces">
                             @endif
@@ -59,7 +80,7 @@
                         @endif
                         <div class="container-infos">
                             <div class="container-info-announcement">
-                                    <img src="{{asset('svg/suitcase.svg')}}" alt="icone de malette de travail">
+                                <img src="{{asset('svg/suitcase.svg')}}" alt="icone de malette de travail">
                                 <div class="containerJobAds">
                                     <p>
                                         {{ucfirst($announcement->job)}}
@@ -81,7 +102,7 @@
                     </a>
                 </section>
             @endforeach
-                {{ $announcements->links() }}
+            {{ $announcements->links() }}
         </div>
 
         <div class="container-filters">
@@ -98,7 +119,8 @@
                             @foreach($categories as $category)
                                 @if($category->announcements_count !=0)
                                     <li>
-                                        <input class="inp-cbx" id="category{{$category->id}}" name="category{{$category->id}}"
+                                        <input class="inp-cbx" id="category{{$category->id}}"
+                                               name="category{{$category->id}}"
                                                type="checkbox" style="display: none;"/>
                                         <label class="cbx" for="category{{$category->id}}">
                                 <span>

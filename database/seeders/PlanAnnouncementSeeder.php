@@ -19,7 +19,7 @@ class PlanAnnouncementSeeder extends Seeder
             'name' => 'Free',
             'price' => 0,
             'duration' => 5,
-            'hight-visibility' => false,
+            'hight_visibility' => false,
             'priority' => false,
             'directly_visible'=>false,
         ]);
@@ -29,7 +29,7 @@ class PlanAnnouncementSeeder extends Seeder
             'price' => 1.99,
             'oldprice' => 4.99,
             'duration' => 15,
-            'hight-visibility' => true,
+            'hight_visibility' => true,
             'priority' => true,
             'directly_visible'=>true,
         ]);
@@ -38,7 +38,7 @@ class PlanAnnouncementSeeder extends Seeder
             'name' => 'Star',
             'price' => 7.99,
             'duration' => 25,
-            'hight-visibility' => true,
+            'hight_visibility' => true,
             'priority' => true,
             'directly_visible'=>true,
         ]);
