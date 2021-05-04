@@ -107,5 +107,5 @@
     </section>
 @endsection
 @section('scripts')
-    <script>let e=document.getElementById("successMsg");if (e){setTimeout(function(){e.style.opacity="0",e.style.transition=".5s"},1e4);let cross=document.getElementById("crossHide");cross.addEventListener("click",()=>{cross.parentNode.style.opacity="0",cross.parentNode.style.transition=".5s"})};</script>
+    <script src="{{asset('js/successMsg.js')}}"></script>
 @endsection

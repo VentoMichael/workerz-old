@@ -47,7 +47,7 @@ class UserController extends Controller
     }
     public function payed(User $user)
     {
-        $payed = $_POST['payed'];
+        $payed = request()->has('payed');
         if ($payed) {
             return $user;
         }

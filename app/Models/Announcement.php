@@ -49,5 +49,4 @@ class Announcement extends Model
     {
         return $this->belongsToMany(Category::class);
     }
-
 }

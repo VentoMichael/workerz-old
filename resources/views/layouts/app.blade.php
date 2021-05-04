@@ -205,6 +205,15 @@
                         <li>
                             <ul class="container-list-menu">
 
+                                <li aria-current="{{ Request::is('sign-up') ? "page" : "" }}">
+                                    <form aria-label="Déconnexion" role="form" id="logout-form"
+                                          action="{{route('logout')}}" method="POST"> @csrf
+                                        <button type="submit" role="button"
+                                                class="text-left duration-300 w-full rounded-xl mt-2 p-3 border hover:bg-orange-900 hover:text-white">
+                                            Se déconnecter
+                                        </button>
+                                    </form>
+                                </li>
                                 <li class="last-menu-item profil-item"
                                     aria-current="{{ Request::is('sign-up') ? "page" : "" }}">
                                     <a class="profil-user" href="{{route('dashboard')}}">Dashboard</a>

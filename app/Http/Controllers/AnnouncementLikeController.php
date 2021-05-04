@@ -8,10 +8,10 @@ class AnnouncementLikeController extends Controller
 {
     public function store(Announcement $announcement){
         $announcement->like(auth()->id());
-        return back();
+        return back()->with('loveOk', 'L\' annonce a été aimé, merci !');
     }
     public function delete(Announcement $announcement){
         $announcement->dislike(auth()->id());
-        return back();
+        return back()->with('loveNotOk', 'Le j\'aime a bien été retiré, merci !');
     }
 }

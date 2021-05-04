@@ -23,6 +23,7 @@ class AnnouncementFactory extends Factory
     {
         return [
             'title' => $this->faker->word,
+            'slug' => $this->faker->slug,
             'job' => $this->faker->word,
             'picture' => $this->faker->imageUrl($width = 640, $height = 480, 'cats'),
             'description' => $this->faker->text($maxNbChars = 200),

@@ -32,14 +32,6 @@ trait Likable
             ->count();
     }
 
-    public function isDislikedBy(User $user)
-    {
-        return (bool) $user->likes
-            ->where('announcement_id', $this->id)
-            ->where('liked', false)
-            ->count();
-    }
-
     public function like($user = null, $liked = true)
     {
         $this->likes()->updateOrCreate([

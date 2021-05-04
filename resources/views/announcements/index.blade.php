@@ -1,5 +1,17 @@
 @extends('layouts.app')
 @section('content')
+    @if (Session::has('loveOk'))
+        <div id="successMsg" class="successMsg"><img src="{{asset('svg/good.svg')}}" alt="good icone">
+            <p>{{Session::get('loveOk')}}</p>
+            <span class="crossHide" id="crossHide">&times;</span>
+        </div>
+    @endif
+    @if (Session::has('loveNotOk'))
+        <div id="successMsg" class="successMsg"><img src="{{asset('svg/good.svg')}}" alt="good icone">
+            <p>{{Session::get('loveNotOk')}}</p>
+            <span class="crossHide" id="crossHide">&times;</span>
+        </div>
+    @endif
     <section class="container-home margin">
         <div class="container-home_image container-home-page">
             <div>
@@ -32,28 +44,47 @@
         <div class="container-all-announcement show-content">
             @foreach($announcements as $announcement)
 
-                    <section class="container-announcement" id="showmgs{{$announcement->id}}">
+                <section class="container-announcement" id="showmgs{{$announcement->id}}">
                     <div class="container-infos-announcement">
                         <div class="containerPrice containerLove @guest notHoverHeart @endguest">
-@if(!$announcement->isLikedBy($user))
-                            <form method="POST" action="/announcements/{{$announcement->title}}/like">
-                                @csrf
+                            @auth
+                                @if(!$announcement->isLikedBy($user))
+                                    <form method="POST" action="/announcements/{{$announcement->title}}/like">
+                                        @csrf
 
-                                    <button type="submit" class="button-loves">
-                                        <img class="heart" src="{{asset('svg/heart.svg')}}" alt="icone de coeur">
-                                        <img class="heartFul" src="{{asset('svg/heartFul.svg')}}" alt="icone de coeur">
-                                        {{$announcement->likes? : 0}}</button>
-                            </form>
-@else
-                            <form method="POST" action="/announcements/{{$announcement->title}}/like">
-                                @csrf
+                                        <button type="submit" class="button-loves">
+                                            <img class="heart" src="{{asset('svg/heart.svg')}}" alt="icone de coeur">
+                                            <img class="heartFul" src="{{asset('svg/heartFul.svg')}}"
+                                                 alt="icone de coeur">
+                                            <span>
+                                        {{$announcement->likes? : 0}}</span></button>
+                                    </form>
+                                @else
+                                <form method="POST" action="/announcements/{{$announcement->title}}/like">
+                                    @csrf
                                     @method('DELETE')
                                     <button type="submit" class="button-loves">
-                                        <img class="heartFul heartLiked" src="{{asset('svg/heartFul.svg')}}" alt="icone de coeur">
-                                        {{$announcement->likes ? $announcement->likes : 0}}</button>
-                            </form>
-@endif
+                                        <img class="heartFul heartLiked" src="{{asset('svg/heartFul.svg')}}"
+                                             alt="icone de coeur">
+                                        <span>
+                                        {{$announcement->likes? : 0}}</span></button>
+                                </form>
+                                @endif
+
+                            @else
                         </div>
+                        <a href="{{route('login')}}">
+                        <div class="containerPrice containerLove hepling helping-like">
+
+                                <img class="heart" src="{{asset('svg/heart.svg')}}" alt="icone de coeur">
+                                <img class="heartFul" src="{{asset('svg/heartFul.svg')}}"
+                                     alt="icone de coeur">
+                                <p>
+                                    {{$announcement->likes? : 0}}</p>
+                                <span> Il faut être connecter pour aimer l'annonce</span>
+                            @endauth
+                        </div>
+                        </a>
                         <div class="containerPrice">
                             <img src="{{asset('svg/euro.svg')}}" alt="icone d'euro">Max: {{$announcement->pricemax}}€
                         </div>
@@ -70,14 +101,6 @@
                         <p class="paragraph-ann">
                             {{ucfirst($announcement->description)}}
                         </p>
-                        @if (strlen($announcement->description) > 60)
-                            @if(!isset($_GET['showmore'.$announcement->id]))
-                                <form action="#showmgs{{$announcement->id}}" method="get">
-                                    <button class="button-more-text" name="showmore{{$announcement->id}}">
-                                    </button>
-                                </form>
-                            @endif
-                        @endif
                         <div class="container-infos">
                             <div class="container-info-announcement">
                                 <img src="{{asset('svg/suitcase.svg')}}" alt="icone de malette de travail">
@@ -166,4 +189,7 @@
             </form>
         </div>
     </section>
+@endsection
+@section('scripts')
+    <script src="{{asset('js/successMsg.js')}}"></script>
 @endsection

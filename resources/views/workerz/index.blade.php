@@ -83,7 +83,7 @@
                             </div>
                         </div>
                     </div>
-                    <a href="/workerz/{{$worker->name}}" class="button-personnal-announcement">
+                    <a href="/workerz/{{$worker->slug}}" class="button-personnal-announcement">
                     </a>
                 </section>
             @endforeach

@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
 
@@ -100,15 +101,14 @@ class CreateNewUser implements CreatesNewUsers
             'role_id' => $input['role_id'],
             'plan_user_id' => $input['plan_user_id'],
             'website' => $web,
-            //'disponibilities' => $input['disponibilities'],
             'province_id' => $location,
             'job' => $job,
             'postal_adress' => $adress,
             'pricemax' => $pricemax,
+            'slug' => Str::slug($input['name']),
             'description' => $description,
             'password' => Hash::make($input['password']),
         ]);
-
         $ids = User::latest()->first('id');
         foreach ($ids as $id) {
 
@@ -118,11 +118,16 @@ class CreateNewUser implements CreatesNewUsers
             'user_id' => $id
         ]);
 
+
         $ct = new CategoryUser();
         $ct->category_id = \request('category-job');
 
+        $di = new StartDateUser();
+        $di->start_date_id = \request('disponibilities');
+
         $user->phones()->save($phone);
         $user->categories()->attach($ct->category_id);
+        $user->startDateUser()->attach($di->start_date_id);
         Session::flash('success-inscription', 'Votre inscription à été un succés !');
         if (!isset($input['plan_user_id'])) {
             return view('users.plans');

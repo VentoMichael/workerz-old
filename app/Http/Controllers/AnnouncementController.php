@@ -26,7 +26,7 @@ class AnnouncementController extends Controller
         $announcements = Announcement::Published()->with('user','startmonth')->orderBy('created_at', 'DESC')->withLikes()->paginate(4)->onEachSide(0);
         $rq = \request()->query();
         foreach($announcements as $announcement){
-        if (strlen($announcement->description) > 60 && !isset($_GET['showmore'.$announcement->id])) {
+        if (strlen($announcement->description) > 60 && !\request(['showmore'.$announcement->id])) {
             $announcement->description = substr($announcement->description, 0, 60).'...';
         }}
         $categories = Category::with('announcements')->withCount("announcements")->get()->sortBy('name');

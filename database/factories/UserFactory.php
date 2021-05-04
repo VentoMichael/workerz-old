@@ -25,6 +25,7 @@ class UserFactory extends Factory
         return [
             'picture' => $this->faker->imageUrl($width = 640, $height = 480, 'cats'),
             'name' => $this->faker->name,
+            'slug' => $this->faker->slug,
             'surname' => $this->faker->name,
             'website' => $this->faker->safeEmailDomain,
             'job' => $this->faker->name,
