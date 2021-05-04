@@ -38,11 +38,65 @@ class AnnouncementController extends Controller
 
     public function show(Announcement $announcement)
     {
-        $randomAds = Announcement::Published()->orderBy('plan_announcement_id','DESC')->limit(2)->inRandomOrder()->get();
+        $randomAds = Announcement::Published()->orderBy('plan_announcement_id','DESC')->withLikes()->limit(2)->inRandomOrder()->get();
         $randomPhrasing = CatchPhraseAnnouncement::all()->random();
-        return view('announcements.show', compact('randomPhrasing','randomAds','announcement'));
+        $user = auth()->user();
+        $announcement = Announcement::Published()->with('user')->withLikes()->get()->find($announcement);;
+        return view('announcements.show', compact('randomPhrasing','randomAds','announcement','user'));
     }
 
+
+
+
+    /*
+     *
+     *
+     * @auth
+                        @if(!$announcement->isLikedBy($user))
+                            <form method="POST" action="/announcements/{{$announcement->slug}}/like">
+                                @csrf
+
+                                <button type="submit" class="button-loves">
+                                    <img class="heart" src="{{asset('svg/heart.svg')}}" alt="icone de coeur">
+                                    <img class="heartFul" src="{{asset('svg/heartFul.svg')}}"
+                                         alt="icone de coeur">
+                                    <span>
+                                        {{$announcement->likes ? : 0}}</span></button>
+                            </form>
+                        @else
+
+                            <form method="POST" action="/announcements/{{$announcement->slug}}/like">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="button-loves">
+                                    <img class="heartFul heartLiked" src="{{asset('svg/heartFul.svg')}}"
+                                         alt="icone de coeur">
+                                    <span>
+                                        {{$announcement->likes ? : 0}}</span></button>
+                            </form>
+                        @endif
+                        </div>
+                    @else
+                        </div>
+                        <div class="containerPrice container-show-love containerLove @guest notHoverHeart @endguest">
+                        <a href="{{route('login')}}">
+                                        <div class="containerPrice containerLove hepling helping-like">
+
+                                            <img class="heart" src="{{asset('svg/heart.svg')}}" alt="icone de coeur">
+                                            <img class="heartFul" src="{{asset('svg/heartFul.svg')}}"
+                                                 alt="icone de coeur">
+                                            <p>
+                                                {{$announcement->likes? : 0}}</p>
+                                            <span> Il faut être connecter pour aimer l'annonce</span>
+                                        </div>
+                                    </a>
+                        </div>
+                    @endauth
+     *
+     *
+     *
+     *
+     * */
     /**
      * Show the form for creating a new resource.
      *

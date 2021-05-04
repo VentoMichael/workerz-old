@@ -13,7 +13,7 @@ class Announcement extends Model
 
     public function getRouteKeyName()
     {
-        return 'title';
+        return 'slug';
     }
 
     public function scopePublished($query)

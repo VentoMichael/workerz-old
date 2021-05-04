@@ -20,7 +20,6 @@ class CreateAnnouncementsTable extends Migration
             $table->string('picture')->nullable();
             $table->string('description',256);
             $table->string('job');
-            $table->boolean('allNumbers')->default(false);
             $table->unsignedFloat('pricemax')->nullable();
             $table->boolean('is_draft');
             $table->timestamps();

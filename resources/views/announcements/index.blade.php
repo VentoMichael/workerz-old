@@ -49,7 +49,7 @@
                         <div class="containerPrice containerLove @guest notHoverHeart @endguest">
                             @auth
                                 @if(!$announcement->isLikedBy($user))
-                                    <form method="POST" action="/announcements/{{$announcement->title}}/like">
+                                    <form method="POST" action="/announcements/{{$announcement->slug}}/like">
                                         @csrf
 
                                         <button type="submit" class="button-loves">
@@ -60,7 +60,7 @@
                                         {{$announcement->likes? : 0}}</span></button>
                                     </form>
                                 @else
-                                <form method="POST" action="/announcements/{{$announcement->title}}/like">
+                                <form method="POST" action="/announcements/{{$announcement->slug}}/like">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="button-loves">
@@ -121,7 +121,7 @@
                             </div>
                         </div>
                     </div>
-                    <a href="/announcements/{{$announcement->title}}" class="button-personnal-announcement">
+                    <a href="/announcements/{{$announcement->slug}}" class="button-personnal-announcement">
                     </a>
                 </section>
             @endforeach

@@ -618,6 +618,7 @@ form .form-group .email-label {
 
 .containerLove img {
     max-width: 29px;
+    min-width: 29px;
     width: 100%;
 }
 
@@ -1612,4 +1613,13 @@ div .helping-like span:after{
     height: 20px;
     bottom:-15px;
     content: "";
+}
+.container-love-show{
+    position: absolute;
+}
+div .containerRandomLoves{
+    top: -43px;
+}
+div .help-show{
+    top: -46px;
 }
