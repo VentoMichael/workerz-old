@@ -178,12 +178,14 @@
                             <li><a class="{{ Request::is('/') ? "current_page_item" : "" }}"
                                    aria-current="{{ Request::is('/') ? "page" : "" }}" href="{{ url('/') }}">Accueil</a>
                             </li>
-                            <li><a class="{{ Request::is('sign-in') ? "current_page_item" : "" }}"
-                                   aria-current="{{ Request::is('workers') ? "page" : "" }}"
+                            <li>
+                                <a class="{{ Request::is('workerz') || Request::is('workerz') ? "current_page_item" : "" }}"
+                                   aria-current="{{ Request::is('workerz') || Request::is('workerz/*') ? "page" : "" }}"
                                    href="{{route('workerz')}}">Travailleurs</a>
                             </li>
-                            <li><a class="{{ Request::is('announcements') ? "current_page_item" : "" }}"
-                                   aria-current="{{ Request::is('announcements') ? "page" : "" }}"
+                            <li>
+                                <a class="{{ Request::is('announcements') || Request::is('announcements/*') ? "current_page_item" : "" }}"
+                                   aria-current="{{ Request::is('announcements') || Request::is('announcements') ? "page" : "" }}"
                                    href="{{route('announcements')}}">Annonces</a>
                             </li>
                         </ul>
@@ -191,12 +193,12 @@
                     @if(!Auth::check())
                         <li>
                             <ul class="container-list-menu">
-                                <li class="{{ Request::is('sign-in') ? "current_page_item" : "" }}"
-                                    aria-current="{{ Request::is('sign-in') ? "page" : "" }}"><a
+                                <li class="{{ Request::is('login') ? "current_page_item" : "" }}"
+                                    aria-current="{{ Request::is('login') ? "page" : "" }}"><a
                                         href="{{ route('login') }}">Se connecter</a>
                                 </li>
                                 <li class="last-menu-item"
-                                    aria-current="{{ Request::is('sign-up') ? "page" : "" }}"><a
+                                    aria-current="{{ Request::is('register') ? "page" : "" }}"><a
                                         href="{{ route('users.plans') }}">S'inscrire</a>
                                 </li>
                             </ul>
@@ -204,8 +206,7 @@
                     @else
                         <li>
                             <ul class="container-list-menu">
-
-                                <li aria-current="{{ Request::is('sign-up') ? "page" : "" }}">
+                                <li>
                                     <form aria-label="Déconnexion" role="form" id="logout-form"
                                           action="{{route('logout')}}" method="POST"> @csrf
                                         <button type="submit" role="button"
@@ -215,7 +216,7 @@
                                     </form>
                                 </li>
                                 <li class="last-menu-item profil-item"
-                                    aria-current="{{ Request::is('sign-up') ? "page" : "" }}">
+                                    aria-current="{{ Request::is('dashboard') ? "page" : "" }}">
                                     <a class="profil-user" href="{{route('dashboard')}}">Dashboard</a>
                                 </li>
                                 <li class="nav-dashboard notVisible">
@@ -268,11 +269,14 @@
                 </ul>
             </nav>
         </section>
-        <section class="newsletter">
+        <section class="newsletter" id="newsletterSection">
             <h3 aria-level="3" class="util-links">
                 La newsletter immanquable
             </h3>
-            <form action="#" method="get" class="form-newsletter-container">
+
+            <form action="{{route('newsletter.store')}}#newsletterSection" method="POST"
+                  class="form-newsletter-container">
+                @csrf
                 <div class="form-newsletter">
                     <label for="newsletter" class="notVisible">Votre mail</label>
                     <input type="email" name="newsletter" id="newsletter" class="input-newsletter"
@@ -284,10 +288,21 @@
             </form>
         </section>
     </div>
-    <div class="copyright fadeInLeft
-animated">
+    <div class="copyright fadeInLeft animated">
         <small>{{date('Y')}} Workerz. Tous droits réservés.</small>
     </div>
+    @if (Session::has('successNew'))
+        <div id="successMsg" class="successMsg"><img src="{{asset('svg/good.svg')}}" alt="good icone">
+            <p>{{Session::get('successNew')}}</p>
+            <span class="crossHide" id="crossHide">&times;</span>
+        </div>
+    @endif
+    @if (Session::has('failureNew'))
+        <div id="successMsg" class="successMsg"><img src="{{asset('svg/cross.svg')}}" alt="cross icone">
+            <p>{{Session::get('failureNew')}}</p>
+            <span class="crossHide" id="crossHide">&times;</span>
+        </div>
+    @endif
 </footer>
 <script>const nodeList = document.querySelectorAll(".show-content"), scroll = Array.from(nodeList);
     if (scroll) {

@@ -30,6 +30,9 @@ Route::get('/', function () {
 });
 
 
+Route::post('/newsletter/store',[\App\Http\Controllers\NewsletterController::class, 'store'])->name('newsletter.store');
+
+
 Route::get('/announcements', [\App\Http\Controllers\AnnouncementController::class, 'index'])->name('announcements');
 
 Route::get('/announcements/plans', [\App\Http\Controllers\AnnouncementController::class, 'plans'])->name('announcements.plans');

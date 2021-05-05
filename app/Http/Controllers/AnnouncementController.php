@@ -45,56 +45,7 @@ class AnnouncementController extends Controller
         return view('announcements.show', compact('randomPhrasing','randomAds','announcement','user'));
     }
 
-
-
-
     /*
-     *
-     *
-     * @auth
-                        @if(!$announcement->isLikedBy($user))
-                            <form method="POST" action="/announcements/{{$announcement->slug}}/like">
-                                @csrf
-
-                                <button type="submit" class="button-loves">
-                                    <img class="heart" src="{{asset('svg/heart.svg')}}" alt="icone de coeur">
-                                    <img class="heartFul" src="{{asset('svg/heartFul.svg')}}"
-                                         alt="icone de coeur">
-                                    <span>
-                                        {{$announcement->likes ? : 0}}</span></button>
-                            </form>
-                        @else
-
-                            <form method="POST" action="/announcements/{{$announcement->slug}}/like">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="button-loves">
-                                    <img class="heartFul heartLiked" src="{{asset('svg/heartFul.svg')}}"
-                                         alt="icone de coeur">
-                                    <span>
-                                        {{$announcement->likes ? : 0}}</span></button>
-                            </form>
-                        @endif
-                        </div>
-                    @else
-                        </div>
-                        <div class="containerPrice container-show-love containerLove @guest notHoverHeart @endguest">
-                        <a href="{{route('login')}}">
-                                        <div class="containerPrice containerLove hepling helping-like">
-
-                                            <img class="heart" src="{{asset('svg/heart.svg')}}" alt="icone de coeur">
-                                            <img class="heartFul" src="{{asset('svg/heartFul.svg')}}"
-                                                 alt="icone de coeur">
-                                            <p>
-                                                {{$announcement->likes? : 0}}</p>
-                                            <span> Il faut être connecter pour aimer l'annonce</span>
-                                        </div>
-                                    </a>
-                        </div>
-                    @endauth
-     *
-     *
-     *
      *
      * */
     /**

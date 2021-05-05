@@ -1370,6 +1370,7 @@ form .search-announcement {
 
 .successMsg {
     position: fixed;
+    font-family:roboto,sans-serif;
     bottom: 20px;
     display: flex;
     align-items: center;
