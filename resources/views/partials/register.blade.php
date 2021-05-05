@@ -54,6 +54,8 @@
         </ul>
     </div>
 </div>
+<input id="plan" name="plan" type="hidden" value="{{$plan}}">
+
 @error('password')
 <div class="container-error">
                                     <span role="alert" class="error">

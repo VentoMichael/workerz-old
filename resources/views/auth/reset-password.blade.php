@@ -1,67 +1,95 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">{{ __('Réinitialiser le mot de passe') }}</div>
+    <div class="container-home">
+        <section class="container-home_image">
+            <div class="container-connexion">
+                <h2 aria-level="2">Réinitialisation de votre mot de passe</h2>
+                <p>Ce n'est qu'un oubli, pas de panique !</p>
+                <form aria-label="Modification du mot de passe" role="form" class="form-login" method="POST"
+                      action="{{ route('password.update') }}">
+                    @csrf
+                    <input type="hidden" name="token" value="{{ request()->route('token') }}">
+                    <div class="container-form-email notVisible">
+                        <label for="email"
+                        >Email</label>
+                        <input id="email" type="email" class="email-label @error('email') is-invalid @enderror" name="email" value="{{ request()->get('email') ?? old('email') }}" required autocomplete="email" autofocus>
 
-                    <div class="card-body">
-                        <form aria-label="Modification du mot de passe" role="form" method="POST" action="{{ route('password.update') }}">
-                            @csrf
-
-                            <input type="hidden" name="token" value="{{ request()->route('token') }}">
-
-                            <div class="form-group row">
-                                <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Email') }}</label>
-
-                                <div class="col-md-6">
-                                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ request()->get('email') ?? old('email') }}" required autocomplete="email" autofocus>
-
-                                    @error('email')
-                                    <div class="container-error">
-                <span role="alert" class="error">
-                                        <strong>{{ ucfirst($message) }}</strong>
-                                    </span>
-                                    </div>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Mot de passe') }}</label>
-
-                                <div class="col-md-6">
-                                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
-                                    @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ ucfirst($message) }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirmer le mot de passe') }}</label>
-
-                                <div class="col-md-6">
-                                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                                </div>
-                            </div>
-
-                            <div class="form-group row mb-0">
-                                <div class="col-md-6 offset-md-4">
-                                    <button role="button" type="submit" class="btn btn-primary">
-                                        {{ __('Réinitialiser le mot de passe') }}
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
+                        @error('email')
+                        <div class="container-error">
+                            <span role="alert" class="error">
+                                <strong>{{ ucfirst($message) }}</strong>
+                            </span>
+                        </div>
+                        @enderror
                     </div>
-                </div>
+                    <div class="container-form-email">
+                        <label for="password"
+                        >Mot de passe</label>
+                        <input id="password" type="password"
+                               class="email-label @error('password') is-invalid @enderror" name="password" required
+                               autocomplete="new-password">
+                        <div id="container-checkpass" class="container-checkpass">
+                            <input type="checkbox" class="password--visibleToggle password-toggle-reset" id="checkPass" checked>
+                            <div class="password--visibleToggle-eye open">
+                                <img src="{{asset('svg/eye-open.svg')}}"/>
+                            </div>
+                            <div class="password--visibleToggle-eye close">
+                                <img src="{{asset('svg/eye-close.svg')}}"/>
+                            </div>
+                        </div>
+                        @error('password')
+
+                        <div class="container-error">
+                            <span role="alert" class="error">
+                                <strong>{{ ucfirst($message) }}</strong>
+                            </span>
+                        </div>
+                        @enderror
+                    </div>
+                    <div class="container-form-email">
+                        <label for="password-confirm">Confirmer le mot de passe</label>
+
+                            <input id="password-confirm" type="password" class="email-label" name="password_confirmation" required autocomplete="new-password">
+                    </div>
+                    <ul role="list" class="list-password-required">
+                        <li id="cara">
+                            <img src="{{asset('../svg/good.svg')}}" alt="good icon">
+                            <p role="listitem">
+                                <span>&bull;</span> 8 caractères
+                            </p>
+                        </li>
+                        <li id="maj">
+                            <img src="{{asset('../svg/good.svg')}}" alt="good icon">
+                            <p role="listitem">
+                                <span>&bull;</span> 1 majuscule
+                            </p>
+                        </li>
+                        <li id="symbole">
+                            <img src="{{asset('../svg/good.svg')}}" alt="good icon">
+                            <p role="listitem">
+                                <span>&bull;</span> 1 chiffre
+                            </p>
+                        </li>
+                    </ul>
+
+                    <div>
+                        <button role="button" type="submit"
+                                class="button-cta">
+                            Réinitialiser le mot de passe
+                        </button>
+                    </div>
+                </form>
             </div>
-        </div>
+
+            <div class="container-svg">
+                    <img class="svg-icon" src="{{asset('svg/Settings_Monochromatic.svg')}}"
+                         alt="Icone d'un ordinateur avec un mot de passe crypter">
+                </div>
+        </section>
     </div>
+@endsection
+@section('scripts')
+    <script src="{{asset('js/passwordCheck.js')}}"></script>
+    <script src="{{asset('js/passwordSee.js')}}"></script>
 @endsection

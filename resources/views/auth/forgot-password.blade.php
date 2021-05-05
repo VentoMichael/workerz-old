@@ -1,9 +1,11 @@
 @extends('layouts.app')
-
 @section('content')
     @if (session('status'))
-        <div class="alert alert-success" role="alert">
-            {{ session('status') }}
+        <div id="successMsg" class="successMsg"><img src="{{asset('svg/good.svg')}}" alt="good icone">
+            <div class="alert alert-success" role="alert">
+                <p>{{ session('status') }}</p>
+            </div>
+            <span class="crossHide" id="crossHide">&times;</span>
         </div>
     @endif
     <div class="container-home">
@@ -55,4 +57,7 @@
             </div>
         </section>
     </div>
+@endsection
+@section('scripts')
+    <script src="{{asset('js/successMsg.js')}}"></script>
 @endsection

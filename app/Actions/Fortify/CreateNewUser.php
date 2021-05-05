@@ -4,14 +4,9 @@ namespace App\Actions\Fortify;
 
 use App\Models\CategoryUser;
 use App\Models\Phone;
-use App\Models\PlanUser;
-use App\Models\Role;
 use App\Models\StartDateUser;
 use App\Models\User;
-use http\Env\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
@@ -111,33 +106,20 @@ class CreateNewUser implements CreatesNewUsers
         ]);
         $ids = User::latest()->first('id');
         foreach ($ids as $id) {
-
         }
         $phone = Phone::create([
             'number' => $input['phone'],
             'user_id' => $id
         ]);
-
-
         $ct = new CategoryUser();
         $ct->category_id = \request('category-job');
 
         $di = new StartDateUser();
         $di->start_date_id = \request('disponibilities');
-
         $user->phones()->save($phone);
         $user->categories()->attach($ct->category_id);
         $user->startDateUser()->attach($di->start_date_id);
         Session::flash('success-inscription', 'Votre inscription à été un succés !');
-        if (!isset($input['plan_user_id'])) {
-            return view('users.plans');
-        } else {
-            if ($input['plan_user_id'] = 2 || $input['plan_user_id'] = 3) {
-                return $user;
-                //return view('users.payed');
-            } else {
-                return $user;
-            }
-        }
+        return $user;
     }
 }

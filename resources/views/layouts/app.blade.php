@@ -14,7 +14,7 @@
         {{ 'Workerz' }}{{ Request::is('/') ? " | Accueil" : "" }}
         {{ Request::is('login') ? ' | Connexion' : "" }}
         {{ Request::is('register') || Request::is('register/*')? ' | S\'enregistrer' : "" }}
-        {{ Request::is('forgot-password') ? ' | Mot de passe oublié' : "" }}
+        {{ Request::is('forgot-password') || Request::is('reset-password/*') ?' | Mot de passe oublié' : "" }}
         {{ Request::is('contact') ? ' | Contact' : "" }}
         {{ Request::is('about') ? ' | À propos de nous' : "" }}
         {{ Request::is('policy') ? ' | Politique de confidentialité' : "" }}

@@ -55,11 +55,7 @@ class AnnouncementController extends Controller
      */
     public function create()
     {
-        if (isset($_GET['plan1']) || isset($_GET['plan2']) || isset($_GET['plan3'])) {
-            return view('announcements.create');
-        } else {
-            return redirect(route('announcements.plans'));
-        }
+        //
 
     }
 
