@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserRoute
 {
@@ -16,10 +17,9 @@ class UserRoute
      */
     public function handle(Request $request, Closure $next)
     {
-        if($request->route('workerz') && ! $request->route('workerz')->independent() )
-        {
+        if($request->route('worker') && $request->route('worker')->user() ) {
             return redirect()->route('home.index');
         }
-        return $next($request);
+            return $next($request);
     }
 }

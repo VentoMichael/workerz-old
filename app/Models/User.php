@@ -46,6 +46,10 @@ class User extends Authenticatable
     {
         return $query->where('role_id', '=', '2');
     }
+    public function scopeUser($query)
+    {
+        return $query->where('role_id', '=', '3');
+    }
 
     public function announcements(){
         return $this->hasMany(Announcement::class);

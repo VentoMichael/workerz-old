@@ -74,7 +74,7 @@ Route::get('/about', function () { return view('about.index'); })->name('about')
 
 Route::group(['middleware' => config('fortify.middleware', ['web'])], function () {
     $enableViews = config('fortify.views', true);
-    // Registration...
+
     if (Features::enabled(Features::registration())) {
         if ($enableViews) {
             Route::get('/register', [RegisteredUserController::class, 'create'])
@@ -82,7 +82,6 @@ Route::group(['middleware' => config('fortify.middleware', ['web'])], function (
                 ->middleware(['payeduser'])
                 ->name('register');
         }
-
         Route::post('/register', [RegisteredUserController::class, 'store'])
             ->middleware(['guest'])
             ->middleware(['payeduser']);
