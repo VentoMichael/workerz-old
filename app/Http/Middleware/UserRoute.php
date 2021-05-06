@@ -17,9 +17,9 @@ class UserRoute
      */
     public function handle(Request $request, Closure $next)
     {
-        if($request->route('worker') && $request->route('worker')->user() ) {
-            return redirect()->route('home.index');
-        }
+        //if($request->route('worker') && $request->route('worker')->user() ) {
+        //    return redirect()->route('home.index');
+        //}
             return $next($request);
     }
 }

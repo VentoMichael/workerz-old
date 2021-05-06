@@ -16,47 +16,48 @@ class ProvinceSeeder extends Seeder
     {
         Province::create([
             'id' => 1,
-            'name' => 'Anvers'
+            'name' => 'Anvers',
         ]);
         Province::create([
             'id' => 2,
-            'name' => 'Flandre-Occidentale'
+            'name' => 'Flandre-Occidentale',
+
         ]);
         Province::create([
             'id' => 3,
-            'name' => 'Flandre-Orientale'
+            'name' => 'Flandre-Orientale',
         ]);
         Province::create([
             'id' => 4,
-            'name' => 'Hainaut'
+            'name' => 'Hainaut',
         ]);
         Province::create([
             'id' => 5,
-            'name' => 'Liège'
+            'name' => 'Liège',
         ]);
         Province::create([
             'id' => 6,
-            'name' => 'Limbourg'
+            'name' => 'Limbourg',
         ]);
         Province::create([
             'id' => 7,
-            'name' => 'Luxembourg'
+            'name' => 'Luxembourg',
         ]);
         Province::create([
             'id' => 8,
-            'name' => 'Namur'
+            'name' => 'Namur',
         ]);
         Province::create([
             'id' => 9,
-            'name' => 'Brabant flamand'
+            'name' => 'Brabant flamand',
         ]);
         Province::create([
             'id' => 10,
-            'name' => 'Brabant wallon'
+            'name' => 'Brabant wallon',
         ]);
         Province::create([
             'id' => 11,
-            'name' => 'Bruxelles'
+            'name' => 'Bruxelles',
         ]);
     }
 }

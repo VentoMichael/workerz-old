@@ -4,7 +4,7 @@ namespace App\Actions\Fortify;
 
 use App\Models\CategoryUser;
 use App\Models\Phone;
-use App\Models\StartDateUser;
+use App\Models\startDate;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
@@ -114,11 +114,11 @@ class CreateNewUser implements CreatesNewUsers
         $ct = new CategoryUser();
         $ct->category_id = \request('category-job');
 
-        $di = new StartDateUser();
+        $di = new startDate();
         $di->start_date_id = \request('disponibilities');
         $user->phones()->save($phone);
         $user->categories()->attach($ct->category_id);
-        $user->startDateUser()->attach($di->start_date_id);
+        $user->startDate()->attach($di->start_date_id);
 
         Session::flash('success-inscription', 'Votre inscription à été un succés !');
         return $user;

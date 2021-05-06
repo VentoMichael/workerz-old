@@ -5,12 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PlanUser extends Model
+class ProvinceUser extends Model
 {
     use HasFactory;
-    protected $guarded;
+    protected $table = 'province_user';
 
-    public function users(){
-        return $this->hasMany(User::class);
-    }
 }

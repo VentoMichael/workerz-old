@@ -2,17 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Models\province;
+use App\Models\ProvinceUser;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class ProvinceFactory extends Factory
+class ProvinceUserFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = province::class;
+    protected $model = ProvinceUser::class;
 
     /**
      * Define the model's default state.
@@ -22,6 +22,8 @@ class ProvinceFactory extends Factory
     public function definition()
     {
         return [
+            'user_id' => $this->faker->numberBetween($min = 1, $max = 100),
+            'province_id' => $this->faker->numberBetween($min = 1, $max = 11),
         ];
     }
 }

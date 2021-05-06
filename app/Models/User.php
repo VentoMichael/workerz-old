@@ -54,7 +54,7 @@ class User extends Authenticatable
     public function announcements(){
         return $this->hasMany(Announcement::class);
     }
-    public function plan(){
+    public function plan_user(){
         return $this->belongsTo(PlanUser::class);
     }
     public function role(){
@@ -72,10 +72,10 @@ class User extends Authenticatable
     public function categories(){
         return $this->belongsToMany(Category::class);
     }
-    public function startDateUser(){
+    public function startDate(){
         return $this->belongsToMany(StartDate::class)->orderBy('id', 'ASC');
     }
     public function province(){
-        return $this->belongsTo(Province::class);
+        return $this->belongsToMany(Province::class);
     }
 }

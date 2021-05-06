@@ -14,7 +14,6 @@ class AddForeignKeys extends Migration
     public function up()
     {
         Schema::table('users', function(Blueprint $table) {
-            $table->foreignId("province_id")->nullable()->constrained('provinces');
             $table->foreignId("plan_user_id")->nullable()->constrained('plan_users');
             $table->foreignId("role_id")->nullable()->constrained('roles');
         });
@@ -48,6 +47,17 @@ class AddForeignKeys extends Migration
                 ->references('id')
                 ->on('start_dates');
         });
+        Schema::table('province_user', function(Blueprint $table) {
+            $table->bigInteger('user_id')->unsigned();
+            $table->bigInteger('province_id')->unsigned();
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users');
+            $table->foreign('province_id')
+                ->references('id')
+                ->on('provinces');
+        });
+
         Schema::table('category_user', function(Blueprint $table) {
             $table->bigInteger('user_id')->unsigned();
             $table->bigInteger('category_id')->unsigned();

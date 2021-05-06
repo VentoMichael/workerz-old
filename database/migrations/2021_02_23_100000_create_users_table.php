@@ -25,7 +25,6 @@ class CreateUsersTable extends Migration
             $table->string('pricemax')->nullable();
             $table->text('description')->nullable();
             $table->string('email')->unique();
-            $table->unsignedSmallInteger('number')->default('0');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

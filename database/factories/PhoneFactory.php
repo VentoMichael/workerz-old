@@ -23,7 +23,7 @@ class PhoneFactory extends Factory
     {
         return [
             'number' => $this->faker->phoneNumber,
-             'user_id' => $this->faker->numberBetween($min = 1, $max = 10)
+             'user_id' => $this->faker->numberBetween($min = 1, $max = 100)
         ];
     }
 }
