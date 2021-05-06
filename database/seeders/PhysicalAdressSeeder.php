@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\Contact;
+use App\Models\PhysicalAdress;
 use Illuminate\Database\Seeder;
 
-class ContactSeeder extends Seeder
+class PhysicalAdressSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,6 +14,6 @@ class ContactSeeder extends Seeder
      */
     public function run()
     {
-        Contact::factory()->count(100)->create();
+        PhysicalAdress::factory()->count(100)->create();
     }
 }

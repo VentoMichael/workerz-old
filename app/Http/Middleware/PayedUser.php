@@ -21,7 +21,6 @@ class PayedUser
         {
             $plan = request()->input('plan_user_id');
             return redirect()->route('users.payed',compact('plan'));
-
         }
         return $next($request);
     }

@@ -50,7 +50,10 @@ class User extends Authenticatable
     {
         return $query->where('role_id', '=', '3');
     }
-
+    public function scopeNoBan($query)
+    {
+        return $query->where('banned', '=', false);
+    }
     public function announcements(){
         return $this->hasMany(Announcement::class);
     }
@@ -72,10 +75,10 @@ class User extends Authenticatable
     public function categoryUser(){
         return $this->belongsToMany(Category::class);
     }
+    public function provinces(){
+        return $this->belongsToMany(Province::class);
+    }
     public function startDate(){
         return $this->belongsToMany(StartDate::class)->orderBy('id', 'ASC');
-    }
-    public function province(){
-        return $this->belongsToMany(Province::class);
     }
 }

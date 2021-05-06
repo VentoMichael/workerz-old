@@ -73,16 +73,6 @@ class CreateNewUser implements CreatesNewUsers
         } else {
             $description = null;
         }
-        if (request('adress')) {
-            $adress = $input['adress'];
-        } else {
-            $adress = null;
-        }
-        if (request('location')) {
-            $location = $input['location'];
-        } else {
-            $location = null;
-        }
         if (request('pricemax')) {
             $pricemax = $input['pricemax'];
         } else {
@@ -96,9 +86,7 @@ class CreateNewUser implements CreatesNewUsers
             'role_id' => $input['role_id'],
             'plan_user_id' => $input['plan_user_id'],
             'website' => $web,
-            'province_id' => $location,
             'job' => $job,
-            'postal_adress' => $adress,
             'pricemax' => $pricemax,
             'slug' => Str::slug($input['name']),
             'description' => $description,

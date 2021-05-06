@@ -9,13 +9,15 @@
 
                         <h2 aria-level="2">On vous attend</h2>
                         <p>Vous recherchez du travail ? Engagez-vous !</p>
-                        <div>
-                            <a href="{{ route('login') }}">
-                                <button role="button" class="button-cta" type="submit">
-                                    J'ai déjà un compte
-                                </button>
-                            </a>
-                        </div>
+                        @guest
+                            <div>
+                                <a href="{{ route('login') }}">
+                                    <button role="button" class="button-cta" type="submit">
+                                        J'ai déjà un compte
+                                    </button>
+                                </a>
+                            </div>
+                        @endguest
                     </div>
                     <div class="container-svg">
                         <img class="svg-icon" src="{{asset('svg/Waiting_Monochromatic.svg')}}"

@@ -24,6 +24,7 @@ class ProvinceUserFactory extends Factory
         return [
             'user_id' => $this->faker->numberBetween($min = 1, $max = 100),
             'province_id' => $this->faker->numberBetween($min = 1, $max = 11),
+            'physical_adress_id' => $this->faker->numberBetween($min = 1, $max = 10),
         ];
     }
 }

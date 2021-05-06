@@ -56,14 +56,6 @@
                         <p class="paragraph-ann">
                             {{ucfirst($worker->description)}}
                         </p>
-                        @if (strlen($worker->description) > 60)
-                            @if(!isset($_GET['showmore'.$worker->id]))
-                                <form action="#showmgs{{$worker->id}}" method="get">
-                                    <button class="button-more-text" name="showmore{{$worker->id}}">
-                                    </button>
-                                </form>
-                            @endif
-                        @endif
                         <div class="container-infos">
 
                             <div class="container-info-announcement">
@@ -79,7 +71,7 @@
                             </div>
                             <div class="container-info-announcement">
                                 <img src="{{asset('svg/placeholder.svg')}}" alt="icone de localité">
-                                <p>{{$worker->province->name}}</p>
+                                <p>{{$wo->provinces->first()->name}}</p>
                             </div>
                         </div>
                     </div>

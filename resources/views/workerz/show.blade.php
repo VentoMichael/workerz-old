@@ -55,7 +55,7 @@
                     <div>
                         <img src="{{asset('svg/calendar.svg')}}" alt="icone de calendrier">
                         <span>
-                            Ouvert le : @foreach($worker->startDateUser as $ws){{substr($ws->name, 0, 3)}}{{ ($loop->last ? '' : ', ') }}@endforeach
+                            Ouvert le : @foreach($worker->startDate as $ws){{substr($ws->name, 0, 3)}}{{ ($loop->last ? '' : ', ') }}@endforeach
                         </span>
                     </div>
                     <div>
@@ -73,10 +73,13 @@
                         <img src="{{asset('svg/euro.svg')}}" alt="icone d'euro">
                         <span>Un minimum de {{$worker->pricemax}}€/h</span>
                     </div>
-                    <div>
-                        <img src="{{asset('svg/placeholder.svg')}}" alt="icone de position">
-                        <span>{{$worker->postal_adress}} ({{$worker->province->name}})</span>
-                    </div>
+                    @dd($worker)
+                @foreach($worker->provinces as $wphy)
+                            <div>
+                                <img src="{{asset('svg/placeholder.svg')}}" alt="icone de position">
+                                <span>@foreach($wphy->pivot as $pivotw) @endforeach{{$wphy->postal_adress}} ({{$wphy->name}})</span>
+                            </div>
+                    @endforeach
                 </section>
             </div>
         </section>
@@ -106,10 +109,12 @@
                             </h3>
                         </div>
                         <div class="container-infos-ads-randomm">
-                            <div class="container-position-ads">
-                                <img src="{{asset('svg/placeholder.svg')}}" alt="icone de position">
-                                <span>{{$ra->province->name}}</span>
-                            </div>
+                            @foreach($ra->provinces as $wp)
+                                <div class="container-position-ads">
+                                    <img src="{{asset('svg/placeholder.svg')}}" alt="icone de localité">
+                                    <p>{{$wp->first()->name}}</p>
+                                </div>
+                            @endforeach
                             <div class="container-position-ads">
                                 <img src="{{asset('svg/suitcase.svg')}}" alt="icone de malette">
                                 <span class="job-cat-ads">

@@ -33,7 +33,6 @@ class UserFactory extends Factory
             'plan_user_id' => $this->faker->numberBetween($min = 1, $max = 3),
             'role_id' => $this->faker->numberBetween($min = 2, $max = 3),
             'description' => $this->faker->text($maxNbChars = 200),
-            'postal_adress' => $this->faker->text($maxNbChars = 50),
             'email' => $this->faker->unique()->safeEmail,
             'email_verified_at' => now(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password

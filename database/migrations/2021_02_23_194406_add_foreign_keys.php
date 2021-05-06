@@ -13,31 +13,32 @@ class AddForeignKeys extends Migration
      */
     public function up()
     {
-        Schema::table('users', function(Blueprint $table) {
+        Schema::table('users', function (Blueprint $table) {
             $table->foreignId("plan_user_id")->nullable()->constrained('plan_users');
             $table->foreignId("role_id")->nullable()->constrained('roles');
         });
-        Schema::table('phones', function(Blueprint $table) {
-            $table->foreignId("user_id")->constrained('users');
-        });
-        Schema::table('websites', function(Blueprint $table) {
+        Schema::table('phones', function (Blueprint $table) {
             $table->foreignId("user_id")->constrained('users');
         });
 
-        Schema::table('announcements', function(Blueprint $table) {
+        Schema::table('websites', function (Blueprint $table) {
+            $table->foreignId("user_id")->constrained('users');
+        });
+
+        Schema::table('announcements', function (Blueprint $table) {
             $table->foreignId("user_id")->constrained('users');
             $table->foreignId("province_id")->constrained('provinces');
             $table->foreignId("start_month_id")->constrained('start_months');
             $table->foreignId("plan_announcement_id")->constrained('plan_announcements');
         });
-        Schema::table('likes', function(Blueprint $table) {
+        Schema::table('likes', function (Blueprint $table) {
             $table->foreignId("user_id")->constrained('users')->onDelete('cascade');
             $table->foreignId("announcement_id")->nullable()->constrained('announcements')->onDelete('cascade');
-            $table->unique(['user_id','announcement_id']);
+            $table->unique(['user_id', 'announcement_id']);
 
         });
 
-        Schema::table('start_date_user', function(Blueprint $table) {
+        Schema::table('start_date_user', function (Blueprint $table) {
             $table->bigInteger('user_id')->unsigned();
             $table->bigInteger('start_date_id')->unsigned();
             $table->foreign('user_id')
@@ -47,18 +48,22 @@ class AddForeignKeys extends Migration
                 ->references('id')
                 ->on('start_dates');
         });
-        Schema::table('province_user', function(Blueprint $table) {
+        Schema::table('province_user', function (Blueprint $table) {
             $table->bigInteger('user_id')->unsigned();
             $table->bigInteger('province_id')->unsigned();
+            $table->bigInteger('physical_adress_id')->unsigned();
             $table->foreign('user_id')
                 ->references('id')
                 ->on('users');
+            $table->foreign('physical_adress_id')
+                ->references('id')
+                ->on('physical_adresses');
             $table->foreign('province_id')
                 ->references('id')
                 ->on('provinces');
         });
 
-        Schema::table('category_user', function(Blueprint $table) {
+        Schema::table('category_user', function (Blueprint $table) {
             $table->bigInteger('user_id')->unsigned();
             $table->bigInteger('category_id')->unsigned();
             $table->foreign('user_id')
@@ -68,7 +73,7 @@ class AddForeignKeys extends Migration
                 ->references('id')
                 ->on('categories');
         });
-        Schema::table('announcement_category', function(Blueprint $table) {
+        Schema::table('announcement_category', function (Blueprint $table) {
             $table->bigInteger('announcement_id')->unsigned();
             $table->bigInteger('category_id')->unsigned();
             $table->foreign('announcement_id')

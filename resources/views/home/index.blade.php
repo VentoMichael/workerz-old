@@ -78,11 +78,13 @@
                     Vous êtes indépendant et souhaitez vendre vos services au monde entier ?
                 </p>
                 <p>On vous aide à trouvez du travail !</p>
-                <a href="{{route('users.plans')}}" class="button-cta">
-                    <button>
-                        Je m'inscris
-                    </button>
-                </a>
+                @guest
+                    <a href="{{route('users.plans')}}" class="button-cta">
+                        <button>
+                            Je m'inscris
+                        </button>
+                    </a>
+                @endguest
             </div>
         </section>
         <section class="container-why">

@@ -108,9 +108,9 @@
                                     <p>
                                         {{ucfirst($announcement->job)}}
                                     </p>
-                                    @if($announcement->categoryUser->count())
+                                    @if($announcement->categoryAds->count())
                                         <p class="categoryJob">
-                                            (@foreach($announcement->categoryUser as $a){{$a->name}}{{ ($loop->last ? '' : ', ') }}@endforeach)
+                                            (@foreach($announcement->categoryAds as $a){{$a->name}}{{ ($loop->last ? '' : ', ') }}@endforeach)
                                         </p>
                                     @endif
                                 </div>
