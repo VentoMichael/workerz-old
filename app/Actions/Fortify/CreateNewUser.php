@@ -119,6 +119,7 @@ class CreateNewUser implements CreatesNewUsers
         $user->phones()->save($phone);
         $user->categories()->attach($ct->category_id);
         $user->startDateUser()->attach($di->start_date_id);
+
         Session::flash('success-inscription', 'Votre inscription à été un succés !');
         return $user;
     }
