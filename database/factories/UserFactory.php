@@ -31,7 +31,7 @@ class UserFactory extends Factory
             'job' => $this->faker->name,
             'pricemax' => $this->faker->numberBetween($min = 100, $max = 10000),
             'plan_user_id' => $this->faker->numberBetween($min = 1, $max = 3),
-            'role_id' => $this->faker->numberBetween($min = 1, $max = 2),
+            'role_id' => $this->faker->numberBetween($min = 2, $max = 3),
             'description' => $this->faker->text($maxNbChars = 200),
             'postal_adress' => $this->faker->text($maxNbChars = 50),
             'email' => $this->faker->unique()->safeEmail,

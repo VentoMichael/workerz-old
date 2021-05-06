@@ -2,6 +2,10 @@
 
 namespace App\Providers;
 
+use App\Nova\Metrics\AdsCount;
+use App\Nova\Metrics\Message;
+use App\Nova\Metrics\UserCount;
+use App\Nova\Metrics\UserRole;
 use App\Nova\Role;
 use App\Nova\User;
 use Illuminate\Support\Facades\Gate;
@@ -33,13 +37,6 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                 ->withPasswordResetRoutes()
                 ->register();
     }
-    //protected function resources()
-    //{
-    //    Nova::resources([
-    //        Role::class,
-    //        User::class,
-    //    ]);
-    //}
     /**
      * Register the Nova gate.
      *
@@ -64,7 +61,10 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     protected function cards()
     {
         return [
-            new Help,
+            (new UserCount())->width('1/2'),
+            (new AdsCount())->width('1/2'),
+            (new Message())->width('2/3'),
+            (new UserRole())->width('1/3'),
         ];
     }
 
