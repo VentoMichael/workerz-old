@@ -67,9 +67,9 @@ class User extends Authenticatable
         return $this->hasMany(Website::class);
     }
     public function likes(){
-        return $this->hasMany(Like::class);
+        return $this->belongsToMany(Like::class);
     }
-    public function categories(){
+    public function categoryUser(){
         return $this->belongsToMany(Category::class);
     }
     public function startDate(){

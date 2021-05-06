@@ -70,9 +70,9 @@
                                 <img src="{{asset('svg/suitcase.svg')}}" alt="icone de malette de travail">
                                 <div class="containerJobAds">
                                     <p>{{ucfirst($worker->job)}}</p>
-                                    @if($worker->categories->count())
+                                    @if($worker->categoryUser->count())
                                         <p class="categoryJob">
-                                            (@foreach($worker->categories as $w){{ucfirst($w->name)}}{{ ($loop->last ? '' : ', ') }}@endforeach)
+                                            (@foreach($worker->categoryUser as $w){{ucfirst($w->name)}}{{ ($loop->last ? '' : ', ') }}@endforeach)
                                         </p>
                                     @endif
                                 </div>

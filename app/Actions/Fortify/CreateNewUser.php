@@ -117,7 +117,7 @@ class CreateNewUser implements CreatesNewUsers
         $di = new startDate();
         $di->start_date_id = \request('disponibilities');
         $user->phones()->save($phone);
-        $user->categories()->attach($ct->category_id);
+        $user->categoryUser()->attach($ct->category_id);
         $user->startDate()->attach($di->start_date_id);
 
         Session::flash('success-inscription', 'Votre inscription à été un succés !');

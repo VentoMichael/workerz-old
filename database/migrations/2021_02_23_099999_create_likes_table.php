@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateStartDateAnnouncementsTable extends Migration
+class CreateLikesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,10 @@ class CreateStartDateAnnouncementsTable extends Migration
      */
     public function up()
     {
-        Schema::create('start_date_announcements', function (Blueprint $table) {
+        Schema::create('likes', function (Blueprint $table) {
             $table->id();
+            $table->boolean('liked');
+
             $table->timestamps();
         });
     }
@@ -26,6 +28,6 @@ class CreateStartDateAnnouncementsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('start_date_announcements');
+        Schema::dropIfExists('likes');
     }
 }

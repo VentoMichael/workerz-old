@@ -44,6 +44,6 @@ trait Likable
 
     public function likes()
     {
-        return $this->hasMany(Like::class);
+        return $this->belongsToMany(Like::class);
     }
 }

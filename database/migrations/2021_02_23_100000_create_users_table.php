@@ -24,6 +24,7 @@ class CreateUsersTable extends Migration
             $table->string('job')->nullable();
             $table->string('pricemax')->nullable();
             $table->text('description')->nullable();
+            $table->boolean('banned')->default(false);
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

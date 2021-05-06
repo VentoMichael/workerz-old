@@ -62,9 +62,9 @@
                         <img src="{{asset('svg/suitcase.svg')}}" alt="icone de malette">
                         <span class="job-cat-ads">
                         <span>{{ucfirst($worker->job)}}</span>
-                        @if($worker->categories->count())
+                        @if($worker->categoryUser->count())
                                 <span class="categoryJob">
-                                (@foreach($worker->categories as $a){{$a->name}}{{ ($loop->last ? '' : ', ') }}@endforeach)
+                                (@foreach($worker->categoryUser as $a){{$a->name}}{{ ($loop->last ? '' : ', ') }}@endforeach)
                             </span>
                             @endif
                         </span>
@@ -114,9 +114,9 @@
                                 <img src="{{asset('svg/suitcase.svg')}}" alt="icone de malette">
                                 <span class="job-cat-ads">
                                     <span>{{ucfirst($ra->job)}}</span>
-                                    @if($ra->categories->count())
+                                    @if($ra->categoryUser->count())
                                         <span class="categoryJob">
-                                            (@foreach($ra->categories as $a){{$a->name}}{{ ($loop->last ? '' : ', ') }}@endforeach)
+                                            (@foreach($ra->categoryUser as $a){{$a->name}}{{ ($loop->last ? '' : ', ') }}@endforeach)
                                         </span>
                                     @endif
                                 </span>

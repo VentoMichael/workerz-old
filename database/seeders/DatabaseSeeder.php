@@ -25,7 +25,6 @@ class DatabaseSeeder extends Seeder
         $this->call(RoleSeeder::class);
         $this->call(UserSeeder::class);
         $this->call(ProvinceSeeder::class);
-
         $this->call(CategoryUserSeeder::class);
         $this->call(WebsiteSeeder::class);
         $this->call(PhoneSeeder::class);
@@ -34,11 +33,9 @@ class DatabaseSeeder extends Seeder
         $this->call(StartMonthSeeder::class);
         $this->call(StartDateUserSeeder::class);
         $this->call(ProvinceUserSeeder::class);
-
         $this->call(AnnouncementSeeder::class);
         $this->call(AnnouncementCategorySeeder::class);
         $this->call(LikeSeeder::class);
-        $this->call(StartDateAnnouncementSeeder::class);
         $this->call(CatchPhraseAnnouncementSeeder::class);
         $this->call(CatchPhraseUserSeeder::class);
     }

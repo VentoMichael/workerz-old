@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Nova\Role;
+use App\Nova\User;
 use Illuminate\Support\Facades\Gate;
 use Laravel\Nova\Cards\Help;
 use Laravel\Nova\Nova;
@@ -31,7 +33,13 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                 ->withPasswordResetRoutes()
                 ->register();
     }
-
+    //protected function resources()
+    //{
+    //    Nova::resources([
+    //        Role::class,
+    //        User::class,
+    //    ]);
+    //}
     /**
      * Register the Nova gate.
      *
@@ -87,6 +95,8 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
      */
     public function register()
     {
-        //
+        Nova::sortResourcesBy(function ($resource) {
+            return $resource::$priority ?? 99999;
+        });
     }
 }

@@ -40,12 +40,12 @@ class Announcement extends Model
         return $this->belongsTo(StartMonth::class, 'start_month_id');
     }
 
-    public function plan()
+    public function plan_announcement()
     {
         return $this->belongsTo(PlanAnnouncement::class);
     }
 
-    public function categories()
+    public function categoryAds()
     {
         return $this->belongsToMany(Category::class);
     }
