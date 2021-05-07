@@ -57,7 +57,7 @@
                     <form action="{{route('users.type')}}" method="post">
                         @method('get')
                         @csrf
-                        <input id="plan_user_id" name="plan_user_id" type="hidden" value="{{$plan->id}}">
+                        <input id="plan_user_id{{$plan->id}}" name="plan_user_id" type="hidden" value="{{$plan->id}}">
                         <button>
                             Je séléctionne {{ucfirst($plan->name)}}
                         </button>

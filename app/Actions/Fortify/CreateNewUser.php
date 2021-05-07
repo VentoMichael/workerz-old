@@ -92,13 +92,7 @@ class CreateNewUser implements CreatesNewUsers
             'description' => $description,
             'password' => Hash::make($input['password']),
         ]);
-        $ids = User::latest()->first('id');
-        foreach ($ids as $id) {
-        }
-        $phone = Phone::create([
-            'number' => $input['phone'],
-            'user_id' => $id
-        ]);
+        $phone = new Phone(['number' => $input['phone']]);
         $ct = new CategoryUser();
         $ct->category_id = \request('category-job');
 
@@ -109,6 +103,7 @@ class CreateNewUser implements CreatesNewUsers
         $user->startDate()->attach($di->start_date_id);
 
         Session::flash('success-inscription', 'Votre inscription à été un succés !');
+
         return $user;
     }
 }

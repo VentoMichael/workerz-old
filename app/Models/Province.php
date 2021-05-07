@@ -9,12 +9,9 @@ class Province extends Model
 {
     use HasFactory;
     public function users(){
-        return $this->belongsToMany(User::class)->withPivot('physical_adress_id');
+        return $this->belongsToMany(User::class);
     }
     public function announcements(){
         return $this->hasMany(Announcement::class);
-    }
-    public function physicalAdresses(){
-        return $this->hasMany(PhysicalAdress::class,'physical_adress_id');
     }
 }

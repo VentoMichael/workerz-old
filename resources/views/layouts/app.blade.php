@@ -194,7 +194,7 @@
                         <li>
                             <ul class="container-list-menu">
                                 <li class="{{ Request::is('login') ? "current_page_item" : "" }}"
-                                    aria-current="{{ Request::is('login') ? "page" : "" }}"><a
+                                    aria-current="{{ Request::is('login') ? "page" : "" }}"><a class="connected-item"
                                         href="{{ route('login') }}">Se connecter</a>
                                 </li>
                                 <li class="last-menu-item"
@@ -273,7 +273,6 @@
             <h3 aria-level="3" class="util-links">
                 La newsletter immanquable
             </h3>
-
             <form action="{{route('newsletter.store')}}#newsletterSection" method="POST"
                   class="form-newsletter-container">
                 @csrf

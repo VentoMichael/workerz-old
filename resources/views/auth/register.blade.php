@@ -87,7 +87,15 @@
                             <input minlength="6" maxlength="15" type="tel" id="phone" pattern="^[0-9-+\s()]*$"
                                    value="{{old("phone")}}" placeholder="0494827235"
                                    class=" @error('phone') is-invalid @enderror email-label" name="phone" required>
-                            <p class="help">Vous aurez la possibilité d'en intégrer plusieurs via votre profil</p>
+                            @if($request->plan_user_id == 1)
+                                <p class="help">Augmenter votre plan et vous aurez la possibilité d'en ajouter jusqu'à 3</p>
+                            @endif
+                            @if($request->plan_user_id == 2)
+                            <p class="help">Vous aurez la possibilité d'en intégrer jusqu'à 2 via votre profil</p>
+                                @endif
+                            @if($request->plan_user_id == 3)
+                            <p class="help">Vous aurez la possibilité d'en intégrer jusqu'à 3 via votre profil</p>
+                                @endif
                         </div>
                     </div>
                     <div class="container-register-form">
@@ -147,7 +155,15 @@
                             <input placeholder="0494827263" minlength="6" maxlength="15" type="tel"
                                    pattern="^[0-9-+\s()]*$" id="phone" value="{{old("phone")}}"
                                    class=" @error('phone') is-invalid @enderror email-label" name="phone" required>
-                            <p class="help">Vous aurez la possibilité d'en intégrer plusieurs via votre profil</p>
+                            @if($request->plan_user_id == 1)
+                                <p class="help"><a href="{{route('users.plans')}}">Augmenter votre plan</a> et vous aurez la possibilité d'en ajouter jusqu'à 3</p>
+                            @endif
+                            @if($request->plan_user_id == 2)
+                                <p class="help">Vous aurez la possibilité d'en intégrer jusqu'à 2 via votre profil</p>
+                            @endif
+                            @if($request->plan_user_id == 3)
+                                <p class="help">Vous aurez la possibilité d'en intégrer jusqu'à 3 via votre profil</p>
+                            @endif
                         </div>
                     </div>
 
@@ -156,7 +172,15 @@
                             <label for="website">Site internet</label>
                             <input placeholder="www.workerz.be" type="text" id="website" value="{{old("website")}}"
                                    class=" @error('website') is-invalid @enderror email-label" name="website">
-                            <p class="help">Vous aurez la possibilité d'en intégrer plusieurs via votre profil</p>
+                            @if($request->plan_user_id == 1)
+                                <p class="help"><a href="{{route('users.plans')}}">Augmenter votre plan</a> et vous aurez la possibilité d'en ajouter jusqu'à 3</p>
+                            @endif
+                            @if($request->plan_user_id == 2)
+                                <p class="help">Vous aurez la possibilité d'en intégrer jusqu'à 2 via votre profil</p>
+                            @endif
+                            @if($request->plan_user_id == 3)
+                                <p class="help">Vous aurez la possibilité d'en intégrer jusqu'à 3 via votre profil</p>
+                            @endif
                         </div>
                         <div class="container-form-email selectdiv">
                             <label for="disponibilities">Disponibilités</label>
@@ -165,7 +189,15 @@
                                     <option value="{{$d->id}}">{{$d->name}}</option>
                                 @endforeach
                             </select>
-                            <p class="help">Avec la touche ctrl vous en sélectionner plusieurs</p>
+                            @if($request->plan_user_id == 1)
+                                <p class="help">Avec la touche ctrl vous en sélectionner jusqu'à 2</p>
+                            @endif
+                            @if($request->plan_user_id == 2)
+                                <p class="help">Avec la touche ctrl vous en sélectionner jusqu'à 3</p>
+                            @endif
+                            @if($request->plan_user_id == 3)
+                                <p class="help">Avec la touche ctrl vous en sélectionner jusqu'à 5</p>
+                            @endif
                         </div>
                     </div>
 
@@ -195,7 +227,15 @@
                                     <option value="{{$c->id}}">{{$c->name}}</option>
                                 @endforeach
                             </select>
-                            <p class="help">Avec la touche ctrl vous en sélectionner plusieurs</p>
+                            @if($request->plan_user_id == 1)
+                                <p class="help">Avec la touche ctrl vous en sélectionner jusqu'à 2</p>
+                            @endif
+                            @if($request->plan_user_id == 2)
+                                <p class="help">Avec la touche ctrl vous en sélectionner jusqu'à 3</p>
+                            @endif
+                            @if($request->plan_user_id == 3)
+                                <p class="help">Avec la touche ctrl vous en sélectionner jusqu'à 5</p>
+                            @endif
                         </div>
                         <div class="container-form-email">
                             <label for="pricemax">Votre prix horaire</label>
@@ -217,8 +257,8 @@
                         </div>
                     </div>
                     <input id="role_id" name="role_id" type="hidden" value="2">
-                    <input id="plan_user_id" name="plan_user_id" type="hidden" value="{{$plan}}">
-                    <input id="plan" name="plan" type="hidden" value="{{$plan}}">
+                    <input id="plan_user_id{{$plan}}" name="plan_user_id" type="hidden" value="{{$plan}}">
+                    <input id="plan{{$plan}}" name="plan" type="hidden" value="{{$plan}}">
 
                     @include('partials.register')
                 </form>

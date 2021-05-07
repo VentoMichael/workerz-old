@@ -1,5 +1,11 @@
 @extends('layouts.app')
 @section('content')
+    @if (Session::has('success-inscription'))
+        <div id="successMsg" class="successMsg"><img src="{{asset('svg/good.svg')}}" alt="good icone">
+            <p>{{Session::get('success-inscription')}}</p>
+            <span class="crossHide" id="crossHide">&times;</span>
+        </div>
+    @endif
     <section class="container-home margin">
         <div class="container-home_image container-home-create container-home-page">
             <div>
@@ -28,7 +34,8 @@
                     <h3 aria-level="3">Plan sélectionné</h3>
                     <div class="container-all-announcement show-content container-create-ads-infos container-plans">
                         @foreach($plan as $p)
-                            <section class="container-plan container-payed-plan @if($p->id === 2) container-hot-plan @endif">
+                            <section
+                                class="container-plan container-payed-plan @if($p->id === 2) container-hot-plan @endif">
                                 <div class="container-plan-price">
                                     <h4 aria-level="4">
                                         {{ucfirst($p->name)}}
@@ -44,18 +51,27 @@
                                 </div>
                                 <ul>
                                     <li>
-                                        <img src="{{asset('svg/good.svg')}}" alt="Icone correct">Durée : {{$p->duration}} jours
+                                        <img src="{{asset('svg/good.svg')}}" alt="Icone correct">Durée
+                                        : {{$p->duration}} jours
                                     </li>
                                     <li>
-                                        @if($p->priority) <img src="{{asset('svg/good.svg')}}" alt="Icone correct"> @else <img src="{{asset('svg/cross.svg')}}" alt="Icone négative"> @endif Support prioritaire
+                                        @if($p->priority) <img src="{{asset('svg/good.svg')}}"
+                                                               alt="Icone correct"> @else <img
+                                            src="{{asset('svg/cross.svg')}}" alt="Icone négative"> @endif Support
+                                        prioritaire
                                     </li>
                                     <li class="hepling">
-                                        @if($p->directly_visible) <img src="{{asset('svg/good.svg')}}" alt="Icone correct"> @else <img src="{{asset('svg/cross.svg')}}" alt="Icone négative"> @endif
+                                        @if($p->directly_visible) <img src="{{asset('svg/good.svg')}}"
+                                                                       alt="Icone correct"> @else <img
+                                            src="{{asset('svg/cross.svg')}}" alt="Icone négative"> @endif
                                         Directement visible
                                         <span>Visible après approbation de l'administrateur</span>
                                     </li>
                                     <li>
-                                        @if($p->hight_visibility) <img src="{{asset('svg/good.svg')}}" alt="Icone correct"> @else <img src="{{asset('svg/cross.svg')}}" alt="Icone négative"> @endif Grande visibilité
+                                        @if($p->hight_visibility) <img src="{{asset('svg/good.svg')}}"
+                                                                       alt="Icone correct"> @else <img
+                                            src="{{asset('svg/cross.svg')}}" alt="Icone négative"> @endif Grande
+                                        visibilité
                                     </li>
                                 </ul>
                             </section>
@@ -66,7 +82,7 @@
             <section class="container-price-paied">
                 <div>
                     <h3 aria-level="3">Le montant s'éleve à
-                             {{number_format((float)$p->price, 2, ',', '')}} € </h3>
+                        {{number_format((float)$p->price, 2, ',', '')}} € </h3>
                     <p>Saisissez les informations relatives à votre carte de crédit</p>
                     <form class="form-login form-register" enctype="multipart/form-data"
                           aria-label="Enregistrement d'un compte" role="form" method="POST"
@@ -88,8 +104,9 @@
                             </div>
                             @enderror
                         </div>
+                        <input id="role_id" name="role_id" type="hidden" value="2">
                         <div>
-                            <button role="button" class="button-cta" type="submit">
+                            <button role="button" name="is_payed" class="button-cta" type="submit">
                                 Finaliser mon achat
                             </button>
                         </div>
@@ -98,4 +115,7 @@
             </section>
         </div>
     </section>
+@endsection
+@section('scripts')
+    <script src="{{asset('js/successMsg.js')}}"></script>
 @endsection

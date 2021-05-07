@@ -54,6 +54,10 @@ class User extends Authenticatable
     {
         return $query->where('banned', '=', false);
     }
+    public function scopePayed($query)
+    {
+        return $query->where('is_payed', '=', true);
+    }
     public function announcements(){
         return $this->hasMany(Announcement::class);
     }

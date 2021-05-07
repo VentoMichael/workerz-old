@@ -69,6 +69,7 @@
                                     @endif
                                 </div>
                             </div>
+                            @dd($worker->provinces)
                             <div class="container-info-announcement">
                                 <img src="{{asset('svg/placeholder.svg')}}" alt="icone de localité">
                                 <p>{{$wo->provinces->first()->name}}</p>

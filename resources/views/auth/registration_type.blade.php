@@ -45,8 +45,6 @@
                     </ul>
                 </section>
                 <div class="container-button-register">
-                                        <input id="plan_user_id" name="plan_user_id" type="hidden" value="{{$plan}}">
-
                     <button class="button-cta" name="user">
                         Je fais ce choix
                     </button>
@@ -71,7 +69,7 @@
                     </ul>
                 </section>
                 <div class="container-button-register">
-                                        <input id="plan_user_id" name="plan_user_id" type="hidden" value="{{$plan}}">
+                                        <input id="plan_user_id{{$plan}}" name="plan_user_id" type="hidden" value="{{$plan}}">
 
                     <button class="button-cta" name="company">
                         Je fais ce choix

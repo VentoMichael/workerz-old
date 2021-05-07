@@ -29,8 +29,9 @@ Route::get('/', function () {
     $workerz = User::Independent()
         ->inRandomOrder()
         ->first();
+    //dd(\request()->all());
     return view('home.index', compact('users', 'categories', 'workerz'));
-});
+})->name('home.index');
 
 
 Route::post('/newsletter/store',
@@ -58,7 +59,21 @@ Route::get('/workerz', [\App\Http\Controllers\UserController::class, 'index'])->
 Route::get('/workerz/{worker}', [\App\Http\Controllers\UserController::class, 'show'])->name('workerz.show')->middleware('userroute');
 
 
-Route::get('/dashboard', function () { return view('dashboard.index'); })->name('dashboard');
+
+
+
+
+
+Route::get('/dashboard', function () {
+    return view('dashboard.index');
+})->name('dashboard')->middleware('auth');
+
+
+
+
+
+
+
 
 Route::get('/conditions', function () { return view('conditions.index'); })->name('conditions');
 
@@ -72,18 +87,18 @@ Route::get('/contact', [\App\Http\Controllers\ContactController::class, 'create'
 Route::get('/about', function () { return view('about.index'); })->name('about');
 
 
-Route::group(['middleware' => config('fortify.middleware', ['web'])], function () {
-    $enableViews = config('fortify.views', true);
-
-    if (Features::enabled(Features::registration())) {
-        if ($enableViews) {
-            Route::get('/register', [RegisteredUserController::class, 'create'])
-                ->middleware(['guest'])
-                ->middleware(['payeduser'])
-                ->name('register');
-        }
-        Route::post('/register', [RegisteredUserController::class, 'store'])
-            ->middleware(['guest'])
-            ->middleware(['payeduser']);
-    }
-});
+//Route::group(['middleware' => config('fortify.middleware', ['web'])], function () {
+//    $enableViews = config('fortify.views', true);
+//
+//    if (Features::enabled(Features::registration())) {
+//        if ($enableViews) {
+//            Route::get('/register', [RegisteredUserController::class, 'create'])
+//                ->middleware(['guest'])
+//                ->middleware(['payeduser'])
+//                ->name('register');
+//        }
+//        Route::post('/register', [RegisteredUserController::class, 'store'])
+//            ->middleware(['guest'])
+//            ->middleware(['payeduser']);
+//    }
+//});

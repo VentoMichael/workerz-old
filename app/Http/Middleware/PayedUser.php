@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use App\Models\PlanUser;
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class PayedUser
 {
@@ -17,10 +18,10 @@ class PayedUser
      */
     public function handle(Request $request, Closure $next)
     {
-        if(request()->input('plan_user_id') == 2 || request()->input('plan_user_id') == 3 )
-        {
-            $plan = request()->input('plan_user_id');
-            return redirect()->route('users.payed',compact('plan'));
+        if ($request->user()->plan_user_id == 2 || $request->user()->plan_user_id == 3) {
+            //check si paye
+            $plan = $request->user()->plan_user_id;
+            return redirect()->route('users.payed', compact('plan'));
         }
         return $next($request);
     }
