@@ -196,7 +196,7 @@
                     inscription
                     sur le site.</p>
 
-                <p>L’adresse électronique (e-mail) de l’utilisateur pourra notamment être utilisée par le site workerz
+                <p>L’adresse mail de l’utilisateur pourra notamment être utilisée par le site workerz
                     pour
                     la communication d’informations diverses et la gestion du compte.</p>
 

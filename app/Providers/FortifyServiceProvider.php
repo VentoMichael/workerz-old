@@ -42,10 +42,12 @@ class FortifyServiceProvider extends ServiceProvider
         });
         Fortify::registerView(function (Request $request) {
             $plan = \request('plan_user_id');
+            $type = \request('type');
             $disponibilities = StartDate::all()->sortBy('id');
             $regions = Province::all()->sortBy('name');
             $categories = Category::all()->sortBy('name');
-            return view('auth.register',compact('plan','disponibilities','regions','categories','request'));
+            return view('auth.register',
+                compact('plan', 'type', 'disponibilities', 'regions', 'categories', 'request'));
         });
         Fortify::requestPasswordResetLinkView(function () {
             return view('auth.forgot-password');

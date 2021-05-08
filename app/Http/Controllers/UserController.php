@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\CatchPhraseUser;
 use App\Models\Category;
-use App\Models\Like;
-use App\Models\Loves;
 use App\Models\PlanUser;
 use App\Models\Province;
 use App\Models\User;
@@ -57,7 +55,7 @@ class UserController extends Controller
     public function payed(Request $request)
     {
         $plan = PlanUser::where('id','=',$request->user()->plan_user_id)->get();
-
+        Session::flash('success-inscription', 'Votre inscription à été un succés ! Il suffit de terminer le paiement et votre entreprise sera visible.');
         return view('users.payed',compact('plan'));
     }
 }

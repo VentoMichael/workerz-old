@@ -63,7 +63,7 @@
 </div>
 @enderror
 <div>
-    <button role="button" class="button-cta" type="submit">
+    <button role="button" class="button-cta" type="submit" name="user">
         Finaliser l'inscription
     </button>
 </div>

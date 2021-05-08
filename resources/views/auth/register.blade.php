@@ -88,14 +88,15 @@
                                    value="{{old("phone")}}" placeholder="0494827235"
                                    class=" @error('phone') is-invalid @enderror email-label" name="phone" required>
                             @if($request->plan_user_id == 1)
-                                <p class="help"><a href="{{route('users.plans')}}#plans">Augmenter votre plan</a> et vous aurez la possibilité d'en ajouter jusqu'à 3</p>
+                                <p class="help"><a href="{{route('users.plans')}}#plans">Augmenter votre plan</a> et
+                                    vous aurez la possibilité d'en ajouter jusqu'à 3</p>
                             @endif
                             @if($request->plan_user_id == 2)
-                            <p class="help">Vous aurez la possibilité d'en intégrer jusqu'à 2 via votre profil</p>
-                                @endif
+                                <p class="help">Vous aurez la possibilité d'en intégrer jusqu'à 2 via votre profil</p>
+                            @endif
                             @if($request->plan_user_id == 3)
-                            <p class="help">Vous aurez la possibilité d'en intégrer jusqu'à 3 via votre profil</p>
-                                @endif
+                                <p class="help">Vous aurez la possibilité d'en intégrer jusqu'à 3 via votre profil</p>
+                            @endif
                         </div>
                     </div>
                     <div class="container-register-form">
@@ -114,7 +115,7 @@
                     <input id="role_id" name="role_id" type="hidden" value="3">
                     <input id="plan_user_id" name="plan_user_id" type="hidden" value="{{$plan}}">
                     <input id="plan" name="plan" type="hidden" value="{{$plan}}">
-
+                    <input type="hidden" name="type" value="{{$type}}">
                     @include('partials.register')
                 </form>
             </div>
@@ -156,7 +157,8 @@
                                    pattern="^[0-9-+\s()]*$" id="phone" value="{{old("phone")}}"
                                    class=" @error('phone') is-invalid @enderror email-label" name="phone" required>
                             @if($request->plan_user_id == 1)
-                                <p class="help"><a href="{{route('users.plans')}}#plans">Augmenter votre plan</a> et vous aurez la possibilité d'en ajouter jusqu'à 3</p>
+                                <p class="help"><a href="{{route('users.plans')}}#plans">Augmenter votre plan</a> et
+                                    vous aurez la possibilité d'en ajouter jusqu'à 3</p>
                             @endif
                             @if($request->plan_user_id == 2)
                                 <p class="help">Vous aurez la possibilité d'en intégrer jusqu'à 2 via votre profil</p>
@@ -173,7 +175,8 @@
                             <input placeholder="www.workerz.be" type="text" id="website" value="{{old("website")}}"
                                    class=" @error('website') is-invalid @enderror email-label" name="website">
                             @if($request->plan_user_id == 1)
-                                <p class="help"><a href="{{route('users.plans')}}#plans">Augmenter votre plan</a> et vous aurez la possibilité d'en ajouter jusqu'à 3</p>
+                                <p class="help"><a href="{{route('users.plans')}}#plans">Augmenter votre plan</a> et
+                                    vous aurez la possibilité d'en ajouter jusqu'à 3</p>
                             @endif
                             @if($request->plan_user_id == 2)
                                 <p class="help">Vous aurez la possibilité d'en intégrer jusqu'à 2 via votre profil</p>
@@ -186,7 +189,8 @@
                             <label for="disponibilities">Disponibilités</label>
                             <select class="select-register" multiple name="disponibilities[]" id="disponibilities">
                                 @foreach($disponibilities as $d)
-                                    <option @if($d->pre_selected == true) selected @endif value="{{$d->id}}">{{$d->name}}</option>
+                                    <option @if($d->pre_selected == true) selected
+                                            @endif value="{{$d->id}}">{{$d->name}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -195,13 +199,24 @@
                     <div class="container-register-form">
                         <div class="container-form-email selectdiv">
                             <label for="location">Région <span class="required">*</span></label>
-                            <select class="select-register select-region" multiple name="location" id="location">
+                            <select @if($request->plan_user_id == 1)
+                                    data-maxoption="1"
+                                    class="email-label"
+                                    @endif
+                                    @if($request->plan_user_id == 2) class="select-register" multiple data-maxoption="2"
+                                    @endif
+                                    @if($request->plan_user_id == 3) class="select-register" multiple data-maxoption="3"
+                                    @endif
+                                     name="location"
+                                    id="location">
                                 @foreach($regions as $r)
                                     <option value="{{$r->id}}">{{$r->name}}</option>
                                 @endforeach
                             </select>
+
                             @if($request->plan_user_id == 1)
-                                <p class="help"><a href="{{route('users.plans')}}#plans">Augmenter votre plan</a> et vous aurez la possibilité d'en ajouter jusqu'à 3</p>
+                                <p class="help"><a href="{{route('users.plans')}}#plans">Augmenter votre plan</a> et
+                                    vous aurez la possibilité d'en ajouter jusqu'à 3</p>
                             @endif
                             @if($request->plan_user_id == 2)
                                 <p class="help">Avec la touche ctrl vous en sélectionner jusqu'à 2</p>
@@ -222,13 +237,23 @@
                     <div class="container-register-form">
                         <div class="container-form-email selectdiv">
                             <label for="category-job">Catégorie de métier <span class="required">*</span></label>
-                            <select class="select-register" multiple name="category-job[]" id="category-job">
+                            <select @if($request->plan_user_id == 1)
+                                    data-maxoption="1"
+                                    class="email-label"
+                                    @endif
+                                    @if($request->plan_user_id == 2) class="select-register" multiple data-maxoption="2"
+                                    @endif
+                                    @if($request->plan_user_id == 3) class="select-register" multiple data-maxoption="3"
+                                    @endif name="category-job[]" id="category-job">
                                 @foreach($categories as $c)
                                     <option value="{{$c->id}}">{{$c->name}}</option>
                                 @endforeach
                             </select>
+
+
                             @if($request->plan_user_id == 1)
-                                <p class="help"><a href="{{route('users.plans')}}#plans">Augmenter votre plan</a> et vous aurez la possibilité d'en ajouter jusqu'à 3</p>
+                                <p class="help"><a href="{{route('users.plans')}}#plans">Augmenter votre plan</a> et
+                                    vous aurez la possibilité d'en ajouter jusqu'à 3</p>
                             @endif
                             @if($request->plan_user_id == 2)
                                 <p class="help">Avec la touche ctrl vous en sélectionner jusqu'à 3</p>
@@ -259,7 +284,7 @@
                     <input id="role_id" name="role_id" type="hidden" value="2">
                     <input id="plan_user_id{{$plan}}" name="plan_user_id" type="hidden" value="{{$plan}}">
                     <input id="plan{{$plan}}" name="plan" type="hidden" value="{{$plan}}">
-
+                    <input type="hidden" name="type" value="{{$type}}">
                     @include('partials.register')
                 </form>
             </div>
@@ -270,6 +295,23 @@
 @section('scripts')
     <script src="{{asset('js/passwordCheck.js')}}"></script>
     <script src="{{asset('js/passwordSee.js')}}"></script>
-    <script>let a=document.getElementById("picture"),t=document.getElementById("output");a.addEventListener("change",e=>{t.style.display="block",t.src=URL.createObjectURL(e.target.files[0]),t.onload=function(){URL.revokeObjectURL(t.src)}});</script>
+    <script>let a = document.getElementById("picture"), t = document.getElementById("output");
+        a.addEventListener("change", e => {
+            t.style.display = "block", t.src = URL.createObjectURL(e.target.files[0]), t.onload = function () {
+                URL.revokeObjectURL(t.src)
+            }
+        });</script>
+    <script>var verified = [];
+        document.getElementById("location").onchange = function (e) {
+            this.querySelectorAll("option:checked").length <= this.dataset.maxoption ? verified = Array.apply(null, this.querySelectorAll("option:checked")) : Array.apply(null, this.querySelectorAll("option")).forEach(function (e) {
+                e.selected = verified.indexOf(e) > -1
+            })
+        };
+        var verifiedca = [];
+        document.getElementById("category-job").onchange = function (e) {
+            this.querySelectorAll("option:checked").length <= this.dataset.maxoption ? verifiedca = Array.apply(null, this.querySelectorAll("option:checked")) : Array.apply(null, this.querySelectorAll("option")).forEach(function (e) {
+                e.selected = verifiedca.indexOf(e) > -1
+            })
+        };</script>
 @endsection
 @endif

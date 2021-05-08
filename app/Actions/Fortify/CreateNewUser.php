@@ -104,7 +104,6 @@ class CreateNewUser implements CreatesNewUsers
         $user->startDate()->attach($di->start_date_id);
 
         Session::flash('success-inscription', 'Votre inscription à été un succés !');
-
         return $user;
     }
 }
