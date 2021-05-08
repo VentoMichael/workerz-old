@@ -16,6 +16,7 @@ class CreateStartDatesTable extends Migration
         Schema::create('start_dates', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->boolean('pre_selected');
             $table->timestamps();
         });
     }

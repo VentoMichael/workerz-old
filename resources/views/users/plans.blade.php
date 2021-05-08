@@ -18,7 +18,7 @@
             </div>
         </div>
     </section>
-    <section class="container-home container-announcements container-create-ads">
+    <section class="container-home container-announcements container-create-ads" id="plans">
         <div class="title-first-step-register">
             <h2 aria-level="2">Plan pour votre inscription</h2>
         </div>

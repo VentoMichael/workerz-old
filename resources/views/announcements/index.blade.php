@@ -32,7 +32,8 @@
     </section>
     <div class="container-home container-search">
         <form action="#" method="get" class="formSearchAd">
-            <input type="search" placeholder="Rechercher par nom ou par catégorie"
+            <label for="search" class="hidden">Recherche d'annonces</label>
+            <input type="search" name="search" id="search" placeholder="Rechercher par nom"
                    class="search-announcement search-home">
             <input type="submit" class="submit-category-home submit-ad" value="Recherchez">
         </form>
@@ -55,7 +56,7 @@
                                         <button type="submit" class="button-loves">
                                             <img class="heart" src="{{asset('svg/heart.svg')}}" alt="icone de coeur">
                                             <img class="heartFul" src="{{asset('svg/heartFul.svg')}}"
-                                                 alt="icone de coeur">
+                                                 alt="icone de coeur plein">
                                             <span>
                                         {{$announcement->likes? : 0}}</span></button>
                                     </form>
@@ -65,7 +66,7 @@
                                     @method('DELETE')
                                     <button type="submit" class="button-loves">
                                         <img class="heartFul heartLiked" src="{{asset('svg/heartFul.svg')}}"
-                                             alt="icone de coeur">
+                                             alt="icone de coeur plein">
                                         <span>
                                         {{$announcement->likes? : 0}}</span></button>
                                 </form>
@@ -78,7 +79,7 @@
 
                                 <img class="heart" src="{{asset('svg/heart.svg')}}" alt="icone de coeur">
                                 <img class="heartFul" src="{{asset('svg/heartFul.svg')}}"
-                                     alt="icone de coeur">
+                                     alt="icone de coeur plein">
                                 <p>
                                     {{$announcement->likes? : 0}}</p>
                                 <span> Il faut être connecter pour aimer l'annonce</span>
@@ -90,7 +91,7 @@
                         </div>
                         <div class="container-image-announcement">
                             @if($announcement->picture)
-                                <img src="{{ $announcement->picture }}"/>
+                                <img src="{{ $announcement->picture }}" alt="image de profil"/>
                             @else
                                 <img src="{{asset('svg/ad.svg')}}" alt="icone d'annonces">
                             @endif
@@ -142,10 +143,10 @@
                             @foreach($categories as $category)
                                 @if($category->announcements_count !=0)
                                     <li>
+                                        <label class="cbx" for="category{{$category->id}}">
                                         <input class="inp-cbx" id="category{{$category->id}}"
                                                name="category{{$category->id}}"
                                                type="checkbox" style="display: none;"/>
-                                        <label class="cbx" for="category{{$category->id}}">
                                 <span>
                                     <svg width="12px" height="9px" viewbox="0 0 12 9">
                                       <polyline points="1 5 4 8 11 1"></polyline>
@@ -166,10 +167,11 @@
                             @foreach($regions as $region)
                                 @if($region->announcements_count !=0)
                                     <li>
+                                        <label class="cbx" for="region{{$region->id}}">
+
                                         <input class="inp-cbx" id="region{{$region->id}}" name="region{{$region->id}}"
                                                type="checkbox"
                                                style="display: none;"/>
-                                        <label class="cbx" for="region{{$region->id}}">
                                 <span>
                                     <svg width="12px" height="9px" viewbox="0 0 12 9">
                                       <polyline points="1 5 4 8 11 1"></polyline>

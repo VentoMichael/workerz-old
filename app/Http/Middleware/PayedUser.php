@@ -19,8 +19,8 @@ class PayedUser
     public function handle(Request $request, Closure $next)
     {
         if ($request->user()->plan_user_id == 2 || $request->user()->plan_user_id == 3) {
-            //check si paye
             $plan = $request->user()->plan_user_id;
+            Session::flash('success-inscription', 'Votre inscription à été un succés ! Il suffit de terminer le paiement et votre entreprise sera visible.');
             return redirect()->route('users.payed', compact('plan'));
         }
         return $next($request);

@@ -88,7 +88,7 @@
                                    value="{{old("phone")}}" placeholder="0494827235"
                                    class=" @error('phone') is-invalid @enderror email-label" name="phone" required>
                             @if($request->plan_user_id == 1)
-                                <p class="help">Augmenter votre plan et vous aurez la possibilité d'en ajouter jusqu'à 3</p>
+                                <p class="help"><a href="{{route('users.plans')}}#plans">Augmenter votre plan</a> et vous aurez la possibilité d'en ajouter jusqu'à 3</p>
                             @endif
                             @if($request->plan_user_id == 2)
                             <p class="help">Vous aurez la possibilité d'en intégrer jusqu'à 2 via votre profil</p>
@@ -100,12 +100,12 @@
                     </div>
                     <div class="container-register-form">
                         <div class="container-form-email">
-                            <label for="name">Nom<span class="required">*</span></label>
+                            <label for="name">Nom<span class="required"> *</span></label>
                             <input type="text" id="name" value="{{old("name")}}" placeholder="Rotis"
                                    class=" @error('name') is-invalid @enderror email-label" name="name" required>
                         </div>
                         <div class="container-form-email">
-                            <label for="surname">Prénom<span class="required">*</span></label>
+                            <label for="surname">Prénom<span class="required"> *</span></label>
                             <input type="text" id="surname" placeholder="Daniel" value="{{old("surname")}}"
                                    class=" @error('surname') is-invalid @enderror email-label" name="surname" required>
                         </div>
@@ -156,7 +156,7 @@
                                    pattern="^[0-9-+\s()]*$" id="phone" value="{{old("phone")}}"
                                    class=" @error('phone') is-invalid @enderror email-label" name="phone" required>
                             @if($request->plan_user_id == 1)
-                                <p class="help"><a href="{{route('users.plans')}}">Augmenter votre plan</a> et vous aurez la possibilité d'en ajouter jusqu'à 3</p>
+                                <p class="help"><a href="{{route('users.plans')}}#plans">Augmenter votre plan</a> et vous aurez la possibilité d'en ajouter jusqu'à 3</p>
                             @endif
                             @if($request->plan_user_id == 2)
                                 <p class="help">Vous aurez la possibilité d'en intégrer jusqu'à 2 via votre profil</p>
@@ -173,7 +173,7 @@
                             <input placeholder="www.workerz.be" type="text" id="website" value="{{old("website")}}"
                                    class=" @error('website') is-invalid @enderror email-label" name="website">
                             @if($request->plan_user_id == 1)
-                                <p class="help"><a href="{{route('users.plans')}}">Augmenter votre plan</a> et vous aurez la possibilité d'en ajouter jusqu'à 3</p>
+                                <p class="help"><a href="{{route('users.plans')}}#plans">Augmenter votre plan</a> et vous aurez la possibilité d'en ajouter jusqu'à 3</p>
                             @endif
                             @if($request->plan_user_id == 2)
                                 <p class="help">Vous aurez la possibilité d'en intégrer jusqu'à 2 via votre profil</p>
@@ -186,29 +186,29 @@
                             <label for="disponibilities">Disponibilités</label>
                             <select class="select-register" multiple name="disponibilities[]" id="disponibilities">
                                 @foreach($disponibilities as $d)
-                                    <option value="{{$d->id}}">{{$d->name}}</option>
+                                    <option @if($d->pre_selected == true) selected @endif value="{{$d->id}}">{{$d->name}}</option>
                                 @endforeach
                             </select>
-                            @if($request->plan_user_id == 1)
-                                <p class="help">Avec la touche ctrl vous en sélectionner jusqu'à 2</p>
-                            @endif
-                            @if($request->plan_user_id == 2)
-                                <p class="help">Avec la touche ctrl vous en sélectionner jusqu'à 3</p>
-                            @endif
-                            @if($request->plan_user_id == 3)
-                                <p class="help">Avec la touche ctrl vous en sélectionner jusqu'à 5</p>
-                            @endif
                         </div>
                     </div>
 
                     <div class="container-register-form">
                         <div class="container-form-email selectdiv">
                             <label for="location">Région <span class="required">*</span></label>
-                            <select class="select-register select-region" name="location" id="location">
+                            <select class="select-register select-region" multiple name="location" id="location">
                                 @foreach($regions as $r)
                                     <option value="{{$r->id}}">{{$r->name}}</option>
                                 @endforeach
                             </select>
+                            @if($request->plan_user_id == 1)
+                                <p class="help"><a href="{{route('users.plans')}}#plans">Augmenter votre plan</a> et vous aurez la possibilité d'en ajouter jusqu'à 3</p>
+                            @endif
+                            @if($request->plan_user_id == 2)
+                                <p class="help">Avec la touche ctrl vous en sélectionner jusqu'à 2</p>
+                            @endif
+                            @if($request->plan_user_id == 3)
+                                <p class="help">Avec la touche ctrl vous en sélectionner jusqu'à 3</p>
+                            @endif
                         </div>
                         <div class="container-form-email">
                             <label for="job">Metier <span class="required">*</span></label>
@@ -228,7 +228,7 @@
                                 @endforeach
                             </select>
                             @if($request->plan_user_id == 1)
-                                <p class="help">Avec la touche ctrl vous en sélectionner jusqu'à 2</p>
+                                <p class="help"><a href="{{route('users.plans')}}#plans">Augmenter votre plan</a> et vous aurez la possibilité d'en ajouter jusqu'à 3</p>
                             @endif
                             @if($request->plan_user_id == 2)
                                 <p class="help">Avec la touche ctrl vous en sélectionner jusqu'à 3</p>

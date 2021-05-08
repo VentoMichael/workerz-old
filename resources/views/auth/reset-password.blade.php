@@ -32,10 +32,10 @@
                         <div id="container-checkpass" class="container-checkpass">
                             <input type="checkbox" class="password--visibleToggle password-toggle-reset" id="checkPass" checked>
                             <div class="password--visibleToggle-eye open">
-                                <img src="{{asset('svg/eye-open.svg')}}"/>
+                                <img src="{{asset('svg/eye-open.svg')}}" alt="icone de yeux ouvert"/>
                             </div>
                             <div class="password--visibleToggle-eye close">
-                                <img src="{{asset('svg/eye-close.svg')}}"/>
+                                <img src="{{asset('svg/eye-close.svg')}}" alt="icone de yeux fermé"/>
                             </div>
                         </div>
                         @error('password')

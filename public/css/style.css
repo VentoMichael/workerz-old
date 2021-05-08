@@ -435,7 +435,10 @@ form .form-group .email-label {
 .list-password-required {
     margin: 7px 0 15px;
 }
-
+select option:checked{
+    background: var(--blueLight);
+    color: white;
+}
 .container-svg, .svg-icon {
     width: 100%;
 }
@@ -456,11 +459,6 @@ form .form-group .email-label {
 .container-svg {
     display: flex;
     justify-content: flex-end;
-}
-
-.container-inscriptin-logins {
-    margin-top: 100px;
-    position: relative;
 }
 
 .preview-picture {
@@ -883,7 +881,11 @@ form .search-announcement {
     right: 0;
     top: 0;
 }
-
+.container-form-register div .form-login .container-inscriptin-logins {
+    margin-top: 100px;
+    position: relative;
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+}
 .container-infos-announcement {
     padding: 50px 15px 20px;
 }

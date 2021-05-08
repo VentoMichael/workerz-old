@@ -57,7 +57,7 @@ class UserController extends Controller
     public function payed(Request $request)
     {
         $plan = PlanUser::where('id','=',$request->user()->plan_user_id)->get();
-        Session::flash('success-inscription', 'Votre inscription à été un succés ! Il suffit de terminer le paiement et votre entreprise sera visible.');
+
         return view('users.payed',compact('plan'));
     }
 }

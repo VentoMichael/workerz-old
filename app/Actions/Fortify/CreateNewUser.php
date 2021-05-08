@@ -99,6 +99,7 @@ class CreateNewUser implements CreatesNewUsers
         $di = new startDate();
         $di->start_date_id = \request('disponibilities');
         $user->phones()->save($phone);
+        //$user->categoryUser()->limit(2);
         $user->categoryUser()->attach($ct->category_id);
         $user->startDate()->attach($di->start_date_id);
 

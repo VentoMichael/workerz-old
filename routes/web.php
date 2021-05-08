@@ -66,7 +66,7 @@ Route::get('/workerz/{worker}', [\App\Http\Controllers\UserController::class, 's
 
 Route::get('/dashboard', function () {
     return view('dashboard.index');
-})->name('dashboard')->middleware('auth');
+})->name('dashboard')->middleware('payeduser','auth');
 
 
 
