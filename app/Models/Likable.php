@@ -11,9 +11,9 @@ trait Likable
     public function scopeWithLikes(Builder $query)
     {
         $query->leftJoinSub(
-            'select announcement_id, sum(liked) likes from likes group by announcement_id',
-            'likes',
-            'likes.announcement_id',
+            'select announcement_id, sum(liked) likes from like_announcements group by announcement_id',
+            'like_announcements',
+            'like_announcements.announcement_id',
             'announcements.id',
         );
     }
@@ -35,7 +35,7 @@ trait Likable
     public function like($user = null, $liked = true)
     {
         $this->likes()->updateOrCreate([
-            'user_id' => $user = auth()->user()->id,
+            'user_id' => auth()->user()->id
         ], [
             'liked' => $liked,
         ]);
@@ -44,6 +44,7 @@ trait Likable
 
     public function likes()
     {
-        return $this->belongsToMany(Like::class);
+        return $this->hasMany(LikeAnnouncement::class);
     }
+
 }

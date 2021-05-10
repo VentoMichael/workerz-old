@@ -29,7 +29,6 @@ Route::get('/', function () {
     $workerz = User::Independent()
         ->inRandomOrder()
         ->first();
-    //dd(\request()->all());
     return view('home.index', compact('users', 'categories', 'workerz'));
 })->name('home.index');
 
@@ -45,8 +44,8 @@ Route::get('/announcements/{announcement}',
     [\App\Http\Controllers\AnnouncementController::class, 'show'])->name('announcements.show');
 Route::get('/announcements/create',
     [\App\Http\Controllers\AnnouncementController::class, 'create'])->name('announcements.create');
-Route::post('announcements/{announcement}/like', [\App\Http\Controllers\AnnouncementLikeController::class, 'store']);
-Route::delete('announcements/{announcement}/like', [\App\Http\Controllers\AnnouncementLikeController::class, 'delete']);
+Route::post('/announcements/{announcement}/like', [\App\Http\Controllers\AnnouncementLikeController::class, 'store']);
+Route::delete('/announcements/{announcement}/like', [\App\Http\Controllers\AnnouncementLikeController::class, 'delete']);
 
 
 Route::get('/register/plans', [\App\Http\Controllers\UserController::class, 'plans'])->name('users.plans');
@@ -57,6 +56,8 @@ Route::get('/register/payed', [\App\Http\Controllers\UserController::class, 'pay
 
 Route::get('/workerz', [\App\Http\Controllers\UserController::class, 'index'])->name('workerz');
 Route::get('/workerz/{worker}', [\App\Http\Controllers\UserController::class, 'show'])->name('workerz.show')->middleware('userroute');
+Route::post('/workerz/{worker}/like', [\App\Http\Controllers\UserLikeController::class, 'store']);
+Route::delete('/workerz/{worker}/like', [\App\Http\Controllers\UserLikeController::class, 'delete']);
 
 
 

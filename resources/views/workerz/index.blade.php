@@ -1,5 +1,17 @@
 @extends('layouts.app')
 @section('content')
+    @if (Session::has('loveOk'))
+        <div id="successMsg" class="successMsg"><img src="{{asset('svg/good.svg')}}" alt="good icone">
+            <p>{{Session::get('loveOk')}}</p>
+            <span class="crossHide" id="crossHide">&times;</span>
+        </div>
+    @endif
+    @if (Session::has('loveNotOk'))
+        <div id="successMsg" class="successMsg"><img src="{{asset('svg/good.svg')}}" alt="good icone">
+            <p>{{Session::get('loveNotOk')}}</p>
+            <span class="crossHide" id="crossHide">&times;</span>
+        </div>
+    @endif
     <section class="container-home margin">
         <div class="container-home_image container-home-page">
             <div>
@@ -31,17 +43,49 @@
         </h2>
         <div class="container-all-announcement show-content">
             @foreach($workerz as $worker)
-                <section class="container-announcement" id="showmgs{{$worker->id}}">
+                <section class="container-announcement">
                     <div class="container-infos-announcement">
+                        <div class="containerPrice containerLove @guest notHoverHeart @endguest">
+                            @auth
+                                @if(!$worker->isLikedUBy($worker))
+                                    <form method="POST" action="/workerz/{{$worker->slug}}/like">
+                                        @csrf
 
-                        <div class="containerPrice">
-                            <img src="{{asset('svg/euro.svg')}}" alt="icone d'euro">{{$worker->pricemax}}€/h
+                                        <button type="submit" class="button-loves">
+                                            <img class="heart" src="{{asset('svg/heart.svg')}}" alt="icone de coeur">
+                                            <img class="heartFul" src="{{asset('svg/heartFul.svg')}}"
+                                                 alt="icone de coeur plein">
+                                            <span>
+                                        {{$worker->likes ? : 0}}</span></button>
+                                    </form>
+                                @else
+                                    <form method="POST" action="/workerz/{{$worker->slug}}/like">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="button-loves">
+                                            <img class="heartFul heartLiked" src="{{asset('svg/heartFul.svg')}}"
+                                                 alt="icone de coeur plein">
+                                            <span>
+                                        {{$worker->likes ? : 0}}</span></button>
+                                    </form>
+                                @endif
+
+                            @else
                         </div>
-                        <div class="containerPrice containerLove">
-                                    <img class="heart" src="{{asset('svg/heart.svg')}}" alt="icone de coeur">
-                                    <img class="heartFul" src="{{asset('svg/heartFul.svg')}}" alt="icone de coeur">
-                                <span> {{$worker->number}}</span>
+                        <a href="{{route('login')}}">
+                            <div class="containerPrice containerLove hepling helping-like">
 
+                                <img class="heart" src="{{asset('svg/heart.svg')}}" alt="icone de coeur">
+                                <img class="heartFul" src="{{asset('svg/heartFul.svg')}}"
+                                     alt="icone de coeur plein">
+                                <p>
+                                    {{$worker->likesU? : 0}}</p>
+                                <span> Il faut être connecter pour aimer l'annonce</span>
+                                @endauth
+                            </div>
+                        </a>
+                        <div class="containerPrice">
+                            <img src="{{asset('svg/euro.svg')}}" alt="icone d'euro">Max: {{$worker->pricemax}}€
                         </div>
                         <div class="container-image-announcement">
                             @if($worker->picture)
@@ -50,7 +94,7 @@
                                 <img src="{{asset('svg/market.svg')}}" alt="icone d'un magasin">
                             @endif
                         </div>
-                        <h3>
+                        <h3 aria-level="3">
                             {{ucfirst($worker->name)}}
                         </h3>
                         <p class="paragraph-ann">
@@ -69,10 +113,9 @@
                                     @endif
                                 </div>
                             </div>
-                            @dd($worker->provinces)
                             <div class="container-info-announcement">
                                 <img src="{{asset('svg/placeholder.svg')}}" alt="icone de localité">
-                                <p>{{$wo->provinces->first()->name}}</p>
+                                <!-- <p>$wo->provinces->first()->name}}</p>-->
                             </div>
                         </div>
                     </div>
@@ -96,7 +139,8 @@
                             @foreach($categories as $category)
                                 @if($category->users_count !=0)
                                     <li>
-                                        <input class="inp-cbx" id="category{{$category->id}}" name="category{{$category->id}}"
+                                        <input class="inp-cbx" id="category{{$category->id}}"
+                                               name="category{{$category->id}}"
                                                type="checkbox" style="display: none;"/>
                                         <label class="cbx" for="category{{$category->id}}">
                                 <span>
@@ -142,4 +186,7 @@
             </form>
         </div>
     </section>
+@endsection
+@section('scripts')
+    <script src="{{asset('js/successMsg.js')}}"></script>
 @endsection

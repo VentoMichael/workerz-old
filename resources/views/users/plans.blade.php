@@ -26,7 +26,7 @@
             @foreach($plans as $plan)
                 <section class="container-plan">
                     <div class="container-plan-price">
-                        <h3>
+                        <h3 aria-level="3">
                             {{ucfirst($plan->name)}}
                         </h3>
                         <span class="planPrice">

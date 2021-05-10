@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-    @if($request->has('user') || $request->has('company'))
-        @if($request->has('company'))
+    @if($request->has('user') || $request->old('type') == 'user' || $request->has('company') || $request->old('type') == 'company')
+        @if($request->has('company') || $request->old('type') == 'company')
             <div class="container-home">
                 <section class="container-home_image">
                     <div class="container-connexion">
@@ -26,7 +26,7 @@
                 </section>
             </div>
         @endif
-        @if($request->has('user'))
+        @if($request->has('user') || $request->old('type') == 'user')
             <div class="container-home">
                 <section class="container-home_image">
                     <div class="container-connexion">
@@ -52,11 +52,11 @@
     <section class="container-form-register container-home">
         <div class="title-first-step-register">
             <h2 aria-level="2">Formulaire d'inscription</h2>
-            @if($request->has('company') || $request->has('user'))
+            @if($request->has('company') || $request->has('user') || $request->old('type') == 'user' || $request->old('type') == 'company')
                 <p>Après cette étape, vous serez immédiatement inscris et pourrez y intégrer des annonces !</p>
             @endif
         </div>
-        @if($request->has('company') || $request->has('user'))
+        @if($request->has('company') || $request->has('user') || $request->old('type') == 'user' || $request->old('type') == 'company')
             <a class="link-back" href="{{route('users.type')}}">
                 <button class="button-back button-cta">
                     Retour
@@ -64,7 +64,7 @@
             </a>
         @endif
 
-        @if($request->has('user'))
+        @if($request->has('user') || $request->old('type') == 'user')
             <div>
                 <form class="form-login form-register" enctype="multipart/form-data"
                       aria-label="Enregistrement d'un compte" role="form" method="POST"
@@ -87,14 +87,14 @@
                             <input minlength="6" maxlength="15" type="tel" id="phone" pattern="^[0-9-+\s()]*$"
                                    value="{{old("phone")}}" placeholder="0494827235"
                                    class=" @error('phone') is-invalid @enderror email-label" name="phone" required>
-                            @if($request->plan_user_id == 1)
+                            @if($request->plan_user_id == 1 || $request->old('plan_user_id') == 1)
                                 <p class="help"><a href="{{route('users.plans')}}#plans">Augmenter votre plan</a> et
                                     vous aurez la possibilité d'en ajouter jusqu'à 3</p>
                             @endif
-                            @if($request->plan_user_id == 2)
+                            @if($request->plan_user_id == 2 || $request->old('plan_user_id') == 2)
                                 <p class="help">Vous aurez la possibilité d'en intégrer jusqu'à 2 via votre profil</p>
                             @endif
-                            @if($request->plan_user_id == 3)
+                            @if($request->plan_user_id == 3 || $request->old('plan_user_id') == 3)
                                 <p class="help">Vous aurez la possibilité d'en intégrer jusqu'à 3 via votre profil</p>
                             @endif
                         </div>
@@ -115,12 +115,12 @@
                     <input id="role_id" name="role_id" type="hidden" value="3">
                     <input id="plan_user_id" name="plan_user_id" type="hidden" value="{{$plan}}">
                     <input id="plan" name="plan" type="hidden" value="{{$plan}}">
-                    <input type="hidden" name="type" value="{{$type}}">
+
                     @include('partials.register')
                 </form>
             </div>
         @endif
-        @if($request->has('company'))
+        @if($request->has('company') || $request->old('type') == 'company')
             <div>
                 <form class="form-login form-register" enctype="multipart/form-data"
                       aria-label="Enregistrement d'un compte" role="form" method="POST"
@@ -156,14 +156,14 @@
                             <input placeholder="0494827263" minlength="6" maxlength="15" type="tel"
                                    pattern="^[0-9-+\s()]*$" id="phone" value="{{old("phone")}}"
                                    class=" @error('phone') is-invalid @enderror email-label" name="phone" required>
-                            @if($request->plan_user_id == 1)
+                            @if($request->plan_user_id == 1 || $request->old('plan_user_id') == 1)
                                 <p class="help"><a href="{{route('users.plans')}}#plans">Augmenter votre plan</a> et
                                     vous aurez la possibilité d'en ajouter jusqu'à 3</p>
                             @endif
-                            @if($request->plan_user_id == 2)
+                            @if($request->plan_user_id == 2 || $request->old('plan_user_id') == 2)
                                 <p class="help">Vous aurez la possibilité d'en intégrer jusqu'à 2 via votre profil</p>
                             @endif
-                            @if($request->plan_user_id == 3)
+                            @if($request->plan_user_id == 3 || $request->old('plan_user_id') == 3)
                                 <p class="help">Vous aurez la possibilité d'en intégrer jusqu'à 3 via votre profil</p>
                             @endif
                         </div>
@@ -174,14 +174,14 @@
                             <label for="website">Site internet</label>
                             <input placeholder="www.workerz.be" type="text" id="website" value="{{old("website")}}"
                                    class=" @error('website') is-invalid @enderror email-label" name="website">
-                            @if($request->plan_user_id == 1)
+                            @if($request->plan_user_id == 1 || $request->old('plan_user_id') == 1)
                                 <p class="help"><a href="{{route('users.plans')}}#plans">Augmenter votre plan</a> et
                                     vous aurez la possibilité d'en ajouter jusqu'à 3</p>
                             @endif
-                            @if($request->plan_user_id == 2)
+                            @if($request->plan_user_id == 2 || $request->old('plan_user_id') == 2)
                                 <p class="help">Vous aurez la possibilité d'en intégrer jusqu'à 2 via votre profil</p>
                             @endif
-                            @if($request->plan_user_id == 3)
+                            @if($request->plan_user_id == 3 || $request->old('plan_user_id') == 3)
                                 <p class="help">Vous aurez la possibilité d'en intégrer jusqu'à 3 via votre profil</p>
                             @endif
                         </div>
@@ -199,13 +199,13 @@
                     <div class="container-register-form">
                         <div class="container-form-email selectdiv">
                             <label for="location">Région <span class="required">*</span></label>
-                            <select @if($request->plan_user_id == 1)
+                            <select @if($request->plan_user_id == 1 || $request->old('plan_user_id') == 1)
                                     data-maxoption="1"
                                     class="email-label"
                                     @endif
-                                    @if($request->plan_user_id == 2) class="select-register" multiple data-maxoption="2"
+                                    @if($request->plan_user_id == 2 || $request->old('plan_user_id') == 2) class="select-register" multiple data-maxoption="2"
                                     @endif
-                                    @if($request->plan_user_id == 3) class="select-register" multiple data-maxoption="3"
+                                    @if($request->plan_user_id == 3 || $request->old('plan_user_id') == 3) class="select-register" multiple data-maxoption="3"
                                     @endif
                                      name="location"
                                     id="location">
@@ -214,14 +214,14 @@
                                 @endforeach
                             </select>
 
-                            @if($request->plan_user_id == 1)
+                            @if($request->plan_user_id == 1 || $request->old('plan_user_id') == 1)
                                 <p class="help"><a href="{{route('users.plans')}}#plans">Augmenter votre plan</a> et
                                     vous aurez la possibilité d'en ajouter jusqu'à 3</p>
                             @endif
-                            @if($request->plan_user_id == 2)
+                            @if($request->plan_user_id == 2 || $request->old('plan_user_id') == 2)
                                 <p class="help">Avec la touche ctrl vous en sélectionner jusqu'à 2</p>
                             @endif
-                            @if($request->plan_user_id == 3)
+                            @if($request->plan_user_id == 3 || $request->old('plan_user_id') == 3)
                                 <p class="help">Avec la touche ctrl vous en sélectionner jusqu'à 3</p>
                             @endif
                         </div>
@@ -237,13 +237,13 @@
                     <div class="container-register-form">
                         <div class="container-form-email selectdiv">
                             <label for="category-job">Catégorie de métier <span class="required">*</span></label>
-                            <select @if($request->plan_user_id == 1)
+                            <select @if($request->plan_user_id == 1 || $request->old('plan_user_id') == 1)
                                     data-maxoption="1"
                                     class="email-label"
                                     @endif
-                                    @if($request->plan_user_id == 2) class="select-register" multiple data-maxoption="2"
+                                    @if($request->plan_user_id == 2 || $request->old('plan_user_id') == 2) class="select-register" multiple data-maxoption="2"
                                     @endif
-                                    @if($request->plan_user_id == 3) class="select-register" multiple data-maxoption="3"
+                                    @if($request->plan_user_id == 3 || $request->old('plan_user_id') == 3) class="select-register" multiple data-maxoption="3"
                                     @endif name="category-job[]" id="category-job">
                                 @foreach($categories as $c)
                                     <option value="{{$c->id}}">{{$c->name}}</option>
@@ -251,15 +251,15 @@
                             </select>
 
 
-                            @if($request->plan_user_id == 1)
+                            @if($request->plan_user_id == 1 || $request->old('plan_user_id') == 1)
                                 <p class="help"><a href="{{route('users.plans')}}#plans">Augmenter votre plan</a> et
-                                    vous aurez la possibilité d'en ajouter jusqu'à 3</p>
+                                    vous aurez la possibilité d'en ajouter jusqu'à 1</p>
                             @endif
-                            @if($request->plan_user_id == 2)
+                            @if($request->plan_user_id == 2 || $request->old('plan_user_id') == 2)
+                                <p class="help">Avec la touche ctrl vous en sélectionner jusqu'à 2</p>
+                            @endif
+                            @if($request->plan_user_id == 3 || $request->old('plan_user_id') == 3)
                                 <p class="help">Avec la touche ctrl vous en sélectionner jusqu'à 3</p>
-                            @endif
-                            @if($request->plan_user_id == 3)
-                                <p class="help">Avec la touche ctrl vous en sélectionner jusqu'à 5</p>
                             @endif
                         </div>
                         <div class="container-form-email">
@@ -284,14 +284,15 @@
                     <input id="role_id" name="role_id" type="hidden" value="2">
                     <input id="plan_user_id{{$plan}}" name="plan_user_id" type="hidden" value="{{$plan}}">
                     <input id="plan{{$plan}}" name="plan" type="hidden" value="{{$plan}}">
-                    <input type="hidden" name="type" value="{{$type}}">
+                    <input id="type" name="type" type="hidden" value="company">
+
                     @include('partials.register')
                 </form>
             </div>
         @endif
     </section>
 @endsection
-@if($request->has('company') || $request->has('user'))
+@if($request->has('company') || $request->has('user') || $request->old('type') == 'user' || $request->old('type') == 'company')
 @section('scripts')
     <script src="{{asset('js/passwordCheck.js')}}"></script>
     <script src="{{asset('js/passwordSee.js')}}"></script>

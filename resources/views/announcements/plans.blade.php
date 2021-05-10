@@ -26,7 +26,7 @@
         @for($i=1;$i<= 3;$i++)
         <section class="container-plan">
             <div class="container-plan-price">
-                <h3>
+                <h3 aria-level="3">
                     Free
                 </h3>
                 <span class="planPrice">

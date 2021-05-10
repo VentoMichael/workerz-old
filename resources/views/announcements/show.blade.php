@@ -92,7 +92,7 @@
                 @endif
             </div>
             <div class="container-infos-perso-ads">
-                <h3>
+                <h3 aria-level="3">
                     {{ucfirst($announcement->title)}}
                 </h3>
                 <p>
@@ -141,7 +141,7 @@
     </section>
     <section class="container-categories-home margin show-content container-adss-random">
         <div class="container-title-ads">
-            <h2>
+            <h2 aria-level="2">
                 Ca pourrait vous intéresser
             </h2>
         </div>
@@ -197,7 +197,7 @@
                             @endif
                         </div>
                         <div>
-                            <h3>
+                            <h3 aria-level="3">
                                 {{ucfirst($ra->title)}}
                             </h3>
                         </div>

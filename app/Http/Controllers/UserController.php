@@ -26,7 +26,7 @@ class UserController extends Controller
 
     public function index()
     {
-        $workerz = User::Independent()->Payed()->NoBan()->with('startDate', 'phones','provinces')
+        $workerz = User::withLikes()->Independent()->Payed()->NoBan()->with('startDate', 'phones','provinces')
             ->orderBy('plan_user_id','DESC')->orderBy('created_at', 'DESC')->paginate(4)->onEachSide(0);
         $categories = Category::with(([
             'users' => function ($q) {
@@ -45,11 +45,10 @@ class UserController extends Controller
 
     public function show(User $worker)
     {
-        $phone = $worker->load('phones');
-        $worker->load('startDate','provinces');
-        $randomUsers = User::Independent()->Payed()->NoBan()->orderBy('role_id', 'DESC')->limit(2)->inRandomOrder()->get();
+        $worker = User::withLikes()->Independent()->Payed()->NoBan()->with('startDate', 'phones','provinces')->get()->find($worker);;
+        $randomUsers = User::Independent()->Payed()->NoBan()->orderBy('role_id', 'DESC')->withLikes()->limit(2)->inRandomOrder()->get();
         $randomPhrasing = CatchPhraseUser::all()->random();
-        return view('workerz.show', compact('worker', 'phone', 'randomPhrasing', 'randomUsers'));
+        return view('workerz.show', compact('worker', 'randomPhrasing', 'randomUsers'));
     }
 
     public function payed(Request $request)

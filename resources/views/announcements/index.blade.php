@@ -44,8 +44,7 @@
         </h2>
         <div class="container-all-announcement show-content">
             @foreach($announcements as $announcement)
-
-                <section class="container-announcement" id="showmgs{{$announcement->id}}">
+                <section class="container-announcement">
                     <div class="container-infos-announcement">
                         <div class="containerPrice containerLove @guest notHoverHeart @endguest">
                             @auth
@@ -61,21 +60,21 @@
                                         {{$announcement->likes? : 0}}</span></button>
                                     </form>
                                 @else
-                                <form method="POST" action="/announcements/{{$announcement->slug}}/like">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="button-loves">
-                                        <img class="heartFul heartLiked" src="{{asset('svg/heartFul.svg')}}"
-                                             alt="icone de coeur plein">
-                                        <span>
+                                    <form method="POST" action="/announcements/{{$announcement->slug}}/like">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="button-loves">
+                                            <img class="heartFul heartLiked" src="{{asset('svg/heartFul.svg')}}"
+                                                 alt="icone de coeur plein">
+                                            <span>
                                         {{$announcement->likes? : 0}}</span></button>
-                                </form>
+                                    </form>
                                 @endif
 
                             @else
                         </div>
                         <a href="{{route('login')}}">
-                        <div class="containerPrice containerLove hepling helping-like">
+                            <div class="containerPrice containerLove hepling helping-like">
 
                                 <img class="heart" src="{{asset('svg/heart.svg')}}" alt="icone de coeur">
                                 <img class="heartFul" src="{{asset('svg/heartFul.svg')}}"
@@ -83,8 +82,8 @@
                                 <p>
                                     {{$announcement->likes? : 0}}</p>
                                 <span> Il faut être connecter pour aimer l'annonce</span>
-                            @endauth
-                        </div>
+                                @endauth
+                            </div>
                         </a>
                         <div class="containerPrice">
                             <img src="{{asset('svg/euro.svg')}}" alt="icone d'euro">Max: {{$announcement->pricemax}}€
@@ -96,7 +95,7 @@
                                 <img src="{{asset('svg/ad.svg')}}" alt="icone d'annonces">
                             @endif
                         </div>
-                        <h3>
+                        <h3 aria-level="3">
                             {{ucfirst($announcement->title)}}
                         </h3>
                         <p class="paragraph-ann">
@@ -143,10 +142,10 @@
                             @foreach($categories as $category)
                                 @if($category->announcements_count !=0)
                                     <li>
-                                        <label class="cbx" for="category{{$category->id}}">
                                         <input class="inp-cbx" id="category{{$category->id}}"
                                                name="category{{$category->id}}"
                                                type="checkbox" style="display: none;"/>
+                                        <label class="cbx" for="category{{$category->id}}">
                                 <span>
                                     <svg width="12px" height="9px" viewbox="0 0 12 9">
                                       <polyline points="1 5 4 8 11 1"></polyline>
@@ -167,11 +166,11 @@
                             @foreach($regions as $region)
                                 @if($region->announcements_count !=0)
                                     <li>
-                                        <label class="cbx" for="region{{$region->id}}">
 
                                         <input class="inp-cbx" id="region{{$region->id}}" name="region{{$region->id}}"
                                                type="checkbox"
                                                style="display: none;"/>
+                                        <label class="cbx" for="region{{$region->id}}">
                                 <span>
                                     <svg width="12px" height="9px" viewbox="0 0 12 9">
                                       <polyline points="1 5 4 8 11 1"></polyline>

@@ -1,5 +1,17 @@
 @extends('layouts.app')
 @section('content')
+    @if (Session::has('loveOk'))
+        <div id="successMsg" class="successMsg"><img src="{{asset('svg/good.svg')}}" alt="good icone">
+            <p>{{Session::get('loveOk')}}</p>
+            <span class="crossHide" id="crossHide">&times;</span>
+        </div>
+    @endif
+    @if (Session::has('loveNotOk'))
+        <div id="successMsg" class="successMsg"><img src="{{asset('svg/good.svg')}}" alt="good icone">
+            <p>{{Session::get('loveNotOk')}}</p>
+            <span class="crossHide" id="crossHide">&times;</span>
+        </div>
+    @endif
     <section class="container-home margin">
         <div class="container-home_image container-home-create container-home-page">
             <div>
@@ -26,6 +38,48 @@
             </h2>
         </div>
         <section class="container-personnal-ads show-content">
+            <div class="container-love-show">
+                @auth
+                    <div class="containerPrice container-show-love containerLove help-show @guest notHoverHeart @endguest">
+                        @if(!$worker->isLikedUBy($worker))
+                            <form method="POST" action="/workerz/{{$worker->slug}}/like">
+                                @csrf
+
+                                <button type="submit" class="button-loves">
+                                    <img class="heart" src="{{asset('svg/heart.svg')}}" alt="icone de coeur">
+                                    <img class="heartFul" src="{{asset('svg/heartFul.svg')}}"
+                                         alt="icone de coeur">
+                                    <span>
+                                        {{$worker->likes ? : 0}}</span></button>
+                            </form>
+                        @else
+
+                            <form method="POST" action="/workerz/{{$worker->slug}}/like">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="button-loves">
+                                    <img class="heartFul heartLiked" src="{{asset('svg/heartFul.svg')}}"
+                                         alt="icone de coeur">
+                                    <span>
+                                        {{$worker->likes ? : 0}}</span></button>
+                            </form>
+                        @endif
+                    </div>
+
+                @else
+                    <a href="{{route('login')}}">
+                        <div class="containerPrice containerLove hepling helping-like help-show">
+
+                            <img class="heart" src="{{asset('svg/heart.svg')}}" alt="icone de coeur">
+                            <img class="heartFul" src="{{asset('svg/heartFul.svg')}}"
+                                 alt="icone de coeur">
+                            <p>
+                                {{$worker->likes? : 0}}</p>
+                            <span> Il faut être connecter pour aimer l'annonce</span>
+                        </div>
+                    </a>
+                @endauth
+            </div>
             <div class="container-picture-ads">
                 @if($worker->picture)
                     <img src="{{ $worker->picture }}" alt="photo de profil de {{ucfirst($worker->name)}}"/>
@@ -34,7 +88,7 @@
                 @endif
             </div>
             <div class="container-infos-perso-ads">
-                <h3>
+                <h3 aria-level="3">
                     {{ucfirst($worker->name)}}
                 </h3>
                 <p>
@@ -73,7 +127,6 @@
                         <img src="{{asset('svg/euro.svg')}}" alt="icone d'euro">
                         <span>Un minimum de {{$worker->pricemax}}€/h</span>
                     </div>
-                    @dd($worker)
                 @foreach($worker->provinces as $wphy)
                             <div>
                                 <img src="{{asset('svg/placeholder.svg')}}" alt="icone de position">
@@ -86,7 +139,7 @@
     </section>
     <section class="container-categories-home margin show-content container-adss-random">
         <div class="container-title-ads">
-            <h2>
+            <h2 aria-level="2">
                 Ca pourrait vous intéresser
             </h2>
         </div>
@@ -94,16 +147,58 @@
             @foreach($randomUsers as $ra)
                 <section class="container-infos-perso-ads container-ad-random">
                     <div class="container_title__province">
+                        <div class="container-love-show">
+                            @auth
+                                <div class="containerPrice container-show-love containerLove help-show @guest notHoverHeart @endguest">
+                                    @if(!$ra->isLikedUBy($ra))
+                                        <form method="POST" action="/workerz/{{$ra->slug}}/like">
+                                            @csrf
+
+                                            <button type="submit" class="button-loves">
+                                                <img class="heart" src="{{asset('svg/heart.svg')}}" alt="icone de coeur">
+                                                <img class="heartFul" src="{{asset('svg/heartFul.svg')}}"
+                                                     alt="icone de coeur">
+                                                <span>
+                                        {{$ra->likes ? : 0}}</span></button>
+                                        </form>
+                                    @else
+
+                                        <form method="POST" action="/workerz/{{$ra->slug}}/like">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="button-loves">
+                                                <img class="heartFul heartLiked" src="{{asset('svg/heartFul.svg')}}"
+                                                     alt="icone de coeur">
+                                                <span>
+                                        {{$ra->likes ? : 0}}</span></button>
+                                        </form>
+                                    @endif
+                                </div>
+
+                            @else
+                                <a href="{{route('login')}}">
+                                    <div class="containerPrice containerLove hepling helping-like help-show">
+
+                                        <img class="heart" src="{{asset('svg/heart.svg')}}" alt="icone de coeur">
+                                        <img class="heartFul" src="{{asset('svg/heartFul.svg')}}"
+                                             alt="icone de coeur">
+                                        <p>
+                                            {{$ra->likes? : 0}}</p>
+                                        <span> Il faut être connecter pour aimer l'annonce</span>
+                                    </div>
+                                </a>
+                            @endauth
+                        </div>
                         <div class="container-picture-ads">
-                            @if($worker->picture)
-                                <img src="{{ $worker->picture }}"
-                                     alt="photo de profil de {{$worker->name}}"/>
+                            @if($ra->picture)
+                                <img src="{{ $ra->picture }}"
+                                     alt="photo de profil de {{$ra->name}}"/>
                             @else
                                 <img src="{{asset('svg/ad.svg')}}" alt="icone d'annonces">
                             @endif
                         </div>
                         <div>
-                            <h3>
+                            <h3 aria-level="3">
                                 {{ucfirst($ra->name)}}
                                 {{ucfirst($ra->surname)}}
                             </h3>
@@ -128,10 +223,13 @@
                             </div>
                         </div>
                     </div>
-                    <a href="/announcements/{{$ra->title}}" class="btn-ads button-personnal-announcement">
+                    <a href="/workerz/{{$ra->title}}" class="btn-ads button-personnal-announcement">
                     </a>
                 </section>
             @endforeach
         </div>
     </section>
+@endsection
+@section('scripts')
+    <script src="{{asset('js/successMsg.js')}}"></script>
 @endsection

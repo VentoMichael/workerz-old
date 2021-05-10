@@ -36,7 +36,8 @@ class DatabaseSeeder extends Seeder
         $this->call(ProvinceUserSeeder::class);
         $this->call(AnnouncementSeeder::class);
         $this->call(AnnouncementCategorySeeder::class);
-        $this->call(LikeSeeder::class);
+        $this->call(LikeAnnouncementSeeder::class);
+        $this->call(LikeUserSeeder::class);
         $this->call(CatchPhraseAnnouncementSeeder::class);
         $this->call(CatchPhraseUserSeeder::class);
     }
