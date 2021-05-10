@@ -1667,3 +1667,24 @@ div .password-toggle-reset {
 div .password--visibleToggle-eye {
     top: 33px;
 }
+.container-announcement-create .selectdiv:hover{
+    height: 100px;
+    cursor: pointer;
+}
+.select-regions:hover{
+    height: 44px;
+    cursor: pointer;
+}
+.danger{
+    color: red;
+    font-size: 1em;
+}
+.container-buttons-ads,.container-maxCharacters{
+    display: flex;justify-content: space-between;
+}
+.container-buttons-ads .link-back{
+    position: inherit;
+}
+.maxCharacters{
+    font-size: 0.9em;
+}

@@ -102,12 +102,9 @@ class CreateNewUser implements CreatesNewUsers
         //$user->categoryUser()->limit(2);
         $user->categoryUser()->attach($ct->category_id);
         $user->startDate()->attach($di->start_date_id);
-        if(request()->has('company') || request()->old('company')){
-            $type = 'company';
-        }if(request()->has('user') || request()->old('user')){
-            $type = 'user';
+        if (request()->plan_user_id = 1){
+            Session::flash('success-inscription', 'Votre inscription sera opérationnelle après approbation de l\'administrateur !');
         }
-        Session::flash('success-inscription', 'Votre inscription à été un succés !');
         return $user;
     }
 }

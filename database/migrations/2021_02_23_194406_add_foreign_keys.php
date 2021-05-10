@@ -61,6 +61,14 @@ class AddForeignKeys extends Migration
             $table->foreign('user_id')
                 ->references('id')
                 ->on('users');
+            $table->foreign('province_id')
+                ->references('id')
+                ->on('provinces');
+        });
+
+        Schema::table('locations', function (Blueprint $table) {
+            $table->bigInteger('physical_adress_id')->unsigned();
+            $table->bigInteger('province_id')->unsigned();
             $table->foreign('physical_adress_id')
                 ->references('id')
                 ->on('physical_adresses');

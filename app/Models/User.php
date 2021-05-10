@@ -99,7 +99,7 @@ class User extends Authenticatable
         return $this->belongsToMany(Category::class);
     }
 
-    public function provinces()
+    public function locations()
     {
         return $this->belongsToMany(Province::class);
     }

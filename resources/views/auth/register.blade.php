@@ -296,23 +296,7 @@
 @section('scripts')
     <script src="{{asset('js/passwordCheck.js')}}"></script>
     <script src="{{asset('js/passwordSee.js')}}"></script>
-    <script>let a = document.getElementById("picture"), t = document.getElementById("output");
-        a.addEventListener("change", e => {
-            t.style.display = "block", t.src = URL.createObjectURL(e.target.files[0]), t.onload = function () {
-                URL.revokeObjectURL(t.src)
-            }
-        });</script>
-    <script>var verified = [];
-        document.getElementById("location").onchange = function (e) {
-            this.querySelectorAll("option:checked").length <= this.dataset.maxoption ? verified = Array.apply(null, this.querySelectorAll("option:checked")) : Array.apply(null, this.querySelectorAll("option")).forEach(function (e) {
-                e.selected = verified.indexOf(e) > -1
-            })
-        };
-        var verifiedca = [];
-        document.getElementById("category-job").onchange = function (e) {
-            this.querySelectorAll("option:checked").length <= this.dataset.maxoption ? verifiedca = Array.apply(null, this.querySelectorAll("option:checked")) : Array.apply(null, this.querySelectorAll("option")).forEach(function (e) {
-                e.selected = verifiedca.indexOf(e) > -1
-            })
-        };</script>
+    <script src="{{asset('js.previewPicture.js')}}"></script>
+    <script src="{{asset('js/checkDataMaxOptions.js')}}"></script>
 @endsection
 @endif

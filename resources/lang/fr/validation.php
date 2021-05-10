@@ -134,6 +134,13 @@ return [
             'rule-name' => 'custom-message',
         ],
     ],
+    'attributes' => [
+        'title' => 'titre',
+        'picture' => 'image',
+        'location' => 'endroit',
+        'job' => 'métier',
+        'category-job' => 'catégorie(s) de métier',
+    ],
 
     /*
     |--------------------------------------------------------------------------

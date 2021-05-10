@@ -79,7 +79,7 @@
                                 <img class="heartFul" src="{{asset('svg/heartFul.svg')}}"
                                      alt="icone de coeur plein">
                                 <p>
-                                    {{$worker->likesU? : 0}}</p>
+                                    {{$worker->likes? : 0}}</p>
                                 <span> Il faut être connecter pour aimer l'annonce</span>
                                 @endauth
                             </div>
@@ -113,6 +113,7 @@
                                     @endif
                                 </div>
                             </div>
+                            @dd($worker)
                             <div class="container-info-announcement">
                                 <img src="{{asset('svg/placeholder.svg')}}" alt="icone de localité">
                                 <!-- <p>$wo->provinces->first()->name}}</p>-->

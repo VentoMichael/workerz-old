@@ -35,14 +35,21 @@
     </section>
     <section class="container-categories-home margin">
         <div class="container-categories-text-home">
-            <h2 aria-level="2">
-                Une annonce {{$randomPhrasing->name}}
-            </h2>
+            @if($announcement->catchPhrase)
+                <h2 aria-level="2">
+                    {{ $announcement->catchPhrase }}
+                </h2>
+            @else
+                <h2 aria-level="2">
+                    Une annonce {{$randomPhrasing->name}}
+                </h2>
+            @endif
         </div>
         <section class="container-personnal-ads show-content">
             <div class="container-love-show">
                 @auth
-                    <div class="containerPrice container-show-love containerLove help-show @guest notHoverHeart @endguest">
+                    <div
+                        class="containerPrice container-show-love containerLove help-show @guest notHoverHeart @endguest">
                         @if(!$announcement->isLikedBy($user))
                             <form method="POST" action="/announcements/{{$announcement->slug}}/like">
                                 @csrf
@@ -127,10 +134,17 @@
                             @endif
                         </span>
                     </div>
-                    <div>
-                        <img src="{{asset('svg/euro.svg')}}" alt="icone d'euro">
-                        <span>Max : {{$announcement->pricemax}} €</span>
-                    </div>
+                    @if(!$announcement->pricemax)
+                        <div>
+                            <img src="{{asset('svg/euro.svg')}}" alt="icone d'euro">
+                            <span>Max : non déterminer</span>
+                        </div>
+                    @else
+                        <div>
+                            <img src="{{asset('svg/euro.svg')}}" alt="icone d'euro">
+                            <span>Max : {{$announcement->pricemax}} €</span>
+                        </div>
+                    @endif
                     <div>
                         <img src="{{asset('svg/placeholder.svg')}}" alt="icone de position">
                         <span>{{$announcement->province->name}}</span>
@@ -201,26 +215,27 @@
                                 {{ucfirst($ra->title)}}
                             </h3>
                         </div>
-                        <div class="container-infos-ads-randomm">
-                            <div class="container-position-ads">
-                                <img src="{{asset('svg/placeholder.svg')}}" alt="icone de position">
-                                <span>{{$ra->province->name}}</span>
-                            </div>
-                            <div class="container-position-ads">
-                                <img src="{{asset('svg/suitcase.svg')}}" alt="icone de malette">
-                                <span class="job-cat-ads">
+                        <div>
+                            <div class="container-infos-ads-randomm">
+                                <div class="container-position-ads">
+                                    <img src="{{asset('svg/placeholder.svg')}}" alt="icone de position">
+                                    <span>{{$ra->province->name}}</span>
+                                </div>
+                                <div class="container-position-ads">
+                                    <img src="{{asset('svg/suitcase.svg')}}" alt="icone de malette">
+                                    <span class="job-cat-ads">
                                     <span>{{ucfirst($ra->job)}}</span>
                                     @if($ra->categoryAds->count())
-                                        <span class="categoryJob">
+                                            <span class="categoryJob">
                                             (@foreach($ra->categoryAds as $a){{$a->name}}{{ ($loop->last ? '' : ', ') }}@endforeach)
                                         </span>
-                                    @endif
+                                        @endif
                                 </span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <a href="/announcements/{{$ra->slug}}" class="btn-ads button-personnal-announcement">
-                    </a>
+                        <a href="/announcements/{{$ra->slug}}" class="btn-ads button-personnal-announcement">
+                        </a>
                 </section>
             @endforeach
         </div>

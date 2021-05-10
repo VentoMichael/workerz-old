@@ -3,11 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Models\Announcement;
+use App\Models\AnnouncementCategory;
 use App\Models\CatchPhraseAnnouncement;
 use App\Models\Category;
+use App\Models\PlanAnnouncement;
 use App\Models\Province;
+use App\Models\StartMonth;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class AnnouncementController extends Controller
 {
@@ -18,27 +25,28 @@ class AnnouncementController extends Controller
      */
     public function plans()
     {
-        return view('announcements.plans');
+        $plans = PlanAnnouncement::all();
+        return view('announcements.plans', compact('plans'));
     }
 
     public function index()
     {
-        $announcements = Announcement::Published()->with('user','startmonth')->orderBy('created_at', 'DESC')->withLikes()->paginate(4)->onEachSide(0);
-        $rq = \request()->query();
+        $announcements = Announcement::Published()->NoBan()->with('user', 'startmonth')->orderBy('plan_announcement_id','DESC')->orderBy('created_at', 'DESC')->withLikes()->paginate(4)->onEachSide(0);
         $categories = Category::with('announcements')->withCount("announcements")->get()->sortBy('name');
         $regions = Province::with('announcements')->withCount("announcements")->get()->sortBy('name');
         $user = auth()->user();
 
-        return view('announcements.index', compact('announcements','rq','categories','regions','user'));
+        return view('announcements.index', compact('announcements', 'categories', 'regions', 'user'));
     }
 
     public function show(Announcement $announcement)
     {
-        $randomAds = Announcement::Published()->orderBy('plan_announcement_id','DESC')->withLikes()->limit(2)->inRandomOrder()->get();
+        $randomAds = Announcement::Published()->orderBy('plan_announcement_id',
+            'DESC')->withLikes()->limit(2)->inRandomOrder()->get();
         $randomPhrasing = CatchPhraseAnnouncement::all()->random();
         $user = auth()->user();
         $announcement = Announcement::Published()->with('user')->withLikes()->get()->find($announcement);;
-        return view('announcements.show', compact('randomPhrasing','randomAds','announcement','user'));
+        return view('announcements.show', compact('randomPhrasing', 'randomAds', 'announcement', 'user'));
     }
 
     /*
@@ -49,9 +57,15 @@ class AnnouncementController extends Controller
      *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $plan = $request->plan;
+        $categories = Category::with('announcements')->withCount("announcements")->get()->sortBy('name');
+        $regions = Province::with('announcements')->withCount("announcements")->get()->sortBy('name');
+        $disponibilities = StartMonth::with('announcements')->withCount("announcements")->get()->sortBy('id');
+        Session::flash('success-inscription',
+            'Votre inscription à été un succés ! Il suffit de terminer le paiement et votre entreprise sera visible.');
+        return view('announcements.create', compact('plan', 'disponibilities', 'categories', 'regions'));
 
     }
 
@@ -59,11 +73,55 @@ class AnnouncementController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
-        //
+
+        Validator::make($request->all(),[
+            'title' => 'required|unique:announcements',
+            'slug' => 'required',
+            'picture' => 'image:jpg,jpeg,png,svg',
+            'description' => 'required|max:256',
+            'job' => 'required|max:256',
+        ]);
+
+        $plan = $request->plan;
+        $announcement = new Announcement();
+        $announcement->title = $request->title;
+        $announcement->slug = Str::slug($request->title);
+        $announcement->picture = $request->picture;
+        $announcement->description = $request->description;
+        $announcement->job = $request->job;
+        $announcement->pricemax = $request->price_max;
+        $announcement->user_id = Auth::id();
+        $announcement->province_id = $request->location;
+        $announcement->start_month_id = $request->disponibility;
+        $announcement->plan_announcement_id = $plan;
+        $ct = new AnnouncementCategory();
+        $ct->category_id = $request->category_job;
+        if ($plan === 1) {
+            if ($request->has('is_draft')) {
+                $announcement->is_draft = true;
+                Session::flash('success-inscription', 'Votre annonce a été enregistrer dans vos brouillons !');
+            } else {
+                $announcement->is_draft = false;
+                Session::flash('success-inscription', 'Votre annonce sera mise en ligne après approbation de l\'administrateur !');
+            }
+        }else{
+            if ($request->has('is_draft')) {
+                $announcement->is_draft = true;
+                Session::flash('success-inscription', 'Votre annonce a été enregistrer dans vos brouillons !');
+            } else {
+                $announcement->is_draft = false;
+                Session::flash('success-inscription', 'Votre annonce a été bien mise en ligne !');
+            }
+        }
+
+        $announcement->save();
+        $announcement->categoryAds()->attach($ct->category_id);
+
+        return redirect(route('dashboard'));
     }
 
 

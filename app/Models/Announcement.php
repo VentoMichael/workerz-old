@@ -18,12 +18,16 @@ class Announcement extends Model
 
     public function scopePublished($query)
     {
-        return $query->where('is_draft', '=', '0');
+        return $query->where('is_draft', '=', false);
     }
 
     public function scopeAdspayed($query)
     {
         return $query->where('plan_announcement_id', '!=', '1');
+    }
+    public function scopeNoBan($query)
+    {
+        return $query->where('banned', '=', '0');
     }
 
     public function user(){
