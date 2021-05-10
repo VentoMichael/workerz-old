@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
+use Intervention\Image\Facades\Image;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
 
 class CreateNewUser implements CreatesNewUsers
@@ -78,6 +79,11 @@ class CreateNewUser implements CreatesNewUsers
         } else {
             $pricemax = null;
         }
+        if (request()->plan_user_id){
+            $payed = 1;
+        }else{
+            $payed = 0;
+        }
         $user = User::create([
             'name' => $input['name'],
             'surname' => $sur,
@@ -87,11 +93,22 @@ class CreateNewUser implements CreatesNewUsers
             'plan_user_id' => $input['plan_user_id'],
             'website' => $web,
             'job' => $job,
+            'is_payed'=>$payed,
             'pricemax' => $pricemax,
             'slug' => Str::slug($input['name']),
             'description' => $description,
             'password' => Hash::make($input['password']),
         ]);
+        if (request()->hasFile('picture')) {
+            $filename = request('picture')->hashName();
+            $img = Image::make(request()->file('picture'))->resize(null, 200, function ($constraint) {
+                $constraint->aspectRatio();
+                $constraint->upsize();
+            })->save(storage_path('app/public/users/'.$filename));
+            $user->picture = 'users/'.$filename;
+        }else{
+            $pic = null;
+        }
         $phone = new Phone(['number' => $input['phone']]);
         $ct = new CategoryUser();
         $ct->category_id = \request('category-job');

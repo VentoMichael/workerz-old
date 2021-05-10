@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
+use Intervention\Image\Facades\Image;
 
 class AnnouncementController extends Controller
 {
@@ -77,11 +78,10 @@ class AnnouncementController extends Controller
      */
     public function store(Request $request)
     {
-
         Validator::make($request->all(),[
             'title' => 'required|unique:announcements',
             'slug' => 'required',
-            'picture' => 'image:jpg,jpeg,png,svg',
+            'picture' => 'image:jpg,jpeg,png,svg|file',
             'description' => 'required|max:256',
             'job' => 'required|max:256',
         ]);
@@ -90,7 +90,15 @@ class AnnouncementController extends Controller
         $announcement = new Announcement();
         $announcement->title = $request->title;
         $announcement->slug = Str::slug($request->title);
-        $announcement->picture = $request->picture;
+
+        if ($request->hasFile('picture')) {
+            $filename = request('picture')->hashName();
+            $img = Image::make($request->file('picture'))->resize(null, 200, function ($constraint) {
+                $constraint->aspectRatio();
+                $constraint->upsize();
+            })->save(storage_path('app/public/ads/'.$filename));
+            $announcement->picture = 'ads/'.$filename;
+        }
         $announcement->description = $request->description;
         $announcement->job = $request->job;
         $announcement->pricemax = $request->price_max;
@@ -98,6 +106,7 @@ class AnnouncementController extends Controller
         $announcement->province_id = $request->location;
         $announcement->start_month_id = $request->disponibility;
         $announcement->plan_announcement_id = $plan;
+
         $ct = new AnnouncementCategory();
         $ct->category_id = $request->category_job;
         if ($plan === 1) {

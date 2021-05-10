@@ -34,6 +34,9 @@ class Announcement extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function getPictureAttribute($value){
+        return asset($value);
+    }
     public function province()
     {
         return $this->belongsTo(Province::class);

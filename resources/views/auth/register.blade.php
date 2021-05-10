@@ -296,7 +296,7 @@
 @section('scripts')
     <script src="{{asset('js/passwordCheck.js')}}"></script>
     <script src="{{asset('js/passwordSee.js')}}"></script>
-    <script src="{{asset('js.previewPicture.js')}}"></script>
+    <script src="{{asset('js/previewPicture.js')}}"></script>
     <script src="{{asset('js/checkDataMaxOptions.js')}}"></script>
 @endsection
 @endif
