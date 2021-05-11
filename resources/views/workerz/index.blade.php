@@ -125,66 +125,74 @@
             @endforeach
             {{ $workerz->links() }}
         </div>
-        <div class="container-filters">
-            <form action="#" method="get">
-                <section>
-                    <h2 aria-level="2">
-                        Filtres
-                    </h2>
-                    <section class="container-filter-categories">
-                        <h3 aria-level="3">
-                            Catégories
-                        </h3>
-                        <ul class="list-categories">
-                            @foreach($categories as $category)
-                                @if($category->users_count !=0)
-                                    <li>
-                                        <input class="inp-cbx" id="category{{$category->id}}"
-                                               name="category{{$category->id}}"
-                                               type="checkbox" style="display: none;"/>
-                                        <label class="cbx" for="category{{$category->id}}">
+        @if($categories || $regions)
+
+            <div class="container-filters">
+                <form action="#" method="get">
+                    <section>
+                        <h2 aria-level="2">
+                            Filtres
+                        </h2>
+                        @if($categories)
+                            <section class="container-filter-categories">
+                                <h3 aria-level="3">
+                                    Catégories
+                                </h3>
+                                <ul class="list-categories">
+                                    @foreach($categories as $category)
+                                        @if($category->users_count !=0)
+                                            <li>
+                                                <input class="inp-cbx" id="category{{$category->id}}"
+                                                       name="category{{$category->id}}"
+                                                       type="checkbox" style="display: none;"/>
+                                                <label class="cbx" for="category{{$category->id}}">
+                                    <span>
+                                        <svg width="12px" height="9px" viewbox="0 0 12 9">
+                                          <polyline points="1 5 4 8 11 1"></polyline>
+                                        </svg>
+                                    </span>
+                                                    <span>{{$category->name}}</span>
+                                                </label>
+                                            </li>
+                                        @endif
+                                    @endforeach
+                                </ul>
+                            </section>
+                        @endif
+                        @if($regions)
+                            <section class="container-filter-categories">
+                                <h3 aria-level="3">
+                                    Régions
+                                </h3>
+                                <ul class="list-categories">
+                                    @foreach($regions as $region)
+                                        @if($region->users_count !=0)
+                                            <li>
+                                                <input class="inp-cbx" id="region{{$region->id}}"
+                                                       name="region{{$region->id}}"
+                                                       type="checkbox"
+                                                       style="display: none;"/>
+                                                <label class="cbx" for="region{{$region->id}}">
                                 <span>
                                     <svg width="12px" height="9px" viewbox="0 0 12 9">
                                       <polyline points="1 5 4 8 11 1"></polyline>
                                     </svg>
                                 </span>
-                                            <span>{{$category->name}}</span>
-                                        </label>
-                                    </li>
-                                @endif
-                            @endforeach
-                        </ul>
+                                                    <span>{{$region->name}}</span>
+                                                </label>
+                                            </li>
+                                        @endif
+                                    @endforeach
+                                </ul>
+                            </section>
+                        @endif
+                        <button>
+                            Appliquer les filtres
+                        </button>
                     </section>
-                    <section class="container-filter-categories">
-                        <h3 aria-level="3">
-                            Régions
-                        </h3>
-                        <ul class="list-categories">
-                            @foreach($regions as $region)
-                                @if($region->users_count !=0)
-                                    <li>
-                                        <input class="inp-cbx" id="region{{$region->id}}" name="region{{$region->id}}"
-                                               type="checkbox"
-                                               style="display: none;"/>
-                                        <label class="cbx" for="region{{$region->id}}">
-                                <span>
-                                    <svg width="12px" height="9px" viewbox="0 0 12 9">
-                                      <polyline points="1 5 4 8 11 1"></polyline>
-                                    </svg>
-                                </span>
-                                            <span>{{$region->name}}</span>
-                                        </label>
-                                    </li>
-                                @endif
-                            @endforeach
-                        </ul>
-                    </section>
-                    <button>
-                        Appliquer les filtres
-                    </button>
-                </section>
-            </form>
-        </div>
+                </form>
+            </div>
+        @endif
     </section>
 @endsection
 @section('scripts')

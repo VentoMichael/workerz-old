@@ -60,12 +60,20 @@
                                             src="{{asset('svg/cross.svg')}}" alt="Icone négative"> @endif Support
                                         prioritaire
                                     </li>
-                                    <li class="hepling">
-                                        @if($p->more_visible) <img src="{{asset('svg/good.svg')}}"
-                                                                       alt="Icone correct"> @else <img
-                                            src="{{asset('svg/cross.svg')}}" alt="Icone négative"> @endif
-                                        Forte visibilité
-                                        <span>Visible après approbation de l'administrateur</span>
+                                    <li>
+                                        @if($p->more_visible)
+                                            <img src="{{asset('svg/good.svg')}}" alt="Icone correct">                                                    @else
+                                            <img src="{{asset('svg/cross.svg')}}" alt="Icone négative">
+                                        @endif
+                                        @if($p->id == 1)
+                                            Forte visibilité
+                                        @endif
+                                        @if($p->id == 2)
+                                            Votre annonce sera visible {{$p->id * 3}} fois plus souvent
+                                        @endif
+                                        @if($p->id == 3)
+                                            Votre annonce sera visible {{$p->id * 5}} fois plus souvent
+                                        @endif
                                     </li>
                                     <li>
                                         @if($p->hight_visibility) <img src="{{asset('svg/good.svg')}}"

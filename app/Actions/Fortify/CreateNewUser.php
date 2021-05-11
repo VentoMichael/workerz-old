@@ -80,7 +80,7 @@ class CreateNewUser implements CreatesNewUsers
         } else {
             $pricemax = null;
         }
-        if (request()->plan_user_id) {
+        if (request()->plan_user_id == 1) {
             $payed = 1;
         } else {
             $payed = 0;
@@ -119,10 +119,6 @@ class CreateNewUser implements CreatesNewUsers
         //$user->categoryUser()->limit(2);
         $user->categoryUser()->attach($ct->category_id);
         $user->startDate()->attach($di->start_date_id);
-        if (request()->plan_user_id = 1) {
-            Session::flash('success-inscription',
-                'Votre inscription sera opérationnelle après approbation de l\'administrateur !');
-        }
         return $user;
     }
 }

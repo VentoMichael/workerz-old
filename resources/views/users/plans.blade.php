@@ -1,5 +1,11 @@
 @extends('layouts.app')
 @section('content')
+    @if (Session::has('errors'))
+        <div id="successMsg" class="successMsg"><img src="{{asset('svg/cross.svg')}}" alt="good icone">
+            <p>{{Session::get('errors')}}</p>
+            <span class="crossHide" id="crossHide">&times;</span>
+        </div>
+    @endif
     <section class="container-home margin">
         <div class="container-home_image container-home-create container-home-page">
             <div>
@@ -46,7 +52,7 @@
                             @if($plan->priority) <img src="{{asset('svg/good.svg')}}" alt="Icone correct"> @else <img
                                 src="{{asset('svg/cross.svg')}}" alt="Icone négative"> @endif Support prioritaire
                         </li>
-                        <li class="hepling">
+                        <li>
                             @if($plan->more_visible) <img src="{{asset('svg/good.svg')}}" alt="Icone correct"> @else
                                 <img src="{{asset('svg/cross.svg')}}" alt="Icone négative"> @endif
                             @if($plan->id == 1)
@@ -56,7 +62,7 @@
                                 Votre entreprise sera visible {{$plan->id * 3}} fois plus souvent
                             @endif
                             @if($plan->id == 3)
-                                Votre entreprise sera visible {{$plan->id * 4}} fois plus souvent
+                                Votre entreprise sera visible {{$plan->id * 5}} fois plus souvent
                             @endif
                         </li>
                         <li>
@@ -76,4 +82,7 @@
             @endforeach
         </div>
     </section>
+@endsection
+@section('scripts')
+    <script src="{{asset('js/successMsg.js')}}"></script>
 @endsection

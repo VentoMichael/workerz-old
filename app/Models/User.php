@@ -47,7 +47,10 @@ class User extends Authenticatable
     {
         return 'slug';
     }
-
+    public function getPicAttribute($value)
+    {
+        return asset($value);
+    }
     public function scopeIndependent($query)
     {
         return $query->where('role_id', '=', '2');

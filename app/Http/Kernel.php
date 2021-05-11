@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\noPlansUser;
 use App\Http\Middleware\PayedAds;
 use App\Http\Middleware\PayedUser;
 use App\Http\Middleware\UserRoute;
@@ -65,6 +66,7 @@ class Kernel extends HttpKernel
         'payeduser' => PayedUser::class,
         'payedads' => PayedAds::class,
         'userroute' => UserRoute::class,
+        'noplansuser' => noPlansUser::class,
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,

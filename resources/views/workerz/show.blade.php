@@ -82,7 +82,7 @@
             </div>
             <div class="container-picture-ads">
                 @if($worker->picture)
-                    <img src="{{ $worker->picture }}" alt="photo de profil de {{ucfirst($worker->name)}}"/>
+                    <img src="{{ $worker->pic }}" alt="photo de profil de {{ucfirst($worker->name)}}"/>
                 @else
                     <img src="{{asset('svg/ad.svg')}}" alt="icone d'annonces">
                 @endif
@@ -127,12 +127,7 @@
                         <img src="{{asset('svg/euro.svg')}}" alt="icone d'euro">
                         <span>Un minimum de {{$worker->pricemax}}€/h</span>
                     </div>
-                @foreach($worker->provinces as $wphy)
-                            <div>
-                                <img src="{{asset('svg/placeholder.svg')}}" alt="icone de position">
-                                <span>@foreach($wphy->pivot as $pivotw) @endforeach{{$wphy->postal_adress}} ({{$wphy->name}})</span>
-                            </div>
-                    @endforeach
+
                 </section>
             </div>
         </section>
@@ -191,7 +186,7 @@
                         </div>
                         <div class="container-picture-ads">
                             @if($ra->picture)
-                                <img src="{{ $ra->picture }}"
+                                <img src="{{ $ra->pic }}"
                                      alt="photo de profil de {{$ra->name}}"/>
                             @else
                                 <img src="{{asset('svg/ad.svg')}}" alt="icone d'annonces">
@@ -204,12 +199,7 @@
                             </h3>
                         </div>
                         <div class="container-infos-ads-randomm">
-                            @foreach($ra->provinces as $wp)
-                                <div class="container-position-ads">
-                                    <img src="{{asset('svg/placeholder.svg')}}" alt="icone de localité">
-                                    <p>{{$wp->first()->name}}</p>
-                                </div>
-                            @endforeach
+
                             <div class="container-position-ads">
                                 <img src="{{asset('svg/suitcase.svg')}}" alt="icone de malette">
                                 <span class="job-cat-ads">
@@ -223,7 +213,7 @@
                             </div>
                         </div>
                     </div>
-                    <a href="/workerz/{{$ra->title}}" class="btn-ads button-personnal-announcement">
+                    <a href="/workerz/{{$ra->slug}}" class="btn-ads button-personnal-announcement">
                     </a>
                 </section>
             @endforeach

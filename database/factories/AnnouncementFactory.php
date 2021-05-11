@@ -32,6 +32,7 @@ class AnnouncementFactory extends Factory
             'pricemax' => $this->faker->numberBetween($min = 100, $max = 10000),
             'user_id' => $this->faker->numberBetween($min = 1, $max = 10),
             'is_draft' => $this->faker->boolean($chanceOfGettingTrue = 50),
+            'is_payed' => $this->faker->boolean($chanceOfGettingTrue = 50),
             'plan_announcement_id'=> $this->faker->numberBetween($min = 1, $max = 3),
         ];
     }

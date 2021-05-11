@@ -3,6 +3,7 @@
 use App\Actions\Fortify\CreateNewUser;
 use App\Http\Controllers\ContactController;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 use Laravel\Fortify\Features;
@@ -21,15 +22,16 @@ use Laravel\Fortify\Http\Controllers\RegisteredUserController;
 */
 
 Route::get('/', function () {
-    $users = \App\Models\User::with('phones')->get();
-    $categories = \App\Models\Category::with('users')->orderBy('name', 'ASC')->get()->sortByDesc(function ($categories
+    $categories = \App\Models\Category::orderBy('name', 'ASC')->get()->sortByDesc(function ($categories
     ) {
         return $categories->users->count();
     })->take(5);
     $workerz = User::Independent()
+        ->Payed()
+        ->NoBan()
         ->inRandomOrder()
         ->first();
-    return view('home.index', compact('users', 'categories', 'workerz'));
+    return view('home.index', compact( 'categories', 'workerz'));
 })->name('home.index');
 
 
@@ -60,10 +62,10 @@ Route::get('/register/plans', [\App\Http\Controllers\UserController::class, 'pla
 
 Route::get('/register/plans/registration_type',
     [\App\Http\Controllers\UserController::class, 'registration_type'])
-    ->name('users.type');
+    ->name('users.type')->middleware('noplansuser');
 
 Route::get('/register/payed', [\App\Http\Controllers\UserController::class, 'payed'])
-    ->name('users.payed');
+    ->name('users.payed')->middleware('noplansuser');
 
 Route::get('/workerz', [\App\Http\Controllers\UserController::class, 'index'])
     ->name('workerz');

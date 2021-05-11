@@ -33,10 +33,10 @@ class AnnouncementController extends Controller
 
     public function index()
     {
-        $announcements = Announcement::Published()->NoBan()->Payement()->with('user', 'startmonth')->orderBy('plan_announcement_id',
+        $announcements = Announcement::Published()->NoBan()->Payement()->orderBy('plan_announcement_id',
             'DESC')->orderBy('created_at', 'DESC')->withLikes()->paginate(4)->onEachSide(0);
-        $categories = Category::with('announcements')->withCount("announcements")->get()->sortBy('name');
-        $regions = Province::with('announcements')->withCount("announcements")->get()->sortBy('name');
+        $categories = Category::withCount("announcements")->get()->sortBy('name');
+        $regions = Province::withCount("announcements")->get()->sortBy('name');
         $user = auth()->user();
 
         return view('announcements.index', compact('announcements', 'categories', 'regions', 'user'));
@@ -63,9 +63,9 @@ class AnnouncementController extends Controller
     public function create(Request $request)
     {
         $plan = $request->plan;
-        $categories = Category::with('announcements')->withCount("announcements")->get()->sortBy('name');
-        $regions = Province::with('announcements')->withCount("announcements")->get()->sortBy('name');
-        $disponibilities = StartMonth::with('announcements')->withCount("announcements")->get()->sortBy('id');
+        $categories = Category::withCount("announcements")->get()->sortBy('name');
+        $regions = Province::withCount("announcements")->get()->sortBy('name');
+        $disponibilities = StartMonth::withCount("announcements")->get()->sortBy('id');
         Session::flash('success-inscription',
             'Votre inscription à été un succés ! Il suffit de terminer le paiement et votre entreprise sera visible.');
         return view('announcements.create', compact('plan', 'disponibilities', 'categories', 'regions'));

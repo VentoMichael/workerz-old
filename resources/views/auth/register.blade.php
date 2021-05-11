@@ -233,7 +233,7 @@
                                    required>
                         </div>
                     </div>
-
+@dd($request)
                     <div class="container-register-form">
                         <div class="container-form-email selectdiv">
                             <label for="category_job">Catégorie de métier <span class="required">*</span></label>

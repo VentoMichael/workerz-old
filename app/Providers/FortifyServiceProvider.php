@@ -46,7 +46,6 @@ class FortifyServiceProvider extends ServiceProvider
             $regions = Province::all()->sortBy('name');
             $categories = Category::all()->sortBy('name');
             $type = null;
-
             return view('auth.register',
                 compact('plan', 'type', 'disponibilities', 'regions', 'categories', 'request'));
         });

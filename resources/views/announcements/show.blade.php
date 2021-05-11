@@ -93,7 +93,7 @@
 
             <div class="container-picture-ads">
                 @if($announcement->picture)
-                    <img src="{{ $announcement->picture }}" alt="photo de profil de {{ucfirst($announcement->name)}}"/>
+                    <img src="{{ $announcement->pic }}" alt="photo de profil de {{ucfirst($announcement->name)}}"/>
                 @else
                     <img src="{{asset('svg/ad.svg')}}" alt="icone d'annonces">
                 @endif
@@ -204,7 +204,7 @@
                         </a>
                         <div class="container-picture-ads">
                             @if($ra->picture)
-                                <img src="{{ $ra->picture }}"
+                                <img src="{{ $ra->pic }}"
                                      alt="photo de profil de {{$ra->name}}"/>
                             @else
                                 <img src="{{asset('svg/ad.svg')}}" alt="icone d'annonces">
