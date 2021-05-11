@@ -84,7 +84,15 @@ Route::delete('/workerz/{worker}/like', [\App\Http\Controllers\UserLikeControlle
 Route::prefix('')->middleware(['auth'])->group(function () {
     Route::get('/dashboard', function () {
         return view('dashboard.index');
-    })->name('dashboard')->middleware('payeduser');
+    })->name('dashboard');
+
+    Route::get('/dashboard/profile', function () {
+        return view('dashboard.index');
+    })->name('dashboard/profile')->middleware('payeduser');
+
+    Route::get('/dashboard/ads', function () {
+        return view('dashboard.index');
+    })->name('dashboard/ads')->middleware('payedads');
 
     Route::get('/announcement/plans',
         [\App\Http\Controllers\AnnouncementController::class, 'plans'])
@@ -93,7 +101,7 @@ Route::prefix('')->middleware(['auth'])->group(function () {
     Route::delete('/announcements/{announcement}/like',
         [\App\Http\Controllers\AnnouncementLikeController::class, 'delete']);
     Route::post('/announcement/',
-        [\App\Http\Controllers\AnnouncementController::class, 'store'])->name('announcements.store')->middleware('payedads');
+        [\App\Http\Controllers\AnnouncementController::class, 'store'])->name('announcements.store');
     Route::get('/announcement/create',
         [\App\Http\Controllers\AnnouncementController::class, 'create'])->name('announcements.create');
     Route::get('/announcement/payed', [\App\Http\Controllers\AnnouncementController::class, 'payed'])

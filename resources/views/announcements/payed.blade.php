@@ -52,7 +52,7 @@
                                 <ul>
                                     <li>
                                         <img src="{{asset('svg/good.svg')}}" alt="Icone correct">Durée
-                                        : {{$p->duration}} jours
+                                        : {{$p->duration}} mois
                                     </li>
                                     <li>
                                         @if($p->priority) <img src="{{asset('svg/good.svg')}}"
@@ -61,11 +61,10 @@
                                         prioritaire
                                     </li>
                                     <li class="hepling">
-                                        @if($p->directly_visible) <img src="{{asset('svg/good.svg')}}"
+                                        @if($p->more_visible) <img src="{{asset('svg/good.svg')}}"
                                                                        alt="Icone correct"> @else <img
                                             src="{{asset('svg/cross.svg')}}" alt="Icone négative"> @endif
-                                        Directement visible
-                                        <span>Visible après approbation de l'administrateur</span>
+                                            Vous serez vus plus souvent
                                     </li>
                                     <li>
                                         @if($p->hight_visibility) <img src="{{asset('svg/good.svg')}}"

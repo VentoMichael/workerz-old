@@ -286,6 +286,10 @@
         padding-top: 10px;
         margin-left: 0;
     }
+
+    div .select-register {
+        height: 100%;
+    }
 }
 
 @media (max-width: 730px) {
@@ -382,9 +386,6 @@
         z-index: 21;
     }
 
-    div .select-register {
-        height: 100%;
-    }
 
     .container-svg img {
         width: 100%;

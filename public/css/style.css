@@ -52,16 +52,18 @@
     justify-self: flex-end;
 }
 
-.container-home_image div:first-child{
+.container-home_image div:first-child {
     max-width: 73%;
     min-width: 55%;
     width: 100%;
     justify-self: flex-start;
     align-self: center;
 }
-.container-paied div:first-child{
+
+.container-paied div:first-child {
     max-width: 100%;
 }
+
 .container-home-text p {
     margin: 10px 0 20px;
 }
@@ -99,9 +101,11 @@
     font-size: .8em;
     margin-top: 6px;
 }
-.containerJobAds p:last-child{
+
+.containerJobAds p:last-child {
     margin-top: 0;
 }
+
 .box-category {
     position: relative;
     transition: .3s;
@@ -435,10 +439,12 @@ form .form-group .email-label {
 .list-password-required {
     margin: 7px 0 15px;
 }
-select option:checked{
+
+select option:checked {
     background: var(--blueLight);
     color: white;
 }
+
 .container-svg, .svg-icon {
     width: 100%;
 }
@@ -688,11 +694,14 @@ select option:checked{
 }
 
 .select-register:hover {
-    height: 100px;
+    height: 150px;
+    cursor: pointer;
 }
-div .select-region:hover{
+
+div .select-region:hover {
     height: 44px;
 }
+
 .form-login .input-field {
     padding: 9px 5px;
 }
@@ -881,11 +890,13 @@ form .search-announcement {
     right: 0;
     top: 0;
 }
+
 .container-form-register div .form-login .container-inscriptin-logins {
     margin-top: 100px;
     position: relative;
     grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
 }
+
 .container-infos-announcement {
     padding: 50px 15px 20px;
 }
@@ -1103,9 +1114,11 @@ form .search-announcement {
     position: sticky;
     top: 100px;
 }
-.title-policy{
+
+.title-policy {
     font-size: 2em;
 }
+
 .containerLove {
     right: inherit;
 }
@@ -1300,7 +1313,7 @@ form .search-announcement {
     padding: 15px 20px 30px;
 }
 
-.container-plans section:nth-child(2):after,.container-hot-plan:after {
+.container-plans section:nth-child(2):after, .container-hot-plan:after {
     content: "";
     display: block;
     width: 120px;
@@ -1324,7 +1337,7 @@ form .search-announcement {
     justify-content: space-between;
 }
 
-.container-plans section:nth-child(2) h3,.container-plan-paied h4 {
+.container-plans section:nth-child(2) h3, .container-plan-paied h4 {
     font-size: 2.5em;
     padding-top: 15px;
     padding-bottom: 10px;
@@ -1346,7 +1359,6 @@ form .search-announcement {
 
 .hepling {
     position: relative;
-    cursor: help;
 }
 
 .hepling:hover span {
@@ -1374,7 +1386,7 @@ form .search-announcement {
 
 .successMsg {
     position: fixed;
-    font-family:roboto,sans-serif;
+    font-family: roboto, sans-serif;
     bottom: 20px;
     display: flex;
     align-items: center;
@@ -1454,7 +1466,7 @@ div .last-item-pagination {
     grid-gap: 50px;
 }
 
-.container-perso-infos img,.container-infos-ads-randomm img {
+.container-perso-infos img, .container-infos-ads-randomm img {
     min-width: 40px;
     max-width: 40px;
     height: 40px;
@@ -1504,19 +1516,22 @@ div .container-perso-infos {
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 }
 
-.container-payed-plan{
+.container-payed-plan {
     margin: 0 10px 0 0;
 }
+
 .container-ad-random {
     box-shadow: var(--shadow);
     border-radius: 5px;
     padding: 20px 10px 25px;
     position: relative;
 }
-.container-infos-perso-ads h3{
+
+.container-infos-perso-ads h3 {
     font-size: 1.6em;
     margin-bottom: 10px;
 }
+
 .container-ad-random:after {
     content: "";
     background-position: center;
@@ -1562,56 +1577,70 @@ div .container-perso-infos {
     margin-top: 10px;
     word-break: break-all;
 }
-.container-position-ads img{
+
+.container-position-ads img {
     min-width: 30px;
 }
-.container-infos-ads-randomm{
+
+.container-infos-ads-randomm {
     display: grid;
     grid-gap: 10px;
 }
-.notHoverHeart:hover{
+
+.notHoverHeart:hover {
     cursor: inherit;
 }
-.notHoverHeart:hover .heart{
+
+.notHoverHeart:hover .heart {
     display: inherit;
 }
-.notVisible{
+
+.notVisible {
     display: none;
 }
+
 .button-loves {
     background: transparent;
     border: 0;
     display: flex;
     align-items: center;
 }
+
 .button-loves:hover {
     padding: 1px 6px;
 }
-.button-loves:after{
+
+.button-loves:after {
     display: none;
 }
-button .heartLiked{
+
+button .heartLiked {
     display: inherit;
 }
-.button-loves span{
+
+.button-loves span {
     font-size: 1.3em;
 }
-div .helping-like{
+
+div .helping-like {
     position: absolute;
 }
-div .helping-like:hover span{
+
+div .helping-like:hover span {
     left: -50%;
     top: -220%;
     min-width: 115px;
     max-width: 115px;
 }
-div .helping-like span{
+
+div .helping-like span {
     left: -50%;
     top: -220%;
     min-width: 115px;
     max-width: 115px;
 }
-div .helping-like span:after{
+
+div .helping-like span:after {
     background-image: url(../svg/triangle-b.svg);
     background-size: 100%;
     background-repeat: no-repeat;
@@ -1622,30 +1651,38 @@ div .helping-like span:after{
     margin-left: -10px;
     width: 20px;
     height: 20px;
-    bottom:-15px;
+    bottom: -15px;
     content: "";
 }
-.container-love-show{
+
+.container-love-show {
     position: absolute;
 }
-div .containerRandomLoves{
+
+div .containerRandomLoves {
     top: -43px;
 }
-div .help-show{
+
+div .help-show {
     top: -46px;
 }
-.container-payed-plan .reductionPrice{
+
+.container-payed-plan .reductionPrice {
     margin-bottom: 10px;
 }
-.container-plan-paied h3{
+
+.container-plan-paied h3 {
     margin-bottom: 80px;
     font-size: 2em;
 }
-.container-price-paied{
+
+.container-price-paied {
     align-self: center;
-    position: relative;    margin-left: 15px;
+    position: relative;
+    margin-left: 15px;
 }
-.container-price-paied:before{
+
+.container-price-paied:before {
     content: '';
     width: 5px;
     height: 100%;
@@ -1655,36 +1692,47 @@ div .help-show{
     left: -40px;
     border-radius: 10px;
 }
-.container-hot-plan{
+
+.container-hot-plan {
     position: relative;
 }
-section .container-paied{
+
+section .container-paied {
     grid-template-columns: repeat(auto-fit, minmax(331px, 1fr));
 }
+
 div .password-toggle-reset {
     top: 25px;
 }
+
 div .password--visibleToggle-eye {
     top: 33px;
 }
-.container-announcement-create .selectdiv:hover{
-    height: 100px;
+
+.container-announcement-create .selectdiv:hover {
+    height: 150px;
     cursor: pointer;
 }
-.select-regions:hover{
+
+.select-regions:hover {
     height: 44px;
     cursor: pointer;
 }
-.danger{
+
+.danger {
     color: red;
     font-size: 1em;
 }
-.container-buttons-ads,.container-maxCharacters{
-    display: flex;justify-content: space-between;
+
+.container-buttons-ads, .container-maxCharacters {
+    display: flex;
+    justify-content: space-between;
 }
-.container-buttons-ads .link-back{
+
+.container-buttons-ads .link-back {
     position: inherit;
 }
-.maxCharacters{
+
+.maxCharacters {
     font-size: 0.9em;
 }

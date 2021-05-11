@@ -18,29 +18,31 @@ class PlanUserSeeder extends Seeder
             'id' => 1,
             'name' => 'Free',
             'price' => 0,
-            'duration' => 5,
+            'duration' => 1,
             'hight_visibility' => false,
             'priority' => false,
-            'directly_visible'=>false,
+            'more_visible'=>false,
         ]);
         PlanUser::create([
             'id' => 2,
             'name' => 'Premium',
-            'price' => 4.99,
-            'oldprice' => 6.99,
-            'duration' => 15,
+            'price' => 24.99,
+            'costMonthly' => 8.33,
+            'oldprice' => 29.99,
+            'duration' => 3,
             'hight_visibility' => true,
             'priority' => true,
-            'directly_visible'=>true,
+            'more_visible'=>true,
         ]);
         PlanUser::create([
             'id' => 3,
             'name' => 'Star',
-            'price' => 9.99,
-            'duration' => 25,
+            'price' => 79.99,
+            'costMonthly' => 6.67,
+            'duration' => 12,
             'hight_visibility' => true,
             'priority' => true,
-            'directly_visible'=>true,
+            'more_visible'=>true,
         ]);
     }
 }

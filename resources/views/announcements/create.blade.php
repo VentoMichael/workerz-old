@@ -95,12 +95,13 @@
                     <div class="container-form-email">
 
                         <label for="category_job">Catégorie de métier <span class="required">*</span></label>
-                        <select required class="select-register select-regions" @if(request('plan') == 1)
+                        <select required @if(request('plan') == 1)
                                 data-maxoption="1"
+                                class="select-register select-regions"
                                 @endif
-                                @if(request('plan') == 2) class="select-register selectdiv" multiple data-maxoption="2"
+                                @if(request('plan') == 2) class="select-register select-regions selectdiv" multiple data-maxoption="2"
                                 @endif
-                                @if(request('plan') == 3) class="select-register selectdiv" multiple data-maxoption="3"
+                                @if(request('plan') == 3) class="select-register select-regions selectdiv" multiple data-maxoption="3"
                                 @endif name="category_job[]" id="category_job">
                             @foreach($categories as $c)
                                 <option value="{{$c->id}}">{{$c->name}}</option>

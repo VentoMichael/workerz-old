@@ -40,21 +40,31 @@
                     </div>
                     <ul>
                         <li>
-                            <img src="{{asset('svg/good.svg')}}" alt="Icone correct">Durée : {{$plan->duration}} jours
+                            <img src="{{asset('svg/good.svg')}}" alt="Icone correct">Durée : {{$plan->duration}} mois
                         </li>
                         <li>
                             @if($plan->priority) <img src="{{asset('svg/good.svg')}}" alt="Icone correct"> @else <img
                                 src="{{asset('svg/cross.svg')}}" alt="Icone négative"> @endif Support prioritaire
                         </li>
                         <li class="hepling">
-                            @if($plan->directly_visible) <img src="{{asset('svg/good.svg')}}" alt="Icone correct"> @else
-                                <img src="{{asset('svg/cross.svg')}}" alt="Icone négative"> @endif
-                            Directement visible
-                            <span>Visible après approbation de l'administrateur</span>
+                            @if($plan->more_visible)
+                                <img src="{{asset('svg/good.svg')}}" alt="Icone correct">                                                    @else
+                                <img src="{{asset('svg/cross.svg')}}" alt="Icone négative">
+                            @endif
+                            @if($plan->id == 1)
+                                Forte visibilité
+                            @endif
+                                @if($plan->id == 2)
+                                    Votre annonce sera visible {{$plan->id * 3}} fois plus souvent
+                                @endif
+                                @if($plan->id == 3)
+                                    Votre annonce sera visible {{$plan->id * 4}} fois plus souvent
+                                @endif
                         </li>
                         <li>
                             @if($plan->hight_visibility) <img src="{{asset('svg/good.svg')}}" alt="Icone correct"> @else
-                                <img src="{{asset('svg/cross.svg')}}" alt="Icone négative"> @endif Grande visibilité
+                                <img src="{{asset('svg/cross.svg')}}" alt="Icone négative"> @endif Visible parmis les
+                            premiers
                         </li>
                     </ul>
                     <form action="{{route('announcements.create')}}" method="post">

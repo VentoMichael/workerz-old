@@ -138,7 +138,7 @@ class AnnouncementController extends Controller
         $announcement->save();
         $announcement->categoryAds()->attach($ct->category_id);
 
-        return redirect(route('dashboard'));
+        return redirect(route('dashboard/ads'));
     }
 
 

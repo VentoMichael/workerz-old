@@ -18,29 +18,31 @@ class PlanAnnouncementSeeder extends Seeder
             'id' => 1,
             'name' => 'Free',
             'price' => 0,
-            'duration' => 5,
+            'duration' => 1,
             'hight_visibility' => false,
             'priority' => false,
-            'directly_visible'=>false,
+            'more_visible'=>false,
         ]);
         PlanAnnouncement::create([
             'id' => 2,
             'name' => 'Premium',
-            'price' => 1.99,
-            'oldprice' => 4.99,
-            'duration' => 15,
+            'price' => 24.99,
+            'oldprice' => 29.99,
+            'costMonthly' => 8.33,
+            'duration' => 3,
             'hight_visibility' => true,
             'priority' => true,
-            'directly_visible'=>true,
+            'more_visible'=>true,
         ]);
         PlanAnnouncement::create([
             'id' => 3,
             'name' => 'Star',
-            'price' => 7.99,
-            'duration' => 25,
+            'price' => 79.99,
+            'costMonthly' => 6.67,
+            'duration' => 12,
             'hight_visibility' => true,
             'priority' => true,
-            'directly_visible'=>true,
+            'more_visible'=>true,
         ]);
     }
 }

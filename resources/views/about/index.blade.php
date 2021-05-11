@@ -8,7 +8,8 @@
                         À propos de nous
                     </h2>
                     <p>
-                        Workerz, créer par <a href="http://ventomichael.site/">Vento Michael</a>, vous donne la possibilité
+                        Workerz, créer par <a href="http://ventomichael.site/">Vento Michael</a>, vous donne la
+                        possibilité
                         de visez dans le mille !
                     </p>
                 </div>
@@ -21,6 +22,15 @@
                         </a>
                     </div>
                 @endguest
+                @auth
+                    <div>
+                        <a href="{{route('announcements.plans')}}">
+                            <button role="button" class="button-cta" type="submit">
+                                J'ajoute une annonce
+                            </button>
+                        </a>
+                    </div>
+                @endauth
             </div>
             <div class="container-svg">
                 <img src="{{asset('svg/us.svg')}}"
@@ -36,7 +46,8 @@
         </div>
         <div class="container-six-category-home show-content">
             <section class="box-category box-about">
-                <img src="{{asset('svg/Video tutorial _Monochromatic.svg')}}" alt="Icone d'un cahier avec une personne voulant écrire dedans">
+                <img src="{{asset('svg/Video tutorial _Monochromatic.svg')}}"
+                     alt="Icone d'un cahier avec une personne voulant écrire dedans">
                 <div>
                     <h3 aria-level="3">Développement d'une annonce</h3>
                     <p>Vous aurez la possibilité de développer une annonce afin de trouver un corps de métier dont vous
@@ -74,13 +85,24 @@
                         avancerez bien plus rapidement que vous ne le pensez, ne perdez pas de temps
                     </p>
                 </div>
-                <div>
-                    <a href="{{ route('users.plans') }}">
-                        <button role="button" class="button-cta" type="submit">
-                            Je m'inscris
-                        </button>
-                    </a>
-                </div>
+                @guest
+                    <div>
+                        <a href="{{ route('users.plans') }}">
+                            <button role="button" class="button-cta" type="submit">
+                                Je m'inscris
+                            </button>
+                        </a>
+                    </div>
+                @endguest
+                @auth
+                    <div>
+                        <a href="{{route('announcements.plans')}}">
+                            <button role="button" class="button-cta" type="submit">
+                                J'ajoute une annonce
+                            </button>
+                        </a>
+                    </div>
+                @endauth
             </div>
         </div>
     </section>
