@@ -6,9 +6,9 @@ use App\Models\CategoryUser;
 use App\Models\Phone;
 use App\Models\startDate;
 use App\Models\User;
-use Carbon\Carbon;
+use http\Env\Request;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
@@ -100,14 +100,15 @@ class CreateNewUser implements CreatesNewUsers
             'description' => $description,
             'password' => Hash::make($input['password']),
         ]);
-        if (request()->hasFile('picture')) {
+        if (\request()->hasFile('picture')) {
+            Storage::makeDirectory('users');
             $filename = request('picture')->hashName();
-            $img = Image::make(request()->file('picture'))->resize(null, 200, function ($constraint) {
+            $img = Image::make(\request()->file('picture'))->resize(null, 200, function ($constraint) {
                 $constraint->aspectRatio();
                 $constraint->upsize();
             })->save(storage_path('app/public/users/'.$filename));
             $user->picture = 'users/'.$filename;
-        } else {
+        }else{
             $pic = null;
         }
         $phone = new Phone(['number' => $input['phone']]);

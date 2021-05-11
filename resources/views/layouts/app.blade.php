@@ -303,15 +303,8 @@
         </div>
     @endif
 </footer>
-<script>const nodeList = document.querySelectorAll(".show-content"), scroll = Array.from(nodeList);
-    if (scroll) {
-        let l = function () {
-            let l = window.scrollY;
-            if (window.screen.height >= 568 && window.screen.height < 600) for (let o = 0; scroll.length - 1 >= o; o++) l >= scroll[o].offsetTop - 450 ? (scroll[o].style.opacity = 1, scroll[o].style.transition = "1s") : scroll[o].style.opacity = 0; else if (window.screen.height >= 600 && window.screen.height < 650) for (let o = 0; scroll.length - 1 >= o; o++) l >= scroll[o].offsetTop - 500 ? (scroll[o].style.opacity = 1, scroll[o].style.transition = "1s") : scroll[o].style.opacity = 0; else if (window.screen.height >= 650 && window.screen.height < 850) for (let o = 0; scroll.length - 1 >= o; o++) l >= scroll[o].offsetTop - 600 ? (scroll[o].style.opacity = 1, scroll[o].style.transition = "1s") : scroll[o].style.opacity = 0; else if (window.screen.height >= 850) for (let o = 0; scroll.length - 1 >= o; o++) l >= scroll[o].offsetTop - 700 ? (scroll[o].style.opacity = 1, scroll[o].style.transition = "1s") : scroll[o].style.opacity = 1
-        };
-        window.addEventListener("scroll", l)
-    }</script>
+<script>const nodeList=document.querySelectorAll(".show-content"),scroll=Array.from(nodeList);if(scroll){let l=function(){let l=window.scrollY;if(window.screen.height>=568&&window.screen.height<600)for(let o=0;scroll.length-1>=o;o++)l>=scroll[o].offsetTop-450?(scroll[o].style.opacity=1,scroll[o].style.transition="1s"):scroll[o].style.opacity=0;else if(window.screen.height>=600&&window.screen.height<650)for(let o=0;scroll.length-1>=o;o++)l>=scroll[o].offsetTop-500?(scroll[o].style.opacity=1,scroll[o].style.transition="1s"):scroll[o].style.opacity=0;else if(window.screen.height>=650&&window.screen.height<850)for(let o=0;scroll.length-1>=o;o++)l>=scroll[o].offsetTop-600?(scroll[o].style.opacity=1,scroll[o].style.transition="1s"):scroll[o].style.opacity=0;else if(window.screen.height>=850)for(let o=0;scroll.length-1>=o;o++)l>=scroll[o].offsetTop-700?(scroll[o].style.opacity=1,scroll[o].style.transition="1s"):scroll[o].style.opacity=1};window.addEventListener("scroll",l)}</script>
+<script src="{{asset('js/successMsg.js')}}"></script>
 @yield('scripts')
-
 </body>
 </html>

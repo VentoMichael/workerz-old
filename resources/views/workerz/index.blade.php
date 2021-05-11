@@ -80,7 +80,7 @@
                                      alt="icone de coeur plein">
                                 <p>
                                     {{$worker->likes? : 0}}</p>
-                                <span> Il faut être connecter pour aimer l'annonce</span>
+                                <span> Il faut être connecter pour aimer l'entreprise</span>
                                 @endauth
                             </div>
                         </a>
@@ -89,7 +89,7 @@
                         </div>
                         <div class="container-image-announcement">
                             @if($worker->picture)
-                                <img src="{{ $worker->picture }}" alt="image de profil de {{$worker->pricemax}}">
+                                <img src="{{ $worker->picture }}" alt="image de profil de {{$worker->name}} @if($worker->surname) {{$worker->surname}} @endif">
                             @else
                                 <img src="{{asset('svg/market.svg')}}" alt="icone d'un magasin">
                             @endif
@@ -194,7 +194,4 @@
             </div>
         @endif
     </section>
-@endsection
-@section('scripts')
-    <script src="{{asset('js/successMsg.js')}}"></script>
 @endsection

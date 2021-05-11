@@ -233,7 +233,6 @@
                                    required>
                         </div>
                     </div>
-@dd($request)
                     <div class="container-register-form">
                         <div class="container-form-email selectdiv">
                             <label for="category_job">Catégorie de métier <span class="required">*</span></label>
@@ -264,7 +263,7 @@
                         </div>
                         <div class="container-form-email">
                             <label for="pricemax">Votre prix horaire</label>
-                            <input type="text" id="pricemax" pattern="^[0-9-+\s()]*$" name="pricemax"
+                            <input max="999999" type="text" id="pricemax" pattern="^[0-9-+\s()]*$" name="pricemax"
                                    value="{{old("pricemax")}}"
                                    class=" @error('pricemax') is-invalid @enderror email-label" placeholder="55"><span
                                 class="horary-cost">€/h</span>

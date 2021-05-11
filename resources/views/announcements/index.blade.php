@@ -90,7 +90,7 @@
                         </div>
                         <div class="container-image-announcement">
                             @if($announcement->picture)
-                                <img src="{{ $announcement->picture }}" alt="image de profil"/>
+                                <img src="{{ $announcement->picture }}" alt="image de profil de {{$announcement->name}}"/>
                             @else
                                 <img src="{{asset('svg/ad.svg')}}" alt="icone d'annonces">
                             @endif
@@ -190,7 +190,4 @@
             </form>
         </div>
     </section>
-@endsection
-@section('scripts')
-    <script src="{{asset('js/successMsg.js')}}"></script>
 @endsection

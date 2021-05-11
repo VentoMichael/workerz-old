@@ -7,7 +7,6 @@ use App\Models\Category;
 use App\Models\PlanUser;
 use App\Models\Province;
 use App\Models\User;
-use App\Models\PlanAnnouncement;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -58,7 +57,7 @@ class UserController extends Controller
             $user->is_payed = 1;
             $user->update($request);
         }
-        dd($request,$user);
+        //dd($request,$user);
         $plan = PlanUser::where('id','=',$request->user()->plan_user_id)->get();
         Session::flash('success-inscription', 'Votre inscription à été un succés ! Il suffit de terminer le paiement et votre entreprise sera visible.');
         return view('users.payed',compact('plan'));

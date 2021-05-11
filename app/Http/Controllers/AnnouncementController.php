@@ -14,6 +14,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Intervention\Image\Facades\Image;
@@ -95,6 +96,7 @@ class AnnouncementController extends Controller
         $announcement->slug = Str::slug($request->title);
 
         if ($request->hasFile('picture')) {
+            Storage::makeDirectory('ads');
             $filename = request('picture')->hashName();
             $img = Image::make($request->file('picture'))->resize(null, 200, function ($constraint) {
                 $constraint->aspectRatio();
