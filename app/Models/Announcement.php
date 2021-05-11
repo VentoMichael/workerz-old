@@ -9,6 +9,7 @@ class Announcement extends Model
 {
     use HasFactory;
     use Likable;
+
     protected $guarded = [];
 
     public function getRouteKeyName()
@@ -25,18 +26,27 @@ class Announcement extends Model
     {
         return $query->where('plan_announcement_id', '!=', '1');
     }
+
     public function scopeNoBan($query)
     {
         return $query->where('banned', '=', '0');
     }
 
-    public function user(){
+    public function scopePayement($query)
+    {
+        return $query->where('is_payed', '=', '1');
+    }
+
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 
-    public function getPictureAttribute($value){
+    public function getPictureAttribute($value)
+    {
         return asset($value);
     }
+
     public function province()
     {
         return $this->belongsTo(Province::class);

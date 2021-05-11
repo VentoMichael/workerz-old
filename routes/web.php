@@ -30,8 +30,7 @@ Route::get('/', function () {
         ->inRandomOrder()
         ->first();
     return view('home.index', compact('users', 'categories', 'workerz'));
-})
-    ->name('home.index');
+})->name('home.index');
 
 
 
@@ -94,9 +93,11 @@ Route::prefix('')->middleware(['auth'])->group(function () {
     Route::delete('/announcements/{announcement}/like',
         [\App\Http\Controllers\AnnouncementLikeController::class, 'delete']);
     Route::post('/announcement/',
-        [\App\Http\Controllers\AnnouncementController::class, 'store'])->name('announcements.store');
+        [\App\Http\Controllers\AnnouncementController::class, 'store'])->name('announcements.store')->middleware('payedads');
     Route::get('/announcement/create',
         [\App\Http\Controllers\AnnouncementController::class, 'create'])->name('announcements.create');
+    Route::get('/announcement/payed', [\App\Http\Controllers\AnnouncementController::class, 'payed'])
+        ->name('announcements.payed');
 });
 
 

@@ -6,6 +6,7 @@ use App\Models\CategoryUser;
 use App\Models\Phone;
 use App\Models\startDate;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
@@ -79,9 +80,9 @@ class CreateNewUser implements CreatesNewUsers
         } else {
             $pricemax = null;
         }
-        if (request()->plan_user_id){
+        if (request()->plan_user_id) {
             $payed = 1;
-        }else{
+        } else {
             $payed = 0;
         }
         $user = User::create([
@@ -93,7 +94,7 @@ class CreateNewUser implements CreatesNewUsers
             'plan_user_id' => $input['plan_user_id'],
             'website' => $web,
             'job' => $job,
-            'is_payed'=>$payed,
+            'is_payed' => $payed,
             'pricemax' => $pricemax,
             'slug' => Str::slug($input['name']),
             'description' => $description,
@@ -106,21 +107,21 @@ class CreateNewUser implements CreatesNewUsers
                 $constraint->upsize();
             })->save(storage_path('app/public/users/'.$filename));
             $user->picture = 'users/'.$filename;
-        }else{
+        } else {
             $pic = null;
         }
         $phone = new Phone(['number' => $input['phone']]);
         $ct = new CategoryUser();
-        $ct->category_id = \request('category-job');
-
+        $ct->category_id = \request('category_job');
         $di = new startDate();
         $di->start_date_id = \request('disponibilities');
         $user->phones()->save($phone);
         //$user->categoryUser()->limit(2);
         $user->categoryUser()->attach($ct->category_id);
         $user->startDate()->attach($di->start_date_id);
-        if (request()->plan_user_id = 1){
-            Session::flash('success-inscription', 'Votre inscription sera opérationnelle après approbation de l\'administrateur !');
+        if (request()->plan_user_id = 1) {
+            Session::flash('success-inscription',
+                'Votre inscription sera opérationnelle après approbation de l\'administrateur !');
         }
         return $user;
     }

@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\PayedAds;
 use App\Http\Middleware\PayedUser;
 use App\Http\Middleware\UserRoute;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
@@ -62,6 +63,7 @@ class Kernel extends HttpKernel
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'password.confirm' => \Illuminate\Auth\Middleware\RequirePassword::class,
         'payeduser' => PayedUser::class,
+        'payedads' => PayedAds::class,
         'userroute' => UserRoute::class,
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,

@@ -236,7 +236,7 @@
 
                     <div class="container-register-form">
                         <div class="container-form-email selectdiv">
-                            <label for="category-job">Catégorie de métier <span class="required">*</span></label>
+                            <label for="category_job">Catégorie de métier <span class="required">*</span></label>
                             <select @if($request->plan_user_id == 1 || $request->old('plan_user_id') == 1)
                                     data-maxoption="1"
                                     class="email-label"
@@ -244,7 +244,7 @@
                                     @if($request->plan_user_id == 2 || $request->old('plan_user_id') == 2) class="select-register" multiple data-maxoption="2"
                                     @endif
                                     @if($request->plan_user_id == 3 || $request->old('plan_user_id') == 3) class="select-register" multiple data-maxoption="3"
-                                    @endif name="category-job[]" id="category-job">
+                                    @endif name="category_job[]" id="category_job">
                                 @foreach($categories as $c)
                                     <option value="{{$c->id}}">{{$c->name}}</option>
                                 @endforeach

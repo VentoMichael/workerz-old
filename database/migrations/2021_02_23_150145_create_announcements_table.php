@@ -24,6 +24,7 @@ class CreateAnnouncementsTable extends Migration
             $table->boolean('banned')->default(false);
             $table->unsignedFloat('pricemax')->nullable();
             $table->boolean('is_draft');
+            $table->boolean('is_payed')->default(false);
             $table->timestamps();
         });
     }

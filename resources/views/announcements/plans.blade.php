@@ -57,7 +57,8 @@
                                 <img src="{{asset('svg/cross.svg')}}" alt="Icone négative"> @endif Grande visibilité
                         </li>
                     </ul>
-                    <form action="{{route('announcements.create')}}" method="get">
+                    <form action="{{route('announcements.create')}}" method="post">
+                        @method('get')
                         @csrf
                         <input id="plan{{$plan->id}}" name="plan" type="hidden" value="{{$plan->id}}">
                         <button>
