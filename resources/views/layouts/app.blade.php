@@ -209,8 +209,7 @@
                                 <li>
                                     <form aria-label="Déconnexion" role="form" id="logout-form"
                                           action="{{route('logout')}}" method="POST"> @csrf
-                                        <button type="submit" role="button"
-                                                class="text-left duration-300 w-full rounded-xl mt-2 p-3 border hover:bg-orange-900 hover:text-white">
+                                        <button type="submit" role="button">
                                             Se déconnecter
                                         </button>
                                     </form>

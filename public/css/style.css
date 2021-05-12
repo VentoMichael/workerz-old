@@ -1375,10 +1375,6 @@ form .search-announcement {
     line-height: 1.4;
 }
 
-.profil-item {
-    background-image: url("../svg/user-w.svg");
-}
-
 .successMsg img {
     margin-right: 10px;
 }
@@ -1700,7 +1696,7 @@ div .help-show {
     margin-bottom: 80px;
     font-size: 2em;
 }
-a .like-ads{
+a .like-ads, div .like-ads{
     top: -63px;
 }
 .container-price-paied {
@@ -1713,6 +1709,7 @@ a .like-ads{
 }
 div .like-index {
     top: -73px;
+    min-width: inherit;
 }
 .container-price-paied:before {
     content: '';

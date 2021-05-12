@@ -136,12 +136,25 @@
                                    id="picture" class="input-field @error('picture') is-invalid @enderror email-label"
                                    name="picture"
                                    accept="image/png, image/jpeg">
-
+                            @error('picture')
+                            <div class="container-error">
+                <span role="alert" class="error">
+                                        <strong>{{ ucfirst($message) }}</strong>
+                                    </span>
+                            </div>
+                            @enderror
                         </div>
                         <div class="container-form-email">
                             <label for="name">Nom du commerce <span class="required">*</span></label>
                             <input type="text" id="name" value="{{old("name")}}" placeholder="Rotis"
                                    class=" @error('name') is-invalid @enderror email-label" name="name" required>
+                            @error('name')
+                            <div class="container-error">
+                <span role="alert" class="error">
+                                        <strong>{{ ucfirst($message) }}</strong>
+                                    </span>
+                            </div>
+                            @enderror
                         </div>
                     </div>
                     <div class="container-register-form">
@@ -150,6 +163,13 @@
                             <input type="text" id="adress" value="{{old("adress")}}"
                                    class=" @error('adress') is-invalid @enderror email-label" name="adress"
                                    placeholder="Rue des cocotier, 21">
+                            @error('adress')
+                            <div class="container-error">
+                <span role="alert" class="error">
+                                        <strong>{{ ucfirst($message) }}</strong>
+                                    </span>
+                            </div>
+                            @enderror
                         </div>
                         <div class="container-form-email">
                             <label for="phone">Numéro de téléphone <span class="required">*</span></label>
@@ -166,13 +186,20 @@
                             @if($request->plan_user_id == 3 || $request->old('plan_user_id') == 3)
                                 <p class="help">Vous aurez la possibilité d'en intégrer jusqu'à 3 via votre profil</p>
                             @endif
+                            @error('phone')
+                            <div class="container-error">
+                <span role="alert" class="error">
+                                        <strong>{{ ucfirst($message) }}</strong>
+                                    </span>
+                            </div>
+                            @enderror
                         </div>
                     </div>
 
                     <div class="container-register-form">
                         <div class="container-form-email">
                             <label for="website">Site internet</label>
-                            <input placeholder="www.workerz.be" type="text" id="website" value="{{old("website")}}"
+                            <input placeholder="https://workerz.be" type="text" id="website" value="{{old("website")}}"
                                    class=" @error('website') is-invalid @enderror email-label" name="website">
                             @if($request->plan_user_id == 1 || $request->old('plan_user_id') == 1)
                                 <p class="help"><a href="{{route('users.plans')}}#plans">Augmenter votre plan</a> et
@@ -184,6 +211,13 @@
                             @if($request->plan_user_id == 3 || $request->old('plan_user_id') == 3)
                                 <p class="help">Vous aurez la possibilité d'en intégrer jusqu'à 3 via votre profil</p>
                             @endif
+                            @error('website')
+                            <div class="container-error">
+                <span role="alert" class="error">
+                                        <strong>{{ ucfirst($message) }}</strong>
+                                    </span>
+                            </div>
+                            @enderror
                         </div>
                         <div class="container-form-email selectdiv">
                             <label for="disponibilities">Disponibilités</label>
@@ -192,6 +226,13 @@
                                     <option @if($d->pre_selected == true) selected
                                             @endif value="{{$d->id}}">{{$d->name}}</option>
                                 @endforeach
+                                @error('disponibilities')
+                                <div class="container-error">
+                <span role="alert" class="error">
+                                        <strong>{{ ucfirst($message) }}</strong>
+                                    </span>
+                                </div>
+                                @enderror
                             </select>
                         </div>
                     </div>
@@ -203,11 +244,13 @@
                                     data-maxoption="1"
                                     class="email-label"
                                     @endif
-                                    @if($request->plan_user_id == 2 || $request->old('plan_user_id') == 2) class="select-register" multiple data-maxoption="2"
+                                    @if($request->plan_user_id == 2 || $request->old('plan_user_id') == 2) class="select-register"
+                                    multiple data-maxoption="2"
                                     @endif
-                                    @if($request->plan_user_id == 3 || $request->old('plan_user_id') == 3) class="select-register" multiple data-maxoption="3"
+                                    @if($request->plan_user_id == 3 || $request->old('plan_user_id') == 3) class="select-register"
+                                    multiple data-maxoption="3"
                                     @endif
-                                     name="location"
+                                    name="location"
                                     id="location">
                                 @foreach($regions as $r)
                                     <option value="{{$r->id}}">{{$r->name}}</option>
@@ -224,6 +267,14 @@
                             @if($request->plan_user_id == 3 || $request->old('plan_user_id') == 3)
                                 <p class="help">Avec la touche ctrl vous en sélectionner jusqu'à 3</p>
                             @endif
+
+                            @error('location')
+                            <div class="container-error">
+                <span role="alert" class="error">
+                                        <strong>{{ ucfirst($message) }}</strong>
+                                    </span>
+                            </div>
+                            @enderror
                         </div>
                         <div class="container-form-email">
                             <label for="job">Metier <span class="required">*</span></label>
@@ -231,6 +282,13 @@
                                    class=" @error('job') is-invalid @enderror email-label" name="job"
                                    placeholder="Menuisier"
                                    required>
+                            @error('job')
+                            <div class="container-error">
+                <span role="alert" class="error">
+                                        <strong>{{ ucfirst($message) }}</strong>
+                                    </span>
+                            </div>
+                            @enderror
                         </div>
                     </div>
                     <div class="container-register-form">
@@ -240,16 +298,16 @@
                                     data-maxoption="1"
                                     class="email-label"
                                     @endif
-                                    @if($request->plan_user_id == 2 || $request->old('plan_user_id') == 2) class="select-register" multiple data-maxoption="2"
+                                    @if($request->plan_user_id == 2 || $request->old('plan_user_id') == 2) class="select-register"
+                                    multiple data-maxoption="2"
                                     @endif
-                                    @if($request->plan_user_id == 3 || $request->old('plan_user_id') == 3) class="select-register" multiple data-maxoption="3"
+                                    @if($request->plan_user_id == 3 || $request->old('plan_user_id') == 3) class="select-register"
+                                    multiple data-maxoption="3"
                                     @endif name="category_job[]" id="category_job">
                                 @foreach($categories as $c)
                                     <option value="{{$c->id}}">{{$c->name}}</option>
                                 @endforeach
                             </select>
-
-
                             @if($request->plan_user_id == 1 || $request->old('plan_user_id') == 1)
                                 <p class="help"><a href="{{route('users.plans')}}#plans">Augmenter votre plan</a> et
                                     vous aurez la possibilité d'en ajouter jusqu'à 1</p>
@@ -260,7 +318,15 @@
                             @if($request->plan_user_id == 3 || $request->old('plan_user_id') == 3)
                                 <p class="help">Avec la touche ctrl vous en sélectionner jusqu'à 3</p>
                             @endif
-                            <p class="help proposed-job">Je ne trouve pas mon métier, <a href="{{route('contact'). '#form'}} ">je le propose</a></p>
+                            <p class="help proposed-job">Je ne trouve pas mon métier, <a
+                                    href="{{route('contact'). '#form'}} ">je le propose</a></p>
+                            @error('category_job')
+                            <div class="container-error">
+                <span role="alert" class="error">
+                                        <strong>{{ ucfirst($message) }}</strong>
+                                    </span>
+                            </div>
+                            @enderror
                         </div>
                         <div class="container-form-email">
                             <label for="pricemax">Votre prix horaire</label>
@@ -269,6 +335,13 @@
                                    class=" @error('pricemax') is-invalid @enderror email-label" placeholder="55"><span
                                 class="horary-cost">€/h</span>
                             <p class="help">Ce prix donne un aperçu au client</p>
+                            @error('pricemax')
+                            <div class="container-error">
+                <span role="alert" class="error">
+                                        <strong>{{ ucfirst($message) }}</strong>
+                                    </span>
+                            </div>
+                            @enderror
                         </div>
                     </div>
 
@@ -279,6 +352,13 @@
                                       class=" @error('description') is-invalid @enderror email-label"
                                       placeholder="Description détailée de votre profil..."
                                       rows="5" cols="33">{{old("description")}}</textarea>
+                            @error('description')
+                            <div class="container-error">
+                <span role="alert" class="error">
+                                        <strong>{{ ucfirst($message) }}</strong>
+                                    </span>
+                            </div>
+                            @enderror
                         </div>
                     </div>
                     <input id="role_id" name="role_id" type="hidden" value="2">

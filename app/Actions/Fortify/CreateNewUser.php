@@ -104,19 +104,17 @@ class CreateNewUser implements CreatesNewUsers
             'description' => $description,
             'password' => Hash::make($input['password']),
         ]);
-        if ($input['picture']) {
+        if (\request('picture')) {
             Storage::makeDirectory('users');
             $filename = request('picture')->hashName();
-            $img = Image::make(\request()->file('picture'))->resize(null, 200, function ($constraint) {
+            $pic = Image::make(\request()->file('picture'))->resize(null, 200, function ($constraint) {
                 $constraint->aspectRatio();
                 $constraint->upsize();
             })->save(storage_path('app/public/users/'.$filename));
-            $user->picture->store('users');
+            $user->picture = 'users/'.$filename;
         }else{
             $pic = null;
         }
-
-        $input['picture']->store('users');
         $phone = new Phone(['number' => $input['phone']]);
         $ct = new CategoryUser();
         $ct->category_id = \request('category_job');
@@ -126,6 +124,7 @@ class CreateNewUser implements CreatesNewUsers
         //$user->categoryUser()->limit(2);
         $user->categoryUser()->attach($ct->category_id);
         $user->startDate()->attach($di->start_date_id);
+        $user->save();
         Session::flash('success-inscription', 'Votre inscription à été un succés !');
         return $user;
     }

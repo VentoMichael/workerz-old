@@ -193,7 +193,7 @@
                         <div class="container-love-show">
                             @auth
                                 <div
-                                    class="containerPrice container-show-love containerLove help-show @guest notHoverHeart @endguest">
+                                    class="containerPrice container-show-love like-ads containerLove help-show @guest notHoverHeart @endguest">
                                     @if(!$ra->isLikedUBy($ra))
                                         <form method="POST" action="/workerz/{{$ra->slug}}/like">
                                             @csrf

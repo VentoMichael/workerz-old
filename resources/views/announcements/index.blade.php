@@ -56,8 +56,8 @@
                         <div class="container-love-show">
                             @auth
                                 <div
-                                    class="containerPrice container-show-love containerLove help-show @guest notHoverHeart @endguest">
-                                    @if(!$announcement->isLikedUBy($user))
+                                    class="containerPrice container-show-love like-index containerLove help-show @guest notHoverHeart @endguest">
+                                    @if(!$announcement->isLikedBy($user))
                                         <form method="POST" action="/workerz/{{$announcement->slug}}/like">
                                             @csrf
 
