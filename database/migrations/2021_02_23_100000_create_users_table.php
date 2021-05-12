@@ -22,6 +22,10 @@ class CreateUsersTable extends Migration
             $table->string('website')->nullable();
             $table->string('job')->nullable();
             $table->string('pricemax')->nullable();
+            $table->string('facebook')->nullable();
+            $table->string('twitter')->nullable();
+            $table->string('linkedin')->nullable();
+            $table->string('instagram')->nullable();
             $table->text('description')->nullable();
             $table->boolean('is_payed')->default(false);
             $table->boolean('banned')->default(false);

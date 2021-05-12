@@ -8,6 +8,7 @@ use App\Models\startDate;
 use App\Models\User;
 use http\Env\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
@@ -56,6 +57,9 @@ class CreateNewUser implements CreatesNewUsers
             $sur = null;
         }
         if (request('website')) {
+            Validator::make($input, [
+                'website' => ['url'],
+            ])->validate();
             $web = $input['website'];
         } else {
             $web = null;
@@ -100,17 +104,19 @@ class CreateNewUser implements CreatesNewUsers
             'description' => $description,
             'password' => Hash::make($input['password']),
         ]);
-        if (\request()->hasFile('picture')) {
+        if ($input['picture']) {
             Storage::makeDirectory('users');
             $filename = request('picture')->hashName();
             $img = Image::make(\request()->file('picture'))->resize(null, 200, function ($constraint) {
                 $constraint->aspectRatio();
                 $constraint->upsize();
             })->save(storage_path('app/public/users/'.$filename));
-            $user->picture = 'users/'.$filename;
+            $user->picture->store('users');
         }else{
             $pic = null;
         }
+
+        $input['picture']->store('users');
         $phone = new Phone(['number' => $input['phone']]);
         $ct = new CategoryUser();
         $ct->category_id = \request('category_job');
@@ -120,6 +126,7 @@ class CreateNewUser implements CreatesNewUsers
         //$user->categoryUser()->limit(2);
         $user->categoryUser()->attach($ct->category_id);
         $user->startDate()->attach($di->start_date_id);
+        Session::flash('success-inscription', 'Votre inscription à été un succés !');
         return $user;
     }
 }

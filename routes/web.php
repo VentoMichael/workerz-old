@@ -17,7 +17,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [\App\Http\Controllers\HomeController::class, 'index'])->name('home.index');
 
 
-Route::post('/newsletter/store',[\App\Http\Controllers\NewsletterController::class, 'store'])->name('newsletter.store');
+Route::post('/newsletter/store',
+    [\App\Http\Controllers\NewsletterController::class, 'store'])->name('newsletter.store');
 
 
 Route::get('/announcements', [\App\Http\Controllers\AnnouncementController::class, 'index'])
@@ -48,10 +49,12 @@ Route::prefix('')->middleware(['guest'])->group(function () {
 });
 
 Route::prefix('')->middleware(['auth'])->group(function () {
-    Route::get('/dashboard',[\App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
-    Route::get('/dashboard/profile', [\App\Http\Controllers\DashboardController::class, 'settings'])->name('dashboard/profile')->middleware('payeduser');
-    Route::get('/dashboard/ads', [\App\Http\Controllers\DashboardController::class, 'ads'])->name('dashboard/ads')->middleware('payedads');
-
+    Route::get('/dashboard', [\App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard/profile', [
+        \App\Http\Controllers\DashboardController::class, 'settings'
+    ])->name('dashboard/profile')->middleware('payeduser');
+    Route::get('/dashboard/ads',
+        [\App\Http\Controllers\DashboardController::class, 'ads'])->name('dashboard/ads');
     Route::post('/workerz/{worker}/like', [\App\Http\Controllers\UserLikeController::class, 'store']);
     Route::delete('/workerz/{worker}/like', [\App\Http\Controllers\UserLikeController::class, 'delete']);
     Route::get('/announcement/plans',
@@ -62,7 +65,7 @@ Route::prefix('')->middleware(['auth'])->group(function () {
     Route::delete('/announcements/{announcement}/like',
         [\App\Http\Controllers\AnnouncementLikeController::class, 'delete']);
     Route::post('/announcement/',
-        [\App\Http\Controllers\AnnouncementController::class, 'store'])->name('announcements.store');
+        [\App\Http\Controllers\AnnouncementController::class, 'store'])->name('announcements.store')->middleware('payedads');
     Route::get('/announcement/create',
         [\App\Http\Controllers\AnnouncementController::class, 'create'])->name('announcements.create');
     Route::get('/announcement/payed', [\App\Http\Controllers\AnnouncementController::class, 'payed'])
@@ -72,11 +75,12 @@ Route::prefix('')->middleware(['auth'])->group(function () {
 Route::get('/conditions', function () {
     return view('conditions.index');
 })->name('conditions');
-
 Route::get('/policy', function () {
     return view('policy.index');
 })->name('policy');
-
+Route::get('/about', function () {
+    return view('about.index');
+})->name('about');
 
 Route::post('/contact', [ContactController::class, 'store'])
     ->name('contact.store');
@@ -84,6 +88,4 @@ Route::get('/contact', [\App\Http\Controllers\ContactController::class, 'create'
     ->name('contact');
 
 
-Route::get('/about', function () {
-    return view('about.index');
-})->name('about');
+

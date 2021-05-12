@@ -72,7 +72,7 @@
                     </div>
                     <div class="container-form-email">
                         <label for="location">Région <span class="required">*</span></label>
-                        <select required class="select-register select-regions" name="location" id="location">
+                        <select required class="select-register select-regions" data-maxoption="1" name="location" id="location">
                             @foreach($regions as $region)
                                 <option value="{{$region->id}}">{{$region->name}}</option>
                             @endforeach

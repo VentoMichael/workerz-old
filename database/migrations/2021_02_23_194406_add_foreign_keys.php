@@ -24,6 +24,10 @@ class AddForeignKeys extends Migration
         Schema::table('websites', function (Blueprint $table) {
             $table->foreignId("user_id")->constrained('users');
         });
+        Schema::table('physical_adresses', function (Blueprint $table) {
+            $table->foreignId("user_id")->constrained('users');
+            $table->foreignId("province_id")->constrained('provinces');
+        });
 
         Schema::table('announcements', function (Blueprint $table) {
             $table->foreignId("user_id")->constrained('users');
@@ -66,16 +70,6 @@ class AddForeignKeys extends Migration
                 ->on('provinces');
         });
 
-        Schema::table('locations', function (Blueprint $table) {
-            $table->bigInteger('physical_adress_id')->unsigned();
-            $table->bigInteger('province_id')->unsigned();
-            $table->foreign('physical_adress_id')
-                ->references('id')
-                ->on('physical_adresses');
-            $table->foreign('province_id')
-                ->references('id')
-                ->on('provinces');
-        });
 
         Schema::table('category_user', function (Blueprint $table) {
             $table->bigInteger('user_id')->unsigned();

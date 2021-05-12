@@ -37,10 +37,11 @@
                 Une entreprise{{$randomPhrasing->name}}
             </h2>
         </div>
-        <section class="container-personnal-ads show-content">
+        <section class="container-personnal-ads show-content container-worker">
             <div class="container-love-show">
                 @auth
-                    <div class="containerPrice container-show-love containerLove help-show @guest notHoverHeart @endguest">
+                    <div
+                        class="containerPrice container-show-love containerLove help-show @guest notHoverHeart @endguest">
                         @if(!$worker->isLikedUBy($worker))
                             <form method="POST" action="/workerz/{{$worker->slug}}/like">
                                 @csrf
@@ -75,43 +76,72 @@
                                  alt="icone de coeur">
                             <p>
                                 {{$worker->likes? : 0}}</p>
-                            <span> Il faut être connecter pour aimer l'annonce</span>
+                            <span> Il faut être connecter pour aimer l'entreprise</span>
                         </div>
                     </a>
                 @endauth
             </div>
             <div class="container-picture-ads">
                 @if($worker->picture)
-                    <img src="{{ $worker->pic }}" alt="photo de profil de {{ucfirst($worker->name)}}"/>
+                    <div>
+                        <img src="{{ $worker->picture }}" alt="photo de profil de {{ucfirst($worker->name)}}"/>
+                    </div>
                 @else
-                    <img src="{{asset('svg/ad.svg')}}" alt="icone d'annonces">
+                    <div>
+                        <img src="{{asset('svg/ad.svg')}}" alt="icone d'annonces">
+                    </div>
                 @endif
+                <div class="container-socials-media">
+                    @if($worker->facebook)
+                    <div class="social-media">
+                        <a href="{{$worker->facebook}}" class="iconFacebook"></a>
+                    </div>
+                    @endif
+                        @if($worker->instagram)
+                    <div class="social-media">
+                        <a href="{{$worker->instagram}}" class="iconInstagram"></a>
+                    </div>
+                    @endif
+                        @if($worker->linkedin)
+                    <div class="social-media">
+                        <a href="{{$worker->linkedin}}" class="iconLinkedin"></a>
+                    </div>
+                    @endif
+                        @if($worker->twitter)
+                    <div class="social-media">
+                        <a href="{{$worker->twitter}}" class="iconTwitter"></a>
+                    </div>
+                    @endif
+                </div>
             </div>
             <div class="container-infos-perso-ads">
                 <h3 aria-level="3">
                     {{ucfirst($worker->name)}}
                 </h3>
-                <p>
+                <span>
                     {{ucfirst($worker->description)}}
-                </p>
+                </span>
                 <section class="container-perso-infos container-six-category-home">
                     <h4 aria-level="4" class="hidden">Information de contact</h4>
                     <div>
                         <img src="{{asset('svg/envelope.svg')}}" alt="icone de mail">
                         <a href="mailto:{{$worker->email}}">{{$worker->email}}</a>
                     </div>
+
                     @foreach($worker->phones as $up)
                         <div>
                             <img src="{{asset('svg/phone.svg')}}" alt="icone de téléphone">
                             <a href="tel:{{$up->number}}">{{$up->number}}</a>
                         </div>
                     @endforeach
-                    <div>
-                        <img src="{{asset('svg/calendar.svg')}}" alt="icone de calendrier">
-                        <span>
+                    @if($worker->startDate->count())
+                        <div>
+                            <img src="{{asset('svg/calendar.svg')}}" alt="icone de calendrier">
+                            <span>
                             Ouvert le : @foreach($worker->startDate as $ws){{substr($ws->name, 0, 3)}}{{ ($loop->last ? '' : ', ') }}@endforeach
                         </span>
-                    </div>
+                        </div>
+                    @endif
                     <div>
                         <img src="{{asset('svg/suitcase.svg')}}" alt="icone de malette">
                         <span class="job-cat-ads">
@@ -123,6 +153,17 @@
                             @endif
                         </span>
                     </div>
+                    @if($worker->adresses->count())
+                        @foreach($worker->adresses as $a)
+                            <div class="container-info-announcement container-infos-position">
+                                <img src="{{asset('svg/placeholder.svg')}}" alt="icone de localité">
+                                <div class="container-location">
+                                    <span>{{ucfirst($a->postal_adress)}}</span>
+                                    <span class="categoryJob">({{ucfirst($a->province->name)}})</span>
+                                </div>
+                            </div>
+                        @endforeach
+                    @endif
                     <div>
                         <img src="{{asset('svg/euro.svg')}}" alt="icone d'euro">
                         <span>Un minimum de {{$worker->pricemax}}€/h</span>
@@ -130,6 +171,13 @@
 
                 </section>
             </div>
+            <a class="container-website" href="{{$worker->website}}">
+            <div>
+                <img src="{{asset('svg/globe.svg')}}" alt="icone de site internet">
+
+                    <span>Site internet</span>
+            </div>
+            </a>
         </section>
     </section>
     <section class="container-categories-home margin show-content container-adss-random">
@@ -144,7 +192,8 @@
                     <div class="container_title__province">
                         <div class="container-love-show">
                             @auth
-                                <div class="containerPrice container-show-love containerLove help-show @guest notHoverHeart @endguest">
+                                <div
+                                    class="containerPrice container-show-love containerLove help-show @guest notHoverHeart @endguest">
                                     @if(!$ra->isLikedUBy($ra))
                                         <form method="POST" action="/workerz/{{$ra->slug}}/like">
                                             @csrf
@@ -172,21 +221,21 @@
 
                             @else
                                 <a href="{{route('login')}}">
-                                    <div class="containerPrice containerLove hepling helping-like help-show">
+                                    <div class="containerPrice containerLove like-ads hepling helping-like help-show">
 
                                         <img class="heart" src="{{asset('svg/heart.svg')}}" alt="icone de coeur">
                                         <img class="heartFul" src="{{asset('svg/heartFul.svg')}}"
                                              alt="icone de coeur">
                                         <p>
                                             {{$ra->likes? : 0}}</p>
-                                        <span> Il faut être connecter pour aimer l'annonce</span>
+                                        <span> Il faut être connecter pour aimer l'entreprise</span>
                                     </div>
                                 </a>
                             @endauth
                         </div>
                         <div class="container-picture-ads">
                             @if($ra->picture)
-                                <img src="{{ $ra->pic }}"
+                                <img src="{{ $ra->picture }}"
                                      alt="photo de profil de {{$ra->name}}"/>
                             @else
                                 <img src="{{asset('svg/ad.svg')}}" alt="icone d'annonces">
@@ -203,14 +252,23 @@
                             <div class="container-position-ads">
                                 <img src="{{asset('svg/suitcase.svg')}}" alt="icone de malette">
                                 <span class="job-cat-ads">
-                                    <span>{{ucfirst($ra->job)}}</span>
+                                    <p>{{ucfirst($ra->job)}}</p>
                                     @if($ra->categoryUser->count())
-                                        <span class="categoryJob">
+                                        <p class="categoryJob">
                                             (@foreach($ra->categoryUser as $a){{$a->name}}{{ ($loop->last ? '' : ', ') }}@endforeach)
-                                        </span>
+                                        </p>
                                     @endif
                                 </span>
                             </div>
+                            @if($worker->adresses->count())
+                                <div class="container-info-announcement">
+                                    <img src="{{asset('svg/placeholder.svg')}}" alt="icone de localité">
+                                    <div class="container-location">
+                                        <p>{{ucfirst($worker->adresses->first()->postal_adress)}}</p>
+                                        <p class="categoryJob">({{ucfirst($worker->adresses->first()->province->name)}})</p>
+                                    </div>
+                                </div>
+                            @endif
                         </div>
                     </div>
                     <a href="/workerz/{{$ra->slug}}" class="btn-ads button-personnal-announcement">

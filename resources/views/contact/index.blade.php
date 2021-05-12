@@ -25,7 +25,7 @@
             </div>
         </div>
     </section>
-    <section class="container-categories-home margin container-message">
+    <section class="container-categories-home margin container-message" id="form">
         <div class="container-categories-text-home">
             <h2 aria-level="2">
                 Formulaire de contact
@@ -74,7 +74,7 @@
                     </div>
                     <div class="container-form-email">
                         <label for="subject">Sujet <span class="required">*</span></label>
-                        <input type="text" placeholder="Engagez un menuisier" id="subject" value="{{old("subject")}}"
+                        <input type="text" placeholder="Engagez un menuisier" id="subject" value="@if(request()->has('askJob')) Je propose mon métier @endif {{old("subject")}}"
                                class=" @error('subject') is-invalid @enderror email-label" name="subject" required>
                     </div>
                 </div>
@@ -97,7 +97,4 @@
             </form>
         </div>
     </section>
-@endsection
-@section('scripts')
-    <script>let e=document.getElementById("successMsg");if (e){setTimeout(function(){document.getElementById('crossHide').style.display='inherit';e.style.opacity="0",e.style.transition=".5s"},1e4);let cross=document.getElementById("crossHide");cross.addEventListener("click",()=>{cross.parentNode.style.opacity="0",cross.parentNode.style.transition=".5s"})};</script>
 @endsection

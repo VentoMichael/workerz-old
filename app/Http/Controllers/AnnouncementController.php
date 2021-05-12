@@ -123,7 +123,7 @@ class AnnouncementController extends Controller
                 $announcement->is_draft = false;
                 $payed = true;
                 Session::flash('success-inscription',
-                    'Votre annonce sera mise en ligne après approbation de l\'administrateur !');
+                    'Votre annonce a été bien mise en ligne !');
             }
         } else {
             if ($request->has('is_draft')) {
@@ -139,7 +139,6 @@ class AnnouncementController extends Controller
         $announcement->is_payed = $payed;
         $announcement->save();
         $announcement->categoryAds()->attach($ct->category_id);
-
         return redirect(route('dashboard/ads'));
     }
 
@@ -152,56 +151,9 @@ class AnnouncementController extends Controller
      */
     public function payed(Request $request)
     {
-        $planId = PlanAnnouncement::where('id', '=', $request->plan)->get();
         $plan = $request->plan;
+        $planId = PlanAnnouncement::where('id', '=', $plan)->first();
 
-        $announcement = new Announcement();
-        $announcement->title = $request->title;
-        $announcement->catchPhrase = $request->catchPhrase;
-        $announcement->slug = Str::slug($request->title);
-
-        if ($request->hasFile('picture')) {
-            $filename = request('picture')->hashName();
-            $img = Image::make($request->file('picture'))->resize(null, 200, function ($constraint) {
-                $constraint->aspectRatio();
-                $constraint->upsize();
-            })->save(storage_path('app/public/ads/'.$filename));
-            $announcement->picture = 'ads/'.$filename;
-        }
-        $announcement->description = $request->description;
-        $announcement->job = $request->job;
-        $announcement->pricemax = $request->price_max;
-        $announcement->user_id = Auth::id();
-        $announcement->province_id = $request->location;
-        $announcement->start_month_id = $request->disponibility;
-        $announcement->plan_announcement_id = $plan;
-
-        $ct = new AnnouncementCategory();
-        $ct->category_id = $request->category_job;
-        if ($plan === 1) {
-            if ($request->has('is_draft')) {
-                $announcement->is_draft = true;
-                Session::flash('success-inscription', 'Votre annonce a été enregistrer dans vos brouillons !');
-            } else {
-                $announcement->is_draft = false;
-                Session::flash('success-inscription',
-                    'Votre annonce sera mise en ligne après approbation de l\'administrateur !');
-            }
-        } else {
-            if ($request->has('is_draft')) {
-                $announcement->is_draft = true;
-                Session::flash('success-inscription', 'Votre annonce a été enregistrer dans vos brouillons !');
-            } else {
-                $announcement->is_draft = false;
-                Session::flash('success-inscription', 'Votre annonce a été bien mise en ligne !');
-            }
-        }
-        $announcement->is_payed = false;
-        $announcement->save();
-        $announcement->categoryAds()->attach($ct->category_id);
-        if ($request->has('is_payed')){
-            $announcement->is_payed = true;
-        }
         Session::flash('success-inscription',
             'Il suffit de terminer le paiement et votre annonce sera visible.');
         return view('announcements.payed',

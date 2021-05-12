@@ -1,11 +1,5 @@
 @extends('layouts.app')
 @section('content')
-    @if (Session::has('success-inscription'))
-        <div id="successMsg" class="successMsg"><img src="{{asset('svg/good.svg')}}" alt="good icone">
-            <p>{{Session::get('success-inscription')}}</p>
-            <span class="crossHide" id="crossHide">&times;</span>
-        </div>
-    @endif
     <section class="container-home margin">
         <div class="container-home_image container-home-create container-home-page">
             <div>
@@ -24,6 +18,7 @@
             </div>
         </div>
     </section>
+
     <section class="container-home container-announcements container-create-ads">
         <div class="title-first-step-register">
             <h2 aria-level="2" class="hidden">Plan sélectionné pour votre inscription</h2>
@@ -32,67 +27,65 @@
             <section>
                 <div class="container-connexion container-plan-paied">
                     <h3 aria-level="3">Plan sélectionné</h3>
-                    <div class="container-all-announcement show-content container-create-ads-infos container-plans">
-                        @foreach($planId as $p)
+                    <div class="container-all-announcement container-create-ads-infos container-plans show-content">
                             <section
-                                class="container-plan container-payed-plan @if($p->id === 2) container-hot-plan @endif">
+                                class="container-plan container-payed-plan @if($planId->id == 2) container-hot-plan @endif">
                                 <div class="container-plan-price">
                                     <h4 aria-level="4">
-                                        {{ucfirst($p->name)}}
+                                        {{ucfirst($planId->name)}}
                                     </h4>
                                     <span class="planPrice">
-                             {{number_format((float)$p->price, 2, ',', '')}} €
+                             {{number_format((float)$planId->price, 2, ',', '')}} €
                         </span>
-                                    @if($p->oldprice)
+                                    @if($planId->oldprice)
                                         <p class="reductionPrice">
-                                            {{$p->oldprice}} €
+                                            {{$planId->oldprice}} €
                                         </p>
                                     @endif
                                 </div>
                                 <ul>
                                     <li>
                                         <img src="{{asset('svg/good.svg')}}" alt="Icone correct">Durée
-                                        : {{$p->duration}} mois
+                                        : {{$planId->duration}} mois
                                     </li>
                                     <li>
-                                        @if($p->priority) <img src="{{asset('svg/good.svg')}}"
+                                        @if($planId->priority) <img src="{{asset('svg/good.svg')}}"
                                                                alt="Icone correct"> @else <img
                                             src="{{asset('svg/cross.svg')}}" alt="Icone négative"> @endif Support
                                         prioritaire
                                     </li>
                                     <li>
-                                        @if($plan->more_visible)
+                                        @if($planId->more_visible)
                                             <img src="{{asset('svg/good.svg')}}" alt="Icone correct">                                                    @else
                                             <img src="{{asset('svg/cross.svg')}}" alt="Icone négative">
                                         @endif
-                                        @if($plan->id == 1)
+                                        @if($planId->id == 1)
                                             Forte visibilité
                                         @endif
-                                        @if($plan->id == 2)
-                                            Votre annonce sera visible {{$plan->id * 3}} fois plus souvent
+                                        @if($planId->id == 2)
+                                            Votre annonce sera visible {{$planId->id * 3}} fois plus souvent
                                         @endif
-                                        @if($plan->id == 3)
-                                            Votre annonce sera visible {{$plan->id * 5}} fois plus souvent
+                                        @if($planId->id == 3)
+                                            Votre annonce sera visible {{$planId->id * 5}} fois plus souvent
                                         @endif
                                     </li>
                                     <li>
-                                        @if($p->hight_visibility) <img src="{{asset('svg/good.svg')}}"
+                                        @if($planId->hight_visibility) <img src="{{asset('svg/good.svg')}}"
                                                                        alt="Icone correct"> @else <img
                                             src="{{asset('svg/cross.svg')}}" alt="Icone négative"> @endif Grande
                                         visibilité
                                     </li>
                                 </ul>
                             </section>
-                        @endforeach
                     </div>
                 </div>
             </section>
             <section class="container-price-paied">
                 <div>
                     <h3 aria-level="3">Le montant s'éleve à
-                        {{number_format((float)$p->price, 2, ',', '')}} € </h3>
+                        {{number_format((float)$planId->price, 2, ',', '')}} € </h3>
                     <p>Saisissez les informations relatives à votre carte de crédit</p>
-                    <form class="form-login form-register" enctype="multipart/form-data"
+                    <form class="form-login form-register show-content" enctype="multipart/form-data"
                           aria-label="Enregistrement d'un compte" role="form" method="POST"
                           action="{{ route('announcements.store') }}">
                         @csrf
@@ -113,6 +106,7 @@
                             @enderror
                         </div>
                         <div>
+                            <input type="hidden" name="plan" value="{{$planId}}">
                             <button role="button" name="is_payed" class="button-cta" type="submit">
                                 Finaliser mon achat
                             </button>
@@ -120,6 +114,7 @@
                     </form>
                 </div>
             </section>
+
         </div>
     </section>
 @endsection

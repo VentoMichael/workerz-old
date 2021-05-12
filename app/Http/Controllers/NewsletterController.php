@@ -13,7 +13,7 @@ class NewsletterController extends Controller
         if ($request->newsletter) {
             if (!Newsletter::isSubscribed($request->newsletter)) {
                 Newsletter::subscribe($request->newsletter);
-                return back()->with('successNew', 'Votre inscription a bien été prise en compte !');
+                return back()->with('successNew', 'Votre inscription à notre newsletter a bien été prise en compte !');
             }
             return back()->with('failureNew', 'Oops ! Vous êtes déjà inscris !');
         }

@@ -14,4 +14,8 @@ class Province extends Model
     public function announcements(){
         return $this->hasMany(Announcement::class);
     }
+    public function adresses(){
+        return $this->hasMany(PhysicalAdress::class,'user_id');
+    }
+
 }

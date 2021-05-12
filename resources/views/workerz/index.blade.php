@@ -12,6 +12,7 @@
             <span class="crossHide" id="crossHide">&times;</span>
         </div>
     @endif
+
     <section class="container-home margin">
         <div class="container-home_image container-home-page">
             <div>
@@ -22,6 +23,15 @@
                     <p>
                         Parmi nos diverses propositions, il ne vous reste plus qu'à trouver celui qui vous conviens
                     </p>
+                    @guest
+                        <div>
+                            <a href="{{route('announcements.plans')}}">
+                                <button role="button" class="button-cta" type="submit">
+                                    J'ajoute mon entreprise
+                                </button>
+                            </a>
+                        </div>
+                    @endguest
                 </div>
             </div>
             <div class="container-svg">
@@ -45,51 +55,57 @@
             @foreach($workerz as $worker)
                 <section class="container-announcement">
                     <div class="container-infos-announcement">
-                        <div class="containerPrice containerLove @guest notHoverHeart @endguest">
+                        <div class="container-love-show">
                             @auth
-                                @if(!$worker->isLikedUBy($worker))
-                                    <form method="POST" action="/workerz/{{$worker->slug}}/like">
-                                        @csrf
+                                <div
+                                    class="containerPrice container-show-love containerLove help-show @guest notHoverHeart @endguest">
+                                    @if(!$worker->isLikedUBy($worker))
+                                        <form method="POST" action="/workerz/{{$worker->slug}}/like">
+                                            @csrf
 
-                                        <button type="submit" class="button-loves">
-                                            <img class="heart" src="{{asset('svg/heart.svg')}}" alt="icone de coeur">
-                                            <img class="heartFul" src="{{asset('svg/heartFul.svg')}}"
-                                                 alt="icone de coeur plein">
-                                            <span>
+                                            <button type="submit" class="button-loves">
+                                                <img class="heart" src="{{asset('svg/heart.svg')}}" alt="icone de coeur">
+                                                <img class="heartFul" src="{{asset('svg/heartFul.svg')}}"
+                                                     alt="icone de coeur">
+                                                <span>
                                         {{$worker->likes ? : 0}}</span></button>
-                                    </form>
-                                @else
-                                    <form method="POST" action="/workerz/{{$worker->slug}}/like">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="button-loves">
-                                            <img class="heartFul heartLiked" src="{{asset('svg/heartFul.svg')}}"
-                                                 alt="icone de coeur plein">
-                                            <span>
+                                        </form>
+                                    @else
+
+                                        <form method="POST" action="/workerz/{{$worker->slug}}/like">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="button-loves">
+                                                <img class="heartFul heartLiked" src="{{asset('svg/heartFul.svg')}}"
+                                                     alt="icone de coeur">
+                                                <span>
                                         {{$worker->likes ? : 0}}</span></button>
-                                    </form>
-                                @endif
+                                        </form>
+                                    @endif
+                                </div>
 
                             @else
-                        </div>
-                        <a href="{{route('login')}}">
-                            <div class="containerPrice containerLove hepling helping-like">
+                                <a href="{{route('login')}}">
+                                    <div class="containerPrice containerLove like-index hepling helping-like help-show">
 
-                                <img class="heart" src="{{asset('svg/heart.svg')}}" alt="icone de coeur">
-                                <img class="heartFul" src="{{asset('svg/heartFul.svg')}}"
-                                     alt="icone de coeur plein">
-                                <p>
-                                    {{$worker->likes? : 0}}</p>
-                                <span> Il faut être connecter pour aimer l'entreprise</span>
-                                @endauth
-                            </div>
-                        </a>
+                                        <img class="heart" src="{{asset('svg/heart.svg')}}" alt="icone de coeur">
+                                        <img class="heartFul" src="{{asset('svg/heartFul.svg')}}"
+                                             alt="icone de coeur">
+                                        <p>
+                                            {{$worker->likes? : 0}}</p>
+                                        <span> Il faut être connecter pour aimer l'entreprise</span>
+                                    </div>
+                                </a>
+                            @endauth
+                        </div>
                         <div class="containerPrice">
-                            <img src="{{asset('svg/euro.svg')}}" alt="icone d'euro">Max: {{$worker->pricemax}}€
+                            <img src="{{asset('svg/euro.svg')}}" alt="icone d'euro">
+                            <span>{{$worker->pricemax}} €/h</span>
                         </div>
                         <div class="container-image-announcement">
                             @if($worker->picture)
-                                <img src="{{ $worker->picture }}" alt="image de profil de {{$worker->name}} @if($worker->surname) {{$worker->surname}} @endif">
+                                <img src="{{ $worker->picture }}"
+                                     alt="image de profil de {{$worker->name}} @if($worker->surname) {{$worker->surname}} @endif">
                             @else
                                 <img src="{{asset('svg/market.svg')}}" alt="icone d'un magasin">
                             @endif
@@ -113,10 +129,15 @@
                                     @endif
                                 </div>
                             </div>
-                            <div class="container-info-announcement">
-                                <img src="{{asset('svg/placeholder.svg')}}" alt="icone de localité">
-                                <!-- <p>$wo->provinces->first()->name}}</p>-->
-                            </div>
+                            @if($worker->adresses->count())
+                                <div class="container-info-announcement">
+                                    <img src="{{asset('svg/placeholder.svg')}}" alt="icone de localité">
+                                    <div class="container-location">
+                                        <p>{{ucfirst($worker->adresses->first()->postal_adress)}}</p>
+                                        <p class="categoryJob">({{ucfirst($worker->adresses->first()->province->name)}})</p>
+                                    </div>
+                                </div>
+                            @endif
                         </div>
                     </div>
                     <a href="/workerz/{{$worker->slug}}" class="button-personnal-announcement">

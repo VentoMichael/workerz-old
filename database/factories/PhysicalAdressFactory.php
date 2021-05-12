@@ -23,6 +23,8 @@ class PhysicalAdressFactory extends Factory
     {
         return [
             'postal_adress' => $this->faker->text($maxNbChars = 50),
+            'user_id' => $this->faker->numberBetween($min = 1, $max = 99),
+            'province_id' => $this->faker->numberBetween($min = 1, $max = 11),
         ];
     }
 }

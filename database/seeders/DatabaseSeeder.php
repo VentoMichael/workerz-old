@@ -33,9 +33,7 @@ class DatabaseSeeder extends Seeder
         $this->call(StartDateSeeder::class);
         $this->call(StartMonthSeeder::class);
         $this->call(StartDateUserSeeder::class);
-        $this->call(ProvinceUserSeeder::class);
         $this->call(AnnouncementSeeder::class);
-        $this->call(LocationSeeder::class);
         $this->call(AnnouncementCategorySeeder::class);
         $this->call(LikeAnnouncementSeeder::class);
         $this->call(LikeUserSeeder::class);

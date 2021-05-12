@@ -260,6 +260,7 @@
                             @if($request->plan_user_id == 3 || $request->old('plan_user_id') == 3)
                                 <p class="help">Avec la touche ctrl vous en sélectionner jusqu'à 3</p>
                             @endif
+                            <p class="help proposed-job">Je ne trouve pas mon métier, <a href="{{route('contact'). '#form'}} ">je le propose</a></p>
                         </div>
                         <div class="container-form-email">
                             <label for="pricemax">Votre prix horaire</label>

@@ -290,6 +290,21 @@
     div .select-register {
         height: 100%;
     }
+    section .container-website{
+        margin: 0 -50px -25px;
+        border-radius: 0 0 10px 10px;
+        padding: 20px;
+    }
+    section .container-picture-ads{
+        flex-direction: row;
+        justify-content: space-evenly;
+    }
+    div .container-socials-media{
+        margin-top: 0;
+    }
+    section .container-personnal-ads{
+        margin-top: 70px;
+    }
 }
 
 @media (max-width: 730px) {
@@ -430,10 +445,6 @@
         grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
     }
 
-    div .container-perso-infos div {
-        justify-content: center;
-    }
-
     main .container-announcements {
         margin-bottom: 40px;
     }
@@ -445,16 +456,38 @@
     div .container-hot-plan h4{
         padding-top: 50px;
     }
+    section .container-ads-random {
+        grid-gap: 120px;
+    }
+    section section .container-picture-ads{
+        flex-direction: column;
+        align-items: center;
+    }
+    div .container-socials-media {
+        margin-top: 20px;
+        grid-template-columns: repeat(4, minmax(10px, 1fr));
+    }
+    section .container-worker{
+        grid-gap:30px;
+    }
 }
 
 @media (max-width: 450px) {
     section .container-home_image div:first-child {
         max-width: inherit;
     }
+
     main section .container-paied {
         grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     }
-
+    .container-website div{
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+    }
+    section .container-website div img{
+        max-width: 50px;
+    }
     section .container-personnal-ads {
         padding: 25px 5%;
     }
@@ -539,6 +572,11 @@
     section .container-ads-random {
         margin-bottom: 0;
     }
+    section section .container-website{
+         margin: 0 -5.5% -25px;
+         border-radius: 0 0 10px 10px;
+         padding: 20px;
+     }
 }
 
 @media (min-width: 1300px) {

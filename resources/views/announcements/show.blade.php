@@ -45,13 +45,13 @@
                 </h2>
             @endif
         </div>
-        <section class="container-personnal-ads show-content">
+        <section class="container-personnal-ads show-content container-adv">
             <div class="container-love-show">
                 @auth
                     <div
                         class="containerPrice container-show-love containerLove help-show @guest notHoverHeart @endguest">
-                        @if(!$announcement->isLikedBy($user))
-                            <form method="POST" action="/announcements/{{$announcement->slug}}/like">
+                        @if(!$announcement->isLikedUBy($announcement))
+                            <form method="POST" action="/workerz/{{$announcement->slug}}/like">
                                 @csrf
 
                                 <button type="submit" class="button-loves">
@@ -63,7 +63,7 @@
                             </form>
                         @else
 
-                            <form method="POST" action="/announcements/{{$announcement->slug}}/like">
+                            <form method="POST" action="/workerz/{{$announcement->slug}}/like">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="button-loves">
@@ -93,7 +93,7 @@
 
             <div class="container-picture-ads">
                 @if($announcement->picture)
-                    <img src="{{ $announcement->pic }}" alt="photo de profil de {{ucfirst($announcement->name)}}"/>
+                    <img src="{{ $announcement->picture }}" alt="photo de profil de {{ucfirst($announcement->name)}}"/>
                 @else
                     <img src="{{asset('svg/ad.svg')}}" alt="icone d'annonces">
                 @endif
@@ -163,48 +163,52 @@
             @foreach($randomAds as $ra)
                 <section class="container-infos-perso-ads container-ad-random">
                     <div class="container_title__province">
-                        <div class="containerPrice containerLove @guest notHoverHeart @endguest">
+                        <div class="container-love-show">
                             @auth
-                                @if(!$ra->isLikedBy($user))
-                                    <form method="POST" action="/announcements/{{$ra->slug}}/like">
-                                        @csrf
+                                <div
+                                    class="containerPrice container-show-love containerLove help-show @guest notHoverHeart @endguest">
+                                    @if(!$ra->isLikedUBy($user))
+                                        <form method="POST" action="/workerz/{{$ra->slug}}/like">
+                                            @csrf
 
-                                        <button type="submit" class="button-loves">
-                                            <img class="heart" src="{{asset('svg/heart.svg')}}" alt="icone de coeur">
-                                            <img class="heartFul" src="{{asset('svg/heartFul.svg')}}"
-                                                 alt="icone de coeur">
-                                            <span>
-                                        {{$ra->likes? : 0}}</span></button>
-                                    </form>
-                                @else
-                                    <form method="POST" action="/announcements/{{$ra->slug}}/like">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="button-loves">
-                                            <img class="heartFul heartLiked" src="{{asset('svg/heartFul.svg')}}"
-                                                 alt="icone de coeur">
-                                            <span>
-                                        {{$ra->likes? : 0}}</span></button>
-                                    </form>
-                                @endif
+                                            <button type="submit" class="button-loves">
+                                                <img class="heart" src="{{asset('svg/heart.svg')}}" alt="icone de coeur">
+                                                <img class="heartFul" src="{{asset('svg/heartFul.svg')}}"
+                                                     alt="icone de coeur">
+                                                <span>
+                                        {{$ra->likes ? : 0}}</span></button>
+                                        </form>
+                                    @else
+
+                                        <form method="POST" action="/workerz/{{$ra->slug}}/like">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="button-loves">
+                                                <img class="heartFul heartLiked" src="{{asset('svg/heartFul.svg')}}"
+                                                     alt="icone de coeur">
+                                                <span>
+                                        {{$ra->likes ? : 0}}</span></button>
+                                        </form>
+                                    @endif
+                                </div>
 
                             @else
-                        </div>
-                        <a href="{{route('login')}}">
-                            <div class="containerPrice containerLove hepling helping-like">
+                                <a href="{{route('login')}}">
+                                    <div class="containerPrice containerLove like-ads hepling helping-like help-show">
 
-                                <img class="heart" src="{{asset('svg/heart.svg')}}" alt="icone de coeur">
-                                <img class="heartFul" src="{{asset('svg/heartFul.svg')}}"
-                                     alt="icone de coeur">
-                                <p>
-                                    {{$ra->likes? : 0}}</p>
-                                <span> Il faut être connecter pour aimer l'annonce</span>
-                                @endauth
-                            </div>
-                        </a>
+                                        <img class="heart" src="{{asset('svg/heart.svg')}}" alt="icone de coeur">
+                                        <img class="heartFul" src="{{asset('svg/heartFul.svg')}}"
+                                             alt="icone de coeur">
+                                        <p>
+                                            {{$ra->likes? : 0}}</p>
+                                        <span> Il faut être connecter pour aimer l'entreprise</span>
+                                    </div>
+                                </a>
+                            @endauth
+                        </div>
                         <div class="container-picture-ads">
                             @if($ra->picture)
-                                <img src="{{ $ra->pic }}"
+                                <img src="{{ $ra->picture }}"
                                      alt="photo de profil de {{$ra->name}}"/>
                             @else
                                 <img src="{{asset('svg/ad.svg')}}" alt="icone d'annonces">
@@ -219,16 +223,16 @@
                             <div class="container-infos-ads-randomm">
                                 <div class="container-position-ads">
                                     <img src="{{asset('svg/placeholder.svg')}}" alt="icone de position">
-                                    <span>{{$ra->province->name}}</span>
+                                    <p>{{$ra->province->name}}</p>
                                 </div>
                                 <div class="container-position-ads">
                                     <img src="{{asset('svg/suitcase.svg')}}" alt="icone de malette">
                                     <span class="job-cat-ads">
-                                    <span>{{ucfirst($ra->job)}}</span>
+                                    <p>{{ucfirst($ra->job)}}</p>
                                     @if($ra->categoryAds->count())
-                                            <span class="categoryJob">
+                                            <p class="categoryJob">
                                             (@foreach($ra->categoryAds as $a){{$a->name}}{{ ($loop->last ? '' : ', ') }}@endforeach)
-                                        </span>
+                                        </p>
                                         @endif
                                 </span>
                                 </div>
