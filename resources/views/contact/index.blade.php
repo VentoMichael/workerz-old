@@ -47,12 +47,11 @@
                 <div class="container-register-form">
                     <div class="container-form-email">
                         <label for="name">Nom <span class="required">*</span></label>
-                        <input type="text" id="name" value="{{old("name")}}" placeholder="Rotis"
-                               class=" @error('name') is-invalid @enderror email-label" name="name" required>
+                        <input type="text" id="name" @if(\Illuminate\Support\Facades\Auth::check()) value="{{\Illuminate\Support\Facades\Auth::user()->name}}" @else value="{{ old('name') }}" @endif placeholder="Rotis" class=" @error('name') is-invalid @enderror email-label" name="name" required>
                     </div>
                     <div class="container-form-email">
                         <label for="surname">Prénom</label>
-                        <input type="text" id="surname" value="{{old("surname")}}" placeholder="Daniel"
+                        <input type="text" id="surname" @if(\Illuminate\Support\Facades\Auth::check() && \Illuminate\Support\Facades\Auth::user()->surname !== null) value="{{\Illuminate\Support\Facades\Auth::user()->surname}}" @else value="{{ old('surname') }}" @endif placeholder="Daniel"
                                class=" @error('surname') is-invalid @enderror email-label" name="surname">
                     </div>
                 </div>
@@ -63,7 +62,7 @@
                         <input id="email" type="email"
                                class=" @error('email') is-invalid @enderror email-label"
                                name="email"
-                               value="{{ old('email') }}" placeholder="danielrotis@gmail.com" required autocomplete="email">
+                               value="@if(\Illuminate\Support\Facades\Auth::check()) {{\Illuminate\Support\Facades\Auth::user()->email}} @else {{ old('email') }} @endif" placeholder="danielrotis@gmail.com" required autocomplete="email">
                         @error('email')
                         <div class="container-error">
                 <span role="alert" class="error">
@@ -72,9 +71,10 @@
                         </div>
                         @enderror
                     </div>
+                    @dd(\Route::current()->getName())
                     <div class="container-form-email">
                         <label for="subject">Sujet <span class="required">*</span></label>
-                        <input type="text" placeholder="Engagez un menuisier" id="subject" value="@if(request()->has('askJob')) Je propose mon métier @endif {{old("subject")}}"
+                        <input type="text" placeholder="Engagez un menuisier" id="subject" @if(request()->is('contact*')) value="Je propose un nouveau métier" @else value="{{old("subject")}}" @endif
                                class=" @error('subject') is-invalid @enderror email-label" name="subject" required>
                     </div>
                 </div>
