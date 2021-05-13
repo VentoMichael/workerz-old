@@ -34,13 +34,9 @@ class AnnouncementController extends Controller
 
     public function index()
     {
-        $announcements = Announcement::Published()->NoBan()->Payement()->orderBy('plan_announcement_id',
-            'DESC')->orderBy('created_at', 'DESC')->withLikes()->paginate(4)->onEachSide(0);
-        $categories = Category::withCount("announcements")->get()->sortBy('name');
-        $regions = Province::withCount("announcements")->get()->sortBy('name');
         $user = auth()->user();
 
-        return view('announcements.index', compact('announcements', 'categories', 'regions', 'user'));
+        return view('announcements.index', compact('user'));
     }
 
     public function show(Announcement $announcement)
@@ -49,7 +45,7 @@ class AnnouncementController extends Controller
             'DESC')->withLikes()->limit(2)->inRandomOrder()->get();
         $randomPhrasing = CatchPhraseAnnouncement::all()->random();
         $user = auth()->user();
-        $announcement = Announcement::Published()->with('user')->withLikes()->get()->find($announcement);;
+        $announcement = Announcement::Published()->with('user')->withLikes()->get()->find($announcement);
         return view('announcements.show', compact('randomPhrasing', 'randomAds', 'announcement', 'user'));
     }
 

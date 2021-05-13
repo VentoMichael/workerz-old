@@ -28,26 +28,17 @@ class UserController extends Controller
 
     public function index()
     {
-        $workerz = User::withLikes()->Independent()->Payed()->NoBan()->with('adresses')->orderBy('plan_user_id',
-            'DESC')->orderBy('created_at', 'DESC')->paginate(4)->onEachSide(0);
-        $categories = Category::with(([
-            'users' => function ($q) {
-                $q->Independent()->Payed()->NoBan();
-            }
-        ]))->withCount("users")->get()->sortBy('name');
-        $regions = PhysicalAdress::all();
-        return view('workerz.index', compact('workerz', 'categories', 'regions'));
+        return view('workerz.index');
     }
 
     public function show(User $worker)
     {
-        $web = $worker->website;
         $worker = User::withLikes()->Independent()->Payed()->NoBan()->with('startDate', 'phones',
             'adresses')->get()->where('id', '=', $worker->id)->first();
         $randomUsers = User::Independent()->Payed()->NoBan()->orderBy('role_id',
             'DESC')->withLikes()->limit(2)->inRandomOrder()->get();
         $randomPhrasing = CatchPhraseUser::all()->random();
-        return view('workerz.show', compact('web','worker', 'randomPhrasing', 'randomUsers'));
+        return view('workerz.show', compact('worker', 'randomPhrasing', 'randomUsers'));
     }
 
     public function payed(Request $request, User $user)

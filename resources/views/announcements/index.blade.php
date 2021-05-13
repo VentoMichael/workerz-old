@@ -37,11 +37,10 @@
             </div>
         </div>
     </section>
-    <livewire:ads :regions="$regions" :categories="$categories" :announcements="$announcements">
+    <livewire:ads>
 
     </livewire:ads>
 @endsection
 @section('scripts')
-    <script src="{{asset('js/successMsg.js')}}"></script>
     @livewireScripts
 @endsection

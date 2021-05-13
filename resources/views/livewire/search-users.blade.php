@@ -1,6 +1,6 @@
 <div>
     <div class="container-form-search">
-        <form action="{{route('home.index')}}" method="get">
+        <form action="{{route('workerz')}}" method="get">
             <input type="search" spellcheck="false" placeholder="Rechercher un indépendant" wire:model="search" name="search" class="search-home">
             <input type="submit" class="submit-category-home" value="Recherchez">
         </form>
@@ -23,8 +23,11 @@
                                         @endif
                                     </li>
                                     <li>
-
                                         {{$worker->name}}
+                                        @if($worker->adresses->count())
+                                                    <p class="categoryJob">({{ucfirst($worker->adresses->first()->province->name)}}
+                                                        )</p>
+                                        @endif
                                     </li>
                                 </ul>
                             </a>
@@ -34,8 +37,9 @@
                                     <img class="user-img-box" src="{{asset('svg/not-found.svg')}}" alt="Pictogramme d'une ampoule">
                                 </li>
                                 <li>
+                                    <p>
                                     Je n'ai trouvé aucun indépendant avec ce nom. <a style="text-decoration: underline;"
-                                        href="{{route('workerz')}}">Je vais voir tous les indépendants</a>
+                                        href="{{route('workerz')}}">Je vais voir tous les indépendants</a></p>
                                 </li>
                             </ul>
                         @endforelse

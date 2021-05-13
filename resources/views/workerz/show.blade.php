@@ -69,7 +69,7 @@
 
                 @else
                     <a href="{{route('login')}}">
-                        <div class="containerPrice containerLove hepling helping-like help-show">
+                        <div class="containerPrice containerLove like-users hepling helping-like help-show">
 
                             <img class="heart" src="{{asset('svg/heart.svg')}}" alt="icone de coeur">
                             <img class="heartFul" src="{{asset('svg/heartFul.svg')}}"
@@ -118,9 +118,9 @@
                 <h3 aria-level="3">
                     {{ucfirst($worker->name)}}
                 </h3>
-                <span>
+                <p>
                     {{ucfirst($worker->description)}}
-                </span>
+                </p>
                 <section class="container-perso-infos container-six-category-home">
                     <h4 aria-level="4" class="hidden">Information de contact</h4>
                     <div>
@@ -221,7 +221,7 @@
 
                             @else
                                 <a href="{{route('login')}}">
-                                    <div class="containerPrice containerLove like-ads hepling helping-like help-show">
+                                    <div class="containerPrice containerLove like-users like-ads hepling helping-like help-show">
 
                                         <img class="heart" src="{{asset('svg/heart.svg')}}" alt="icone de coeur">
                                         <img class="heartFul" src="{{asset('svg/heartFul.svg')}}"
@@ -260,12 +260,12 @@
                                     @endif
                                 </span>
                             </div>
-                            @if($worker->adresses->count())
+                            @if($ra->adresses->count())
                                 <div class="container-info-announcement">
                                     <img src="{{asset('svg/placeholder.svg')}}" alt="icone de localité">
                                     <div class="container-location">
-                                        <p>{{ucfirst($worker->adresses->first()->postal_adress)}}</p>
-                                        <p class="categoryJob">({{ucfirst($worker->adresses->first()->province->name)}})</p>
+                                        <p>{{ucfirst($ra->adresses->first()->postal_adress)}}</p>
+                                        <p class="categoryJob">({{ucfirst($ra->adresses->first()->province->name)}})</p>
                                     </div>
                                 </div>
                             @endif

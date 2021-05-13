@@ -1,15 +1,15 @@
-<div>
+<div id="adsLink">
     <div class="container-home container-search">
         <form action="#" method="get" class="formSearchAd">
             <label for="search" class="hidden">Recherche d'annonces</label>
-            <input type="text" name="search" id="search" wire:model="search" placeholder="Rechercher par nom"
+            <input type="text" name="search" value="{{request('search')}}" id="search" wire:model="search" placeholder="Rechercher par nom"
                    class="search-announcement search-home">
             <noscript>
                 <input type="submit" class="submit-category-home submit-ad" value="Recherchez">
             </noscript>
         </form>
     </div>
-    <section class="container-home container-announcements" id="adsLink">
+    <section class="container-home container-announcements">
         <h2 class="hidden" aria-level="2">
             Toutes les annonces
         </h2>
@@ -63,7 +63,7 @@
                         </div>
 
                         <div class="containerPrice">
-                            <img src="{{asset('svg/euro.svg')}}" alt="icone d'euro">Max: {{$announcement->pricemax}}€
+                            <img src="{{asset('svg/euro.svg')}}" alt="icone d'euro"> <span>Max: {{$announcement->pricemax}}€</span>
                         </div>
                         <div class="container-image-announcement">
                             @if($announcement->picture)
@@ -95,7 +95,12 @@
                             </div>
                             <div class="container-info-announcement">
                                 <img src="{{asset('svg/placeholder.svg')}}" alt="icone de localité">
-                                <p>{{$announcement->province->name}}</p>
+                                <div>
+                                    @if($announcement->adress)
+                                        <p>{{$announcement->adress}}</p>
+                                    @endif
+                                    <p>{{$ra->province->name}}</p>
+                                </div>
                             </div>
                         </div>
                     </div>

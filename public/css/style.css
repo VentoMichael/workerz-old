@@ -1415,16 +1415,16 @@ form .search-announcement {
     color: var(--blueLight);
 }
 
-.pagination div button svg:nth-child(1), .pagination div button svg:nth-child(3) {
+.pagination div a svg:nth-child(1), .pagination div a svg:nth-child(3) {
     color: var(--blueLight);
     width: 35px;
 }
-.pagination button {
+.pagination a {
     background: transparent;
     border: none;
     font-size: 1em;
 }
-.container-links-pagination span, .container-links-pagination button{
+.container-links-pagination span, .container-links-pagination a{
     margin: 0 5px;
     padding: 0 5px 2px;
 }
@@ -1436,7 +1436,6 @@ form .search-announcement {
 .current_page_item-nav span {
     border-bottom: 2px solid var(--blueLight);
     margin: 0;
-    margin-top: 4px;
     display: inline-block;
 }
 
@@ -1660,6 +1659,12 @@ div .helping-like:hover span {
     min-width: 115px;
     max-width: 115px;
 }
+div .like-index:hover span {
+    left: -50%;
+    top: -220%;
+    min-width: 115px;
+    max-width: 115px;
+}
 
 div .helping-like span {
     left: -50%;
@@ -1728,11 +1733,15 @@ div .like-index {
     left: -40px;
     border-radius: 10px;
 }
-
+div .show-NConnected{
+    top: -43px;
+}
 .container-hot-plan {
     position: relative;
 }
-
+div .helping-like:hover span {
+    top: -220%;
+}
 section .container-paied {
     grid-template-columns: repeat(auto-fit, minmax(331px, 1fr));
 }
@@ -1836,6 +1845,9 @@ div .password--visibleToggle-eye {
 .iconTwitter {
     background-image: url(../svg/twitter.svg);
     background-size: 70%;
+}
+div .like-users:hover span{
+    top: -260%;
 }
 
 .social-media {

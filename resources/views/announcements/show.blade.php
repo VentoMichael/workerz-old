@@ -77,7 +77,7 @@
 
                 @else
                     <a href="{{route('login')}}">
-                        <div class="containerPrice containerLove hepling helping-like help-show">
+                        <div class="containerPrice containerLove show-NConnected hepling helping-like help-show">
 
                             <img class="heart" src="{{asset('svg/heart.svg')}}" alt="icone de coeur">
                             <img class="heartFul" src="{{asset('svg/heartFul.svg')}}"
@@ -147,7 +147,12 @@
                     @endif
                     <div>
                         <img src="{{asset('svg/placeholder.svg')}}" alt="icone de position">
-                        <span>{{$announcement->province->name}}</span>
+                        <div>
+                            @if($announcement->adress)
+                                <span>{{$announcement->adress}}</span>
+                            @endif
+                            <span>{{$ra->province->name}}</span>
+                        </div>
                     </div>
                 </section>
             </div>
@@ -223,7 +228,12 @@
                             <div class="container-infos-ads-randomm">
                                 <div class="container-position-ads">
                                     <img src="{{asset('svg/placeholder.svg')}}" alt="icone de position">
-                                    <p>{{$ra->province->name}}</p>
+                                    <div>
+                                        @if($announcement->adress)
+                                            <p>{{$announcement->adress}}</p>
+                                        @endif
+                                        <p>{{$ra->province->name}}</p>
+                                    </div>
                                 </div>
                                 <div class="container-position-ads">
                                     <img src="{{asset('svg/suitcase.svg')}}" alt="icone de malette">

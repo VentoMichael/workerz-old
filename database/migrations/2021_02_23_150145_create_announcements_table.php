@@ -15,10 +15,12 @@ class CreateAnnouncementsTable extends Migration
     {
         Schema::create('announcements', function (Blueprint $table) {
             $table->id();
-            $table->string('title')->unique();
+            // TODO put unique
+            $table->string('title');
             $table->string('catchPhrase')->nullable();
             $table->string('slug')->unique();
             $table->text('picture')->nullable();
+            $table->text('adress')->nullable();
             $table->string('description',256);
             $table->string('job');
             $table->boolean('banned')->default(false);
