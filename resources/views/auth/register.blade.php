@@ -240,9 +240,9 @@
                     <div class="container-register-form">
                         <div class="container-form-email selectdiv">
                             <label for="location">Région <span class="required">*</span></label>
-                            <select @if($request->plan_user_id == 1 || $request->old('plan_user_id') == 1)
+                            <select class="email-label"
+                                    @if($request->plan_user_id == 1 || $request->old('plan_user_id') == 1)
                                     data-maxoption="1"
-                                    class="email-label"
                                     @endif
                                     @if($request->plan_user_id == 2 || $request->old('plan_user_id') == 2) class="select-register"
                                     multiple data-maxoption="2"
@@ -294,9 +294,9 @@
                     <div class="container-register-form">
                         <div class="container-form-email selectdiv">
                             <label for="category_job">Catégorie de métier <span class="required">*</span></label>
-                            <select @if($request->plan_user_id == 1 || $request->old('plan_user_id') == 1)
+                            <select class="email-label"
+                                    @if($request->plan_user_id == 1 || $request->old('plan_user_id') == 1)
                                     data-maxoption="1"
-                                    class="email-label"
                                     @endif
                                     @if($request->plan_user_id == 2 || $request->old('plan_user_id') == 2) class="select-register"
                                     multiple data-maxoption="2"

@@ -71,11 +71,9 @@
                         </div>
                         @enderror
                     </div>
-                    @dd(\Route::current()->getName())
                     <div class="container-form-email">
                         <label for="subject">Sujet <span class="required">*</span></label>
-                        <input type="text" placeholder="Engagez un menuisier" id="subject" @if(request()->is('contact*')) value="Je propose un nouveau métier" @else value="{{old("subject")}}" @endif
-                               class=" @error('subject') is-invalid @enderror email-label" name="subject" required>
+                        <input type="text" placeholder="Engagez un menuisier" id="subject" value="{{old("subject")}}" class=" @error('subject') is-invalid @enderror email-label" name="subject" required>
                     </div>
                 </div>
 

@@ -43,7 +43,7 @@ Route::prefix('')->middleware(['guest'])->group(function () {
         ->name('users.plans');
     Route::get('/register/plans/registration_type',
         [\App\Http\Controllers\UserController::class, 'registration_type'])
-        ->name('users.type')->middleware('noplansuser');
+        ->name('users.type');
     Route::get('/register/payed', [\App\Http\Controllers\UserController::class, 'payed'])
         ->name('users.payed')->middleware('noplansuser');
 });
