@@ -1849,8 +1849,9 @@ div .password--visibleToggle-eye {
     align-self: center;
     margin-top: 20px;
 }
-.load{
+.load ,.load a{
     opacity: .5;
+    cursor: wait;
 }
 .container-empty-ad{
     grid-column-end: 3;
@@ -1867,4 +1868,7 @@ div .password--visibleToggle-eye {
 .container-empty-ad img{
     margin-bottom: 10px;
     max-width: 100px;
+}
+.pagination button:after,.pagination button:before{
+    display: none;
 }

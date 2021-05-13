@@ -5,16 +5,18 @@
         <label for="search" class="hidden">Recherche d'annonces</label>
         <input type="text" name="search" id="search" wire:model="search" placeholder="Rechercher par nom"
                class="search-announcement search-home">
-        <input type="submit" class="submit-category-home submit-ad" value="Recherchez">
+        <noscript>
+            <input type="submit" class="submit-category-home submit-ad" value="Recherchez">
+        </noscript>
     </form>
 </div>
 <section class="container-home container-announcements" id="adsLink">
     <h2 class="hidden" aria-level="2">
         Toutes les annonces
     </h2>
-    <div class="container-all-announcement show-content" wire:loading.class="load">
+    <div class="container-all-announcement show-content" >
         @forelse($announcements as $announcement)
-            <section class="container-announcement">
+            <section class="container-announcement" wire:loading.class="load">
                 <div class="container-infos-announcement">
                     <div class="container-love-show">
                         @auth
@@ -133,8 +135,8 @@
                             @if($category->announcements_count !=0)
                                 <li>
                                     <input class="inp-cbx" id="category{{$category->id}}"
-                                           name="category{{$category->id}}"
-                                           type="checkbox" style="display: none;"/>
+                                           name="category[]"
+                                           type="checkbox" value="{{$category->id}}" style="display: none;"/>
                                     <label class="cbx" for="category{{$category->id}}">
                                 <span>
                                     <svg width="12px" height="9px" viewbox="0 0 12 9">
@@ -157,7 +159,7 @@
                             @if($region->announcements_count !=0)
                                 <li>
 
-                                    <input class="inp-cbx" id="region{{$region->id}}" name="region{{$region->id}}"
+                                    <input wire:model="regionSeleted" class="inp-cbx" id="region{{$region->id}}" name="regionSeleted[]"
                                            type="checkbox"
                                            style="display: none;"/>
                                     <label class="cbx" for="region{{$region->id}}">
@@ -173,9 +175,11 @@
                         @endforeach
                     </ul>
                 </section>
+                <noscript>
                 <button>
                     Appliquer les filtres
                 </button>
+                </noscript>
             </section>
         </form>
     </div>
