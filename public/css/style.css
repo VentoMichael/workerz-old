@@ -1872,3 +1872,53 @@ div .password--visibleToggle-eye {
 .pagination button:after,.pagination button:before{
     display: none;
 }
+.container-users-box{
+    background: white;
+    box-shadow: var(--shadow);
+    border-radius: 5px;
+}
+.container-home_image div .container-users-box{
+    min-width: 100%;
+    max-width: inherit;
+}
+.container-users-box ul li{
+    padding: 10px;
+}
+.user-img-box{
+    max-width: 70px;
+    width: 100%;
+    max-height: 100px;
+    border-radius: 5px;
+}
+.link-container-infos-user-box ul{
+    display: flex;
+    border-bottom: 2px solid var(--blueLight);
+    padding: 8px 0 5px;
+}
+.container-infos-user-box li{
+    align-self: center;
+}
+.link-container-infos-user-box:first-child ul{
+    padding-top: 0;
+}
+
+.link-container-infos-user-box:last-child ul{
+    border-bottom: 0;
+    padding-bottom: 0;
+}
+.container-boxes{
+    max-width: 400px;
+}
+.container-home_image div div .container-form-search{
+    min-width: 400px;
+}
+.container-infos-user-box-no-data{
+    display: flex;
+}
+
+.container-infos-user-box-no-data li{
+    align-self: center;
+}
+.container-infos-user-box-no-data img{
+    border-radius: 0;
+}

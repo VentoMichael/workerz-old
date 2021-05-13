@@ -12,12 +12,8 @@
                         On vous aide a choisir le meilleur professionnel pour vos demandes
                     </p>
                 </div>
-                <div>
-                    <form action="#" method="get">
-                        <input type="search" placeholder="Ex: {{ucfirst($workerz->name)}}" class="search-home">
-                        <input type="submit" class="submit-category-home" value="Recherchez">
-                    </form>
-                </div>
+                <livewire:search-users>
+                </livewire:search-users>
             </div>
             <div class="container-svg">
                 <img src="{{asset('svg/Profiling_Monochromatic.svg')}}"
@@ -103,4 +99,6 @@
         </section>
     </section>
 @endsection
-
+@section('scripts')
+    @livewireScripts
+@endsection

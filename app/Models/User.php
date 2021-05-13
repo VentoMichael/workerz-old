@@ -11,7 +11,6 @@ use Illuminate\Http\Request;
 class User extends Authenticatable
 {
     use HasFactory, Notifiable;
-
     use LikableUser;
 
     /**
@@ -42,6 +41,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'created_at' => 'datetime:Y-m-d h:i:s',
     ];
+
 
     public function getRouteKeyName()
     {
