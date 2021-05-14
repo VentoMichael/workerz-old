@@ -11,7 +11,7 @@
         </div>
     @endif
 
-    <form method="POST" action="{{ route('verification.send') }}">
+    <form aria-label="Vérification d'email" method="POST" action="{{ route('verification.send') }}">
         @csrf
 
         <button type="submit">
@@ -19,7 +19,7 @@
         </button>
     </form>
 
-    <form method="POST" action="{{ route('logout') }}">
+    <form aria-label="Déconnexion" method="POST" action="{{ route('logout') }}">
         @csrf
 
         <button type="submit">

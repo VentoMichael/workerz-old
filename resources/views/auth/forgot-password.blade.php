@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
     @if (session('status'))
-        <div id="successMsg" class="successMsg"><img src="{{asset('svg/good.svg')}}" alt="good icone">
+        <div id="successMsg" role="alert" class="successMsg"><img src="{{asset('svg/good.svg')}}" alt="good icone">
             <div class="alert alert-success" role="alert">
                 <p>{{ session('status') }}</p>
             </div>
@@ -21,7 +21,7 @@
                         >Adresse email</label>
                         <input id="email" type="email"
                                class="email-label @error('email') is-invalid @enderror"
-                               name="email" value="{{ old('email') }}" required autocomplete="email"
+                               name="email" value="{{ old('email') }}" required aria-required="true" autocomplete="email"
                                autofocus>
                         @error('email')
                         <div class="container-error">

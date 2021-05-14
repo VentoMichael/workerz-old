@@ -94,7 +94,7 @@
                             >Informations de paiement</label>
                             <input id="payed" type="text"
                                    class="@error('payed-info') is-invalid @enderror email-label"
-                                   name="payed" value="{{ old('payed') }}" required autocomplete="payed-info"
+                                   name="payed" value="{{ old('payed') }}" required aria-required="true" autocomplete="payed-info"
                                    autofocus>
 
                             @error('payed-info')

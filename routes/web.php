@@ -44,17 +44,16 @@ Route::prefix('')->middleware(['guest'])->group(function () {
     Route::get('/register/plans/registration_type',
         [\App\Http\Controllers\UserController::class, 'registration_type'])
         ->name('users.type');
-    Route::get('/register/payed', [\App\Http\Controllers\UserController::class, 'payed'])
-        ->name('users.payed')->middleware('noplansuser');
 });
 
 Route::prefix('')->middleware(['auth'])->group(function () {
-    Route::get('/dashboard', [\App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard',
+        [\App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard')->middleware('payeduser');
     Route::get('/dashboard/profile', [
         \App\Http\Controllers\DashboardController::class, 'settings'
     ])->name('dashboard/profile')->middleware('payeduser');
     Route::get('/dashboard/ads',
-        [\App\Http\Controllers\DashboardController::class, 'ads'])->name('dashboard/ads');
+        [\App\Http\Controllers\DashboardController::class, 'ads'])->name('dashboard/ads')->middleware('payeduser');
     Route::post('/workerz/{worker}/like', [\App\Http\Controllers\UserLikeController::class, 'store']);
     Route::delete('/workerz/{worker}/like', [\App\Http\Controllers\UserLikeController::class, 'delete']);
     Route::get('/announcement/plans',
@@ -65,12 +64,15 @@ Route::prefix('')->middleware(['auth'])->group(function () {
     Route::delete('/announcements/{announcement}/like',
         [\App\Http\Controllers\AnnouncementLikeController::class, 'delete']);
     Route::post('/announcement/',
-        [\App\Http\Controllers\AnnouncementController::class, 'store'])->name('announcements.store')->middleware('payedads');
+        [\App\Http\Controllers\AnnouncementController::class, 'store'])
+        ->name('announcements.store')->middleware('payedads');
     Route::get('/announcement/create',
         [\App\Http\Controllers\AnnouncementController::class, 'create'])->name('announcements.create');
     Route::get('/announcement/payed', [\App\Http\Controllers\AnnouncementController::class, 'payed'])
         ->name('announcements.payed');
 });
+Route::get('/register/payed', [\App\Http\Controllers\UserController::class, 'payed'])
+    ->name('users.payed');
 
 Route::get('/conditions', function () {
     return view('conditions.index');

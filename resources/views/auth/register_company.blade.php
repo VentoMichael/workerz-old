@@ -55,7 +55,7 @@
                     <div class="container-form-email">
                         <label for="name">Nom du commerce <span class="required">*</span></label>
                         <input type="text" id="name" value="{{old("name")}}" placeholder="Rotis"
-                               class=" @error('name') is-invalid @enderror email-label" name="name" required>
+                               class=" @error('name') is-invalid @enderror email-label" name="name" required aria-required="true">
                     </div>
                 </div>
                 <div class="container-register-form">
@@ -69,7 +69,7 @@
                         <label for="phone">Numéro de téléphone <span class="required">*</span></label>
                         <input placeholder="0494827263" minlength="6" maxlength="15" type="tel"
                                pattern="^[0-9-+\s()]*$" id="phone" value="{{old("phone")}}"
-                               class=" @error('phone') is-invalid @enderror email-label" name="phone" required>
+                               class=" @error('phone') is-invalid @enderror email-label" name="phone" required aria-required="true">
                         @if($request->plan_user_id == 1)
                             <p class="help"><a href="{{route('users.plans')}}#plans">Augmenter votre plan</a> et
                                 vous aurez la possibilité d'en ajouter jusqu'à 3</p>
@@ -134,7 +134,7 @@
                         <input type="text" id="job" value="{{old("job")}}"
                                class=" @error('job') is-invalid @enderror email-label" name="job"
                                placeholder="Menuisier"
-                               required>
+                               required aria-required="true">
                     </div>
                 </div>
 
@@ -170,7 +170,7 @@
                 <div class="container-register-form">
                     <div class="container-form-email">
                         <label for="description">Description <span class="required">*</span></label>
-                        <textarea id="description" name="description" required
+                        <textarea id="description" name="description" required aria-required="true"
                                   class=" @error('description') is-invalid @enderror email-label"
                                   placeholder="Description détailée de votre profil..."
                                   rows="5" cols="33">{{old("description")}}</textarea>

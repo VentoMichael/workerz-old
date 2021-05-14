@@ -1,7 +1,8 @@
 <div>
     <div class="container-form-search">
-        <form action="{{route('workerz')}}" method="get">
-            <input type="search" spellcheck="false" placeholder="Rechercher un indépendant" wire:model="search" name="search" class="search-home">
+        <form aria-label="Recherche d'indépendants" role="search" action="{{route('workerz')}}" method="get">
+            <label for="search" class="hidden">Recherche d'indépendants</label>
+            <input type="search" spellcheck="false" placeholder="Rechercher un indépendant" wire:model="search" name="search" class="search-home" id="search">
             <input type="submit" class="submit-category-home" value="Recherchez">
         </form>
     </div>
@@ -11,8 +12,9 @@
                 <ul>
                     <li class="container-all-users-boxes">
                         @forelse($workerz as $worker)
-                            <a class="link-container-infos-user-box" href="/workerz/{{$worker->slug}}">
-                                <ul class="container-infos-user-box">
+                            <a wire:loading.class="load" class="link-container-infos-user-box" href="/workerz/{{$worker->slug}}">
+                                <ul class="container-infos-user-box" itemscope
+                         itemtype="https://schema.org/Person">
                                     <li>
                                         @if($worker->picture)
                                             <img class="user-img-box" src="{{ $worker->picture }}"
@@ -23,10 +25,9 @@
                                         @endif
                                     </li>
                                     <li>
-                                        {{$worker->name}}
+                                        <span itemprop="affiliation">{{$worker->name}}</span>
                                         @if($worker->adresses->count())
-                                                    <p class="categoryJob">({{ucfirst($worker->adresses->first()->province->name)}}
-                                                        )</p>
+                                                    <p itemprop="address" class="categoryJob">({{ucfirst($worker->adresses->first()->province->name)}})</p>
                                         @endif
                                     </li>
                                 </ul>

@@ -20,7 +20,7 @@ class PayedUser
     {
         if ($request->user()->plan_user_id == 2 || $request->user()->plan_user_id == 3) {
             $plan = $request->user()->plan_user_id;
-            return redirect()->route('users.payed', compact('plan'));
+            return redirect(route('users.payed', compact('plan')));
         }
         return $next($request);
     }

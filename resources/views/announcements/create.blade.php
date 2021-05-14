@@ -1,5 +1,11 @@
 @extends('layouts.app')
 @section('content')
+    @if (Session::has('success-inscription'))
+        <div id="successMsg" role="alert" class="successMsg"><img src="{{asset('svg/good.svg')}}" alt="cross icone">
+            <p>{{Session::get('success-inscription')}}</p>
+            <span class="crossHide" id="crossHide">&times;</span>
+        </div>
+    @endif
     <section class="container-home margin">
         <div class="container-home_image container-home-create container-home-page">
             <div>
@@ -63,7 +69,7 @@
                         <label for="title">Titre <span class="required">*</span></label>
                         <input type="text" id="title" value="{{old("title")}}"
                                class=" @error('title') is-invalid @enderror email-label" name="title"
-                               required placeholder="Menuisier dans liège">
+                               required aria-required="true" placeholder="Menuisier dans liège">
                         @error('title')
                         <p class="danger help">
                             {{$errors->first('title')}}
@@ -72,7 +78,7 @@
                     </div>
                     <div class="container-form-email">
                         <label for="location">Région <span class="required">*</span></label>
-                        <select required class="select-register select-regions" data-maxoption="1" name="location" id="location">
+                        <select required aria-required="true" class="select-register select-regions" data-maxoption="1" name="location" id="location">
                             @foreach($regions as $region)
                                 <option value="{{$region->id}}">{{$region->name}}</option>
                             @endforeach
@@ -85,7 +91,7 @@
                         <label for="job">Metier <span class="required">*</span></label>
                         <input placeholder="Menuisier" type="text"
                                id="job" value="{{old("job")}}"
-                               class=" @error('job') is-invalid @enderror email-label" name="job" required>
+                               class=" @error('job') is-invalid @enderror email-label" name="job" required aria-required="true">
                         @error('job')
                         <p class="danger help">
                             {{$errors->first('job')}}
@@ -95,7 +101,7 @@
                     <div class="container-form-email">
 
                         <label for="category_job">Catégorie de métier <span class="required">*</span></label>
-                        <select required @if(request('plan') == 1)
+                        <select required aria-required="true" @if(request('plan') == 1)
                                 data-maxoption="1"
                                 class="select-register select-regions"
                                 @endif

@@ -11,7 +11,7 @@ trait LikableUser
     public function scopeWithLikes(Builder $query)
     {
         $query->leftJoinSub(
-            'select customer_id, sum(liked) likes from like_users group by customer_id',
+            'select customer_id, sum(liked) likes from wo_like_users group by customer_id',
             'like_users',
             'like_users.customer_id',
             'users.id',

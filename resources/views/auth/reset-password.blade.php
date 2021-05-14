@@ -13,7 +13,7 @@
                     <div class="container-form-email notVisible">
                         <label for="email"
                         >Email</label>
-                        <input id="email" type="email" class="email-label @error('email') is-invalid @enderror" name="email" value="{{ request()->get('email') ?? old('email') }}" required autocomplete="email" autofocus>
+                        <input id="email" type="email" class="email-label @error('email') is-invalid @enderror" name="email" value="{{ request()->get('email') ?? old('email') }}" required aria-required="true" autocomplete="email" autofocus>
 
                         @error('email')
                         <div class="container-error">
@@ -27,7 +27,7 @@
                         <label for="password"
                         >Mot de passe</label>
                         <input id="password" type="password"
-                               class="email-label @error('password') is-invalid @enderror" name="password" required
+                               class="email-label @error('password') is-invalid @enderror" name="password" required aria-required="true"
                                autocomplete="new-password">
                         <div id="container-checkpass" class="container-checkpass">
                             <input type="checkbox" class="password--visibleToggle password-toggle-reset" id="checkPass" checked>
@@ -50,7 +50,7 @@
                     <div class="container-form-email">
                         <label for="password-confirm">Confirmer le mot de passe</label>
 
-                            <input id="password-confirm" type="password" class="email-label" name="password_confirmation" required autocomplete="new-password">
+                            <input id="password-confirm" type="password" class="email-label" name="password_confirmation" required aria-required="true" autocomplete="new-password">
                     </div>
                     <ul role="list" class="list-password-required">
                         <li id="cara">

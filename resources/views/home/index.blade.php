@@ -1,6 +1,11 @@
 @extends('layouts.app')
 @section('content')
-
+    @if (Session::has('not-permitted'))
+        <div id="successMsg" role="alert" class="successMsg"><img src="{{asset('svg/cross.svg')}}" alt="good icone">
+            <p>{{Session::get('not-permitted')}}</p>
+            <span class="crossHide" id="crossHide">&times;</span>
+        </div>
+    @endif
     <section class="container-home margin">
         <div class="container-home_image container-home-page">
             <div>
@@ -33,8 +38,8 @@
                 <a href="#">
                     <section class="box-category">
                         <img src="{{asset('svg/'.$categorie->profil)}}" alt="{{$categorie->alt}}">
-                        <div>
-                            <h3 aria-level="3">{{ucfirst($categorie->name)}}</h3>
+                        <div itemscope itemtype="http://schema.org/Person">
+                            <h3 itemprop="jobTitle" aria-level="3">{{ucfirst($categorie->name)}}</h3>
                             <p>{{$categorie->users->count()}} professionnels</p>
                         </div>
                     </section>
@@ -94,7 +99,7 @@
             </div>
             <div>
                 <img src="{{asset('svg/Information carousel_Monochromatic.svg')}}"
-                     alt="Personne réflechissant et assis sur un coussin">
+                     alt="Personne choissisant parmis les nombreux indépendants">
             </div>
         </section>
     </section>

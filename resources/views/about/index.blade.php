@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-    <section class="container-home margin">
+    <section class="container-home margin" itemtype="https://schema.org/Organization" itemscope>
         <div class="container-home_image container-home-page">
             <div class="container-about-text">
                 <div class="container-home-text">
@@ -8,7 +8,7 @@
                         À propos de nous
                     </h2>
                     <p>
-                        Workerz, créer par <a href="http://ventomichael.site/">Vento Michael</a>, vous donne la
+                        <span itemprop="legalName">Workerz</span>, créer par <a itemprop="founder" href="http://ventomichael.site/">Vento Michael</a>, vous donne la
                         possibilité
                         de visez dans le mille !
                     </p>
@@ -49,7 +49,7 @@
                 <img src="{{asset('svg/Video tutorial _Monochromatic.svg')}}"
                      alt="Icone d'un cahier avec une personne voulant écrire dedans">
                 <div>
-                    <h3 aria-level="3">Développement d'une annonce</h3>
+                    <h3 aria-level="3" itemprop="makesOffer">Développement d'une annonce</h3>
                     <p>Vous aurez la possibilité de développer une annonce afin de trouver un corps de métier dont vous
                         avez besoin</p>
                 </div>
@@ -57,7 +57,7 @@
             <section class="box-category box-about">
                 <img src="{{asset('svg/Data analytics _Monochromatic.svg')}}" alt="Icone d'analyser de données">
                 <div>
-                    <h3 aria-level="3">Déployez votre entreprise</h3>
+                    <h3 aria-level="3" itemprop="makesOffer">Déployez votre entreprise</h3>
                     <p>Inscrivez-vous et développer votre entreprise afin d’être contacté parmi des centaines de
                         clients</p>
                 </div>
@@ -80,7 +80,7 @@
                     <h2 aria-level="2">
                         Notre but grâce à Workerz
                     </h2>
-                    <p>
+                    <p itemprop="knowsAbout">
                         Notre mission et d’enlever ces barrières qui vous empêchent d’avancer, grâce à Workerz vous
                         avancerez bien plus rapidement que vous ne le pensez, ne perdez pas de temps
                     </p>

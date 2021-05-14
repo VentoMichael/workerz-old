@@ -33,8 +33,7 @@ class UserController extends Controller
 
     public function show(User $worker)
     {
-        $worker = User::withLikes()->Independent()->Payed()->NoBan()->with('startDate', 'phones',
-            'adresses')->get()->where('id', '=', $worker->id)->first();
+        $worker = User::withLikes()->where('id', '=', $worker->id)->first();
         $randomUsers = User::Independent()->Payed()->NoBan()->orderBy('role_id',
             'DESC')->withLikes()->limit(2)->inRandomOrder()->get();
         $randomPhrasing = CatchPhraseUser::all()->random();
@@ -49,7 +48,6 @@ class UserController extends Controller
             $user->is_payed = 1;
             $user->update($request);
         }
-        //dd($request,$user);
         $plan = PlanUser::where('id', '=', $request->user()->plan_user_id)->get();
         Session::flash('success-inscription',
             'Votre inscription à été un succés ! Il suffit de terminer le paiement et votre entreprise sera visible.');

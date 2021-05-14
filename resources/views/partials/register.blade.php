@@ -4,7 +4,7 @@
         <input id="email" type="email"
                class=" @error('email') is-invalid @enderror email-label"
                name="email"
-               value="{{ old('email') }}" placeholder="danielrotis@gmail.com" required autocomplete="email">
+               value="{{ old('email') }}" placeholder="danielrotis@gmail.com" required aria-required="true" autocomplete="email">
         @error('email')
         <div class="container-error">
                 <span role="alert" class="error">
@@ -18,6 +18,7 @@
         >Mot de passe</label>
         <div class="@error('password')is-invalid @enderror password">
             <div id="container-checkpass" class="container-checkpass">
+                <label for="checkPass" class="hidden">Voir/masquer le mot de passe</label>
                 <input type="checkbox" class="password--visibleToggle" id="checkPass" checked>
                 <div class="password--visibleToggle-eye open">
                     <img src="{{asset('svg/eye-open.svg')}}" alt="icone de yeux ouvert"/>
@@ -29,7 +30,7 @@
 
             <input id="password" type="password" placeholder="Xxxxxxx1"
                    class="password--input"
-                   name="password" required>
+                   name="password" required aria-required="true">
 
         </div>
         <ul role="list" class="list-password-required">

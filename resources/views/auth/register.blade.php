@@ -86,7 +86,7 @@
                             <label for="phone">Numéro de téléphone <span class="required">*</span></label>
                             <input minlength="6" maxlength="15" type="tel" id="phone" pattern="^[0-9-+\s()]*$"
                                    value="{{old("phone")}}" placeholder="0494827235"
-                                   class=" @error('phone') is-invalid @enderror email-label" name="phone" required>
+                                   class=" @error('phone') is-invalid @enderror email-label" name="phone" required aria-required="true">
                             @if($request->plan_user_id == 1 || $request->old('plan_user_id') == 1)
                                 <p class="help"><a href="{{route('users.plans')}}#plans">Augmenter votre plan</a> et
                                     vous aurez la possibilité d'en ajouter jusqu'à 3</p>
@@ -103,12 +103,12 @@
                         <div class="container-form-email">
                             <label for="name">Nom<span class="required"> *</span></label>
                             <input type="text" id="name" value="{{old("name")}}" placeholder="Rotis"
-                                   class=" @error('name') is-invalid @enderror email-label" name="name" required>
+                                   class=" @error('name') is-invalid @enderror email-label" name="name" required aria-required="true">
                         </div>
                         <div class="container-form-email">
                             <label for="surname">Prénom<span class="required"> *</span></label>
                             <input type="text" id="surname" placeholder="Daniel" value="{{old("surname")}}"
-                                   class=" @error('surname') is-invalid @enderror email-label" name="surname" required>
+                                   class=" @error('surname') is-invalid @enderror email-label" name="surname" required aria-required="true">
                         </div>
 
                     </div>
@@ -147,7 +147,7 @@
                         <div class="container-form-email">
                             <label for="name">Nom du commerce <span class="required">*</span></label>
                             <input type="text" id="name" value="{{old("name")}}" placeholder="Rotis"
-                                   class=" @error('name') is-invalid @enderror email-label" name="name" required>
+                                   class=" @error('name') is-invalid @enderror email-label" name="name" required aria-required="true">
                             @error('name')
                             <div class="container-error">
                 <span role="alert" class="error">
@@ -175,7 +175,7 @@
                             <label for="phone">Numéro de téléphone <span class="required">*</span></label>
                             <input placeholder="0494827263" minlength="6" maxlength="15" type="tel"
                                    pattern="^[0-9-+\s()]*$" id="phone" value="{{old("phone")}}"
-                                   class=" @error('phone') is-invalid @enderror email-label" name="phone" required>
+                                   class=" @error('phone') is-invalid @enderror email-label" name="phone" required aria-required="true">
                             @if($request->plan_user_id == 1 || $request->old('plan_user_id') == 1)
                                 <p class="help"><a href="{{route('users.plans')}}#plans">Augmenter votre plan</a> et
                                     vous aurez la possibilité d'en ajouter jusqu'à 3</p>
@@ -233,6 +233,7 @@
                                     </span>
                                 </div>
                                 @enderror
+                                    <p class="help">Veuillez séléctionner vos jours d'ouvertures</p>
                             </select>
                         </div>
                     </div>
@@ -281,7 +282,7 @@
                             <input type="text" id="job" value="{{old("job")}}"
                                    class=" @error('job') is-invalid @enderror email-label" name="job"
                                    placeholder="Menuisier"
-                                   required>
+                                   required aria-required="true">
                             @error('job')
                             <div class="container-error">
                 <span role="alert" class="error">

@@ -1,13 +1,13 @@
 @extends('layouts.app')
 @section('content')
     @if (Session::has('loveOk'))
-        <div id="successMsg" class="successMsg"><img src="{{asset('svg/good.svg')}}" alt="good icone">
+        <div id="successMsg" role="alert" class="successMsg"><img src="{{asset('svg/good.svg')}}" alt="good icone">
             <p>{{Session::get('loveOk')}}</p>
             <span class="crossHide" id="crossHide">&times;</span>
         </div>
     @endif
     @if (Session::has('loveNotOk'))
-        <div id="successMsg" class="successMsg"><img src="{{asset('svg/good.svg')}}" alt="good icone">
+        <div id="successMsg" role="alert" class="successMsg"><img src="{{asset('svg/good.svg')}}" alt="good icone">
             <p>{{Session::get('loveNotOk')}}</p>
             <span class="crossHide" id="crossHide">&times;</span>
         </div>

@@ -6,6 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 
 class UserRoute
 {
@@ -19,6 +20,8 @@ class UserRoute
     public function handle(Request $request, Closure $next)
     {
         if($request->route('worker') && $request->route('worker')->role_id == 3 ) {
+            Session::flash('not-permitted',
+                'Oops ! La personne que vous recherchez n\'est pas un indépendant');
             return Redirect(route('home.index'));
         }
             return $next($request);

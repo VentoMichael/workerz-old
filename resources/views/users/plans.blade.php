@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
     @if (Session::has('errors'))
-        <div id="successMsg" class="successMsg"><img src="{{asset('svg/cross.svg')}}" alt="good icone">
+        <div id="successMsg" role="alert" class="successMsg"><img src="{{asset('svg/cross.svg')}}" alt="good icone">
             <p>{{Session::get('errors')}}</p>
             <span class="crossHide" id="crossHide">&times;</span>
         </div>
@@ -70,7 +70,7 @@
                                 <img src="{{asset('svg/cross.svg')}}" alt="Icone négative"> @endif Visible parmis les premiers
                         </li>
                     </ul>
-                    <form action="{{route('users.type')}}" method="post">
+                    <form aria-label="Choix du plan pour devenir utilisateur" action="{{route('users.type')}}" method="post">
                         @method('get')
                         @csrf
                         <input id="plan_user_id{{$plan->id}}" name="plan_user_id" type="hidden" value="{{$plan->id}}">

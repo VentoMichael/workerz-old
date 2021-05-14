@@ -1,6 +1,6 @@
 <div class="container-home container-search" id="workerzLink">
     <div class="container-search">
-        <form action="#" method="get" class="formSearchAd">
+        <form action="{{route('workerz')}}" aria-label="Recherche d'indépendants" role="search" method="get" class="formSearchAd">
             <label for="search" class="hidden">Recherche d'annonces</label>
             <input type="text" name="search" value="{{request('search')}}" id="search" wire:model="search"
                    placeholder="Rechercher par nom"
@@ -12,18 +12,21 @@
     </div>
     <section class="container-announcements show-content">
         <h2 class="hidden" aria-level="2">
-            Toutes les annonces
+            Toutes les entreprises
         </h2>
         <div class="container-all-announcement show-content">
             @forelse($workerz as $worker)
-                <section class="container-announcement" wire:loading.class="load">
+                <section class="container-announcement" wire:loading.class="load" itemscope
+                         itemtype="https://schema.org/Person">
                     <div class="container-infos-announcement">
                         <div class="container-love-show">
                             @auth
                                 <div
-                                    class="containerPrice container-show-love containerLove like-index help-show @guest notHoverHeart @endguest">
+                                    class="containerPrice container-show-love like-users-connected containerLove like-index help-show @guest notHoverHeart @endguest">
                                     @if(!$worker->isLikedUBy($worker))
-                                        <form method="POST" action="/workerz/{{$worker->slug}}/like">
+                                        <form method="POST" title="Mettre un j'aime à {{$worker->name}}"
+                                              aria-label="Mettre un j'aime à {{$worker->name}}"
+                                              action="/workerz/{{$worker->slug}}/like">
                                             @csrf
 
                                             <button type="submit" class="button-loves">
@@ -36,7 +39,9 @@
                                         </form>
                                     @else
 
-                                        <form method="POST" action="/workerz/{{$worker->slug}}/like">
+                                        <form method="POST" title="Enlever le j'aime donner à {{$worker->name}}"
+                                              aria-label="Enlever le j'aime donner à {{$worker->name}}"
+                                              action="/workerz/{{$worker->slug}}/like">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="button-loves">
@@ -49,8 +54,10 @@
                                 </div>
 
                             @else
-                                <a href="{{route('login')}}">
-                                    <div class="containerPrice containerLove like-users like-index hepling helping-like help-show">
+                                <a href="{{route('login')}}"
+                                   title="Il faut se connecter pour mettre un j'aime à {{$worker->name}}">
+                                    <div
+                                        class="containerPrice containerLove like-users like-index hepling helping-like help-show">
 
                                         <img class="heart" src="{{asset('svg/heart.svg')}}" alt="icone de coeur">
                                         <img class="heartFul" src="{{asset('svg/heartFul.svg')}}"
@@ -62,9 +69,9 @@
                                 </a>
                             @endauth
                         </div>
-                        <div class="containerPrice">
+                        <div class="containerPrice" itemscope itemtype="https://schema.org/PriceSpecification">
                             <img src="{{asset('svg/euro.svg')}}" alt="icone d'euro">
-                            <span>{{$worker->pricemax}} €/h</span>
+                            <span itemprop="price">{{$worker->pricemax}} €/h</span>
                         </div>
                         <div class="container-image-announcement">
                             @if($worker->picture)
@@ -74,17 +81,16 @@
                                 <img src="{{asset('svg/market.svg')}}" alt="icone d'un magasin">
                             @endif
                         </div>
-                        <h3 aria-level="3">
+                        <h3 aria-level="3" itemprop="affiliation">
                             {{ucfirst($worker->name)}}
                         </h3>
                         <p class="paragraph-ann">
                             {{ucfirst($worker->description)}}
                         </p>
                         <div class="container-infos">
-
                             <div class="container-info-announcement">
                                 <img src="{{asset('svg/suitcase.svg')}}" alt="icone de malette de travail">
-                                <div class="containerJobAds">
+                                <div class="containerJobAds" itemprop="jobTitle">
                                     <p>{{ucfirst($worker->job)}}</p>
                                     @if($worker->categoryUser->count())
                                         <p class="categoryJob">
@@ -96,7 +102,7 @@
                             @if($worker->adresses->count())
                                 <div class="container-info-announcement">
                                     <img src="{{asset('svg/placeholder.svg')}}" alt="icone de localité">
-                                    <div class="container-location">
+                                    <div class="container-location" itemprop="address">
                                         <p>{{ucfirst($worker->adresses->first()->postal_adress)}}</p>
                                         <p class="categoryJob">({{ucfirst($worker->adresses->first()->province->name)}}
                                             )</p>
@@ -106,6 +112,7 @@
                         </div>
                     </div>
                     <a href="/workerz/{{$worker->slug}}" class="button-personnal-announcement">
+                        Aller voir {{$worker->name}}
                     </a>
                 </section>
             @empty
@@ -116,8 +123,9 @@
                             Aucun indépendant trouvé avec cette recherche
                         </h3>
                         <p class="containerAllText" style="margin-top: 10px;">
-                            Oops, je n'ai rien trouvé ! Essayer une autre recherche ou <a style="text-decoration: underline;"
-                                                                                          href="{{route('workerz').'#workerzLink'}}">rafraichissez la page</a>
+                            Oops, je n'ai rien trouvé ! Essayer une autre recherche ou <a
+                                style="text-decoration: underline;"
+                                href="{{route('workerz').'#workerzLink'}}">rafraichissez la page</a>
                         </p>
                     </div>
                 </section>
@@ -125,23 +133,27 @@
             {{ $workerz->links() }}
         </div>
 
-            <div class="container-filters">
-                <form action="#" method="get">
-                    <section>
-                        <h2 aria-level="2">
-                            Filtres
-                        </h2>
-                        <section class="container-filter-categories">
-                            <h3 aria-level="3">
-                                Catégories
-                            </h3>
-                            <ul class="list-categories">
+        <div class="container-filters">
+            <form aria-label="Filtrage d'indépendants" action="{{route('workerz')}}" method="get">
+                <section>
+                    <h2 aria-level="2">
+                        Filtres
+                    </h2>
+                    <section class="container-filter-categories">
+                        <h3 aria-level="3">
+                            Catégories
+                        </h3>
+                        <ul class="list-categories">
+                            <fieldset>
+                                <legend class="hidden">Catégories</legend>
                                 @foreach($categories as $category)
                                     @if($category->users_count !=0)
                                         <li>
-                                            <input class="inp-cbx" id="category{{$category->id}}"
+                                            <input role="checkbox"
+                                                   aria-checked="false" class="hidden inp-cbx"
+                                                   id="category{{$category->id}}"
                                                    name="category[]"
-                                                   type="checkbox" value="{{$category->id}}" style="display: none;"/>
+                                                   type="checkbox" value="{{$category->id}}"/>
                                             <label class="cbx" for="category{{$category->id}}">
                                 <span>
                                     <svg width="12px" height="9px" viewbox="0 0 12 9">
@@ -153,21 +165,24 @@
                                         </li>
                                     @endif
                                 @endforeach
-                            </ul>
-                        </section>
-                        <section class="container-filter-categories">
-                            <h3 aria-level="3">
-                                Régions
-                            </h3>
-                            <ul class="list-categories">
+                            </fieldset>
+                        </ul>
+                    </section>
+                    <section class="container-filter-categories">
+                        <h3 aria-level="3">
+                            Régions
+                        </h3>
+                        <ul class="list-categories">
+                            <fieldset>
+                                <legend class="hidden">Régions</legend>
                                 @foreach($regions as $region)
                                     @if($region->users_count !=0)
                                         <li>
-
-                                            <input wire:model="regionSeleted" class="inp-cbx" id="region{{$region->id}}"
+                                            <input role="checkbox"
+                                                   aria-checked="false" wire:model="regions" class="hidden inp-cbx"
+                                                   id="region{{$region->id}}"
                                                    name="regionSeleted[]"
-                                                   type="checkbox"
-                                                   style="display: none;"/>
+                                                   type="checkbox"/>
                                             <label class="cbx" for="region{{$region->id}}">
                                 <span>
                                     <svg width="12px" height="9px" viewbox="0 0 12 9">
@@ -179,15 +194,16 @@
                                         </li>
                                     @endif
                                 @endforeach
-                            </ul>
-                        </section>
-                        <noscript>
-                            <button>
-                                Appliquer les filtres
-                            </button>
-                        </noscript>
+                            </fieldset>
+                        </ul>
                     </section>
-                </form>
-            </div>
+                    <noscript>
+                        <button>
+                            Appliquer les filtres
+                        </button>
+                    </noscript>
+                </section>
+            </form>
+        </div>
     </section>
 </div>

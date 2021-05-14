@@ -23,7 +23,7 @@
     </div>
     <section class="container-form-register container-home">
 
-        <form class="form-choice" method="post"
+        <form aria-label="Choix d'utilisateur" class="form-choice" method="post"
               action="{{ route('register') }}">
             @method('get')
             @csrf
@@ -45,7 +45,7 @@
                     </ul>
                 </section>
                 <div class="container-button-register">
-                    <button class="button-cta" name="user">
+                    <button class="button-cta" title="Je sélectionne la section 'Je cherche un professionnel'" name="user">
                         Je fais ce choix
                     </button>
                 </div>
@@ -71,7 +71,7 @@
                 <div class="container-button-register">
                     <input id="plan_user_id{{$plan}}" name="plan_user_id" type="hidden" value="{{$plan}}">
 
-                    <button class="button-cta" name="company">
+                    <button class="button-cta" title="Je sélectionne la section 'Je suis un professionnel'" name="company">
                         Je fais ce choix
                     </button>
                 </div>

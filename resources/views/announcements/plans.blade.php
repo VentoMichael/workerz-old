@@ -67,7 +67,7 @@
                             premiers
                         </li>
                     </ul>
-                    <form action="{{route('announcements.create')}}" method="post">
+                    <form aria-label="Création d'une annonce" action="{{route('announcements.create')}}" method="post">
                         @method('get')
                         @csrf
                         <input id="plan{{$plan->id}}" name="plan" type="hidden" value="{{$plan->id}}">

@@ -35,7 +35,6 @@ class AnnouncementController extends Controller
     public function index()
     {
         $user = auth()->user();
-
         return view('announcements.index', compact('user'));
     }
 
@@ -45,7 +44,7 @@ class AnnouncementController extends Controller
             'DESC')->withLikes()->limit(2)->inRandomOrder()->get();
         $randomPhrasing = CatchPhraseAnnouncement::all()->random();
         $user = auth()->user();
-        $announcement = Announcement::Published()->with('user')->withLikes()->get()->find($announcement);
+        $announcement = Announcement::withLikes()->where('id', '=', $announcement->id)->first();
         return view('announcements.show', compact('randomPhrasing', 'randomAds', 'announcement', 'user'));
     }
 
@@ -63,8 +62,7 @@ class AnnouncementController extends Controller
         $categories = Category::withCount("announcements")->get()->sortBy('name');
         $regions = Province::withCount("announcements")->get()->sortBy('name');
         $disponibilities = StartMonth::withCount("announcements")->get()->sortBy('id');
-        Session::flash('success-inscription',
-            'Votre inscription à été un succés ! Il suffit de terminer le paiement et votre entreprise sera visible.');
+
         return view('announcements.create', compact('plan', 'disponibilities', 'categories', 'regions'));
 
     }

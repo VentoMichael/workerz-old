@@ -7,18 +7,22 @@ use App\Models\Province;
 use App\Models\User;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Symfony\Component\Console\Input\Input;
 
 class Users extends Component
 {
     use WithPagination;
 
     public $search = "";
-    //public $categories= [];
-    //public $regions = [];
+    public $filters = [
+        'categoriesSelected' => [],
+        'regionsSelected' => []
+    ];
 
     protected $queryString = ['search'];
     public function render()
     {
+
         sleep(1);
         return view('livewire.users', [
             'regions' => Province::withCount("users")->get()->sortBy('name'),

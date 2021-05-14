@@ -29,15 +29,14 @@
 </head>
 <body>
 <div class="containerBtnAddAnnouncment">
-    <a href="{{route('announcements.plans')}}" class="btnAddAnnouncement"></a>
+    <a href="{{route('announcements.plans')}}" class="btnAddAnnouncement" title="Ajouter une annonce" aria-label="Ajouter une annonce"></a>
 </div>
 <header>
     <h1 aria-level="1" class="hidden">Bienvenu sur Workerz</h1>
     <div class="container-menu">
 
         <nav class="navbar navbarId" id="navbar" role="navigation">
-            <h2 aria-level="2" class="hidden">
-                Navigation Principale
+            <h2 aria-level="2" class="hidden">Navigation Principale
             </h2>
             <li class="logo-mobile">
                 <a href="{{ url('/') }}">
@@ -220,9 +219,9 @@
                                 </li>
                                 <li class="nav-dashboard notVisible">
                                     <ul>
-                                        <li>Mon profil</li>
-                                        <li>Mes annonces</li>
-                                        <li>Mes messages</li>
+                                        <li aria-current="{{ Request::is('dashboard/profil') || Request::is('dashboard/profil/*') ? "page" : "" }}">Mon profil</li>
+                                        <li aria-current="{{ Request::is('dashboard/ads') || Request::is('dashboard/ads/*') ? "page" : "" }}">Mes annonces</li>
+                                        <li aria-current="{{ Request::is('dashboard/message') || Request::is('dashboard/message/*') ? "page" : "" }}">Mes messages</li>
                                     </ul>
                                 </li>
                             </ul>
@@ -246,23 +245,23 @@
             <h3 aria-level="3" class="util-links">
                 Liens utiles
             </h3>
-            <nav>
+            <nav role="navigation">
                 <ul>
                     <li>
-                        <a href="{{route('contact')}}">
+                        <a {{ Request::is('contact') || Request::is('contact/*') ? "page" : "" }} href="{{route('contact')}}">
                             Contact
                         </a>
                     </li>
                     <li>
-                        <a href="{{route('about')}}">
+                        <a {{ Request::is('about') || Request::is('about/*') ? "page" : "" }} href="{{route('about')}}">
                             À propos
                         </a></li>
                     <li>
-                        <a href="{{route('policy')}}">
+                        <a {{ Request::is('policy')? "page" : "" }} href="{{route('policy')}}">
                             Politique de confidentialité
                         </a></li>
                     <li>
-                        <a href="{{route('conditions')}}">
+                        <a {{ Request::is('conditions') ? "page" : "" }} href="{{route('conditions')}}">
                             Conditions d’utilisations
                         </a></li>
                 </ul>
@@ -273,12 +272,12 @@
                 La newsletter immanquable
             </h3>
             <form action="{{route('newsletter.store')}}#newsletterSection" method="POST"
-                  class="form-newsletter-container">
+                  class="form-newsletter-container" title="Inscription à notre newsletter" aria-label="Inscription à notre newsletter">
                 @csrf
                 <div class="form-newsletter">
                     <label for="newsletter" class="notVisible">Votre mail</label>
                     <input type="email" name="newsletter" id="newsletter" class="input-newsletter"
-                           placeholder="Albert01@gmail.com" required>
+                           placeholder="Albert01@gmail.com" required aria-required="true">
                 </div>
                 <div class="form-example">
                     <input type="submit" class="submit-newsletter" value="Envoyé">
@@ -290,13 +289,13 @@
         <small>{{date('Y')}} Workerz. Tous droits réservés.</small>
     </div>
     @if (Session::has('successNew'))
-        <div id="successMsg" class="successMsg"><img src="{{asset('svg/good.svg')}}" alt="good icone">
+        <div id="successMsg" role="alert" class="successMsg"><img src="{{asset('svg/good.svg')}}" alt="good icone">
             <p>{{Session::get('successNew')}}</p>
             <span class="crossHide" id="crossHide">&times;</span>
         </div>
     @endif
     @if (Session::has('failureNew'))
-        <div id="successMsg" class="successMsg"><img src="{{asset('svg/cross.svg')}}" alt="cross icone">
+        <div id="successMsg" role="alert" class="successMsg"><img src="{{asset('svg/cross.svg')}}" alt="cross icone">
             <p>{{Session::get('failureNew')}}</p>
             <span class="crossHide" id="crossHide">&times;</span>
         </div>

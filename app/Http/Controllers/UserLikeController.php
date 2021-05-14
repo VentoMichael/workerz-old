@@ -9,7 +9,7 @@ class UserLikeController extends Controller
 {
     public function store(User $worker){
         $worker->likeU(auth()->id());
-        return back()->with('loveOk', 'L\' annonce a été aimé, merci !');
+        return back()->with('loveOk', 'L\' entreprise a été aimé, merci !');
     }
     public function delete(User $worker){
         $worker->dislikeU(auth()->id());

@@ -10,7 +10,7 @@
     </div>
 @endif
 
-<form method="POST" action="{{ url('/two-factor-challenge') }}">
+<form aria-label="Double facteur" method="POST" action="{{ url('/two-factor-challenge') }}">
     @csrf
 
     {{--
