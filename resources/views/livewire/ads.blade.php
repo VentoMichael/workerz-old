@@ -89,7 +89,7 @@
                                     </p>
                                     @if($announcement->categoryAds->count())
                                         <p class="categoryJob">
-                                            @foreach($announcement->categoryAds as $a)({{$a->name}}{{ ($loop->last ? '' : ', ') }})@endforeach
+                                            (@foreach($announcement->categoryAds as $a){{$a->name}}{{ ($loop->last ? '' : ', ') }}@endforeach)
                                         </p>
                                     @endif
                                 </div>
@@ -126,9 +126,8 @@
             @endforelse
             {{ $announcements->links() }}
         </div>
-
         <div class="container-filters">
-            <form aria-label="Filtrage d'annonces" {{route('announcements')}} method="get">
+            <form aria-label="Filtrage d'annonces" action="{{route('announcements')}}" method="get">
                 <section>
                     <h2 aria-level="2">
                         Filtres
@@ -141,10 +140,10 @@
                             <fieldset>
                                 <legend class="hidden">Catégories</legend>
                                 @foreach($categories as $category)
-                                    @if($category->announcements_count !=0)
+                                @if($category->announcements_count != 0)
                                         <li>
-                                            <input class="inp-cbx hidden" id="category{{$category->id}}"
-                                                   name="category[]"
+                                            <input wire:model="filters.categoryAds" class="inp-cbx hiddenCheckbox" id="category{{$category->id}}"
+                                                   name="filters.categoryAds[]"
                                                    type="checkbox" value="{{$category->id}}"/>
                                             <label class="cbx" for="category{{$category->id}}">
                                 <span>
@@ -156,7 +155,8 @@
                                             </label>
                                         </li>
                                     @endif
-                                @endforeach</fieldset>
+                                @endforeach
+                            </fieldset>
                         </ul>
                     </section>
                     <section class="container-filter-categories">
@@ -169,10 +169,11 @@
                                 @foreach($regions as $region)
                                     @if($region->announcements_count !=0)
                                         <li>
-
-                                            <input wire:model="regionSeleted" class="hidden inp-cbx" id="region{{$region->id}}"
-                                                   name="regionSeleted[]"
-                                                   type="checkbox"/>
+                                            <input wire:model="filters.province" role="checkbox"
+                                                   aria-checked="false" class="hiddenCheckbox inp-cbx"
+                                                   id="region{{$region->id}}"
+                                                   name="region[]"
+                                                   type="checkbox" value="{{$region->id}}"/>
                                             <label class="cbx" for="region{{$region->id}}">
                                 <span>
                                     <svg width="12px" height="9px" viewbox="0 0 12 9">
@@ -183,14 +184,21 @@
                                             </label>
                                         </li>
                                     @endif
-                                @endforeach</fieldset>
+
+                                @endforeach
+                            </fieldset>
                         </ul>
+
                     </section>
+
                     <noscript>
-                        <button>
+                        <button type="submit">
                             Appliquer les filtres
                         </button>
                     </noscript>
+                    <button wire:click="resetFilters">
+                        Réinitialiser les filtres
+                    </button>
                 </section>
             </form>
         </div>

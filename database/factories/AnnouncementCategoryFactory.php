@@ -22,7 +22,7 @@ class AnnouncementCategoryFactory extends Factory
     public function definition()
     {
         return [
-            'announcement_id' => $this->faker->numberBetween($min = 1, $max = 10),
+            'announcement_id' => $this->faker->numberBetween($min = 1, $max = 100),
             'category_id' => $this->faker->numberBetween($min = 1, $max = 24),
         ];
     }

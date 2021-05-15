@@ -4,6 +4,8 @@ namespace App\Actions\Fortify;
 
 use App\Models\CategoryUser;
 use App\Models\Phone;
+use App\Models\PhysicalAdress;
+use App\Models\ProvinceUser;
 use App\Models\startDate;
 use App\Models\User;
 use http\Env\Request;
@@ -116,13 +118,24 @@ class CreateNewUser implements CreatesNewUsers
             $pic = null;
         }
         $phone = new Phone(['number' => $input['phone']]);
+
         $ct = new CategoryUser();
+        $ct->category_id = \request('category_job');
+
+        $pro = new ProvinceUser();
+        $pro->province_id = \request('location');
+        $phy = new PhysicalAdress();
+        $phy->province_id = \request('location');
+        $phy->postal_adress = \request('adress');
+
         $ct->category_id = \request('category_job');
         $di = new startDate();
         $di->start_date_id = \request('disponibilities');
         $user->phones()->save($phone);
         //$user->categoryUser()->limit(2);
         $user->categoryUser()->attach($ct->category_id);
+        $user->adresses()->save($phy);
+        $user->provinces()->attach($pro->province_id);
         $user->startDate()->attach($di->start_date_id);
         $user->save();
         Session::flash('success-inscription', 'Votre inscription à été un succés !');

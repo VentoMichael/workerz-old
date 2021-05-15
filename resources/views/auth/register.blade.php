@@ -145,9 +145,18 @@
                             @enderror
                         </div>
                         <div class="container-form-email">
+                            <label for="catchPhrase">Phrase d'accroche</label>
+                            <input type="text" id="catchPhrase" value="{{old("catchPhrase")}}"
+                                   class="email-label" name="catchPhrase"
+                                   placeholder="Une entreprise qui vous satisfera">
+                            <p class="help">
+                                Attirer la clientèle à votre façon (optionnel)
+                            </p>
+                        </div>
+                        <div class="container-form-email">
                             <label for="name">Nom du commerce <span class="required">*</span></label>
                             <input type="text" id="name" value="{{old("name")}}" placeholder="Rotis"
-                                   class=" @error('name') is-invalid @enderror email-label" name="name" required aria-required="true">
+                                   class=" @error('name') is-invalid @enderror email-label inputPhone" name="name" required aria-required="true">
                             @error('name')
                             <div class="container-error">
                 <span role="alert" class="error">
@@ -175,7 +184,7 @@
                             <label for="phone">Numéro de téléphone <span class="required">*</span></label>
                             <input placeholder="0494827263" minlength="6" maxlength="15" type="tel"
                                    pattern="^[0-9-+\s()]*$" id="phone" value="{{old("phone")}}"
-                                   class=" @error('phone') is-invalid @enderror email-label" name="phone" required aria-required="true">
+                                   class=" @error('phone') is-invalid @enderror email-label inputPhone" name="phone" required aria-required="true">
                             @if($request->plan_user_id == 1 || $request->old('plan_user_id') == 1)
                                 <p class="help"><a href="{{route('users.plans')}}#plans">Augmenter votre plan</a> et
                                     vous aurez la possibilité d'en ajouter jusqu'à 3</p>
@@ -241,8 +250,9 @@
                     <div class="container-register-form">
                         <div class="container-form-email selectdiv">
                             <label for="location">Région <span class="required">*</span></label>
-                            <select class="email-label"
+                            <select
                                     @if($request->plan_user_id == 1 || $request->old('plan_user_id') == 1)
+                                    class="email-label"
                                     data-maxoption="1"
                                     @endif
                                     @if($request->plan_user_id == 2 || $request->old('plan_user_id') == 2) class="select-register"
@@ -295,14 +305,15 @@
                     <div class="container-register-form">
                         <div class="container-form-email selectdiv">
                             <label for="category_job">Catégorie de métier <span class="required">*</span></label>
-                            <select class="email-label"
+                            <select
                                     @if($request->plan_user_id == 1 || $request->old('plan_user_id') == 1)
+                                    class="email-label inputPhone"
                                     data-maxoption="1"
                                     @endif
-                                    @if($request->plan_user_id == 2 || $request->old('plan_user_id') == 2) class="select-register"
+                                    @if($request->plan_user_id == 2 || $request->old('plan_user_id') == 2) class="select-register inputPhone"
                                     multiple data-maxoption="2"
                                     @endif
-                                    @if($request->plan_user_id == 3 || $request->old('plan_user_id') == 3) class="select-register"
+                                    @if($request->plan_user_id == 3 || $request->old('plan_user_id') == 3) class="select-register inputPhone"
                                     multiple data-maxoption="3"
                                     @endif name="category_job[]" id="category_job">
                                 @foreach($categories as $c)

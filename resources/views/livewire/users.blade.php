@@ -69,10 +69,12 @@
                                 </a>
                             @endauth
                         </div>
+                        @if($worker->pricemax)
                         <div class="containerPrice" itemscope itemtype="https://schema.org/PriceSpecification">
                             <img src="{{asset('svg/euro.svg')}}" alt="icone d'euro">
                             <span itemprop="price">{{$worker->pricemax}} €/h</span>
                         </div>
+                        @endif
                         <div class="container-image-announcement">
                             @if($worker->picture)
                                 <img src="{{ $worker->picture }}"
@@ -104,8 +106,7 @@
                                     <img src="{{asset('svg/placeholder.svg')}}" alt="icone de localité">
                                     <div class="container-location" itemprop="address">
                                         <p>{{ucfirst($worker->adresses->first()->postal_adress)}}</p>
-                                        <p class="categoryJob">({{ucfirst($worker->adresses->first()->province->name)}}
-                                            )</p>
+                                        <p class="categoryJob">({{ucfirst($worker->adresses->first()->province->name)}})</p>
                                     </div>
                                 </div>
                             @endif
@@ -149,8 +150,8 @@
                                 @foreach($categories as $category)
                                     @if($category->users_count !=0)
                                         <li>
-                                            <input role="checkbox"
-                                                   aria-checked="false" class="hidden inp-cbx"
+                                            <input wire:model="filters.categoryUser" role="checkbox"
+                                                   aria-checked="false" class="hiddenCheckbox inp-cbx"
                                                    id="category{{$category->id}}"
                                                    name="category[]"
                                                    type="checkbox" value="{{$category->id}}"/>
@@ -178,11 +179,11 @@
                                 @foreach($regions as $region)
                                     @if($region->users_count !=0)
                                         <li>
-                                            <input role="checkbox"
-                                                   aria-checked="false" wire:model="regions" class="hidden inp-cbx"
+                                            <input wire:model="filters.provinces" role="checkbox"
+                                                   aria-checked="false" class="hiddenCheckbox inp-cbx"
                                                    id="region{{$region->id}}"
-                                                   name="regionSeleted[]"
-                                                   type="checkbox"/>
+                                                   name="region[]"
+                                                   type="checkbox" value="{{$region->id}}"/>
                                             <label class="cbx" for="region{{$region->id}}">
                                 <span>
                                     <svg width="12px" height="9px" viewbox="0 0 12 9">
@@ -202,6 +203,9 @@
                             Appliquer les filtres
                         </button>
                     </noscript>
+                    <button wire:click="resetFilters">
+                        Réinitialiser les filtres
+                    </button>
                 </section>
             </form>
         </div>

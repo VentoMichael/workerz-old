@@ -42,7 +42,6 @@
                                         class="relative inline-flex items-center px-4 py-2 -ml-px text-sm font-medium text-gray-700 bg-white border border-gray-300 cursor-default leading-5">{{ $element }}</span>
                                 </span>
                                 @endif
-
                                 {{-- Array Of Links --}}
                                 @if (is_array($element))
                                     @foreach ($element as $page => $url)
@@ -57,9 +56,15 @@
                                                 </span>
                                             </span>
                                             @else
-                                                <a wire:click="gotoPage({{ $page }})" href="workerz?page={{ $page }}#workerzLink"
+                                            @if($element == Request::is('announcements'))
+                                                <a wire:click="gotoPage({{ $page }})" href="announcements?page={{ $page }}#adsLink"
                                                    aria-label="{{ __('Aller à la page :page', ['page' => $page]) }}">
                                                 {{ $page }}</a>
+                                                @else
+                                                    <a wire:click="gotoPage({{ $page }})" href="workerz?page={{ $page }}#workerzLink"
+                                                       aria-label="{{ __('Aller à la page :page', ['page' => $page]) }}">
+                                                {{ $page }}</a>
+                                                @endif
                                             @endif
                                         </span>
                                     @endforeach

@@ -14,6 +14,6 @@ class AnnouncementCategorySeeder extends Seeder
      */
     public function run()
     {
-        AnnouncementCategory::factory(10)->create();
+        AnnouncementCategory::factory(100)->create();
     }
 }

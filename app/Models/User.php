@@ -105,6 +105,10 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Category::class);
     }
+    public function provinces()
+    {
+        return $this->belongsToMany(Province::class);
+    }
     public function adresses(){
         return $this->hasMany(PhysicalAdress::class,'user_id');
     }

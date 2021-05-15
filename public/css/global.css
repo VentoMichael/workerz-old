@@ -6,12 +6,11 @@
 
 *:focus:not(:focus-visible) {
     background: transparent;
-    border: 2px solid black;
 }
-section a:focus:not(:focus-visible),button:focus:not(:focus-visible) {
+.button-cta:focus:not(:focus-visible),.container-filters button:focus:not(:focus-visible) {
     background: var(--gradientLightBlue);
 }
-.btnAddAnnouncement:focus:not(:focus-visible) {
+.btnAddAnnouncement:focus:not(:focus-visible),.submit-newsletter:focus:not(:focus-visible) {
     background: var(--gradientDarkBlue);
 }
 *:focus-visible {
@@ -19,10 +18,16 @@ section a:focus:not(:focus-visible),button:focus:not(:focus-visible) {
     background: transparent;
 }
 input:focus-visible {
-    outline: 1px dashed var(--blueLight);
+    outline: 3px dashed var(--blueLight);
     background: transparent;
 }
-
+.container-secondary-nav a:focus:not(:focus-visible){
+    background: transparent;
+}
 input[type="checkbox"]:focus + label {
     outline: 3px dashed var(--blueLight);
+}
+.hiddenCheckbox{
+    position: absolute;
+    top: 0;
 }

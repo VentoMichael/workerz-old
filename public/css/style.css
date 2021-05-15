@@ -454,7 +454,7 @@ select option:checked {
 }
 
 .form-register .container-error {
-    margin: 0 0 10px;
+    margin: -20px 0 10px;
 }
 
 .container-why div {
@@ -949,7 +949,7 @@ form .search-announcement {
     box-shadow: var(--shadow);
     padding: 8px;
     border-radius: 7px;
-    min-width: 90px;
+    min-width: 115px;
     justify-content: space-evenly;
     display: flex;
     z-index: 1;
@@ -1872,7 +1872,9 @@ div .like-users:hover span {
 .social-media {
     position: relative;
 }
-
+div .container-form-email .inputPhone{
+    margin-top: 0;
+}
 .container-socials-media {
     display: grid;
     grid-template-columns: repeat(2, minmax(0px, 1fr));

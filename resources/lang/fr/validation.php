@@ -140,6 +140,9 @@ return [
         'location' => 'endroit',
         'job' => 'métier',
         'category-job' => 'catégorie(s) de métier',
+        'name' => 'nom',
+        'subject' => 'sujet',
+        'surname' => 'prénom',
     ],
 
     /*

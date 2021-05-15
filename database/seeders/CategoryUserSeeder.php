@@ -14,6 +14,6 @@ class CategoryUserSeeder extends Seeder
      */
     public function run()
     {
-        CategoryUser::factory(10)->create();
+        CategoryUser::factory(100)->create();
     }
 }
