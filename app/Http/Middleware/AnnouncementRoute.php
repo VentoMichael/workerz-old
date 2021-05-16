@@ -4,11 +4,9 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 
-class UserRoute
+class AnnouncementRoute
 {
     /**
      * Handle an incoming request.
@@ -19,11 +17,11 @@ class UserRoute
      */
     public function handle(Request $request, Closure $next)
     {
-        if($request->route('worker') && $request->route('worker')->role_id == 3 ) {
+        if($request->route('announcement') && $request->route('announcement')->is_payed == 0 || $request->route('announcement')->is_draft == 0 || $request->route('announcement')->banned == 0  ) {
             Session::flash('not-permitted',
-                'Oops ! La personne que vous recherchez n\'est pas un indépendant');
-            return Redirect(route('workerz'));
+                'Oops ! L\'annonce que vous recherchez n\'est pas disponible');
+            return Redirect(route('announcements'));
         }
-            return $next($request);
+        return $next($request);
     }
 }

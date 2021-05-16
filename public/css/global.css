@@ -30,4 +30,5 @@ input[type="checkbox"]:focus + label {
 .hiddenCheckbox{
     position: absolute;
     top: 0;
+    appearance: none;
 }

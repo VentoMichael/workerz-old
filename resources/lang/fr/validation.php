@@ -113,7 +113,7 @@ return [
     'starts_with' => 'L\' :attribute doit commencer par l\'un des éléments suivants : valeurs :.',
     'string' => 'L\' :attribute doit être une chaîne de caractères.',
     'timezone' => 'L\' :attribute doit être une zone valide.',
-    'unique' => 'Cet :attribute a déjà un compte.',
+    'unique' => 'Cet :attribute a déjà été attribué.',
     'uploaded' => 'L\' :attribute n\'a pas été téléchargé.',
     'url' => 'Le format du :attribute n\'est pas valide.',
     'uuid' => 'L\' :attribute doit être un UUID valide.',
@@ -143,6 +143,8 @@ return [
         'name' => 'nom',
         'subject' => 'sujet',
         'surname' => 'prénom',
+        'disponibility' => 'disponibilité',
+        'category_job' => 'catégorie de métier',
     ],
 
     /*

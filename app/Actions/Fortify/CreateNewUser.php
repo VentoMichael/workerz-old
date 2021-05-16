@@ -30,6 +30,7 @@ class CreateNewUser implements CreatesNewUsers
      */
     public function create(array $input)
     {
+        // TODO Validateur en 2etapes ? check le plan
         Validator::make($input, [
             'name' => ['required', 'string', 'max:255'],
             'picture' => ['image:jpg,jpeg,png,svg'],

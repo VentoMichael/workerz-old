@@ -133,7 +133,7 @@
             @endforelse
             {{ $workerz->links() }}
         </div>
-
+        @if($categories || $regions)
         <div class="container-filters">
             <form aria-label="Filtrage d'indépendants" action="{{route('workerz')}}" method="get">
                 <section>
@@ -152,10 +152,10 @@
                                         <li>
                                             <input wire:model="filters.categoryUser" role="checkbox"
                                                    aria-checked="false" class="hiddenCheckbox inp-cbx"
-                                                   id="category{{$category->id}}"
-                                                   name="category[]"
+                                                   id="categoryUser{{$category->id}}"
+                                                   name="categoryUser[]"
                                                    type="checkbox" value="{{$category->id}}"/>
-                                            <label class="cbx" for="category{{$category->id}}">
+                                            <label class="cbx" for="categoryUser{{$category->id}}">
                                 <span>
                                     <svg width="12px" height="9px" viewbox="0 0 12 9">
                                       <polyline points="1 5 4 8 11 1"></polyline>
@@ -181,10 +181,10 @@
                                         <li>
                                             <input wire:model="filters.provinces" role="checkbox"
                                                    aria-checked="false" class="hiddenCheckbox inp-cbx"
-                                                   id="region{{$region->id}}"
-                                                   name="region[]"
+                                                   id="provinces{{$region->id}}"
+                                                   name="provinces[]"
                                                    type="checkbox" value="{{$region->id}}"/>
-                                            <label class="cbx" for="region{{$region->id}}">
+                                            <label class="cbx" for="provinces{{$region->id}}">
                                 <span>
                                     <svg width="12px" height="9px" viewbox="0 0 12 9">
                                       <polyline points="1 5 4 8 11 1"></polyline>
@@ -211,3 +211,4 @@
         </div>
     </section>
 </div>
+@endif

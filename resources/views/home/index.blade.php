@@ -1,11 +1,5 @@
 @extends('layouts.app')
 @section('content')
-    @if (Session::has('not-permitted'))
-        <div id="successMsg" role="alert" class="successMsg"><img src="{{asset('svg/cross.svg')}}" alt="good icone">
-            <p>{{Session::get('not-permitted')}}</p>
-            <span class="crossHide" id="crossHide">&times;</span>
-        </div>
-    @endif
     <section class="container-home margin">
         <div class="container-home_image container-home-page">
             <div>
@@ -35,7 +29,7 @@
         </div>
         <div class="container-six-category-home show-content">
             @foreach($categories as $categorie)
-                <a href="#">
+                <a href="{{route('workerz').'?category='.$categorie->id.'#workerzLink'}}">
                     <section class="box-category">
                         <img src="{{asset('svg/'.$categorie->profil)}}" alt="{{$categorie->alt}}">
                         <div itemscope itemtype="http://schema.org/Person">

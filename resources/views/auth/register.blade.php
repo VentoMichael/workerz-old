@@ -70,7 +70,7 @@
                       aria-label="Enregistrement d'un compte" role="form" method="POST"
                       action="{{ route('register') }}">
                     @csrf
-                    <div class="container-register-form">
+                    <div class="container-register-form container-register">
                         <div class="container-form-email">
                             <div class="avatar-container">
                                 <label for="picture">Photo de profil</label>
@@ -86,7 +86,8 @@
                             <label for="phone">Numéro de téléphone <span class="required">*</span></label>
                             <input minlength="6" maxlength="15" type="tel" id="phone" pattern="^[0-9-+\s()]*$"
                                    value="{{old("phone")}}" placeholder="0494827235"
-                                   class=" @error('phone') is-invalid @enderror email-label" name="phone" required aria-required="true">
+                                   class=" @error('phone') is-invalid @enderror email-label" name="phone" required
+                                   aria-required="true">
                             @if($request->plan_user_id == 1 || $request->old('plan_user_id') == 1)
                                 <p class="help"><a href="{{route('users.plans')}}#plans">Augmenter votre plan</a> et
                                     vous aurez la possibilité d'en ajouter jusqu'à 3</p>
@@ -99,16 +100,18 @@
                             @endif
                         </div>
                     </div>
-                    <div class="container-register-form">
+                    <div class="container-register-form container-register">
                         <div class="container-form-email">
                             <label for="name">Nom<span class="required"> *</span></label>
                             <input type="text" id="name" value="{{old("name")}}" placeholder="Rotis"
-                                   class=" @error('name') is-invalid @enderror email-label" name="name" required aria-required="true">
+                                   class=" @error('name') is-invalid @enderror email-label" name="name" required
+                                   aria-required="true">
                         </div>
                         <div class="container-form-email">
                             <label for="surname">Prénom<span class="required"> *</span></label>
                             <input type="text" id="surname" placeholder="Daniel" value="{{old("surname")}}"
-                                   class=" @error('surname') is-invalid @enderror email-label" name="surname" required aria-required="true">
+                                   class=" @error('surname') is-invalid @enderror email-label" name="surname" required
+                                   aria-required="true">
                         </div>
 
                     </div>
@@ -126,7 +129,16 @@
                       aria-label="Enregistrement d'un compte" role="form" method="POST"
                       action="{{ route('register') }}">
                     @csrf
-                    <div class="container-register-form">
+                    <div class="container-register-form container-register">
+                        <div class="container-form-email">
+                            <label for="catchPhrase">Phrase d'accroche</label>
+                            <input type="text" id="catchPhrase" value="{{old("catchPhrase")}}"
+                                   class="email-label" name="catchPhrase"
+                                   placeholder="Une entreprise qui vous satisfera">
+                            <p class="help">
+                                Attirer la clientèle à votre façon (optionnel)
+                            </p>
+                        </div>
                         <div class="container-form-email">
                             <div class="avatar-container">
                                 <label for="picture">Photo du commerce</label>
@@ -144,19 +156,13 @@
                             </div>
                             @enderror
                         </div>
-                        <div class="container-form-email">
-                            <label for="catchPhrase">Phrase d'accroche</label>
-                            <input type="text" id="catchPhrase" value="{{old("catchPhrase")}}"
-                                   class="email-label" name="catchPhrase"
-                                   placeholder="Une entreprise qui vous satisfera">
-                            <p class="help">
-                                Attirer la clientèle à votre façon (optionnel)
-                            </p>
-                        </div>
+                    </div>
+                    <div class="container-register-form container-register">
                         <div class="container-form-email">
                             <label for="name">Nom du commerce <span class="required">*</span></label>
                             <input type="text" id="name" value="{{old("name")}}" placeholder="Rotis"
-                                   class=" @error('name') is-invalid @enderror email-label inputPhone" name="name" required aria-required="true">
+                                   class=" @error('name') is-invalid @enderror email-label inputPhone" name="name"
+                                   required aria-required="true">
                             @error('name')
                             <div class="container-error">
                 <span role="alert" class="error">
@@ -165,8 +171,58 @@
                             </div>
                             @enderror
                         </div>
+                        <div class="container-form-email">
+                            <span>Possibilités d'emplois dans l'entreprise</span>
+                            <ul id="jobOpportunity">
+                                <li>
+                                    <input role="radio"
+                                           aria-checked="false" class="hiddenRadio inp-cbx"
+                                           id="jobOpportunityYes"
+                                           name="jobOpportunity"
+                                           type="radio" value="yes"/>
+                                    <label class="cbx" for="jobOpportunityYes">
+                                <span>
+                                    <svg width="12px" height="9px" viewbox="0 0 12 9">
+                                      <polyline points="1 5 4 8 11 1"></polyline>
+                                    </svg>
+                                </span>
+                                        <span>Oui</span>
+                                    </label>
+                                </li>
+                                <li>
+                                    <input role="radio"
+                                           aria-checked="false" class="hiddenRadio inp-cbx"
+                                           id="jobOpportunityNo"
+                                           name="jobOpportunity"
+                                           type="radio" value="non"/>
+                                    <label class="cbx" for="jobOpportunityNo">
+                                <span>
+                                    <svg width="12px" height="9px" viewbox="0 0 12 9">
+                                      <polyline points="1 5 4 8 11 1"></polyline>
+                                    </svg>
+                                </span>
+                                        <span>Non</span>
+                                    </label>
+                                </li>
+                                <li>
+                                    <input role="radio"
+                                           aria-checked="true" checked class="hiddenRadio inp-cbx"
+                                           id="jobOpportunityNotDetermine"
+                                           name="jobOpportunity"
+                                           type="radio" value="notDetermine"/>
+                                    <label class="cbx" for="jobOpportunityNotDetermine">
+                                <span>
+                                    <svg width="12px" height="9px" viewbox="0 0 12 9">
+                                      <polyline points="1 5 4 8 11 1"></polyline>
+                                    </svg>
+                                </span>
+                                        <span>Non déterminer</span>
+                                    </label>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                    <div class="container-register-form">
+                    <div class="container-register-form container-register">
                         <div class="container-form-email">
                             <label for="adress">Adresse postale</label>
                             <input type="text" id="adress" value="{{old("adress")}}"
@@ -184,7 +240,8 @@
                             <label for="phone">Numéro de téléphone <span class="required">*</span></label>
                             <input placeholder="0494827263" minlength="6" maxlength="15" type="tel"
                                    pattern="^[0-9-+\s()]*$" id="phone" value="{{old("phone")}}"
-                                   class=" @error('phone') is-invalid @enderror email-label inputPhone" name="phone" required aria-required="true">
+                                   class=" @error('phone') is-invalid @enderror email-label inputPhone" name="phone"
+                                   required aria-required="true">
                             @if($request->plan_user_id == 1 || $request->old('plan_user_id') == 1)
                                 <p class="help"><a href="{{route('users.plans')}}#plans">Augmenter votre plan</a> et
                                     vous aurez la possibilité d'en ajouter jusqu'à 3</p>
@@ -205,7 +262,7 @@
                         </div>
                     </div>
 
-                    <div class="container-register-form">
+                    <div class="container-register-form container-register">
                         <div class="container-form-email">
                             <label for="website">Site internet</label>
                             <input placeholder="https://workerz.be" type="text" id="website" value="{{old("website")}}"
@@ -230,11 +287,28 @@
                         </div>
                         <div class="container-form-email selectdiv">
                             <label for="disponibilities">Disponibilités</label>
-                            <select class="select-register" multiple name="disponibilities[]" id="disponibilities">
-                                @foreach($disponibilities as $d)
-                                    <option @if($d->pre_selected == true) selected
-                                            @endif value="{{$d->id}}">{{$d->name}}</option>
-                                @endforeach
+                            <div class="container-filter-categories container-category">
+                                <ul class="list-categories">
+                                    @foreach($disponibilities as $disponibility)
+                                        <li>
+                                            <input @if($disponibility->pre_selected == true) checked
+                                                   @endif role="checkbox"
+                                                   aria-checked="false" class=" hiddenCheckbox inp-cbx"
+                                                   name="disponibility" id="disponibility{{$disponibility->id}}"
+                                                   type="checkbox" value="{{$disponibility->id}}"/>
+                                            <label class="cbx" for="disponibility{{$disponibility->id}}">
+                                                <span>
+                                                    <svg width="12px" height="9px" viewbox="0 0 12 9">
+                                                      <polyline points="1 5 4 8 11 1"></polyline>
+                                                    </svg>
+                                                </span>
+                                                <span>
+                                                    {{$disponibility->name}}
+                                                </span>
+                                            </label>
+                                        </li>
+                                    @endforeach
+                                </ul>
                                 @error('disponibilities')
                                 <div class="container-error">
                 <span role="alert" class="error">
@@ -242,41 +316,47 @@
                                     </span>
                                 </div>
                                 @enderror
-                                    <p class="help">Veuillez séléctionner vos jours d'ouvertures</p>
-                            </select>
+                            </div>
+                            <p class="help">Veuillez séléctionner vos jours d'ouvertures</p>
                         </div>
                     </div>
 
-                    <div class="container-register-form">
+                    <div class="container-register-form container-register">
                         <div class="container-form-email selectdiv">
                             <label for="location">Région <span class="required">*</span></label>
-                            <select
-                                    @if($request->plan_user_id == 1 || $request->old('plan_user_id') == 1)
-                                    class="email-label"
-                                    data-maxoption="1"
-                                    @endif
-                                    @if($request->plan_user_id == 2 || $request->old('plan_user_id') == 2) class="select-register"
-                                    multiple data-maxoption="2"
-                                    @endif
-                                    @if($request->plan_user_id == 3 || $request->old('plan_user_id') == 3) class="select-register"
-                                    multiple data-maxoption="3"
-                                    @endif
-                                    name="location"
-                                    id="location">
-                                @foreach($regions as $r)
-                                    <option value="{{$r->id}}">{{$r->name}}</option>
-                                @endforeach
-                            </select>
+                            <div class="container-filter-categories container-category">
+                                <ul class="list-categories">
+                                    @foreach($regions as $r)
+                                        <li>
+                                            <input role="checkbox"
+                                                   aria-checked="false" class="check hiddenCheckbox inp-cbx"
+                                                   name="location" id="location{{$r->id}}"
+                                                   type="checkbox" value="{{$r->id}}"/>
+                                            <label class="cbx" for="location{{$r->id}}">
+                                                <span>
+                                                    <svg width="12px" height="9px" viewbox="0 0 12 9">
+                                                      <polyline points="1 5 4 8 11 1"></polyline>
+                                                    </svg>
+                                                </span>
+                                                <span>
+                                                    {{$r->name}}
+                                                </span>
+                                            </label>
+                                        </li>
+                                    @endforeach
+                                </ul>
+
+                            </div>
 
                             @if($request->plan_user_id == 1 || $request->old('plan_user_id') == 1)
                                 <p class="help"><a href="{{route('users.plans')}}#plans">Augmenter votre plan</a> et
                                     vous aurez la possibilité d'en ajouter jusqu'à 3</p>
                             @endif
                             @if($request->plan_user_id == 2 || $request->old('plan_user_id') == 2)
-                                <p class="help">Avec la touche ctrl vous en sélectionner jusqu'à 2</p>
+                                <p class="help">Vous avez la possibilité d'en intégrer jusqu'à 2</p>
                             @endif
                             @if($request->plan_user_id == 3 || $request->old('plan_user_id') == 3)
-                                <p class="help">Avec la touche ctrl vous en sélectionner jusqu'à 3</p>
+                                <p class="help">Vous avez la possibilité d'en intégrer jusqu'à 3</p>
                             @endif
 
                             @error('location')
@@ -302,33 +382,41 @@
                             @enderror
                         </div>
                     </div>
-                    <div class="container-register-form">
+                    <div class="container-register-form container-register">
                         <div class="container-form-email selectdiv">
                             <label for="category_job">Catégorie de métier <span class="required">*</span></label>
-                            <select
-                                    @if($request->plan_user_id == 1 || $request->old('plan_user_id') == 1)
-                                    class="email-label inputPhone"
-                                    data-maxoption="1"
-                                    @endif
-                                    @if($request->plan_user_id == 2 || $request->old('plan_user_id') == 2) class="select-register inputPhone"
-                                    multiple data-maxoption="2"
-                                    @endif
-                                    @if($request->plan_user_id == 3 || $request->old('plan_user_id') == 3) class="select-register inputPhone"
-                                    multiple data-maxoption="3"
-                                    @endif name="category_job[]" id="category_job">
-                                @foreach($categories as $c)
-                                    <option value="{{$c->id}}">{{$c->name}}</option>
-                                @endforeach
-                            </select>
+                            <div class="container-filter-categories container-category">
+                                <ul class="list-categories">
+                                    @foreach($categories as $c)
+                                        <li>
+                                            <input role="checkbox"
+                                                aria-checked="false" class="checkCat hiddenCheckbox inp-cbx"
+                                            name="category_job[]" id="category_job{{$c->id}}"
+                                                type="checkbox" value="{{$c->id}}"/>
+                                            <label class="cbx" for="category_job{{$c->id}}">
+                                                <span>
+                                                    <svg width="12px" height="9px" viewbox="0 0 12 9">
+                                                      <polyline points="1 5 4 8 11 1"></polyline>
+                                                    </svg>
+                                                </span>
+                                                <span>
+                                                    {{$c->name}}
+                                                </span>
+                                            </label>
+                                        </li>
+                                    @endforeach
+                                </ul>
+
+                            </div>
                             @if($request->plan_user_id == 1 || $request->old('plan_user_id') == 1)
                                 <p class="help"><a href="{{route('users.plans')}}#plans">Augmenter votre plan</a> et
-                                    vous aurez la possibilité d'en ajouter jusqu'à 1</p>
+                                    vous aurez la possibilité d'en ajouter jusqu'à 3</p>
                             @endif
                             @if($request->plan_user_id == 2 || $request->old('plan_user_id') == 2)
-                                <p class="help">Avec la touche ctrl vous en sélectionner jusqu'à 2</p>
+                                <p class="help">Vous avez la possibilité d'en intégrer jusqu'à 2</p>
                             @endif
                             @if($request->plan_user_id == 3 || $request->old('plan_user_id') == 3)
-                                <p class="help">Avec la touche ctrl vous en sélectionner jusqu'à 3</p>
+                                <p class="help">Vous avez la possibilité d'en intégrer jusqu'à 3</p>
                             @endif
                             <p class="help proposed-job">Je ne trouve pas mon métier, <a
                                     href="{{route('contact'). '#form'}} ">je le propose</a></p>
@@ -356,8 +444,7 @@
                             @enderror
                         </div>
                     </div>
-
-                    <div class="container-register-form">
+                    <div class="container-register-form container-register">
                         <div class="container-form-email">
                             <label for="description">Description <span class="required">*</span></label>
                             <textarea id="description" name="description" required
@@ -389,6 +476,14 @@
     <script src="{{asset('js/passwordCheck.js')}}"></script>
     <script src="{{asset('js/passwordSee.js')}}"></script>
     <script src="{{asset('js/previewPicture.js')}}"></script>
+    @if($request->plan_user_id == 1)
     <script src="{{asset('js/checkDataMaxOptions.js')}}"></script>
+    @endif
+    @if($request->plan_user_id == 2)
+    <script src="{{asset('js/checkDataMaxOptions2.js')}}"></script>
+    @endif
+    @if($request->plan_user_id == 3)
+    <script src="{{asset('js/checkDataMaxOptions3.js')}}"></script>
+    @endif
 @endsection
 @endif

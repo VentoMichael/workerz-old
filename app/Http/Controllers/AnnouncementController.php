@@ -7,10 +7,8 @@ use App\Models\AnnouncementCategory;
 use App\Models\CatchPhraseAnnouncement;
 use App\Models\Category;
 use App\Models\PlanAnnouncement;
-use App\Models\PlanUser;
 use App\Models\Province;
 use App\Models\StartMonth;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -62,7 +60,6 @@ class AnnouncementController extends Controller
         $categories = Category::withCount("announcements")->get()->sortBy('name');
         $regions = Province::withCount("announcements")->get()->sortBy('name');
         $disponibilities = StartMonth::withCount("announcements")->get()->sortBy('id');
-
         return view('announcements.create', compact('plan', 'disponibilities', 'categories', 'regions'));
 
     }
@@ -75,15 +72,18 @@ class AnnouncementController extends Controller
      */
     public function store(Request $request)
     {
-        Validator::make($request->all(), [
-            'title' => 'required|unique:announcements',
-            'slug' => 'required',
-            'picture' => 'image:jpg,jpeg,png,svg|file',
-            'description' => 'required|max:256',
-            'job' => 'required|max:256',
-        ]);
+        if (!$request->has('is_payed')) {
+            Validator::make($request->all(), [
+                'title' => 'required|unique:announcements',
+                'picture' => 'image:jpg,jpeg,png,svg|file',
+                'description' => 'required|max:256',
+                'job' => 'required|max:256',
+                'category_job' => 'required',
+                'disponibility' => 'required',
+            ])->validate();
+        }
 
-        $plan = $request->plan;
+        $plan = request('plan');
         $announcement = new Announcement();
         $announcement->title = $request->title;
         $announcement->catchPhrase = $request->catchPhrase;
@@ -105,10 +105,10 @@ class AnnouncementController extends Controller
         $announcement->province_id = $request->location;
         $announcement->start_month_id = $request->disponibility;
         $announcement->plan_announcement_id = $plan;
-
         $ct = new AnnouncementCategory();
         $ct->category_id = $request->category_job;
-        if ($plan == 1) {
+
+            if ($plan == 1 || \request()->old('plan') == 1) {
             if ($request->has('is_draft')) {
                 $announcement->is_draft = true;
                 $payed = true;
@@ -119,41 +119,51 @@ class AnnouncementController extends Controller
                 Session::flash('success-inscription',
                     'Votre annonce a été bien mise en ligne !');
             }
+            $announcement->is_payed = $payed;
+            $announcement->save();
+            $announcement->categoryAds()->attach($ct->category_id);
+            return redirect(route('dashboard/ads'));
         } else {
             if ($request->has('is_draft')) {
                 $announcement->is_draft = true;
-                $payed = true;
+                $payed = false;
                 Session::flash('success-inscription', 'Votre annonce a été enregistrer dans vos brouillons !');
             } else {
-                $payed = false;
                 $announcement->is_draft = false;
-                Session::flash('success-inscription', 'Votre annonce a été bien mise en ligne !');
+                $payed = false;
+                Session::flash('success-inscription',
+                    'Votre annonce ne sera visible qu\'aprés payement !');
             }
+
+            $announcement->is_payed = $payed;
+            $announcement->save();
+            $announcement->categoryAds()->attach($ct->category_id);
+            $planId = PlanAnnouncement::where('id', '=', $plan)->first();
+            Session::flash('success-ads',
+                'Votre annonce a été créer mais ne sera visible qu\'aprés payement !');
+            return redirect(route('announcements.payed', compact('planId', 'announcement')));
         }
-        $announcement->is_payed = $payed;
-        $announcement->save();
-        $announcement->categoryAds()->attach($ct->category_id);
-        return redirect(route('dashboard/ads'));
     }
 
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Announcement  $announcement
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
-     */
     public function payed(Request $request)
     {
-        $plan = $request->plan;
-        $planId = PlanAnnouncement::where('id', '=', $plan)->first();
-
-        Session::flash('success-inscription',
-            'Il suffit de terminer le paiement et votre annonce sera visible.');
+        $plan = $request->planId;
+        $planId = PlanAnnouncement::where('id', '=', $request->planId)->first();
         return view('announcements.payed',
-            compact('planId'));
+            compact('planId', 'plan'));
     }
 
+    public function payedAds(){
+        if (\request()->has('is_payed')) {
+            $announcement = Announcement::where('user_id','=',\auth()->user()->id)->latest('created_at')->first();
+            $announcement->is_payed = true;
+            Session::flash('success-inscription',
+                'Votre annonce a été bien mise en ligne !');
+            $announcement->update();
+            return redirect(route('dashboard/ads'));
+        }
+
+    }
     public function edit(Announcement $announcement)
     {
         //

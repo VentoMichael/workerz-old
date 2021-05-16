@@ -12,6 +12,12 @@
             <span class="crossHide" id="crossHide">&times;</span>
         </div>
     @endif
+    @if (Session::has('not-permitted'))
+        <div id="successMsg" role="alert" class="successMsg"><img src="{{asset('svg/cross.svg')}}" alt="good icone">
+            <p>{{Session::get('not-permitted')}}</p>
+            <span class="crossHide" id="crossHide">&times;</span>
+        </div>
+    @endif
     <section class="container-home margin">
         <div class="container-home_image container-home-page">
             <div>

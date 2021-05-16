@@ -1,5 +1,11 @@
 @extends('layouts.app')
 @section('content')
+    @if (Session::has('success-ads'))
+        <div id="successMsg" role="alert" class="successMsg"><img src="{{asset('svg/good.svg')}}" alt="good icone">
+            <p>{{Session::get('success-ads')}}</p>
+            <span class="crossHide" id="crossHide">&times;</span>
+        </div>
+    @endif
     <section class="container-home margin">
         <div class="container-home_image container-home-create container-home-page">
             <div>
@@ -87,7 +93,7 @@
                     <p>Saisissez les informations relatives à votre carte de crédit</p>
                     <form class="form-login form-register show-content" enctype="multipart/form-data"
                           aria-label="Enregistrement d'un compte" role="form" method="POST"
-                          action="{{ route('announcements.store') }}">
+                          action="{{ route('announcements.payed') }}">
                         @csrf
                         <div class="container-form-email">
                             <label class="hidden" for="payed-info"
@@ -106,7 +112,7 @@
                             @enderror
                         </div>
                         <div>
-                            <input type="hidden" name="plan" value="{{$planId}}">
+                            <input type="hidden" name="plan" value="{{old('plan', $plan)}}">
                             <button role="button" name="is_payed" class="button-cta" type="submit">
                                 Finaliser mon achat
                             </button>

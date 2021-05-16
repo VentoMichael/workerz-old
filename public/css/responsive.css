@@ -11,7 +11,7 @@
         flex-direction: column;
     }
 
-    .nav-container ul li a {
+    .nav-container ul li a,.container-list-menu form button {
         padding: 10px 25px;
         opacity: 0;
         color: var(--blueLight);
@@ -20,7 +20,10 @@
         transform: translateY(-20px);
         transition: all 0.2s ease;
     }
-
+    li .container-list-menu form button{
+        opacity: 1;
+        transform: translateY(-2px);
+    }
     .nav-open {
         position: fixed;
         right: 3%;
@@ -31,7 +34,12 @@
         z-index: 2;
         border-radius: 50%;
     }
-
+    li .profil-user:after {
+        width: 30px;
+        height: 37px;
+        top: 8px;
+        right: 10px;
+    }
     .nav-open i {
         display: block;
         width: 30px;
@@ -92,12 +100,26 @@
         background: var(--blueLight);
         color: white;
         border-radius: 20px;
-        padding: 11px 16px;
+        padding: 16px 25px;
         margin-bottom: 8px;
         border: 1px solid var(--blueLight);
         transition: .2s;
     }
-
+    .container-list-menu form button:hover:after{
+        display: none;
+    }
+    .container-list-menu form button:hover{
+padding: 10px 5px 5px;
+    }
+    .profil-item .profil-user:hover
+    {
+        background: var(--blueLight);
+        padding: 16px 25px;
+        border-radius: 20px;
+    }
+    .profil-item:hover+.nav-dashboard{
+        display: none;
+    }
     .container-list-menu a:hover {
         padding: 10px 25px;
     }
@@ -232,10 +254,6 @@
         grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     }
 
-    div .horary-cost {
-        top: inherit;
-        bottom: 45px;
-    }
 
     body main .container-create-ads {
         flex-direction: column;

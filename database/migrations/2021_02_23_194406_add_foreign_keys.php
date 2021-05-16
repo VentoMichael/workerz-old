@@ -18,19 +18,19 @@ class AddForeignKeys extends Migration
             $table->foreignId("role_id")->nullable()->constrained('roles');
         });
         Schema::table('phones', function (Blueprint $table) {
-            $table->foreignId("user_id")->constrained('users');
+            $table->foreignId("user_id")->constrained('users')->onDelete('cascade');;
         });
 
         Schema::table('websites', function (Blueprint $table) {
-            $table->foreignId("user_id")->constrained('users');
+            $table->foreignId("user_id")->constrained('users')->onDelete('cascade');;
         });
         Schema::table('physical_adresses', function (Blueprint $table) {
-            $table->foreignId("user_id")->constrained('users');
+            $table->foreignId("user_id")->constrained('users')->onDelete('cascade');
             $table->foreignId("province_id")->constrained('provinces');
         });
 
         Schema::table('announcements', function (Blueprint $table) {
-            $table->foreignId("user_id")->constrained('users');
+            $table->foreignId("user_id")->constrained('users')->onDelete('cascade');;
             $table->foreignId("province_id")->constrained('provinces');
             $table->foreignId("start_month_id")->constrained('start_months');
             $table->foreignId("plan_announcement_id")->constrained('plan_announcements');
@@ -49,7 +49,7 @@ class AddForeignKeys extends Migration
         });
 
         Schema::table('start_date_user', function (Blueprint $table) {
-            $table->bigInteger('user_id')->unsigned();
+            $table->bigInteger('user_id')->unsigned()->onDelete('cascade');;
             $table->bigInteger('start_date_id')->unsigned();
             $table->foreign('user_id')
                 ->references('id')
@@ -63,7 +63,7 @@ class AddForeignKeys extends Migration
             $table->bigInteger('province_id')->unsigned();
             $table->foreign('user_id')
                 ->references('id')
-                ->on('users');
+                ->on('users')->onDelete('cascade');;
             $table->foreign('province_id')
                 ->references('id')
                 ->on('provinces');
@@ -71,11 +71,11 @@ class AddForeignKeys extends Migration
 
 
         Schema::table('category_user', function (Blueprint $table) {
-            $table->bigInteger('user_id')->unsigned();
+            $table->bigInteger('user_id')->unsigned()->onDelete('cascade');;
             $table->bigInteger('category_id')->unsigned();
             $table->foreign('user_id')
                 ->references('id')
-                ->on('users');
+                ->on('users')->onDelete('cascade');
             $table->foreign('category_id')
                 ->references('id')
                 ->on('categories');
@@ -85,7 +85,8 @@ class AddForeignKeys extends Migration
             $table->bigInteger('category_id')->unsigned();
             $table->foreign('announcement_id')
                 ->references('id')
-                ->on('announcements');
+                ->on('announcements')
+                ->onDelete('cascade');
             $table->foreign('category_id')
                 ->references('id')
                 ->on('categories');

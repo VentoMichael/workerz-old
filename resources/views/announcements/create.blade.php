@@ -6,6 +6,7 @@
             <span class="crossHide" id="crossHide">&times;</span>
         </div>
     @endif
+
     <section class="container-home margin">
         <div class="container-home_image container-home-create container-home-page">
             <div>
@@ -71,9 +72,9 @@
                                class=" @error('title') is-invalid @enderror email-label" name="title"
                                required aria-required="true" placeholder="Menuisier dans liège">
                         @error('title')
-                        <p class="danger help">
-                            {{$errors->first('title')}}
-                        </p>
+                            <p class="danger help">
+                                {{$errors->first('title')}}
+                            </p>
                         @enderror
                     </div>
                     <div class="container-form-email">
@@ -83,15 +84,21 @@
                                 <option value="{{$region->id}}">{{$region->name}}</option>
                             @endforeach
                         </select>
+                        @error('location')
+                        <p class="danger help">
+                            {{$errors->first('location')}}
+                        </p>
+                        @enderror
                     </div>
                 </div>
 
-                <div class="container-register-form container-announcement-create">
+                <div class="container-register-form container-announcement-create container-register">
                     <div class="container-form-email">
                         <label for="job">Metier <span class="required">*</span></label>
                         <input placeholder="Menuisier" type="text"
                                id="job" value="{{old("job")}}"
-                               class=" @error('job') is-invalid @enderror email-label" name="job" required aria-required="true">
+                               class=" @error('job') is-invalid @enderror email-label" name="job" required
+                               aria-required="true">
                         @error('job')
                         <p class="danger help">
                             {{$errors->first('job')}}
@@ -101,33 +108,49 @@
                     <div class="container-form-email">
 
                         <label for="category_job">Catégorie de métier <span class="required">*</span></label>
-                        <select required aria-required="true" @if(request('plan') == 1)
-                                data-maxoption="1"
-                                class="select-register select-regions"
-                                @endif
-                                @if(request('plan') == 2) class="select-register select-regions selectdiv" multiple data-maxoption="2"
-                                @endif
-                                @if(request('plan') == 3) class="select-register select-regions selectdiv" multiple data-maxoption="3"
-                                @endif name="category_job[]" id="category_job">
-                            @foreach($categories as $c)
-                                <option value="{{$c->id}}">{{$c->name}}</option>
-                            @endforeach
-                        </select>
-                        @if(request()->plan == 1)
+                        <div class="container-filter-categories container-category">
+                            <ul class="list-categories">
+                                @foreach($categories as $c)
+                                    <li>
+                                        <input role="checkbox"
+                                               aria-checked="false" class="checkCat hiddenCheckbox inp-cbx"
+                                               name="category_job[]" id="category_job{{$c->id}}"
+                                               type="checkbox" value="{{$c->id}}"/>
+                                        <label class="cbx" for="category_job{{$c->id}}">
+                                                <span>
+                                                    <svg width="12px" height="9px" viewbox="0 0 12 9">
+                                                      <polyline points="1 5 4 8 11 1"></polyline>
+                                                    </svg>
+                                                </span>
+                                            <span>
+                                                    {{$c->name}}
+                                                </span>
+                                        </label>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                        @error('category_job')
+                        <p class="danger dangerCategory help">
+                            {{$errors->first('category_job')}}
+                        </p>
+                        @enderror
+                        @if(request('plan') == 1 || old('plan') == 1)
                             <p class="help"><a href="{{route('announcements.plans')}}#plans">Augmenter votre plan</a> et
                                 vous aurez la possibilité d'en ajouter jusqu'à 3</p>
                         @endif
-                        @if(request()->plan == 2)
-                            <p class="help">Avec la touche ctrl vous en sélectionner jusqu'à 2</p>
+                        @if(request('plan') == 2 || old('plan') == 2)
+                            <p class="help">Vous avez la possibilité d'en intégrer jusqu'à 2</p>
                         @endif
-                        @if(request()->plan == 3)
-                            <p class="help">Avec la touche ctrl vous en sélectionner jusqu'à 3</p>
+                        @if(request('plan') == 3 || old('plan') == 3)
+                            <p class="help">Vous avez la possibilité d'en intégrer jusqu'à 3</p>
                         @endif
-                    </div>
 
+
+                    </div>
                 </div>
 
-                <div class="container-register-form">
+                <div class="container-register-form container-register">
                     <div class="container-form-email">
                         <label for="price_max">Combien voulez vous dépensez au maximum ?</label>
                         <input type="text" pattern="^[0-9-+\s()]*$" id="price_max" name="price_max"
@@ -141,13 +164,37 @@
                     <div class="container-form-email selectdiv">
                         <label for="disponibility">Disponible à partir du mois de <span
                                 class="required">*</span></label>
-                        <select required class="select-register select-regions" name="disponibility" id="disponibility">
-                            @foreach($disponibilities as $disponibility)
-                                <option value="{{$disponibility->id}}">{{$disponibility->name}}</option>
-                            @endforeach
-                        </select>
-                    </div>
+                        <div class="container-filter-categories container-category">
 
+                            <ul class="list-categories">
+                                @foreach($disponibilities as $disponibility)
+                                    <li id="checkDispo">
+                                        <input role="checkbox"
+                                               aria-checked="false" class="checkDispo hiddenCheckbox inp-cbx"
+                                               name="disponibility" id="disponibility{{$disponibility->id}}"
+                                               type="checkbox" value="{{$disponibility->id}}"/>
+                                        <label class="cbx" for="disponibility{{$disponibility->id}}">
+                                                <span>
+                                                    <svg width="12px" height="9px" viewbox="0 0 12 9">
+                                                      <polyline points="1 5 4 8 11 1"></polyline>
+                                                    </svg>
+                                                </span>
+                                            <span>
+                                                    {{$disponibility->name}}
+                                                </span>
+                                        </label>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                        @error('disponibility')
+                        <p class="danger dangerCategory help">
+                            {{$errors->first('disponibility')}}
+                        </p>
+                        @enderror
+                        <p class="help">Vous avez la possibilité d'en ajouter un seul</p>
+
+                    </div>
 
                 </div>
 
@@ -167,9 +214,8 @@
                         </p>
                         @enderror
                     </div>
-
                 </div>
-                <input id="plan" name="plan" type="hidden" value="{{$plan}}">
+                <input id="plan" name="plan" type="hidden" value="{{old('plan', $plan)}}">
                 <div class="container-buttons-ads">
                     <div class="link-back">
                         <button class="button-back button-cta" name="is_draft">
@@ -186,5 +232,13 @@
 @endsection
 @section('scripts')
     <script src="{{asset('js/previewPicture.js')}}"></script>
-    <script src="{{asset('js/checkDataMaxOptions.js')}}"></script>
+    @if(request('plan') == 1 || old('plan') == 1)
+        <script src="{{asset('js/checkDataMaxOptions.js')}}"></script>
+    @endif
+    @if(request('plan') == 2 || old('plan') == 2)
+        <script src="{{asset('js/checkDataMaxOptions2.js')}}"></script>
+    @endif
+    @if(request('plan') == 3 || old('plan') == 3)
+        <script src="{{asset('js/checkDataMaxOptions3.js')}}"></script>
+    @endif
 @endsection

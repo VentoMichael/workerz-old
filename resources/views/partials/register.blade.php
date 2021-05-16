@@ -1,4 +1,4 @@
-<div class="container-register-form container-inscriptin-logins">
+<div class="container-register-form container-inscriptin-logins container-register">
     <div class="container-form-email">
         <label for="email">Email</label>
         <input id="email" type="email"

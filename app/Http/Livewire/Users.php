@@ -3,13 +3,10 @@
 namespace App\Http\Livewire;
 
 use App\Models\Category;
-use App\Models\PhysicalAdress;
 use App\Models\Province;
 use App\Models\User;
-use Illuminate\Database\Eloquent\Builder;
 use Livewire\Component;
 use Livewire\WithPagination;
-use Symfony\Component\Console\Input\Input;
 
 class Users extends Component
 {
@@ -21,7 +18,7 @@ class Users extends Component
         'categoryUser' => [],
     ];
 
-    protected $queryString = ['search'];
+    protected $queryString = ['search','filters'];
 
     public function resetFilters(){
         $this->reset('filters');
@@ -41,14 +38,14 @@ class Users extends Component
                 ->orderBy('created_at', 'DESC')
                 ->when(
                     $this->filters['categoryUser'],
-                    fn($query, $role) => $query->whereHas(
+                    fn($query) => $query->whereHas(
                         'categoryUser',
                         fn($query) => $query->whereIn('category_id', $this->filters['categoryUser'])
                     )
                 )
                 ->when(
                     $this->filters['provinces'],
-                    fn($query, $role) => $query->whereHas(
+                    fn($query) => $query->whereHas(
                         'adresses',
                         fn($query) => $query->whereIn('province_id', $this->filters['provinces'])
                     )

@@ -11,13 +11,14 @@
                         Pour la moindre question ou une simple demande, n'hésitez pas à nous contacter
                     </p>
                 </div>
+                 @guest
                 <div>
                     <a href="{{ route('users.plans') }}">
                         <button role="button" class="button-cta" type="submit">
                             Je m'inscris
                         </button>
                     </a>
-                </div>
+                </div>@endguest
             </div>
             <div class="container-svg">
                 <img src="{{asset('svg/us.svg')}}"
