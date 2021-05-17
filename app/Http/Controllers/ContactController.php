@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ContactMe;
 use App\Models\Contact;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\URL;
 
 class ContactController extends Controller
@@ -27,24 +30,27 @@ class ContactController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request) {
-        request()->validate([
-            'name'=> 'required',
-            'message'=> 'required',
-            'email'=> 'required|email',
-            'subject'=> 'required',
+        $data = $request->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+            'subject' => 'required',
+            'message' => 'required',
         ]);
-        $message = new Contact();
-        $message->name = request('name');
-        $message->surname = request('surname');
-        $message->email = request('email');
-        $message->subject = request('subject');
-        $message->message = request('message');
-        $message->save();
-        //Mail::to(env('MAIL_FROM_ADDRESS'))
-        //    ->send(new \App\Mail\contact());
-        //Mail::to(request('email'))
-        //    ->send(new notificationForUser());
-        return Redirect::to(URL::previous() . "#createMsg")->with('success-send', 'Votre message a été envoyé avec succès.
+        if ($request->surname) {
+            $surname = $request->surname;
+        } else {
+            $surname = null;
+        }
+        Contact::create([
+            'name' => $data['name'],
+            'surname' => $surname,
+            'email' => $data['email'],
+            'subject' => $data['subject'],
+            'message' => $data['message'],
+        ]);
+        Mail::to(env('MAIL_FROM_ADDRESS'))
+            ->send(new ContactMe($data));
+        return Redirect::to(URL::previous()."#createMsg")->with('success-send', 'Votre message a été envoyé avec succès.
         Nous vous contacterons bientôt !');
     }
 
