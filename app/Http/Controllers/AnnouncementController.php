@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\AdsCreated;
+use App\Mail\AdsCreatedUser;
+use App\Mail\ContactMe;
 use App\Models\Announcement;
 use App\Models\AnnouncementCategory;
 use App\Models\CatchPhraseAnnouncement;
@@ -11,6 +14,7 @@ use App\Models\Province;
 use App\Models\StartMonth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
@@ -75,7 +79,7 @@ class AnnouncementController extends Controller
     public function store(Request $request)
     {
         if (!$request->has('is_payed')) {
-            Validator::make($request->all(), [
+            $data = Validator::make($request->all(), [
                 'title' => 'required|unique:announcements',
                 'picture' => 'image:jpg,jpeg,png,svg|file',
                 'description' => 'required|max:256',
@@ -118,13 +122,17 @@ class AnnouncementController extends Controller
             } else {
                 $announcement->is_draft = false;
                 $payed = true;
+                Mail::to(env('MAIL_FROM_ADDRESS'))
+                    ->send(new AdsCreated($data));
+                Mail::to(\auth()->user()->email)
+                    ->send(new AdsCreatedUser($data));
                 Session::flash('success-inscription',
                     'Votre annonce a été bien mise en ligne !');
             }
             $announcement->is_payed = $payed;
             $announcement->save();
             $announcement->categoryAds()->attach($ct->category_id);
-            return redirect(route('dashboard/ads'));
+            return redirect(route('dashboard.ads'));
         } else {
             if ($request->has('is_draft')) {
                 $announcement->is_draft = true;
@@ -162,7 +170,11 @@ class AnnouncementController extends Controller
             Session::flash('success-inscription',
                 'Votre annonce est désormais en ligne, merci de votre confiance !');
             $announcement->update();
-            return redirect(route('dashboard/ads'));
+            Mail::to(env('MAIL_FROM_ADDRESS'))
+                ->send(new AdsCreated($announcement));
+            Mail::to(\auth()->user()->email)
+                ->send(new AdsCreatedUser($announcement));
+            return redirect(route('dashboard.ads'));
         }
 
     }

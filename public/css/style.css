@@ -1016,7 +1016,7 @@ form .search-announcement {
     position: relative;
 }
 .container-filter-categories li{
-    margin: 10px 0;
+    margin: 10px 10px;
 
 }
 .container-filter-categories li:last-child{

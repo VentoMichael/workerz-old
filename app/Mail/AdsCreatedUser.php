@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class ContactUser extends Mailable
+class AdsCreatedUser extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -30,7 +30,7 @@ class ContactUser extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.contact-user')->with('data',
-            $this->data)->subject('Copie de votre message envoyé sur '.env('APP_NAME'));
+        return $this->markdown('emails.ads-for-user')->with('data',
+            $this->data)->subject('Votre nouvelle annonce aura du succés');
     }
 }

@@ -151,8 +151,7 @@
                             @if($announcement->adress)
                                 <span itemprop="streetAddress">{{$announcement->adress}}</span>
                             @endif
-                                <p itemprop="addressRegion" class="categoryJob">({{ucfirst($announcement->province->name)}}
-                                    )</p>
+                                <p itemprop="addressRegion">{{ucfirst($announcement->province->name)}}</p>
                         </span>
                     </div>
                 </section>
@@ -241,10 +240,7 @@
                                 <div class="container-info-announcement" itemtype="https://schema.org/PostalAddress" itemscope>
                                     <img src="{{asset('svg/placeholder.svg')}}" alt="icone de localité">
                                     <div>
-                                        @if($announcement->adress)
-                                            <p itemprop="streetAddress">{{$announcement->adress}}</p>
-                                        @endif
-                                        <p class="categoryJob" itemprop="addressRegion">({{ucfirst($announcement->province->name)}})</p>
+                                        <p itemprop="addressRegion">{{ucfirst($announcement->province->name)}}</p>
                                     </div>
                                 </div>
                             </div>

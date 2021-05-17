@@ -20,7 +20,6 @@ class CreateAnnouncementsTable extends Migration
             $table->string('catchPhrase')->nullable();
             $table->string('slug')->unique();
             $table->text('picture')->nullable();
-            $table->text('adress')->nullable();
             $table->string('description',256);
             $table->string('job');
             $table->boolean('banned')->default(false);
