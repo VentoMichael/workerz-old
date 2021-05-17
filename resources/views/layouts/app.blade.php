@@ -21,6 +21,7 @@
         {{ Request::is('conditions') ? ' | Conditions d’utilisations' : "" }}
         {{ Request::is('announcements') || Request::is('announcements/*')  || Request::is('announcement/*')  ? ' | Annonces' : "" }}
         {{ Request::is('workerz') || Request::is('workerz/*') ? ' | Travailleurs' : "" }}
+        {{ Request::is('dashboard') || Request::is('dashboard/*') ? ' | Tableau de bord' : "" }}
     </title>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -192,7 +193,7 @@
                     @if(!Auth::check())
                         <li>
                             <ul class="container-list-menu">
-                                <li class="{{ Request::is('login') ? "current_page_item" : "" }}"
+                                <li class="connected-item-container {{ Request::is('login') ? "current_page_item" : "" }}"
                                     aria-current="{{ Request::is('login') ? "page" : "" }}"><a class="connected-item"
                                         href="{{ route('login') }}">Se connecter</a>
                                 </li>

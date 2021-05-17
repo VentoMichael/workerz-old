@@ -19,11 +19,16 @@ class UserRoute
      */
     public function handle(Request $request, Closure $next)
     {
-        if($request->route('worker') && $request->route('worker')->role_id == 3 ) {
+        if ($request->route('worker') && $request->route('worker')->role_id == 3) {
             Session::flash('not-permitted',
                 'Oops ! La personne que vous recherchez n\'est pas un indépendant');
             return Redirect(route('workerz'));
         }
-            return $next($request);
+        if ($request->route('worker') && $request->route('worker')->banned == 1) {
+            Session::flash('not-permitted',
+                'Oops ! La personne que vous recherchez n\'est pas disponible pour le moment');
+            return Redirect(route('workerz'));
+        }
+        return $next($request);
     }
 }

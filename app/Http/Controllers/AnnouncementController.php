@@ -140,7 +140,7 @@ class AnnouncementController extends Controller
             $announcement->categoryAds()->attach($ct->category_id);
             $planId = PlanAnnouncement::where('id', '=', $plan)->first();
             Session::flash('success-ads',
-                'Votre annonce a été créer mais ne sera visible qu\'aprés payement !');
+                'Votre annonce a été créée, mais ne sera pas visible qu\'après reçu de votre payement !');
             return redirect(route('announcements.payed', compact('planId', 'announcement')));
         }
     }
@@ -158,7 +158,7 @@ class AnnouncementController extends Controller
             $announcement = Announcement::where('user_id','=',\auth()->user()->id)->latest('created_at')->first();
             $announcement->is_payed = true;
             Session::flash('success-inscription',
-                'Votre annonce a été bien mise en ligne !');
+                'Votre annonce est désormais en ligne, merci de votre confiance !');
             $announcement->update();
             return redirect(route('dashboard/ads'));
         }

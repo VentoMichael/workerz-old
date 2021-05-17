@@ -54,11 +54,16 @@ Route::prefix('')->middleware(['auth'])->group(function () {
     // DASHBOARD
     Route::get('/dashboard',
         [\App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard')->middleware('payeduser');
-    Route::get('/dashboard/profile', [
-        \App\Http\Controllers\DashboardController::class, 'settings'
-    ])->name('dashboard/profile')->middleware('payeduser');
+    Route::get('/dashboard/notifications', [
+        \App\Http\Controllers\DashboardController::class, 'notifications'
+    ])->name('dashboard.notifications')->middleware('payeduser');
+    Route::get('/dashboard/messages',
+        [\App\Http\Controllers\DashboardController::class, 'messages'])->name('dashboard.messages')->middleware('payeduser');
     Route::get('/dashboard/ads',
-        [\App\Http\Controllers\DashboardController::class, 'ads'])->name('dashboard/ads')->middleware('payeduser');
+        [\App\Http\Controllers\DashboardController::class, 'ads'])->name('dashboard.ads')->middleware('payeduser');
+    Route::get('/dashboard/profil', [
+        \App\Http\Controllers\DashboardController::class, 'settings'
+    ])->name('dashboard.profil')->middleware('payeduser');
 
     // WORKERS
     Route::post('/workerz/{worker}/like', [\App\Http\Controllers\UserLikeController::class, 'store']);

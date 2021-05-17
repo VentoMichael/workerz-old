@@ -62,10 +62,11 @@
                                 </a>
                             @endauth
                         </div>
-
+                        @if($announcement->pricemax)
                         <div class="containerPrice">
-                            <img src="{{asset('svg/euro.svg')}}" alt="icone d'euro"> <span>Max: {{$announcement->pricemax}}€</span>
+                            <img src="{{asset('svg/euro.svg')}}" alt="icone d'euro"><span>Max: {{$announcement->pricemax}}€</span>
                         </div>
+                        @endif
                         <div class="container-image-announcement">
                             @if($announcement->picture)
                                 <img itemprop="image" src="{{ $announcement->picture }}"

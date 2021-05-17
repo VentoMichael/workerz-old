@@ -39,7 +39,7 @@
                   aria-label="Enregistrement d'un compte" role="form" method="POST"
                   action="{{ route('announcements.store') }}">
                 @csrf
-                <div class="container-register-form">
+                <div class="container-register-form container-register">
                     <div class="container-form-email">
                         <label for="catchPhrase">Phrase d'accroche</label>
                         <input type="text" id="catchPhrase" value="{{old("catchPhrase")}}"

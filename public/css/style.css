@@ -191,7 +191,7 @@
 .horary-cost {
     position: absolute;
     right: 15px;
-    top: 36px;
+    top: 34px;
 }
 
 .container-why {
@@ -238,7 +238,7 @@ button:after {
     width: 20px;
     height: 20px;
     right: -20px;
-    top: 12px;
+    top:9px;
     transition: 0.5s;
 }
 
@@ -952,7 +952,7 @@ form .search-announcement {
     box-shadow: var(--shadow);
     padding: 8px;
     border-radius: 7px;
-    min-width: 115px;
+    min-width: 105px;
     justify-content: space-evenly;
     display: flex;
     z-index: 1;
@@ -1006,7 +1006,7 @@ form .search-announcement {
 }
 
 .list-categories {
-    margin-top: 33px;
+    margin-top: 20px;
     color: var(--grey);
     line-height: 1.8;
 }
@@ -1015,7 +1015,14 @@ form .search-announcement {
     margin: 10px;
     position: relative;
 }
+.container-filter-categories li{
+    margin: 10px 0;
 
+}
+.container-filter-categories li:last-child{
+    margin-bottom: 0;
+
+}
 
 .cbx {
     -webkit-user-select: none;
@@ -1444,7 +1451,7 @@ div.container-category:hover {
 
 }
 
-.container-filter-categories ul {
+.container-category ul {
     margin-top: 5px;
 }
 
