@@ -6,6 +6,12 @@
             <span class="crossHide" id="crossHide">&times;</span>
         </div>
     @endif
+    @if (Session::has('errors'))
+        <div id="successMsg" role="alert" class="successMsg"><img src="{{asset('svg/cross.svg')}}" alt="cross icone">
+            <p>{{Session::get('errors')}}</p>
+            <span class="crossHide" id="crossHide">&times;</span>
+        </div>
+    @endif
     <div class="container-all-dashboard">
         @include('partials.navigationDashboard')
         <section class="container-dashboard">

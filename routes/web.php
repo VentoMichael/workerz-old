@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\ContactController;
 use Illuminate\Support\Facades\Route;
+use Laravel\Fortify\Features;
+use Laravel\Fortify\Http\Controllers\RegisteredUserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,7 +50,8 @@ Route::prefix('')->middleware(['guest'])->group(function () {
         [\App\Http\Controllers\UserController::class, 'registration_type'])
         ->name('users.type');
 });
-Route::get('/register/payed', [\App\Http\Controllers\UserController::class, 'payed']);
+Route::post('/register/payed', [\App\Http\Controllers\UserController::class, 'payedUser'])->name('users.paied');
+Route::get('/register/payed', [\App\Http\Controllers\UserController::class, 'payed'])->name('users.payed')->middleware('checkpayed');
 
 Route::prefix('')->middleware(['auth'])->group(function () {
     // DASHBOARD
@@ -58,7 +61,9 @@ Route::prefix('')->middleware(['auth'])->group(function () {
         \App\Http\Controllers\DashboardController::class, 'notifications'
     ])->name('dashboard.notifications')->middleware('payeduser');
     Route::get('/dashboard/messages',
-        [\App\Http\Controllers\DashboardController::class, 'messages'])->name('dashboard.messages')->middleware('payeduser');
+        [
+            \App\Http\Controllers\DashboardController::class, 'messages'
+        ])->name('dashboard.messages')->middleware('payeduser');
     Route::get('/dashboard/ads',
         [\App\Http\Controllers\DashboardController::class, 'ads'])->name('dashboard.ads')->middleware('payeduser');
     Route::get('/dashboard/profil', [
@@ -109,5 +114,22 @@ Route::post('/contact', [ContactController::class, 'store'])
 Route::get('/contact', [\App\Http\Controllers\ContactController::class, 'create'])
     ->name('contact');
 
-
-
+//Route::group(['middleware' => config('fortify.middleware', ['web'])], function () {
+//    $enableViews = config('fortify.views', true);
+//    if (Features::enabled(Features::registration())) {
+//        if ($enableViews) {
+//            Route::get('/register/company', [RegisteredUserController::class, 'create'])
+//                ->middleware(['guest:'.config('fortify.guard')])
+//                ->name('register.company');
+//        }
+//        Route::post('/register/company', [RegisteredUserController::class, 'store'])
+//            ->middleware(['guest:'.config('fortify.guard')]);
+//        if ($enableViews) {
+//            Route::get('/register/user', [RegisteredUserController::class, 'create'])
+//                ->middleware(['guest:'.config('fortify.guard')])
+//                ->name('register.user');
+//        }
+//        Route::post('/register/user', [RegisteredUserController::class, 'store'])
+//            ->middleware(['guest:'.config('fortify.guard')]);
+//    }
+//});

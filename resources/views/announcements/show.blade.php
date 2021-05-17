@@ -51,7 +51,7 @@
                     <div
                         class="containerPrice container-show-love containerLove help-show @guest notHoverHeart @endguest">
                         @if(!$announcement->isLikedBy($user))
-                            <form method="POST" title="Mettre un j'aime à {{$announcement->title}}" aria-label="Mettre un j'aime à {{$announcement->title}}" action="/workerz/{{$announcement->slug}}/like">
+                            <form method="POST" title="Mettre un j'aime à {{$announcement->title}}" aria-label="Mettre un j'aime à {{$announcement->title}}" action="/announcements/{{$announcement->slug}}/like">
                                 @csrf
 
                                 <button type="submit" class="button-loves">
@@ -63,7 +63,7 @@
                             </form>
                         @else
 
-                            <form method="POST" title="Enlever le j'aime donner à {{$announcement->title}}" aria-label="Enlever le j'aime donner à {{$announcement->title}}" action="/workerz/{{$announcement->slug}}/like">
+                            <form method="POST" title="Enlever le j'aime donner à {{$announcement->title}}" aria-label="Enlever le j'aime donner à {{$announcement->title}}" action="/announcements/{{$announcement->slug}}/like">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="button-loves">
@@ -174,7 +174,7 @@
                                 <div
                                     class="containerPrice container-show-love like-ads containerLove help-show @guest notHoverHeart @endguest">
                                     @if(!$ra->isLikedBy($user))
-                                        <form method="POST" title="Mettre un j'aime à {{$announcement->title}}" aria-label="Mettre un j'aime à {{$announcement->title}}" action="/workerz/{{$ra->slug}}/like">
+                                        <form method="POST" title="Mettre un j'aime à {{$announcement->title}}" aria-label="Mettre un j'aime à {{$announcement->title}}" action="/announcements/{{$ra->slug}}/like">
                                             @csrf
 
                                             <button type="submit" class="button-loves">
@@ -186,7 +186,7 @@
                                         </form>
                                     @else
 
-                                        <form method="POST" title="Enlever le j'aime donner à {{$announcement->title}}" aria-label="Enlever le j'aime donner à {{$announcement->title}}" action="/workerz/{{$ra->slug}}/like">
+                                        <form method="POST" title="Enlever le j'aime donner à {{$announcement->title}}" aria-label="Enlever le j'aime donner à {{$announcement->title}}" action="/announcements/{{$ra->slug}}/like">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="button-loves">

@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Actions\Fortify\CreateNewUser;
+use App\Actions\Fortify\CreateNewWorker;
 use App\Actions\Fortify\ResetUserPassword;
 use App\Actions\Fortify\UpdateUserPassword;
 use App\Actions\Fortify\UpdateUserProfileInformation;
@@ -37,6 +38,7 @@ class FortifyServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+
         Fortify::loginView(function () {
             return view('auth.login')->with('success-inscription', 'Connexion réussie !');
         });
@@ -45,7 +47,7 @@ class FortifyServiceProvider extends ServiceProvider
             $disponibilities = StartDate::all()->sortBy('id');
             $regions = Province::all()->sortBy('name');
             $categories = Category::all()->sortBy('name');
-            $type = null;
+            $type = $request->type;
             return view('auth.register',
                 compact('plan', 'type', 'disponibilities', 'regions', 'categories', 'request'));
         });
@@ -55,6 +57,7 @@ class FortifyServiceProvider extends ServiceProvider
         Fortify::resetPasswordView(function () {
             return view('auth.reset-password');
         });
+        //Fortify::createUsersUsing(CreateNewWorker::class);
         Fortify::createUsersUsing(CreateNewUser::class);
         Fortify::updateUserProfileInformationUsing(UpdateUserProfileInformation::class);
         Fortify::updateUserPasswordsUsing(UpdateUserPassword::class);

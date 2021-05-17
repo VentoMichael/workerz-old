@@ -25,7 +25,6 @@ class Users extends Component
     }
     public function render()
     {
-
         sleep(1);
         return view('livewire.users', [
             'regions' => Province::withCount("users")->get()->sortBy('name'),

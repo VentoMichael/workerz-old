@@ -33,7 +33,8 @@ class Ads extends Component
             'regions' => Province::withCount("announcements")->get()->sortBy('name'),
             'categories' => Category::withCount("announcements")->get()->sortBy('name'),
             'user' => auth()->user(),
-            'announcements' => Announcement::query()->Published()
+            'announcements' => Announcement::query()
+                ->Published()
                 ->NoBan()
                 ->Payement()
                 ->orderBy('plan_announcement_id', 'DESC')

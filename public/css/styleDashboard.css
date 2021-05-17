@@ -241,3 +241,34 @@ li .container-menu-pincipal a:hover:before{
     left: -14px;
     display: block;
 }
+.successMsg img {
+    margin-right: 10px;
+}
+
+.successMsg p {
+    margin-right: 20px;
+    margin-bottom: 0;
+}
+.crossHide {
+    color: red;
+    top: 10px;
+    font-size: 1.5em;
+    cursor: pointer;
+    position: absolute;
+    right: 15px;
+}
+.successMsg {
+    position: fixed;
+    font-family: roboto, sans-serif;
+    bottom: 20px;
+    display: flex;
+    align-items: center;
+    right: 6.8%;
+    margin-left: 7%;
+    max-width: 300px;
+    padding: 20px;
+    box-shadow: var(--shadow);
+    border-radius: 5px;
+    z-index: 5;
+    background: white;
+}

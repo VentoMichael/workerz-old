@@ -8,7 +8,6 @@ use App\Models\PhysicalAdress;
 use App\Models\ProvinceUser;
 use App\Models\startDate;
 use App\Models\User;
-use http\Env\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
@@ -18,7 +17,7 @@ use Illuminate\Validation\Rule;
 use Intervention\Image\Facades\Image;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
 
-class CreateNewUser implements CreatesNewUsers
+class CreateNewWorker implements CreatesNewUsers
 {
     use PasswordValidationRules;
 
@@ -31,8 +30,10 @@ class CreateNewUser implements CreatesNewUsers
      */
     public function create(array $input)
     {
+        // TODO Validateur en 2etapes ? check le plan
+        dd(redirect('workerz'));
         Validator::make($input, [
-            'name' => ['required', 'string', 'max:255', Rule::unique(User::class)],
+            'name' => ['required', 'string', 'max:255'],
             'picture' => ['image:jpg,jpeg,png,svg'],
             'email' => [
                 'required',
@@ -78,9 +79,6 @@ class CreateNewUser implements CreatesNewUsers
             $pricemax = null;
         }
         if (request('description')) {
-            Validator::make($input, [
-                'description' => ['max:256'],
-            ])->validate();
             $description = $input['description'];
         } else {
             $description = null;
@@ -121,30 +119,21 @@ class CreateNewUser implements CreatesNewUsers
         } else {
             $pic = null;
         }
-        if (\request('location')) {
             $pro = new ProvinceUser();
             $pro->province_id = \request('location');
-            $phy = new PhysicalAdress(['province_id' => \request('location'), 'postal_adress' => \request('adress')]);
-            $user->adresses()->save($phy);
-            $user->provinces()->attach($pro->province_id);
-        }
-        if (\request('category_job')) {
             $ct = new CategoryUser();
             $ct->category_id = \request('category_job');
+            $phy = new PhysicalAdress();
+            $phy->province_id = \request('location');
+            $phy->postal_adress = \request('adress');
             $di = new startDate();
             $di->start_date_id = \request('disponibilities');
             $user->categoryUser()->attach($ct->category_id);
-        }
-        if (\request('disponibilities')) {
-            $ct = new CategoryUser();
-            $ct->category_id = \request('disponibilities');
+            $user->adresses()->save($phy);
+            $user->provinces()->attach($pro->province_id);
             $user->startDate()->attach($di->start_date_id);
-
-        }
-
         $phone = new Phone(['number' => $input['phone']]);
         $user->phones()->save($phone);
-        $user->plan_user_id = request()->plan_user_id;
         $user->save();
         Session::flash('success-inscription', 'Votre inscription à été un succés !');
         return $user;

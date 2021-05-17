@@ -10,6 +10,7 @@ use App\Models\Province;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
@@ -28,6 +29,7 @@ class UserController extends Controller
 
     public function index()
     {
+
         return view('workerz.index');
     }
 
@@ -40,17 +42,24 @@ class UserController extends Controller
         return view('workerz.show', compact('worker', 'randomPhrasing', 'randomUsers'));
     }
 
+    public function payedUser(Request $request, User $user)
+    {
+        if ($request->is_payed == 1){
+            $user = Auth::user();
+            $user->is_payed = 1;
+            $user->update();
+            return Redirect::route('dashboard')->with('success-inscription',
+            'Votre inscription à été un succés, merci de votre confiance.');
+        }
+        Session::flash('errors',
+            'Oops, il y a eu un souci, veuilliez réssayez.');
+        return view('users.payed');
+    }
+
     public function payed(Request $request, User $user)
     {
-        $id = Auth::id();
-        $user = User::where('id', '=', $id)->first();
-        if (request()->has('is_payed')) {
-            $user->is_payed = 1;
-            $user->update($request);
-        }
         $plan = PlanUser::where('id', '=', $request->user()->plan_user_id)->get();
-        Session::flash('success-inscription',
-            'Votre inscription à été un succés ! Il suffit de terminer le paiement et votre entreprise sera visible.');
+
         return view('users.payed', compact('plan'));
     }
 }

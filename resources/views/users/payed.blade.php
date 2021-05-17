@@ -56,7 +56,8 @@
                                     </li>
                                     <li>
                                         @if($p->more_visible)
-                                            <img src="{{asset('svg/good.svg')}}" alt="Icone correct">                                                    @else
+                                            <img src="{{asset('svg/good.svg')}}"
+                                                 alt="Icone correct">                                                    @else
                                             <img src="{{asset('svg/cross.svg')}}" alt="Icone négative">
                                         @endif
                                         @if($p->id == 1)
@@ -88,14 +89,15 @@
                     <p>Saisissez les informations relatives à votre carte de crédit</p>
                     <form class="form-login form-register" enctype="multipart/form-data"
                           aria-label="Enregistrement d'un compte" role="form" method="POST"
-                          action="{{ route('register') }}">
+                          action="{{ route('users.paied') }}">
                         @csrf
                         <div class="container-form-email">
                             <label class="hidden" for="payed-info"
                             >Informations de paiement</label>
                             <input id="payed" type="text"
                                    class="@error('payed-info') is-invalid @enderror email-label"
-                                   name="payed" value="{{ old('payed') }}" required aria-required="true" autocomplete="payed-info"
+                                   name="payed" value="{{ old('payed') }}" required aria-required="true"
+                                   autocomplete="payed-info"
                                    autofocus>
 
                             @error('payed-info')
@@ -106,9 +108,10 @@
                             </div>
                             @enderror
                         </div>
-                        <input id="role_id" name="role_id" type="hidden" value="2">
                         <div>
-                            <button role="button" name="is_payed" class="button-cta" type="submit">
+                            <input id="role_id" name="role_id" type="hidden" value="2">
+                            <input id="is_payed" name="is_payed" type="hidden" value="1">
+                            <button role="button" class="button-cta" type="submit">
                                 Finaliser mon achat
                             </button>
                         </div>

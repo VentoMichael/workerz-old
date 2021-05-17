@@ -1,12 +1,11 @@
 @extends('layouts.app')
-
 @section('content')
+
     @if($request->has('user') || $request->old('type') == 'user' || $request->has('company') || $request->old('type') == 'company')
         @if($request->has('company') || $request->old('type') == 'company')
             <div class="container-home">
                 <section class="container-home_image">
                     <div class="container-connexion">
-
                         <h2 aria-level="2">On vous attend</h2>
                         <p>Vous recherchez du travail ? Engagez-vous !</p>
                         @guest
@@ -98,6 +97,13 @@
                             @if($request->plan_user_id == 3 || $request->old('plan_user_id') == 3)
                                 <p class="help">Vous aurez la possibilité d'en intégrer jusqu'à 3 via votre profil</p>
                             @endif
+                            @error('phone')
+                            <div class="container-error">
+                <span role="alert" class="error">
+                                        <strong>{{ ucfirst($message) }}</strong>
+                                    </span>
+                            </div>
+                            @enderror
                         </div>
                     </div>
                     <div class="container-register-form container-register">
@@ -106,6 +112,13 @@
                             <input type="text" id="name" value="{{old("name")}}" placeholder="Rotis"
                                    class=" @error('name') is-invalid @enderror email-label" name="name" required
                                    aria-required="true">
+                            @error('name')
+                            <div class="container-error">
+                <span role="alert" class="error">
+                                        <strong>{{ ucfirst($message) }}</strong>
+                                    </span>
+                            </div>
+                            @enderror
                         </div>
                         <div class="container-form-email">
                             <label for="surname">Prénom<span class="required"> *</span></label>
@@ -118,8 +131,15 @@
                     <input id="role_id" name="role_id" type="hidden" value="3">
                     <input id="plan_user_id" name="plan_user_id" type="hidden" value="{{$plan}}">
                     <input id="plan" name="plan" type="hidden" value="{{$plan}}">
+                    <input id="plan" name="type" type="hidden" value="user">
 
                     @include('partials.register')
+                    <div>
+                        <input type="hidden" name="type" value="user">
+                        <button role="button" class="button-cta" name="user" type="submit">
+                            Finaliser l'inscription
+                        </button>
+                    </div>
                 </form>
             </div>
         @endif
@@ -288,7 +308,7 @@
                         <div class="container-form-email selectdiv">
                             <label for="disponibilities">Disponibilités</label>
                             <div class="container-filter-categories container-category">
-                                <ul class="list-categories">
+                                <ul class="list-categories list-checkboxes-register">
                                     @foreach($disponibilities as $disponibility)
                                         <li>
                                             <input @if($disponibility->pre_selected == true) checked
@@ -325,7 +345,7 @@
                         <div class="container-form-email selectdiv">
                             <label for="location">Région <span class="required">*</span></label>
                             <div class="container-filter-categories container-category">
-                                <ul class="list-categories">
+                                <ul class="list-categories list-checkboxes-register">
                                     @foreach($regions as $r)
                                         <li>
                                             <input role="checkbox"
@@ -386,13 +406,13 @@
                         <div class="container-form-email selectdiv">
                             <label for="category_job">Catégorie de métier <span class="required">*</span></label>
                             <div class="container-filter-categories container-category">
-                                <ul class="list-categories">
+                                <ul class="list-categories list-checkboxes-register">
                                     @foreach($categories as $c)
                                         <li>
                                             <input role="checkbox"
-                                                aria-checked="false" class="checkCat hiddenCheckbox inp-cbx"
-                                            name="category_job[]" id="category_job{{$c->id}}"
-                                                type="checkbox" value="{{$c->id}}"/>
+                                                   aria-checked="false" class="checkCat hiddenCheckbox inp-cbx"
+                                                   name="category_job[]" id="category_job{{$c->id}}"
+                                                   type="checkbox" value="{{$c->id}}"/>
                                             <label class="cbx" for="category_job{{$c->id}}">
                                                 <span>
                                                     <svg width="12px" height="9px" viewbox="0 0 12 9">
@@ -447,7 +467,7 @@
                     <div class="container-register-form container-register">
                         <div class="container-form-email">
                             <label for="description">Description <span class="required">*</span></label>
-                            <textarea id="description" name="description" required
+                            <textarea id="description" maxlength="256" name="description" required
                                       class=" @error('description') is-invalid @enderror email-label"
                                       placeholder="Description détailée de votre profil..."
                                       rows="5" cols="33">{{old("description")}}</textarea>
@@ -466,6 +486,12 @@
                     <input id="type" name="type" type="hidden" value="company">
 
                     @include('partials.register')
+                    <div>
+                        <input type="hidden" name="type" value="company">
+                        <button role="button" class="button-cta" name="company" type="submit">
+                            Finaliser l'inscription
+                        </button>
+                    </div>
                 </form>
             </div>
         @endif
@@ -477,13 +503,13 @@
     <script src="{{asset('js/passwordSee.js')}}"></script>
     <script src="{{asset('js/previewPicture.js')}}"></script>
     @if($request->plan_user_id == 1)
-    <script src="{{asset('js/checkDataMaxOptions.js')}}"></script>
+        <script src="{{asset('js/checkDataMaxOptions.js')}}"></script>
     @endif
     @if($request->plan_user_id == 2)
-    <script src="{{asset('js/checkDataMaxOptions2.js')}}"></script>
+        <script src="{{asset('js/checkDataMaxOptions2.js')}}"></script>
     @endif
     @if($request->plan_user_id == 3)
-    <script src="{{asset('js/checkDataMaxOptions3.js')}}"></script>
+        <script src="{{asset('js/checkDataMaxOptions3.js')}}"></script>
     @endif
 @endsection
 @endif

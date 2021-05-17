@@ -38,7 +38,9 @@ class AnnouncementController extends Controller
 
     public function show(Announcement $announcement)
     {
-        $randomAds = Announcement::Published()->orderBy('plan_announcement_id',
+        $randomAds = Announcement::Published()
+            ->NoBan()
+            ->Payement()->Adspayed()->orderBy('plan_announcement_id',
             'DESC')->withLikes()->limit(2)->inRandomOrder()->get();
         $randomPhrasing = CatchPhraseAnnouncement::all()->random();
         $user = auth()->user();

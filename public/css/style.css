@@ -1287,7 +1287,9 @@ form .search-announcement {
     background-position: center;
     background-image: url("../svg/hot.svg");
 }
-
+.list-checkboxes-register{
+    margin: 0 10px ;
+}
 .container-plans section:nth-child(2) {
     position: relative;
     margin: -40px -30px;
@@ -1975,4 +1977,10 @@ div .container-form-email .inputPhone {
 
 div .like-users-connected:hover span {
     min-width: inherit;
+}
+.container-ads-random .container-picture-ads{
+    position: inherit;
+}
+.container-links-pagination a {
+    color: black;
 }

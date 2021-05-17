@@ -63,9 +63,4 @@
                                     </span>
 </div>
 @enderror
-<div>
-    <input type="hidden" name="type" value="{{$type}}">
-    <button role="button" class="button-cta" type="submit">
-        Finaliser l'inscription
-    </button>
-</div>
+
