@@ -7,11 +7,10 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class ContactMe extends Mailable
+class ContactUser extends Mailable
 {
     use Queueable, SerializesModels;
-
-    public $data;
+public $data;
     /**
      * Create a new message instance.
      *
@@ -29,6 +28,6 @@ class ContactMe extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.contact-me')->with('data', $this->data)->subject('Nouveau message dans votre boîte de réception.');
+        return $this->markdown('emails.contact-user')->with('data', $this->data)->subject('Copie de votre message envoyer sur ' . env('APP_NAME'));
     }
 }

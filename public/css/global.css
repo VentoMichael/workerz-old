@@ -13,6 +13,9 @@
 .btnAddAnnouncement:focus:not(:focus-visible),.submit-newsletter:focus:not(:focus-visible) {
     background: var(--gradientDarkBlue);
 }
+.input-newsletter:focus:not(:focus-visible),.input-newsletter:focus-visible{
+    background: white;
+}
 *:focus-visible {
     outline: 3px dashed var(--blueLight);
     background: transparent;

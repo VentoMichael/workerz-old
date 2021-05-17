@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\ContactMe;
+use App\Mail\ContactUser;
 use App\Models\Contact;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -50,6 +51,8 @@ class ContactController extends Controller
         ]);
         Mail::to(env('MAIL_FROM_ADDRESS'))
             ->send(new ContactMe($data));
+        Mail::to($data['email'])
+            ->send(new ContactUser($data));
         return Redirect::to(URL::previous()."#createMsg")->with('success-send', 'Votre message a été envoyé avec succès.
         Nous vous contacterons bientôt !');
     }
