@@ -2,6 +2,10 @@
 
 namespace App\Actions\Fortify;
 
+use App\Mail\AdsCreated;
+use App\Mail\AdsCreatedUser;
+use App\Mail\NewUser;
+use App\Mail\NewUserAdmin;
 use App\Models\CategoryUser;
 use App\Models\Phone;
 use App\Models\PhysicalAdress;
@@ -10,6 +14,7 @@ use App\Models\startDate;
 use App\Models\User;
 use http\Env\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
@@ -139,13 +144,16 @@ class CreateNewUser implements CreatesNewUsers
             $ct = new CategoryUser();
             $ct->category_id = \request('disponibilities');
             $user->startDate()->attach($di->start_date_id);
-
         }
 
         $phone = new Phone(['number' => $input['phone']]);
         $user->phones()->save($phone);
-        $user->plan_user_id = request()->plan_user_id;
+        $user->plan_user_id = request('plan_user_id');
         $user->save();
+        Mail::to(env('MAIL_FROM_ADDRESS'))
+            ->send(new NewUserAdmin($user));
+        Mail::to($user->email)
+            ->send(new NewUser($user));
         Session::flash('success-inscription', 'Votre inscription à été un succés !');
         return $user;
     }
