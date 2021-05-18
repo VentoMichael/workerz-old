@@ -220,9 +220,12 @@
                                 </li>
                                 <li class="nav-dashboard notVisible">
                                     <ul>
-                                        <li aria-current="{{ Request::is('dashboard/profil') || Request::is('dashboard/profil/*') ? "page" : "" }}">Mon profil</li>
-                                        <li aria-current="{{ Request::is('dashboard/ads') || Request::is('dashboard/ads/*') ? "page" : "" }}">Mes annonces</li>
-                                        <li aria-current="{{ Request::is('dashboard/message') || Request::is('dashboard/message/*') ? "page" : "" }}">Mes messages</li>
+                                        <li aria-current="{{ Request::is('dashboard/profil') || Request::is('dashboard/profil/*') ? "page" : "" }}">
+                                            <a href="{{route('dashboard.profil')}}">Mon profil</a></li>
+                                        <li aria-current="{{ Request::is('dashboard/ads') || Request::is('dashboard/ads/*') ? "page" : "" }}">
+                                            <a href="{{route('dashboard.ads')}}">Mes annonces</a></li>
+                                        <li aria-current="{{ Request::is('dashboard/message') || Request::is('dashboard/message/*') ? "page" : "" }}">
+                                            <a href="{{route('dashboard.messages')}}">Mes messages</a></li>
                                     </ul>
                                 </li>
                             </ul>

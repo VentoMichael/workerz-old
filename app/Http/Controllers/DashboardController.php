@@ -13,25 +13,39 @@ class DashboardController extends Controller
 {
     public function index(){
         foreach (auth()->user()->announcements as $adsExpire){
-            if ($adsExpire->end_plan > Carbon::now()->subDay(1)){
+            if ($adsExpire->end_plan < Carbon::now()->subDay(1)){
                 if ($adsExpire->sending_time_expire == 0){
                     $adsExpire->sending_time_expire = 1;
                     $adsExpire->update();
                     Mail::to(env('MAIL_FROM_ADDRESS'))
                         ->send(new AdsEarlyExpire($adsExpire));
-                    Session::flash('expireAds', 'Attention, une de vos annonce va bientôt expirer !');
+                    Session::flash('expire', 'Attention, une de vos annonce va expirer dans un jour !');
                 }
             }
-            if ($adsExpire->end_plan >= Carbon::now()) {
-                $adsExpire->is_draft = 1;
+            if ($adsExpire->end_plan <= Carbon::now()) {
+                $adsExpire->is_payed = 0;
                 $adsExpire->plan_announcement_id = null;
-                $adsExpire->save();
+                $adsExpire->update();
             }
+        }
+        if (auth()->user()->end_plan < Carbon::now()->subDay(1)){
+            if (auth()->user()->sending_time_expire == 0){
+                auth()->user()->sending_time_expire = 1;
+                auth()->user()->update();
+                //Mail::to(env('MAIL_FROM_ADDRESS'))
+                //    ->send(new AdsEarlyExpire(auth()->user()));
+                Session::flash('expire', 'Attention, votre compte va expirer dans un jour !');
+            }
+        }
+        if (auth()->user()->end_plan <= Carbon::now()) {
+            auth()->user()->is_payed = 0;
+            auth()->user()->plan_user_id = 4;
+            auth()->user()->update();
         }
         return view('dashboard.index');
     }
     public function settings(){
-        return view('dashboard.index');
+        return view('dashboard.profil');
     }
     public function ads(){
         return view('dashboard.index');

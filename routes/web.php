@@ -48,11 +48,12 @@ Route::prefix('')->middleware(['guest'])->group(function () {
         ->name('users.plans');
     Route::get('/register/plans/registration_type',
         [\App\Http\Controllers\UserController::class, 'registration_type'])
-        ->name('users.type')->middleware('noplansuser');
+        ->name('users.type');
 });
 
 Route::post('/register/payed', [\App\Http\Controllers\UserController::class, 'payedUser'])->name('users.paied');
-Route::get('/register/payed', [\App\Http\Controllers\UserController::class, 'payed'])->name('users.payed')->middleware('checkpayed');
+Route::get('/register/payed', [\App\Http\Controllers\UserController::class, 'payed'])->name('users.payed')->middleware('checkpayed','auth');
+
 
 Route::prefix('')->middleware(['auth'])->group(function () {
     // DASHBOARD
@@ -69,7 +70,7 @@ Route::prefix('')->middleware(['auth'])->group(function () {
         [\App\Http\Controllers\DashboardController::class, 'ads'])->name('dashboard.ads')->middleware('payeduser');
     Route::get('/dashboard/profil', [
         \App\Http\Controllers\DashboardController::class, 'settings'
-    ])->name('dashboard.profil')->middleware('payeduser');
+    ])->name('dashboard.profil');
 
     // WORKERS
     Route::post('/workerz/{worker}/like', [\App\Http\Controllers\UserLikeController::class, 'store']);
@@ -93,7 +94,7 @@ Route::prefix('')->middleware(['auth'])->group(function () {
     Route::post('/announcement/payed',
         [\App\Http\Controllers\AnnouncementController::class, 'payedAds'])->middleware('noplansads')->name('announcements.paied');
 
-    Route::get('/announcement/payed', [\App\Http\Controllers\AnnouncementController::class, 'payed'])->middleware('noplansads')->name('announcements.payed');
+    Route::get('/announcement/payed', [\App\Http\Controllers\AnnouncementController::class, 'payed'])->middleware('noplansads','auth')->name('announcements.payed');
 
 });
 

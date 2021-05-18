@@ -151,7 +151,7 @@ class AnnouncementController extends Controller
             $announcement->categoryAds()->attach($ct->category_id);
             $planId = PlanAnnouncement::where('id', '=', $plan)->first();
             Session::flash('success-ads',
-                'Votre annonce est dans ma mémoire, elle sera visible qu\'après reçu de votre payement !');
+                'Votre annonce est presque finalisée, elle sera visible qu\'après reçu de votre payement !');
             return redirect(route('announcements.payed', compact('planId', 'announcement')));
         }
     }
