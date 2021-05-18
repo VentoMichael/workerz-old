@@ -47,7 +47,7 @@
                     @method('get')
                     @csrf
                     <input type="hidden" name="type" value="user">
-                    <input id="plan_user_id{{$plan}}" name="plan_user_id" type="hidden" value="{{$plan}}">
+                    <input id="plan{{$plan}}" name="plan" type="hidden" value="{{$plan}}">
                     <button class="button-cta" title="Je sélectionne la section 'Je cherche un professionnel'"
                             name="user">
                         Je fais ce choix
@@ -78,7 +78,7 @@
                       action="{{ route('register') }}">
                     @method('get')
                     @csrf
-                    <input id="plan_user_id{{$plan}}" name="plan_user_id" type="hidden" value="{{$plan}}">
+                    <input id="plan{{$plan}}" name="plan" type="hidden" value="{{$plan}}">
                     <input type="hidden" name="type" value="company">
 
                     <button class="button-cta" title="Je sélectionne la section 'Je suis un professionnel'"

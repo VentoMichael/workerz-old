@@ -17,7 +17,7 @@ class NoPlansAds
      */
     public function handle(Request $request, Closure $next)
     {
-        if ($request->plan == null || old('plan') == null){
+        if (request('plan') != 1 && request('plan') != 2 && request('plan') != 3 ) {
             Session::flash('errors',
                 'Oops, il y a eu un souci, veuillez réessayer dans quelques instants.');
             return redirect(route('announcements.plans').'#plans');

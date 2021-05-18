@@ -1,8 +1,7 @@
 @extends('layouts.app')
 @section('content')
-
-    @if($request->has('user') || $request->old('type') == 'user' || $request->has('company') || $request->old('type') == 'company')
-        @if($request->has('company') || $request->old('type') == 'company')
+    @if($type == 'user' || $request->type == 'user' || $request->type == 'company' || $type == 'company')
+        @if($type == 'company' || $request->type == 'company')
             <div class="container-home">
                 <section class="container-home_image">
                     <div class="container-connexion">
@@ -25,7 +24,7 @@
                 </section>
             </div>
         @endif
-        @if($request->has('user') || $request->old('type') == 'user')
+        @if($type == 'user' || $request->type == 'user')
             <div class="container-home">
                 <section class="container-home_image">
                     <div class="container-connexion">
@@ -51,11 +50,11 @@
     <section class="container-form-register container-home">
         <div class="title-first-step-register">
             <h2 aria-level="2">Formulaire d'inscription</h2>
-            @if($request->has('company') || $request->has('user') || $request->old('type') == 'user' || $request->old('type') == 'company')
+            @if($type == 'company' || $type == 'user' || $request->type == 'user' || $request->type == 'company')
                 <p>Après cette étape, vous serez immédiatement inscris et pourrez y intégrer des annonces !</p>
             @endif
         </div>
-        @if($request->has('company') || $request->has('user') || $request->old('type') == 'user' || $request->old('type') == 'company')
+        @if($type == 'company' || $type == 'user' || $request->type == 'user' || $request->type == 'company')
             <a class="link-back" href="{{route('users.type')}}">
                 <button class="button-back button-cta">
                     Retour
@@ -63,7 +62,7 @@
             </a>
         @endif
 
-        @if($request->has('user') || $request->old('type') == 'user')
+        @if($type == 'user' || $request->type == 'user')
             <div>
                 <form class="form-login form-register" enctype="multipart/form-data"
                       aria-label="Enregistrement d'un compte" role="form" method="POST"
@@ -87,14 +86,14 @@
                                    value="{{old("phone")}}" placeholder="0494827235"
                                    class=" @error('phone') is-invalid @enderror email-label" name="phone" required
                                    aria-required="true">
-                            @if($request->plan_user_id == 1 || $request->old('plan_user_id') == 1)
+                            @if($request->plan == 1 || $request->old('plan') == 1)
                                 <p class="help"><a href="{{route('users.plans')}}#plans">Augmenter votre plan</a> et
                                     vous aurez la possibilité d'en ajouter jusqu'à 3</p>
                             @endif
-                            @if($request->plan_user_id == 2 || $request->old('plan_user_id') == 2)
+                            @if($request->plan == 2 || $request->old('plan') == 2)
                                 <p class="help">Vous aurez la possibilité d'en intégrer jusqu'à 2 via votre profil</p>
                             @endif
-                            @if($request->plan_user_id == 3 || $request->old('plan_user_id') == 3)
+                            @if($request->plan == 3 || $request->old('plan') == 3)
                                 <p class="help">Vous aurez la possibilité d'en intégrer jusqu'à 3 via votre profil</p>
                             @endif
                             @error('phone')
@@ -132,8 +131,7 @@
                     <div>
                         <input id="role_id" name="role_id" type="hidden" value="3">
                         <input id="plan_user_id" name="plan_user_id" type="hidden" value="{{$plan}}">
-                        <input id="plan" name="plan" type="hidden" value="{{$plan}}">
-                        <input id="plan" name="type" type="hidden" value="user">
+                        <input id="plan{{ $plan }}" name="plan" type="hidden" value="{{$plan}}">
                         <input type="hidden" name="type" value="user">
                         <button role="button" class="button-cta" name="user" type="submit">
                             Finaliser l'inscription
@@ -142,7 +140,7 @@
                 </form>
             </div>
         @endif
-        @if($request->has('company') || $request->old('type') == 'company')
+        @if($type == 'company' || $request->type == 'company')
             <div>
                 <form class="form-login form-register" enctype="multipart/form-data"
                       aria-label="Enregistrement d'un compte" role="form" method="POST"
@@ -261,14 +259,14 @@
                                    pattern="^[0-9-+\s()]*$" id="phone" value="{{old("phone")}}"
                                    class=" @error('phone') is-invalid @enderror email-label inputPhone" name="phone"
                                    required aria-required="true">
-                            @if($request->plan_user_id == 1 || $request->old('plan_user_id') == 1)
+                            @if($request->plan == 1 || $request->old('plan') == 1)
                                 <p class="help"><a href="{{route('users.plans')}}#plans">Augmenter votre plan</a> et
                                     vous aurez la possibilité d'en ajouter jusqu'à 3</p>
                             @endif
-                            @if($request->plan_user_id == 2 || $request->old('plan_user_id') == 2)
+                            @if($request->plan == 2 || $request->old('plan') == 2)
                                 <p class="help">Vous aurez la possibilité d'en intégrer jusqu'à 2 via votre profil</p>
                             @endif
-                            @if($request->plan_user_id == 3 || $request->old('plan_user_id') == 3)
+                            @if($request->plan == 3 || $request->old('plan') == 3)
                                 <p class="help">Vous aurez la possibilité d'en intégrer jusqu'à 3 via votre profil</p>
                             @endif
                             @error('phone')
@@ -286,14 +284,14 @@
                             <label for="website">Site internet</label>
                             <input placeholder="https://workerz.be" type="text" id="website" value="{{old("website")}}"
                                    class=" @error('website') is-invalid @enderror email-label" name="website">
-                            @if($request->plan_user_id == 1 || $request->old('plan_user_id') == 1)
+                            @if($request->plan == 1 || $request->old('plan') == 1)
                                 <p class="help"><a href="{{route('users.plans')}}#plans">Augmenter votre plan</a> et
                                     vous aurez la possibilité d'en ajouter jusqu'à 3</p>
                             @endif
-                            @if($request->plan_user_id == 2 || $request->old('plan_user_id') == 2)
+                            @if($request->plan == 2 || $request->old('plan') == 2)
                                 <p class="help">Vous aurez la possibilité d'en intégrer jusqu'à 2 via votre profil</p>
                             @endif
-                            @if($request->plan_user_id == 3 || $request->old('plan_user_id') == 3)
+                            @if($request->plan == 3 || $request->old('plan') == 3)
                                 <p class="help">Vous aurez la possibilité d'en intégrer jusqu'à 3 via votre profil</p>
                             @endif
                             @error('website')
@@ -348,14 +346,14 @@
                                     <option value="{{$region->id}}">{{$region->name}}</option>
                                 @endforeach
                             </select>
-                            @if($request->plan_user_id == 1 || $request->old('plan_user_id') == 1)
+                            @if($request->plan == 1 || $request->old('plan') == 1)
                                 <p class="help"><a href="{{route('users.plans')}}#plans">Augmenter votre plan</a> et
                                     vous aurez la possibilité d'en ajouter jusqu'à 3</p>
                             @endif
-                            @if($request->plan_user_id == 2 || $request->old('plan_user_id') == 2)
+                            @if($request->plan == 2 || $request->old('plan') == 2)
                                 <p class="help">Vous avez la possibilité d'en intégrer jusqu'à 2 via votre profil</p>
                             @endif
-                            @if($request->plan_user_id == 3 || $request->old('plan_user_id') == 3)
+                            @if($request->plan == 3 || $request->old('plan') == 3)
                                 <p class="help">Vous avez la possibilité d'en intégrer jusqu'à 3 via votre profil</p>
                             @endif
 
@@ -408,14 +406,14 @@
                                 </ul>
 
                             </div>
-                            @if($request->plan_user_id == 1 || $request->old('plan_user_id') == 1)
+                            @if($request->plan == 1 || $request->old('plan') == 1)
                                 <p class="help"><a href="{{route('users.plans')}}#plans">Augmenter votre plan</a> et
                                     vous aurez la possibilité d'en ajouter jusqu'à 3</p>
                             @endif
-                            @if($request->plan_user_id == 2 || $request->old('plan_user_id') == 2)
+                            @if($request->plan == 2 || $request->old('plan') == 2)
                                 <p class="help">Vous avez la possibilité d'en intégrer jusqu'à 2</p>
                             @endif
-                            @if($request->plan_user_id == 3 || $request->old('plan_user_id') == 3)
+                            @if($request->plan == 3 || $request->old('plan') == 3)
                                 <p class="help">Vous avez la possibilité d'en intégrer jusqu'à 3</p>
                             @endif
                             <p class="help proposed-job">Je ne trouve pas mon métier, <a
@@ -476,18 +474,18 @@
         @endif
     </section>
 @endsection
-@if($request->has('company') || $request->has('user') || $request->old('type') == 'user' || $request->old('type') == 'company')
+@if($type == 'company' || $type == 'user' || $request->type == 'user' || $request->type == 'company')
 @section('scripts')
     <script src="{{asset('js/passwordCheck.js')}}"></script>
     <script src="{{asset('js/passwordSee.js')}}"></script>
     <script src="{{asset('js/previewPicture.js')}}"></script>
-    @if($request->plan_user_id == 1)
+    @if($request->plan == 1)
         <script src="{{asset('js/checkDataMaxOptions.js')}}"></script>
     @endif
-    @if($request->plan_user_id == 2)
+    @if($request->plan == 2)
         <script src="{{asset('js/checkDataMaxOptions2.js')}}"></script>
     @endif
-    @if($request->plan_user_id == 3)
+    @if($request->plan == 3)
         <script src="{{asset('js/checkDataMaxOptions3.js')}}"></script>
     @endif
 @endsection

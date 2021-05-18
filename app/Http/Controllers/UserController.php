@@ -18,13 +18,16 @@ class UserController extends Controller
     public function plans()
     {
         $plans = PlanUser::all();
-        return view('users.plans', compact('plans'));
+        $plan = request('plan');
+        return view('users.plans', compact('plans','plan'));
     }
 
     public function registration_type()
     {
-        $plan = request('plan_user_id');
-        return view('auth.registration_type', compact('plan'));
+        $plan = request('plan');
+        Session::put('plan',$plan);
+        $type = \request('type');
+        return view('auth.registration_type', compact('plan','type'));
     }
 
     public function index()

@@ -43,11 +43,12 @@ class FortifyServiceProvider extends ServiceProvider
             return view('auth.login')->with('success-inscription', 'Connexion réussie !');
         });
         Fortify::registerView(function (Request $request) {
-            $plan = \request('plan_user_id');
             $disponibilities = StartDate::all()->sortBy('id');
             $regions = Province::all()->sortBy('name');
             $categories = Category::all()->sortBy('name');
-            $type = $request->type;
+            $plan = Session::get('plan');
+            $type = Session::get('type');
+            Session::put('type',$type);
             return view('auth.register',
                 compact('plan', 'type', 'disponibilities', 'regions', 'categories', 'request'));
         });

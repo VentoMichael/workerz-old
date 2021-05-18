@@ -33,7 +33,7 @@ class AddForeignKeys extends Migration
             $table->foreignId("user_id")->constrained('users')->onDelete('cascade');;
             $table->foreignId("province_id")->constrained('provinces');
             $table->foreignId("start_month_id")->constrained('start_months');
-            $table->foreignId("plan_announcement_id")->constrained('plan_announcements');
+            $table->foreignId("plan_announcement_id")->nullable()->constrained('plan_announcements');
         });
         Schema::table('like_announcements', function (Blueprint $table) {
             $table->foreignId("user_id")->constrained('users')->onDelete('cascade');

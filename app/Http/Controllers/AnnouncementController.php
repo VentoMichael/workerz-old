@@ -12,6 +12,7 @@ use App\Models\Category;
 use App\Models\PlanAnnouncement;
 use App\Models\Province;
 use App\Models\StartMonth;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -129,6 +130,8 @@ class AnnouncementController extends Controller
                     'Votre annonce a été bien mise en ligne !');
             }
             $announcement->is_payed = $payed;
+            $trial = Carbon::now()->addDays(7);
+            $announcement->end_plan = $trial;
             $announcement->save();
             $announcement->categoryAds()->attach($ct->category_id);
             return redirect(route('dashboard.ads'));
@@ -143,7 +146,6 @@ class AnnouncementController extends Controller
                 Session::flash('success-inscription',
                     'Votre annonce ne sera visible qu\'aprés payement !');
             }
-
             $announcement->is_payed = $payed;
             $announcement->save();
             $announcement->categoryAds()->attach($ct->category_id);
@@ -180,6 +182,13 @@ class AnnouncementController extends Controller
     {
         $announcement = Announcement::where('user_id', '=', \auth()->user()->id)->latest('created_at')->first();
         $announcement->is_payed = true;
+        if ($announcement->plan_announcement_id == 2){
+            $days = 15;
+        }else{
+            $days = 30;
+        }
+        $trial = Carbon::now()->addDays($days);
+        $announcement->end_plan = $trial;
         Session::flash('success-inscription',
             'Votre annonce est désormais en ligne, merci de votre confiance !');
         $announcement->update();

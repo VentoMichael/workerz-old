@@ -36,7 +36,10 @@ class CreateNewUser implements CreatesNewUsers
      */
     public function create(array $input)
     {
-        if (\request('type') == 'company' || \request('type') == 'user') {
+        $type = \request('type');
+        Session::put('type',$type);
+
+
             if (request()->plan_user_id == 1) {
                 $payed = 1;
             } else {
@@ -90,13 +93,13 @@ class CreateNewUser implements CreatesNewUsers
                         Rule::unique(User::class),
                     ],
                     'adress' => 'required',
-                    'phones.phone' => 'required',
+                    //'phones.phone' => 'required',
                     'website' => 'nullable','url',
                     'description' => 'required','max:256',
                     'job' => ['required'],
-                    'CategoryUser.category_job' => [
-                        'required',
-                    ],
+                    //'CategoryUser.category_job' => [
+                    //    'required',
+                    //],
                     'password' => [
                         'required',
                         'min:8',
@@ -104,13 +107,14 @@ class CreateNewUser implements CreatesNewUsers
                         'regex:/[0-9]/',
                     ],
                 ])->validate();
+
                 $user = User::create([
                     'name' => $input['name'],
                     'email' => $input['email'],
                     'picture' => $pic,
                     'role_id' => $input['role_id'],
                     'plan_user_id' => $input['plan_user_id'],
-                    'website' => $input['web'],
+                    'website' => $input['website'],
                     'job' => $input['job'],
                     'is_payed' => $payed,
                     'pricemax' => $input['pricemax'],
@@ -149,14 +153,11 @@ class CreateNewUser implements CreatesNewUsers
             $user->phones()->save($phone);
             $user->plan_user_id = request('plan_user_id');
             $user->save();
-            //Mail::to(env('MAIL_FROM_ADDRESS'))
-            //    ->send(new NewUserAdmin($user));
-            //Mail::to($user->email)
-            //    ->send(new NewUser($user));
+            Mail::to(env('MAIL_FROM_ADDRESS'))
+                ->send(new NewUserAdmin($user));
+            Mail::to($user->email)
+                ->send(new NewUser($user));
             Session::flash('success-inscription', 'Votre inscription à été un succés !');
             return $user;
-        }else{
-            return redirect(route('workerz'));
-        }
     }
 }
