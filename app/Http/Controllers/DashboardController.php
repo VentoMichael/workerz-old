@@ -11,13 +11,14 @@ use Illuminate\Support\Facades\Session;
 
 class DashboardController extends Controller
 {
-    public function index(){
-        foreach (auth()->user()->announcements as $adsExpire){
-            if ($adsExpire->end_plan < Carbon::now()->subDay(1)){
-                if ($adsExpire->sending_time_expire == 0){
+    public function index()
+    {
+        foreach (auth()->user()->announcements as $adsExpire) {
+            if ($adsExpire->end_plan < Carbon::now()->subDay(1)) {
+                if ($adsExpire->sending_time_expire == 0) {
                     $adsExpire->sending_time_expire = 1;
                     $adsExpire->update();
-                    Mail::to(env('MAIL_FROM_ADDRESS'))
+                    Mail::to(auth()->user()->email)
                         ->send(new AdsEarlyExpire($adsExpire));
                     Session::flash('expire', 'Attention, une de vos annonce va expirer dans un jour !');
                 }
@@ -28,8 +29,9 @@ class DashboardController extends Controller
                 $adsExpire->update();
             }
         }
-        if (auth()->user()->end_plan < Carbon::now()->subDay(1)){
-            if (auth()->user()->sending_time_expire == 0){
+
+        if (auth()->user()->end_plan < Carbon::now()->subDay(1)) {
+            if (auth()->user()->sending_time_expire == 0) {
                 auth()->user()->sending_time_expire = 1;
                 auth()->user()->update();
                 //Mail::to(env('MAIL_FROM_ADDRESS'))
@@ -44,10 +46,14 @@ class DashboardController extends Controller
         }
         return view('dashboard.index');
     }
-    public function settings(){
+
+    public function settings()
+    {
         return view('dashboard.profil');
     }
-    public function ads(){
+
+    public function ads()
+    {
         return view('dashboard.index');
     }
 }
