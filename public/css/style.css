@@ -1994,3 +1994,14 @@ div .like-users-connected:hover span {
 .container-links-pagination a {
     color: black;
 }
+.nav-dashboard li a:hover{
+    border-bottom: 0;
+    border-left: 3px solid var(--blueLight);
+    padding: 5px 10px 5px 15px;
+    margin-left: -15px;
+}
+.nav-dashboard li a{
+    margin-left: -15px;
+    padding: 5px 10px 5px 15px;
+    border-left: 3px solid transparent;
+}
