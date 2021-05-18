@@ -67,7 +67,7 @@ Route::prefix('')->middleware(['auth'])->group(function () {
             \App\Http\Controllers\DashboardController::class, 'messages'
         ])->name('dashboard.messages')->middleware('payeduser');
     Route::get('/dashboard/ads',
-        [\App\Http\Controllers\DashboardController::class, 'ads'])->name('dashboard.ads')->middleware('payeduser');
+        [\App\Http\Controllers\DashboardController::class, 'ads'])->name('dashboard.ads')->middleware('payeduser','payedads');
     Route::get('/dashboard/profil', [
         \App\Http\Controllers\DashboardController::class, 'settings'
     ])->name('dashboard.profil');
@@ -85,16 +85,17 @@ Route::prefix('')->middleware(['auth'])->group(function () {
     Route::delete('/announcements/{announcement}/like',
         [\App\Http\Controllers\AnnouncementLikeController::class, 'delete']);
     Route::post('/announcement/create',
-        [\App\Http\Controllers\AnnouncementController::class, 'store'])->middleware('noplansads')
+        [\App\Http\Controllers\AnnouncementController::class, 'store'])
+        ->middleware('noplansads')
         ->name('announcements.store');
     Route::get('/announcement/create',
         [\App\Http\Controllers\AnnouncementController::class, 'create'])->middleware('noplansads')->name('announcements.create');
 
 
     Route::post('/announcement/payed',
-        [\App\Http\Controllers\AnnouncementController::class, 'payedAds'])->middleware('noplansads')->name('announcements.paied');
+        [\App\Http\Controllers\AnnouncementController::class, 'payedAds'])->name('announcements.paied');
 
-    Route::get('/announcement/payed', [\App\Http\Controllers\AnnouncementController::class, 'payed'])->middleware('noplansads','auth')->name('announcements.payed');
+    Route::get('/announcement/payed', [\App\Http\Controllers\AnnouncementController::class, 'payed'])->name('announcements.payed');
 
 });
 

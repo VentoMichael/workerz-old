@@ -9,10 +9,10 @@
 *:focus:not(:focus-visible) {
     background: transparent;
 }
-.button-cta:focus:not(:focus-visible),.container-filters button:focus:not(:focus-visible),.btn-ads:focus:not(:focus-visible) {
+.button-cta:focus-visible,.button-cta:focus:not(:focus-visible),.container-filters button:focus-visible,.container-filters button:focus:not(:focus-visible),.button-personnal-announcement:focus:not(:focus-visible),.btn-ads:focus-visible,.btn-ads:focus:not(:focus-visible) {
     background: var(--gradientLightBlue);
 }
-.btnAddAnnouncement:focus:not(:focus-visible),.submit-newsletter:focus:not(:focus-visible) {
+.btnAddAnnouncement:focus-visible,.btnAddAnnouncement:focus:not(:focus-visible),.submit-newsletter:focus-visible,.submit-newsletter:focus:not(:focus-visible) {
     background: var(--gradientDarkBlue);
 }
 .input-newsletter:focus:not(:focus-visible),.input-newsletter:focus-visible{

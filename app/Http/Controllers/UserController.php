@@ -82,6 +82,8 @@ class UserController extends Controller
         Session::flash('success-inscription',
             'Votre compte est désormais opérationnel, merci de votre confiance !');
         $user->update();
+        Session::forget('plan');
+
         //Mail::to(env('MAIL_FROM_ADDRESS'))
         //    ->send(new AdsCreated($announcement));
         //Mail::to(\auth()->user()->email)

@@ -27,7 +27,7 @@
     </section>
     <section class="container-home container-announcements container-create-ads">
         <a class="link-back" href="{{route('announcements.plans')}}">
-            <button class="button-back button-cta">
+            <button class="button-back button-cta button-draft">
                 Retour
             </button>
         </a>
@@ -77,7 +77,7 @@
                             </p>
                         @enderror
                     </div>
-                    <div class="container-form-email">
+                    <div class="container-form-email container-email-form">
                         <label for="location">Région <span class="required">*</span></label>
                         <select required aria-required="true" class="select-register select-regions" data-maxoption="1" name="location" id="location">
                             <option value="0" disabled selected>-- Votre région --</option>
@@ -156,9 +156,9 @@
                         <label for="price_max">Combien voulez vous dépensez au maximum ?</label>
                         <input type="text" pattern="^[0-9-+\s()]*$" id="price_max" name="price_max"
                                value="{{old("price-max")}}"
-                               class="email-label" placeholder="500"><span
+                               class="email-label" maxlength="999999" placeholder="500"><span
                             class="horary-cost">€</span>
-                        <p class="help">
+                        <p class="help hepl-price">
                             Cela donne une idée à l'indépendant (optionnel)
                         </p>
                     </div>
@@ -216,10 +216,10 @@
                         @enderror
                     </div>
                 </div>
-                <input id="plan" name="plan" type="hidden" value="{{old('plan', $plan)}}">
+                <input id="plan" name="plan" type="hidden" value="{{$plan ? $plan : old('plan')}}">
                 <div class="container-buttons-ads">
                     <div class="link-back">
-                        <button class="button-back button-cta" name="is_draft">
+                        <button class="button-back button-cta button-draft" name="is_draft">
                             Je la met en brouillon
                         </button>
                     </div>

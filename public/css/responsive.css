@@ -167,14 +167,6 @@
     }
 
 
-    .form-login .email-label {
-        width: 100%
-    }
-
-    .container-form-email {
-        padding-right: 16px
-    }
-
     .password {
         min-width: 100%;
     }
@@ -384,12 +376,20 @@
     }
 
     div .button-cta {
-        margin-top: 35px;
         margin-bottom: -10px;
     }
 
     .container-list-menu-principal li a {
         opacity: 1;
+    }
+    section .container-picture-ads{
+        position: inherit;
+    }
+    main section .container-adv {
+        grid-template-columns: repeat(1, minmax(200px, 1fr));
+    }
+    .container-create-ads .title-first-step-register{
+        margin: auto auto 10px;
     }
 }
 
@@ -506,7 +506,7 @@
     }
 
     div .help {
-        margin-top: -30px;
+        margin-top: -20px;
         margin-bottom: 30px;
     }
 
@@ -515,7 +515,7 @@
     }
 
     div .form-login .email-label {
-        margin-bottom: 30px;
+        margin-bottom: 25px;
     }
 
     .container-home-create {
@@ -524,7 +524,7 @@
 
     div div .horary-cost {
         top: inherit;
-        bottom: 64px;
+        bottom: 60px;
     }
 
     section div .container-perso-infos {
@@ -748,9 +748,6 @@
         width: 100%;
     }
 
-    /*div .container-ad-random {
-        width: 100%;}
-    */
     section .container-ads-random {
         justify-items: inherit;
     }
@@ -767,6 +764,22 @@
     section .container-home_image div div .container-form-search {
         min-width: inherit;
     }
+    .formSearchAd input{
+        min-width: 98%;
+    }
+    form .container-buttons-ads{
+        flex-direction: column;
+    }
+    .container-buttons-ads .link-back, .container-buttons-ads button:nth-child(2){
+        width: 90%;
+        margin: 10px auto 0;
+    }
+    .link-back .button-draft{
+        width: 100%;
+        margin-bottom: 10px;
+        margin-top: -10px;
+    }
+
 }
 
 @media (min-width: 1300px) {

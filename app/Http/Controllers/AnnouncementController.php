@@ -32,6 +32,7 @@ class AnnouncementController extends Controller
     public function plans()
     {
         $plans = PlanAnnouncement::all();
+
         return view('announcements.plans', compact('plans'));
     }
 
@@ -79,7 +80,7 @@ class AnnouncementController extends Controller
      */
     public function store(Request $request)
     {
-        $plan = request('plan');
+        $plan = $request->plan;
         if (!$request->has('is_payed')) {
             $data = Validator::make($request->all(), [
                 'title' => 'required|unique:announcements',
@@ -87,10 +88,10 @@ class AnnouncementController extends Controller
                 'description' => 'required|max:256',
                 'job' => 'required|max:256',
                 'location' => 'required|not_in:0',
-                'category_job' => 'required|array|max:'.$plan,
                 'disponibility' => 'required',
             ])->validate();
         }
+
         $announcement = new Announcement();
         $announcement->title = $request->title;
         $announcement->catchPhrase = $request->catchPhrase;
@@ -122,6 +123,8 @@ class AnnouncementController extends Controller
             } else {
                 $announcement->is_draft = false;
                 $payed = true;
+                $trial = Carbon::now()->addDays(7);
+                $announcement->end_plan = $trial;
                 Mail::to(env('MAIL_FROM_ADDRESS'))
                     ->send(new AdsCreated($data));
                 Mail::to(\auth()->user()->email)
@@ -130,8 +133,6 @@ class AnnouncementController extends Controller
                     'Votre annonce a été bien mise en ligne !');
             }
             $announcement->is_payed = $payed;
-            $trial = Carbon::now()->addDays(7);
-            $announcement->end_plan = $trial;
             $announcement->save();
             $announcement->categoryAds()->attach($ct->category_id);
             return redirect(route('dashboard.ads'));
@@ -140,6 +141,10 @@ class AnnouncementController extends Controller
                 $announcement->is_draft = true;
                 $payed = false;
                 Session::flash('success-inscription', 'Votre annonce a été enregistrer dans vos brouillons !');
+                $announcement->is_payed = $payed;
+                $announcement->save();
+                $announcement->categoryAds()->attach($ct->category_id);
+                return redirect(route('dashboard.ads'));
             } else {
                 $announcement->is_draft = false;
                 $payed = false;
@@ -158,7 +163,7 @@ class AnnouncementController extends Controller
 
     public function payed(Request $request)
     {
-        $plan = $request->planId;
+        $plan = Session::get('plan');
         $planId = PlanAnnouncement::where('id', '=', $request->planId)->first();
 
         \Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));

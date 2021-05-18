@@ -191,7 +191,7 @@
 .horary-cost {
     position: absolute;
     right: 15px;
-    top: 34px;
+    top: 49px;
 }
 
 .container-why {
@@ -506,8 +506,7 @@ select option:checked {
 
 .title-first-step-register {
     max-width: 400px;
-    margin: auto auto 70px;
-
+    margin: auto auto 50px;
 }
 
 .title-first-step-register h2 {
@@ -780,7 +779,7 @@ div .select-region:hover {
 .container-svg img {
     width: 100%;
     max-width: 500px;
-    max-height: 500px;
+    max-height: 300px;
 }
 
 .logo:hover a {
@@ -952,7 +951,7 @@ form .search-announcement {
     box-shadow: var(--shadow);
     padding: 8px;
     border-radius: 7px;
-    min-width: 105px;
+    min-width: 120px;
     justify-content: space-evenly;
     display: flex;
     z-index: 1;
@@ -2004,4 +2003,26 @@ div .like-users-connected:hover span {
     margin-left: -15px;
     padding: 5px 10px 5px 15px;
     border-left: 3px solid transparent;
+}
+.container-ad-random .container-picture-ads{
+    margin: 20px 0;
+}
+.form-message button{
+    margin-top: -20px;
+}
+.button-draft{
+    background: white;
+    border: 1px solid var(--blueLight);
+    color: var(--blueLight);
+}
+.button-draft:hover{
+    background: var(--gradientLightBlue);
+    border: 0;
+    color: white;
+}
+.container-register .horary-cost{
+    top: 33px;
+}
+div .hepl-price{
+    margin-top: -15px;
 }
