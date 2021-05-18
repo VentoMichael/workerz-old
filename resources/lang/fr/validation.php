@@ -144,6 +144,7 @@ return [
         'subject' => 'sujet',
         'surname' => 'prénom',
         'disponibility' => 'disponibilité',
+        'adress' => 'adresse',
         'category_job' => 'catégorie de métier',
     ],
 

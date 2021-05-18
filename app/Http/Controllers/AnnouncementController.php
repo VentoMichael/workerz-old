@@ -78,18 +78,18 @@ class AnnouncementController extends Controller
      */
     public function store(Request $request)
     {
+        $plan = request('plan');
         if (!$request->has('is_payed')) {
             $data = Validator::make($request->all(), [
                 'title' => 'required|unique:announcements',
                 'picture' => 'image:jpg,jpeg,png,svg|file',
                 'description' => 'required|max:256',
                 'job' => 'required|max:256',
-                'category_job' => 'required',
-                'disponibility' => 'required',
+                'location' => 'required|max:1',
+                'category_job' => 'required|array|max:'.$plan,
+                'disponibility' => 'required|array|max:1',
             ])->validate();
         }
-
-        $plan = request('plan');
         $announcement = new Announcement();
         $announcement->title = $request->title;
         $announcement->catchPhrase = $request->catchPhrase;
@@ -113,7 +113,6 @@ class AnnouncementController extends Controller
         $announcement->plan_announcement_id = $plan;
         $ct = new AnnouncementCategory();
         $ct->category_id = $request->category_job;
-
             if ($plan == 1 || \request()->old('plan') == 1) {
             if ($request->has('is_draft')) {
                 $announcement->is_draft = true;

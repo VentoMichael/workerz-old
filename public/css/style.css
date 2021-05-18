@@ -1287,9 +1287,6 @@ form .search-announcement {
     background-position: center;
     background-image: url("../svg/hot.svg");
 }
-.list-checkboxes-register{
-    margin: 0 10px ;
-}
 .container-plans section:nth-child(2) {
     position: relative;
     margin: -40px -30px;
@@ -1298,7 +1295,15 @@ form .search-announcement {
     flex-direction: column;
     justify-content: space-between;
 }
-
+div .select-register {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url('../svg/arrow-b-color.svg');
+    background-repeat: no-repeat;
+    background-size: 3%;
+    background-position: 99%;
+}
 .container-plans section:nth-child(2) h3, .container-plan-paied h4 {
     font-size: 2.5em;
     padding-top: 15px;

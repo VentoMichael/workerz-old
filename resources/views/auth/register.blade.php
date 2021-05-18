@@ -128,13 +128,12 @@
                         </div>
 
                     </div>
-                    <input id="role_id" name="role_id" type="hidden" value="3">
-                    <input id="plan_user_id" name="plan_user_id" type="hidden" value="{{$plan}}">
-                    <input id="plan" name="plan" type="hidden" value="{{$plan}}">
-                    <input id="plan" name="type" type="hidden" value="user">
-
                     @include('partials.register')
                     <div>
+                        <input id="role_id" name="role_id" type="hidden" value="3">
+                        <input id="plan_user_id" name="plan_user_id" type="hidden" value="{{$plan}}">
+                        <input id="plan" name="plan" type="hidden" value="{{$plan}}">
+                        <input id="plan" name="type" type="hidden" value="user">
                         <input type="hidden" name="type" value="user">
                         <button role="button" class="button-cta" name="user" type="submit">
                             Finaliser l'inscription
@@ -244,7 +243,7 @@
                     </div>
                     <div class="container-register-form container-register">
                         <div class="container-form-email">
-                            <label for="adress">Adresse postale</label>
+                            <label for="adress">Adresse du siège social</label>
                             <input type="text" id="adress" value="{{old("adress")}}"
                                    class=" @error('adress') is-invalid @enderror email-label" name="adress"
                                    placeholder="Rue des cocotier, 21">
@@ -344,39 +343,20 @@
                     <div class="container-register-form container-register">
                         <div class="container-form-email selectdiv">
                             <label for="location">Région <span class="required">*</span></label>
-                            <div class="container-filter-categories container-category">
-                                <ul class="list-categories list-checkboxes-register">
-                                    @foreach($regions as $r)
-                                        <li>
-                                            <input role="checkbox"
-                                                   aria-checked="false" class="check hiddenCheckbox inp-cbx"
-                                                   name="location" id="location{{$r->id}}"
-                                                   type="checkbox" value="{{$r->id}}"/>
-                                            <label class="cbx" for="location{{$r->id}}">
-                                                <span>
-                                                    <svg width="12px" height="9px" viewbox="0 0 12 9">
-                                                      <polyline points="1 5 4 8 11 1"></polyline>
-                                                    </svg>
-                                                </span>
-                                                <span>
-                                                    {{$r->name}}
-                                                </span>
-                                            </label>
-                                        </li>
-                                    @endforeach
-                                </ul>
-
-                            </div>
-
+                            <select required aria-required="true" class="select-register select-regions" data-maxoption="1" name="location" id="location">
+                                @foreach($regions as $region)
+                                    <option value="{{$region->id}}">{{$region->name}}</option>
+                                @endforeach
+                            </select>
                             @if($request->plan_user_id == 1 || $request->old('plan_user_id') == 1)
                                 <p class="help"><a href="{{route('users.plans')}}#plans">Augmenter votre plan</a> et
                                     vous aurez la possibilité d'en ajouter jusqu'à 3</p>
                             @endif
                             @if($request->plan_user_id == 2 || $request->old('plan_user_id') == 2)
-                                <p class="help">Vous avez la possibilité d'en intégrer jusqu'à 2</p>
+                                <p class="help">Vous avez la possibilité d'en intégrer jusqu'à 2 via votre profil</p>
                             @endif
                             @if($request->plan_user_id == 3 || $request->old('plan_user_id') == 3)
-                                <p class="help">Vous avez la possibilité d'en intégrer jusqu'à 3</p>
+                                <p class="help">Vous avez la possibilité d'en intégrer jusqu'à 3 via votre profil</p>
                             @endif
 
                             @error('location')
@@ -480,13 +460,12 @@
                             @enderror
                         </div>
                     </div>
-                    <input id="role_id" name="role_id" type="hidden" value="2">
-                    <input id="plan_user_id{{$plan}}" name="plan_user_id" type="hidden" value="{{$plan}}">
-                    <input id="plan{{$plan}}" name="plan" type="hidden" value="{{$plan}}">
-                    <input id="type" name="type" type="hidden" value="company">
 
                     @include('partials.register')
-                    <div>
+                    <div><input id="role_id" name="role_id" type="hidden" value="2">
+                        <input id="plan_user_id{{$plan}}" name="plan_user_id" type="hidden" value="{{$plan}}">
+                        <input id="plan{{$plan}}" name="plan" type="hidden" value="{{$plan}}">
+                        <input id="type" name="type" type="hidden" value="company">
                         <input type="hidden" name="type" value="company">
                         <button role="button" class="button-cta" name="company" type="submit">
                             Finaliser l'inscription

@@ -24,7 +24,7 @@ class UserRoute
                 'Oops ! La personne que vous recherchez n\'est pas un indépendant');
             return Redirect(route('workerz'));
         }
-        if ($request->route('worker') && $request->route('worker')->banned == 1) {
+        if ($request->route('worker') && $request->route('worker')->banned == 1 || $request->route('worker')->is_payed == 0 ) {
             Session::flash('not-permitted',
                 'Oops ! La personne que vous recherchez n\'est pas disponible pour le moment');
             return Redirect(route('workerz'));
