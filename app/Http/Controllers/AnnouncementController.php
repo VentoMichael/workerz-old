@@ -45,7 +45,7 @@ class AnnouncementController extends Controller
         $randomAds = Announcement::Published()
             ->NoBan()
             ->Payement()->Adspayed()->orderBy('plan_announcement_id',
-            'DESC')->withLikes()->limit(2)->inRandomOrder()->get();
+                'DESC')->withLikes()->limit(2)->inRandomOrder()->get();
         $randomPhrasing = CatchPhraseAnnouncement::all()->random();
         $user = auth()->user();
         $announcement = Announcement::withLikes()->where('id', '=', $announcement->id)->first();
@@ -85,9 +85,9 @@ class AnnouncementController extends Controller
                 'picture' => 'image:jpg,jpeg,png,svg|file',
                 'description' => 'required|max:256',
                 'job' => 'required|max:256',
-                'location' => 'required|max:1',
+                'location' => 'required|not_in:0',
                 'category_job' => 'required|array|max:'.$plan,
-                'disponibility' => 'required|array|max:1',
+                'disponibility' => 'required',
             ])->validate();
         }
         $announcement = new Announcement();
@@ -113,7 +113,7 @@ class AnnouncementController extends Controller
         $announcement->plan_announcement_id = $plan;
         $ct = new AnnouncementCategory();
         $ct->category_id = $request->category_job;
-            if ($plan == 1 || \request()->old('plan') == 1) {
+        if ($plan == 1 || \request()->old('plan') == 1) {
             if ($request->has('is_draft')) {
                 $announcement->is_draft = true;
                 $payed = true;
@@ -149,7 +149,7 @@ class AnnouncementController extends Controller
             $announcement->categoryAds()->attach($ct->category_id);
             $planId = PlanAnnouncement::where('id', '=', $plan)->first();
             Session::flash('success-ads',
-                'Votre annonce a été créée, mais ne sera pas visible qu\'après reçu de votre payement !');
+                'Votre annonce est dans ma mémoire, elle sera visible qu\'après reçu de votre payement !');
             return redirect(route('announcements.payed', compact('planId', 'announcement')));
         }
     }
@@ -158,25 +158,38 @@ class AnnouncementController extends Controller
     {
         $plan = $request->planId;
         $planId = PlanAnnouncement::where('id', '=', $request->planId)->first();
+
+        \Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+        $stripe_key = env('STRIPE_KEY');
+        $amount = $planId->price;
+        $amount *= 100;
+        $amount = (int) $amount;
+        $payment_intent = \Stripe\PaymentIntent::create([
+            'amount' => $amount,
+            'currency' => 'EUR',
+            'description' => 'Paiement pour une annonce',
+            'payment_method_types' => ['card'],
+        ]);
+        $intent = $payment_intent->client_secret;
+
         return view('announcements.payed',
-            compact('planId', 'plan'));
+            compact('planId', 'plan', 'intent', 'stripe_key'));
     }
 
-    public function payedAds(){
-        if (\request()->has('is_payed')) {
-            $announcement = Announcement::where('user_id','=',\auth()->user()->id)->latest('created_at')->first();
-            $announcement->is_payed = true;
-            Session::flash('success-inscription',
-                'Votre annonce est désormais en ligne, merci de votre confiance !');
-            $announcement->update();
-            Mail::to(env('MAIL_FROM_ADDRESS'))
-                ->send(new AdsCreated($announcement));
-            Mail::to(\auth()->user()->email)
-                ->send(new AdsCreatedUser($announcement));
-            return redirect(route('dashboard.ads'));
-        }
-
+    public function payedAds()
+    {
+        $announcement = Announcement::where('user_id', '=', \auth()->user()->id)->latest('created_at')->first();
+        $announcement->is_payed = true;
+        Session::flash('success-inscription',
+            'Votre annonce est désormais en ligne, merci de votre confiance !');
+        $announcement->update();
+        Mail::to(env('MAIL_FROM_ADDRESS'))
+            ->send(new AdsCreated($announcement));
+        Mail::to(\auth()->user()->email)
+            ->send(new AdsCreatedUser($announcement));
+        return redirect(route('dashboard.ads'));
     }
+
     public function edit(Announcement $announcement)
     {
         //

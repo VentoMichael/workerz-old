@@ -3,7 +3,9 @@
     outline: none;
     background: lightgrey;
 }
-
+.invalid {
+    color: #fa755a;
+}
 *:focus:not(:focus-visible) {
     background: transparent;
 }

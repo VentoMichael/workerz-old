@@ -50,6 +50,7 @@ Route::prefix('')->middleware(['guest'])->group(function () {
         [\App\Http\Controllers\UserController::class, 'registration_type'])
         ->name('users.type');
 });
+
 Route::post('/register/payed', [\App\Http\Controllers\UserController::class, 'payedUser'])->name('users.paied');
 Route::get('/register/payed', [\App\Http\Controllers\UserController::class, 'payed'])->name('users.payed')->middleware('checkpayed');
 
@@ -87,11 +88,15 @@ Route::prefix('')->middleware(['auth'])->group(function () {
         ->name('announcements.store');
     Route::get('/announcement/create',
         [\App\Http\Controllers\AnnouncementController::class, 'create'])->name('announcements.create');
+
+
     Route::post('/announcement/payed',
         [\App\Http\Controllers\AnnouncementController::class, 'payedAds'])
-        ->name('announcements.payed');
+        ->name('announcements.paied');
+
     Route::get('/announcement/payed', [\App\Http\Controllers\AnnouncementController::class, 'payed'])
         ->name('announcements.payed');
+
 });
 
 
@@ -113,3 +118,5 @@ Route::post('/contact', [ContactController::class, 'store'])
     ->name('contact.store');
 Route::get('/contact', [\App\Http\Controllers\ContactController::class, 'create'])
     ->name('contact');
+
+

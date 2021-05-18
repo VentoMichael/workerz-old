@@ -65,7 +65,7 @@
                         @enderror
                     </div>
                 </div>
-                <div class="container-register-form">
+                <div class="container-register-form container-register">
                     <div class="container-form-email">
                         <label for="title">Titre <span class="required">*</span></label>
                         <input type="text" id="title" value="{{old("title")}}"
@@ -80,7 +80,8 @@
                     <div class="container-form-email">
                         <label for="location">Région <span class="required">*</span></label>
                         <select required aria-required="true" class="select-register select-regions" data-maxoption="1" name="location" id="location">
-                            @foreach($regions as $region)
+                            <option value="0" disabled selected>-- Votre région --</option>
+                        @foreach($regions as $region)
                                 <option value="{{$region->id}}">{{$region->name}}</option>
                             @endforeach
                         </select>

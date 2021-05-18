@@ -80,7 +80,7 @@ return [
         'numeric' => 'L\' :attribute ne doit pas être supérieur à :max.',
         'file' => 'L\' :attribute ne peut pas être supérieur à :max kilo-octets.',
         'string' => 'L\' :attribute ne peut pas être supérieur à :max caractères.',
-        'array' => 'L\' :attribute ne peut pas avoir plus de :max articles.',
+        'array' => 'La :attribute ne peut pas avoir plus de :max choix.',
     ],
     'mimes' => 'L\' :attribute doit être un fichier de type : :valeurs.',
     'mimetypes' => 'L\' :attribute doit être un fichier de type : :valeurs.',
@@ -137,7 +137,7 @@ return [
     'attributes' => [
         'title' => 'titre',
         'picture' => 'image',
-        'location' => 'endroit',
+        'location' => 'localité',
         'job' => 'métier',
         'category-job' => 'catégorie(s) de métier',
         'name' => 'nom',

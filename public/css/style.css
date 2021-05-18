@@ -1158,6 +1158,7 @@ form .search-announcement {
 .container-create-ads {
     flex-direction: column;
     margin-top: 0;
+    position: relative;
 }
 
 .container-create-ads-infos {
@@ -1327,7 +1328,10 @@ div .select-register {
 .hepling {
     position: relative;
 }
-
+div .monthCost{
+    font-size: .8em;
+    margin: -20px 0 9px;
+}
 .hepling:hover span {
     display: block;
     position: absolute;

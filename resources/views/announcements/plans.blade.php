@@ -38,6 +38,11 @@
                         <span class="planPrice">
                              {{number_format((float)$plan->price, 2, ',', '')}} €
                         </span>
+                        @if($plan->costMonthly)
+                        <span class="planPrice monthCost">
+                             ({{number_format((float)$plan->costMonthly, 2, ',', '')}} € / mois)
+                        </span>
+                        @endif
                         @if($plan->oldprice)
                             <p class="reductionPrice">
                                 {{$plan->oldprice}} €
@@ -46,7 +51,7 @@
                     </div>
                     <ul>
                         <li>
-                            <img src="{{asset('svg/good.svg')}}" alt="Icone correct">Durée : {{$plan->duration}} mois
+                            <img src="{{asset('svg/good.svg')}}" alt="Icone correct">Durée : {{$plan->duration}} jours
                         </li>
                         <li>
                             @if($plan->priority) <img src="{{asset('svg/good.svg')}}" alt="Icone correct"> @else <img
