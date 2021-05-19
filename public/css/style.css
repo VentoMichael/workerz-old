@@ -675,7 +675,7 @@ select option:checked {
     right: 20px;
 }
 
-.form-register .container-register-form:nth-child(8), .container-textarea {
+.form-register .container-register:nth-child(8), .container-textarea {
     grid-template-columns: repeat(1, minmax(270px, 1fr));
 }
 
@@ -2005,16 +2005,7 @@ div .like-users-connected:hover span {
 .form-message button{
     margin-top: -20px;
 }
-.button-draft{
-    background: white;
-    border: 1px solid var(--blueLight);
-    color: var(--blueLight);
-}
-.button-draft:hover{
-    background: var(--gradientLightBlue);
-    border: 0;
-    color: white;
-}
+
 .container-register .horary-cost{
     top: 33px;
 }
@@ -2023,4 +2014,7 @@ div .hepl-price{
 }
 .undefindLogo{
     min-width: 150px;
+}
+div div .eye-forget-pass{
+ top: 30px;
 }

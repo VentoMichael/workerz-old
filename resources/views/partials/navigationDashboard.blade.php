@@ -46,7 +46,7 @@
                 </ul>
                 <ul class="container-list-menu-principal container-logout-dashboard">
                     <li>
-                        <form aria-label="Déconnexion" role="form" id="logout-form"
+                        <form aria-label="Déconnexion" role="form" id="logout-formm"
                               action="{{route('logout')}}" method="POST"> @csrf
                             <button type="submit" role="button" title="Lien de déconnexion"
                                     class="iconeDashboard deconnexionButtonDashboard">

@@ -20,7 +20,6 @@ class User extends Authenticatable
      * @var array
      */
     protected $guarded = [];
-
     protected $dates = ['created_at'];
 
     /**
@@ -41,6 +40,7 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
         'created_at' => 'datetime:Y-m-d h:i:s',
+        'end_plan' => 'datetime:Y-m-d h:i:s',
     ];
 
 

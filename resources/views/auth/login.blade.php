@@ -4,6 +4,9 @@
     @if(Session::has('messageBanned'))
         <div id="sucessMessage">{{ Session::get('messageBanned') }}</div>
     @endif
+    @if(Session::has('success-update'))
+        <div id="sucessMessage">{{ Session::get('success-update') }}</div>
+    @endif
     <div class="container-home">
         <section class="container-home_image">
             <div class="container-connexion">

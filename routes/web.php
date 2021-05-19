@@ -51,8 +51,7 @@ Route::prefix('')->middleware(['guest'])->group(function () {
         ->name('users.type');
 });
 
-Route::post('/register/payed', [\App\Http\Controllers\UserController::class, 'payedUser'])->name('users.paied');
-Route::get('/register/payed', [\App\Http\Controllers\UserController::class, 'payed'])->name('users.payed')->middleware('checkpayed','auth');
+
 
 
 Route::prefix('')->middleware(['auth'])->group(function () {
@@ -63,14 +62,22 @@ Route::prefix('')->middleware(['auth'])->group(function () {
         \App\Http\Controllers\DashboardController::class, 'notifications'
     ])->name('dashboard.notifications')->middleware('payeduser');
     Route::get('/dashboard/messages',
-        [
-            \App\Http\Controllers\DashboardController::class, 'messages'
-        ])->name('dashboard.messages')->middleware('payeduser');
+        [\App\Http\Controllers\DashboardController::class, 'messages'])->name('dashboard.messages')->middleware('payeduser');
     Route::get('/dashboard/ads',
         [\App\Http\Controllers\DashboardController::class, 'ads'])->name('dashboard.ads')->middleware('payeduser','payedads');
+
     Route::get('/dashboard/profil', [
-        \App\Http\Controllers\DashboardController::class, 'settings'
+        \App\Http\Controllers\DashboardController::class, 'profil'
     ])->name('dashboard.profil');
+
+
+    // PROFIL
+    Route::get('/dashboard/profil/edit', [
+        \App\Http\Controllers\DashboardController::class, 'settings'
+    ])->name('dashboard.profil.edit');
+
+    Route::put('/dashboard/profil/edit', [\App\Http\Controllers\DashboardController::class, 'updateUser'])->name('dashboard.update');
+
 
     // WORKERS
     Route::post('/workerz/{worker}/like', [\App\Http\Controllers\UserLikeController::class, 'store']);
@@ -90,11 +97,8 @@ Route::prefix('')->middleware(['auth'])->group(function () {
         ->name('announcements.store');
     Route::get('/announcement/create',
         [\App\Http\Controllers\AnnouncementController::class, 'create'])->middleware('noplansads')->name('announcements.create');
-
-
     Route::post('/announcement/payed',
         [\App\Http\Controllers\AnnouncementController::class, 'payedAds'])->name('announcements.paied');
-
     Route::get('/announcement/payed', [\App\Http\Controllers\AnnouncementController::class, 'payed'])->name('announcements.payed');
 
 });

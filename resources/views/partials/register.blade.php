@@ -4,7 +4,8 @@
         <input id="email" type="email"
                class=" @error('email') is-invalid @enderror email-label"
                name="email"
-               value="{{ old('email') }}" placeholder="danielrotis@gmail.com" required aria-required="true" autocomplete="email">
+               @auth value="{{auth()->user()->email}}" @elseauth value="{{old('email')}}"
+               @endauth  placeholder="danielrotis@gmail.com" required aria-required="true" autocomplete="email">
         @error('email')
         <div class="container-error">
                 <span role="alert" class="error">
@@ -15,7 +16,7 @@
     </div>
     <div>
         <label for="password"
-        >Mot de passe</label>
+        > @auth Nouveau mot @elseauth Mot @endauth de passe</label>
         <div class="@error('password')is-invalid @enderror password">
             <div id="container-checkpass" class="container-checkpass">
                 <label for="checkPass" class="hidden">Voir/masquer le mot de passe</label>
@@ -30,7 +31,7 @@
 
             <input id="password" type="password" placeholder="Xxxxxxx1"
                    class="password--input"
-                   name="password" required aria-required="true">
+                   name="password" @if(!auth()) required aria-required="true" @endif>
 
         </div>
         <ul role="list" class="list-password-required">
