@@ -2021,3 +2021,6 @@ div .like-users-connected:hover span {
 div .hepl-price{
     margin-top: -15px;
 }
+.undefindLogo{
+    min-width: 150px;
+}

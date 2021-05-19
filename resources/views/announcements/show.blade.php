@@ -93,7 +93,7 @@
 
             <div class="container-picture-ads">
                 @if($announcement->picture)
-                    <img itemprop="image" src="{{ $announcement->picture }}" alt="photo de profil de {{ucfirst($announcement->title)}}"/>
+                    <img itemprop="image" src="{{ asset($announcement->picture) }}" alt="photo de profil de {{ucfirst($announcement->title)}}"/>
                 @else
                     <img itemprop="image" src="{{asset('svg/ad.svg')}}" alt="icone d'annonces">
                 @endif

@@ -33,9 +33,15 @@
     </section>
     <section class="container-categories-home margin">
         <div class="container-categories-text-home">
-            <h2 aria-level="2">
-                Une entreprise {{$randomPhrasing->name}}
-            </h2>
+            @if($worker->catchPhrase)
+                <h2 aria-level="2">
+                    {{ $worker->catchPhrase }}
+                </h2>
+            @else
+                <h2 aria-level="2">
+                    Une entreprise {{$randomPhrasing->name}}
+                </h2>
+            @endif
         </div>
         <section class="container-personnal-ads show-content container-worker">
             <div class="container-love-show">
@@ -88,11 +94,11 @@
             <div class="container-picture-ads">
                 @if($worker->picture)
                     <div itemprop="logo">
-                        <img src="{{ $worker->picture }}" alt="photo de profil de {{ucfirst($worker->name)}}"/>
+                        <img src="{{ asset($worker->picture) }}" alt="photo de profil de {{ucfirst($worker->name)}}"/>
                     </div>
                 @else
                     <div itemprop="logo">
-                        <img src="{{asset('svg/ad.svg')}}" alt="icone d'annonces">
+                        <img class="undefindLogo" src="{{asset('svg/ad.svg')}}" alt="icone d'annonces">
                     </div>
                 @endif
                 <div class="container-socials-media">

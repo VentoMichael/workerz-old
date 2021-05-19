@@ -40,7 +40,7 @@
                         </span>
                         @if($plan->price != 0)
                             <span class="planPrice monthCost">
-                             ({{ 1 * ($plan->price/$plan->duration) * 30 }} € / mois)
+                             ({{number_format((float) 1 * ($plan->price/$plan->duration) * 30 , 2, ',', '')}} € / mois)
                         </span>
                         @endif
                         @if($plan->oldprice)

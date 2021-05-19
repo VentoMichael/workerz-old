@@ -133,6 +133,7 @@ class CreateNewUser implements CreatesNewUsers
                 ]
             );
             $user->possibility_job = \request('possibility_job');
+            $user->catchPhrase = \request('catchPhrase');
             $user->adresses()->save($phy);
             $user->provinces()->attach($pro->province_id);
             $ct = new CategoryUser();
