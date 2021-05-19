@@ -2,8 +2,6 @@
 
 namespace App\Actions\Fortify;
 
-use App\Mail\AdsCreated;
-use App\Mail\AdsCreatedUser;
 use App\Mail\NewUser;
 use App\Mail\NewUserAdmin;
 use App\Models\CategoryUser;
@@ -13,7 +11,6 @@ use App\Models\ProvinceUser;
 use App\Models\startDate;
 use App\Models\User;
 use Carbon\Carbon;
-use http\Env\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
@@ -100,7 +97,8 @@ class CreateNewUser implements CreatesNewUsers
                 //'phones.phone' => 'required',
                 'website' => 'nullable', 'url',
                 'description' => 'required', 'max:256',
-                'job' => ['required'],
+                'job' => 'required',
+                'location' => 'required|not_in:0',
                 //'CategoryUser.category_job' => [
                 //    'required',
                 //],
@@ -111,7 +109,7 @@ class CreateNewUser implements CreatesNewUsers
                     'regex:/[0-9]/',
                 ],
             ])->validate();
-
+//TODO: regarder avec les relations comment check
             $user = User::create([
                 'name' => $input['name'],
                 'email' => $input['email'],
@@ -134,6 +132,7 @@ class CreateNewUser implements CreatesNewUsers
                     'postal_adress' => \request('adress')
                 ]
             );
+            $user->possibility_job = \request('possibility_job');
             $user->adresses()->save($phy);
             $user->provinces()->attach($pro->province_id);
             $ct = new CategoryUser();
@@ -162,6 +161,7 @@ class CreateNewUser implements CreatesNewUsers
         $user->plan_user_id = request('plan_user_id');
         $user->save();
         Session::forget('type');
+        Session::forget('plan');
         Mail::to(env('MAIL_FROM_ADDRESS'))
             ->send(new NewUserAdmin($user));
         Mail::to($user->email)

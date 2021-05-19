@@ -86,14 +86,14 @@
                                    value="{{old("phone")}}" placeholder="0494827235"
                                    class=" @error('phone') is-invalid @enderror email-label" name="phone" required
                                    aria-required="true">
-                            @if($request->plan == 1 || $request->old('plan') == 1)
+                            @if($plan == 1)
                                 <p class="help"><a href="{{route('users.plans')}}#plans">Augmenter votre plan</a> et
                                     vous aurez la possibilité d'en ajouter jusqu'à 3</p>
                             @endif
-                            @if($request->plan == 2 || $request->old('plan') == 2)
+                            @if($plan == 2)
                                 <p class="help">Vous aurez la possibilité d'en intégrer jusqu'à 2 via votre profil</p>
                             @endif
-                            @if($request->plan == 3 || $request->old('plan') == 3)
+                            @if($plan == 3)
                                 <p class="help">Vous aurez la possibilité d'en intégrer jusqu'à 3 via votre profil</p>
                             @endif
                             @error('phone')
@@ -195,7 +195,7 @@
                                     <input role="radio"
                                            aria-checked="false" class="hiddenRadio inp-cbx"
                                            id="jobOpportunityYes"
-                                           name="jobOpportunity"
+                                           name="possibility_job"
                                            type="radio" value="yes"/>
                                     <label class="cbx" for="jobOpportunityYes">
                                 <span>
@@ -210,8 +210,8 @@
                                     <input role="radio"
                                            aria-checked="false" class="hiddenRadio inp-cbx"
                                            id="jobOpportunityNo"
-                                           name="jobOpportunity"
-                                           type="radio" value="non"/>
+                                           name="possibility_job"
+                                           type="radio" value="no"/>
                                     <label class="cbx" for="jobOpportunityNo">
                                 <span>
                                     <svg width="12px" height="9px" viewbox="0 0 12 9">
@@ -225,8 +225,8 @@
                                     <input role="radio"
                                            aria-checked="true" checked class="hiddenRadio inp-cbx"
                                            id="jobOpportunityNotDetermine"
-                                           name="jobOpportunity"
-                                           type="radio" value="notDetermine"/>
+                                           name="possibility_job"
+                                           type="radio" value="dkn"/>
                                     <label class="cbx" for="jobOpportunityNotDetermine">
                                 <span>
                                     <svg width="12px" height="9px" viewbox="0 0 12 9">
@@ -241,7 +241,7 @@
                     </div>
                     <div class="container-register-form container-register">
                         <div class="container-form-email">
-                            <label for="adress">Adresse du siège social</label>
+                            <label for="adress">Adresse du siège social <span class="required">*</span></label>
                             <input type="text" id="adress" value="{{old("adress")}}"
                                    class=" @error('adress') is-invalid @enderror email-label" name="adress"
                                    placeholder="Rue des cocotier, 21">
@@ -259,14 +259,14 @@
                                    pattern="^[0-9-+\s()]*$" id="phone" value="{{old("phone")}}"
                                    class=" @error('phone') is-invalid @enderror email-label inputPhone" name="phone"
                                    required aria-required="true">
-                            @if($request->plan == 1 || $request->old('plan') == 1)
+                            @if($plan == 1)
                                 <p class="help"><a href="{{route('users.plans')}}#plans">Augmenter votre plan</a> et
                                     vous aurez la possibilité d'en ajouter jusqu'à 3</p>
                             @endif
-                            @if($request->plan == 2 || $request->old('plan') == 2)
+                            @if($plan == 2)
                                 <p class="help">Vous aurez la possibilité d'en intégrer jusqu'à 2 via votre profil</p>
                             @endif
-                            @if($request->plan == 3 || $request->old('plan') == 3)
+                            @if($plan == 3)
                                 <p class="help">Vous aurez la possibilité d'en intégrer jusqu'à 3 via votre profil</p>
                             @endif
                             @error('phone')
@@ -284,14 +284,14 @@
                             <label for="website">Site internet</label>
                             <input placeholder="https://workerz.be" type="text" id="website" value="{{old("website")}}"
                                    class=" @error('website') is-invalid @enderror email-label" name="website">
-                            @if($request->plan == 1 || $request->old('plan') == 1)
+                            @if($plan == 1)
                                 <p class="help"><a href="{{route('users.plans')}}#plans">Augmenter votre plan</a> et
                                     vous aurez la possibilité d'en ajouter jusqu'à 3</p>
                             @endif
-                            @if($request->plan == 2 || $request->old('plan') == 2)
+                            @if($plan == 2)
                                 <p class="help">Vous aurez la possibilité d'en intégrer jusqu'à 2 via votre profil</p>
                             @endif
-                            @if($request->plan == 3 || $request->old('plan') == 3)
+                            @if($plan == 3)
                                 <p class="help">Vous aurez la possibilité d'en intégrer jusqu'à 3 via votre profil</p>
                             @endif
                             @error('website')
@@ -342,21 +342,11 @@
                         <div class="container-form-email selectdiv">
                             <label for="location">Région <span class="required">*</span></label>
                             <select required aria-required="true" class="select-register select-regions" data-maxoption="1" name="location" id="location">
-                                @foreach($regions as $region)
+                                <option value="0" disabled selected>-- Votre région --</option>
+                            @foreach($regions as $region)
                                     <option value="{{$region->id}}">{{$region->name}}</option>
                                 @endforeach
                             </select>
-                            @if($request->plan == 1 || $request->old('plan') == 1)
-                                <p class="help"><a href="{{route('users.plans')}}#plans">Augmenter votre plan</a> et
-                                    vous aurez la possibilité d'en ajouter jusqu'à 3</p>
-                            @endif
-                            @if($request->plan == 2 || $request->old('plan') == 2)
-                                <p class="help">Vous avez la possibilité d'en intégrer jusqu'à 2 via votre profil</p>
-                            @endif
-                            @if($request->plan == 3 || $request->old('plan') == 3)
-                                <p class="help">Vous avez la possibilité d'en intégrer jusqu'à 3 via votre profil</p>
-                            @endif
-
                             @error('location')
                             <div class="container-error">
                 <span role="alert" class="error">
@@ -364,6 +354,16 @@
                                     </span>
                             </div>
                             @enderror
+                            @if($plan == 1)
+                                <p class="help"><a href="{{route('users.plans')}}#plans">Augmenter votre plan</a> et
+                                    vous aurez la possibilité d'en ajouter jusqu'à 3</p>
+                            @endif
+                            @if($plan == 2)
+                                <p class="help">Vous avez la possibilité d'en intégrer jusqu'à 2 via votre profil</p>
+                            @endif
+                            @if($plan == 3)
+                                <p class="help">Vous avez la possibilité d'en intégrer jusqu'à 3 via votre profil</p>
+                            @endif
                         </div>
                         <div class="container-form-email">
                             <label for="job">Metier <span class="required">*</span></label>
@@ -406,14 +406,14 @@
                                 </ul>
 
                             </div>
-                            @if($request->plan == 1 || $request->old('plan') == 1)
+                            @if($plan == 1)
                                 <p class="help"><a href="{{route('users.plans')}}#plans">Augmenter votre plan</a> et
                                     vous aurez la possibilité d'en ajouter jusqu'à 3</p>
                             @endif
-                            @if($request->plan == 2 || $request->old('plan') == 2)
+                            @if($plan == 2)
                                 <p class="help">Vous avez la possibilité d'en intégrer jusqu'à 2</p>
                             @endif
-                            @if($request->plan == 3 || $request->old('plan') == 3)
+                            @if($plan == 3)
                                 <p class="help">Vous avez la possibilité d'en intégrer jusqu'à 3</p>
                             @endif
                             <p class="help proposed-job">Je ne trouve pas mon métier, <a
@@ -479,13 +479,13 @@
     <script src="{{asset('js/passwordCheck.js')}}"></script>
     <script src="{{asset('js/passwordSee.js')}}"></script>
     <script src="{{asset('js/previewPicture.js')}}"></script>
-    @if($request->plan == 1)
+    @if($plan == 1)
         <script src="{{asset('js/checkDataMaxOptions.js')}}"></script>
     @endif
-    @if($request->plan == 2)
+    @if($plan == 2)
         <script src="{{asset('js/checkDataMaxOptions2.js')}}"></script>
     @endif
-    @if($request->plan == 3)
+    @if($plan == 3)
         <script src="{{asset('js/checkDataMaxOptions3.js')}}"></script>
     @endif
 @endsection

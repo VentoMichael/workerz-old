@@ -43,7 +43,9 @@
                     <div
                         class="containerPrice container-show-love containerLove help-show @guest notHoverHeart @endguest">
                         @if(!$worker->isLikedUBy($worker))
-                            <form method="POST" title="Mettre un j'aime à {{$worker->name}}" aria-label="Mettre un j'aime à {{$worker->name}}" action="/workerz/{{$worker->slug}}/like">
+                            <form method="POST" title="Mettre un j'aime à {{$worker->name}}"
+                                  aria-label="Mettre un j'aime à {{$worker->name}}"
+                                  action="/workerz/{{$worker->slug}}/like">
                                 @csrf
 
                                 <button type="submit" class="button-loves">
@@ -55,7 +57,9 @@
                             </form>
                         @else
 
-                            <form method="POST" title="Enlever le j'aime donner à {{$worker->name}}" aria-label="Enlever le j'aime donner à {{$worker->name}}" action="/workerz/{{$worker->slug}}/like">
+                            <form method="POST" title="Enlever le j'aime donner à {{$worker->name}}"
+                                  aria-label="Enlever le j'aime donner à {{$worker->name}}"
+                                  action="/workerz/{{$worker->slug}}/like">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="button-loves">
@@ -93,32 +97,37 @@
                 @endif
                 <div class="container-socials-media">
                     @if($worker->facebook)
-                    <div class="social-media">
-                        <a href="{{$worker->facebook}}" class="iconFacebook">
-                            Lien Facebook
-                        </a>
-                    </div>
+                        <div class="social-media">
+                            <a href="{{$worker->facebook}}" class="iconFacebook">
+                                Lien Facebook
+                            </a>
+                        </div>
                     @endif
-                        @if($worker->instagram)
-                    <div class="social-media">
-                        <a href="{{$worker->instagram}}" class="iconInstagram">
-                            Lien Instagram
-                        </a>
-                    </div>
+                    @if($worker->instagram)
+                        <div class="social-media">
+                            <a href="{{$worker->instagram}}" class="iconInstagram">
+                                Lien Instagram
+                            </a>
+                        </div>
                     @endif
-                        @if($worker->linkedin)
-                    <div class="social-media">
-                        <a href="{{$worker->linkedin}}" class="iconLinkedin">
-                            Lien Linkedin
-                        </a>
-                    </div>
+                    @if($worker->linkedin)
+                        <div class="social-media">
+                            <a href="{{$worker->linkedin}}" class="iconLinkedin">
+                                Lien Linkedin
+                            </a>
+                        </div>
                     @endif
-                        @if($worker->twitter)
-                    <div class="social-media">
-                        <a href="{{$worker->twitter}}" class="iconTwitter">
-                            Lien Twitter
-                        </a>
-                    </div>
+                    @if($worker->twitter)
+                        <div class="social-media">
+                            <a href="{{$worker->twitter}}" class="iconTwitter">
+                                Lien Twitter
+                            </a>
+                        </div>
+                    @endif
+                    @if($worker->possibility_job)
+                        <div>
+
+                        </div>
                     @endif
                 </div>
             </div>
@@ -132,17 +141,30 @@
                 </p>
                 <section class="container-perso-infos container-six-category-home">
                     <h4 aria-level="4" class="hidden">Information de contact</h4>
-                    <div>
-                        <img src="{{asset('svg/envelope.svg')}}" alt="icone de mail">
-                        <a itemprop="email" href="mailto:{{$worker->email}}">{{$worker->email}}</a>
-                    </div>
-
                     @foreach($worker->phones as $up)
                         <div>
                             <img src="{{asset('svg/phone.svg')}}" alt="icone de téléphone">
                             <a itemprop="telephone" href="tel:{{$up->number}}">{{$up->number}}</a>
                         </div>
                     @endforeach
+                    @if($worker->possibility_job == 'yes')
+                        <div>
+                            <img src="{{asset('svg/question-signe-en-cercles.svg')}}" alt="icone de question pour la posibilité de job">
+                            <span>{{ucfirst($worker->name)}} ont des offres d'emplois</span>
+                        </div>
+                    @endif
+                    @if($worker->possibility_job == 'no')
+                        <div>
+                            <img src="{{asset('svg/question-signe-en-cercles.svg')}}" alt="icone de question pour la posibilité de job">
+                            <span>{{ucfirst($worker->name)}} n'ont pour le moment, pas d'offres d'emplois</span>
+                        </div>
+                    @endif
+                    <div>
+                        <img src="{{asset('svg/envelope.svg')}}" alt="icone de mail">
+                        <a itemprop="email" href="mailto:{{$worker->email}}">{{$worker->email}}</a>
+                    </div>
+
+
                     @if($worker->startDate->count())
                         <div>
                             <img src="{{asset('svg/calendar.svg')}}" alt="icone de calendrier">
@@ -181,11 +203,11 @@
                 </section>
             </div>
             <a class="container-website" href="{{$worker->website}}">
-            <div itemscope itemtype="https://schema.org/ServiceChannel">
-                <img src="{{asset('svg/globe.svg')}}" alt="icone de site internet">
+                <div itemscope itemtype="https://schema.org/ServiceChannel">
+                    <img src="{{asset('svg/globe.svg')}}" alt="icone de site internet">
 
                     <span itemprop="serviceUrl">Site internet</span>
-            </div>
+                </div>
             </a>
         </section>
     </section>
@@ -198,18 +220,21 @@
         <div class="container-ads-random">
             @foreach($randomUsers as $ra)
                 <section class="container-infos-perso-ads container-ad-random" itemscope
-                 itemtype="https://schema.org/Person">
+                         itemtype="https://schema.org/Person">
                     <div class="container_title__province">
                         <div class="container-love-show">
                             @auth
                                 <div
                                     class="containerPrice container-show-love like-ads containerLove help-show @guest notHoverHeart @endguest">
                                     @if(!$ra->isLikedUBy($ra))
-                                        <form method="POST" title="Mettre un j'aime à {{$worker->name}}" aria-label="Mettre un j'aime à {{$worker->name}}" action="/workerz/{{$ra->slug}}/like">
+                                        <form method="POST" title="Mettre un j'aime à {{$worker->name}}"
+                                              aria-label="Mettre un j'aime à {{$worker->name}}"
+                                              action="/workerz/{{$ra->slug}}/like">
                                             @csrf
 
                                             <button type="submit" class="button-loves">
-                                                <img class="heart" src="{{asset('svg/heart.svg')}}" alt="icone de coeur">
+                                                <img class="heart" src="{{asset('svg/heart.svg')}}"
+                                                     alt="icone de coeur">
                                                 <img class="heartFul" src="{{asset('svg/heartFul.svg')}}"
                                                      alt="icone de coeur">
                                                 <span>
@@ -217,7 +242,9 @@
                                         </form>
                                     @else
 
-                                        <form method="POST" title="Enlever le j'aime donner à {{$worker->name}}" aria-label="Enlever le j'aime donner à {{$worker->name}}" action="/workerz/{{$ra->slug}}/like">
+                                        <form method="POST" title="Enlever le j'aime donner à {{$worker->name}}"
+                                              aria-label="Enlever le j'aime donner à {{$worker->name}}"
+                                              action="/workerz/{{$ra->slug}}/like">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="button-loves">
@@ -230,8 +257,10 @@
                                 </div>
 
                             @else
-                                <a href="{{route('login')}}" title="Il faut se connecter pour mettre un j'aime à {{$worker->name}}">
-                                    <div class="containerPrice containerLove like-users like-ads hepling helping-like help-show">
+                                <a href="{{route('login')}}"
+                                   title="Il faut se connecter pour mettre un j'aime à {{$worker->name}}">
+                                    <div
+                                        class="containerPrice containerLove like-users like-ads hepling helping-like help-show">
 
                                         <img class="heart" src="{{asset('svg/heart.svg')}}" alt="icone de coeur">
                                         <img class="heartFul" src="{{asset('svg/heartFul.svg')}}"

@@ -85,6 +85,7 @@ class UserController extends Controller
             'Votre compte est désormais opérationnel, merci de votre confiance !');
         $user->update();
         Session::forget('plan');
+        Session::forget('user');
 
         Mail::to(env('MAIL_FROM_ADDRESS'))
             ->send(new NewUserAdmin($user));
