@@ -1421,16 +1421,11 @@ div .last-item-pagination {
 }
 
 .container-category::-webkit-scrollbar {
-    width: 0
+    width: 10px;
 }
 
 .container-category::-webkit-scrollbar-track {
-    background: transparent;
-    border: none;
-}
-
-.container-category::-webkit-scrollbar-thumb {
-    background: transparent;
+    margin:30px 5px 30px 0;
 }
 
 .crossHide {

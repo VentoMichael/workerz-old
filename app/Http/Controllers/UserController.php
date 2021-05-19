@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\NewUser;
+use App\Mail\NewUserAdmin;
 use App\Models\CatchPhraseUser;
 use App\Models\Category;
 use App\Models\PhysicalAdress;
@@ -73,21 +75,21 @@ class UserController extends Controller
         $user->is_payed = 1;
         $user->update();
         if ($user->plan_user_id == 2) {
-            $days = 15;
+            $days = 1;
         } else {
-            $days = 30;
+            $days = 3;
         }
-        $trial = Carbon::now()->addDays($days);
+        $trial = Carbon::now()->addMonth($days);
         $user->end_plan = $trial;
         Session::flash('success-inscription',
             'Votre compte est désormais opérationnel, merci de votre confiance !');
         $user->update();
         Session::forget('plan');
 
-        //Mail::to(env('MAIL_FROM_ADDRESS'))
-        //    ->send(new AdsCreated($announcement));
-        //Mail::to(\auth()->user()->email)
-        //    ->send(new AdsCreatedUser($announcement));
+        Mail::to(env('MAIL_FROM_ADDRESS'))
+            ->send(new NewUserAdmin($user));
+        Mail::to(\auth()->user()->email)
+            ->send(new NewUser($user));
         return \redirect(route('dashboard.profil'));
     }
 

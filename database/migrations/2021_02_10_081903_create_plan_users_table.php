@@ -18,7 +18,6 @@ class CreatePlanUsersTable extends Migration
             $table->string('name');
             $table->decimal('price');
             $table->decimal('oldprice')->nullable();
-            $table->decimal('costMonthly')->nullable();
             $table->string('duration');
             $table->boolean('hight_visibility');
             $table->boolean('priority');

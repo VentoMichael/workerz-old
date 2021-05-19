@@ -29,7 +29,6 @@ class DashboardController extends Controller
                 $adsExpire->update();
             }
         }
-
         if (auth()->user()->end_plan < Carbon::now()->subDay(1)) {
             if (auth()->user()->sending_time_expire == 0) {
                 auth()->user()->sending_time_expire = 1;
