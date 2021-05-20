@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\AdsCreated;
 use App\Mail\AdsEarlyExpire;
 use App\Models\Phone;
 use App\Models\User;
-use App\Nova\PlanUser;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -39,34 +37,46 @@ class DashboardController extends Controller
     {
         $user = \auth()->user();
         //TODO:check si ca a change
-        if ($user->wasChanged()) {
+        if ($request->name != $user->getOriginal('name')) {
             $request->validate([
-                'name' => ['required', 'string', 'max:255', Rule::unique(User::class)],
-                'picture' => ['image:jpg,jpeg,png,svg'],
+                'name' => ['required', 'string', 'max:255', Rule::unique(User::class)]]);
+        }elseif ($request->email != $user->getOriginal('email')){
+            $request->validate([
                 'email' => [
                     'required',
                     'string',
                     'email',
                     'max:255',
                     Rule::unique(User::class),
-                ],
+                ]]);
+        }elseif($request->password && $request->password != $user->getOriginal('password')){
+            $request->validate([
                 'password' => [
                     'min:8',
                     'regex:/[A-Z]/',
                     'regex:/[0-9]/',
                 ],
             ]);
-            Session::flash('success-update', 'Votre profil a bien été mis a jour!');
-        } else {
-            Session::flash('success-update', 'Rien changé');
         }
+        $request->validate([
+            'picture' => ['image:jpg,jpeg,png,svg'],
+        ]);
+
         $user->name = $request->name;
+
         $user->surname = $request->surname;
         $user->email = $request->email;
         $user->slug = Str::slug($request->name);
-        $phone = new Phone(['number' => $request->phone]);
-        $user->phones()->save($phone);
-        $user->save();
+        $user->phones()->delete();
+        $user->phones()->saveMany([
+            new Phone(['number' => $request->phoneone]),
+            new Phone(['number' => $request->phonetwo]),
+            new Phone(['number' => $request->phonethree]),
+        ]);
+        $user->update();
+        if ($user->wasChanged()) {
+            Session::flash('success-update', 'Votre profil a bien été mis a jour!');
+        }
         return redirect(route('dashboard.profil'));
 
     }

@@ -116,7 +116,7 @@
                             @enderror
                         </div>
                         <div>
-                            <input type="hidden" name="plan" @auth value="{{$plan->id}} @elseauth value="{{old('plan', $plan)}} @endauth">
+                            <input type="hidden" name="plan" @if(auth()->user()->sending_time_expire = 1 && auth()->user()) value="{{$plan->id}}" @else value="{{old('plan', $plan)}}" @endif>
                             <button
                                 id="card-button"
                                 class="button-cta"

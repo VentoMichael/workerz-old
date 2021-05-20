@@ -36,9 +36,9 @@
                 @else
                     @if(auth()->user()->end_plan == null)
                         <div class="container-button-expire">
-                        <a href="{{route('usersAlready.plans')}}" class="button-cta button-expire">
-                            Je choisis mon plan
-                        </a>
+                            <a href="{{route('usersAlready.plans')}}" class="button-cta button-expire">
+                                Je choisis mon plan
+                            </a>
                         </div>
                     @endif
                     <div @if(auth()->user()->end_plan == null) class="expire-plan" @endif>
@@ -60,7 +60,20 @@
                                 <div class="container-form-email">
                                     <p>Numéro de téléphone</p>
                                     <span class="email-label">{{auth()->user()->phones()->first()->number}}</span>
+                                    @if(auth()->user()->phones()->count() > 1 && auth()->user()->phones()->skip(1)->first()->number != null)
+                                        <div class="container-form-email">
+                                            <p>2<sup>é</sup> Numéro de téléphone</p>
+                                            <span class="email-label">{{auth()->user()->phones()->skip(1)->first()->number}}</span>
+                                        </div>
+                                    @endif
+                                    @if(auth()->user()->phones()->count() > 2 && auth()->user()->phones()->skip(2)->first()->number != null)
+                                        <div class="container-form-email">
+                                            <p>3<sup>é</sup> Numéro de téléphone</p>
+                                            <span class="email-label">{{auth()->user()->phones()->skip(2)->first()->number}}</span>
+                                        </div>
+                                    @endif
                                 </div>
+
                             </div>
                             <div class="container-register-form container-register">
                                 <div class="container-form-email">
@@ -104,10 +117,4 @@
             </div>
         </section>
     </div>
-@endsection
-@section('scripts')
-    <script src="{{asset('js/passwordCheck.js')}}"></script>
-    <script src="{{asset('js/passwordSee.js')}}"></script>
-    <script src="{{asset('js/previewPicture.js')}}"></script>
-    <script src="{{asset('js/checkDataMaxOptions.js')}}"></script>
 @endsection

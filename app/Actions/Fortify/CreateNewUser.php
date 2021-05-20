@@ -157,7 +157,7 @@ class CreateNewUser implements CreatesNewUsers
         } else {
             $pic = null;
         }
-        $phone = new Phone(['number' => $input['phone']]);
+        $phone = new Phone(['number' => $input['phoneone']]);
         $user->phones()->save($phone);
         $user->plan_user_id = request('plan_user_id');
         $user->save();

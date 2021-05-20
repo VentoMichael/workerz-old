@@ -18,12 +18,36 @@
             </div>
             <div class="container-form-email">
                 <label for="phone">Numéro de téléphone <span class="required">*</span></label>
+
                 <input minlength="6" maxlength="15" type="tel" id="phone" pattern="^[0-9-+\s()]*$"
                        @auth value="{{auth()->user()->phones()->first()->number}}" @elseauth value="{{old('phone')}}"
                        @endauth placeholder="0494827235"
-                       class=" @error('phone') is-invalid @enderror email-label" name="phone" required
+                       class=" @error('phone') is-invalid @enderror email-label" name="phoneone" required
                        aria-required="true">
-                @if(!auth())
+                @if(auth()->user() && auth()->user()->plan_user_id ==2)
+
+                    @if(auth()->user()->phones()->count() > 1)
+                        <input minlength="6" maxlength="15" type="tel" id="phonetwo" pattern="^[0-9-+\s()]*$"
+                               placeholder="0494827235" value="{{auth()->user()->phones()->skip(1)->first()->number}}"
+
+                               class=" @error('phone') is-invalid @enderror email-label" name="phonetwo">
+                    @endif
+                @endif
+                @if(auth()->user() && auth()->user()->plan_user_id ==3)
+
+                    <input minlength="6" maxlength="15" type="tel" id="phonetwo" pattern="^[0-9-+\s()]*$"
+                           placeholder="0494827235"
+                           @if(auth()->user()->phones()->count() > 1)
+                           value="{{auth()->user()->phones()->skip(1)->first()->number}}"
+                           @endif class=" @error('phone') is-invalid @enderror email-label" name="phonetwo">
+                    <input minlength="6" maxlength="15" type="tel" id="phonethree" pattern="^[0-9-+\s()]*$"
+                           placeholder="0494827235"
+                           @if(auth()->user()->phones()->count() > 2)
+                           value="{{auth()->user()->phones()->skip(2)->first()->number}}"
+                           @endif
+                           class=" @error('phone') is-invalid @enderror email-label" name="phonethree">
+                @endif
+                @if(!auth()->user())
                     @if($plan == 1)
                         <p class="help"><a href="{{route('users.plans')}}#plans">Augmenter votre plan</a> et
                             vous aurez la possibilité d'en ajouter jusqu'à 3</p>
@@ -83,3 +107,11 @@
         </div>
     </form>
 </div>
+@auth
+@section('scripts')
+    <script src="{{asset('js/passwordCheck.js')}}"></script>
+    <script src="{{asset('js/passwordSee.js')}}"></script>
+    <script src="{{asset('js/previewPicture.js')}}"></script>
+    <script src="{{asset('js/checkDataMaxOptions.js')}}"></script>
+@endsection
+@endauth
