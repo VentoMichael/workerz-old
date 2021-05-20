@@ -51,7 +51,21 @@ class UserController extends Controller
 
     public function payed(Request $request, User $user)
     {
-        $plan = PlanUser::where('id', '=', $request->user()->plan_user_id)->first();
+        if (\auth()) {
+            if ($request->plan == 1) {
+                $user = \auth()->user();
+                $trial = Carbon::now()->addDays(7);
+                $user->end_plan = $trial;
+                $user->is_payed = 1;
+                $user->sending_time_expire = 0;
+                $user->plan_user_id = $request->plan;
+                $user->save();
+                return \redirect(route('dashboard.profil'));
+            }
+            $plan = PlanUser::where('id', '=', $request->plan)->first();
+        } else {
+            $plan = PlanUser::where('id', '=', $request->user()->plan_user_id)->first();
+        }
         \Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
         $stripe_key = env('STRIPE_KEY');
         $amount = $plan->price;
@@ -69,6 +83,12 @@ class UserController extends Controller
         return view('users.payed', compact('plan', 'intent', 'stripe_key'));
     }
 
+    public function plansAlreadyUser()
+    {
+        $plans = PlanUser::all();
+        return view('users.plans', compact('plans'));
+    }
+
     public function payedUser(Request $request, User $user)
     {
         $user = Auth::user();
@@ -81,12 +101,12 @@ class UserController extends Controller
         }
         $trial = Carbon::now()->addMonth($days);
         $user->end_plan = $trial;
+        $user->plan_user_id = $request->plan;
         Session::flash('success-inscription',
             'Votre compte est désormais opérationnel, merci de votre confiance !');
         $user->update();
         Session::forget('plan');
         Session::forget('user');
-
         Mail::to(env('MAIL_FROM_ADDRESS'))
             ->send(new NewUserAdmin($user));
         Mail::to(\auth()->user()->email)

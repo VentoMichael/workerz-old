@@ -116,7 +116,7 @@
                             @enderror
                         </div>
                         <div>
-                            <input type="hidden" name="plan" value="{{old('plan', $plan)}}">
+                            <input type="hidden" name="plan" @auth value="{{$plan->id}} @elseauth value="{{old('plan', $plan)}} @endauth">
                             <button
                                 id="card-button"
                                 class="button-cta"

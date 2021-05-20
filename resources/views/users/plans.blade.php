@@ -75,7 +75,7 @@
                                 <img src="{{asset('svg/cross.svg')}}" alt="Icone négative"> @endif Visible parmis les premiers
                         </li>
                     </ul>
-                    <form aria-label="Choix du plan pour devenir utilisateur" action="{{route('users.type')}}" method="post">
+                    <form aria-label="Choix du plan pour devenir utilisateur" @auth action="{{route('users.payed')}}" @else action="{{route('users.type')}}" @endauth method="post">
                         @method('get')
                         @csrf
                         <input id="plan{{$plan->id}}" name="plan" type="hidden" value="{{$plan->id}}">

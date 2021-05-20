@@ -91,6 +91,7 @@ class AnnouncementController extends Controller
                 'disponibility' => 'required',
             ])->validate();
         }
+        //TODO:voir les realtions check
 
         $announcement = new Announcement();
         $announcement->title = $request->title;

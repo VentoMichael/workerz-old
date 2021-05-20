@@ -34,7 +34,14 @@
                 @if(auth()->user()->role_id == 2)
                     @include('layouts.formCompany')
                 @else
-                    <div>
+                    @if(auth()->user()->end_plan == null)
+                        <div class="container-button-expire">
+                        <a href="{{route('usersAlready.plans')}}" class="button-cta button-expire">
+                            Je choisis mon plan
+                        </a>
+                        </div>
+                    @endif
+                    <div @if(auth()->user()->end_plan == null) class="expire-plan" @endif>
                         <div class="form-login form-edit-preview form-register"
                              aria-label="Enregistrement d'un compte">
                             <div class="container-register-form container-register">
@@ -46,7 +53,7 @@
                                         <img src="{{auth()->user()->picture}}"
                                              alt="image de profil de {{auth()->user()->name}}">
                                     @else
-                                        <img src="{{asset('svg.user.svg')}}"
+                                        <img src="{{asset('svg/user.svg')}}"
                                              alt="image de profil par défaut">
                                     @endif
                                 </div>
@@ -66,21 +73,31 @@
                                 </div>
                             </div>
                             <div class="container-register-form container-register">
-                                <div class="container-form-email">
-                                    <p>Plan : {{$plan->name}}</p>
-                                    <span class="email-label">Date d'expiration le {{$endDatePlan}}</span>
-                                </div>
+                                @if(auth()->user()->end_plan != null)
+                                    <div class="container-form-email">
+                                        <p>Plan : {{$plan->name}}</p>
+                                        <span
+                                            class="email-label">Date d'expiration le {{auth()->user()->end_plan->locale('fr')->isoFormat('Do MMMM YYYY, H:mm')}}</span>
+                                    </div>
+                                @else
+                                    <div class="container-form-email">
+                                        <p>Plan</p>
+                                        <span class="email-label required">EXPIRER</span>
+                                    </div>
+                                @endif
                                 <div class="container-form-email">
                                     <p>Email</p>
                                     <span class="email-label">{{auth()->user()->email}}</span>
                                 </div>
                             </div>
-                            <div>
-                                <a href="{{route('dashboard.profil.edit')}}" role="button" class="button-cta"
-                                   type="submit">
-                                    Editer mon profil
-                                </a>
-                            </div>
+                            @if(auth()->user()->end_plan != null)
+                                <div>
+                                    <a href="{{route('dashboard.profil.edit')}}" role="button" class="button-cta"
+                                       type="submit">
+                                        Editer mon profil
+                                    </a>
+                                </div>
+                            @endif
                         </div>
                     </div>
                 @endif

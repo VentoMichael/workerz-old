@@ -51,8 +51,8 @@ Route::prefix('')->middleware(['guest'])->group(function () {
         ->name('users.type');
 });
 
-
-
+Route::post('/register/payed', [\App\Http\Controllers\UserController::class, 'payedUser'])->name('users.paied');
+Route::get('/register/payed', [\App\Http\Controllers\UserController::class, 'payed'])->name('users.payed')->middleware('checkpayed','auth');
 
 Route::prefix('')->middleware(['auth'])->group(function () {
     // DASHBOARD
@@ -69,7 +69,8 @@ Route::prefix('')->middleware(['auth'])->group(function () {
     Route::get('/dashboard/profil', [
         \App\Http\Controllers\DashboardController::class, 'profil'
     ])->name('dashboard.profil');
-
+    Route::get('/plans', [\App\Http\Controllers\UserController::class, 'plansAlreadyUser'])
+        ->name('usersAlready.plans');
 
     // PROFIL
     Route::get('/dashboard/profil/edit', [
@@ -96,7 +97,7 @@ Route::prefix('')->middleware(['auth'])->group(function () {
         ->middleware('noplansads')
         ->name('announcements.store');
     Route::get('/announcement/create',
-        [\App\Http\Controllers\AnnouncementController::class, 'create'])->middleware('noplansads')->name('announcements.create');
+        [\App\Http\Controllers\AnnouncementController::class, 'create'])->name('announcements.create');
     Route::post('/announcement/payed',
         [\App\Http\Controllers\AnnouncementController::class, 'payedAds'])->name('announcements.paied');
     Route::get('/announcement/payed', [\App\Http\Controllers\AnnouncementController::class, 'payed'])->name('announcements.payed');
