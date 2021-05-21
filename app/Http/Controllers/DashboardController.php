@@ -175,7 +175,7 @@ class DashboardController extends Controller
 
     public function ads()
     {
-        return view('dashboard.index');
+        return view('dashboard.ads');
     }
 
     protected function sendNotification()

@@ -59,7 +59,12 @@ div small {
     background-repeat: no-repeat;
     background-position: center;
 }
-
+.container-ads h2:before {
+    background-image: url("../svg/ad.svg");
+    background-size: 93%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
 .container-menu-pincipal li:nth-child(2) a, .container-dashboard-notif h3:before {
     background-image: url("../svg/notif.svg");
     background-size: 74%;
@@ -928,4 +933,51 @@ div .select-register {
 }
 .register-btn-company a:hover:after {
     top: 14px;
+}
+.container-search-ads{
+    background: var(--blueClair);
+    height: calc(100vh - 152px);
+    overflow-y: auto;
+}
+.container-form-ads{
+    display: grid;
+    grid-template-columns: 25% 1fr;
+}
+.search-ads{
+    width: 100%;
+    margin: 20px 15px 0;
+}
+.container-announcements{
+    display: flex;
+    align-items: center;
+    grid-gap:10px;
+    padding: 15px;
+    margin-top: 30px;
+}
+.container-announcements img{
+    min-width: 50px;
+}
+.formSearchAd{
+    display: flex;
+    justify-content: center;
+}
+.view-counter{
+    position: relative;
+    margin-left: 32px;
+    margin-top: 10px;
+}
+.view-counter:before{
+    position: absolute;
+    content: "";
+    background-image: url("../svg/visibility.svg");
+    background-position: center;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    display: block;
+    width: 25px;
+    left: -35px;
+    height: 25px;
+}
+.container-announcements-active{
+    border-left: 5px solid var(--blueLight);
 }
