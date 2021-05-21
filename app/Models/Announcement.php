@@ -11,6 +11,7 @@ class Announcement extends Model
     use Likable;
 
     protected $guarded = [];
+    protected $table = 'announcements';
 
     public function getRouteKeyName()
     {

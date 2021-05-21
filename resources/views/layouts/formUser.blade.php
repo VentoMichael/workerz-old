@@ -99,7 +99,13 @@
             </div>
 
         </div>
+        @if(auth()->user())
+        <div class="container-connexion-logins">
+            @endif
         @include('partials.register')
+            @if(auth()->user())
+        </div>
+        @endif
         <div>
             @if(!\Illuminate\Support\Facades\Auth::user())
                 <input id="role_id" name="role_id" type="hidden" value="3">

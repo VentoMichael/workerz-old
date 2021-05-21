@@ -171,7 +171,7 @@
                                     <li id="checkDispo">
                                         <input role="checkbox"
                                                aria-checked="false" class="checkDispo hiddenCheckbox inp-cbx"
-                                               name="startmonth[]" id="startmonth{{$disponibility->id}}"
+                                               name="startmonth" id="startmonth{{$disponibility->id}}"
                                                type="checkbox" value="{{$disponibility->id}}"/>
                                         <label class="cbx" for="startmonth{{$disponibility->id}}">
                                                 <span>

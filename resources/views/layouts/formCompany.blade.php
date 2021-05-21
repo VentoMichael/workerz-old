@@ -576,79 +576,79 @@
             </div>
             @endif
             @include('partials.register')
-                <div class="container-form-email">
-                    <label for="facebook">Lien Facebook</label>
-                    <input placeholder="https://facebook.be" type="text" id="facebook"
-                           @if(auth()->user()) value="{{auth()->user()->facebook}}" @endif
-                           class=" @error('facebook') is-invalid @enderror email-label" name="facebook">
+            <div class="container-form-email">
+                <label for="facebook">Lien Facebook</label>
+                <input placeholder="https://facebook.be" type="text" id="facebook"
+                       @if(auth()->user()) value="{{auth()->user()->facebook}}" @endif
+                       class=" @error('facebook') is-invalid @enderror email-label" name="facebook">
 
-                    @error('facebook')
-                    <div class="container-error">
+                @error('facebook')
+                <div class="container-error">
                 <span role="alert" class="error">
                                         <strong>{{ ucfirst($message) }}</strong>
                                     </span>
-                    </div>
-                    @enderror
                 </div>
-                <div class="container-form-email">
-                    <label for="instagram">Lien Instagram</label>
-                    <input placeholder="https://instagram.be" type="text" id="instagram"
-                           @if(auth()->user()) value="{{auth()->user()->instagram}}" @endif
-                           class=" @error('instagram') is-invalid @enderror email-label" name="instagram">
+                @enderror
+            </div>
+            <div class="container-form-email">
+                <label for="instagram">Lien Instagram</label>
+                <input placeholder="https://instagram.be" type="text" id="instagram"
+                       @if(auth()->user()) value="{{auth()->user()->instagram}}" @endif
+                       class=" @error('instagram') is-invalid @enderror email-label" name="instagram">
 
-                    @error('instagram')
-                    <div class="container-error">
+                @error('instagram')
+                <div class="container-error">
                 <span role="alert" class="error">
                                         <strong>{{ ucfirst($message) }}</strong>
                                     </span>
-                    </div>
-                    @enderror
                 </div>
-                <div class="container-form-email">
-                    <label for="linkedin">Lien Linkedin</label>
-                    <input placeholder="https://linkedin.be" type="text" id="linkedin"
-                           @if(auth()->user()) value="{{auth()->user()->linkedin}}" @endif
-                           class=" @error('linkedin') is-invalid @enderror email-label" name="linkedin">
+                @enderror
+            </div>
+            <div class="container-form-email">
+                <label for="linkedin">Lien Linkedin</label>
+                <input placeholder="https://linkedin.be" type="text" id="linkedin"
+                       @if(auth()->user()) value="{{auth()->user()->linkedin}}" @endif
+                       class=" @error('linkedin') is-invalid @enderror email-label" name="linkedin">
 
-                    @error('linkedin')
-                    <div class="container-error">
+                @error('linkedin')
+                <div class="container-error">
                 <span role="alert" class="error">
                                         <strong>{{ ucfirst($message) }}</strong>
                                     </span>
-                    </div>
-                    @enderror
                 </div>
-                <div class="container-form-email">
-                    <label for="twitter">Lien twitter</label>
-                    <input placeholder="https://twitter.be" type="text" id="twitter"
-                           @if(auth()->user()) value="{{auth()->user()->twitter}}" @endif
-                           class=" @error('twitter') is-invalid @enderror email-label" name="twitter">
+                @enderror
+            </div>
+            <div class="container-form-email">
+                <label for="twitter">Lien twitter</label>
+                <input placeholder="https://twitter.be" type="text" id="twitter"
+                       @if(auth()->user()) value="{{auth()->user()->twitter}}" @endif
+                       class=" @error('twitter') is-invalid @enderror email-label" name="twitter">
 
-                    @error('twitter')
-                    <div class="container-error">
+                @error('twitter')
+                <div class="container-error">
                 <span role="alert" class="error">
                                         <strong>{{ ucfirst($message) }}</strong>
                                     </span>
-                    </div>
-                    @enderror
                 </div>
-                <div class="button-save-company">
-                    @if(!\Illuminate\Support\Facades\Auth::user())
-                        <input id="role_id" name="role_id" type="hidden" value="2">
-                        <input id="plan_user_id{{$plan}}" name="plan_user_id" type="hidden" value="{{$plan}}">
-                        <input id="plan{{$plan}}" name="plan" type="hidden" value="{{$plan}}">
-                        <input id="type" name="type" type="hidden" value="company">
-                        <input type="hidden" name="type" value="company">
-                        <button role="button" class="button-cta" name="company" type="submit">
-                            Finaliser l'inscription
-                        </button>
-                    @else
-                        <button role="button" class="button-cta" name="company" type="submit">
-                            Sauvegarder mes informations
-                        </button>
-                    @endif
+                @enderror
+            </div>
+            <div class="button-save-company">
+                @if(!\Illuminate\Support\Facades\Auth::user())
+                    <input id="role_id" name="role_id" type="hidden" value="2">
+                    <input id="plan_user_id{{$plan}}" name="plan_user_id" type="hidden" value="{{$plan}}">
+                    <input id="plan{{$plan}}" name="plan" type="hidden" value="{{$plan}}">
+                    <input id="type" name="type" type="hidden" value="company">
+                    <input type="hidden" name="type" value="company">
+                    <button role="button" class="button-cta" name="company" type="submit">
+                        Finaliser l'inscription
+                    </button>
+                @else
+                    <button role="button" class="button-cta" name="company" type="submit">
+                        Sauvegarder mes informations
+                    </button>
+                @endif
 
-                </div>
+            </div>
         </div>
 
     </form>

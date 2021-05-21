@@ -896,9 +896,12 @@ div .select-register {
 .container-edit-formulary{
     display: inline-block;
 }
-.container-edition-formulary{
+.container-edition-formulary,.container-connexion-logins{
     display: grid;
     grid-template-columns: repeat(2, minmax(270px, 1fr));
+}
+.container-connexion-logins{
+    grid-gap: 30px;
 }
 .container-infos-dashboard h3{
     padding-bottom: 10px;

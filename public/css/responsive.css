@@ -576,7 +576,7 @@ width: 0;
     section .container-worker {
         grid-gap: 30px;
     }
-    .form-edit-preview .container-register-form, .form-choice,.container-profil-dashboard div .form-edit-company {
+    .form-edit-preview .container-register-form, .form-choice,.container-profil-dashboard div .form-edit-company,form .container-connexion-logins {
         display: grid;
         grid-template-columns: repeat(1, minmax(270px, 1fr));
     }
@@ -589,6 +589,9 @@ width: 0;
     }
     .container-job-dashboard{
         margin-top: 25px;
+    }
+    form .container-connexion-logins{
+        grid-gap: 0;
     }
 }
 

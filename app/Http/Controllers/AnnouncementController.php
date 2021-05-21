@@ -90,7 +90,7 @@ class AnnouncementController extends Controller
                 'job' => 'required|max:256',
                 'location' => 'required|not_in:0',
                 'categoryAds'=> 'required|array|max:'.$plan,
-                'startmonth' => 'required|array|max:1',
+                'startmonth'=> 'required',
             ])->validate();
         }
         $announcement = new Announcement();
@@ -112,7 +112,7 @@ class AnnouncementController extends Controller
         $announcement->pricemax = $request->price_max;
         $announcement->user_id = Auth::id();
         $announcement->province_id = $request->location;
-        $announcement->start_month_id = $request->disponibility;
+        $announcement->start_month_id = $request->startmonth;
         $announcement->plan_announcement_id = $plan;
         $ct = new AnnouncementCategory();
         $ct->category_id = $request->category_job;
@@ -134,8 +134,8 @@ class AnnouncementController extends Controller
                     'Votre annonce a été bien mise en ligne !');
             }
             $announcement->is_payed = $payed;
-            $announcement->save();
             $announcement->categoryAds()->attach($ct->category_id);
+            $announcement->save();
             return redirect(route('dashboard.ads'));
         } else {
             if ($request->has('is_draft')) {
