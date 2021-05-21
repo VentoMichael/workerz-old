@@ -12,6 +12,7 @@ use App\Models\Category;
 use App\Models\PlanAnnouncement;
 use App\Models\Province;
 use App\Models\StartMonth;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -44,13 +45,13 @@ class AnnouncementController extends Controller
 
     public function show(Announcement $announcement)
     {
+        $announcement = Announcement::withLikes()->where('id', '=', $announcement->id)->first();
         $randomAds = Announcement::Published()
             ->NoBan()
             ->Payement()->Adspayed()->orderBy('plan_announcement_id',
                 'DESC')->withLikes()->limit(2)->inRandomOrder()->get();
         $randomPhrasing = CatchPhraseAnnouncement::all()->random();
         $user = auth()->user();
-        $announcement = Announcement::withLikes()->where('id', '=', $announcement->id)->first();
         return view('announcements.show', compact('randomPhrasing', 'randomAds', 'announcement', 'user'));
     }
 
@@ -88,11 +89,10 @@ class AnnouncementController extends Controller
                 'description' => 'required|max:256',
                 'job' => 'required|max:256',
                 'location' => 'required|not_in:0',
-                'disponibility' => 'required',
+                'categoryAds'=> 'required|array|max:'.$plan,
+                'startmonth' => 'required|array|max:1',
             ])->validate();
         }
-        //TODO:voir les realtions check
-
         $announcement = new Announcement();
         $announcement->title = $request->title;
         $announcement->catchPhrase = $request->catchPhrase;

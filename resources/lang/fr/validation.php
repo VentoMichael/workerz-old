@@ -147,6 +147,8 @@ return [
         'adress' => 'adresse',
         'password' => 'mot de passe',
         'categoryUser' => 'catégorie de métier',
+        'categoryAds' => 'catégorie de métier',
+        'startmonth' => 'mois de commencement',
         'websitetwo' => '2éme site internet',
         'websitethree' => '3éme site internet',
         'locationtwo' => '2éme localité',

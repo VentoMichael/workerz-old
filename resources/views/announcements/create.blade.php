@@ -6,7 +6,6 @@
             <span class="crossHide" id="crossHide">&times;</span>
         </div>
     @endif
-
     <section class="container-home margin">
         <div class="container-home_image container-home-create container-home-page">
             <div>
@@ -108,16 +107,16 @@
                     </div>
                     <div class="container-form-email">
 
-                        <label for="category_job">Catégorie de métier <span class="required">*</span></label>
+                        <label for="categoryAds">Catégorie de métier <span class="required">*</span></label>
                         <div class="container-filter-categories container-category">
                             <ul class="list-categories">
                                 @foreach($categories as $c)
                                     <li>
                                         <input role="checkbox"
                                                aria-checked="false" class="checkCat hiddenCheckbox inp-cbx"
-                                               name="category_job[]" id="category_job{{$c->id}}"
+                                               name="categoryAds[]" id="categoryAds{{$c->id}}"
                                                type="checkbox" value="{{$c->id}}"/>
-                                        <label class="cbx" for="category_job{{$c->id}}">
+                                        <label class="cbx" for="categoryAds{{$c->id}}">
                                                 <span>
                                                     <svg width="12px" height="9px" viewbox="0 0 12 9">
                                                       <polyline points="1 5 4 8 11 1"></polyline>
@@ -131,9 +130,9 @@
                                 @endforeach
                             </ul>
                         </div>
-                        @error('category_job')
+                        @error('categoryAds')
                         <p class="danger dangerCategory help">
-                            {{$errors->first('category_job')}}
+                            {{$errors->first('categoryAds')}}
                         </p>
                         @enderror
                         @if(request('plan') == 1 || old('plan') == 1)
@@ -163,7 +162,7 @@
                         </p>
                     </div>
                     <div class="container-form-email selectdiv">
-                        <label for="disponibility">Disponible à partir du mois de <span
+                        <label for="startmonth">Disponible à partir du mois de <span
                                 class="required">*</span></label>
                         <div class="container-filter-categories container-category">
 
@@ -172,9 +171,9 @@
                                     <li id="checkDispo">
                                         <input role="checkbox"
                                                aria-checked="false" class="checkDispo hiddenCheckbox inp-cbx"
-                                               name="disponibility" id="disponibility{{$disponibility->id}}"
+                                               name="startmonth[]" id="startmonth{{$disponibility->id}}"
                                                type="checkbox" value="{{$disponibility->id}}"/>
-                                        <label class="cbx" for="disponibility{{$disponibility->id}}">
+                                        <label class="cbx" for="startmonth{{$disponibility->id}}">
                                                 <span>
                                                     <svg width="12px" height="9px" viewbox="0 0 12 9">
                                                       <polyline points="1 5 4 8 11 1"></polyline>
@@ -188,12 +187,12 @@
                                 @endforeach
                             </ul>
                         </div>
-                        @error('disponibility')
+                        @error('startmonth')
                         <p class="danger dangerCategory help">
-                            {{$errors->first('disponibility')}}
+                            {{$errors->first('startmonth')}}
                         </p>
                         @enderror
-                        <p class="help">Vous avez la possibilité d'en ajouter un seul</p>
+                        <p class="help">Vous avez la possibilité d'en ajouter qu'un seul</p>
 
                     </div>
 
@@ -207,7 +206,7 @@
                         </div>
                         <textarea id="description" name="description" required
                                   class=" @error('description') is-invalid @enderror email-label"
-                                  placeholder="Description détailée de votre profil..."
+                                  placeholder="Description de votre annonce..."
                                   rows="5" cols="33">{{old("description")}}</textarea>
                         @error('description')
                         <p class="danger help">

@@ -52,7 +52,6 @@ class DashboardController extends Controller
     }
 
     public function updateUser(Request $request)
-
     {
         $user = \auth()->user();
         //TODO:check si ca a change
@@ -124,9 +123,10 @@ class DashboardController extends Controller
             $ct->category_id = \request('categoryUser');
             $user->categoryUser()->detach();
             $user->categoryUser()->attach($ct->category_id);
-        }if ($request->website){
-        $user->website = $request->website;
-    }
+        }
+        if ($request->website) {
+            $user->website = $request->website;
+        }
         if ($request->disponibilities) {
             $di = new startDate();
             $di->start_date_id = \request('disponibilities');
@@ -150,12 +150,10 @@ class DashboardController extends Controller
             new PhysicalAdress(['postal_adress' => $request->adresstwo, 'province_id' => $request->locationtwo]),
             new PhysicalAdress(['postal_adress' => $request->adressthree, 'province_id' => $request->locationthree]),
         ]);
-       //$user->provinces()->delete();
-        //$user->provinces()->saveMany([
-        //    new ProvinceUser(['province_id' => $request->location, 'user_id' =>auth()->user()->id ]),
-        //    new ProvinceUser(['province_id' => $request->locationtwo, 'user_id' =>auth()->user()->id ]),
-        //    new ProvinceUser(['province_id' => $request->locationthree, 'user_id' =>auth()->user()->id ]),
-        //]);
+        $user->facebook = $request->facebook;
+        $user->twitter = $request->twitter;
+        $user->instagram = $request->instagram;
+        $user->linkedin = $request->linkedin;
         $user->name = $request->name;
         $user->email = $request->email;
         $user->slug = Str::slug($request->name);
@@ -168,13 +166,13 @@ class DashboardController extends Controller
         ]);
 
         $user->update();
-        //TODO WEB NOT SAVE
         if ($user->wasChanged()) {
             Session::flash('success-update', 'Votre profil a bien été mis a jour!');
         }
         return redirect(route('dashboard.profil'));
 
     }
+
     public function ads()
     {
         return view('dashboard.index');

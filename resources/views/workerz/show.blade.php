@@ -130,11 +130,6 @@
                             </a>
                         </div>
                     @endif
-                    @if($worker->possibility_job)
-                        <div>
-
-                        </div>
-                    @endif
                 </div>
             </div>
             <div class="container-infos-perso-ads" itemscope
@@ -155,13 +150,15 @@
                     @endforeach
                     @if($worker->possibility_job == 'yes')
                         <div>
-                            <img src="{{asset('svg/question-signe-en-cercles.svg')}}" alt="icone de question pour la posibilité de job">
+                            <img src="{{asset('svg/question-signe-en-cercles.svg')}}"
+                                 alt="icone de question pour la posibilité de job">
                             <span>{{ucfirst($worker->name)}} ont des offres d'emplois</span>
                         </div>
                     @endif
                     @if($worker->possibility_job == 'no')
                         <div>
-                            <img src="{{asset('svg/question-signe-en-cercles.svg')}}" alt="icone de question pour la posibilité de job">
+                            <img src="{{asset('svg/question-signe-en-cercles.svg')}}"
+                                 alt="icone de question pour la posibilité de job">
                             <span>{{ucfirst($worker->name)}} n'ont pour le moment, pas d'offres d'emplois</span>
                         </div>
                     @endif
@@ -201,20 +198,32 @@
                             </div>
                         @endforeach
                     @endif
-                    <div itemtype="https://schema.org/PriceSpecification" itemscope>
-                        <img src="{{asset('svg/euro.svg')}}" alt="icone d'euro">
-                        <span itemprop="minPrice">Un minimum de {{$worker->pricemax}}€/h</span>
-                    </div>
-
+                    @if($worker->pricemax)
+                        <div itemtype="https://schema.org/PriceSpecification" itemscope>
+                            <img src="{{asset('svg/euro.svg')}}" alt="icone d'euro">
+                            <span itemprop="minPrice">Un minimum de {{$worker->pricemax}}€/h</span>
+                        </div>
+                    @endif
                 </section>
             </div>
-            <a class="container-website" href="{{$worker->website}}">
-                <div itemscope itemtype="https://schema.org/ServiceChannel">
-                    <img src="{{asset('svg/globe.svg')}}" alt="icone de site internet">
+            @if($worker->website)
+                <a class="container-website" href="{{$worker->website}}">
+                    <div itemscope itemtype="https://schema.org/ServiceChannel">
+                        <img src="{{asset('svg/globe.svg')}}" alt="icone de site internet">
 
-                    <span itemprop="serviceUrl">Site internet</span>
-                </div>
-            </a>
+                        <span itemprop="serviceUrl">Site internet</span>
+                    </div>
+                </a>
+            @else
+                @if($worker->facebook)
+                    <a class="container-website container-fcb" href="{{$worker->facebook}}">
+                        <div>
+                            <img src="{{asset('svg/facebook-w.svg')}}" alt="icone de facebook">
+                            <span itemprop="serviceUrl">Lien Facebook</span>
+                        </div>
+                    </a>
+                @endif
+            @endif
         </section>
     </section>
     <section class="container-categories-home margin show-content container-adss-random">

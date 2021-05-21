@@ -5,7 +5,7 @@
         <ul class="full-height">
             <li class="container-list-menu full-height">
                 <ul class="container-list-menu container-list-menu-principal container-menu-pincipal">
-                    <li><a title="Page du dashboard"
+                    <li><a title="Page du tableau de bord"
                            class="iconeDashboard {{ Request::is('dashboard') ? "current_page_item_dashboard" : "" }}"
                            aria-current="{{ Request::is('dashboard') ? "page" : "" }}" href="{{ route('dashboard') }}">Tableau
                             de bord</a>

@@ -694,8 +694,10 @@ div .form-edit-preview {
 }
 
 .register-btn-company {
-    margin-top: -50px;
+    margin-top: -20px;
     margin-bottom: 10px;
+    grid-column-end: 3;
+    grid-column-start: 1;
 }
 
 
@@ -897,4 +899,30 @@ div .select-register {
 .container-edition-formulary{
     display: grid;
     grid-template-columns: repeat(2, minmax(270px, 1fr));
+}
+.container-infos-dashboard h3{
+    padding-bottom: 10px;
+    padding-right: 5%;
+    margin-bottom: 20px;
+    font-size: 1.6em;
+    display: inline-block;
+    border-bottom: 2px dashed #69696969;
+}
+.container-profil-dashboard div section:nth-child(2){
+    margin-top: 60px;
+}
+
+.button-save-company{
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+.register-btn-company a{
+    padding: 15px 20px;
+}
+
+.register-btn-company a:hover{
+    padding: 15px 30px 15px 15px;
+}
+.register-btn-company a:hover:after {
+    top: 14px;
 }

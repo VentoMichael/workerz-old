@@ -2025,3 +2025,7 @@ div div .eye-forget-pass{
 .container-register-form div .categoerror{
     margin-bottom: 20px;
 }
+.container-fcb img{
+    max-height: 70px;
+    display: block;
+}

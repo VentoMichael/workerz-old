@@ -166,18 +166,22 @@
         </div>
         <div class="container-ads-random">
             @foreach($randomAds as $ra)
-                <section class="container-infos-perso-ads container-ad-random" itemtype="https://schema.org/Thing" itemscope>
+                <section class="container-infos-perso-ads container-ad-random" itemtype="https://schema.org/Thing"
+                         itemscope>
                     <div class="container_title__province">
                         <div class="container-love-show">
                             @auth
                                 <div
                                     class="containerPrice container-show-love like-ads containerLove help-show @guest notHoverHeart @endguest">
                                     @if(!$ra->isLikedBy($user))
-                                        <form method="POST" title="Mettre un j'aime à {{$announcement->title}}" aria-label="Mettre un j'aime à {{$announcement->title}}" action="/announcements/{{$ra->slug}}/like">
+                                        <form method="POST" title="Mettre un j'aime à {{$announcement->title}}"
+                                              aria-label="Mettre un j'aime à {{$announcement->title}}"
+                                              action="/announcements/{{$ra->slug}}/like">
                                             @csrf
 
                                             <button type="submit" class="button-loves">
-                                                <img class="heart" src="{{asset('svg/heart.svg')}}" alt="icone de coeur">
+                                                <img class="heart" src="{{asset('svg/heart.svg')}}"
+                                                     alt="icone de coeur">
                                                 <img class="heartFul" src="{{asset('svg/heartFul.svg')}}"
                                                      alt="icone de coeur">
                                                 <span>
@@ -185,7 +189,9 @@
                                         </form>
                                     @else
 
-                                        <form method="POST" title="Enlever le j'aime donner à {{$announcement->title}}" aria-label="Enlever le j'aime donner à {{$announcement->title}}" action="/announcements/{{$ra->slug}}/like">
+                                        <form method="POST" title="Enlever le j'aime donner à {{$announcement->title}}"
+                                              aria-label="Enlever le j'aime donner à {{$announcement->title}}"
+                                              action="/announcements/{{$ra->slug}}/like">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="button-loves">
@@ -198,7 +204,8 @@
                                 </div>
 
                             @else
-                                <a href="{{route('login')}}" title="Il faut se connecter pour mettre un j'aime à {{$announcement->title}}">
+                                <a href="{{route('login')}}"
+                                   title="Il faut se connecter pour mettre un j'aime à {{$announcement->title}}">
                                     <div class="containerPrice containerLove like-ads hepling helping-like help-show">
 
                                         <img class="heart" src="{{asset('svg/heart.svg')}}" alt="icone de coeur">
@@ -237,7 +244,8 @@
                                         @endif
                                 </span>
                                 </div>
-                                <div class="container-info-announcement" itemtype="https://schema.org/PostalAddress" itemscope>
+                                <div class="container-info-announcement" itemtype="https://schema.org/PostalAddress"
+                                     itemscope>
                                     <img src="{{asset('svg/placeholder.svg')}}" alt="icone de localité">
                                     <div>
                                         <p itemprop="addressRegion">{{ucfirst($announcement->province->name)}}</p>

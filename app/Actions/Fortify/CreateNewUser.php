@@ -111,7 +111,6 @@ class CreateNewUser implements CreatesNewUsers
                     'regex:/[0-9]/',
                 ],
             ])->validate();
-            //TODO: regarder avec les relations comment check
             $user = User::create([
                 'name' => $input['name'],
                 'email' => $input['email'],

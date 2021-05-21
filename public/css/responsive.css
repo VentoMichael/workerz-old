@@ -565,7 +565,9 @@ width: 0;
         flex-direction: column;
         align-items: center;
     }
-
+    .form-edit-company .container-register-form{
+        margin-bottom: 0;
+    }
     div .container-socials-media {
         margin-top: 20px;
         grid-template-columns: repeat(4, minmax(10px, 1fr));
