@@ -145,7 +145,12 @@ return [
         'surname' => 'prénom',
         'disponibility' => 'disponibilité',
         'adress' => 'adresse',
-        'category_job' => 'catégorie de métier',
+        'password' => 'mot de passe',
+        'categoryUser' => 'catégorie de métier',
+        'websitetwo' => '2éme site internet',
+        'websitethree' => '3éme site internet',
+        'locationtwo' => '2éme localité',
+        'locationthree' => '3éme localité',
     ],
 
     /*

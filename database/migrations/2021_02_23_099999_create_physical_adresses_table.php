@@ -15,7 +15,7 @@ class CreatePhysicalAdressesTable extends Migration
     {
         Schema::create('physical_adresses', function (Blueprint $table) {
             $table->id();
-            $table->string('postal_adress');
+            $table->string('postal_adress')->nullable();
             $table->timestamps();
         });
     }

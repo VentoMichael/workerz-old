@@ -192,7 +192,9 @@ main nav, main nav .container-nav-principal, .full-height {
     right: 5px;
     top: 12px;
 }
-
+.button-edition:hover:after{
+    top: 9px;
+}
 .container-sections-dashboard {
     padding: 0 2%;
     height: calc(100% - 85px);
@@ -322,18 +324,6 @@ li .container-menu-pincipal a:hover:before {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 .container-register-form, .form-choice {
     display: grid;
     grid-template-columns: repeat(2, minmax(270px, 1fr));
@@ -410,9 +400,14 @@ div .container-form-email .inputPhone {
 .avatar-container label {
     align-self: flex-end;
 }
-
+.container-profil .avatar-profil .avatar-container{
+    align-self: flex-start;
+}
 .avatar-container {
     display: flex;
+    justify-content: center;
+}
+.form-edit .avatar-container {
     justify-content: space-between;
 }
 
@@ -505,6 +500,7 @@ div .password--visibleToggle {
 .password--visibleToggle:checked ~ .password--visibleToggle-eye.open {
     opacity: 0;
 }
+
 .list-password-required li, .formSearchAd {
     position: relative;
 }
@@ -533,22 +529,27 @@ div .password--visibleToggle {
 .list-password-required {
     margin: 7px 0 15px;
 }
+
 .preview-picture {
     display: none;
 }
+
 .preview-picture {
-    width: 100px;
+    width: 200px;
     align-self: flex-end;
     height: auto;
     border-radius: 7px;
 }
-.container-profil-dashboard{
+
+.container-profil-dashboard {
     padding: 3%;
 }
-.preview-picture-old{
-    max-width: 100px;
+
+.preview-picture-old {
+    max-width: 200px;
 }
-.btn-add-phone{
+
+.btn-add-phone {
     background: var(--gradientDarkBlue);
     border: 0;
     border-radius: 5px;
@@ -558,7 +559,8 @@ div .password--visibleToggle {
     margin-top: -10px;
     text-indent: -9999px;
 }
-.btn-add-phone:before{
+
+.btn-add-phone:before {
     content: "";
     background-position: center;
     background-image: url(../svg/plusicon.svg);
@@ -572,39 +574,48 @@ div .password--visibleToggle {
     top: 9px;
     transition: 0.5s;
 }
-.container-button{
+
+.container-button {
     position: absolute;
     right: 10px;
     top: 47%;
 }
+
 div .btn-remove-phone {
     padding: 10px;
     width: 50px;
 }
-div .btn-remove-phone:before{
+
+div .btn-remove-phone:before {
     background-image: url(../svg/plus.svg);
 }
-.form-edit-preview div .email-label{
+
+.form-edit-preview div .email-label {
     border: 0;
+    word-break: break-all;
     border-bottom: 2px solid var(--blue);
     border-radius: 0;
 }
-.avatar-profil img{
+
+.avatar-profil img {
     max-width: 200px;
     align-self: center;
     width: 100%;
     max-height: 150px;
 }
-.button-draft{
+
+.button-draft {
     background: white;
     border: 1px solid var(--blueLight);
     color: var(--blueLight);
 }
-.button-draft:hover{
+
+.button-draft:hover {
     background: var(--gradientLightBlue);
     border: 0;
     color: white;
 }
+
 .button-back:after {
     background-image: url(../svg/arrow-left.svg);
     background-size: 50%;
@@ -617,33 +628,273 @@ div .btn-remove-phone:before{
     height: 20px;
     content: "";
 }
+
 .button-back:hover {
     padding: 10px 15px 10px 30px;
 }
-.container-link-to-back{
+
+.container-link-to-back {
     margin-bottom: 20px;
 }
-.expire-plan{
+
+.expire-plan {
     opacity: .25;
     cursor: not-allowed;
 }
-.button-expire{
+
+.button-expire {
     width: 100%;
     padding: 20px 0;
     font-size: 2em;
 }
-.container-button-expire{
+
+.container-button-expire {
     display: flex;
     text-align: center;
     margin-bottom: 50px;
 }
+
 .button-expire:hover {
     padding: 20px 30px 20px 15px;
 }
-.button-expire:hover:after{
+
+.button-expire:hover:after {
     right: 10px;
     top: 21px;
     background-size: 50%;
     width: 30px;
     height: 30px;
+}
+
+.avatar-dashboard {
+    width: 100%;
+}
+
+div .form-edit-preview {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(270px, 1fr));
+    grid-gap: 30px;
+    align-items: center;
+}
+
+.form-edit-preview .container-register-form {
+    display: inline-block;
+    grid-template-columns: inherit;
+}
+
+.horary-cost {
+    top: 43px;
+    position: absolute;
+    right: 15px;
+}
+
+.bar-dividend {
+    color: var(--blue);
+    font-size: 1.4em;
+}
+
+.register-btn-company {
+    margin-top: -50px;
+    margin-bottom: 10px;
+}
+
+
+.cbx {
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+}
+
+.cbx span {
+    display: inline-block;
+    vertical-align: middle;
+    align-self: center;
+    transform: translate3d(0, 0, 0);
+}
+
+.cbx span:first-child {
+    position: relative;
+    min-width: 17px;
+    min-height: 17px;
+    border-radius: 5px;
+    transform: scale(1);
+    vertical-align: middle;
+    border: 1px solid var(--blueLight);
+    transition: all 0.2s ease;
+}
+
+.cbx span:first-child svg {
+    position: absolute;
+    z-index: 1;
+    top: 5px;
+    left: 3px;
+    fill: none;
+    stroke: white;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 16px;
+    stroke-dashoffset: 16px;
+    transition: all 0.3s ease;
+    transition-delay: 0.1s;
+    transform: translate3d(0, 0, 0);
+}
+
+.cbx span:first-child:before {
+    content: "";
+    width: 100%;
+    height: 100%;
+    background: var(--blueLight);
+    display: block;
+    transform: scale(0);
+    opacity: 1;
+    border-radius: 50%;
+    transition-delay: 0.2s;
+}
+
+.cbx span:last-child {
+    margin-left: 8px;
+}
+
+.cbx:hover span:first-child {
+    border-color: var(--blueLight);
+}
+
+.inp-cbx:checked + .cbx span:first-child {
+    border-color: var(--blueLight);
+    background: var(--blueLight);
+    animation: check 0.6s ease;
+}
+
+.inp-cbx:checked + .cbx span:first-child svg {
+    stroke-dashoffset: 0;
+}
+
+.inp-cbx:checked + .cbx span:first-child:before {
+    transform: scale(2.2);
+    opacity: 0;
+    transition: all 0.6s ease;
+}
+
+.inp-cbx:checked + .cbx span:last-child {
+    color: #B9B8C3;
+    transition: all 0.3s ease;
+}
+
+.inp-cbx:checked + .cbx span:last-child:after {
+    transform: scaleX(1);
+    transition: all 0.3s ease;
+}
+
+.hiddenRadio {
+    position: absolute;
+    appearance: none;
+}
+
+.list-dispo-profil li {
+    margin: 10px 0;
+}
+.list-dispo-profil li:nth-child(1) {
+    margin-top: 0;
+}
+.list-dispo-profil li:last-child {
+    margin-bottom: 0;
+}
+
+.list-dispo-profil {
+    max-height: 60px;
+    overflow-y: auto;
+    margin-top: 8px;
+    border: 1px solid #69696969;
+    padding: 7px;
+    border-radius: 5px;
+}
+
+
+
+
+.list-dispo-profil::-webkit-scrollbar {
+    width: 12px;
+}
+
+.list-dispo-profil::-webkit-scrollbar-track {
+    background: #fff;
+    border-radius: 5px;
+    border: 1px solid var(--blueLight);
+    margin: 10px 5px 10px 0
+}
+
+.list-dispo-profil::-webkit-scrollbar-thumb {
+    background: var(--blueLight);
+    border-radius: 5px
+}
+
+.select-regions:hover {
+    height: 44px;
+    cursor: pointer;
+}
+.select-register {
+    padding: 9px 5px 9px 5px;
+    min-width: 200px;
+    font-size: 1em;
+    background: white;
+    border: 1px solid #69696969;
+    border-radius: 4px;
+    margin: 10px 0 20px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    height: 44px;
+    transition: .3s;
+}
+div .select-register {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url('../svg/arrow-b-color.svg');
+    background-repeat: no-repeat;
+    background-size: 3%;
+    background-position: 99%;
+}
+.container-register-form.container-register.container-job-profil{
+    grid-template-columns: repeat(2, minmax(270px, 1fr));
+}
+.contaner-description{
+    grid-template-columns: repeat(1, minmax(270px, 1fr));
+}
+.list-dispo-profil{
+    transition: .3s;
+}
+.list-dispo-profil:hover {
+    max-height: 150px;
+    cursor: pointer;
+}
+.horary-cost-company{
+    top: 33px;
+}
+.container-cat div{
+    width: 100%;
+}
+
+.container-list-menu{
+    max-height: 500px;
+    position: sticky;
+    top: 10px;
+}
+.container-register-form p {
+    max-width: inherit;
+}
+.container-maxCharacters {
+    display: flex;
+    justify-content: space-between;
+}
+.container-edit-formulary{
+    display: inline-block;
+}
+.container-edition-formulary{
+    display: grid;
+    grid-template-columns: repeat(2, minmax(270px, 1fr));
 }

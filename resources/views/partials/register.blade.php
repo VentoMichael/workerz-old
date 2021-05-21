@@ -1,6 +1,8 @@
+@if(!auth()->user())
 <div class="container-register-form container-inscriptin-logins container-register">
+@endif
     <div class="container-form-email">
-        <label for="email">Email</label>
+        <label for="email">@if(auth()->user()) Nouveau email @else Email @endif <span class="required"> *</span></label>
         <input id="email" type="email"
                class=" @error('email') is-invalid @enderror email-label"
                name="email"
@@ -15,7 +17,8 @@
         @enderror
     </div>
     <div>
-        <label for="password"> @if(auth()->user()) Nouveau mot @else Mot @endif de passe</label>
+
+        <label for="password"> @if(auth()->user()) Nouveau mot de passe @else Mot de passe <span class="required"> *</span> @endif </label>
         <div class="@error('password')is-invalid @enderror password">
             <div id="container-checkpass" class="container-checkpass">
                 <label for="checkPass" class="hidden">Voir/masquer le mot de passe</label>
@@ -33,6 +36,13 @@
                    name="password" @if(!auth()) required aria-required="true" @endif>
 
         </div>
+        @error('password')
+        <div>
+                                    <span role="alert" class="error">
+                                        <strong>{{ ucfirst($message) }}</strong>
+                                    </span>
+        </div>
+        @enderror
         <ul role="list" class="list-password-required">
             <li id="cara">
                 <img src="{{asset('../svg/good.svg')}}" alt="good icon">
@@ -54,13 +64,7 @@
             </li>
         </ul>
     </div>
+    @if(!auth()->user())
 </div>
-
-@error('password')
-<div class="container-error">
-                                    <span role="alert" class="error">
-                                        <strong>{{ ucfirst($message) }}</strong>
-                                    </span>
-</div>
-@enderror
+@endif
 

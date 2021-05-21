@@ -10,6 +10,7 @@ use App\Models\PhysicalAdress;
 use App\Models\ProvinceUser;
 use App\Models\startDate;
 use App\Models\User;
+use App\Models\Website;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
@@ -94,14 +95,15 @@ class CreateNewUser implements CreatesNewUsers
                     Rule::unique(User::class),
                 ],
                 'adress' => 'required',
-                //'phones.phone' => 'required',
+                'phoneone' => 'required',
                 'website' => 'nullable', 'url',
                 'description' => 'required', 'max:256',
                 'job' => 'required',
                 'location' => 'required|not_in:0',
-                //'CategoryUser.category_job' => [
-                //    'required',
-                //],
+                'categoryUser'=> 'required|array|max:'.$input['plan_user_id'],
+                'disponibilites' => [
+                    'array|max:7',
+                ],
                 'password' => [
                     'required',
                     'min:8',
@@ -109,7 +111,7 @@ class CreateNewUser implements CreatesNewUsers
                     'regex:/[0-9]/',
                 ],
             ])->validate();
-//TODO: regarder avec les relations comment check
+            //TODO: regarder avec les relations comment check
             $user = User::create([
                 'name' => $input['name'],
                 'email' => $input['email'],
@@ -137,10 +139,13 @@ class CreateNewUser implements CreatesNewUsers
             $user->adresses()->save($phy);
             $user->provinces()->attach($pro->province_id);
             $ct = new CategoryUser();
-            $ct->category_id = \request('category_job');
+            $ct->category_id = \request('categoryUser');
             $user->categoryUser()->attach($ct->category_id);
             $di = new startDate();
+            $website = new Website(['link' => $input['website']]);
+            $user->websites()->save($website);
             $di->start_date_id = \request('disponibilities');
+            $user->startDate()->attach($di->start_date_id);
             if ($user->plan_user_id == 1) {
                 $trial = Carbon::now()->addDays(7);
                 $user->end_plan = $trial;

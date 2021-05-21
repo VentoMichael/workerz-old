@@ -17,36 +17,14 @@
 
             </div>
             <div class="container-form-email">
-                <label for="phone">Numéro de téléphone <span class="required">*</span></label>
+                <label for="phoneone">Numéro de téléphone <span class="required">*</span></label>
 
                 <input minlength="6" maxlength="15" type="tel" id="phone" pattern="^[0-9-+\s()]*$"
                        @auth value="{{auth()->user()->phones()->first()->number}}" @elseauth value="{{old('phone')}}"
                        @endauth placeholder="0494827235"
                        class=" @error('phone') is-invalid @enderror email-label" name="phoneone" required
                        aria-required="true">
-                @if(auth()->user() && auth()->user()->plan_user_id ==2)
 
-                    @if(auth()->user()->phones()->count() > 1)
-                        <input minlength="6" maxlength="15" type="tel" id="phonetwo" pattern="^[0-9-+\s()]*$"
-                               placeholder="0494827235" value="{{auth()->user()->phones()->skip(1)->first()->number}}"
-
-                               class=" @error('phone') is-invalid @enderror email-label" name="phonetwo">
-                    @endif
-                @endif
-                @if(auth()->user() && auth()->user()->plan_user_id ==3)
-
-                    <input minlength="6" maxlength="15" type="tel" id="phonetwo" pattern="^[0-9-+\s()]*$"
-                           placeholder="0494827235"
-                           @if(auth()->user()->phones()->count() > 1)
-                           value="{{auth()->user()->phones()->skip(1)->first()->number}}"
-                           @endif class=" @error('phone') is-invalid @enderror email-label" name="phonetwo">
-                    <input minlength="6" maxlength="15" type="tel" id="phonethree" pattern="^[0-9-+\s()]*$"
-                           placeholder="0494827235"
-                           @if(auth()->user()->phones()->count() > 2)
-                           value="{{auth()->user()->phones()->skip(2)->first()->number}}"
-                           @endif
-                           class=" @error('phone') is-invalid @enderror email-label" name="phonethree">
-                @endif
                 @if(!auth()->user())
                     @if($plan == 1)
                         <p class="help"><a href="{{route('users.plans')}}#plans">Augmenter votre plan</a> et
@@ -67,6 +45,35 @@
                 </div>
                 @enderror
             </div>
+            @if(auth()->user() && auth()->user()->plan_user_id ==2)
+
+                @if(auth()->user()->phones()->count() > 1)
+                    <label for="phonetwo">2<sup>é</sup> Numéro de téléphone</label>
+                    <input minlength="6" maxlength="15" type="tel" id="phonetwo" pattern="^[0-9-+\s()]*$"
+                           placeholder="0494827235" value="{{auth()->user()->phones()->skip(1)->first()->number}}"
+
+                           class=" @error('phone') is-invalid @enderror email-label" name="phonetwo">
+                @endif
+            @endif
+            @if(auth()->user() && auth()->user()->plan_user_id ==3)
+                <div class="container-form-email">
+                    <label for="phonetwo">2<sup>é</sup> Numéro de téléphone</label>
+                    <input minlength="6" maxlength="15" type="tel" id="phonetwo" pattern="^[0-9-+\s()]*$"
+                           placeholder="0494827235"
+                           @if(auth()->user()->phones()->count() > 1)
+                           value="{{auth()->user()->phones()->skip(1)->first()->number}}"
+                           @endif class=" @error('phone') is-invalid @enderror email-label" name="phonetwo">
+                </div>
+                <div class="container-form-email">
+                    <label for="phonethree">3<sup>é</sup> Numéro de téléphone</label>
+                    <input minlength="6" maxlength="15" type="tel" id="phonethree" pattern="^[0-9-+\s()]*$"
+                           placeholder="0494827235"
+                           @if(auth()->user()->phones()->count() > 2)
+                           value="{{auth()->user()->phones()->skip(2)->first()->number}}"
+                           @endif
+                           class=" @error('phone') is-invalid @enderror email-label" name="phonethree">
+                </div>
+            @endif
         </div>
         <div class="container-register-form container-register">
             <div class="container-form-email">
@@ -84,12 +91,11 @@
                 @enderror
             </div>
             <div class="container-form-email">
-                <label for="surname">Prénom<span class="required"> *</span></label>
+                <label for="surname">Prénom</label>
                 <input type="text" id="surname" placeholder="Daniel" @auth value="{{auth()->user()->surname}}"
                        @elseauth value="{{old('surname')}}"
                        @endauth
-                       class=" @error('surname') is-invalid @enderror email-label" name="surname" required
-                       aria-required="true">
+                       class=" @error('surname') is-invalid @enderror email-label" name="surname">
             </div>
 
         </div>
@@ -100,10 +106,14 @@
                 <input id="plan_user_id" name="plan_user_id" type="hidden" value="{{$plan}}">
                 <input id="plan{{ $plan }}" name="plan" type="hidden" value="{{$plan}}">
                 <input type="hidden" name="type" value="user">
+                <button role="button" class="button-cta" name="user" type="submit">
+                    Finaliser l'inscription
+                </button>
+            @else
+                <button role="button" class="button-cta" name="user" type="submit">
+                    Sauvegarder mes informations
+                </button>
             @endif
-            <button role="button" class="button-cta" name="user" type="submit">
-                Finaliser l'inscription
-            </button>
         </div>
     </form>
 </div>

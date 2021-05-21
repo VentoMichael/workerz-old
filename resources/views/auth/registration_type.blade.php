@@ -78,7 +78,7 @@
                       action="{{ route('register') }}">
                     @method('get')
                     @csrf
-                    <input id="plan{{$plan}}" name="plan" type="hidden" value="{{$plan}}">
+                    <input id="companyplan{{$plan}}" name="plan" type="hidden" value="{{$plan}}">
                     <input type="hidden" name="type" value="company">
 
                     <button class="button-cta" title="Je sélectionne la section 'Je suis un professionnel'"

@@ -68,14 +68,15 @@ Route::prefix('')->middleware(['auth'])->group(function () {
 
     Route::get('/dashboard/profil', [
         \App\Http\Controllers\DashboardController::class, 'profil'
-    ])->name('dashboard.profil');
+    ])->name('dashboard.profil')->middleware('payeduser');
+
     Route::get('/plans', [\App\Http\Controllers\UserController::class, 'plansAlreadyUser'])
         ->name('usersAlready.plans');
 
     // PROFIL
     Route::get('/dashboard/profil/edit', [
         \App\Http\Controllers\DashboardController::class, 'settings'
-    ])->name('dashboard.profil.edit');
+    ])->name('dashboard.profil.edit')->middleware('payeduser');
 
     Route::put('/dashboard/profil/edit', [\App\Http\Controllers\DashboardController::class, 'updateUser'])->name('dashboard.update');
 
