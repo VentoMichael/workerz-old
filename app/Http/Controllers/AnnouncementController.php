@@ -16,6 +16,7 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
@@ -46,6 +47,11 @@ class AnnouncementController extends Controller
     public function show(Announcement $announcement)
     {
         $announcement = Announcement::withLikes()->where('id', '=', $announcement->id)->first();
+
+        if(!\request()->session()->has('visit')) {
+            \request()->session()->put('visit', 1);
+            $announcement->incrementReadCount();
+        }
         $randomAds = Announcement::Published()
             ->NoBan()
             ->Payement()->Adspayed()->orderBy('plan_announcement_id',
@@ -89,8 +95,8 @@ class AnnouncementController extends Controller
                 'description' => 'required|max:256',
                 'job' => 'required|max:256',
                 'location' => 'required|not_in:0',
-                'categoryAds'=> 'required|array|max:'.$plan,
-                'startmonth'=> 'required',
+                'categoryAds' => 'required|array|max:'.$plan,
+                'startmonth' => 'required',
             ])->validate();
         }
         $announcement = new Announcement();
@@ -188,9 +194,9 @@ class AnnouncementController extends Controller
     {
         $announcement = Announcement::where('user_id', '=', \auth()->user()->id)->latest('created_at')->first();
         $announcement->is_payed = true;
-        if ($announcement->plan_announcement_id == 2){
+        if ($announcement->plan_announcement_id == 2) {
             $days = 15;
-        }else{
+        } else {
             $days = 30;
         }
         $trial = Carbon::now()->addDays($days);

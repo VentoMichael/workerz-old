@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\AdsEarlyExpire;
+use App\Models\Announcement;
 use App\Models\Category;
 use App\Models\CategoryUser;
 use App\Models\Phone;
@@ -175,7 +176,8 @@ class DashboardController extends Controller
 
     public function ads()
     {
-        return view('dashboard.ads');
+        $announcement = Announcement::skip(1)->first();
+        return view('dashboard.ads',compact('announcement'));
     }
 
     protected function sendNotification()

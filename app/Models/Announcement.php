@@ -18,6 +18,12 @@ class Announcement extends Model
         return 'slug';
     }
 
+    public function incrementReadCount()
+    {
+        $this->view_count++;
+        return $this->save();
+    }
+
     public function scopePublished($query)
     {
         return $query->where('is_draft', '=', false);

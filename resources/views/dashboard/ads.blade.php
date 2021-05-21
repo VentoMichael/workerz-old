@@ -24,9 +24,9 @@
                         </div>
                         <div>
                             <h3 aria-level="3">
-                                Annonce peu commune
+                                {{$announcement->title}}
                             </h3>
-                            <p class="view-counter">500 vues</p>
+                            <p class="view-counter">{{ $announcement->view_count }} vues</p>
                         </div>
                     </section>
                 </div>
