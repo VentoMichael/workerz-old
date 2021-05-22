@@ -1,5 +1,5 @@
 <div class="container-search-ads">
-        <form action="{{route('dashboard.ads')}}" aria-label="Rechercher mes annonces" role="search"
+        <form action="{{$firstAdDraft->slug.request('search')}}" aria-label="Rechercher mes annonces" role="search"
               method="get" class="formSearchAd">
             <label for="search" class="hidden">Rechercher mes annonces</label>
             <input type="text" name="search" value="{{request('search')}}" id="search"
@@ -10,7 +10,7 @@
                 <button type="submit" class="button-cta submit-category-home submit-ad" >Recherchez</button>
             </noscript>
         </form>
-    <div class="container-announcments-dashboard load">
+    <div class="container-announcments-dashboard" wire:loading.class="load">
         @forelse($announcements as $announcement)
             <a class="{{ Request::is('dashboard/ads/'.$announcement->slug) || Request::is('dashboard/ads/'.$announcement->slug.'/*') ? "container-announcements-active" : "" }} container-announcements"
                href="{{asset('dashboard/ads/'.$announcement->slug)}}"
@@ -21,8 +21,8 @@
                         <h3 aria-level="3">
                             {{$announcement->title}}
                         </h3>
-                        <p class="view-counter">{{ $announcement->view_count }} vues</p>
-                        <p class="view-like">{{$announcement->likes ? : 0}} j'aimes</p>
+                        <p class="view-counter">{{ $announcement->view_count }} @if($announcement->view_count >1 )vues @else vue @endif</p>
+                        <p class="view-like">{{$announcement->likes ? : 0}} @if($announcement->likes == null || $announcement->likes == 1)j'aime @else j'aimes @endif</p>
                     </div>
                 </section>
             </a>

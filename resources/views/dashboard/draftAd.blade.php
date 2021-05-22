@@ -4,16 +4,16 @@
         @include('partials.navigationDashboard')
         <section class="container-dashboard container-ads">
             <h2 aria-level="2">
-                @if(auth()->user()->announcements()->NotDraft()->count() > 1)
+                @if(auth()->user()->announcements()->Draft()->count() > 1)
                     Annonces
                 @else
                     Annonce
                 @endif
-                mise en ligne
+                mise en brouillon
             </h2>
             <div class="container-form-ads">
-                <livewire:ads-dashboard>
-                </livewire:ads-dashboard>
+                <livewire:ads-draft-dashboard>
+                </livewire:ads-draft-dashboard>
                 <section class="container-profil-dashboard container-ads-dashboard">
                     <a class="link-back" href="{{route('dashboard.ads')}}">
                         <button class="container-back-dashboard button-back button-cta button-draft button-edition">

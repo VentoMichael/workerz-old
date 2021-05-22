@@ -15,10 +15,9 @@
                                     Mes brouillons
                                 </h3>
                                 <img src="{{asset('svg/draft.svg')}}" alt="Icone d'annonces brouillon">
-                                <form action="/dashboard/ads/{{$firstAd->slug}}" method="get">
-                                    <button class="button-cta" name="draftads">Mes brouillons
-                                    </button>
-                                </form>
+                                <a class="button-cta button-edition" href="ads/draft/{{$firstAdDraft->slug}}">
+                                    Mes brouillons
+                                </a>
                             </section>
                         @endif
                         @if(auth()->user()->announcements()->count())
@@ -27,12 +26,11 @@
                                     Mes annonces en ligne
                                 </h3>
                                 <img src="{{asset('svg/ad.svg')}}" alt="Icone d'annonces">
-                                <form action="/dashboard/ads/{{$firstAdDraft->slug}}" method="get">
-                                    <button class="button-cta" name="adsonline">Mes
-                                        annonces
-                                        en ligne
-                                    </button>
-                                </form>
+                                <a class="button-cta button-edition" href="ads/{{$firstAd->slug}}">
+                                    Mes
+                                    annonces
+                                    en ligne
+                                </a>
                             </section>
                         @endif
                     </div>

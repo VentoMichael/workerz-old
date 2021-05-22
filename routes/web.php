@@ -65,8 +65,13 @@ Route::prefix('')->middleware(['auth'])->group(function () {
         [\App\Http\Controllers\DashboardController::class, 'messages'])->name('dashboard.messages')->middleware('payeduser');
     Route::get('/dashboard/ads',
         [\App\Http\Controllers\DashboardController::class, 'ads'])->name('dashboard.ads')->middleware('payeduser','payedads');
+
     Route::get('/dashboard/ads/{announcement}',
         [\App\Http\Controllers\DashboardController::class, 'show'])->name('dashboard.ads.show')->middleware('payeduser','payedads');
+
+    Route::get('/dashboard/ads/draft/{announcement}',
+        [\App\Http\Controllers\DashboardController::class, 'showDraft'])->name('dashboard.ads.showDraft')->middleware('payeduser','payedads');
+
     Route::get('/dashboard/ads/{announcement}/edit',
         [\App\Http\Controllers\DashboardController::class, 'updateAds'])->name('update.ads.dashboard')->middleware('payeduser','payedads');
     Route::put('/dashboard/ads/{announcement}/edit',

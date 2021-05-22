@@ -1246,3 +1246,9 @@ div .container-filter-categories:hover {
     flex-direction: column;
     align-items: center;
 }
+.load{
+    opacity: .5;
+}
+.container-back-dashboard:hover:after{
+    top: 11px;
+}

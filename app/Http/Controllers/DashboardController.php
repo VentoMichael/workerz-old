@@ -54,10 +54,17 @@ class DashboardController extends Controller
             compact('disponibilities', 'categories', 'regions', 'user_categories', 'user_disponibilities'));
     }
     public function show(Announcement $announcement)
-    {
+    {$firstAd  = Auth::user()->announcements()->Draft()->first();
         $user = User::where('id','=',\auth()->user()->id)->with('announcements')->first();
         $announcement = Announcement::withLikes()->where('id', '=', $announcement->id)->first();
-        return view('dashboard.show', compact('announcement','user'));
+        return view('dashboard.show', compact('announcement','user','firstAd'));
+    }
+    public function showDraft(Announcement $announcement)
+    {
+        $firstAdDraft = Auth::user()->announcements()->first();
+        $user = User::where('id','=',\auth()->user()->id)->with('announcements')->first();
+        $announcement = Announcement::withLikes()->where('id', '=', $announcement->id)->first();
+        return view('dashboard.draftAd', compact('announcement','user','firstAdDraft'));
     }
     public function updateUser(Request $request)
     {
