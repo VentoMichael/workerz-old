@@ -85,7 +85,7 @@
     grid-gap: 30px
 }
 
-.container-filter-categories, .form-choice {
+.container-filter-categories, .form-choice,.container-register {
     display: grid;
     grid-template-columns: repeat(2, minmax(270px, 1fr));
     grid-gap: 30px;

@@ -92,9 +92,11 @@
                         </span>
                         </div>
                     </div>
-                    <a href="{{route('update.ads.dashboard',$announcement->slug)}}" class="button-cta">
-                        J'édite {{$announcement->title}}
-                    </a>
+                    <div class="container-draft-publish-dashboard">
+                        <a href="{{route('dashboard.ads.showDraftEdit',$announcement->slug)}}" class="button-cta">
+                            J'édite {{$announcement->title}}
+                        </a>
+                    </div>
                 </section>
             </div>
         </section>

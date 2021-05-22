@@ -73,7 +73,6 @@ class Kernel extends HttpKernel
         'userroute' => UserRoute::class,
         'adsroute' => AnnouncementRoute::class,
         'noplansuser' => noPlansUser::class,
-        'notypead' => NoTypeAd::class,
         'noplansads' => NoPlansAds::class,
         'checkpayed' => CheckPayed::class,
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,

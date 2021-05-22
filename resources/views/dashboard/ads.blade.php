@@ -20,7 +20,7 @@
                                 </a>
                             </section>
                         @endif
-                        @if(auth()->user()->announcements()->count())
+                        @if(auth()->user()->announcements()->NotDraft()->count())
                             <section>
                                 <h3 aria-level="3" class="hidden">
                                     Mes annonces en ligne

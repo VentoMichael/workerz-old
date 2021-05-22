@@ -63,19 +63,26 @@ Route::prefix('')->middleware(['auth'])->group(function () {
     ])->name('dashboard.notifications')->middleware('payeduser');
     Route::get('/dashboard/messages',
         [\App\Http\Controllers\DashboardController::class, 'messages'])->name('dashboard.messages')->middleware('payeduser');
+
+
     Route::get('/dashboard/ads',
         [\App\Http\Controllers\DashboardController::class, 'ads'])->name('dashboard.ads')->middleware('payeduser','payedads');
 
-    Route::get('/dashboard/ads/{announcement}',
-        [\App\Http\Controllers\DashboardController::class, 'show'])->name('dashboard.ads.show')->middleware('payeduser','payedads');
-
+    //ADS DRAFT DASHBOARD
     Route::get('/dashboard/ads/draft/{announcement}',
         [\App\Http\Controllers\DashboardController::class, 'showDraft'])->name('dashboard.ads.showDraft')->middleware('payeduser','payedads');
+    Route::get('/dashboard/ads/draft/{announcement}/edit',
+        [\App\Http\Controllers\DashboardController::class, 'editAdsDraft'])->name('dashboard.ads.showDraftEdit')->middleware('payeduser','payedads');
+    Route::put('/dashboard/ads/draft/{announcement}',
+        [\App\Http\Controllers\DashboardController::class, 'updateAdsDraft'])->name('dashboard.ads.showDraftUpdate')->middleware('payeduser','payedads');
 
+    //ADS DASHBOARD
+    Route::get('/dashboard/ads/{announcement}',
+        [\App\Http\Controllers\DashboardController::class, 'show'])->name('dashboard.ads.show')->middleware('payeduser','payedads');
     Route::get('/dashboard/ads/{announcement}/edit',
-        [\App\Http\Controllers\DashboardController::class, 'updateAds'])->name('update.ads.dashboard')->middleware('payeduser','payedads');
-    Route::put('/dashboard/ads/{announcement}/edit',
-        [\App\Http\Controllers\DashboardController::class, 'storeAds'])->name('store.ads.dashboard')->middleware('payeduser','payedads');
+        [\App\Http\Controllers\DashboardController::class, 'editAds'])->name('update.ads.dashboard')->middleware('payeduser','payedads');
+    Route::put('/dashboard/ads/{announcement}',
+        [\App\Http\Controllers\DashboardController::class, 'updateAds'])->name('store.ads.dashboard')->middleware('payeduser','payedads');
 
     Route::get('/dashboard/profil', [
         \App\Http\Controllers\DashboardController::class, 'profil'

@@ -7,8 +7,8 @@
                 Édition de l'annonce {{$announcement->title}}
             </h2>
             <div class="container-form-ads">
-                <livewire:ads-dashboard>
-                </livewire:ads-dashboard>
+                <livewire:ads-draft-dashboard>
+                </livewire:ads-draft-dashboard>
 
                 <section class="container-home container-edit-ads container-create-ads">
                     <a class="link-back" href="{{route('dashboard.ads')}}">
@@ -22,7 +22,7 @@
                     <div class="container-all-announcement show-content container-create-ads-infos">
                         <form class="form-login form-register" enctype="multipart/form-data"
                               aria-label="Enregistrement d'un compte" role="form" method="POST"
-                              action="/dashboard/ads/{{$announcement->slug}}">
+                              action="/dashboard/ads/draft/{{$announcement->slug}}">
                             @csrf
                             @method("PUT")
                             <div class="container-register-form container-register">

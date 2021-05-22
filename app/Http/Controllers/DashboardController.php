@@ -54,17 +54,42 @@ class DashboardController extends Controller
             compact('disponibilities', 'categories', 'regions', 'user_categories', 'user_disponibilities'));
     }
     public function show(Announcement $announcement)
-    {$firstAd  = Auth::user()->announcements()->Draft()->first();
+    {
+        $firstAd  = Auth::user()->announcements()->NotDraft()->first();
         $user = User::where('id','=',\auth()->user()->id)->with('announcements')->first();
         $announcement = Announcement::withLikes()->where('id', '=', $announcement->id)->first();
         return view('dashboard.show', compact('announcement','user','firstAd'));
     }
     public function showDraft(Announcement $announcement)
     {
-        $firstAdDraft = Auth::user()->announcements()->first();
+        $firstAdDraft = Auth::user()->announcements()->Draft()->first();
         $user = User::where('id','=',\auth()->user()->id)->with('announcements')->first();
         $announcement = Announcement::withLikes()->where('id', '=', $announcement->id)->first();
         return view('dashboard.draftAd', compact('announcement','user','firstAdDraft'));
+    }
+    public function editAdsDraft(Announcement $announcement)
+    {
+        $firstAdDraft = Auth::user()->announcements()->first();
+        $user = User::where('id','=',\auth()->user()->id)->with('announcements')->first();
+        $announcement = Announcement::withLikes()->where('id', '=', $announcement->id)->first();
+        $plan = $announcement->plan_announcement_id;
+        $categories = Category::all();
+        $regions = Province::all();
+        $disponibilities = StartMonth::all();
+        return view('dashboard.updateAdsDraft', compact('announcement','categories','regions','plan','disponibilities','user','firstAdDraft'));
+    }
+    public function updateAdsDraft(Announcement $announcement)
+    {
+        dd('dd');
+        $firstAdDraft = Auth::user()->announcements()->first();
+        $user = User::where('id','=',\auth()->user()->id)->with('announcements')->first();
+        $announcement = Announcement::withLikes()->where('id', '=', $announcement->id)->first();
+
+        if (\request()->has('publish')){
+            $announcement->is_draft = 0;
+            $announcement->update();
+        }
+        return view('dashboard.updateAdsDraft', compact('announcement','user','firstAdDraft'));
     }
     public function updateUser(Request $request)
     {
@@ -188,8 +213,17 @@ class DashboardController extends Controller
 
     }
 
+    public function editAds(Announcement $announcement)
+    {
+        $plan = $announcement->plan_announcement_id;
+        $categories = Category::all();
+        $regions = Province::all();
+        $disponibilities = StartMonth::all();
+        return view('dashboard.updateAds',compact('announcement','categories','regions','plan','disponibilities'));
+    }
     public function updateAds(Announcement $announcement)
     {
+        dd('store');
         $plan = $announcement->plan_announcement_id;
         $categories = Category::all();
         $regions = Province::all();
@@ -198,8 +232,8 @@ class DashboardController extends Controller
     }
     public function ads(Announcement $announcement)
     {
-        $firstAd  = Auth::user()->announcements()->Draft()->first();
-        $firstAdDraft = Auth::user()->announcements()->first();
+        $firstAd  = Auth::user()->announcements()->NotDraft()->first();
+        $firstAdDraft = Auth::user()->announcements()->Draft()->first();
         return view('dashboard.ads',compact('firstAd','firstAdDraft'));
     }
 
