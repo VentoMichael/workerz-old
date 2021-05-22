@@ -1,15 +1,15 @@
 <div class="container-search-ads">
-    <form action="{{request('search')}}" aria-label="Rechercher mes annonces" role="search"
-          method="get" class="formSearchAd">
-        <label for="search" class="hidden">Rechercher mes annonces</label>
-        <input type="text" name="search" value="{{request('search')}}" id="search"
-               wire:model="search"
-               placeholder="Rechercher par nom"
-               class="search-announcement search-home search-ads">
-        <noscript>
-            <button type="submit" class="button-cta submit-category-home submit-ad">Recherchez</button>
-        </noscript>
-    </form>
+        <form action="{{route('dashboard.ads')}}" aria-label="Rechercher mes annonces" role="search"
+              method="get" class="formSearchAd">
+            <label for="search" class="hidden">Rechercher mes annonces</label>
+            <input type="text" name="search" value="{{request('search')}}" id="search"
+                   wire:model="search"
+                   placeholder="Rechercher par nom"
+                   class="search-announcement search-home search-ads">
+            <noscript>
+                <button type="submit" class="button-cta submit-category-home submit-ad" >Recherchez</button>
+            </noscript>
+        </form>
     <div class="container-announcments-dashboard load">
         @forelse($announcements as $announcement)
             <a class="{{ Request::is('dashboard/ads/'.$announcement->slug) || Request::is('dashboard/ads/'.$announcement->slug.'/*') ? "container-announcements-active" : "" }} container-announcements"

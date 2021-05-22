@@ -1209,7 +1209,7 @@ div .container-filter-categories:hover {
 }
 
 .container-edit-ads .horary-cost {
-    top: 49px;
+    top: 35%;
 }
 .container-edit-ads .title-first-step-register{
     margin-top: 20px;
@@ -1222,4 +1222,27 @@ div .container-filter-categories:hover {
 
 .container-buttons-ads .link-back {
     position: inherit;
+}
+.container-draftads{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+}
+.container-draftads img{max-width: 200px; height: 200px}
+.container-draftads section{
+    display: flex;
+    align-self: center;
+    flex-direction: column;
+    align-items: center;
+}
+.container-profil-dashboard div section:nth-child(2){
+    margin-top: 0;
+}
+.container-draftads section a {
+    margin-top: 20px;
+}
+.container-ads-give{
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }

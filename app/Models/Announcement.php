@@ -43,6 +43,14 @@ class Announcement extends Model
     {
         return $query->where('is_payed', '=', '1');
     }
+    public function scopeDraft($query)
+    {
+        return $query->where('is_draft', '=', '1');
+    }
+    public function scopeNotDraft($query)
+    {
+        return $query->where('is_draft', '=', '0');
+    }
 
     public function user()
     {

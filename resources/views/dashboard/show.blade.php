@@ -4,13 +4,37 @@
         @include('partials.navigationDashboard')
         <section class="container-dashboard container-ads">
             <h2 aria-level="2">
-                Annonces
+                @if(request()->has('adsonline'))
+                    @if(auth()->user()->announcements()->NotDraft()->count() > 1)
+                        Annonces
+                    @else
+                        Annonce
+                    @endif
+                    mise en ligne
+                @else
+                    @if(auth()->user()->announcements()->Draft()->count() > 1)
+                        Annonces
+                    @else
+                        Annonce
+                    @endif
+                    mise en brouillon
+
+                @endif
             </h2>
             <div class="container-form-ads">
-                <livewire:ads-dashboard>
-                </livewire:ads-dashboard>
-
+                @if(request()->has('adsonline'))
+                    <livewire:ads-dashboard>
+                    </livewire:ads-dashboard>
+                @else
+                    <livewire:ads-draft-dashboard>
+                    </livewire:ads-draft-dashboard>
+                @endif
                 <section class="container-profil-dashboard container-ads-dashboard">
+                    <a class="link-back" href="{{route('dashboard.ads')}}">
+                        <button class="button-back button-cta button-draft button-edition">
+                            Retour
+                        </button>
+                    </a>
                     <div class="container-picture-title-dashboard-ads">
                         @if($announcement->catchPhrase)
                             <p class="container-ads-catch_phrase-dashboard">
@@ -84,10 +108,13 @@
                         </div>
                     </div>
                     <a href="{{route('update.ads.dashboard',$announcement->slug)}}" class="button-cta">
-                        J'édite {{$announcement->name}} annonce
+                        J'édite {{$announcement->title}}
                     </a>
                 </section>
             </div>
         </section>
     </div>
+@endsection
+@section('scripts')
+    @livewireScripts
 @endsection

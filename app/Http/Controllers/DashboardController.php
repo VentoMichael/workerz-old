@@ -189,9 +189,11 @@ class DashboardController extends Controller
         $disponibilities = StartMonth::all();
         return view('dashboard.updateAds',compact('announcement','categories','regions','plan','disponibilities'));
     }
-    public function ads()
+    public function ads(Announcement $announcement)
     {
-        return view('dashboard.ads');
+        $firstAd  = Auth::user()->announcements()->Draft()->first();
+        $firstAdDraft = Auth::user()->announcements()->first();
+        return view('dashboard.ads',compact('firstAd','firstAdDraft'));
     }
 
     protected function sendNotification()
@@ -218,8 +220,8 @@ class DashboardController extends Controller
                 auth()->user()->sending_time_expire = 1;
                 auth()->user()->end_plan = null;
                 auth()->user()->save();
-                Mail::to(env('MAIL_FROM_ADDRESS'))
-                    ->send(new AdsEarlyExpire(auth()->user()));
+                //Mail::to(env('MAIL_FROM_ADDRESS'))
+                //    ->send(new AdsEarlyExpire(auth()->user()));
                 Session::flash('expire', 'Attention, votre compte va expirer dans un jour !');
             }
         }

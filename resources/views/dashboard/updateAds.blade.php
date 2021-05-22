@@ -11,7 +11,7 @@
                 </livewire:ads-dashboard>
 
                 <section class="container-home container-edit-ads container-create-ads">
-                    <a class="link-back" href="{{route('announcements.plans')}}">
+                    <a class="link-back" href="{{route('dashboard.ads')}}">
                         <button class="button-back button-cta button-draft">
                             Retour
                         </button>
