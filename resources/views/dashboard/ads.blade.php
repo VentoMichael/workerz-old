@@ -7,32 +7,17 @@
                 Annonces
             </h2>
             <div class="container-form-ads">
-                <div class="container-search-ads">
-                    <form action="{{route('dashboard.ads')}}" aria-label="Rechercher mes annonces" role="search"
-                          method="get" class="formSearchAd">
-                        <label for="search" class="hidden">Rechercher mes annonces</label>
-                        <input type="text" name="search" value="{{request('search')}}" id="search" wire:model="search"
-                               placeholder="Rechercher par nom"
-                               class="search-announcement search-home search-ads">
-                        <noscript>
-                            <input type="submit" class="submit-category-home submit-ad" value="Recherchez">
-                        </noscript>
-                    </form>
-                    <section class="container-announcements container-announcements-active">
-                        <div>
-                            <img src="{{asset('svg/ad.svg')}}" alt="icone d'annonce">
-                        </div>
-                        <div>
-                            <h3 aria-level="3">
-                                {{$announcement->title}}
-                            </h3>
-                            <p class="view-counter">{{ $announcement->view_count }} vues</p>
-                        </div>
-                    </section>
-                </div>
-                <div class="container-profil-dashboard">
-
-                </div>
+                <livewire:ads-dashboard>
+                </livewire:ads-dashboard>
+                <section class="container-profil-dashboard container-ads-dashboard">
+                    <h3>
+                        Que peux vous apportez une annonce ?
+                    </h3>
+                    <p>Une annonce vous permets de trouver de nombreux clients potentiels, elle vous permet non seulement d'avoir un choix de clients variant mais elle permet également de vendre/recherchez facilement !</p>
+                    <a class="button-cta" href="{{route('announcements.plans')}}">
+                        J'en poste une
+                    </a>
+                </section>
             </div>
         </section>
     </div>

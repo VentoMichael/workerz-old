@@ -85,7 +85,7 @@
     grid-gap: 30px
 }
 
-.container-register-form, .form-choice {
+.container-filter-categories, .form-choice {
     display: grid;
     grid-template-columns: repeat(2, minmax(270px, 1fr));
     grid-gap: 30px;
@@ -1019,7 +1019,6 @@ form .search-announcement {
 }
 .container-filter-categories li:last-child{
     margin-bottom: 0;
-
 }
 .container-filters button {
     width: 100%;

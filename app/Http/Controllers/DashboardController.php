@@ -12,10 +12,12 @@ use App\Models\Province;
 use App\Models\ProvinceUser;
 use App\Models\StartDate;
 use App\Models\StartDateUser;
+use App\Models\StartMonth;
 use App\Models\User;
 use App\Models\Website;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
@@ -51,7 +53,12 @@ class DashboardController extends Controller
         return view('dashboard.edit',
             compact('disponibilities', 'categories', 'regions', 'user_categories', 'user_disponibilities'));
     }
-
+    public function show(Announcement $announcement)
+    {
+        $user = User::where('id','=',\auth()->user()->id)->with('announcements')->first();
+        $announcement = Announcement::withLikes()->where('id', '=', $announcement->id)->first();
+        return view('dashboard.show', compact('announcement','user'));
+    }
     public function updateUser(Request $request)
     {
         $user = \auth()->user();
@@ -174,10 +181,17 @@ class DashboardController extends Controller
 
     }
 
+    public function updateAds(Announcement $announcement)
+    {
+        $plan = $announcement->plan_announcement_id;
+        $categories = Category::all();
+        $regions = Province::all();
+        $disponibilities = StartMonth::all();
+        return view('dashboard.updateAds',compact('announcement','categories','regions','plan','disponibilities'));
+    }
     public function ads()
     {
-        $announcement = Announcement::skip(1)->first();
-        return view('dashboard.ads',compact('announcement'));
+        return view('dashboard.ads');
     }
 
     protected function sendNotification()

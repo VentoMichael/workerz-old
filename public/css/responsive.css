@@ -223,10 +223,12 @@
     section .container-filter-categories::-webkit-scrollbar {
         width: 13px;
     }
-.form-register .container-register-form .container-filter-categories::-webkit-scrollbar {
-    width: 0;
-}
-.container-infos-ads-randomm {
+
+    .form-register .container-register-form .container-filter-categories::-webkit-scrollbar {
+        width: 0;
+    }
+
+    .container-infos-ads-randomm {
         display: flex;
         grid-gap: 50px;
     }
@@ -234,9 +236,11 @@
     .container-filter-categories::-webkit-scrollbar {
         width: 10px
     }
-    div .container-profil-cat::-webkit-scrollbar{
-width: 0;
-}
+
+    div .container-profil-cat::-webkit-scrollbar {
+        width: 0;
+    }
+
     section .container-filter-categories {
         overflow-x: hidden;
         overflow-y: scroll;
@@ -386,20 +390,87 @@ width: 0;
     .container-list-menu-principal li a {
         opacity: 1;
     }
-    section .container-picture-ads{
+
+    section .container-picture-ads {
         position: inherit;
     }
+
     main section .container-adv {
         grid-template-columns: repeat(1, minmax(200px, 1fr));
     }
-    .container-create-ads .title-first-step-register{
+
+    .container-create-ads .title-first-step-register {
         margin: auto auto 10px;
     }
-    .form-edit-company div .email-label{
+
+    .form-edit-company div .email-label {
         margin-top: 0;
     }
-    .container-register-form .container-form-email .jobOpportunity{
+
+    .container-register-form .container-form-email .jobOpportunity {
         margin-left: 7px;
+    }
+
+    section .container-form-ads {
+        grid-template-columns: inherit;
+    }
+
+    section .container-search-ads {
+        height: 300px;
+    }
+
+    div .formSearchAd {
+        background: var(--blueClair);
+        flex-direction: row;
+        align-items: baseline;
+        left: 0;
+    }
+
+    .formSearchAd .search-ads {
+        margin: 10px 20px 20px 0;
+        min-width: 300px;
+    }
+
+    div .formSearchAd noscript button {
+        width: 100%;
+    }
+
+    div .container-search-ads {
+        overflow-x: auto;
+        overflow-y: hidden;
+    }
+
+    div .container-announcments-dashboard {
+        flex-direction: row;
+        display: flex;
+        height: 200px;
+        margin-top: -10px;
+    }
+
+    div .container-announcments-dashboard .container-announcements {
+        flex-direction: row;
+        min-width: 150px;
+        margin: 15px 10px;
+    }
+
+    div .container-announcments-dashboard .container-announcements:first-child {
+        margin-left: 0;
+    }
+
+    div .container-announcements section {
+        flex-direction: column;
+    }
+
+    div .container-edit-ads .title-first-step-register {
+        margin-top: 40px;
+    }
+
+    div .container-edit-ads .avatar-container {
+        justify-content: flex-start;
+    }
+
+    .container-edit-ads .container-filter-categories li {
+        margin: 10px 0;
     }
 }
 
@@ -536,9 +607,11 @@ width: 0;
         top: inherit;
         bottom: 60px;
     }
-.container-form-email .horary-cost-company{
-    top: 33px;
-}
+
+    .container-form-email .horary-cost-company {
+        top: 33px;
+    }
+
     section div .container-perso-infos {
         grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
     }
@@ -565,9 +638,11 @@ width: 0;
         flex-direction: column;
         align-items: center;
     }
-    .form-edit-company .container-register-form{
+
+    .form-edit-company .container-register-form {
         margin-bottom: 0;
     }
+
     div .container-socials-media {
         margin-top: 20px;
         grid-template-columns: repeat(4, minmax(10px, 1fr));
@@ -576,21 +651,26 @@ width: 0;
     section .container-worker {
         grid-gap: 30px;
     }
-    .form-edit-preview .container-register-form, .form-choice,.container-profil-dashboard div .form-edit-company,form .container-connexion-logins {
+
+    .form-edit-preview .container-register-form, .form-choice, .container-profil-dashboard div .form-edit-company, form .container-connexion-logins {
         display: grid;
         grid-template-columns: repeat(1, minmax(270px, 1fr));
     }
-    .form-edit-preview .horary-cost{
+
+    .form-edit-preview .horary-cost {
         top: inherit;
         bottom: 38px;
     }
-    .form-register div .help{
+
+    .form-register div .help {
         margin-top: 0;
     }
-    .container-job-dashboard{
+
+    .container-job-dashboard {
         margin-top: 25px;
     }
-    form .container-connexion-logins{
+
+    form .container-connexion-logins {
         grid-gap: 0;
     }
 }
@@ -672,20 +752,33 @@ width: 0;
     ul .container-logout-dash {
         display: inherit;
     }
-    ul .container-logout-dashboard{
+
+    ul .container-logout-dashboard {
         display: none;
     }
+
     ul .container-menu-pincipal {
         margin-top: 50px;
     }
-    .container-dashboard{
+
+    .container-dashboard {
         padding-bottom: 20px;
     }
-    footer .copyright{
+
+    footer .copyright {
         padding: 10px;
     }
+
     .container-list-menu {
-         top: 0;
+        top: 0;
+    }
+
+    .category-input {
+        margin-top: 35px;
+    }
+
+    div .container-edit-ads .horary-cost {
+        top: 32px;
     }
 }
 
@@ -757,8 +850,18 @@ width: 0;
         width: 200%;
     }
 
+    div .container-buttons-ads {
+        margin-top: 30px;
+        margin-bottom: -30px;
+    }
+
     .container-register-form {
         grid-template-columns: repeat(1, minmax(270px, 1fr));
+    }
+
+    div .container-edit-ads {
+        margin: 50px 2% 0;
+
     }
 
     .container-svg img {
@@ -795,28 +898,35 @@ width: 0;
         border-radius: 0 0 10px 10px;
         padding: 20px;
     }
+
     section .container-home_image div div .container-form-search {
         min-width: inherit;
     }
-    .formSearchAd input{
+
+    .formSearchAd input {
         min-width: 98%;
     }
-    form .container-buttons-ads{
+
+    form .container-buttons-ads {
         flex-direction: column;
     }
-    .container-buttons-ads .link-back, .container-buttons-ads button:nth-child(2){
+
+    .container-buttons-ads .link-back, .container-buttons-ads button:nth-child(2) {
         width: 90%;
         margin: 10px auto 0;
     }
-    .link-back .button-draft{
+
+    .link-back .button-draft {
         width: 100%;
         margin-bottom: 10px;
         margin-top: -10px;
     }
-    .form-register .container-job-dashboard{
+
+    .form-register .container-job-dashboard {
         margin-top: 25px;
     }
-    .container-profil-dashboard .container-link-to-back button{
+
+    .container-profil-dashboard .container-link-to-back button {
         margin-top: inherit;
     }
 }

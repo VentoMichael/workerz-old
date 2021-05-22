@@ -1,0 +1,49 @@
+<div class="container-search-ads">
+    @if($announcements->count())
+        <form action="{{route('dashboard.ads')}}" aria-label="Rechercher mes annonces" role="search"
+              method="get" class="formSearchAd">
+            <label for="search" class="hidden">Rechercher mes annonces</label>
+            <input type="text" name="search" value="{{request('search')}}" id="search"
+                   wire:model="search"
+                   placeholder="Rechercher par nom"
+                   class="search-announcement search-home search-ads">
+            <noscript>
+                <button type="submit" class="button-cta submit-category-home submit-ad" >Recherchez</button>
+            </noscript>
+        </form>
+    @endif
+    <div class="container-announcments-dashboard">
+    @forelse($announcements as $announcement)
+        <a class="{{ Request::is('dashboard/ads/'.$announcement->slug) || Request::is('dashboard/ads/'.$announcement->slug.'/*') ? "container-announcements-active" : "" }} container-announcements"
+           href="{{asset('dashboard/ads/'.$announcement->slug)}}"
+           aria-current="{{ Request::is('dashboard/ads/*') ? "page" : "" }}">
+            <section>
+                <img src="{{asset('svg/ad.svg')}}" alt="icone d'annonce">
+                <div>
+                    <h3 aria-level="3">
+                        {{$announcement->title}}
+                    </h3>
+                    <p class="view-counter">{{ $announcement->view_count }} vues</p>
+                    <p class="view-like">{{$announcement->likes ? : 0}} j'aimes</p>
+                </div>
+            </section>
+        </a>
+    @empty
+        <div class="container-announcements"
+        >
+            <section>
+                <img src="{{asset('svg/ad.svg')}}" alt="icone d'annonce">
+
+                <div>
+                    <h3 aria-level="3">
+                        Aucune annonce trouvée ...
+                    </h3>
+                    <a class="button-cta" href="{{route('announcements.plans')}}">
+                        J'en poste une
+                    </a>
+                </div>
+            </section>
+        </div>
+    @endforelse
+    </div>
+</div>

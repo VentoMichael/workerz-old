@@ -151,7 +151,7 @@
                             @if($announcement->adress)
                                 <span itemprop="streetAddress">{{$announcement->adress}}</span>
                             @endif
-                                <p itemprop="addressRegion">{{ucfirst($announcement->province->name)}}</p>
+                                <span itemprop="addressRegion">{{ucfirst($announcement->province->name)}}</span>
                         </span>
                     </div>
                 </section>

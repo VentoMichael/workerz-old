@@ -15,7 +15,7 @@
 .btnAddAnnouncement:focus-visible,.btnAddAnnouncement:focus:not(:focus-visible),.submit-newsletter:focus-visible,.submit-newsletter:focus:not(:focus-visible),.btn-add-phone:focus:not(:focus-visible),.btn-add-phone:focus-visible {
     background: var(--gradientDarkBlue);
 }
-.input-newsletter:focus:not(:focus-visible),.input-newsletter:focus-visible{
+.input-newsletter:focus:not(:focus-visible),.input-newsletter:focus-visible,.search-home:focus:not(:focus-visible),.search-home:focus-visible{
     background: white;
 }
 .deconnexionButtonDashboard:focus:not(:focus-visible), .deconnexionButtonDashboard:focus-visible{
