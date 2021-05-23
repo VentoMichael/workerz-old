@@ -14,7 +14,7 @@
                         Le succès est juste derrière !
                     </h2>
                     <p>
-                        Après cette étape, votre chiffre d'affaire ne peut qu'augmenter !
+                        Par après, votre serez visible parmis un grand nombre de clients potentiels
                     </p>
                 </div>
             </div>
@@ -54,10 +54,10 @@
                             <img src="{{asset('svg/good.svg')}}" alt="Icone correct">Durée : @if($plan->id == 1) {{$plan->duration}} jours @else {{$plan->duration / 30}} mois @endif
                         </li>
                         <li>
-                            @if($plan->priority) <img src="{{asset('svg/good.svg')}}" alt="Icone correct"> @else <img
-                                src="{{asset('svg/cross.svg')}}" alt="Icone négative"> @endif Support prioritaire
+                            <img src="{{asset('svg/good.svg')}}" alt="Icone correct">
+                            @if($plan->id == 1) Support basique @elseif($plan->id == 2) Support intermédiaire @elseif($plan->id == 3) Support prioritaire @endif
                         </li>
-                        <li>
+                        <li class="container-visibility">
                             @if($plan->more_visible) <img src="{{asset('svg/good.svg')}}" alt="Icone correct"> @else
                                 <img src="{{asset('svg/cross.svg')}}" alt="Icone négative"> @endif
                             @if($plan->id == 1)
@@ -68,11 +68,10 @@
                             @endif
                             @if($plan->id == 3)
                                 Votre entreprise sera visible {{$plan->id * 5}} fois plus souvent
-                            @endif
+                            @endif *
                         </li>
-                        <li>
-                            @if($plan->hight_visibility) <img src="{{asset('svg/good.svg')}}" alt="Icone correct"> @else
-                                <img src="{{asset('svg/cross.svg')}}" alt="Icone négative"> @endif Visible parmis les premiers
+                        <li class="container-visibility">
+                            <img src="{{asset('svg/good.svg')}}" alt="Icone correct">@if($plan->id == 1)  Visible parmis les 100 premiers @elseif($plan->id == 2)  Visible parmis les premiers 15 premiers @elseif($plan->id == 3)  Visible parmis les 4 premiers @endif *
                         </li>
                     </ul>
                     <form aria-label="Choix du plan pour devenir utilisateur" @auth action="{{route('users.payed')}}" @else action="{{route('users.type')}}" @endauth method="post">

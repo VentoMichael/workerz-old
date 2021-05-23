@@ -52,7 +52,7 @@
                 Pourquoi Workerz ?
             </h2>
             <p>
-                Nous avons les meilleurs indépendants de votre région
+                Nous avons les indépendants les plus reconnus de votre région
             </p>
         </div>
         <section class="container-why">

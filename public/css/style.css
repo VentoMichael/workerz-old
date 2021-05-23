@@ -2031,3 +2031,16 @@ div div .eye-forget-pass{
 .container-filters-workerz .container-filter-categories{
     display: inherit;
 }
+.container-visibility{
+    position: relative;
+}
+.container-visibility:hover:after{
+    content: 'Uniquement si vous êtes une entreprise';
+    position: absolute;
+    background: white;
+    margin-left: 47px;
+    top: 0;
+    transition: .3s;
+    cursor: help;
+    padding: 4px 8px 10px;
+}

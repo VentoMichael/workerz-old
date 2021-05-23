@@ -54,28 +54,24 @@
                             <img src="{{asset('svg/good.svg')}}" alt="Icone correct">Durée : {{$plan->duration}} jours
                         </li>
                         <li>
-                            @if($plan->priority) <img src="{{asset('svg/good.svg')}}" alt="Icone correct"> @else <img
-                                src="{{asset('svg/cross.svg')}}" alt="Icone négative"> @endif Support prioritaire
+                            <img src="{{asset('svg/good.svg')}}" alt="Icone correct">
+                            @if($plan->id == 1) Support basique @elseif($plan->id == 2) Support intermédiaire @elseif($plan->id == 3) Support prioritaire @endif
                         </li>
                         <li>
-                            @if($plan->more_visible)
-                                <img src="{{asset('svg/good.svg')}}" alt="Icone correct">                                                    @else
-                                <img src="{{asset('svg/cross.svg')}}" alt="Icone négative">
-                            @endif
+                            @if($plan->more_visible) <img src="{{asset('svg/good.svg')}}" alt="Icone correct"> @else
+                                <img src="{{asset('svg/cross.svg')}}" alt="Icone négative"> @endif
                             @if($plan->id == 1)
                                 Forte visibilité
                             @endif
-                                @if($plan->id == 2)
-                                    Votre annonce sera visible {{$plan->id * 3}} fois plus souvent
-                                @endif
-                                @if($plan->id == 3)
-                                    Votre annonce sera visible {{$plan->id * 5}} fois plus souvent
-                                @endif
+                            @if($plan->id == 2)
+                                Votre annonce sera visible {{$plan->id * 3}} fois plus souvent
+                            @endif
+                            @if($plan->id == 3)
+                                Votre annonce sera visible {{$plan->id * 5}} fois plus souvent
+                            @endif
                         </li>
                         <li>
-                            @if($plan->hight_visibility) <img src="{{asset('svg/good.svg')}}" alt="Icone correct"> @else
-                                <img src="{{asset('svg/cross.svg')}}" alt="Icone négative"> @endif Visible parmis les
-                            premiers
+                            <img src="{{asset('svg/good.svg')}}" alt="Icone correct">@if($plan->id == 1)  Visible parmis les 100 premiers @elseif($plan->id == 2)  Visible parmis les 15 premiers @elseif($plan->id == 3)  Visible parmis les 4 premiers @endif
                         </li>
                     </ul>
                     <form aria-label="Création d'une annonce" action="{{route('announcements.create')}}" method="post">

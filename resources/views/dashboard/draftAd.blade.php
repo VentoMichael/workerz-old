@@ -49,10 +49,12 @@
                                href="mailto:{{$announcement->user->email}}">{{$announcement->user->email}}</a>
                         </div>
                         @foreach($announcement->user->phones as $up)
+                            @if($up->number != null)
                             <div>
                                 <img src="{{asset('svg/phone.svg')}}" alt="icone de téléphone">
                                 <a itemprop="telephone" href="tel:{{$up->number}}">{{$up->number}}</a>
                             </div>
+                            @endif
                         @endforeach
                         <div>
                             <img src="{{asset('svg/calendar.svg')}}" alt="icone de calendrier">

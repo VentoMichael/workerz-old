@@ -26,7 +26,7 @@ class PlanUserSeeder extends Seeder
         PlanUser::create([
             'id' => 2,
             'name' => 'Premium',
-            'price' => 9.99,
+            'price' => 10.99,
             'oldprice' => 15.99,
             'duration' => 30,
             'hight_visibility' => true,

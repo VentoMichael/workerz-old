@@ -274,7 +274,7 @@
         </section>
         <section class="newsletter" id="newsletterSection">
             <h3 aria-level="3" class="util-links">
-                La newsletter immanquable
+                Abonnez vous à notre newsletter
             </h3>
             <form action="{{route('newsletter.store')}}#newsletterSection" method="POST"
                   class="form-newsletter-container" title="Inscription à notre newsletter" aria-label="Inscription à notre newsletter">

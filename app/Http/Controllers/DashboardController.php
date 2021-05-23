@@ -208,6 +208,8 @@ class DashboardController extends Controller
         $user->update();
         if ($user->wasChanged()) {
             Session::flash('success-update', 'Votre profil a bien été mis a jour!');
+        }else{
+            Session::flash('success-update-not', 'Rien n\'a été changé');
         }
         return redirect(route('dashboard.profil'));
 

@@ -12,7 +12,7 @@
         </form>
     <div class="container-announcments-dashboard" wire:loading.class="load">
         @forelse($announcements as $announcement)
-            <a class="{{ Request::is('dashboard/ads/'.$announcement->slug) || Request::is('dashboard/ads/'.$announcement->slug.'/*') ? "container-announcements-active" : "" }} container-announcements"
+            <a class="{{ Request::is('dashboard/ads/draft/'.$announcement->slug) || Request::is('dashboard/ads/draft/'.$announcement->slug.'/*') ? "container-announcements-active" : "" }} container-announcements"
                href="{{asset('dashboard/ads/'.$announcement->slug)}}"
                aria-current="{{ Request::is('dashboard/ads/*') ? "page" : "" }}">
                 <section>
