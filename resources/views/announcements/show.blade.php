@@ -45,13 +45,16 @@
                 </h2>
             @endif
         </div>
-        <section class="container-personnal-ads show-content container-adv" itemtype="https://schema.org/Thing" itemscope>
+        <section class="container-personnal-ads show-content container-adv" itemtype="https://schema.org/Thing"
+                 itemscope>
             <div class="container-love-show">
                 @auth
                     <div
                         class="containerPrice container-show-love containerLove help-show @guest notHoverHeart @endguest">
                         @if(!$announcement->isLikedBy($user))
-                            <form method="POST" title="Mettre un j'aime à {{$announcement->title}}" aria-label="Mettre un j'aime à {{$announcement->title}}" action="/announcements/{{$announcement->slug}}/like">
+                            <form method="POST" title="Mettre un j'aime à {{$announcement->title}}"
+                                  aria-label="Mettre un j'aime à {{$announcement->title}}"
+                                  action="/announcements/{{$announcement->slug}}/like">
                                 @csrf
 
                                 <button type="submit" class="button-loves">
@@ -63,7 +66,9 @@
                             </form>
                         @else
 
-                            <form method="POST" title="Enlever le j'aime donner à {{$announcement->title}}" aria-label="Enlever le j'aime donner à {{$announcement->title}}" action="/announcements/{{$announcement->slug}}/like">
+                            <form method="POST" title="Enlever le j'aime donner à {{$announcement->title}}"
+                                  aria-label="Enlever le j'aime donner à {{$announcement->title}}"
+                                  action="/announcements/{{$announcement->slug}}/like">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="button-loves">
@@ -76,7 +81,8 @@
                     </div>
 
                 @else
-                    <a href="{{route('login')}}" title="Il faut se connecter pour mettre un j'aime à {{$announcement->title}}">
+                    <a href="{{route('login')}}"
+                       title="Il faut se connecter pour mettre un j'aime à {{$announcement->title}}">
                         <div class="containerPrice containerLove show-NConnected hepling helping-like help-show">
 
                             <img class="heart" src="{{asset('svg/heart.svg')}}" alt="icone de coeur">
@@ -93,7 +99,8 @@
 
             <div class="container-picture-ads">
                 @if($announcement->picture)
-                    <img itemprop="image" src="{{ asset($announcement->picture) }}" alt="photo de profil de {{ucfirst($announcement->title)}}"/>
+                    <img itemprop="image" src="{{ asset($announcement->picture) }}"
+                         alt="photo de profil de {{ucfirst($announcement->title)}}"/>
                 @else
                     <img itemprop="image" src="{{asset('svg/ad.svg')}}" alt="icone d'annonces">
                 @endif
@@ -105,17 +112,21 @@
                 <p itemprop="description">
                     {{ucfirst($announcement->description)}}
                 </p>
-                <section class="container-perso-infos container-six-category-home" itemscope itemtype="https://schema.org/Person">
+                <section class="container-perso-infos container-six-category-home" itemscope
+                         itemtype="https://schema.org/Person">
                     <h4 aria-level="4" class="hidden">Information de contact</h4>
                     <div>
                         <img src="{{asset('svg/envelope.svg')}}" alt="icone de mail">
-                        <a itemprop="email" href="mailto:{{$announcement->user->email}}">{{$announcement->user->email}}</a>
+                        <a itemprop="email"
+                           href="mailto:{{$announcement->user->email}}">{{$announcement->user->email}}</a>
                     </div>
                     @foreach($announcement->user->phones as $up)
-                        <div>
-                            <img src="{{asset('svg/phone.svg')}}" alt="icone de téléphone">
-                            <a itemprop="telephone" href="tel:{{$up->number}}">{{$up->number}}</a>
-                        </div>
+                        @if($up->number != null)
+                            <div>
+                                <img src="{{asset('svg/phone.svg')}}" alt="icone de téléphone">
+                                <a itemprop="telephone" href="tel:{{$up->number}}">{{$up->number}}</a>
+                            </div>
+                        @endif
                     @endforeach
                     <div>
                         <img src="{{asset('svg/calendar.svg')}}" alt="icone de calendrier">

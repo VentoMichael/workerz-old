@@ -120,7 +120,7 @@ Route::prefix('')->middleware(['auth'])->group(function () {
         ->middleware('noplansads')
         ->name('announcements.store');
     Route::get('/announcement/create',
-        [\App\Http\Controllers\AnnouncementController::class, 'create'])->name('announcements.create')->middleware('noplansads');
+        [\App\Http\Controllers\AnnouncementController::class, 'create'])->name('announcements.create');
     Route::post('/announcement/payed',
         [\App\Http\Controllers\AnnouncementController::class, 'payedAds'])->name('announcements.paied');
     Route::get('/announcement/payed', [\App\Http\Controllers\AnnouncementController::class, 'payed'])->name('announcements.payed');

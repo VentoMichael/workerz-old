@@ -13,7 +13,7 @@
     <div class="container-announcments-dashboard" wire:loading.class="load">
         @forelse($announcements as $announcement)
             <a class="{{ Request::is('dashboard/ads/draft/'.$announcement->slug) || Request::is('dashboard/ads/draft/'.$announcement->slug.'/*') ? "container-announcements-active" : "" }} container-announcements"
-               href="{{asset('dashboard/ads/'.$announcement->slug)}}"
+               href="{{asset('dashboard/ads/draft/'.$announcement->slug)}}"
                aria-current="{{ Request::is('dashboard/ads/*') ? "page" : "" }}">
                 <section>
                     <img src="{{asset('svg/ad.svg')}}" alt="icone d'annonce">

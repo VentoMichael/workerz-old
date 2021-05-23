@@ -206,7 +206,7 @@
                         </div>
                         <textarea id="description" name="description" required
                                   class=" @error('description') is-invalid @enderror email-label"
-                                  placeholder="Description de votre annonce..."
+                                  maxlength="256" placeholder="Description de votre annonce..."
                                   rows="5" cols="33">{{old("description")}}</textarea>
                         @error('description')
                         <p class="danger help">

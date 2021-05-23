@@ -1276,3 +1276,6 @@ div .container-filter-categories:hover {
 .button-delete{
     background: red;
 }
+.button-delete:focus,.button-delete:focus:not(:focus-visible){
+    background: red;
+}

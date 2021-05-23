@@ -56,7 +56,6 @@
                                 </li>
                                 <li>
                                     <img src="{{asset('svg/good.svg')}}" alt="Icone correct">
-<<<<<<< HEAD
                                     @if($plan == 1) Support basique @elseif($plan == 2) Support intermédiaire @elseif($plan == 3) Support prioritaire @endif
                                 </li>
                                 <li>
@@ -74,25 +73,6 @@
                                 </li>
                                 <li>
                                     <img src="{{asset('svg/good.svg')}}" alt="Icone correct">@if($plan == 1)  Visible parmis les 100 premiers @elseif($plan == 2)  Visible parmis les 15 premiers @elseif($plan == 3)  Visible parmis les 4 premiers @endif
-=======
-                                    @if($plan->id == 1) Support basique @elseif($plan->id == 2) Support intermédiaire @elseif($plan->id == 3) Support prioritaire @endif
-                                </li>
-                                <li>
-                                    @if($plan->more_visible) <img src="{{asset('svg/good.svg')}}" alt="Icone correct"> @else
-                                        <img src="{{asset('svg/cross.svg')}}" alt="Icone négative"> @endif
-                                    @if($plan->id == 1)
-                                        Forte visibilité
-                                    @endif
-                                    @if($plan->id == 2)
-                                        Votre annonce sera visible {{$plan->id * 3}} fois plus souvent
-                                    @endif
-                                    @if($plan->id == 3)
-                                        Votre annonce sera visible {{$plan->id * 5}} fois plus souvent
-                                    @endif
-                                </li>
-                                <li>
-                                    <img src="{{asset('svg/good.svg')}}" alt="Icone correct">@if($plan->id == 1)  Visible parmis les 100 premiers @elseif($plan->id == 2)  Visible parmis les 15 premiers @elseif($plan->id == 3)  Visible parmis les 4 premiers @endif
->>>>>>> dev
                                 </li>
                             </ul>
                         </section>
