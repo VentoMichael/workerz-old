@@ -931,6 +931,9 @@
     .container-profil-dashboard .container-link-to-back button {
         margin-top: inherit;
     }
+    div .button-dashboard-notifications a {
+        margin-top: 20px;
+    }
 }
 
 @media (min-width: 1300px) {

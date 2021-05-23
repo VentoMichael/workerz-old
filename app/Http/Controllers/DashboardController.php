@@ -12,7 +12,6 @@ use App\Models\PhysicalAdress;
 use App\Models\Province;
 use App\Models\ProvinceUser;
 use App\Models\StartDate;
-use App\Models\StartDateUser;
 use App\Models\StartMonth;
 use App\Models\User;
 use App\Models\Website;
@@ -32,8 +31,9 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $this->sendNotification();
-        return view('dashboard.index');
+        //$this->sendNotification();
+        $lastAnnouncements = Announcement::where('user_id','=',\auth()->user()->id)->WithLikes()->NoBan()->Payement()->Published()->orderBy('view_count','DESC')->orderBy('created_at','DESC')->take(3)->get();
+        return view('dashboard.index',compact('lastAnnouncements'));
     }
 
     public function profil()
@@ -285,7 +285,7 @@ class DashboardController extends Controller
         $user->update();
         if ($user->wasChanged()) {
             Session::flash('success-update', 'Votre profil a bien été mis a jour!');
-        }else{
+        } else {
             Session::flash('success-update-not', 'Rien n\'a été changé');
         }
         return redirect(route('dashboard.profil'));
@@ -369,10 +369,11 @@ class DashboardController extends Controller
         }
         return redirect('dashboard/ads/'.$announcement->slug);
     }
+
     public function deleteAds(Announcement $announcement)
     {
-        Announcement::where('id','=',$announcement->id)->delete();
-        return Redirect::route('dashboard.ads')->with('success-delete','Annonce supprimée !');
+        Announcement::where('id', '=', $announcement->id)->delete();
+        return Redirect::route('dashboard.ads')->with('success-delete', 'Annonce supprimée !');
     }
 
     public function ads(Announcement $announcement)
@@ -389,8 +390,8 @@ class DashboardController extends Controller
                 if ($adsExpire->sending_time_expire == 0) {
                     $adsExpire->sending_time_expire = 1;
                     $adsExpire->update();
-                    Mail::to(auth()->user()->email)
-                        ->send(new AdsEarlyExpire($adsExpire));
+                    //Mail::to(auth()->user()->email)
+                    //    ->send(new AdsEarlyExpire($adsExpire));
                     Session::flash('expire', 'Attention, une de vos annonce va expirer dans un jour !');
                 }
             }
@@ -406,8 +407,8 @@ class DashboardController extends Controller
                 auth()->user()->sending_time_expire = 1;
                 auth()->user()->end_plan = null;
                 auth()->user()->save();
-                Mail::to(env('MAIL_FROM_ADDRESS'))
-                    ->send(new AdsEarlyExpire(auth()->user()));
+                //Mail::to(env('MAIL_FROM_ADDRESS'))
+                //    ->send(new AdsEarlyExpire(auth()->user()));
                 Session::flash('expire', 'Attention, votre compte va expirer dans un jour !');
             }
         }

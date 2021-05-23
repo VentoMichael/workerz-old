@@ -22,7 +22,7 @@
                             {{$announcement->title}}
                         </h3>
                         <p class="view-counter">{{ $announcement->view_count }} @if($announcement->view_count >1 )vues @else vue @endif</p>
-                        <p class="view-like">{{$announcement->likes ? : 0}} @if($announcement->likes == null || $announcement->likes == 1)j'aime @else j'aimes @endif</p>
+                        <p class="view-like">{{$announcement->likes ? : 0}} @if($announcement->likes == null || $announcement->likes <= 1)j'aime @else j'aimes @endif</p>
                     </div>
                 </section>
             </a>
