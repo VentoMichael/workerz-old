@@ -240,7 +240,7 @@ main nav, main nav .container-nav-principal, .full-height {
     margin-top: -15px;
     grid-gap: 20px;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
 }
 
 .dateAds {
@@ -1300,6 +1300,9 @@ div .container-filter-categories:hover {
 }
 .container-picto-dashboard .container-messages .messages-container:before,.container-picto-dashboard .container-messages .messages-container:after{
     display: none;
+}
+section div .button-personnal-dashboard{
+    margin-top: 15px;
 }
 div .view-counter-dashboard{
     margin-top: 0;

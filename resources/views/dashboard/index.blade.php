@@ -113,6 +113,11 @@
                                         <p class="view-like view-counter-dashboard">{{$ad->likes ? : 0}} @if($ad->likes == null || $ad->likes <= 1)
                                                 j'aime @else j'aimes @endif</p>
                                     </div>
+                                    <div class="button-dashboard-notifications">
+                                        <a class="button-cta button-edition button-personnal-dashboard" href="dashboard/ads/{{$ad->slug}}">
+                                            Voir {{$ad->title}}
+                                        </a>
+                                    </div>
                                 </section>
                             @endforeach
                         </div>

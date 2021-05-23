@@ -934,6 +934,10 @@
     div .button-dashboard-notifications a {
         margin-top: 20px;
     }
+    section .container-picto-dashboard .container-messages {
+        margin-top: -20px;
+        grid-gap: 30px;
+    }
 }
 
 @media (min-width: 1300px) {
