@@ -72,6 +72,7 @@ class AnnouncementController extends Controller
     public function create(Request $request)
     {
         $plan = $request->plan;
+        Session::put('plan',$plan);
         $categories = Category::withCount("announcements")->get()->sortBy('name');
         $regions = Province::withCount("announcements")->get()->sortBy('name');
         $disponibilities = StartMonth::withCount("announcements")->get()->sortBy('id');
@@ -87,7 +88,7 @@ class AnnouncementController extends Controller
      */
     public function store(Request $request)
     {
-        $plan = $request->plan;
+        $plan = Session::get('plan');
         if (!$request->has('is_payed')) {
             $data = Validator::make($request->all(), [
                 'title' => 'required|unique:announcements',
@@ -208,6 +209,7 @@ class AnnouncementController extends Controller
             ->send(new AdsCreated($announcement));
         Mail::to(\auth()->user()->email)
             ->send(new AdsCreatedUser($announcement));
+        Session::forget('plan');
         return redirect(route('dashboard.ads'));
     }
 

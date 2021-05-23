@@ -12,7 +12,11 @@
     <meta name="author" content="Vento Michael"/>
     <title>
         {{ 'Workerz' }}
-        {{ Request::is('dashboard') || Request::is('dashboard/*') ? ' | Tableau de bord' : "" }}
+        {{ Request::is('dashboard') ? ' | Tableau de bord' : "" }}
+        {{ Request::is('dashboard/profil') || Request::is('dashboard/profil/*') ? ' | Profil' : "" }}
+        {{ Request::is('dashboard/ads') || Request::is('dashboard/ads/*') ? ' | Annonces' : "" }}
+        {{ Request::is('dashboard/messages') || Request::is('dashboard/messages/*') ? ' | Messages' : "" }}
+        {{ Request::is('dashboard/notifications') || Request::is('dashboard/notifications/*') ? ' | Notifications' : "" }}
     </title>
     <link href="{{ asset('css/styleDashboard.css') }}" rel="stylesheet">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">

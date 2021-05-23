@@ -1,5 +1,23 @@
 @extends('layouts.appDashboard')
 @section('content')
+    @if (Session::has('success-update-not'))
+        <div id="successMsg" role="alert" class="successMsg"><img src="{{asset('svg/cross.svg')}}" alt="good icone">
+            <p>{{Session::get('success-update-not')}}</p>
+            <span class="crossHide" id="crossHide">&times;</span>
+        </div>
+    @endif
+    @if (Session::has('success-update'))
+        <div id="successMsg" role="alert" class="successMsg"><img src="{{asset('svg/good.svg')}}" alt="good icone">
+            <p>{{Session::get('success-update')}}</p>
+            <span class="crossHide" id="crossHide">&times;</span>
+        </div>
+    @endif
+    @if (Session::has('draft'))
+        <div id="successMsg" role="alert" class="successMsg"><img src="{{asset('svg/good.svg')}}" alt="good icone">
+            <p>{{Session::get('draft')}}</p>
+            <span class="crossHide" id="crossHide">&times;</span>
+        </div>
+    @endif
     <div class="container-all-dashboard">
         @include('partials.navigationDashboard')
         <section class="container-dashboard container-ads">
@@ -15,11 +33,20 @@
                 <livewire:ads-draft-dashboard>
                 </livewire:ads-draft-dashboard>
                 <section class="container-profil-dashboard container-ads-dashboard">
-                    <a class="link-back" href="{{route('dashboard.ads')}}">
-                        <button class="container-back-dashboard button-back button-cta button-draft button-edition">
-                            Retour
-                        </button>
-                    </a>
+                    <div class="container-buttons-delete-back">
+                        <a class="link-back" href="{{route('dashboard.ads')}}">
+                            <button class="button-back button-cta button-draft">
+                                Retour
+                            </button>
+                        </a>
+                        <form action="/dashboard/ads/draft/delete/{{$announcement->slug}}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button class="button-cta button-delete" name="delete">
+                                Je supprime {{$announcement->title}}
+                            </button>
+                        </form>
+                    </div>
                     <div class="container-picture-title-dashboard-ads">
                         @if($announcement->catchPhrase)
                             <p class="container-ads-catch_phrase-dashboard">
@@ -49,10 +76,12 @@
                                href="mailto:{{$announcement->user->email}}">{{$announcement->user->email}}</a>
                         </div>
                         @foreach($announcement->user->phones as $up)
+                            @if($up->number != null)
                             <div>
                                 <img src="{{asset('svg/phone.svg')}}" alt="icone de téléphone">
                                 <a itemprop="telephone" href="tel:{{$up->number}}">{{$up->number}}</a>
                             </div>
+                            @endif
                         @endforeach
                         <div>
                             <img src="{{asset('svg/calendar.svg')}}" alt="icone de calendrier">

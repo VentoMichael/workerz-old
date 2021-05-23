@@ -1059,7 +1059,7 @@ div .select-register {
 }
 
 .container-form-ads .button-cta:after {
-    top: 9px;
+    top: 12px;
 }
 
 .container-ads-dashboard h3 {
@@ -1122,6 +1122,7 @@ div .container-perso-infos {
 .container-picture-dashboard img {
     max-width: 200px;
     max-height: 200px;
+    min-width: 150px;
 }
 
 .container-ads-catch_phrase-dashboard {
@@ -1211,7 +1212,8 @@ div .container-filter-categories:hover {
 .container-edit-ads .horary-cost {
     top: 35%;
 }
-.container-edit-ads .title-first-step-register{
+
+.container-edit-ads .title-first-step-register {
     margin-top: 20px;
 }
 
@@ -1223,32 +1225,54 @@ div .container-filter-categories:hover {
 .container-buttons-ads .link-back {
     position: inherit;
 }
-.container-draftads{
+
+.container-draftads {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
 }
-.container-draftads img{max-width: 200px; height: 200px}
-.container-draftads section{
+
+.container-draftads img {
+    max-width: 200px;
+    height: 200px
+}
+
+.container-draftads section {
     display: flex;
     align-self: center;
     flex-direction: column;
     align-items: center;
 }
-.container-profil-dashboard div section:nth-child(2){
+
+.container-profil-dashboard div section:nth-child(2) {
     margin-top: 0;
 }
+
 .container-draftads section a {
     margin-top: 20px;
 }
-.container-ads-give{
+
+.container-ads-give {
     margin-top: 50px;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-.load{
+
+.load {
     opacity: .5;
 }
-.container-back-dashboard:hover:after{
+
+.container-back-dashboard:hover:after {
     top: 11px;
+}
+
+.danger {
+    color: red;
+}
+.container-buttons-delete-back{
+    display: flex;
+    justify-content: space-between;
+}
+.button-delete{
+    background: red;
 }

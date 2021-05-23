@@ -6,7 +6,7 @@
         @auth @method('PUT') @endauth
         <div class="container-register-form container-register">
             <div class="container-form-email">
-                <div class="avatar-container">
+                <div class="avatar-container" style="justify-content: flex-start">
                     <label for="picture">Photo de profil</label>
                     <img id="output" class="preview-picture" alt="photo du commerce"/>
                 </div>

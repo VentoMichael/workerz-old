@@ -651,7 +651,9 @@
     section .container-worker {
         grid-gap: 30px;
     }
-
+    .container-profil-dashboard div .edit-user-profile{
+        grid-template-columns: repeat(1, minmax(270px, 1fr));
+    }
     .form-edit-preview .container-register-form, .form-choice, .container-profil-dashboard div .form-edit-company, form .container-connexion-logins {
         display: grid;
         grid-template-columns: repeat(1, minmax(270px, 1fr));

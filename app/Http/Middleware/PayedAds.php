@@ -16,7 +16,7 @@ class PayedAds
      */
     public function handle(Request $request, Closure $next)
     {
-        if ($request->plan_announcement_id == 2 || $request->plan_announcement_id == 3) {
+        if ($request->plan_announcement_id == 2 && $request->is_payed == 0 || $request->plan_announcement_id == 3 && $request->is_payed == 0) {
             $plan = $request->plan_announcement_id;
             return redirect()->route('announcements.payed', compact('plan'));
         }

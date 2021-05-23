@@ -25,6 +25,15 @@
     outline: 3px dashed var(--blueLight);
     background: transparent;
 }
+.current_page_item_dashboard:focus:not(:focus-visible){
+    background-image: url(../svg/business-report.svg);
+    background-position: center;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    display: block;
+    width: 45px;
+    height: 45px;
+}
 input:focus-visible {
     outline: 3px dashed var(--blueLight);
     background: transparent;

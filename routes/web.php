@@ -83,6 +83,10 @@ Route::prefix('')->middleware(['auth'])->group(function () {
         [\App\Http\Controllers\DashboardController::class, 'editAds'])->name('update.ads.dashboard')->middleware('payeduser','payedads','verified');
     Route::put('/dashboard/ads/{announcement}',
         [\App\Http\Controllers\DashboardController::class, 'updateAds'])->name('store.ads.dashboard')->middleware('payeduser','payedads','verified');
+    Route::delete('/dashboard/ads/delete/{announcement}',
+        [\App\Http\Controllers\DashboardController::class, 'deleteAds'])->name('delete.ads.dashboard')->middleware('payeduser','payedads','verified');
+    Route::delete('/dashboard/ads/draft/delete/{announcement}',
+        [\App\Http\Controllers\DashboardController::class, 'deleteAds'])->name('delete.adsDraft.dashboard')->middleware('payeduser','payedads','verified');
 
     Route::get('/dashboard/profil', [
         \App\Http\Controllers\DashboardController::class, 'profil'
@@ -116,7 +120,7 @@ Route::prefix('')->middleware(['auth'])->group(function () {
         ->middleware('noplansads')
         ->name('announcements.store');
     Route::get('/announcement/create',
-        [\App\Http\Controllers\AnnouncementController::class, 'create'])->name('announcements.create');
+        [\App\Http\Controllers\AnnouncementController::class, 'create'])->name('announcements.create')->middleware('noplansads');
     Route::post('/announcement/payed',
         [\App\Http\Controllers\AnnouncementController::class, 'payedAds'])->name('announcements.paied');
     Route::get('/announcement/payed', [\App\Http\Controllers\AnnouncementController::class, 'payed'])->name('announcements.payed');

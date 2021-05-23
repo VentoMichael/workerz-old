@@ -11,11 +11,20 @@
                 </livewire:ads-dashboard>
 
                 <section class="container-home container-edit-ads container-create-ads">
-                    <a class="link-back" href="{{route('dashboard.ads')}}">
-                        <button class="button-back button-cta button-draft">
-                            Retour
-                        </button>
-                    </a>
+                    <div class="container-buttons-delete-back">
+                        <a class="link-back" href="{{route('dashboard.ads')}}">
+                            <button class="button-back button-cta button-draft">
+                                Retour
+                            </button>
+                        </a>
+                        <form action="/dashboard/ads/delete/{{$announcement->slug}}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button class="button-cta button-delete" name="delete">
+                                Je supprime {{$announcement->title}}
+                            </button>
+                        </form>
+                    </div>
                     <div class="title-first-step-register">
                         <h3 aria-level="3">Édition de {{$announcement->title}}</h3>
                     </div>
@@ -212,7 +221,7 @@
                                         Je la met en brouillon
                                     </button>
                                 </div>
-                                <button role="button" class="button-cta" type="submit">
+                                <button role="button" class="button-cta button-delete" type="submit">
                                     Créer l'annonce
                                 </button>
                             </div>

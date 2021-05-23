@@ -140,8 +140,7 @@
                         @endif
                         @foreach($regions as $region)
                             <option
-                                @if(auth()->user() && auth()->user()->adresses->first()->province_id == $region->id) selected
-                                @endif value="{{$region->id}}">{{$region->name}}</option>
+                                @if(auth()->user() && auth()->user()->adresses->first()->province_id == $region->id) selected @endif value="{{$region->id}}">{{$region->name}}</option>
                         @endforeach
                     </select>
                     @error('location')

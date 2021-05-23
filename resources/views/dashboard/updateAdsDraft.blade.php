@@ -1,5 +1,17 @@
 @extends('layouts.appDashboard')
 @section('content')
+    @if (Session::has('success-update-not'))
+        <div id="successMsg" role="alert" class="successMsg"><img src="{{asset('svg/cross.svg')}}" alt="good icone">
+            <p>{{Session::get('success-update-not')}}</p>
+            <span class="crossHide" id="crossHide">&times;</span>
+        </div>
+    @endif
+    @if (Session::has('success-update'))
+        <div id="successMsg" role="alert" class="successMsg"><img src="{{asset('svg/good.svg')}}" alt="good icone">
+            <p>{{Session::get('success-update')}}</p>
+            <span class="crossHide" id="crossHide">&times;</span>
+        </div>
+    @endif
     <div class="container-all-dashboard">
         @include('partials.navigationDashboard')
         <section class="container-dashboard container-ads">
@@ -11,11 +23,20 @@
                 </livewire:ads-draft-dashboard>
 
                 <section class="container-home container-edit-ads container-create-ads">
-                    <a class="link-back" href="{{route('dashboard.ads')}}">
-                        <button class="button-back button-cta button-draft">
-                            Retour
-                        </button>
-                    </a>
+                    <div class="container-buttons-delete-back">
+                        <a class="link-back" href="{{route('dashboard.ads')}}">
+                            <button class="button-back button-cta button-draft">
+                                Retour
+                            </button>
+                        </a>
+                        <form action="/dashboard/ads/draft/delete/{{$announcement->slug}}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button class="button-cta button-delete" name="delete">
+                                Je supprime {{$announcement->title}}
+                            </button>
+                        </form>
+                    </div>
                     <div class="title-first-step-register">
                         <h3 aria-level="3">Édition de {{$announcement->title}}</h3>
                     </div>
@@ -28,7 +49,8 @@
                             <div class="container-register-form container-register">
                                 <div class="container-form-email">
                                     <label for="catchPhrase">Phrase d'accroche</label>
-                                    <input type="text" id="catchPhrase" value="{{old("catchPhrase")}}"
+                                    <input type="text" id="catchPhrase" @if(auth()->user()) value="{{$announcement->catchPhrase}}"
+                                           @else value="{{old("catchPhrase")}}" @endif
                                            class="email-label" name="catchPhrase"
                                            placeholder="Une entreprise qui vous satisfera">
                                     <p class="help">
@@ -55,7 +77,8 @@
                             <div class="container-register-form container-register">
                                 <div class="container-form-email category-input">
                                     <label for="title">Titre <span class="required">*</span></label>
-                                    <input type="text" id="title" value="{{old("title")}}"
+                                    <input type="text" id="title" @if(auth()->user()) value="{{$announcement->title}}"
+                                           @else value="{{old("title")}}" @endif
                                            class=" @error('title') is-invalid @enderror email-label" name="title"
                                            required aria-required="true" placeholder="Menuisier dans liège">
                                     @error('title')
@@ -70,7 +93,7 @@
                                             data-maxoption="1" name="location" id="location">
                                         <option value="0" disabled selected>-- Votre région --</option>
                                         @foreach($regions as $region)
-                                            <option value="{{$region->id}}">{{$region->name}}</option>
+                                            <option @if(auth()->user() && $announcement->province_id == $region->id) selected @endif value="{{$region->id}}">{{$region->name}}</option>
                                         @endforeach
                                     </select>
                                     @error('location')
@@ -85,7 +108,8 @@
                                 <div class="container-form-email">
                                     <label for="job">Metier <span class="required">*</span></label>
                                     <input placeholder="Menuisier" type="text"
-                                           id="job" value="{{old("job")}}"
+                                           id="job" @if(auth()->user()) value="{{$announcement->job}}"
+                                           @else value="{{old("job")}}" @endif
                                            class=" @error('job') is-invalid @enderror email-label" name="job" required
                                            aria-required="true">
                                     @error('job')
@@ -102,10 +126,8 @@
                                             @foreach($categories as $c)
                                                 <li>
                                                     <input role="checkbox"
-                                                           aria-checked="false" class="checkCat hiddenCheckbox inp-cbx"
-                                                           name="categoryAds[]" id="categoryAds{{$c->id}}"
-                                                           type="checkbox" value="{{$c->id}}"/>
-                                                    <label class="cbx" for="categoryAds{{$c->id}}">
+                                                           @if(auth()->user() && $announcement_categories->contains($c->id)) checked
+                                                           @endif aria-checked="false" class="checkCat hiddenCheckbox inp-cbx" name="categoryAds[]" id="categoryAds{{$c->id}}" type="checkbox" value="{{$c->id}}"/> <label class="cbx" for="categoryAds{{$c->id}}">
                                                 <span>
                                                     <svg width="12px" height="9px" viewbox="0 0 12 9">
                                                       <polyline points="1 5 4 8 11 1"></polyline>
@@ -143,8 +165,9 @@
                             <div class="container-register-form container-register">
                                 <div class="container-form-email">
                                     <label for="price_max">Combien voulez vous dépensez au maximum ?</label>
-                                    <input type="text" pattern="^[0-9-+\s()]*$" id="price_max" name="price_max"
-                                           value="{{old("price-max")}}"
+                                    <input max="999999" type="text" pattern="^[0-9-+\s()]*$" id="price_max" name="price_max"
+                                           @if(auth()->user()) value="{{$announcement->pricemax}}"
+                                           @else value="{{old("price-max")}}" @endif
                                            class="email-label" maxlength="999999" placeholder="500"><span
                                         class="horary-cost">€</span>
                                     <p class="help hepl-price">
@@ -160,7 +183,7 @@
                                             @foreach($disponibilities as $disponibility)
                                                 <li id="checkDispo">
                                                     <input role="checkbox"
-                                                           aria-checked="false"
+@if(auth()->user() && $announcement->start_month_id == $disponibility->id) checked @endif aria-checked="false"
                                                            class="checkDispo hiddenCheckbox inp-cbx"
                                                            name="startmonth" id="startmonth{{$disponibility->id}}"
                                                            type="checkbox" value="{{$disponibility->id}}"/>
@@ -198,7 +221,8 @@
                                     <textarea id="description" name="description" required
                                               class=" @error('description') is-invalid @enderror email-label"
                                               placeholder="Description de votre annonce..."
-                                              rows="5" cols="33">{{old("description")}}</textarea>
+                                              rows="5" cols="33">@if(auth()->user()){{$announcement->description}}
+                                        @else{{old("description")}} @endif</textarea>
                                     @error('description')
                                     <p class="danger help">
                                         {{$errors->first('description')}}
@@ -208,8 +232,8 @@
                             </div>
                             <div class="container-buttons-ads">
                                 <div class="link-back">
-                                    <button class="button-back button-cta button-draft" name="is_draft">
-                                        Je la met en brouillon
+                                    <button class="button-back button-cta button-draft" name="publish">
+                                        Je la met poste
                                     </button>
                                 </div>
                                 <button role="button" class="button-cta" type="submit">

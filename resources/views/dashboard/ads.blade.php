@@ -1,5 +1,29 @@
 @extends('layouts.appDashboard')
 @section('content')
+    @if (Session::has('success-update-not'))
+        <div id="successMsg" role="alert" class="successMsg"><img src="{{asset('svg/cross.svg')}}" alt="good icone">
+            <p>{{Session::get('success-update-not')}}</p>
+            <span class="crossHide" id="crossHide">&times;</span>
+        </div>
+    @endif
+    @if (Session::has('success-update'))
+        <div id="successMsg" role="alert" class="successMsg"><img src="{{asset('svg/good.svg')}}" alt="good icone">
+            <p>{{Session::get('success-update')}}</p>
+            <span class="crossHide" id="crossHide">&times;</span>
+        </div>
+    @endif
+    @if (Session::has('success-inscription'))
+        <div id="successMsg" role="alert" class="successMsg"><img src="{{asset('svg/good.svg')}}" alt="good icone">
+            <p>{{Session::get('success-inscription')}}</p>
+            <span class="crossHide" id="crossHide">&times;</span>
+        </div>
+    @endif
+    @if (Session::has('success-delete'))
+        <div id="successMsg" role="alert" class="successMsg"><img src="{{asset('svg/good.svg')}}" alt="good icone">
+            <p>{{Session::get('success-delete')}}</p>
+            <span class="crossHide" id="crossHide">&times;</span>
+        </div>
+    @endif
     <div class="container-all-dashboard">
         @include('partials.navigationDashboard')
         <section class="container-dashboard container-ads">

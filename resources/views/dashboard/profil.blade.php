@@ -268,7 +268,7 @@
                         @endif
                         @else
                             <div @if(auth()->user()->end_plan == null) class="expire-plan" @endif>
-                                <div class="form-login form-edit-preview form-register"
+                                <div class="form-login form-edit-preview edit-user-profile form-register"
                                      aria-label="Enregistrement d'un compte">
                                     <div class="container-form-email avatar-profil">
                                         <div class="avatar-container">
