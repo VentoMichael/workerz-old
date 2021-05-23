@@ -127,7 +127,7 @@
             @endforelse
             {{ $announcements->links() }}
         </div>
-        <div class="container-filters">
+        <div class="container-filters container-filters-workerz">
             <form aria-label="Filtrage d'annonces" action="{{route('announcements')}}" method="get">
                 <section>
                     <h2 aria-level="2">

@@ -58,7 +58,9 @@ class FortifyServiceProvider extends ServiceProvider
         Fortify::resetPasswordView(function () {
             return view('auth.reset-password');
         });
-        //Fortify::createUsersUsing(CreateNewWorker::class);
+        Fortify::verifyEmailView(function () {
+            return view('auth.verify-email');
+        });
         Fortify::createUsersUsing(CreateNewUser::class);
         Fortify::updateUserProfileInformationUsing(UpdateUserProfileInformation::class);
         Fortify::updateUserPasswordsUsing(UpdateUserPassword::class);
@@ -66,5 +68,6 @@ class FortifyServiceProvider extends ServiceProvider
         RateLimiter::for("login", function () {
             Limit::perMinute(50);
         });
+
     }
 }

@@ -2028,3 +2028,6 @@ div div .eye-forget-pass{
     max-height: 70px;
     display: block;
 }
+.container-filters-workerz .container-filter-categories{
+    display: inherit;
+}

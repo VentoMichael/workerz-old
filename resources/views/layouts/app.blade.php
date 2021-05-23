@@ -15,6 +15,7 @@
         {{ Request::is('login') ? ' | Connexion' : "" }}
         {{ Request::is('register') || Request::is('register/*')? ' | S\'enregistrer' : "" }}
         {{ Request::is('forgot-password') || Request::is('reset-password/*') ?' | Mot de passe oublié' : "" }}
+        {{ Request::is('email/verify') || Request::is('email/verify/*') ?' | Vérification d\'email' : "" }}
         {{ Request::is('contact') ? ' | Contact' : "" }}
         {{ Request::is('about') ? ' | À propos de nous' : "" }}
         {{ Request::is('policy') ? ' | Politique de confidentialité' : "" }}

@@ -1,6 +1,6 @@
 @if ($errors->any())
     <div>
-        <div>{{ __('Whoops! Something went wrong.') }}</div>
+        <div>{{ __('Oups ! Un problème est survenu.') }}</div>
 
         <ul>
             @foreach ($errors->all() as $error)
@@ -20,7 +20,7 @@
     --}}
 
     <div>
-        {{ __('Please confirm access to your account by entering the authentication code provided by your authenticator application.') }}
+        {{ __('Veuillez confirmer l\'accès à votre compte en saisissant le code d\'authentification fourni par votre application d\'authentification.') }}
     </div>
 
     <div>
@@ -31,17 +31,17 @@
     {{-- ** OR ** --}}
 
     <div>
-        {{ __('Please confirm access to your account by entering one of your emergency recovery codes.') }}
+        {{ __('Veuillez confirmer l\'accès à votre compte en saisissant l\'un de vos codes de récupération d\'urgence.') }}
     </div>
 
     <div>
-        <label>{{ __('Recovery Code') }}</label>
+        <label>{{ __('Code de récupération') }}</label>
         <input type="text" name="recovery_code" autocomplete="one-time-code" />
     </div>
 
     <div>
         <button type="submit">
-            {{ __('Login') }}
+            {{ __('Connexion') }}
         </button>
     </div>
 </form>

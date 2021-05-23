@@ -134,7 +134,7 @@
             {{ $workerz->links() }}
         </div>
         @if($categories || $regions)
-        <div class="container-filters">
+        <div class="container-filters container-filters-workerz">
             <form aria-label="Filtrage d'indépendants" action="{{route('workerz')}}" method="get">
                 <section>
                     <h2 aria-level="2">
