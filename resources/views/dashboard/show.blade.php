@@ -53,6 +53,28 @@
                     <div class="container-perso-infos container-six-category-home" itemscope
                          itemtype="https://schema.org/Person">
                         <div>
+                            <img src="{{asset('svg/clock-expirate.svg')}}" alt="icone d'expiration">
+                            @if($announcement->is_payed)
+                                <span>
+                                <p style="color: black">Plan : {{$announcement->plan_announcement->name}}</p>
+                                <p style="color: black">Date d'expiration le {{$announcement->end_plan->locale('fr')->isoFormat('Do MMMM YYYY, H:mm')}}</p>
+                            </span>
+                            @else
+                                <div class="container-not-payed-dasboard">
+                                    <p style="color: black">Vous n'avez pas encore payé</p>
+                                    <form class="form-login form-register" enctype="multipart/form-data"
+                                          aria-label="Enregistrement d'un compte" role="form" method="POST"
+                                          action="/dashboard/ads/{{$announcement->slug}}">
+                                        @csrf
+                                        @method("PUT")
+                                        <button class="button-back button-cta button-draft" name="publish">
+                                            Je paye le plan
+                                        </button>
+                                    </form>
+                                </div>
+                            @endif
+                        </div>
+                        <div>
                             <img src="{{asset('svg/envelope.svg')}}" alt="icone de mail">
                             <a itemprop="email"
                                href="mailto:{{$announcement->user->email}}">{{$announcement->user->email}}</a>

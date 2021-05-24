@@ -49,7 +49,8 @@
                             <div class="container-register-form container-register">
                                 <div class="container-form-email">
                                     <label for="catchPhrase">Phrase d'accroche</label>
-                                    <input type="text" id="catchPhrase" @if(auth()->user()) value="{{$announcement->catchPhrase}}"
+                                    <input type="text" id="catchPhrase"
+                                           @if(auth()->user()) value="{{$announcement->catchPhrase}}"
                                            @else value="{{old("catchPhrase")}}" @endif
                                            class="email-label" name="catchPhrase"
                                            placeholder="Une entreprise qui vous satisfera">
@@ -93,7 +94,9 @@
                                             data-maxoption="1" name="location" id="location">
                                         <option value="0" disabled selected>-- Votre région --</option>
                                         @foreach($regions as $region)
-                                            <option @if(auth()->user() && $announcement->province_id == $region->id) selected @endif value="{{$region->id}}">{{$region->name}}</option>
+                                            <option
+                                                @if(auth()->user() && $announcement->province_id == $region->id) selected
+                                                @endif value="{{$region->id}}">{{$region->name}}</option>
                                         @endforeach
                                     </select>
                                     @error('location')
@@ -127,7 +130,11 @@
                                                 <li>
                                                     <input role="checkbox"
                                                            @if(auth()->user() && $announcement_categories->contains($c->id)) checked
-                                                           @endif aria-checked="false" class="checkCat hiddenCheckbox inp-cbx" name="categoryAds[]" id="categoryAds{{$c->id}}" type="checkbox" value="{{$c->id}}"/> <label class="cbx" for="categoryAds{{$c->id}}">
+                                                           @endif aria-checked="false"
+                                                           class="checkCat hiddenCheckbox inp-cbx" name="categoryAds[]"
+                                                           id="categoryAds{{$c->id}}" type="checkbox"
+                                                           value="{{$c->id}}"/> <label class="cbx"
+                                                                                       for="categoryAds{{$c->id}}">
                                                 <span>
                                                     <svg width="12px" height="9px" viewbox="0 0 12 9">
                                                       <polyline points="1 5 4 8 11 1"></polyline>
@@ -165,7 +172,8 @@
                             <div class="container-register-form container-register">
                                 <div class="container-form-email">
                                     <label for="price_max">Combien voulez vous dépensez au maximum ?</label>
-                                    <input max="999999" type="text" pattern="^[0-9-+\s()]*$" id="price_max" name="price_max"
+                                    <input max="999999" type="text" pattern="^[0-9-+\s()]*$" id="price_max"
+                                           name="price_max"
                                            @if(auth()->user()) value="{{$announcement->pricemax}}"
                                            @else value="{{old("price-max")}}" @endif
                                            class="email-label" maxlength="999999" placeholder="500"><span
@@ -183,7 +191,8 @@
                                             @foreach($disponibilities as $disponibility)
                                                 <li id="checkDispo">
                                                     <input role="checkbox"
-@if(auth()->user() && $announcement->start_month_id == $disponibility->id) checked @endif aria-checked="false"
+                                                           @if(auth()->user() && $announcement->start_month_id == $disponibility->id) checked
+                                                           @endif aria-checked="false"
                                                            class="checkDispo hiddenCheckbox inp-cbx"
                                                            name="startmonth" id="startmonth{{$disponibility->id}}"
                                                            type="checkbox" value="{{$disponibility->id}}"/>
@@ -230,20 +239,23 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="container-buttons-ads">
+                            <div class="container-draft-publish-dashboard container-btn-draft">
                                 <div class="link-back">
                                     <button class="button-back button-cta button-draft" name="publish">
-                                        Je la met poste
+                                        Je la poste
                                     </button>
                                 </div>
-                                <button role="button" class="button-cta" type="submit">
-                                    Créer l'annonce
-                                </button>
+                                <div class="container-buttons-ads btn-save-dashboard">
+                                    <button role="button" class="button-cta" type="submit">
+                                        Je sauvegarde les données
+                                    </button>
+                                </div>
                             </div>
                         </form>
                     </div>
                 </section>
             </div>
+
         </section>
     </div>
 @endsection

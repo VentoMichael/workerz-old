@@ -94,9 +94,20 @@ class DashboardController extends Controller
     public function updateAdsDraft(Announcement $announcement, Request $request)
     {
         if ($request->has('publish')) {
-            $announcement->is_draft = 0;
-            $announcement->update();
-            Session::flash('draft', 'Votre annonce a bien été publié!');
+            if ($announcement->plan_announcement_id == 2 || $announcement->plan_announcement_id == 3){
+                $publish = true;
+                $ad = $announcement->id;
+                $planAd = $announcement->plan_announcement_id;
+                $announcement = Announcement::where('id','=',$ad)->first();
+                return \redirect(route('announcements.payed',compact('publish','announcement','planAd')));
+            }else{
+                $announcement->is_draft = 0;
+                $announcement->is_payed = 1;
+                $announcement->end_plan = Carbon::now()->addDays(7);
+                $announcement->update();
+                Session::flash('success-update', 'Votre annonce a bien été publié!');
+                return \redirect(route('dashboard.ads'));
+            }
         }
         $announcement = Announcement::withLikes()->where('slug', '=', $announcement->slug)->first();
         if ($request->title != $announcement->getOriginal('title')) {
@@ -307,9 +318,20 @@ class DashboardController extends Controller
     public function updateAds(Announcement $announcement, Request $request)
     {
         if ($request->has('publish')) {
-            $announcement->is_draft = 0;
-            $announcement->update();
-            Session::flash('draft', 'Votre annonce a bien été publié!');
+            if ($announcement->plan_announcement_id == 2 || $announcement->plan_announcement_id == 3){
+                $publish = true;
+                $ad = $announcement->id;
+                $planAd = $announcement->plan_announcement_id;
+                $announcement = Announcement::where('id','=',$ad)->first();
+                return \redirect(route('announcements.payed',compact('publish','announcement','planAd')));
+            }else{
+                $announcement->is_draft = 0;
+                $announcement->is_payed = 1;
+                $announcement->end_plan = Carbon::now()->addDays(7);
+                $announcement->update();
+                Session::flash('success-update', 'Votre annonce a bien été publié!');
+                return \redirect(route('dashboard.ads'));
+            }
         }
         $announcement = Announcement::withLikes()->where('slug', '=', $announcement->slug)->first();
         if ($request->title != $announcement->getOriginal('title')) {

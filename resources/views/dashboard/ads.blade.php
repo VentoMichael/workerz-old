@@ -47,13 +47,13 @@
                         @if(auth()->user()->announcements()->NotDraft()->count())
                             <section>
                                 <h3 aria-level="3" class="hidden">
-                                    Mes annonces en ligne
+                                    Mes annonces
                                 </h3>
                                 <img src="{{asset('svg/ad.svg')}}" alt="Icone d'annonces">
                                 <a class="button-cta button-edition" href="ads/{{$firstAd->slug}}">
                                     Mes
                                     annonces
-                                    en ligne
+
                                 </a>
                             </section>
                         @endif

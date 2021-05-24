@@ -128,7 +128,7 @@ class AnnouncementController extends Controller
         if ($plan == 1 || \request()->old('plan') == 1 || \request('plan') == 1) {
             if ($request->has('is_draft')) {
                 $announcement->is_draft = true;
-                $payed = true;
+                $payed = false;
                 Session::forget('plan');
                 Session::flash('success-inscription', 'Votre annonce a été enregistrer dans vos brouillons !');
             } else {
@@ -170,15 +170,20 @@ class AnnouncementController extends Controller
             $planId = PlanAnnouncement::where('id', '=', $plan)->first();
             Session::flash('success-ads',
                 'Votre annonce est presque finalisée, elle sera visible qu\'après reçu de votre payement !');
-            return redirect(route('announcements.payed', compact('planId', 'announcement')));
+            return redirect(route('announcements.payed', compact('planId', 'announcement','plan')));
         }
     }
 
-    public function payed(Request $request)
+    public function payed(Request $request,Announcement $announcement)
     {
-        $plan = Session::get('plan');
-        $planId = PlanAnnouncement::where('id', '=', $request->planId)->first();
-
+        if ($request->publish == true){
+            $announcement = Announcement::where('slug','=',$request->announcement);
+            $planId = PlanAnnouncement::where('id','=',$request->planAd)->first();
+            $plan = $request->planAd;
+        }else{
+            $plan = Session::get('plan');
+            $planId = PlanAnnouncement::where('id', '=', $plan)->first();
+        }
         \Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
         $stripe_key = env('STRIPE_KEY');
         $amount = $planId->price;
@@ -200,6 +205,7 @@ class AnnouncementController extends Controller
     {
         $announcement = Announcement::where('user_id', '=', \auth()->user()->id)->latest('created_at')->first();
         $announcement->is_payed = true;
+        $announcement->is_draft = false;
         if ($announcement->plan_announcement_id == 2) {
             $days = 15;
         } else {

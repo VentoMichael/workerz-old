@@ -121,11 +121,23 @@
                         </span>
                         </div>
                     </div>
-                    <div class="container-draft-publish-dashboard">
+                    <div class="container-draft-publish-dashboard container-btn-draft">
+                        <form class="form-login form-register" enctype="multipart/form-data"
+                              aria-label="Enregistrement d'un compte" role="form" method="POST"
+                              action="/dashboard/ads/draft/{{$announcement->slug}}">
+                            @csrf
+                            @method("PUT")
+                            <div class="link-back">
+                                <button class="button-back button-cta button-draft" name="publish">
+                                    Je la poste
+                                </button>
+                            </div>
+                        </form>
                         <a href="{{route('dashboard.ads.showDraftEdit',$announcement->slug)}}" class="button-cta">
                             J'édite {{$announcement->title}}
                         </a>
                     </div>
+
                 </section>
             </div>
         </section>

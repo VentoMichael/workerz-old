@@ -12,6 +12,8 @@ class Announcement extends Model
 
     protected $guarded = [];
     protected $table = 'announcements';
+    protected $dates = ['created_at','end_plan'];
+
 
     public function getRouteKeyName()
     {

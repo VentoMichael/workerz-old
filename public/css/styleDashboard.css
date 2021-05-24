@@ -1324,3 +1324,25 @@ div .view-counter-dashboard{
 .avatar-dashboard-profil{
     justify-content: space-between;
 }
+.container-btn-draft{
+    display: flex;
+    justify-content: space-between;
+}
+.container-btn-draft a{
+    align-self: center;
+}
+.container-btn-draft .button-cta:after{
+    top: 9px;
+}
+.container-btn-draft .btn-save-dashboard .button-cta:after{
+    top: 12px;
+}
+div div .container-not-payed-dasboard{
+    display: flex;
+    flex-direction: column;
+    box-shadow: none;
+}
+.container-not-payed-dasboard form{
+    margin: 0;
+    width: 100%;
+}
