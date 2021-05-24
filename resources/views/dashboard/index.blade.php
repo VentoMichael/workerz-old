@@ -84,8 +84,7 @@
                     </h3>
                     <div class="container-picto-dashboard">
                         <div class="container-messages">
-                            @foreach($lastAnnouncements as $ad)
-
+                            @forelse($lastAnnouncements as $ad)
                                 <section class="messages-container">
                                     <div class="container-horary-notification-dashboard container-index-dashboard">
                                         <div>
@@ -119,13 +118,25 @@
                                         </a>
                                     </div>
                                 </section>
-                            @endforeach
+                                <div class="button-dashboard-notifications">
+                                    <a class="button-cta button-edition" href="{{route('dashboard.ads')}}">
+                                        Toutes mes annonces
+                                    </a>
+                                </div>
+                                @empty
+                                <section class="messages-container">
+                                    <h4 aria-level="4">
+                                        Aucune annonce trouvée ...
+                                    </h4>
+                                    <div class="button-dashboard-notifications">
+                                        <a class="button-cta button-edition button-personnal-dashboard" href="{{route('announcements.plans')}}">
+                                            J'en poste une
+                                        </a>
+                                    </div>
+                                </section>
+                            @endforelse
                         </div>
-                        <div class="button-dashboard-notifications">
-                            <a class="button-cta button-edition" href="{{route('dashboard.ads')}}">
-                                Toutes mes annonces
-                            </a>
-                        </div>
+
                     </div>
                 </section>
             </div>

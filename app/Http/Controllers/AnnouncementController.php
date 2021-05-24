@@ -34,8 +34,9 @@ class AnnouncementController extends Controller
     public function plans()
     {
         $plans = PlanAnnouncement::all();
-
-        return view('announcements.plans', compact('plans'));
+        $plan = \request()->plan;
+        Session::put('plan',$plan);
+        return view('announcements.plans', compact('plans','plan'));
     }
 
     public function index()
@@ -71,8 +72,9 @@ class AnnouncementController extends Controller
      */
     public function create(Request $request)
     {
-        $plan = $request->plan;
+        $plan = \request()->plan;
         Session::put('plan',$plan);
+
         $categories = Category::withCount("announcements")->get()->sortBy('name');
         $regions = Province::withCount("announcements")->get()->sortBy('name');
         $disponibilities = StartMonth::withCount("announcements")->get()->sortBy('id');
@@ -96,7 +98,7 @@ class AnnouncementController extends Controller
                 'description' => 'required|max:256',
                 'job' => 'required|max:256',
                 'location' => 'required|not_in:0',
-                'categoryAds' => 'required|array|max:'.$plan,
+                'categoryAds' => 'required|array|max:'.\request('plan'),
                 'startmonth' => 'required',
             ])->validate();
         }
@@ -123,10 +125,11 @@ class AnnouncementController extends Controller
         $announcement->plan_announcement_id = $plan;
         $ct = new AnnouncementCategory();
         $ct->category_id = $request->category_job;
-        if ($plan == 1 || \request()->old('plan') == 1) {
+        if ($plan == 1 || \request()->old('plan') == 1 || \request('plan') == 1) {
             if ($request->has('is_draft')) {
                 $announcement->is_draft = true;
                 $payed = true;
+                Session::forget('plan');
                 Session::flash('success-inscription', 'Votre annonce a été enregistrer dans vos brouillons !');
             } else {
                 $announcement->is_draft = false;
@@ -137,6 +140,7 @@ class AnnouncementController extends Controller
                     ->send(new AdsCreated($data));
                 Mail::to(\auth()->user()->email)
                     ->send(new AdsCreatedUser($data));
+                Session::forget('plan');
                 Session::flash('success-inscription',
                     'Votre annonce a été bien mise en ligne !');
             }
@@ -152,6 +156,7 @@ class AnnouncementController extends Controller
                 $announcement->is_payed = $payed;
                 $announcement->save();
                 $announcement->categoryAds()->attach($ct->category_id);
+                Session::forget('plan');
                 return redirect(route('dashboard.ads'));
             } else {
                 $announcement->is_draft = false;

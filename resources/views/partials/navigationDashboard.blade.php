@@ -6,31 +6,31 @@
             <li class="container-list-menu full-height">
                 <ul class="container-list-menu container-list-menu-principal container-menu-pincipal">
                     <li><a title="Page du tableau de bord"
-                           class="iconeDashboard {{ Request::is('dashboard') ? "current_page_item_dashboard" : "" }}"
+                           class="iconeDashboard icone-home-dashboard {{ Request::is('dashboard') ? "current_page_item_dashboard" : "" }}"
                            aria-current="{{ Request::is('dashboard') ? "page" : "" }}" href="{{ route('dashboard') }}">Tableau
                             de bord</a>
                     </li>
                     <li>
                         <a title="Page des notifications"
-                           class="iconeDashboard {{ Request::is('dashboard/notifications') || Request::is('dashboard/notifications/*') ? "current_page_item_dashboard" : "" }}"
+                           class="iconeDashboard icone-notifications-dashboard {{ Request::is('dashboard/notifications') || Request::is('dashboard/notifications/*') ? "current_page_item_dashboard" : "" }}"
                            aria-current="{{ Request::is('dashboard/notifications') || Request::is('dashboard/notifications/*') ? "page" : "" }}"
                            href="{{route('dashboard.notifications')}}">Notifications</a>
                     </li>
                     <li>
                         <a title="Page des messages reçu"
-                           class="iconeDashboard {{ Request::is('dashboard/messages') || Request::is('dashboard/messages/*') ? "current_page_item_dashboard" : "" }}"
+                           class="iconeDashboard icone-messages-dashboard {{ Request::is('dashboard/messages') || Request::is('dashboard/messages/*') ? "current_page_item_dashboard" : "" }}"
                            aria-current="{{ Request::is('dashboard/messages') || Request::is('dashboard/messages/*') ? "page" : "" }}"
                            href="{{route('dashboard.messages')}}">Messages</a>
                     </li>
                     <li>
                         <a title="Page des annonces emises"
-                           class="iconeDashboard {{ Request::is('dashboard/ads') || Request::is('dashboard/ads/*') ? "current_page_item_dashboard" : "" }}"
+                           class="iconeDashboard icone-ads-dashboard {{ Request::is('dashboard/ads') || Request::is('dashboard/ads/*') ? "current_page_item_dashboard" : "" }}"
                            aria-current="{{ Request::is('dashboard/ads') || Request::is('dashboard/ads/*') ? "page" : "" }}"
                            href="{{route('dashboard.ads')}}">Annonces</a>
                     </li>
                     <li>
                         <a title="Page de profil"
-                           class="iconeDashboard {{ Request::is('dashboard/profil') || Request::is('dashboard/profil/*') ? "current_page_item_dashboard" : "" }}"
+                           class="iconeDashboard icone-profil-dashboard {{ Request::is('dashboard/profil') || Request::is('dashboard/profil/*') ? "current_page_item_dashboard" : "" }}"
                            aria-current="{{ Request::is('dashboard/profil') || Request::is('dashboard/profil/*') ? "page" : "" }}"
                            href="{{route('dashboard.profil')}}">Profil</a>
                     </li>

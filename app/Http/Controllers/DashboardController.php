@@ -18,6 +18,7 @@ use App\Models\Website;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
@@ -185,6 +186,7 @@ class DashboardController extends Controller
                     'regex:/[0-9]/',
                 ],
             ]);
+            $user->password =  Hash::make($request->password);
         }
         $request->validate([
             'picture' => ['image:jpg,jpeg,png,svg'],
@@ -201,7 +203,7 @@ class DashboardController extends Controller
         if ($user->role_id == 2) {
             Validator::make(\request()->all(), [
                 'adress' => 'required',
-                'phoneone' => 'required',
+                'number' => 'required',
                 'pricemax' => 'max:999999',
                 'website' => 'nullable', 'url',
                 'websitetwo' => 'nullable', 'url',
@@ -277,7 +279,7 @@ class DashboardController extends Controller
 
         $user->phones()->delete();
         $user->phones()->saveMany([
-            new Phone(['number' => $request->phoneone]),
+            new Phone(['number' => $request->number]),
             new Phone(['number' => $request->phonetwo]),
             new Phone(['number' => $request->phonethree]),
         ]);

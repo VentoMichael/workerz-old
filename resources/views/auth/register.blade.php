@@ -9,10 +9,8 @@
                         <p>Vous recherchez du travail ? Engagez-vous !</p>
                         @guest
                             <div>
-                                <a href="{{ route('login') }}">
-                                    <button role="button" class="button-cta" type="submit">
+                                <a class="button-cta" href="{{ route('login') }}">
                                         J'ai déjà un compte
-                                    </button>
                                 </a>
                             </div>
                         @endguest
@@ -55,10 +53,8 @@
             @endif
         </div>
         @if($type == 'company' || $type == 'user' || $request->type == 'user' || $request->type == 'company')
-            <a class="link-back" href="{{route('users.type')}}">
-                <button class="button-back button-cta">
+            <a class="link-back button-back button-cta" href="{{route('users.type')}}">
                     Retour
-                </button>
             </a>
         @endif
 

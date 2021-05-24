@@ -37,6 +37,8 @@ class CreateNewUser implements CreatesNewUsers
     {
         $type = \request('type');
         Session::put('type', $type);
+        $plan = \request('plan');
+        Session::put('plan', $plan);
 
         if (request()->plan_user_id == 1) {
             $payed = 1;
@@ -60,6 +62,7 @@ class CreateNewUser implements CreatesNewUsers
                     'max:255',
                     Rule::unique(User::class),
                 ],
+                'number' => ['required',Rule::unique(Phone::class)],
                 'password' => [
                     'required',
                     'min:8',
@@ -95,12 +98,12 @@ class CreateNewUser implements CreatesNewUsers
                     Rule::unique(User::class),
                 ],
                 'adress' => 'required',
-                'phoneone' => 'required',
                 'website' => 'nullable', 'url',
                 'description' => 'required', 'max:256',
                 'job' => 'required',
+                'number' => ['required',Rule::unique(Phone::class)],
                 'location' => 'required|not_in:0',
-                'categoryUser'=> 'required|array|max:'.$input['plan_user_id'],
+                'categoryUser' => 'required|array|max:'.$input['plan_user_id'],
                 'disponibilites' => [
                     'array|max:7',
                 ],
@@ -161,7 +164,7 @@ class CreateNewUser implements CreatesNewUsers
         } else {
             $pic = null;
         }
-        $phone = new Phone(['number' => $input['phoneone']]);
+        $phone = new Phone(['number' => $input['number']]);
         $user->phones()->save($phone);
         $user->plan_user_id = request('plan_user_id');
         $user->save();

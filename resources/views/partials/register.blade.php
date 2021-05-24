@@ -1,5 +1,5 @@
 @if(!auth()->user())
-<div class="container-register-form container-inscriptin-logins container-register">
+<div class="container-register-form container-inscriptin-logins container-register container-description-register">
 @endif
     <div class="container-form-email">
         <label for="email">@if(auth()->user()) Nouveau email @else Email @endif <span class="required"> *</span></label>
@@ -22,7 +22,7 @@
         <div class="@error('password')is-invalid @enderror password">
             <div id="container-checkpass" class="container-checkpass">
                 <label for="checkPass" class="hidden">Voir/masquer le mot de passe</label>
-                <input type="checkbox" class="password--visibleToggle" id="checkPass" checked>
+                <input tabindex="1" type="checkbox" class="password--visibleToggle" id="checkPass" checked>
                 <div class="password--visibleToggle-eye open">
                     <img src="{{asset('svg/eye-open.svg')}}" alt="icone de yeux ouvert"/>
                 </div>
@@ -33,7 +33,7 @@
 
             <input id="password" type="password" placeholder="Xxxxxxx1"
                    class="password--input"
-                   name="password" @if(!auth()) required aria-required="true" @endif>
+                   name="password" @if(!auth()->user()) required aria-required="true" @endif>
 
         </div>
         @error('password')

@@ -30,7 +30,7 @@
                     </p>
                     @guest
                         <div>
-                            <a href="{{route('announcements.plans')}}">
+                            <a href="{{route('users.plans')}}">
                                 <button role="button" class="button-cta" type="submit">
                                     J'ajoute mon entreprise
                                 </button>

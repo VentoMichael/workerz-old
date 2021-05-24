@@ -85,7 +85,7 @@
     grid-gap: 30px
 }
 
-.container-filter-categories, .form-choice,.container-register {
+.form-choice,.container-register {
     display: grid;
     grid-template-columns: repeat(2, minmax(270px, 1fr));
     grid-gap: 30px;
@@ -226,7 +226,7 @@
     margin-bottom: 10px
 }
 
-button:after {
+.button-cta:after,.button-back:after  {
     content: "";
     background-position: center;
     background-image: url(../svg/arrow-right.svg);
@@ -241,16 +241,18 @@ button:after {
     transition: 0.5s;
 }
 
-button:hover {
+.button-cta:hover,.button-back:hover  {
     padding: 10px 30px 10px 15px;
 }
 
-button:hover:after {
+.button-cta:hover:after  {
     opacity: 1;
     right: 5px;
     top: 12px;
 }
-
+.button-back:hover:after{
+    top: 9px;
+}
 .container-home-why {
     margin-bottom: 50px;
 }
@@ -311,7 +313,6 @@ div .form-login {
     position: relative;
     overflow: hidden;
     border: 1px solid #69696969;
-    margin-top: 10px;
 }
 
 div .password--visibleToggle {
@@ -456,7 +457,7 @@ select option:checked {
 }
 
 .form-register .container-error {
-    margin: -20px 0 10px;
+    margin: -22px 0 15px;
 }
 
 .container-why div {
@@ -497,10 +498,11 @@ select option:checked {
 }
 
 .preview-picture {
-    width: 100px;
+    max-width: 150px;
     align-self: flex-end;
     height: auto;
     border-radius: 7px;
+    max-height: 150px;
 }
 
 .title-first-step-register {
@@ -897,7 +899,8 @@ form .search-announcement {
 .container-form-register div .form-login .container-inscriptin-logins {
     margin-top: 100px;
     position: relative;
-    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    grid-gap: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(299px, 1fr));
 }
 
 .container-infos-announcement {
@@ -1259,7 +1262,7 @@ div .monthCost{
 
 .successMsg {
     position: fixed;
-    font-family: roboto, sans-serif;
+    font-family: fira, sans-serif;
     bottom: 20px;
     display: flex;
     align-items: center;
@@ -1708,7 +1711,7 @@ div .password--visibleToggle-eye {
 }
 
 .proposed-job {
-    margin-top: -15px;
+    margin-top: -25px;
 }
 
 .container-location {
@@ -2046,4 +2049,24 @@ div div .eye-forget-pass{
 }
 .list-categories li:first-child{
     margin-top: 0;
+}
+.container-description-register{
+    grid-column-end: 3;
+    grid-column-start: 1;}
+.container-register-form .container-phone .help{
+    margin-top: -20px;
+}
+section div .container-register-user{
+    display: grid;
+    grid-gap: 30px;
+    grid-template-columns: repeat(2, minmax(270px, 1fr));
+}
+label{
+    max-height: 20px;
+    min-height: 20px;
+}
+
+li label{
+    max-height: inherit;
+    min-height: inherit;
 }

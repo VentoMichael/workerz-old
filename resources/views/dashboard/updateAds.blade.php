@@ -20,7 +20,7 @@
                         <form action="/dashboard/ads/delete/{{$announcement->slug}}" method="POST">
                             @csrf
                             @method('DELETE')
-                            <button class="button-cta button-delete" name="delete">
+                            <button id="deleteButton" class="button-cta button-delete" name="delete">
                                 Je supprime {{$announcement->title}}
                             </button>
                         </form>
@@ -233,6 +233,8 @@
     </div>
 @endsection
 @section('scripts')
+    <script src="{{asset('js/confirmDelete.js')}}"></script>
+
     <script src="{{asset('js/previewPicture.js')}}"></script>
     @if($plan == 1)
         <script src="{{asset('js/checkDataMaxOptions.js')}}"></script>

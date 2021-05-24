@@ -1,7 +1,7 @@
 @component('mail::message')
 # Un nouvel utilisateur s'est inscrit !
 
-## C'est un utilisateur de role {{$user["role_id"]}}, avec un plan de niveau {{$user['plan_user_id']}}
+## C'est un utilisateur de role @if($user->role["name"]) utilisateur | "je recherche une entreprise" @else entreprise | "je suis une entreprise" @endif, avec un plan de niveau {{$user->plan_user['name']}}
 
 ### Nom :
 {{$user["name"]}}

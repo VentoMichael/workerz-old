@@ -21,7 +21,7 @@
                                 Retour
                             </button>
                         </a>
-                        <form action="/dashboard/ads/draft/delete/{{$announcement->slug}}" method="POST">
+                        <form action="/dashboard/ads/delete/{{$announcement->slug}}" method="POST">
                             @csrf
                             @method('DELETE')
                             <button id="deleteButton" class="button-cta button-delete" name="delete">

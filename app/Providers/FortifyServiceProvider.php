@@ -48,7 +48,6 @@ class FortifyServiceProvider extends ServiceProvider
             $categories = Category::all()->sortBy('name');
             $plan = Session::get('plan');
             $type = Session::get('type');
-            Session::put('type',$type);
             return view('auth.register',
                 compact('plan', 'type', 'disponibilities', 'regions', 'categories', 'request'));
         });

@@ -668,12 +668,19 @@
         margin-top: 0;
     }
 
-    .container-job-dashboard {
+    .container-description-register {
         margin-top: 25px;
     }
 
     form .container-connexion-logins {
         grid-gap: 0;
+    }
+    main section div .container-register-user div .help {
+        margin-top:-20px;
+        margin-bottom: 20px;
+    }
+    main section div .container-register-user {
+        display: block;
     }
 }
 
@@ -924,9 +931,6 @@
         margin-top: -10px;
     }
 
-    .form-register .container-job-dashboard {
-        margin-top: 25px;
-    }
 
     .container-profil-dashboard .container-link-to-back button {
         margin-top: inherit;

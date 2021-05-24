@@ -6,7 +6,7 @@
             <div class="container-connexion">
 
                 <h2 aria-level="2">L'inscription à bout de main !</h2>
-                <p>Êtes vous un utilisateur ou un indépendant ?</p>
+                <p>Recherchez vous un travailleur ou en êtes vous un ?</p>
                 <div>
                     <a href="{{ route('login') }}">
                         <button role="button" class="button-cta" type="submit">

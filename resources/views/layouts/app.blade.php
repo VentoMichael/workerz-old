@@ -104,7 +104,7 @@
                 </a>
             </li>
             <input type="checkbox" id="nav" class="notVisible nav"/>
-            <label for="nav" class="nav-open nav-label-open">Open menu<i></i><i></i><i></i></label>
+            <label for="nav" class="nav-open nav-label-open">Ouvrir le menu<i></i><i></i><i></i></label>
             <div class="nav-container">
                 <ul class="nav-container-ul">
                     <li>

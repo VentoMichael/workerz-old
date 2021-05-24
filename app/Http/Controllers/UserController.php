@@ -5,16 +5,12 @@ namespace App\Http\Controllers;
 use App\Mail\NewUser;
 use App\Mail\NewUserAdmin;
 use App\Models\CatchPhraseUser;
-use App\Models\Category;
-use App\Models\PhysicalAdress;
 use App\Models\PlanUser;
-use App\Models\Province;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
@@ -36,7 +32,6 @@ class UserController extends Controller
 
     public function index()
     {
-
         return view('workerz.index');
     }
 
@@ -59,6 +54,8 @@ class UserController extends Controller
                 $user->is_payed = 1;
                 $user->sending_time_expire = 0;
                 $user->plan_user_id = $request->plan;
+                Session::forget('plan');
+                Session::forget('user');
                 $user->save();
                 return \redirect(route('dashboard.profil'));
             }

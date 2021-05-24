@@ -304,7 +304,7 @@ li .container-menu-pincipal a:hover:before {
 
 .successMsg {
     position: fixed;
-    font-family: roboto, sans-serif;
+    font-family: fira, sans-serif;
     bottom: 20px;
     display: flex;
     align-items: center;
@@ -548,10 +548,11 @@ div .password--visibleToggle {
 }
 
 .preview-picture {
-    width: 200px;
+    max-width: 200px;
     align-self: flex-end;
     height: auto;
     border-radius: 7px;
+    max-height: 200px;
 }
 
 .container-profil-dashboard {
@@ -613,8 +614,8 @@ div .btn-remove-phone:before {
 .avatar-profil img {
     max-width: 200px;
     align-self: center;
-    width: 100%;
     max-height: 150px;
+    width: auto;
 }
 
 .button-draft {
@@ -1319,4 +1320,7 @@ div .view-counter-dashboard{
     justify-items: center;
     border-radius: 5px;
     margin-top: 10px;
+}
+.avatar-dashboard-profil{
+    justify-content: space-between;
 }
