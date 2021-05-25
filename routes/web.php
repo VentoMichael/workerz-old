@@ -57,40 +57,53 @@ Route::get('/register/payed', [\App\Http\Controllers\UserController::class, 'pay
 Route::prefix('')->middleware(['auth'])->group(function () {
     // DASHBOARD
     Route::get('/dashboard',
-        [\App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard')->middleware('payeduser','verified');
+        [\App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard')->middleware('payeduser');
     Route::get('/dashboard/notifications', [
         \App\Http\Controllers\DashboardController::class, 'notifications'
-    ])->name('dashboard.notifications')->middleware('payeduser','verified');
+    ])->name('dashboard.notifications')->middleware('payeduser');
+
+
+    Route::post('/dashboard/messages/{user}',
+        [\App\Http\Controllers\MessageController::class, 'store'])->name('messages.post')->middleware('payeduser');
     Route::get('/dashboard/messages',
-        [\App\Http\Controllers\DashboardController::class, 'messages'])->name('dashboard.messages')->middleware('payeduser','verified');
+        [\App\Http\Controllers\MessageController::class, 'index'])->name('dashboard.messages')->middleware('payeduser');
+    Route::get('/dashboard/messages/{user}',
+        [\App\Http\Controllers\MessageController::class, 'show'])->name('dashboard.messagesShow')->middleware('payeduser');
+
+
+
+
+
+
+
 
 
     Route::get('/dashboard/ads',
-        [\App\Http\Controllers\DashboardController::class, 'ads'])->name('dashboard.ads')->middleware('payeduser','payedads','verified');
+        [\App\Http\Controllers\DashboardController::class, 'ads'])->name('dashboard.ads')->middleware('payeduser','payedads');
 
     //ADS DRAFT DASHBOARD
     Route::get('/dashboard/ads/draft/{announcement}',
-        [\App\Http\Controllers\DashboardController::class, 'showDraft'])->name('dashboard.ads.showDraft')->middleware('payeduser','payedads','verified');
+        [\App\Http\Controllers\DashboardController::class, 'showDraft'])->name('dashboard.ads.showDraft')->middleware('payeduser','payedads');
     Route::get('/dashboard/ads/draft/{announcement}/edit',
-        [\App\Http\Controllers\DashboardController::class, 'editAdsDraft'])->name('dashboard.ads.showDraftEdit')->middleware('payeduser','payedads','verified');
+        [\App\Http\Controllers\DashboardController::class, 'editAdsDraft'])->name('dashboard.ads.showDraftEdit')->middleware('payeduser','payedads');
     Route::put('/dashboard/ads/draft/{announcement}',
-        [\App\Http\Controllers\DashboardController::class, 'updateAdsDraft'])->name('dashboard.ads.showDraftUpdate')->middleware('payeduser','payedads','verified');
+        [\App\Http\Controllers\DashboardController::class, 'updateAdsDraft'])->name('dashboard.ads.showDraftUpdate')->middleware('payeduser','payedads');
 
     //ADS DASHBOARD
     Route::get('/dashboard/ads/{announcement}',
-        [\App\Http\Controllers\DashboardController::class, 'show'])->name('dashboard.ads.show')->middleware('payeduser','payedads','verified');
+        [\App\Http\Controllers\DashboardController::class, 'show'])->name('dashboard.ads.show')->middleware('payeduser','payedads');
     Route::get('/dashboard/ads/{announcement}/edit',
-        [\App\Http\Controllers\DashboardController::class, 'editAds'])->name('update.ads.dashboard')->middleware('payeduser','payedads','verified');
+        [\App\Http\Controllers\DashboardController::class, 'editAds'])->name('update.ads.dashboard')->middleware('payeduser','payedads');
     Route::put('/dashboard/ads/{announcement}',
-        [\App\Http\Controllers\DashboardController::class, 'updateAds'])->name('store.ads.dashboard')->middleware('payeduser','payedads','verified');
+        [\App\Http\Controllers\DashboardController::class, 'updateAds'])->name('store.ads.dashboard')->middleware('payeduser','payedads');
     Route::delete('/dashboard/ads/delete/{announcement}',
-        [\App\Http\Controllers\DashboardController::class, 'deleteAds'])->name('delete.ads.dashboard')->middleware('payeduser','payedads','verified');
+        [\App\Http\Controllers\DashboardController::class, 'deleteAds'])->name('delete.ads.dashboard')->middleware('payeduser','payedads');
     Route::delete('/dashboard/ads/draft/delete/{announcement}',
-        [\App\Http\Controllers\DashboardController::class, 'deleteAds'])->name('delete.adsDraft.dashboard')->middleware('payeduser','payedads','verified');
+        [\App\Http\Controllers\DashboardController::class, 'deleteAds'])->name('delete.adsDraft.dashboard')->middleware('payeduser','payedads');
 
     Route::get('/dashboard/profil', [
         \App\Http\Controllers\DashboardController::class, 'profil'
-    ])->name('dashboard.profil')->middleware('payeduser','verified');
+    ])->name('dashboard.profil')->middleware('payeduser');
 
     Route::get('/plans', [\App\Http\Controllers\UserController::class, 'plansAlreadyUser'])
         ->name('usersAlready.plans');
@@ -98,7 +111,7 @@ Route::prefix('')->middleware(['auth'])->group(function () {
     // PROFIL
     Route::get('/dashboard/profil/edit', [
         \App\Http\Controllers\DashboardController::class, 'settings'
-    ])->name('dashboard.profil.edit')->middleware('payeduser','verified');
+    ])->name('dashboard.profil.edit')->middleware('payeduser');
 
     Route::put('/dashboard/profil/edit', [\App\Http\Controllers\DashboardController::class, 'updateUser'])->name('dashboard.update');
 

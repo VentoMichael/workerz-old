@@ -267,6 +267,7 @@
                         <a href="/announcements/{{$ra->slug}}" class="btn-ads button-personnal-announcement">
                             Aller voir {{$ra->name}}
                         </a>
+                    </div>
                 </section>
             @endforeach
         </div>

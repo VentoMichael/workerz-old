@@ -59,6 +59,18 @@ class AddForeignKeys extends Migration
                 ->on('start_dates')
                 ->onDelete('cascade');
         });
+        Schema::table('messages', function (Blueprint $table) {
+            $table->bigInteger('from_id')->unsigned();
+            $table->bigInteger('to_id')->unsigned();
+            $table->foreign('from_id','from')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade');
+            $table->foreign('to_id','to')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade');
+        });
         Schema::table('province_user', function (Blueprint $table) {
             $table->bigInteger('user_id')->unsigned();
             $table->bigInteger('province_id')->nullable()->unsigned();

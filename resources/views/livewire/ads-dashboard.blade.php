@@ -1,4 +1,5 @@
 <div class="container-search-ads">
+    @if($firstAd->count() >0)
     <form action="{{$firstAd->slug.request('search')}}" aria-label="Rechercher mes annonces" role="search"
           method="get" class="formSearchAd">
         <label for="search" class="hidden">Rechercher mes annonces</label>
@@ -11,6 +12,7 @@
             <button type="submit" class="button-cta submit-category-home submit-ad">Recherchez</button>
         </noscript>
     </form>
+    @endif
     <div class="container-announcments-dashboard" wire:loading.class="load">
         @forelse($announcements as $announcement)
             <a class="{{ Request::is('dashboard/ads/'.$announcement->slug) || Request::is('dashboard/ads/'.$announcement->slug.'/*') ? "container-announcements-active" : "" }} container-announcements"

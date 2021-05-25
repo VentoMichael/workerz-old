@@ -1388,6 +1388,7 @@ div.container-category:hover {
 
 section .container-adv {
     grid-template-columns: 30% 1fr;
+    position: relative;
 }
 
 .container-perso-infos img, .container-infos-ads-randomm img {
@@ -1759,6 +1760,7 @@ div .password--visibleToggle-eye {
     border-radius: 5px;
     box-shadow: var(--shadow);
 }
+
 
 .iconInstagram {
     background-image: url(../svg/instagram.svg);

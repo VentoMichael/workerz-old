@@ -46,10 +46,12 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return 'slug';
     }
+
     public function getPicAttribute($value)
     {
         return asset($value);
     }
+
     public function scopeIndependent($query)
     {
         return $query->where('role_id', '=', '2');
@@ -99,18 +101,26 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany(LikeAnnouncement::class);
     }
+    public function messages()
+    {
+        return $this->hasMany(Message::class,'to_id');
+    }
 
     public function categoryUser()
     {
         return $this->belongsToMany(Category::class);
     }
+
     public function provinces()
     {
         return $this->belongsToMany(Province::class);
     }
-    public function adresses(){
-        return $this->hasMany(PhysicalAdress::class,'user_id');
+
+    public function adresses()
+    {
+        return $this->hasMany(PhysicalAdress::class, 'user_id');
     }
+
     public function startDate()
     {
         return $this->belongsToMany(StartDate::class)->orderBy('id', 'ASC');

@@ -7,6 +7,7 @@ use App\Models\Announcement;
 use App\Models\AnnouncementCategory;
 use App\Models\Category;
 use App\Models\CategoryUser;
+use App\Models\Message;
 use App\Models\Phone;
 use App\Models\PhysicalAdress;
 use App\Models\Province;
@@ -33,8 +34,9 @@ class DashboardController extends Controller
     public function index()
     {
         //$this->sendNotification();
+        $messages = Message::where('to_id','=',\auth()->user()->id)->with('user')->orderBy('created_at','DESC')->take(3)->get();
         $lastAnnouncements = Announcement::where('user_id','=',\auth()->user()->id)->WithLikes()->NoBan()->Payement()->Published()->orderBy('view_count','DESC')->orderBy('created_at','DESC')->take(3)->get();
-        return view('dashboard.index',compact('lastAnnouncements'));
+        return view('dashboard.index',compact('lastAnnouncements','messages'));
     }
 
     public function profil()

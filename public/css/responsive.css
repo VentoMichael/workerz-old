@@ -472,6 +472,18 @@
     .container-edit-ads .container-filter-categories li {
         margin: 10px 0;
     }
+    .container-sections-dashboard.container-dashboards section:nth-child(2):after,.container-sections-dashboard.container-dashboards section:nth-child(2):before{
+       display: none;
+    }
+
+    .container-sections-dashboard section .button-cta{
+        margin-top: 10px;
+    }
+
+    section .container-picto-dashboard .container-ads-index{
+        display: flex;
+        flex-direction: column;
+    }
 }
 
 @media (max-width: 730px) {
