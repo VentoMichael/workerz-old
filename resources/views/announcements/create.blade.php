@@ -43,14 +43,14 @@
                         <label for="catchPhrase">Phrase d'accroche</label>
                         <input type="text" id="catchPhrase" value="{{old("catchPhrase")}}"
                                class="email-label" name="catchPhrase"
-                               placeholder="Une entreprise qui vous satisfera">
+                               placeholder="Besoin de plafonner 2 murs ...">
                         <p class="help">
-                            Attirer la clientèle à votre façon (optionnel)
+                            Attirer les entreprises à votre façon (optionnel)
                         </p>
                     </div>
                     <div class="container-form-email">
                         <div class="avatar-container">
-                            <label for="picture">Photo de profil</label>
+                            <label for="picture">Photo descriptive</label>
                             <img id="output" class="preview-picture" alt="photo du commerce"/>
                         </div>
                         <input type="file"

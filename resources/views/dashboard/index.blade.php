@@ -118,11 +118,6 @@
                                         </a>
                                     </div>
                                 </section>
-                                <div class="button-dashboard-notifications">
-                                    <a class="button-cta button-edition" href="{{route('dashboard.ads')}}">
-                                        Toutes mes annonces
-                                    </a>
-                                </div>
                                 @empty
                                 <section class="messages-container">
                                     <h4 aria-level="4">
@@ -135,8 +130,12 @@
                                     </div>
                                 </section>
                             @endforelse
+                                <div class="button-dashboard-notifications">
+                                    <a class="button-cta button-edition" href="{{route('dashboard.ads')}}">
+                                        Toutes mes annonces
+                                    </a>
+                                </div>
                         </div>
-
                     </div>
                 </section>
             </div>
