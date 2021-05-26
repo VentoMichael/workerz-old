@@ -82,7 +82,7 @@ class CreateNewUser implements CreatesNewUsers
                 'password' => Hash::make($input['password']),
             ]);
             if ($user->plan_user_id == 1) {
-                $trial = Carbon::now()->addDays(7);
+                $trial = Carbon::now()->addDays(7)->addHours(2);
                 $user->end_plan = $trial;
             }
         }
@@ -149,7 +149,7 @@ class CreateNewUser implements CreatesNewUsers
             $di->start_date_id = \request('disponibilities');
             $user->startDate()->attach($di->start_date_id);
             if ($user->plan_user_id == 1) {
-                $trial = Carbon::now()->addDays(7);
+                $trial = Carbon::now()->addDays(7)->addHours(2);
                 $user->end_plan = $trial;
             }
         }
@@ -170,10 +170,10 @@ class CreateNewUser implements CreatesNewUsers
         $user->save();
         Session::forget('type');
         Session::forget('plan');
-        Mail::to(env('MAIL_FROM_ADDRESS'))
-            ->send(new NewUserAdmin($user));
-        Mail::to($user->email)
-            ->send(new NewUser($user));
+        //Mail::to(env('MAIL_FROM_ADDRESS'))
+        //    ->send(new NewUserAdmin($user));
+        //Mail::to($user->email)
+        //    ->send(new NewUser($user));
         Session::flash('success-inscription', 'Votre inscription à été un succés !');
         return $user;
     }

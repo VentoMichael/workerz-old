@@ -21,11 +21,8 @@
             <div class="container-form-ads">
                 <livewire:messenger>
                 </livewire:messenger>
-                <section class="container-profil-dashboard container-ads-dashboard container-messenger-profil">
+                <div class="container-profil-dashboard container-ads-dashboard container-messenger-profil">
                     <div class="container-picture-title-dashboard-ads  container-messenger">
-                        <h4 aria-level="4">
-                            {{$lastDate->created_at->locale('fr')->isoFormat('Do MMMM, YYYY')}}
-                        </h4>
                     </div>
                     @if($messages->hasMorePages() || $messages->previousPageUrl())
                         <div class="link-next-previous">
@@ -88,7 +85,7 @@
                         </p>
                         @enderror
                     </form>
-                </section>
+                </div>
             </div>
         </section>
     </div>

@@ -46,7 +46,7 @@
                         </div>
 
                         <div class="button-dashboard-notifications">
-                            <a class="button-cta" href="{{route('dashboard.notifications')}}">
+                            <a class="button-cta button-edition" href="{{route('dashboard.notifications')}}">
                                 Toutes les notifications
                             </a>
                         </div>
@@ -80,14 +80,14 @@
                                 </h4>
                                 <div class="button-dashboard-notifications">
                                     <a class="button-cta button-edition button-personnal-dashboard"
-                                       href="{{route('announcements.index')}}">
+                                       href="{{route('announcements')}}">
                                         Je vais voir les annonces
                                     </a>
                                 </div>
                             </section>
                         @endforelse
                         <div class="button-dashboard-notifications">
-                            <a class="button-cta" href="{{route('dashboard.messages')}}">
+                            <a class="button-cta button-edition" href="{{route('dashboard.messages')}}">
                                 Tous mes messages
                             </a>
                         </div>

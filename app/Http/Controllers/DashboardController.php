@@ -105,7 +105,7 @@ class DashboardController extends Controller
             }else{
                 $announcement->is_draft = 0;
                 $announcement->is_payed = 1;
-                $announcement->end_plan = Carbon::now()->addDays(7);
+                $announcement->end_plan = Carbon::now()->addDays(7)->addHours(2);
                 $announcement->update();
                 Session::flash('success-update', 'Votre annonce a bien été publié!');
                 return \redirect(route('dashboard.ads'));
@@ -329,7 +329,7 @@ class DashboardController extends Controller
             }else{
                 $announcement->is_draft = 0;
                 $announcement->is_payed = 1;
-                $announcement->end_plan = Carbon::now()->addDays(7);
+                $announcement->end_plan = Carbon::now()->addDays(7)->addHours(2);
                 $announcement->update();
                 Session::flash('success-update', 'Votre annonce a bien été publié!');
                 return \redirect(route('dashboard.ads'));
@@ -412,7 +412,7 @@ class DashboardController extends Controller
     protected function sendNotification()
     {
         foreach (auth()->user()->announcements as $adsExpire) {
-            if ($adsExpire->end_plan < Carbon::now()->subDay(1)) {
+            if ($adsExpire->end_plan < Carbon::now()->subDay(1)->addHours(2)) {
                 if ($adsExpire->sending_time_expire == 0) {
                     $adsExpire->sending_time_expire = 1;
                     $adsExpire->update();
@@ -421,14 +421,14 @@ class DashboardController extends Controller
                     Session::flash('expire', 'Attention, une de vos annonce va expirer dans un jour !');
                 }
             }
-            if ($adsExpire->end_plan <= Carbon::now()) {
+            if ($adsExpire->end_plan <= Carbon::now()->addHours(2)) {
                 $adsExpire->is_payed = 0;
                 $adsExpire->end_plan = null;
                 $adsExpire->plan_announcement_id = null;
                 $adsExpire->update();
             }
         }
-        if (auth()->user()->end_plan < Carbon::now()->subDay(1)) {
+        if (auth()->user()->end_plan < Carbon::now()->subDay(1)->addHours(2)) {
             if (auth()->user()->sending_time_expire == 0) {
                 auth()->user()->sending_time_expire = 1;
                 auth()->user()->end_plan = null;

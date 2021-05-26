@@ -134,7 +134,7 @@ class AnnouncementController extends Controller
             } else {
                 $announcement->is_draft = false;
                 $payed = true;
-                $trial = Carbon::now()->addDays(7);
+                $trial = Carbon::now()->addDays(7)->addHours(2);
                 $announcement->end_plan = $trial;
                 Mail::to(env('MAIL_FROM_ADDRESS'))
                     ->send(new AdsCreated($data));
@@ -211,7 +211,7 @@ class AnnouncementController extends Controller
         } else {
             $days = 30;
         }
-        $trial = Carbon::now()->addDays($days);
+        $trial = Carbon::now()->addDays($days)->addHours(2);
         $announcement->end_plan = $trial;
         Session::flash('success-inscription',
             'Votre annonce est désormais en ligne, merci de votre confiance !');

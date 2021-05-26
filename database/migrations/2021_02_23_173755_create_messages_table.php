@@ -17,7 +17,7 @@ class CreateMessagesTable extends Migration
             $table->id();
             $table->text('content');
             $table->timestamp('created_at')->useCurrent();
-            $table->dateTime('read_at')->nullable();
+            $table->boolean('is_read')->default(false);
         });
     }
 

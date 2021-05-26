@@ -26,7 +26,6 @@ class MessageFactory extends Factory
             'created_at' => $this->faker->dateTime($max = 'now', $timezone = null),
             'from_id' => $this->faker->numberBetween($min = 1, $max = 100),
             'to_id' => $this->faker->numberBetween($min = 1, $max = 100)
-
         ];
     }
 }

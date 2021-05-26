@@ -49,7 +49,7 @@ class UserController extends Controller
         if (\auth()) {
             if ($request->plan == 1) {
                 $user = \auth()->user();
-                $trial = Carbon::now()->addDays(7);
+                $trial = Carbon::now()->addDays(7)->addHours(2);
                 $user->end_plan = $trial;
                 $user->is_payed = 1;
                 $user->sending_time_expire = 0;
@@ -96,7 +96,7 @@ class UserController extends Controller
         } else {
             $days = 3;
         }
-        $trial = Carbon::now()->addMonth($days);
+        $trial = Carbon::now()->addMonth($days)->addHours(2);
         $user->end_plan = $trial;
         $user->plan_user_id = $request->plan;
         Session::flash('success-inscription',

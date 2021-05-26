@@ -25,7 +25,6 @@ class MessageController extends Controller
     public function index()
     {
         $firstUser = User::first();
-        $unread = Message::unread(\auth()->user()->id);
         return view('conversations.index', compact('firstUser'));
     }
 
@@ -39,10 +38,8 @@ class MessageController extends Controller
     {
         $messages = Message::whereRaw("((from_id = ".\auth()->user()->id." AND to_id = $user->id) OR (from_id = $user->id AND to_id =".\auth()->user()->id."))")->orderBy('created_at',
             'DESC')->paginate(20);
-        $lastDate = Message::whereRaw("((from_id = ".\auth()->user()->id." AND to_id = $user->id) OR (from_id = $user->id AND to_id =".\auth()->user()->id."))")->orderBy('created_at',
-            'DESC')->take(1)->first();
         $user = User::where('slug', '=', $user->slug)->firstOrFail();
-        return view('conversations.show', compact('messages','user','lastDate'));
+        return view('conversations.show', compact('messages','user'));
     }
 
     /**
@@ -60,10 +57,10 @@ class MessageController extends Controller
         $message->content = $request->message;
         $message->from_id = $request->from_id;
         $message->to_id = $request->to_id;
-        $message->created_at = Carbon::now();
+        $message->created_at = Carbon::now()->addHours(2);
         $message->save();
-        Mail::to($message->user->email)
-        ->send(new NewMessageFromDashboard($message));
+        //Mail::to($message->user->email)
+        //->send(new NewMessageFromDashboard($message));
         Session::flash('success-ads',
             'Votre message a bien été envoyer');
         return Redirect::back();
