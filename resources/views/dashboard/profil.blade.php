@@ -26,7 +26,7 @@
     @endif
     <div class="container-all-dashboard">
         @include('partials.navigationDashboard')
-        <section class="container-dashboard container-profil">
+        <section class="container-dashboard container-profil container-profils-infos">
             <h2 aria-level="2">
                 Profil
             </h2>

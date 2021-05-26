@@ -14,7 +14,7 @@ class AdsDraftDashboard extends Component
     {
         sleep(1);
         return view('livewire.ads-draft-dashboard',[
-            'firstAdDraft' => Auth::user()->announcements()->first(),
+            'firstAdDraft' => Auth::user()->announcements()->Draft()->inRandomOrder()->first(),
             'announcements' => Announcement::query()->where('user_id','=',auth()->user()->id)->Draft()
                 ->orderBy('title', 'ASC')
                 ->orderBy('view_count', 'DESC')

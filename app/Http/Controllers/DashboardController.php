@@ -33,14 +33,18 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        //$this->sendNotification();
-        $messages = Message::where('to_id','=',\auth()->user()->id)->with('user')->orderBy('created_at','DESC')->take(3)->get();
-        $lastAnnouncements = Announcement::where('user_id','=',\auth()->user()->id)->WithLikes()->NoBan()->Payement()->Published()->orderBy('view_count','DESC')->orderBy('created_at','DESC')->take(3)->get();
-        return view('dashboard.index',compact('lastAnnouncements','messages'));
+        $this->sendNotification();
+        $messages = Message::where('to_id', '=', \auth()->user()->id)->with('user')->orderBy('created_at',
+            'DESC')->take(3)->get();
+        $lastAnnouncements = Announcement::where('user_id', '=',
+            \auth()->user()->id)->WithLikes()->NoBan()->Payement()->Published()->orderBy('view_count',
+            'DESC')->orderBy('created_at', 'DESC')->take(3)->get();
+        return view('dashboard.index', compact('lastAnnouncements', 'messages'));
     }
 
     public function profil()
     {
+        $this->sendNotification();
         $disponibilities = auth()->user()->startDate;
         $regions = auth()->user()->provinces;
         $categories = auth()->user()->categoryUser;
@@ -52,6 +56,8 @@ class DashboardController extends Controller
 
     public function settings()
     {
+        $this->sendNotification();
+
         $user_categories = auth()->user()->categoryUser;
         $user_disponibilities = auth()->user()->startDate;
         $disponibilities = StartDate::orderBy('id')->get();
@@ -63,6 +69,7 @@ class DashboardController extends Controller
 
     public function show(Announcement $announcement)
     {
+        $this->sendNotification();
         $firstAd = Auth::user()->announcements()->NotDraft()->firstOrFail();
         $user = User::where('id', '=', \auth()->user()->id)->with('announcements')->firstOrFail();
         $announcement = Announcement::withLikes()->where('id', '=', $announcement->id)->firstOrFail();
@@ -71,6 +78,7 @@ class DashboardController extends Controller
 
     public function showDraft(Announcement $announcement)
     {
+        $this->sendNotification();
         $firstAdDraft = Auth::user()->announcements()->Draft()->firstOrFail();
         $user = User::where('id', '=', \auth()->user()->id)->with('announcements')->firstOrFail();
         $announcement = Announcement::withLikes()->where('id', '=', $announcement->id)->firstOrFail();
@@ -79,6 +87,7 @@ class DashboardController extends Controller
 
     public function editAdsDraft(Announcement $announcement)
     {
+        $this->sendNotification();
         $firstAdDraft = Auth::user()->announcements()->first();
         $user = User::where('id', '=', \auth()->user()->id)->with('announcements')->first();
         $announcement = Announcement::withLikes()->where('slug', '=', $announcement->slug)->first();
@@ -95,14 +104,15 @@ class DashboardController extends Controller
 
     public function updateAdsDraft(Announcement $announcement, Request $request)
     {
+        $this->sendNotification();
         if ($request->has('publish')) {
-            if ($announcement->plan_announcement_id == 2 || $announcement->plan_announcement_id == 3){
+            if ($announcement->plan_announcement_id == 2 || $announcement->plan_announcement_id == 3) {
                 $publish = true;
                 $ad = $announcement->id;
                 $planAd = $announcement->plan_announcement_id;
-                $announcement = Announcement::where('id','=',$ad)->first();
-                return \redirect(route('announcements.payed',compact('publish','announcement','planAd')));
-            }else{
+                $announcement = Announcement::where('id', '=', $ad)->first();
+                return \redirect(route('announcements.payed', compact('publish', 'announcement', 'planAd')));
+            } else {
                 $announcement->is_draft = 0;
                 $announcement->is_payed = 1;
                 $announcement->end_plan = Carbon::now()->addDays(7)->addHours(2);
@@ -174,6 +184,7 @@ class DashboardController extends Controller
 
     public function updateUser(Request $request)
     {
+        $this->sendNotification();
         $user = \auth()->user();
         if ($request->name != $user->getOriginal('name')) {
             $request->validate([
@@ -199,7 +210,7 @@ class DashboardController extends Controller
                     'regex:/[0-9]/',
                 ],
             ]);
-            $user->password =  Hash::make($request->password);
+            $user->password = Hash::make($request->password);
         }
         $request->validate([
             'picture' => ['image:jpg,jpeg,png,svg'],
@@ -309,6 +320,7 @@ class DashboardController extends Controller
 
     public function editAds(Announcement $announcement)
     {
+        $this->sendNotification();
         $plan = $announcement->plan_announcement_id;
         $categories = Category::all();
         $regions = Province::all();
@@ -319,14 +331,15 @@ class DashboardController extends Controller
 
     public function updateAds(Announcement $announcement, Request $request)
     {
+        $this->sendNotification();
         if ($request->has('publish')) {
-            if ($announcement->plan_announcement_id == 2 || $announcement->plan_announcement_id == 3){
+            if ($announcement->plan_announcement_id == 2 || $announcement->plan_announcement_id == 3) {
                 $publish = true;
                 $ad = $announcement->id;
                 $planAd = $announcement->plan_announcement_id;
-                $announcement = Announcement::where('id','=',$ad)->first();
-                return \redirect(route('announcements.payed',compact('publish','announcement','planAd')));
-            }else{
+                $announcement = Announcement::where('id', '=', $ad)->first();
+                return \redirect(route('announcements.payed', compact('publish', 'announcement', 'planAd')));
+            } else {
                 $announcement->is_draft = 0;
                 $announcement->is_payed = 1;
                 $announcement->end_plan = Carbon::now()->addDays(7)->addHours(2);
@@ -428,7 +441,7 @@ class DashboardController extends Controller
                 $adsExpire->update();
             }
         }
-        if (auth()->user()->end_plan < Carbon::now()->subDay(1)->addHours(2)) {
+        if (auth()->user()->end_plan < Carbon::now()->addHours(2)->subDays(1)) {
             if (auth()->user()->sending_time_expire == 0) {
                 auth()->user()->sending_time_expire = 1;
                 auth()->user()->end_plan = null;

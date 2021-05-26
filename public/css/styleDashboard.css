@@ -989,6 +989,9 @@ div .select-register {
 .container-announcments-dashboard {
     height: calc(100vh - 200px);
 }
+.container-announcments-dashboard div{
+    position: relative;
+}
 
 .container-form-ads {
     display: grid;
@@ -1012,7 +1015,7 @@ div .select-register {
     border-top: 1px solid #69696929;
 }
 
-.container-announcements:first-child {
+.container-announcments-dashboard div:first-child {
     margin-top: 30px;
 }
 
@@ -1043,7 +1046,9 @@ div .select-register {
     margin-left: 28px;
     margin-top: 10px;
 }
-
+div .container-search-without-ads{
+    overflow-y: hidden;
+}
 .view-counter:before, .view-like:before {
     position: absolute;
     content: "";
@@ -1209,7 +1214,16 @@ div .container-filter-categories:hover {
 .container-category::-webkit-scrollbar-track {
     margin: 30px 5px 30px 0;
 }
-
+.container-profils-infos .container-filter-categories::-webkit-scrollbar{
+    width: 0;
+}
+.container-profils-infos .container-filter-categories{
+    box-shadow: none;
+    padding: 0;
+    max-height: inherit;
+    margin-top: 0;
+    overflow-y: hidden;
+}
 .container-filter-categories li:first-child {
     margin-top: 0;
 }
@@ -1299,7 +1313,9 @@ div .container-filter-categories:hover {
 .button-delete:focus, .button-delete:focus:not(:focus-visible) {
     background: red;
 }
-
+.button-delete-msg:focus,.button-delete-msg:focus:not(:focus-visible) {
+    background: no-repeat center/100% url(../svg/cross.svg);
+}
 .container-index-dashboard {
     display: flex;
     justify-content: center;
@@ -1512,4 +1528,17 @@ div div .container-not-payed-dasboard {
 
 div .noMorePage {
     margin-left: 5%;
+}
+.form-delete-msg{
+    position: absolute;
+    top: 0;
+    right: 3%;
+}
+.button-delete-msg{
+    background: no-repeat center/100% url(../svg/cross.svg);
+    padding: 20px;
+    border: none;
+    position: relative;
+    text-indent: -9999px;
+    top: 10px;
 }

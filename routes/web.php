@@ -69,8 +69,10 @@ Route::prefix('')->middleware(['auth'])->group(function () {
         [\App\Http\Controllers\MessageController::class, 'index'])->name('dashboard.messages')->middleware('payeduser');
     Route::get('/dashboard/messages/{user}',
         [\App\Http\Controllers\MessageController::class, 'show'])->name('dashboard.messagesShow')->middleware('payeduser');
+    Route::delete('/dashboard/messages/{user}/delete',
+        [\App\Http\Controllers\MessageController::class, 'deleteConversations'])->name('delete.conversations')->middleware('payeduser');
 
-
+//TODO:METTRE MIDDLEWARE VERIFIED
 
 
 
@@ -84,6 +86,7 @@ Route::prefix('')->middleware(['auth'])->group(function () {
     //ADS DRAFT DASHBOARD
     Route::get('/dashboard/ads/draft/{announcement}',
         [\App\Http\Controllers\DashboardController::class, 'showDraft'])->name('dashboard.ads.showDraft')->middleware('payeduser','payedads');
+
     Route::get('/dashboard/ads/draft/{announcement}/edit',
         [\App\Http\Controllers\DashboardController::class, 'editAdsDraft'])->name('dashboard.ads.showDraftEdit')->middleware('payeduser','payedads');
     Route::put('/dashboard/ads/draft/{announcement}',

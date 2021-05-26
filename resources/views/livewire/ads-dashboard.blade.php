@@ -1,6 +1,6 @@
 <div class="container-search-ads">
     @if($firstAd->count() >0)
-    <form action="{{$firstAd->slug.request('search')}}" aria-label="Rechercher mes annonces" role="search"
+    <form action="{{route('dashboard.ads.show',['announcement' => $firstAd->slug])}}" aria-label="Rechercher mes annonces" role="search"
           method="get" class="formSearchAd">
         <label for="search" class="hidden">Rechercher mes annonces</label>
         <input type="text" name="search" value="{{request('search')}}" id="search"

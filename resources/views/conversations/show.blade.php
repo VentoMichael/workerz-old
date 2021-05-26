@@ -46,28 +46,31 @@
                     @endif
                     <div class="container-messages-all">
                         @foreach($messages as $message)
-                            <div @if($message->user->id == $user->id) class="container-from-msg container-message"
-                                 @endif class="container-message">
-                                <div class="container-picture-message">
-                                    @if($message->user->picture)
-                                        <img itemprop="image" src="{{ asset($message->user->picture) }}"
-                                             alt="photo de profil de {{ucfirst($message->user->name)}}"/>
-                                    @else
-                                        <img itemprop="image" src="{{asset('svg/user.svg')}}"
-                                             alt="icone d'annonces">
-                                    @endif
+                            @if($message->content != null)
+                                <div @if($message->user->id == $user->id) class="container-from-msg container-message"
+                                     @endif class="container-message">
+                                    <div class="container-picture-message">
+                                        @if($message->user->picture)
+                                            <img itemprop="image" src="{{ asset($message->user->picture) }}"
+                                                 alt="photo de profil de {{ucfirst($message->user->name)}}"/>
+                                        @else
+                                            <img itemprop="image" src="{{asset('svg/user.svg')}}"
+                                                 alt="icone d'annonces">
+                                        @endif
+                                    </div>
+                                    <div>
+                                        <p class="date-message"> @if($message->user->id == $user->id)
+                                                Moi  @else {{$message->user->name}} @endif {{$message->created_at->locale('fr')->isoFormat('Do MMMM, H:mm')}}</p>
+                                        <p class="content-message">{{$message->content}}</p>
+                                    </div>
                                 </div>
-                                <div>
-                                    <p class="date-message"> @if($message->user->id == $user->id)
-                                            Moi  @else {{$message->user->name}} @endif {{$message->created_at->locale('fr')->isoFormat('Do MMMM, H:mm')}}</p>
-                                    <p class="content-message">{{$message->content}}</p>
-                                </div>
-                            </div>
+                            @endif
+
                         @endforeach
                     </div>
                     <form class="form-login" style="position: relative" enctype="multipart/form-data"
                           aria-label="Enregistrement d'un compte" role="form" method="POST"
-                          action="/dashboard/messages/{{$user->slug}}">
+                          action="{{route('messages.post',[$user->slug])}}">
                         @csrf
 
                         <label for="message" class="hidden">Entrer votre message</label>

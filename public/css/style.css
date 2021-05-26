@@ -2072,3 +2072,22 @@ li label{
     max-height: inherit;
     min-height: inherit;
 }
+
+.button-msg{
+    width: 100%;
+    padding: 20px 10px;
+    font-size: 1.2em;
+}
+.button-msg:hover{
+    padding: 20px 30px 20px 10px;
+}
+.button-msg:hover:after {
+    top: 17px;
+    background-size: 39%;
+    width: 36px;
+    height: 27px;
+}
+.formsendmsg{
+    grid-column-start: 1;
+    grid-column-end: 3;
+}

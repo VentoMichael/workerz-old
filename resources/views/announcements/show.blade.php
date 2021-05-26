@@ -165,6 +165,23 @@
                                 <span itemprop="addressRegion">{{ucfirst($announcement->province->name)}}</span>
                         </span>
                     </div>
+                    @auth
+                        <form action="{{route('messages.post',[$announcement->user->slug])}}" method="POST" class="formsendmsg">
+                            @csrf
+                            <input type="hidden" name="from_id" id="from_id" value="{{auth()->user()->id}}">
+                            <input type="hidden" name="to_id" id="to_id" value="{{$announcement->user->id}}">
+                            <input type="hidden" name="slug" id="slug" value="{{$announcement->user->slug}}">
+                            <button type="submit" class="button-cta button-msg" name="talkTo">
+                                Parler avec {{$user->name}} {{$user->surname}}
+                            </button>
+                        </form>
+                    @else
+                        <a class="formsendmsg button-cta button-msg" style="text-align: center"
+                           href="{{route('login')}}"
+                           title="Il faut se connecter pour parler avec le detenteur de l'annonce">Il faut être connecter
+                            pour parler avec la personne ayant poster l'annonce
+                        </a>
+                    @endauth
                 </section>
             </div>
         </section>

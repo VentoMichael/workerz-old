@@ -51,9 +51,7 @@
                                 </h3>
                                 <img src="{{asset('svg/ad.svg')}}" alt="Icone d'annonces">
                                 <a class="button-cta button-edition" href="ads/{{$firstAd->slug}}">
-                                    Mes
-                                    annonces
-
+                                    Mes annonces
                                 </a>
                             </section>
                         @endif

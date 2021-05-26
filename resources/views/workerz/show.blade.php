@@ -204,6 +204,21 @@
                             <span itemprop="minPrice">Un minimum de {{$worker->pricemax}}€/h</span>
                         </div>
                     @endif
+                    @auth
+                        <form action="{{route('messages.post',[$worker->slug])}}" method="POST" class="formsendmsg">
+                            @csrf
+                            <input type="hidden" name="from_id" id="from_id" value="{{auth()->user()->id}}">
+                            <input type="hidden" name="to_id" id="to_id" value="{{$worker->id}}">
+                            <button type="submit" class="button-cta button-msg" name="talkTo">
+                                Parler à l'entreprise
+                            </button>
+                        </form>
+                    @else
+                        <a class="formsendmsg button-cta button-msg" style="text-align: center"
+                           href="{{route('login')}}"
+                           title="Il faut se connecter pour parler avec {{$worker->name}}">Il faut être connecter pour parler avec l'entreprise
+                        </a>
+                    @endauth
                 </section>
             </div>
             @if($worker->website)
@@ -224,6 +239,7 @@
                     </a>
                 @endif
             @endif
+
         </section>
     </section>
     <section class="container-categories-home margin show-content container-adss-random">

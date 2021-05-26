@@ -102,7 +102,7 @@
                             @forelse($lastAnnouncements as $ad)
                                 <section class="messages-container">
                                     <div class="container-horary-notification-dashboard container-index-dashboard">
-                                        <div>
+                                        <div style="align-self: center;">
                                             @if($ad->picture)
                                                 <img itemprop="image" src="{{ asset($ad->picture) }}"
                                                      alt="photo de profil de {{ucfirst($ad->title)}}"/>

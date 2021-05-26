@@ -15,9 +15,10 @@ class CreateMessagesTable extends Migration
     {
         Schema::create('messages', function (Blueprint $table) {
             $table->id();
-            $table->text('content');
+            $table->text('content')->nullable();
             $table->timestamp('created_at')->useCurrent();
-            $table->boolean('is_read')->default(false);
+            $table->dateTime('read_at')->nullable();
+            $table->softDeletes();
         });
     }
 
