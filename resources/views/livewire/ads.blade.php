@@ -3,7 +3,7 @@
         <form action="{{route('announcements')}}" aria-label="Recherche d'annonce" role="search" method="get" class="formSearchAd">
             <label for="search" class="hidden">Recherche d'annonces</label>
             <input type="text" name="search" value="{{request('search')}}" id="search" wire:model="search"
-                   placeholder="Rechercher par nom"
+                   placeholder="Rechercher par titre d'annonce"
                    class="search-announcement search-home">
             <noscript>
                 <input type="submit" class="submit-category-home submit-ad" value="Recherchez">

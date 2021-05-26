@@ -5,7 +5,7 @@
         <label for="search" class="hidden">Rechercher mes annonces</label>
         <input type="text" name="search" value="{{request('search')}}" id="search"
                wire:model="search"
-               placeholder="Rechercher par nom"
+               placeholder="Rechercher par titre d'annonce"
                class="search-announcement search-home search-ads">
         <input type="hidden" name="firstAd" value="{{$firstAd->slug}}">
         <noscript>

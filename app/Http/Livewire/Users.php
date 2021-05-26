@@ -13,15 +13,13 @@ class Users extends Component
     use WithPagination;
 
     public $search = "";
-    public $filters = [
-        'provinces' => [],
-        'categoryUser' => [],
-    ];
+    public $provinces=[];
+    public $categoryUser=[];
 
-    protected $queryString = ['search','filters'];
+    protected $queryString = ['search'];
 
     public function resetFilters(){
-        $this->reset('filters');
+        $this->reset('provinces','categoryUser');
     }
     public function render()
     {
@@ -36,17 +34,17 @@ class Users extends Component
                 ->orderBy('plan_user_id', 'DESC')
                 ->orderBy('created_at', 'DESC')
                 ->when(
-                    $this->filters['categoryUser'],
+                    $this->categoryUser,
                     fn($query) => $query->whereHas(
                         'categoryUser',
-                        fn($query) => $query->whereIn('category_id', $this->filters['categoryUser'])
+                        fn($query) => $query->whereIn('category_id', $this->categoryUser)
                     )
                 )
                 ->when(
-                    $this->filters['provinces'],
+                    $this->provinces,
                     fn($query) => $query->whereHas(
                         'adresses',
-                        fn($query) => $query->whereIn('province_id', $this->filters['provinces'])
+                        fn($query) => $query->whereIn('province_id', $this->provinces)
                     )
                 )
                 ->withLikes()

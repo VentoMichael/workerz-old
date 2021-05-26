@@ -43,14 +43,14 @@
                             @csrf
                             @method('DELETE')
                             <button id="deleteButton" class="button-cta button-delete" name="delete">
-                                Je supprime {{$announcement->title}}
+                                Je supprime {{ucfirst($announcement->title)}}
                             </button>
                         </form>
                     </div>
                     <div class="container-picture-title-dashboard-ads">
                         @if($announcement->catchPhrase)
                             <p class="container-ads-catch_phrase-dashboard">
-                                {{$announcement->catchPhrase}}
+                                {{ucfirst($announcement->catchPhrase)}}
                             </p>
                         @endif
                         <div class="container-picture-dashboard">
@@ -61,11 +61,11 @@
                                 <img itemprop="image" src="{{asset('svg/ad.svg')}}" alt="icone d'annonces">
                             @endif
                             <h4 aria-level="4">
-                                {{$announcement->title}}
+                                {{ucfirst($announcement->title)}}
                             </h4>
                         </div>
                         <p>
-                            {{$announcement->description}}
+                            {{ucfirst($announcement->description)}}
                         </p>
                     </div>
                     <div class="container-perso-infos container-six-category-home" itemscope
@@ -86,7 +86,7 @@
                         <div>
                             <img src="{{asset('svg/calendar.svg')}}" alt="icone de calendrier">
                             <span>
-                            À partir de {{$announcement->startmonth->name}}
+                            Pour le mois de {{$announcement->startmonth->name}}
                         </span>
                         </div>
                         <div>
@@ -115,7 +115,7 @@
                             <img src="{{asset('svg/placeholder.svg')}}" alt="icone de position">
                             <span>
                             @if($announcement->adress)
-                                    <span itemprop="streetAddress">{{$announcement->adress}}</span>
+                                    <span itemprop="streetAddress">{{ucfirst($announcement->adress)}}</span>
                                 @endif
                                 <span itemprop="addressRegion">{{ucfirst($announcement->province->name)}}</span>
                         </span>
@@ -134,7 +134,7 @@
                             </div>
                         </form>
                         <a href="{{route('dashboard.ads.showDraftEdit',$announcement->slug)}}" class="button-cta">
-                            J'édite {{$announcement->title}}
+                            J'édite {{ucfirst($announcement->title)}}
                         </a>
                     </div>
 

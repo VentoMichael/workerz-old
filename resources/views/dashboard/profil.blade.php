@@ -123,21 +123,21 @@
                                 <div class="container-register-form container-register">
                                     <div class="container-form-email">
                                         <p>Adresse du siège social</p>
-                                        <span class="email-label">{{auth()->user()->adresses()->first()->postal_adress}}, ({{auth()->user()->adresses()->first()->province()->first()->name}})</span>
+                                        <span class="email-label">{{ucfirst(auth()->user()->adresses()->first()->postal_adress)}}, ({{auth()->user()->adresses()->first()->province()->first()->name}})</span>
                                     </div>
                                 </div>
                                 @if(auth()->user()->adresses()->count() > 1 && auth()->user()->adresses()->skip(1)->first()->postal_adress != null)
                                     <div class="container-form-email">
                                         <p>2<sup>é</sup> adresse postale</p>
                                         <span
-                                            class="email-label">{{auth()->user()->adresses()->skip(1)->first()->postal_adress}}, ({{auth()->user()->adresses()->skip(1)->first()->province()->first()->name}})</span>
+                                            class="email-label">{{ucfirst(auth()->user()->adresses()->skip(1)->first()->postal_adress)}}, ({{auth()->user()->adresses()->skip(1)->first()->province()->first()->name}})</span>
                                     </div>
                                 @endif
                                 @if(auth()->user()->adresses()->count() > 2 && auth()->user()->adresses()->skip(2)->first()->postal_adress != null)
                                     <div class="container-form-email">
                                         <p>3<sup>é</sup> adresse postale</p>
                                         <span
-                                            class="email-label">{{auth()->user()->adresses()->skip(2)->first()->postal_adress}}, ({{auth()->user()->adresses()->skip(2)->first()->province()->first()->name}})</span>
+                                            class="email-label">{{ucfirst(auth()->user()->adresses()->skip(2)->first()->postal_adress)}}, ({{auth()->user()->adresses()->skip(2)->first()->province()->first()->name}})</span>
                                     </div>
                                 @endif
                                 @if(auth()->user()->website)
@@ -180,7 +180,7 @@
                                 <div class="container-register-form container-register container-job-dashboard">
                                     <div class="container-form-email">
                                         <p>Metier</p>
-                                        <span class="email-label">{{auth()->user()->job}}</span>
+                                        <span class="email-label">{{ucfirst(auth()->user()->job)}}</span>
                                     </div>
                                 </div>
                                 <div class="container-form-email selectdiv">
@@ -211,7 +211,7 @@
                                         <p>Description</p>
                                         <span>
                                     <p style="color: black"
-                                       class="email-label">{{auth()->user()->description}}</p></span>
+                                       class="email-label">{{ucfirst(auth()->user()->description)}}</p></span>
                                     </div>
                                 </div>
                             </div>
@@ -303,11 +303,11 @@
                                     </div>
                                     <div class="container-form-email">
                                         <p>Nom</p>
-                                        <span class="email-label"> {{auth()->user()->name}}</span>
+                                        <span class="email-label"> {{ucfirst(auth()->user()->name)}}</span>
                                     </div>
                                     <div class="container-form-email">
                                         <p>Prénom</p>
-                                        <span class="email-label">{{auth()->user()->surname}}</span>
+                                        <span class="email-label">{{ucfirst(auth()->user()->surname)}}</span>
                                     </div>
                                     @if(auth()->user()->end_plan != null)
                                         <div class="container-form-email">

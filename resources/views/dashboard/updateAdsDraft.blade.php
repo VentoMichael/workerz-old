@@ -16,7 +16,7 @@
         @include('partials.navigationDashboard')
         <section class="container-dashboard container-ads">
             <h2 aria-level="2">
-                Édition de l'annonce {{$announcement->title}}
+                Édition de l'annonce {{ucfirst($announcement->title)}}
             </h2>
             <div class="container-form-ads">
                 <livewire:ads-draft-dashboard>
@@ -33,12 +33,12 @@
                             @csrf
                             @method('DELETE')
                             <button id="deleteButton" class="button-cta button-delete" name="delete">
-                                Je supprime {{$announcement->title}}
+                                Je supprime {{ucfirst($announcement->title)}}
                             </button>
                         </form>
                     </div>
                     <div class="title-first-step-register">
-                        <h3 aria-level="3">Édition de {{$announcement->title}}</h3>
+                        <h3 aria-level="3">Édition de {{ucfirst($announcement->title)}}</h3>
                     </div>
                     <div class="container-all-announcement show-content container-create-ads-infos">
                         <form class="form-login form-register" enctype="multipart/form-data"

@@ -170,10 +170,10 @@ class CreateNewUser implements CreatesNewUsers
         $user->save();
         Session::forget('type');
         Session::forget('plan');
-        //Mail::to(env('MAIL_FROM_ADDRESS'))
-        //    ->send(new NewUserAdmin($user));
-        //Mail::to($user->email)
-        //    ->send(new NewUser($user));
+        Mail::to(env('MAIL_FROM_ADDRESS'))
+            ->send(new NewUserAdmin($user));
+        Mail::to($user->email)
+            ->send(new NewUser($user));
         Session::flash('success-inscription', 'Votre inscription à été un succés !');
         return $user;
     }

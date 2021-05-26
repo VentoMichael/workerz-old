@@ -113,7 +113,7 @@
                                         </div>
 
                                         <h4 aria-level="4">
-                                            {{$ad->title}}
+                                            {{ucfirst($ad->title)}}
                                         </h4>
                                     </div>
                                     <div>
@@ -130,7 +130,7 @@
                                     <div class="button-dashboard-notifications">
                                         <a class="button-cta button-edition button-personnal-dashboard"
                                            href="dashboard/ads/{{$ad->slug}}">
-                                            Voir {{$ad->title}}
+                                            Voir {{ucfirst($ad->title)}}
                                         </a>
                                     </div>
                                 </section>

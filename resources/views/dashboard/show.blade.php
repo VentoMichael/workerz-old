@@ -25,7 +25,7 @@
                             @csrf
                             @method('DELETE')
                             <button id="deleteButton" class="button-cta button-delete" name="delete">
-                                Je supprime {{$announcement->title}}
+                                Je supprime {{ucfirst($announcement->title)}}
                             </button>
                         </form>
                     </div>
@@ -43,11 +43,11 @@
                                 <img itemprop="image" src="{{asset('svg/ad.svg')}}" alt="icone d'annonces">
                             @endif
                             <h4 aria-level="4">
-                                {{$announcement->title}}
+                                {{ucfirst($announcement->title)}}
                             </h4>
                         </div>
                         <p>
-                            {{$announcement->description}}
+                            {{ucfirst($announcement->description)}}
                         </p>
                     </div>
                     <div class="container-perso-infos container-six-category-home" itemscope
@@ -119,14 +119,14 @@
                             <img src="{{asset('svg/placeholder.svg')}}" alt="icone de position">
                             <span>
                             @if($announcement->adress)
-                                    <span itemprop="streetAddress">{{$announcement->adress}}</span>
+                                    <span itemprop="streetAddress">{{ucfirst($announcement->adress)}}</span>
                                 @endif
                                 <span itemprop="addressRegion">{{ucfirst($announcement->province->name)}}</span>
                         </span>
                         </div>
                     </div>
                     <a href="{{route('update.ads.dashboard',$announcement->slug)}}" class="button-cta">
-                        J'édite {{$announcement->title}}
+                        J'édite {{ucfirst($announcement->title)}}
                     </a>
                 </section>
             </div>

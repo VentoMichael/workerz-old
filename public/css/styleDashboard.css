@@ -987,7 +987,7 @@ div .select-register {
 }
 
 .container-announcments-dashboard {
-    height: calc(100vh - 200px);
+    height: calc(70vh - 200px);
 }
 .container-announcments-dashboard div{
     position: relative;
@@ -1006,7 +1006,7 @@ div .select-register {
     display: flex;
     align-items: center;
     grid-gap: 10px;
-    padding: 15px;
+    padding: 15px 55px 15px 15px;
     margin-top: 10px;
     box-shadow: var(--shadow);
     background: white;
@@ -1304,6 +1304,7 @@ div .container-filter-categories:hover {
 .container-buttons-delete-back {
     display: flex;
     justify-content: space-between;
+    margin-bottom: 20px;
 }
 
 .button-delete {
@@ -1460,9 +1461,9 @@ div div .container-not-payed-dasboard {
 
 .container-messages-all {
     padding: 3%;
-    max-height: 500px;
+    max-height: 400px;
     overflow-y: auto;
-    min-height: 300px;
+    min-height: 150px;
 }
 
 .container-message {
@@ -1541,4 +1542,7 @@ div .noMorePage {
     position: relative;
     text-indent: -9999px;
     top: 10px;
+}
+.container-form-ads{
+    height: calc(100vh - 194px);
 }

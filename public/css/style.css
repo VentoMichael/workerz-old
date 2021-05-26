@@ -2075,19 +2075,49 @@ li label{
 
 .button-msg{
     width: 100%;
-    padding: 20px 10px;
+    padding: 14px 10px;
     font-size: 1.2em;
 }
 .button-msg:hover{
-    padding: 20px 30px 20px 10px;
+    padding: 14px 30px 14px 10px;
 }
 .button-msg:hover:after {
-    top: 17px;
+    top: 16px;
     background-size: 39%;
-    width: 36px;
-    height: 27px;
+    width: 30px;
+    height: 21px;
 }
 .formsendmsg{
     grid-column-start: 1;
     grid-column-end: 3;
+}
+section div .form-message{
+    display: grid;
+    grid-template-columns: repeat(2, minmax(100px, 1fr));
+    grid-gap: 50px;
+}
+.form-message .container-textarea{
+    margin-top: -55px;
+}
+.form-message .container-textarea,.form-message .container-button{
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+.form-message .container-form-email{
+    margin-bottom: 30px;
+}
+.container-filters-workerz.container-filters button:hover:after{
+    background-size: 80%;
+    display: block;
+    left: 50%;
+    margin-left: -10px;
+    content: "";
+    top: 22px;
+    opacity: 1;
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    transition: .3s;
+    background-position: center;
+    background-repeat: no-repeat;
 }

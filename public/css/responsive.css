@@ -484,6 +484,20 @@
         display: flex;
         flex-direction: column;
     }
+    div div .container-message-index:first-child{
+        margin-top: 0;
+    }
+    .container-message-index .container-announcements{
+        padding: 15px;
+        min-height: 130px;
+        max-height: 130px;
+    }
+    .button-delete-msg {
+        right: 8px;
+    }
+    section .container-form-ads {
+        height: inherit;
+    }
 }
 
 @media (max-width: 730px) {
@@ -694,6 +708,19 @@
     main section div .container-register-user {
         display: block;
     }
+
+    main section div .form-message{
+        display: block;
+    }
+    div .form-message .container-textarea{
+        margin-top: 5px;
+    }
+    div .form-message .container-form-email{
+        margin-bottom: 0;
+    }
+    form .input-message{
+        padding: 15px 20% 15px 3%;
+    }
 }
 
 @media (max-width: 600px) {
@@ -785,7 +812,9 @@
     .container-dashboard {
         padding-bottom: 20px;
     }
-
+    div .container-messages{
+        padding-bottom: 0;
+    }
     footer .copyright {
         padding: 10px;
     }
@@ -800,6 +829,9 @@
 
     div .container-edit-ads .horary-cost {
         top: 32px;
+    }
+    form .input-message{
+        padding: 15px 20% 15px 3%;
     }
 }
 
@@ -953,6 +985,16 @@
     section .container-picto-dashboard .container-messages {
         margin-top: -20px;
         grid-gap: 30px;
+    }
+    .container-ads-dashboard a .button-draft{
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+    .container-buttons-delete-back {
+        align-items: baseline;
+    }
+    div form .input-message{
+        padding: 15px 30vw 15px 3%;
     }
 }
 

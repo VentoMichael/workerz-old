@@ -6,6 +6,12 @@
             <span class="crossHide" id="crossHide">&times;</span>
         </div>
     @endif
+    @if (Session::has('success-inscription'))
+        <div id="successMsg" role="alert" class="successMsg"><img src="{{asset('svg/cross.svg')}}" alt="cross icone">
+            <p>{{Session::get('success-inscription')}}</p>
+            <span class="crossHide" id="crossHide">&times;</span>
+        </div>
+    @endif
     <section class="container-home margin">
         <div class="container-home_image container-home-create container-home-page">
             <div>

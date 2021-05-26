@@ -209,6 +209,7 @@
                             @csrf
                             <input type="hidden" name="from_id" id="from_id" value="{{auth()->user()->id}}">
                             <input type="hidden" name="to_id" id="to_id" value="{{$worker->id}}">
+                            <input type="hidden" name="slug" id="slug" value="{{$worker->slug}}">
                             <button type="submit" class="button-cta button-msg" name="talkTo">
                                 Parler à l'entreprise
                             </button>

@@ -57,7 +57,6 @@ class DashboardController extends Controller
     public function settings()
     {
         $this->sendNotification();
-
         $user_categories = auth()->user()->categoryUser;
         $user_disponibilities = auth()->user()->startDate;
         $disponibilities = StartDate::orderBy('id')->get();
@@ -445,6 +444,7 @@ class DashboardController extends Controller
             if (auth()->user()->sending_time_expire == 0) {
                 auth()->user()->sending_time_expire = 1;
                 auth()->user()->end_plan = null;
+                auth()->user()->plan_user_id = null;
                 auth()->user()->save();
                 //Mail::to(env('MAIL_FROM_ADDRESS'))
                 //    ->send(new AdsEarlyExpire(auth()->user()));
@@ -457,6 +457,5 @@ class DashboardController extends Controller
             auth()->user()->plan_user_id = null;
             auth()->user()->update();
         }
-        //TODO : supprimer l'annonce non payer 3j apres
     }
 }

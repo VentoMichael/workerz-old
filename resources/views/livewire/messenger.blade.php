@@ -1,7 +1,7 @@
 <div class="container-search-ads">
     <form action="{{$firstUser->slug.request('search')}}" aria-label="Rechercher mes annonces" role="search"
           method="get" class="formSearchAd">
-        <label for="search" class="hidden">Rechercher mes annonces</label>
+        <label for="search" class="hidden">Rechercher mes messages</label>
         <input type="text" name="search" value="{{request('search')}}" id="search"
                wire:model="search"
                placeholder="Rechercher par nom"
@@ -13,7 +13,7 @@
     </form>
     <div class="container-announcments-dashboard @if($users->count() < 1)container-search-without-ads @endif" wire:loading.class="load">
         @forelse($users as $user)
-            <div>
+            <div class="container-message-index">
                 <a class="{{ Request::is('dashboard/messages/'.$user->slug) || Request::is('dashboard/messages/'.$user->slug.'/*') ? "container-announcements-active" : "" }} container-announcements"
                    href="{{route('dashboard.messagesShow',[$user->slug])}}"
                    aria-current="{{ Request::is('dashboard/messages/*') ? "page" : "" }}">
@@ -38,8 +38,7 @@
                 </form>
             </div>
         @empty
-            <div class="container-announcements"
-            >
+            <div class="container-announcements" style="margin: 0;">
                 <section>
                     <img src="{{asset('svg/market.svg')}}" alt="icone d'annonce">
 
@@ -48,7 +47,7 @@
                             Aucune conversation trouvée ...
                         </h3>
                         <a class="button-cta" href="{{route('workerz')}}">
-                            Je vais voir les differentes entreprises
+                            <span>Toutes les entreprises</span>
                         </a>
                     </div>
                 </section>

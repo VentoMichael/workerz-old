@@ -120,7 +120,7 @@
                         @enderror
                     </div>
                 </div>
-                <div>
+                <div class="container-button">
                     <button role="button" class="button-cta" type="submit">
                         Envoyer un message
                     </button>

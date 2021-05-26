@@ -1,9 +1,9 @@
 <div class="container-home container-search" id="workerzLink">
     <div class="container-search">
         <form action="{{route('workerz')}}" aria-label="Recherche d'indépendants" role="search" method="get" class="formSearchAd">
-            <label for="search" class="hidden">Recherche d'annonces</label>
+            <label for="search" class="hidden">Recherche d'entreprises</label>
             <input type="text" name="search" value="{{request('search')}}" id="search" wire:model="search"
-                   placeholder="Rechercher par nom"
+                   placeholder="Rechercher par nom d'entreprises"
                    class="search-announcement search-home">
             <noscript>
                 <input type="submit" class="submit-category-home submit-ad" value="Recherchez">
@@ -150,7 +150,7 @@
                                 @foreach($categories as $category)
                                     @if($category->users_count !=0)
                                         <li>
-                                            <input wire:model="filters.categoryUser" role="checkbox"
+                                            <input wire:model="categoryUser" role="checkbox"
                                                    aria-checked="false" class="hiddenCheckbox inp-cbx"
                                                    id="categoryUser{{$category->id}}"
                                                    name="categoryUser[]"
@@ -179,7 +179,7 @@
                                 @foreach($regions as $region)
                                     @if($region->users_count !=0)
                                         <li>
-                                            <input wire:model="filters.provinces" role="checkbox"
+                                            <input wire:model="provinces" role="checkbox"
                                                    aria-checked="false" class="hiddenCheckbox inp-cbx"
                                                    id="provinces{{$region->id}}"
                                                    name="provinces[]"
