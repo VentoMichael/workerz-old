@@ -33,7 +33,7 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $this->sendNotification();
+        $this->sendExpireNotificationAccount();
         $messages = Message::where('to_id', '=', \auth()->user()->id)->with('user')->orderBy('created_at',
             'DESC')->take(3)->get();
         $lastAnnouncements = Announcement::where('user_id', '=',
@@ -46,11 +46,11 @@ class DashboardController extends Controller
 
     public function profil()
     {
-        $this->sendNotification();
+        $this->sendExpireNotificationAccount();
         $disponibilities = auth()->user()->startDate;
         $regions = auth()->user()->provinces;
         $categories = auth()->user()->categoryUser;
-        $this->sendNotification();
+        $this->sendExpireNotificationAccount();
         $planId = auth()->user()->plan_user_id;
         $plan = \App\Models\PlanUser::where('id', '=', $planId)->first();
         return view('dashboard.profil', compact('plan', 'disponibilities', 'categories', 'regions'));
@@ -58,7 +58,7 @@ class DashboardController extends Controller
 
     public function settings()
     {
-        $this->sendNotification();
+        $this->sendExpireNotificationAccount();
         $user_categories = auth()->user()->categoryUser;
         $user_disponibilities = auth()->user()->startDate;
         $disponibilities = StartDate::orderBy('id')->get();
@@ -70,7 +70,8 @@ class DashboardController extends Controller
 
     public function show(Announcement $announcement)
     {
-        $this->sendNotification();
+        $this->sendExpireNotificationAccount();
+        $this->sendExpireNotificationAccount();
         $firstAd = Auth::user()->announcements()->NotDraft()->firstOrFail();
         $user = User::where('id', '=', \auth()->user()->id)->with('announcements')->firstOrFail();
         $announcement = Announcement::withLikes()->where('id', '=', $announcement->id)->firstOrFail();
@@ -79,7 +80,8 @@ class DashboardController extends Controller
 
     public function showDraft(Announcement $announcement)
     {
-        $this->sendNotification();
+        $this->sendExpireNotificationAccount();
+        $this->sendExpireNotificationAccount();
         $firstAdDraft = Auth::user()->announcements()->Draft()->firstOrFail();
         $user = User::where('id', '=', \auth()->user()->id)->with('announcements')->firstOrFail();
         $announcement = Announcement::withLikes()->where('id', '=', $announcement->id)->firstOrFail();
@@ -88,7 +90,8 @@ class DashboardController extends Controller
 
     public function editAdsDraft(Announcement $announcement)
     {
-        $this->sendNotification();
+        $this->sendExpireNotificationAccount();
+        $this->sendExpireNotificationAccount();
         $firstAdDraft = Auth::user()->announcements()->first();
         $user = User::where('id', '=', \auth()->user()->id)->with('announcements')->first();
         $announcement = Announcement::withLikes()->where('slug', '=', $announcement->slug)->first();
@@ -105,7 +108,8 @@ class DashboardController extends Controller
 
     public function updateAdsDraft(Announcement $announcement, Request $request)
     {
-        $this->sendNotification();
+        $this->sendExpireNotificationAccount();
+        $this->sendExpireNotificationAccount();
         if ($request->has('publish')) {
             if ($announcement->plan_announcement_id == 2 || $announcement->plan_announcement_id == 3) {
                 $publish = true;
@@ -185,7 +189,7 @@ class DashboardController extends Controller
 
     public function updateUser(Request $request)
     {
-        $this->sendNotification();
+        $this->sendExpireNotificationAccount();
         $user = \auth()->user();
         if ($request->name != $user->getOriginal('name')) {
             $request->validate([
@@ -321,7 +325,8 @@ class DashboardController extends Controller
 
     public function editAds(Announcement $announcement)
     {
-        $this->sendNotification();
+        $this->sendExpireNotificationAccount();
+        $this->sendExpireNotificationAccount();
         $plan = $announcement->plan_announcement_id;
         $categories = Category::all();
         $regions = Province::all();
@@ -332,7 +337,8 @@ class DashboardController extends Controller
 
     public function updateAds(Announcement $announcement, Request $request)
     {
-        $this->sendNotification();
+        $this->sendExpireNotificationAccount();
+        $this->sendExpireNotificationAccount();
         if ($request->has('publish')) {
             if ($announcement->plan_announcement_id == 2 || $announcement->plan_announcement_id == 3) {
                 $publish = true;
@@ -418,20 +424,40 @@ class DashboardController extends Controller
 
     public function ads(Announcement $announcement)
     {
+        $this->sendExpireNotificationAccount();
         $firstAd = Auth::user()->announcements()->NotDraft()->first();
         $firstAdDraft = Auth::user()->announcements()->Draft()->first();
         return view('dashboard.ads', compact('firstAd', 'firstAdDraft'));
     }
 
-    protected function sendNotification()
+    protected function sendExpireNotificationAccount(){
+        if (auth()->user()->end_plan < Carbon::now()->addHours(2)->subDays(1)) {
+            if (auth()->user()->sending_time_expire == 0) {
+                auth()->user()->sending_time_expire = 1;
+                auth()->user()->end_plan = null;
+                auth()->user()->plan_user_id = null;
+                auth()->user()->save();
+                Mail::to(env('MAIL_FROM_ADDRESS'))
+                    ->send(new AdsEarlyExpire(auth()->user()));
+                Session::flash('expire', 'Attention, votre compte va expirer dans un jour !');
+            }
+        }
+        if (auth()->user()->end_plan <= Carbon::now()) {
+            auth()->user()->is_payed = 0;
+            auth()->user()->end_plan = null;
+            auth()->user()->plan_user_id = null;
+            auth()->user()->update();
+        }
+    }
+    protected function sendExpireNotificationAds()
     {
         foreach (auth()->user()->announcements as $adsExpire) {
             if ($adsExpire->end_plan < Carbon::now()->subDay(1)->addHours(2)) {
                 if ($adsExpire->sending_time_expire == 0) {
                     $adsExpire->sending_time_expire = 1;
                     $adsExpire->update();
-                    //Mail::to(auth()->user()->email)
-                    //    ->send(new AdsEarlyExpire($adsExpire));
+                    Mail::to(auth()->user()->email)
+                        ->send(new AdsEarlyExpire($adsExpire));
                     Session::flash('expire', 'Attention, une de vos annonce va expirer dans un jour !');
                 }
             }
@@ -441,23 +467,6 @@ class DashboardController extends Controller
                 $adsExpire->plan_announcement_id = null;
                 $adsExpire->update();
             }
-        }
-        if (auth()->user()->end_plan < Carbon::now()->addHours(2)->subDays(1)) {
-            if (auth()->user()->sending_time_expire == 0) {
-                auth()->user()->sending_time_expire = 1;
-                auth()->user()->end_plan = null;
-                auth()->user()->plan_user_id = null;
-                auth()->user()->save();
-                //Mail::to(env('MAIL_FROM_ADDRESS'))
-                //    ->send(new AdsEarlyExpire(auth()->user()));
-                Session::flash('expire', 'Attention, votre compte va expirer dans un jour !');
-            }
-        }
-        if (auth()->user()->end_plan <= Carbon::now()) {
-            auth()->user()->is_payed = 0;
-            auth()->user()->end_plan = null;
-            auth()->user()->plan_user_id = null;
-            auth()->user()->update();
         }
     }
 }

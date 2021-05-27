@@ -116,7 +116,7 @@
                             </section>
                         @endforelse
                         <div class="button-dashboard-notifications">
-                            <a class="button-cta button-edition button-msg-dash" href="{{route('dashboard.messages')}}">
+                            <a class="button-cta button-edition button-msg-dash button-msg-dashboard" href="{{route('dashboard.messages')}}">
                                 Tous mes messages
                             </a>
                         </div>

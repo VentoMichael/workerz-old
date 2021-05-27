@@ -18,7 +18,7 @@
             <h2 aria-level="2">
                 Messages
             </h2>
-            <div class="container-form-ads">
+            <div class="container-form-ads container-form-msgs">
                 <livewire:messenger>
                 </livewire:messenger>
                 <section class="container-profil-dashboard container-ads-dashboard">
@@ -33,7 +33,4 @@
             </div>
         </section>
     </div>
-@endsection
-@section('scripts')
-    @livewireScripts
 @endsection

@@ -18,31 +18,33 @@
             <h2 aria-level="2">
                 Mes messages
             </h2>
-            <div class="container-form-ads">
+            <div class="container-form-ads container-form-msgs">
                 <livewire:messenger>
                 </livewire:messenger>
                 <div class="container-profil-dashboard container-ads-dashboard container-messenger-profil">
                     <div class="container-picture-title-dashboard-ads  container-messenger">
                     </div>
-                    @if($messages->hasMorePages() || $messages->previousPageUrl())
-                        <div class="link-next-previous">
-                            @if($messages->hasMorePages())
-                                <div class="@if($messages->previousPageUrl()) noMorePage @endif nextLink-container">
-                                    <a class="nextLink" title="Voir les messages anciens"
-                                       href="{{ $messages->nextPageUrl() }}">
-                                        Voir les messages suivants
-                                    </a>
-                                </div>
-                            @endif
-                            @if($messages->previousPageUrl())
-                                <div class="previousLink-container">
-                                    <a class="previousLink" title="Voir les messages récents"
-                                       href="{{ $messages->previousPageUrl() }}">
-                                        Voir les messages précedents
-                                    </a>
-                                </div>
-                            @endif
-                        </div>
+                    @if($messages->count() > 20)
+                        @if($messages->hasMorePages() || $messages->previousPageUrl())
+                            <div class="link-next-previous">
+                                @if($messages->hasMorePages())
+                                    <div class="@if($messages->previousPageUrl()) noMorePage @endif nextLink-container">
+                                        <a class="nextLink" title="Voir les messages anciens"
+                                           href="{{ $messages->nextPageUrl() }}">
+                                            Voir les messages suivants
+                                        </a>
+                                    </div>
+                                @endif
+                                @if($messages->previousPageUrl())
+                                    <div class="previousLink-container">
+                                        <a class="previousLink" title="Voir les messages récents"
+                                           href="{{ $messages->previousPageUrl() }}">
+                                            Voir les messages précedents
+                                        </a>
+                                    </div>
+                                @endif
+                            </div>
+                        @endif
                     @endif
                     <div class="container-messages-all">
                         @foreach($messages as $message)
@@ -92,7 +94,4 @@
             </div>
         </section>
     </div>
-@endsection
-@section('scripts')
-    @livewireScripts
 @endsection

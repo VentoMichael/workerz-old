@@ -1,28 +1,46 @@
 @extends('layouts.appDashboard')
 @section('content')
+        <div id="successMsg" role="alert" class="successMsg"><img src="{{asset('svg/question-signe-en-cercles.svg')}}" alt="good icone">
+            <p>Vos notifications seront supprimé 7 jours après lecture</p>
+            <span class="crossHide" id="crossHide">&times;</span>
+        </div>
     <div class="container-all-dashboard">
         @include('partials.navigationDashboard')
         <section class="container-dashboard container-ads">
             <h2 aria-level="2">
                 Notifications
             </h2>
-            <div class="container-form-ads">
-                <div class="container-search-ads">
+            <div class="container-form-ads container-messenger-form">
+                <div class="container-search-ads container-notification-search">
                     <div
                         class="container-announcments-dashboard"
                         wire:loading.class="load">
-                        @forelse($notifications as $notification)
+                        @forelse($notifications->sortByDesc('created_at')->sortBy('read_at') as $notification)
                             <div class="container-message-index">
-                                <a class="{{ Request::is('dashboard/messages/'.$notification->id) || Request::is('dashboard/messages/'.$notification->id.'/*') ? "container-announcements-active" : "" }} container-announcements"
+                                <a class="{{ Request::is('dashboard/messages/'.$notification->id) || Request::is('dashboard/messages/'.$notification->id.'/*') ? "container-announcements-active" : "" }} container-announcements @if($notification->read_at !== null) notificationSeen @endif"
                                    href="{{route('dashboard.notificationsShow',[$notification->id])}}"
                                    aria-current="{{ Request::is('dashboard/messages/*') ? "page" : "" }}">
                                     <section>
-                                        <img src="{{asset('svg/messenger.svg')}}" alt="icone de messages">
-                                        <div>
+                                        @if($notification->type === 'App\Notifications\AdCreated')
+                                            <img src="{{asset('svg/ad.svg')}}" alt="icone d'annonce">
+
+                                            <div>
+
                                             <h3 aria-level="3">
-                                                {{$notification->id}}
+                                                Votre nouvelle
+                                                annonce {{$notification->data['announcement']['title']}}
                                             </h3>
-                                        </div>
+                                            </div>
+                                            @else
+                                            <img src="{{asset('svg/messenger.svg')}}" alt="icone de messages">
+
+                                            <div>
+                                                <h3 aria-level="3">
+                                                    Un nouveau message
+                                                    de {{$notification->data['message']['user']['name']}}
+                                                </h3>
+                                            </div>
+                                        @endif
                                     </section>
                                 </a>
                             </div>

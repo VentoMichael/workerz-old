@@ -312,10 +312,10 @@ li .container-menu-pincipal a:hover:before {
 .successMsg {
     position: fixed;
     font-family: fira, sans-serif;
-    bottom: 20px;
+    bottom: 7%;
     display: flex;
     align-items: center;
-    right: 6.8%;
+    right: 4%;
     margin-left: 7%;
     max-width: 300px;
     padding: 20px;
@@ -1543,9 +1543,14 @@ div .noMorePage {
     text-indent: -9999px;
     top: 10px;
 }
-.container-form-ads{
+div .container-form-ads{
+    height: inherit;
+}
+
+.container-form-msgs{
     height: calc(100vh - 194px);
 }
+
 .container-notifications-dashboard{
     display: flex;
     align-items: center;
@@ -1557,9 +1562,32 @@ div .noMorePage {
 .container-notification{
     border-bottom: 2px solid #69696969;
     padding-bottom: 20px;
+    margin-bottom: 20px;
 }
 .container-notification img{
     margin-right: 10px;
     max-width: 40px;
     min-width: 30px;
+}
+.notificationSeen{
+    opacity: .55;
+    text-decoration: line-through;
+}
+.title-notification{
+    font-family: 'ubuntu',sans-serif;
+}
+.container-notification-details{
+    padding: 3%;
+    margin-bottom: 20px;
+}
+.title-notification-msg{
+    font-size: 1.1em;
+    font-weight: bolder;
+    font-family: 'ubuntu',sans-serif;
+}
+.button-back.button-cta.button-draft:after{
+    top: 10px;
+}
+div section .container-messenger-form{
+    height: calc(100vh - 100px);
 }

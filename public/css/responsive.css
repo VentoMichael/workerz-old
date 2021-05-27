@@ -472,34 +472,70 @@
     .container-edit-ads .container-filter-categories li {
         margin: 10px 0;
     }
-    .container-sections-dashboard.container-dashboards section:nth-child(2):after,.container-sections-dashboard.container-dashboards section:nth-child(2):before{
-       display: none;
+
+    .container-sections-dashboard.container-dashboards section:nth-child(2):after, .container-sections-dashboard.container-dashboards section:nth-child(2):before {
+        display: none;
     }
 
-    .container-sections-dashboard section .button-cta{
+    .container-sections-dashboard section .button-cta {
         margin-top: 10px;
     }
 
-    section .container-picto-dashboard .container-ads-index{
+    section .container-picto-dashboard .container-ads-index {
         display: flex;
         flex-direction: column;
     }
-    div div .container-message-index:first-child{
+
+    div div .container-message-index:first-child {
         margin-top: 0;
     }
-    .container-message-index .container-announcements{
+
+    .container-message-index .container-announcements {
         padding: 15px;
         min-height: 130px;
         max-height: 130px;
     }
+
     .button-delete-msg {
         right: 8px;
     }
+
     section .container-form-ads {
         height: inherit;
     }
-    section .container-sections-dashboard section .button-msg-dash{
+
+    section .container-sections-dashboard section .button-msg-dash {
         margin-top: 30px;
+    }
+    main section .container-sections-dashboard section .button-msg-dashboard{
+
+    }
+    section div .containernotif {
+        height: auto;
+    }
+
+    .button-profil-editing {
+        margin-bottom: 30px;
+    }
+
+    div form .container-edit-name {
+        margin: -3px 0;
+    }
+
+    div section .container-notification-search {
+        height: inherit;
+        max-height: 200px;
+    }
+
+    div section .container-notification-search a.container-announcements,div section div .container-notifications-show .container-announcements {
+        margin-top: 30px;
+    }
+
+    div section div .container-notifications-show {
+        height: 200px;
+    }
+    main div section .container-notification-form {
+        height: auto;
     }
 }
 
@@ -507,6 +543,10 @@
 
     main .container-categories-home {
         margin-top: 50px;
+    }
+
+    . {
+        margin: -5px 0;
     }
 
     .container-why-text-first {
@@ -680,9 +720,11 @@
     section .container-worker {
         grid-gap: 30px;
     }
-    .container-profil-dashboard div .edit-user-profile{
+
+    .container-profil-dashboard div .edit-user-profile {
         grid-template-columns: repeat(1, minmax(270px, 1fr));
     }
+
     .form-edit-preview .container-register-form, .form-choice, .container-profil-dashboard div .form-edit-company, form .container-connexion-logins {
         display: grid;
         grid-template-columns: repeat(1, minmax(270px, 1fr));
@@ -704,24 +746,29 @@
     form .container-connexion-logins {
         grid-gap: 0;
     }
+
     main section div .container-register-user div .help {
-        margin-top:-20px;
+        margin-top: -20px;
         margin-bottom: 20px;
     }
+
     main section div .container-register-user {
         display: block;
     }
 
-    main section div .form-message{
+    main section div .form-message {
         display: block;
     }
-    div .form-message .container-textarea{
+
+    div .form-message .container-textarea {
         margin-top: 5px;
     }
-    div .form-message .container-form-email{
+
+    div .form-message .container-form-email {
         margin-bottom: 0;
     }
-    form .input-message{
+
+    form .input-message {
         padding: 15px 20% 15px 3%;
     }
 }
@@ -815,9 +862,11 @@
     .container-dashboard {
         padding-bottom: 20px;
     }
-    div .container-messages{
+
+    div .container-messages {
         padding-bottom: 0;
     }
+
     footer .copyright {
         padding: 10px;
     }
@@ -833,7 +882,8 @@
     div .container-edit-ads .horary-cost {
         top: 32px;
     }
-    form .input-message{
+
+    form .input-message {
         padding: 15px 20% 15px 3%;
     }
 }
@@ -982,22 +1032,50 @@
     .container-profil-dashboard .container-link-to-back button {
         margin-top: inherit;
     }
+
     div .button-dashboard-notifications a {
         margin-top: 20px;
     }
+
     section .container-picto-dashboard .container-messages {
         margin-top: -20px;
         grid-gap: 30px;
     }
-    .container-ads-dashboard a .button-draft{
+
+    .container-ads-dashboard a .button-draft {
         margin-top: 0;
         margin-bottom: 0;
     }
+
     .container-buttons-delete-back {
         align-items: baseline;
     }
-    div form .input-message{
+
+    div form .input-message {
         padding: 15px 30vw 15px 3%;
+    }
+
+    section .container-btn-draft a {
+        margin-top: -20px;
+    }
+
+    div .formSearchAd .search-ads {
+        margin: inherit;
+        min-width: 300px;
+        box-sizing: border-box;
+    }
+
+    .container-ads-dashboard .button-delete:after {
+        display: none;
+    }
+
+    .container-ads-dashboard .button-delete:hover:after {
+        display: block;
+    }
+
+    section .container-search-ads {
+        min-height: 200px;
+        height: inherit;
     }
 }
 
@@ -1027,4 +1105,3 @@
         max-width: 95%;
     }
 }
-

@@ -35,7 +35,7 @@
                 <section class="container-profil-dashboard container-ads-dashboard">
                     <div class="container-buttons-delete-back">
                         <a class="link-back" href="{{route('dashboard.ads')}}">
-                            <button class="button-back button-cta button-draft">
+                            <button class="button-back button-cta button-draft button-back-ads">
                                 Retour
                             </button>
                         </a>
@@ -60,9 +60,9 @@
                             @else
                                 <img itemprop="image" src="{{asset('svg/ad.svg')}}" alt="icone d'annonces">
                             @endif
-                            <h4 aria-level="4">
-                                {{ucfirst($announcement->title)}}
-                            </h4>
+                                <h3 aria-level="3">
+                                    <span class="hidden">Annonce séléctionnée</span> {{ucfirst($announcement->title)}}
+                                </h3>
                         </div>
                         <p>
                             {{ucfirst($announcement->description)}}

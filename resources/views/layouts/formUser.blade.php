@@ -21,7 +21,7 @@
             <div class="container-form-email container-phone">
                 <label for="number">Numéro de téléphone <span class="required">*</span></label>
 
-                <input minlength="6" maxlength="15" type="tel" id="phone" pattern="^[0-9-+\s()]*$"
+                <input minlength="6" maxlength="15" type="tel" id="number" pattern="^[0-9-+\s()]*$"
                        @if(auth()->user()) value="{{auth()->user()->phones()->first()->number}}" @else value="{{old('number')}}"
                        @endif placeholder="0494827235"
                        class=" @error('number') is-invalid @enderror email-label" name="number" required
@@ -81,7 +81,7 @@
         @endif
 
                     @if(auth()->user())
-        <div class="container-register-form container-register">
+        <div class="container-register-form container-register container-edit-name">
                             @endif
             <div class="container-form-email">
                 <label for="name">Nom<span class="required"> *</span></label>

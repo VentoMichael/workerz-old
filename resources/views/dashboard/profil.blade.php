@@ -327,7 +327,7 @@
                                     </div>
                                 </div>
                                 @if(auth()->user()->end_plan != null)
-                                    <div>
+                                    <div class="button-profil-editing">
                                         <a href="{{route('dashboard.profil.edit')}}" role="button"
                                            class="button-cta button-edition"
                                            type="submit">
