@@ -112,7 +112,7 @@
                 <p itemprop="description">
                     {{ucfirst($announcement->description)}}
                 </p>
-                <section class="container-perso-infos container-six-category-home" itemscope
+                <section class="container-perso-infos container-six-category-home container-show-boxes-ads" itemscope
                          itemtype="https://schema.org/Person">
                     <h4 aria-level="4" class="hidden">Information de contact</h4>
                     <div>
@@ -166,7 +166,7 @@
                         </span>
                     </div>
                     @auth
-                        <form action="{{route('messages.post',[$announcement->user->slug])}}" method="POST" class="formsendmsg">
+                        <form action="{{route('messages.post',[$announcement->user->slug])}}" method="POST" class="formsendmsg button-workerz">
                             @csrf
                             <input type="hidden" name="from_id" id="from_id" value="{{auth()->user()->id}}">
                             <input type="hidden" name="to_id" id="to_id" value="{{$announcement->user->id}}">

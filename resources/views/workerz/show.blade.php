@@ -47,7 +47,7 @@
             <div class="container-love-show">
                 @auth
                     <div
-                        class="containerPrice container-show-love containerLove help-show @guest notHoverHeart @endguest">
+                        class="containerPrice container-show-love containerLove help-show like-workerz @guest notHoverHeart @endguest">
                         @if(!$worker->isLikedUBy($worker))
                             <form method="POST" title="Mettre un j'aime à {{$worker->name}}"
                                   aria-label="Mettre un j'aime à {{$worker->name}}"
@@ -140,7 +140,7 @@
                 <p>
                     {{ucfirst($worker->description)}}
                 </p>
-                <section class="container-perso-infos container-six-category-home">
+                <section class="container-perso-infos container-six-category-home container-show-boxes-ads">
                     <h4 aria-level="4" class="hidden">Information de contact</h4>
                     @foreach($worker->phones as $up)
                         <div>
@@ -205,7 +205,7 @@
                         </div>
                     @endif
                     @auth
-                        <form action="{{route('messages.post',[$worker->slug])}}" method="POST" class="formsendmsg">
+                        <form action="{{route('messages.post',[$worker->slug])}}" method="POST" class="formsendmsg button-workerz">
                             @csrf
                             <input type="hidden" name="from_id" id="from_id" value="{{auth()->user()->id}}">
                             <input type="hidden" name="to_id" id="to_id" value="{{$worker->id}}">

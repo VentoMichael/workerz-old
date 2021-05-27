@@ -30,7 +30,7 @@ class UserController extends Controller
         return view('auth.registration_type', compact('plan', 'type'));
     }
 
-    public function index()
+    public function index(Request $request)
     {
         return view('workerz.index');
     }

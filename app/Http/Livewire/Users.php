@@ -15,18 +15,19 @@ class Users extends Component
     public $search = "";
     public $provinces=[];
     public $categoryUser=[];
+    protected $queryString = ['search','provinces',
+'categoryUser'];
 
-    protected $queryString = ['search'];
-
-    public function resetFilters(){
-        $this->reset('provinces','categoryUser');
-    }
     public function render()
     {
         sleep(1);
         return view('livewire.users', [
-            'regions' => Province::withCount("users")->get()->sortBy('name'),
-            'categories' => Category::withCount("users")->get()->sortBy('name'),
+            'regions' => Province::with(['users'=>function($q){
+                $q->NoBan()->Payed()->withCount('provinces');
+            }])->orderBy('name')->get(),
+            'categories' => Category::with(['users'=>function($q){
+                $q->NoBan()->Payed()->withCount('categoryUser');
+            }])->orderBy('name')->get(),
             'workerz' => User::query()
                 ->Independent()
                 ->Payed()

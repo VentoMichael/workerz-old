@@ -1,6 +1,7 @@
 <div id="adsLink">
     <div class="container-home container-search">
-        <form action="{{route('announcements')}}" aria-label="Recherche d'annonce" role="search" method="get" class="formSearchAd">
+        <form action="{{route('announcements')}}" aria-label="Recherche d'annonce" role="search" method="get"
+              class="formSearchAd">
             <label for="search" class="hidden">Recherche d'annonces</label>
             <input type="text" name="search" value="{{request('search')}}" id="search" wire:model="search"
                    placeholder="Rechercher par titre d'annonce"
@@ -16,14 +17,17 @@
         </h2>
         <div class="container-all-announcement show-content">
             @forelse($announcements as $announcement)
-                <section class="container-announcement" wire:loading.class="load" itemtype="https://schema.org/Thing" itemscope>
+                <section class="container-announcement" wire:loading.class="load" itemtype="https://schema.org/Thing"
+                         itemscope>
                     <div class="container-infos-announcement">
                         <div class="container-love-show">
                             @auth
                                 <div
                                     class="containerPrice container-show-love like-users-connected like-index containerLove help-show @guest notHoverHeart @endguest">
                                     @if(!$announcement->isLikedBy($user))
-                                        <form method="POST" title="Mettre un j'aime à {{$announcement->title}}" aria-label="Mettre un j'aime à {{$announcement->title}}" action="/announcements/{{$announcement->slug}}/like">
+                                        <form method="POST" title="Mettre un j'aime à {{$announcement->title}}"
+                                              aria-label="Mettre un j'aime à {{$announcement->title}}"
+                                              action="/announcements/{{$announcement->slug}}/like">
                                             @csrf
 
                                             <button type="submit" class="button-loves">
@@ -36,7 +40,9 @@
                                         </form>
                                     @else
 
-                                        <form method="POST" title="Enlever le j'aime donner à {{$announcement->title}}" aria-label="Enlever le j'aime donner à {{$announcement->title}}" action="/announcements/{{$announcement->slug}}/like">
+                                        <form method="POST" title="Enlever le j'aime donner à {{$announcement->title}}"
+                                              aria-label="Enlever le j'aime donner à {{$announcement->title}}"
+                                              action="/announcements/{{$announcement->slug}}/like">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="button-loves">
@@ -49,7 +55,8 @@
                                 </div>
 
                             @else
-                                <a href="{{route('login')}}" title="Il faut se connecter pour mettre un j'aime à {{$announcement->title}}">
+                                <a href="{{route('login')}}"
+                                   title="Il faut se connecter pour mettre un j'aime à {{$announcement->title}}">
                                     <div class="containerPrice containerLove like-index hepling helping-like help-show">
 
                                         <img class="heart" src="{{asset('svg/heart.svg')}}" alt="icone de coeur">
@@ -63,9 +70,9 @@
                             @endauth
                         </div>
                         @if($announcement->pricemax)
-                        <div class="containerPrice">
-                            <img src="{{asset('svg/euro.svg')}}" alt="icone d'euro"><span>Max: {{$announcement->pricemax}}€</span>
-                        </div>
+                            <div class="containerPrice">
+                                <img src="{{asset('svg/euro.svg')}}" alt="icone d'euro"><span>Max: {{$announcement->pricemax}}€</span>
+                            </div>
                         @endif
                         <div class="container-image-announcement">
                             @if($announcement->picture)
@@ -95,17 +102,41 @@
                                     @endif
                                 </div>
                             </div>
-                            <div class="container-info-announcement" itemtype="https://schema.org/PostalAddress" itemscope>
+                            <div class="container-info-announcement" itemtype="https://schema.org/PostalAddress"
+                                 itemscope>
                                 <img src="{{asset('svg/placeholder.svg')}}" alt="icone de localité">
                                 <div>
                                     @if($announcement->adress)
                                         <p itemprop="streetAddress">{{$announcement->adress}}</p>
                                     @endif
-                                    <p class="categoryJob" itemprop="addressRegion">({{ucfirst($announcement->province->name)}})</p>
+                                    <p class="categoryJob" itemprop="addressRegion">
+                                        ({{ucfirst($announcement->province->name)}})</p>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    @auth
+                        <form action="{{route('messages.post',[$announcement->user->slug])}}" method="POST"
+                              class="formsendmsg formsenmsg-show-view">
+                            @csrf
+                            <input type="hidden" name="from_id" id="from_id{{$announcement->user->id}}"
+                                   value="{{auth()->user()->id}}">
+                            <input type="hidden" name="to_id" id="to_id{{$announcement->user->id}}"
+                                   value="{{$announcement->user->id}}">
+                            <input type="hidden" name="slug" id="slug{{$announcement->user->id}}"
+                                   value="{{$announcement->user->slug}}">
+                            <button type="submit" class="button-cta button-msg" name="talkTo">
+                                Parler avec {{$announcement->user->name}} {{$announcement->user->surname}}
+                            </button>
+                        </form>
+                    @else
+                        <a class="formsendmsg button-cta formsenmsg-show-view" style="text-align: center"
+                           href="{{route('login')}}"
+                           title="Il faut se connecter pour parler avec le detenteur de l'annonce">Il faut être
+                            connecter
+                            pour parler avec la personne ayant poster l'annonce
+                        </a>
+                    @endauth
                     <a href="/announcements/{{$announcement->slug}}" class="button-personnal-announcement">
                         Aller voir {{$announcement->title}}
                     </a>
@@ -141,12 +172,15 @@
                             <fieldset>
                                 <legend class="hidden">Catégories</legend>
                                 @foreach($categories as $category)
-                                @if($category->announcements_count != 0)
+                                    @if($category->announcements->count() != 0)
                                         <li>
-                                            <input wire:model="filters.categoryAds" class="inp-cbx hiddenCheckbox" id="category{{$category->id}}"
-                                                   name="filters.categoryAds[]"
-                                                   type="checkbox" value="{{$category->id}}"/>
-                                            <label class="cbx" for="category{{$category->id}}">
+                                            <input
+                                                @if(request('categoryAds') && in_array($category->id,request('categoryAds'))) checked
+                                                @else wire:model="categoryAds" @endif class="inp-cbx hiddenCheckbox"
+                                                id="categoryAds{{$category->id}}"
+                                                name="categoryAds[]"
+                                                type="checkbox" value="{{$category->id}}"/>
+                                            <label class="cbx" for="categoryAds{{$category->id}}">
                                 <span>
                                     <svg width="12px" height="9px" viewbox="0 0 12 9">
                                       <polyline points="1 5 4 8 11 1"></polyline>
@@ -168,14 +202,16 @@
                             <fieldset>
                                 <legend class="hidden">Régions</legend>
                                 @foreach($regions as $region)
-                                    @if($region->announcements_count !=0)
+                                    @if($region->announcements->count() !=0)
                                         <li>
-                                            <input wire:model="filters.province" role="checkbox"
-                                                   aria-checked="false" class="hiddenCheckbox inp-cbx"
-                                                   id="region{{$region->id}}"
-                                                   name="region[]"
-                                                   type="checkbox" value="{{$region->id}}"/>
-                                            <label class="cbx" for="region{{$region->id}}">
+                                            <input
+                                                @if(request('province') && in_array($region->id,request('province'))) checked
+                                                @else wire:model="province" @endif role="checkbox"
+                                                aria-checked="false" class="hiddenCheckbox inp-cbx"
+                                                id="province{{$region->id}}"
+                                                name="province[]"
+                                                type="checkbox" value="{{$region->id}}"/>
+                                            <label class="cbx" for="province{{$region->id}}">
                                 <span>
                                     <svg width="12px" height="9px" viewbox="0 0 12 9">
                                       <polyline points="1 5 4 8 11 1"></polyline>
@@ -193,13 +229,10 @@
                     </section>
 
                     <noscript>
-                        <button type="submit">
+                        <button type="submit" class="apply-filter-btn">
                             Appliquer les filtres
                         </button>
                     </noscript>
-                    <button wire:click="resetFilters">
-                        Réinitialiser les filtres
-                    </button>
                 </section>
             </form>
         </div>

@@ -1,6 +1,7 @@
 <div class="container-home container-search" id="workerzLink">
     <div class="container-search">
-        <form action="{{route('workerz')}}" aria-label="Recherche d'indépendants" role="search" method="get" class="formSearchAd">
+        <form action="{{route('workerz')}}" aria-label="Recherche d'indépendants" role="search" method="get"
+              class="formSearchAd">
             <label for="search" class="hidden">Recherche d'entreprises</label>
             <input type="text" name="search" value="{{request('search')}}" id="search" wire:model="search"
                    placeholder="Rechercher par nom d'entreprises"
@@ -70,10 +71,10 @@
                             @endauth
                         </div>
                         @if($worker->pricemax)
-                        <div class="containerPrice" itemscope itemtype="https://schema.org/PriceSpecification">
-                            <img src="{{asset('svg/euro.svg')}}" alt="icone d'euro">
-                            <span itemprop="price">{{$worker->pricemax}} €/h</span>
-                        </div>
+                            <div class="containerPrice" itemscope itemtype="https://schema.org/PriceSpecification">
+                                <img src="{{asset('svg/euro.svg')}}" alt="icone d'euro">
+                                <span itemprop="price">{{$worker->pricemax}} €/h</span>
+                            </div>
                         @endif
                         <div class="container-image-announcement">
                             @if($worker->picture)
@@ -106,12 +107,33 @@
                                     <img src="{{asset('svg/placeholder.svg')}}" alt="icone de localité">
                                     <div class="container-location" itemprop="address">
                                         <p>{{ucfirst($worker->adresses->first()->postal_adress)}}</p>
-                                        <p class="categoryJob">({{ucfirst($worker->adresses->first()->province->name)}})</p>
+                                        <p class="categoryJob">({{ucfirst($worker->adresses->first()->province->name)}}
+                                            )</p>
                                     </div>
                                 </div>
                             @endif
                         </div>
                     </div>
+                    @auth
+                        <form action="{{route('messages.post',[$worker->slug])}}" method="POST"
+                              class="formsendmsg formsenmsg-show-view">
+                            @csrf
+                            <input type="hidden" name="from_id" id="from_id{{$worker->id}}"
+                                   value="{{auth()->user()->id}}">
+                            <input type="hidden" name="to_id" id="to_id{{$worker->id}}" value="{{$worker->id}}">
+                            <input type="hidden" name="slug" id="slug{{$worker->id}}" value="{{$worker->slug}}">
+                            <button type="submit" class="button-cta button-msg" name="talkTo">
+                                Parler avec {{$worker->name}} {{$worker->surname}}
+                            </button>
+                        </form>
+                    @else
+                        <a class="formsendmsg button-cta button-msg" style="text-align: center"
+                           href="{{route('login')}}"
+                           title="Il faut se connecter pour parler avec le detenteur de l'annonce">Il faut être
+                            connecter
+                            pour parler avec la personne ayant poster l'annonce
+                        </a>
+                    @endauth
                     <a href="/workerz/{{$worker->slug}}" class="button-personnal-announcement">
                         Aller voir {{$worker->name}}
                     </a>
@@ -134,81 +156,81 @@
             {{ $workerz->links() }}
         </div>
         @if($categories || $regions)
-        <div class="container-filters container-filters-workerz">
-            <form aria-label="Filtrage d'indépendants" action="{{route('workerz')}}" method="get">
-                <section>
-                    <h2 aria-level="2">
-                        Filtres
-                    </h2>
-                    <section class="container-filter-categories">
-                        <h3 aria-level="3">
-                            Catégories
-                        </h3>
-                        <ul class="list-categories">
-                            <fieldset>
-                                <legend class="hidden">Catégories</legend>
-                                @foreach($categories as $category)
-                                    @if($category->users_count !=0)
-                                        <li>
-                                            <input wire:model="categoryUser" role="checkbox"
-                                                   aria-checked="false" class="hiddenCheckbox inp-cbx"
-                                                   id="categoryUser{{$category->id}}"
-                                                   name="categoryUser[]"
-                                                   type="checkbox" value="{{$category->id}}"/>
-                                            <label class="cbx" for="categoryUser{{$category->id}}">
+            <div class="container-filters container-filters-workerz">
+                <form aria-label="Filtrage d'indépendants" action="{{route('workerz')}}" method="get">
+                    <section>
+                        <h2 aria-level="2">
+                            Filtres
+                        </h2>
+                        <section class="container-filter-categories">
+                            <h3 aria-level="3">
+                                Catégories
+                            </h3>
+                            <ul class="list-categories">
+                                <fieldset>
+                                    <legend class="hidden">Catégories</legend>
+                                    @foreach($categories as $category)
+                                        @if($category->users->count() !=0)
+                                            <li>
+                                                <input
+                                                    @if(request('categoryUser') && in_array($category->id,request('categoryUser'))) checked @else wire:model="categoryUser" @endif role="checkbox"
+                                                    class="hiddenCheckbox inp-cbx"
+                                                    name="categoryUser[]"
+                                                    id="categoryUser{{$category->id}}"
+                                                    type="checkbox" value="{{$category->id}}"/>
+                                                <label class="cbx" for="categoryUser{{$category->id}}">
                                 <span>
                                     <svg width="12px" height="9px" viewbox="0 0 12 9">
                                       <polyline points="1 5 4 8 11 1"></polyline>
                                     </svg>
                                 </span>
-                                                <span>{{$category->name}}</span>
-                                            </label>
-                                        </li>
-                                    @endif
-                                @endforeach
-                            </fieldset>
-                        </ul>
-                    </section>
-                    <section class="container-filter-categories">
-                        <h3 aria-level="3">
-                            Régions
-                        </h3>
-                        <ul class="list-categories">
-                            <fieldset>
-                                <legend class="hidden">Régions</legend>
-                                @foreach($regions as $region)
-                                    @if($region->users_count !=0)
-                                        <li>
-                                            <input wire:model="provinces" role="checkbox"
-                                                   aria-checked="false" class="hiddenCheckbox inp-cbx"
-                                                   id="provinces{{$region->id}}"
-                                                   name="provinces[]"
-                                                   type="checkbox" value="{{$region->id}}"/>
-                                            <label class="cbx" for="provinces{{$region->id}}">
+                                                    <span>{{$category->name}}</span>
+                                                </label>
+                                            </li>
+                                        @endif
+                                    @endforeach
+                                </fieldset>
+                            </ul>
+                        </section>
+                        <section class="container-filter-categories">
+                            <h3 aria-level="3">
+                                Régions
+                            </h3>
+                            <ul class="list-categories">
+                                <fieldset>
+                                    <legend class="hidden">Régions</legend>
+                                    @foreach($regions as $region)
+                                        @if($region->users->count() !=0)
+                                            <li>
+                                                <input
+                                                    @if(request('provinces') && in_array($region->id,request('provinces'))) checked
+                                                    @endif wire:model="provinces" role="checkbox"
+                                                    aria-checked="false" class="hiddenCheckbox inp-cbx"
+                                                    id="provinces{{$region->id}}"
+                                                    name="provinces[]"
+                                                    type="checkbox" value="{{$region->id}}"/>
+                                                <label class="cbx" for="provinces{{$region->id}}">
                                 <span>
                                     <svg width="12px" height="9px" viewbox="0 0 12 9">
                                       <polyline points="1 5 4 8 11 1"></polyline>
                                     </svg>
                                 </span>
-                                                <span>{{$region->name}}</span>
-                                            </label>
-                                        </li>
-                                    @endif
-                                @endforeach
-                            </fieldset>
-                        </ul>
+                                                    <span>{{$region->name}}</span>
+                                                </label>
+                                            </li>
+                                        @endif
+                                    @endforeach
+                                </fieldset>
+                            </ul>
+                        </section>
+                        <noscript>
+                            <button class="apply-filter-btn">
+                                Appliquer les filtres
+                            </button>
+                        </noscript>
                     </section>
-                    <noscript>
-                        <button>
-                            Appliquer les filtres
-                        </button>
-                    </noscript>
-                    <button wire:click="resetFilters">
-                        Réinitialiser les filtres
-                    </button>
-                </section>
-            </form>
-        </div>
+                </form>
+            </div>
     </section>
 </div>
 @endif

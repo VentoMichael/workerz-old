@@ -44,7 +44,7 @@
                 Le meilleur pour vous étendre
             </h2>
         </div>
-        <div class="container-six-category-home show-content">
+        <div class="container-six-category-home show-content container-about-sections">
             <section class="box-category box-about">
                 <img src="{{asset('svg/Video tutorial _Monochromatic.svg')}}"
                      alt="Icone d'un cahier avec une personne voulant écrire dedans">

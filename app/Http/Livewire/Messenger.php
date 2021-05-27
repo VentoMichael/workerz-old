@@ -22,7 +22,7 @@ class Messenger extends Component
             'users' => User::query()->whereHas('talkedTo', function ($q) {
                 $q->where('from_id', '=', \auth()->id());
             })->where('name', 'like',
-                '%'.$this->search.'%')->get(),
+                '%'.$this->search.'%')->get()
         ]);
     }
 }

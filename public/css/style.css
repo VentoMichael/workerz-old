@@ -713,6 +713,7 @@ div .select-region:hover {
     padding: 20px 10px;
     max-width: 1000px;
     margin: 15px auto 50px;
+    border-radius: 5px;
 }
 
 .container-policy li {
@@ -1315,6 +1316,7 @@ div .monthCost{
     border-bottom: 2px solid var(--blueLight);
     margin: 0;
     display: inline-block;
+    font-family: ubuntu,sans-serif;
 }
 
 div .current_page_item-nav {
@@ -1617,7 +1619,8 @@ div .containerRandomLoves {
 }
 
 div .help-show {
-    top: -46px;
+    top: -22px;
+    left: 15px;
 }
 
 .container-payed-plan .reductionPrice {
@@ -1631,6 +1634,7 @@ div .help-show {
 
 a .like-ads, div .like-ads {
     top: -63px;
+    left: 5px;
 }
 
 .container-price-paied {
@@ -2120,4 +2124,19 @@ section div .form-message{
     transition: .3s;
     background-position: center;
     background-repeat: no-repeat;
+}
+.formsenmsg-show-view{
+    margin: 0 15px 30px;
+}
+.formsenmsg-show-view button{
+    padding: 10px;
+    font-size: 1em;
+    text-align: center;
+}
+section div .like-workerz{
+    top: -48px;
+    left: 0;
+}
+noscript .apply-filter-btn{
+    margin-bottom: 0;
 }

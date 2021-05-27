@@ -1463,7 +1463,7 @@ div div .container-not-payed-dasboard {
     padding: 3%;
     overflow-y: auto;
     min-height: 150px;
-    max-height: calc(100vh - 340px);
+    height: calc(100vh - 340px);
 }
 
 .container-message {
@@ -1590,4 +1590,14 @@ div .container-form-ads{
 }
 div section .container-messenger-form{
     height: calc(100vh - 100px);
+}
+.container-helper-message{
+    position: sticky;
+    top: 0;
+    display: flex;justify-content: center;
+    background: white;
+    padding: 20px 0 20px 0;
+    box-shadow: var(--shadow);
+    margin: 0 -3%;
+    transform: translateY(-40px);
 }

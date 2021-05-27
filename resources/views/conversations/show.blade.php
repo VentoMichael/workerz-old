@@ -46,7 +46,12 @@
                             </div>
                         @endif
                     @endif
-                    <div class="container-messages-all">
+                    <section class="container-messages-all" id="container-message">
+                        <div class="container-helper-message">
+                            <h4 aria-level="4">
+                                <span class="hidden"> Utilisateur sélectionné </span>{{$user->name}} {{$user->surname}}
+                            </h4>
+                        </div>
                         @foreach($messages as $message)
                             @if($message->content != null)
                                 <div @if($message->user->id == $user->id) class="container-from-msg container-message"
@@ -69,7 +74,7 @@
                             @endif
 
                         @endforeach
-                    </div>
+                    </section>
                     <form class="form-login" style="position: relative" enctype="multipart/form-data"
                           aria-label="Enregistrement d'un compte" role="form" method="POST"
                           action="{{route('messages.post',[$user->slug])}}">
@@ -82,7 +87,7 @@
 
                         <input type="hidden" name="from_id" id="from_id" value="{{$user->id}}">
                         <input type="hidden" name="to_id" id="to_id" value="{{auth()->user()->id}}">
-                        <button type="submit" class="submit-message" title="Envoyer le message"></button>
+                        <button type="submit" class="submit-message" title="Envoyer le message à {{$user->name}}"></button>
                         @error('message')
                         <p class="danger help"
                            style="position: absolute;top: -30px;background: white;border-radius: 5px;padding: 0 3% 5px;margin-bottom: -3%;">

@@ -29,7 +29,7 @@
         </div>
         <div class="container-six-category-home show-content">
             @foreach($categories as $categorie)
-                <a href="{{route('workerz').'?category='.$categorie->id.'#workerzLink'}}">
+                <a href="{{route('workerz').'?categoryUser%5B%5D='.$categorie->id.'#workerzLink'}}">
                     <section class="box-category">
                         <img src="{{asset('svg/'.$categorie->profil)}}" alt="{{$categorie->alt}}">
                         <div itemscope itemtype="http://schema.org/Person">

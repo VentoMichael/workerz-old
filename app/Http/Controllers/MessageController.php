@@ -38,10 +38,9 @@ class MessageController extends Controller
      */
     public function show(User $user)
     {
-        $messages = Message::whereRaw("((from_id = ".\auth()->user()->id." AND to_id = $user->id) OR (from_id = $user->id AND to_id =".\auth()->user()->id."))")->orderBy('created_at',
+        $messages = Message::with('user')->whereRaw("((from_id = ".\auth()->user()->id." AND to_id = $user->id) OR (from_id = $user->id AND to_id =".\auth()->user()->id."))")->orderBy('created_at',
             'DESC')->paginate(20);
-        $user = User::where('slug', '=', $user->slug)->firstOrFail();
-        return view('conversations.show', compact('messages', 'user'));
+        return view('conversations.show', compact('messages','user'));
     }
 
     /**

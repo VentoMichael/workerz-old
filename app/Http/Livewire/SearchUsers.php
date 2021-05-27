@@ -15,7 +15,7 @@ class SearchUsers extends Component
     {
         sleep(1);
         return view('livewire.search-users', [
-            'workerz' => User::Independent()->Payed()->NoBan()->orderBy('plan_user_id', 'DESC')->orderBy('created_at', 'DESC')->where('name','like','%'.$this->search.'%')->paginate(5),
+            'workerz' => User::Independent()->Payed()->NoBan()->orderBy('plan_user_id', 'DESC')->orderBy('created_at', 'DESC')->where('name','like','%'.$this->search.'%')->paginate(3),
         ]);
     }
 }

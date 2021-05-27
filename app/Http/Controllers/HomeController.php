@@ -10,7 +10,12 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $categories = Category::withCount('users')->orderBy('users_count','DESC')->orderBy('name','ASC')->take(5)->get();
+        $categories = Category::with(['users'=>function($q){
+            $q->NoBan()->Payed()->withCount('categoryUser');
+        }])->take(5)->get()->sortByDesc(function($categorie)
+        {
+            return $categorie->users->count();
+        });
         return view('home.index', compact('categories'));
     }
 }

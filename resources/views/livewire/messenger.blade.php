@@ -21,7 +21,7 @@
                         <img src="{{asset('svg/messenger.svg')}}" alt="icone de messages">
                         <div>
                             <h3 aria-level="3">
-                                {{$user->name}}
+                                {{$user->name}} {{$user->surname}}
                             </h3>
                             <p>
                                 {{$user->job}}
@@ -59,5 +59,6 @@
 @section('scripts')
     <script src="{{asset('js/confirmDelete-msg.js')}}"></script>
     @livewireScripts
+    <script>document.getElementById("container-message").addEventListener("click",()=>{document.getElementById("message").focus()});</script>
 @endsection
 @endif

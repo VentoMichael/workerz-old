@@ -13,6 +13,7 @@ use App\Models\Province;
 use App\Models\StartMonth;
 use App\Notifications\AdCreated;
 use Carbon\Carbon;
+use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -34,8 +35,8 @@ class AnnouncementController extends Controller
     {
         $plans = PlanAnnouncement::all();
         $plan = \request()->plan;
-        Session::put('plan',$plan);
-        return view('announcements.plans', compact('plans','plan'));
+        Session::put('plan', $plan);
+        return view('announcements.plans', compact('plans', 'plan'));
     }
 
     public function index()
@@ -47,11 +48,7 @@ class AnnouncementController extends Controller
     public function show(Announcement $announcement)
     {
         $announcement = Announcement::withLikes()->where('id', '=', $announcement->id)->first();
-
-        if(!\request()->session()->has('visit')) {
-            \request()->session()->put('visit', 1);
-            $announcement->incrementReadCount();
-        }
+        $announcement->incrementReadCount();
         $randomAds = Announcement::Published()
             ->NoBan()
             ->Payement()->Adspayed()->orderBy('plan_announcement_id',
@@ -72,7 +69,7 @@ class AnnouncementController extends Controller
     public function create(Request $request)
     {
         $plan = \request()->plan;
-        Session::put('plan',$plan);
+        Session::put('plan', $plan);
 
         $categories = Category::withCount("announcements")->get()->sortBy('name');
         $regions = Province::withCount("announcements")->get()->sortBy('name');
@@ -169,17 +166,17 @@ class AnnouncementController extends Controller
             $announcement->user()->email->notify(new AdCreated($announcement));
             Session::flash('success-ads',
                 'Votre annonce est presque finalisée, elle sera visible qu\'après reçu de votre payement !');
-            return redirect(route('announcements.payed', compact('planId', 'announcement','plan')));
+            return redirect(route('announcements.payed', compact('planId', 'announcement', 'plan')));
         }
     }
 
-    public function payed(Request $request,Announcement $announcement)
+    public function payed(Request $request, Announcement $announcement)
     {
-        if ($request->publish == true){
-            $announcement = Announcement::where('slug','=',$request->announcement);
-            $planId = PlanAnnouncement::where('id','=',$request->planAd)->first();
+        if ($request->publish == true) {
+            $announcement = Announcement::where('slug', '=', $request->announcement);
+            $planId = PlanAnnouncement::where('id', '=', $request->planAd)->first();
             $plan = $request->planAd;
-        }else{
+        } else {
             $plan = Session::get('plan');
             $planId = PlanAnnouncement::where('id', '=', $plan)->first();
         }
