@@ -498,6 +498,9 @@
     section .container-form-ads {
         height: inherit;
     }
+    section .container-sections-dashboard section .button-msg-dash{
+        margin-top: 30px;
+    }
 }
 
 @media (max-width: 730px) {

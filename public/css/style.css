@@ -1263,10 +1263,10 @@ div .monthCost{
 .successMsg {
     position: fixed;
     font-family: fira, sans-serif;
-    bottom: 20px;
+    bottom: 10%;
     display: flex;
     align-items: center;
-    right: 6.8%;
+    right: 5%;
     margin-left: 7%;
     max-width: 300px;
     padding: 20px;

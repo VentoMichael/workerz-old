@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Mail\AdsCreated;
 use App\Mail\AdsCreatedUser;
-use App\Mail\ContactMe;
 use App\Models\Announcement;
 use App\Models\AnnouncementCategory;
 use App\Models\CatchPhraseAnnouncement;
@@ -12,12 +11,12 @@ use App\Models\Category;
 use App\Models\PlanAnnouncement;
 use App\Models\Province;
 use App\Models\StartMonth;
-use App\Models\User;
+use App\Notifications\AdCreated;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
@@ -138,8 +137,6 @@ class AnnouncementController extends Controller
                 $announcement->end_plan = $trial;
                 Mail::to(env('MAIL_FROM_ADDRESS'))
                     ->send(new AdsCreated($data));
-                Mail::to(\auth()->user()->email)
-                    ->send(new AdsCreatedUser($data));
                 Session::forget('plan');
                 Session::flash('success-inscription',
                     'Votre annonce a été bien mise en ligne !');
@@ -147,6 +144,7 @@ class AnnouncementController extends Controller
             $announcement->is_payed = $payed;
             $announcement->categoryAds()->attach($ct->category_id);
             $announcement->save();
+            \auth()->user()->notify(new AdCreated($announcement));
             return redirect(route('dashboard.ads'));
         } else {
             if ($request->has('is_draft')) {
@@ -168,6 +166,7 @@ class AnnouncementController extends Controller
             $announcement->save();
             $announcement->categoryAds()->attach($ct->category_id);
             $planId = PlanAnnouncement::where('id', '=', $plan)->first();
+            $announcement->user()->email->notify(new AdCreated($announcement));
             Session::flash('success-ads',
                 'Votre annonce est presque finalisée, elle sera visible qu\'après reçu de votre payement !');
             return redirect(route('announcements.payed', compact('planId', 'announcement','plan')));
@@ -218,8 +217,7 @@ class AnnouncementController extends Controller
         $announcement->update();
         Mail::to(env('MAIL_FROM_ADDRESS'))
             ->send(new AdsCreated($announcement));
-        Mail::to(\auth()->user()->email)
-            ->send(new AdsCreatedUser($announcement));
+        \auth()->user()->notify(new AdCreated($announcement));
         Session::forget('plan');
         return redirect(route('dashboard.ads'));
     }

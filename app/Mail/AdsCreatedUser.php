@@ -31,6 +31,6 @@ class AdsCreatedUser extends Mailable
     public function build()
     {
         return $this->markdown('emails.ads-for-user')->with('data',
-            $this->data)->subject('Votre nouvelle annonce aura du succés');
+            $this->data)->subject('Votre nouvelle annonce est en ligne');
     }
 }

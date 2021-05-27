@@ -59,7 +59,7 @@ Route::prefix('')->middleware(['auth'])->group(function () {
     Route::get('/dashboard',
         [\App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard')->middleware('payeduser');
     Route::get('/dashboard/notifications', [
-        \App\Http\Controllers\DashboardController::class, 'notifications'
+        \App\Http\Controllers\UserNotificationController::class, 'index'
     ])->name('dashboard.notifications')->middleware('payeduser');
 
 

@@ -1326,7 +1326,7 @@ div .container-filter-categories:hover {
 
 .container-index-dashboard img {
     width: 100%;
-    max-width: 200px;
+    max-width: 150px;
 }
 
 .container-index-dashboard h4 {
@@ -1545,4 +1545,12 @@ div .noMorePage {
 }
 .container-form-ads{
     height: calc(100vh - 194px);
+}
+.container-notifications-dashboard{
+    display: flex;
+    align-items: center;
+}
+.container-notifications-dashboard img{
+    max-width: 50px;
+    margin-right: 10px;
 }

@@ -1,11 +1,23 @@
 @extends('layouts.app')
 
 @section('content')
-    @if(Session::has('messageBanned'))
-        <div id="sucessMessage">{{ Session::get('messageBanned') }}</div>
+    @if (Session::has('messageBanned'))
+        <div id="successMsg" role="alert" class="successMsg"><img src="{{asset('svg/good.svg')}}" alt="cross icone">
+            <p>{{Session::get('messageBanned')}}</p>
+            <span class="crossHide" id="crossHide">&times;</span>
+        </div>
     @endif
-    @if(Session::has('success-update'))
-        <div id="sucessMessage">{{ Session::get('success-update') }}</div>
+    @if (Session::has('forbidden'))
+        <div id="successMsg" role="alert" class="successMsg"><img style="max-width: 50px;" src="{{asset('svg/question-signe-en-cercles.svg')}}" alt="cross icone">
+            <p>{{Session::get('forbidden')}}</p>
+            <span class="crossHide" id="crossHide">&times;</span>
+        </div>
+    @endif
+    @if (Session::has('success-update'))
+        <div id="successMsg" role="alert" class="successMsg"><img src="{{asset('svg/good.svg')}}" alt="cross icone">
+            <p>{{Session::get('success-update')}}</p>
+            <span class="crossHide" id="crossHide">&times;</span>
+        </div>
     @endif
     <div class="container-home">
         <section class="container-home_image">

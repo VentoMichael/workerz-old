@@ -6,6 +6,8 @@ use App\Mail\NewMessageFromDashboard;
 use App\Models\Announcement;
 use App\Models\Message;
 use App\Models\User;
+use App\Notifications\AdCreated;
+use App\Notifications\MessageReceived;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
@@ -69,8 +71,8 @@ class MessageController extends Controller
         $message->to_id = $request->to_id;
         $message->created_at = Carbon::now()->addHours(2);
         $message->save();
-        //Mail::to($message->user->email)
-        //->send(new NewMessageFromDashboard($message));
+        \auth()->user()->notify(new MessageReceived($message));
+
         Session::flash('success-ads',
             'Votre message a bien été envoyer');
         return Redirect::back();

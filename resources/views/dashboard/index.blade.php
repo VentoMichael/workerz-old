@@ -26,23 +26,52 @@
             </h2>
             <div class="container-sections-dashboard container-dashboards">
                 <section class="container-dashboard-notif">
-                    <h3>
-                        Notifications
+                    <h3 aria-level="3">
+                        Dernières notifications
                     </h3>
                     <div class="container-picto-dashboard">
                         <div class="container-messages">
-                            <div class="messages-container">
-                                <div class="container-horary-notification-dashboard">
-                                    <p>
-                                        15:32
-                                    </p>
+                            @forelse($notifications->sortByDesc('created_at') as $notification)
+                                <div class="messages-container">
+                                    <div class="container-horary-notification-dashboard">
+                                        @if($notification->created_at->isToday())
+                                            <p>
+                                                Aujourd'hui, {{$notification->created_at->locale('fr')->isoFormat('H:mm')}}
+                                            </p>
+                                        @else
+                                            <p>
+                                                {{$notification->created_at->locale('fr')->isoFormat('Do MMMM YYYY, H:mm')}}
+                                            </p>
+                                        @endif
+                                    </div>
+                                    @if($notification->type === 'App\Notifications\AdCreated')
+                                        <div class="container-notifications-dashboard">
+                                            <img itemprop="image" src="{{asset('svg/ad.svg')}}"
+                                                 alt="icone d'annonces">
+                                            <h4 aria-level="4">
+                                                Votre annonce {{$notification->data['announcement']['title'] }} est en
+                                                ligne !
+                                            </h4>
+                                        </div>
+                                    @endif
+                                    @if($notification->type === 'App\Notifications\MessageReceived')
+                                        <div class="container-notifications-dashboard">
+                                            <img itemprop="image" src="{{asset('svg/messenger.svg')}}"
+                                                 alt="icone de messages">
+                                            <h4 aria-level="4">
+                                                Vous avez reçu un message
+                                                de {{$notification->data['message']['user']['name'] }}
+                                            </h4>
+                                        </div>
+                                    @endif
                                 </div>
-                                <div>
-                                    <p>
-                                        Vous avez reçu un message de Anna Roberto
-                                    </p>
+                            @empty
+                                <div class="messages-container">
+                                    <h4 aria-level="4">
+                                        Aucune notification pour le moment
+                                    </h4>
                                 </div>
-                            </div>
+                            @endforelse
                         </div>
 
                         <div class="button-dashboard-notifications">
@@ -87,7 +116,7 @@
                             </section>
                         @endforelse
                         <div class="button-dashboard-notifications">
-                            <a class="button-cta button-edition" href="{{route('dashboard.messages')}}">
+                            <a class="button-cta button-edition button-msg-dash" href="{{route('dashboard.messages')}}">
                                 Tous mes messages
                             </a>
                         </div>
@@ -95,7 +124,7 @@
                 </section>
                 <section class="container-dashboard-notif container-dashboard-ads">
                     <h3 aria-level="3">
-                        3 dernières annonces
+                        3 annonces ayant le plus de succés
                     </h3>
                     <div class="container-picto-dashboard">
                         <div class="container-messages container-ads-index">

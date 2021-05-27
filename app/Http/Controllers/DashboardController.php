@@ -39,7 +39,9 @@ class DashboardController extends Controller
         $lastAnnouncements = Announcement::where('user_id', '=',
             \auth()->user()->id)->WithLikes()->NoBan()->Payement()->Published()->orderBy('view_count',
             'DESC')->orderBy('created_at', 'DESC')->take(3)->get();
-        return view('dashboard.index', compact('lastAnnouncements', 'messages'));
+        $notifications = tap(\auth()->user()->unreadNotifications)->markAsRead();
+
+        return view('dashboard.index', compact('notifications','lastAnnouncements', 'messages'));
     }
 
     public function profil()
