@@ -71,8 +71,7 @@ class MessageController extends Controller
         $message->to_id = $request->to_id;
         $message->created_at = Carbon::now()->addHours(2);
         $message->save();
-        \auth()->user()->notify(new MessageReceived($message));
-
+        $message->user->notify(new MessageReceived($message));
         Session::flash('success-ads',
             'Votre message a bien été envoyer');
         return Redirect::back();

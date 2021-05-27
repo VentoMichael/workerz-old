@@ -1461,9 +1461,9 @@ div div .container-not-payed-dasboard {
 
 .container-messages-all {
     padding: 3%;
-    max-height: 400px;
     overflow-y: auto;
     min-height: 150px;
+    max-height: calc(100vh - 340px);
 }
 
 .container-message {
@@ -1553,4 +1553,13 @@ div .noMorePage {
 .container-notifications-dashboard img{
     max-width: 50px;
     margin-right: 10px;
+}
+.container-notification{
+    border-bottom: 2px solid #69696969;
+    padding-bottom: 20px;
+}
+.container-notification img{
+    margin-right: 10px;
+    max-width: 40px;
+    min-width: 30px;
 }

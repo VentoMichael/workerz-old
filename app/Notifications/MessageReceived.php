@@ -44,10 +44,10 @@ class MessageReceived extends Notification
     {
         return (new MailMessage)
             ->subject('Un nouveau message dans votre boite Workerz !')
-            ->line($this->message->user->name.' vous a contactez !')
+            ->line($this->message->receiver->name.' vous a contactez !')
             ->line('Son message :')
             ->line($this->message->content)
-            ->action('Je vais lui répondre', url(env('APP_URL').'/dashboard/messages/'.$this->message->user->slug));
+            ->action('Je vais lui répondre', url(env('APP_URL').'/dashboard/messages/'.$this->message->receiver->slug));
     }
 
     /**

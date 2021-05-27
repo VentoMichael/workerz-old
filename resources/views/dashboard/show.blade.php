@@ -54,7 +54,7 @@
                          itemtype="https://schema.org/Person">
                         <div>
                             <img src="{{asset('svg/clock-expirate.svg')}}" alt="icone d'expiration">
-                            @if($announcement->is_payed)
+                            @if($announcement->is_payed && $announcement->plan_announcement !=null)
                                 <span>
                                 <p style="color: black">Plan : {{$announcement->plan_announcement->name}}</p>
                                 <p style="color: black">Date d'expiration le {{$announcement->end_plan->locale('fr')->isoFormat('Do MMMM YYYY, H:mm')}}</p>
