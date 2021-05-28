@@ -2,17 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\NewMessageFromDashboard;
-use App\Models\Announcement;
 use App\Models\Message;
 use App\Models\User;
-use App\Notifications\AdCreated;
 use App\Notifications\MessageReceived;
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;

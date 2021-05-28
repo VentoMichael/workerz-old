@@ -73,12 +73,13 @@
                                 </div>
                             @endforelse
                         </div>
-
+@if($notifications->count() >0)
                         <div class="button-dashboard-notifications">
                             <a class="button-cta button-edition" href="{{route('dashboard.notifications')}}">
                                 Toutes les notifications
                             </a>
                         </div>
+    @endif
                     </div>
                 </section>
                 <section class="container-dashboard-notif container-dashboard-messenger">
@@ -115,11 +116,13 @@
                                 </div>
                             </section>
                         @endforelse
+                        @if($messages->count() >0)
                         <div class="button-dashboard-notifications">
                             <a class="button-cta button-edition button-msg-dash button-msg-dashboard" href="{{route('dashboard.messages')}}">
                                 Tous mes messages
                             </a>
                         </div>
+                            @endif
                     </div>
                 </section>
                 <section class="container-dashboard-notif container-dashboard-ads">
@@ -176,11 +179,13 @@
                                     </div>
                                 </section>
                             @endforelse
+                            @if($lastAnnouncements->count() >0)
                             <div class="button-dashboard-notifications">
                                 <a class="button-cta button-edition" href="{{route('dashboard.ads')}}">
                                     Toutes mes annonces
                                 </a>
                             </div>
+                                @endif
                         </div>
                     </div>
                 </section>

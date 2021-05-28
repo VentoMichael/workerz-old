@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Mail\AdsCreated;
-use App\Mail\AdsCreatedUser;
 use App\Models\Announcement;
 use App\Models\AnnouncementCategory;
 use App\Models\CatchPhraseAnnouncement;
@@ -13,11 +12,9 @@ use App\Models\Province;
 use App\Models\StartMonth;
 use App\Notifications\AdCreated;
 use Carbon\Carbon;
-use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
@@ -120,7 +117,7 @@ class AnnouncementController extends Controller
         $announcement->start_month_id = $request->startmonth;
         $announcement->plan_announcement_id = $plan;
         $ct = new AnnouncementCategory();
-        $ct->category_id = $request->category_job;
+        $ct->category_id = $request->categoryAds;
         if ($plan == 1 || \request()->old('plan') == 1 || \request('plan') == 1) {
             if ($request->has('is_draft')) {
                 $announcement->is_draft = true;
@@ -139,8 +136,8 @@ class AnnouncementController extends Controller
                     'Votre annonce a été bien mise en ligne !');
             }
             $announcement->is_payed = $payed;
-            $announcement->categoryAds()->attach($ct->category_id);
             $announcement->save();
+            $announcement->categoryAds()->attach($ct->category_id);
             \auth()->user()->notify(new AdCreated($announcement));
             return redirect(route('dashboard.ads'));
         } else {
@@ -217,33 +214,5 @@ class AnnouncementController extends Controller
         \auth()->user()->notify(new AdCreated($announcement));
         Session::forget('plan');
         return redirect(route('dashboard.ads'));
-    }
-
-    public function edit(Announcement $announcement)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Announcement  $announcement
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Announcement $announcement)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Announcement  $announcement
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Announcement $announcement)
-    {
-        //
     }
 }

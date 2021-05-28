@@ -127,7 +127,7 @@
                             </button>
                         </form>
                     @else
-                        <a class="formsendmsg button-cta button-msg" style="text-align: center"
+                        <a class="formsendmsg formsenmsg-show-view-Notauth button-cta button-msg"
                            href="{{route('login')}}"
                            title="Il faut se connecter pour parler avec le detenteur de l'annonce">Il faut être
                             connecter

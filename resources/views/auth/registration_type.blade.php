@@ -25,7 +25,7 @@
 
 
         <section class="container-role">
-            <div class="container-img-register">
+            <div class="container-img-register container-picto-register">
                 <img src="{{asset('svg/user.svg')}}" alt="Photo de profil par défaut d'un utilisateur"></div>
             <h3 aria-level="3">
                 Je cherche un professionnel

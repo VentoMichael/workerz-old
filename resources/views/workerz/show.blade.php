@@ -62,7 +62,6 @@
                                         {{$worker->likes ? : 0}}</span></button>
                             </form>
                         @else
-
                             <form method="POST" title="Enlever le j'aime donner à {{$worker->name}}"
                                   aria-label="Enlever le j'aime donner à {{$worker->name}}"
                                   action="/workerz/{{$worker->slug}}/like">
@@ -79,7 +78,7 @@
 
                 @else
                     <a href="{{route('login')}}" title="Il faut se connecter pour mettre un j'aime à {{$worker->name}}">
-                        <div class="containerPrice containerLove like-users hepling helping-like help-show">
+                        <div class="containerPrice container-love-notAuth containerLove like-users hepling helping-like help-show">
 
                             <img class="heart" src="{{asset('svg/heart.svg')}}" alt="icone de coeur">
                             <img class="heartFul" src="{{asset('svg/heartFul.svg')}}"
@@ -215,7 +214,7 @@
                             </button>
                         </form>
                     @else
-                        <a class="formsendmsg button-cta button-msg" style="text-align: center"
+                        <a class="formsenmsg-show-view-Notauth formsendmsg button-cta button-msg" style="text-align: center"
                            href="{{route('login')}}"
                            title="Il faut se connecter pour parler avec {{$worker->name}}">Il faut être connecter pour parler avec l'entreprise
                         </a>

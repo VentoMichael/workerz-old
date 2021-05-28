@@ -76,7 +76,7 @@
                         @endforeach
                     </section>
                     <form class="form-login" style="position: relative" enctype="multipart/form-data"
-                          aria-label="Enregistrement d'un compte" role="form" method="POST"
+                          aria-label="Envoie d'un message à {{$user->name}}" role="form" method="POST"
                           action="{{route('messages.post',[$user->slug])}}">
                         @csrf
 

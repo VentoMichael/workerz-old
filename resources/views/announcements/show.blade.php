@@ -83,7 +83,7 @@
                 @else
                     <a href="{{route('login')}}"
                        title="Il faut se connecter pour mettre un j'aime à {{$announcement->title}}">
-                        <div class="containerPrice containerLove show-NConnected hepling helping-like help-show">
+                        <div class="containerPrice containerLove hepling helping-like help-show">
 
                             <img class="heart" src="{{asset('svg/heart.svg')}}" alt="icone de coeur">
                             <img class="heartFul" src="{{asset('svg/heartFul.svg')}}"
@@ -176,7 +176,7 @@
                             </button>
                         </form>
                     @else
-                        <a class="formsendmsg button-cta button-msg" style="text-align: center"
+                        <a class="formsendmsg button-cta button-msg formsenmsg-show-view-Notauth" style="text-align: center"
                            href="{{route('login')}}"
                            title="Il faut se connecter pour parler avec le detenteur de l'annonce">Il faut être connecter
                             pour parler avec la personne ayant poster l'annonce

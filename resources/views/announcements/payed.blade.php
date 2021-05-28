@@ -85,7 +85,7 @@
                         {{number_format((float)$planId->price, 2, ',', '')}} € </h3>
                     <p>Saisissez les informations relatives à votre carte de crédit</p>
                     <form class="form-login form-register show-content" enctype="multipart/form-data"
-                          aria-label="Enregistrement d'un compte" role="form" method="post" id="payment-form"
+                          aria-label="Enregistrement d'une annonce" role="form" method="post" id="payment-form"
                           action="{{ route('announcements.paied') }}">
                         @csrf
                         <div class="container-form-email">

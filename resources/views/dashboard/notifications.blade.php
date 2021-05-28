@@ -1,9 +1,11 @@
 @extends('layouts.appDashboard')
 @section('content')
+    @if($notifications->count() >0)
         <div id="successMsg" role="alert" class="successMsg"><img src="{{asset('svg/question-signe-en-cercles.svg')}}" alt="good icone">
             <p>Vos notifications seront supprimé 7 jours après lecture</p>
             <span class="crossHide" id="crossHide">&times;</span>
         </div>
+        @endif
     <div class="container-all-dashboard">
         @include('partials.navigationDashboard')
         <section class="container-dashboard container-ads">

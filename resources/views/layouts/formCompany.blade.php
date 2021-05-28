@@ -101,7 +101,7 @@
                                aria-required="true">
                         @error('name')
                         <div class="container-error">
-                <span role="alert" class="error">
+                            <span role="alert" class="error">
                                         <strong>{{ ucfirst($message) }}</strong>
                                     </span>
                         </div>
@@ -178,9 +178,9 @@
                     class="container-register-form container-register @if(auth()->user()) container-edit-formulary @endif container-job-dashboard">
                     @endif
                     <div
-                        class="container-form-email @if(auth()->user()) container-edit-formulary @endif container-job-profil selectdiv container-cat">
+                        class="container-form-email container-job-profil selectdiv container-cat container-disponibilities-register">
                         <label for="categoryUser">Catégorie de métier <span class="required">*</span></label>
-                        <div class="container-filter-categories container-category">
+                        <div class="container-category">
                             <ul class="list-categories list-checkboxes-register list-dispo-profil">
                                 @foreach($categories as $c)
                                     <li>
@@ -227,10 +227,10 @@
 
                     </div>
 
-                    <div class="container-form-email selectdiv">
+                    <div class="container-form-email selectdiv container-disponibilities-edit container-disponibilities-register">
                         <label for="disponibilities">Disponibilités</label>
-                        <div class="container-filter-categories container-category">
-                            <ul class="list-categories list-checkboxes-register list-dispo-profil">
+                        <div class="container-category">
+                            <ul class="list-categories list-checkboxes-register list-dispo-profil"  style="overflow-y: scroll; -webkit-overflow-scrolling: touch;">
                                 @foreach($disponibilities as $disponibility)
                                     <li>
                                         <input
@@ -555,7 +555,7 @@
                 <div
                     class="container-register-form container-register @if(auth()->user()) container-edit-formulary @endif contaner-description">
                     @endif
-                    <div class="container-form-email container-description-register">
+                    <div class="container-form-email container-description-register container-description-edit">
                         <div class="container-maxCharacters">
                             <label for="description">Description <span class="required">*</span></label>
                             <span class="maxCharacters">256 caractères max</span>
@@ -584,7 +584,7 @@
             @endif
             @include('partials.register')
             @if(auth()->user())
-                <div class="container-form-email">
+                <div class="container-form-email container-facebook-edit">
                     <label for="facebook">Lien Facebook</label>
                     <input placeholder="https://facebook.be" type="text" id="facebook"
                            @if(auth()->user()) value="{{auth()->user()->facebook}}" @endif
@@ -648,7 +648,7 @@
                     <input id="plan{{$plan}}" name="plan" type="hidden" value="{{$plan}}">
                     <input id="type" name="type" type="hidden" value="company">
                     <input type="hidden" name="type" value="company">
-                    <button role="button" class="button-cta" name="company" type="submit">
+                    <button role="button" class="button-cta button-register-company" name="company" type="submit">
                         Finaliser l'inscription
                     </button>
                 @else

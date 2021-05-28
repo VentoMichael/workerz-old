@@ -25,7 +25,7 @@ Route::post('/newsletter/store',
     [\App\Http\Controllers\NewsletterController::class, 'store'])->name('newsletter.store');
 
 
-// ADS
+// ADS VIEWS
 Route::get('/announcements', [\App\Http\Controllers\AnnouncementController::class, 'index'])
     ->name('announcements');
 Route::get('/announcements/{announcement}',
@@ -33,7 +33,7 @@ Route::get('/announcements/{announcement}',
     ->name('announcements.show')->middleware('adsroute');
 
 
-// WORKERS
+// WORKERS VIEW
 Route::get('/workerz', [\App\Http\Controllers\UserController::class, 'index'])
     ->name('workerz');
 Route::get('/workerz/{worker}',
@@ -54,38 +54,28 @@ Route::prefix('')->middleware(['guest'])->group(function () {
 Route::post('/register/payed', [\App\Http\Controllers\UserController::class, 'payedUser'])->name('users.paied');
 Route::get('/register/payed', [\App\Http\Controllers\UserController::class, 'payed'])->name('users.payed')->middleware('checkpayed','auth');
 
-Route::prefix('')->middleware(['auth'])->group(function () {
+Route::prefix('')->middleware(['auth','verified'])->group(function () {
     // DASHBOARD
     Route::get('/dashboard',
         [\App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard')->middleware('payeduser');
+
+    //NOTIFICATIONS
     Route::get('/dashboard/notifications/{id}', [
         \App\Http\Controllers\UserNotificationController::class, 'show'
     ])->name('dashboard.notificationsShow')->middleware('payeduser');
-
     Route::get('/dashboard/notifications', [
         \App\Http\Controllers\UserNotificationController::class, 'index'
     ])->name('dashboard.notifications')->middleware('payeduser');
 
-
+    //MESSAGES
     Route::post('/dashboard/messages/{user}',
         [\App\Http\Controllers\MessageController::class, 'store'])->name('messages.post');
     Route::get('/dashboard/messages',
-        [\App\Http\Controllers\MessageController::class, 'index'])->name('dashboard.messages');
+        [\App\Http\Controllers\MessageController::class, 'index'])->name('dashboard.messages')->middleware('payeduser');
     Route::get('/dashboard/messages/{user}',
         [\App\Http\Controllers\MessageController::class, 'show'])->name('dashboard.messagesShow');
     Route::delete('/dashboard/messages/{user}/delete',
         [\App\Http\Controllers\MessageController::class, 'deleteConversations'])->name('delete.conversations');
-
-//TODO:METTRE MIDDLEWARE VERIFIED
-
-
-
-
-
-
-
-    Route::get('/dashboard/ads',
-        [\App\Http\Controllers\DashboardController::class, 'ads'])->name('dashboard.ads')->middleware('payedads');
 
     //ADS DRAFT DASHBOARD
     Route::get('/dashboard/ads/draft/{announcement}',
@@ -94,9 +84,11 @@ Route::prefix('')->middleware(['auth'])->group(function () {
     Route::get('/dashboard/ads/draft/{announcement}/edit',
         [\App\Http\Controllers\DashboardController::class, 'editAdsDraft'])->name('dashboard.ads.showDraftEdit')->middleware('payedads');
     Route::put('/dashboard/ads/draft/{announcement}',
-        [\App\Http\Controllers\DashboardController::class, 'updateAdsDraft'])->name('dashboard.ads.showDraftUpdate')->middleware('payedads');
+        [\App\Http\Controllers\DashboardController::class, 'updateAds'])->name('dashboard.ads.showDraftUpdate')->middleware('payedads');
 
     //ADS DASHBOARD
+    Route::get('/dashboard/ads',
+        [\App\Http\Controllers\DashboardController::class, 'ads'])->name('dashboard.ads')->middleware('payedads','payeduser');
     Route::get('/dashboard/ads/{announcement}',
         [\App\Http\Controllers\DashboardController::class, 'show'])->name('dashboard.ads.show')->middleware('payedads');
     Route::get('/dashboard/ads/{announcement}/edit',
@@ -108,26 +100,22 @@ Route::prefix('')->middleware(['auth'])->group(function () {
     Route::delete('/dashboard/ads/draft/delete/{announcement}',
         [\App\Http\Controllers\DashboardController::class, 'deleteAds'])->name('delete.adsDraft.dashboard')->middleware('payedads');
 
+    // PROFIL
     Route::get('/dashboard/profil', [
         \App\Http\Controllers\DashboardController::class, 'profil'
-    ])->name('dashboard.profil');
-
+    ])->name('dashboard.profil')->middleware('payeduser');
     Route::get('/plans', [\App\Http\Controllers\UserController::class, 'plansAlreadyUser'])
         ->name('usersAlready.plans');
-
-    // PROFIL
     Route::get('/dashboard/profil/edit', [
         \App\Http\Controllers\DashboardController::class, 'settings'
     ])->name('dashboard.profil.edit')->middleware('payeduser');
-
     Route::put('/dashboard/profil/edit', [\App\Http\Controllers\DashboardController::class, 'updateUser'])->name('dashboard.update');
-
 
     // WORKERS
     Route::post('/workerz/{worker}/like', [\App\Http\Controllers\UserLikeController::class, 'store']);
     Route::delete('/workerz/{worker}/like', [\App\Http\Controllers\UserLikeController::class, 'delete']);
 
-    // ADS
+    // ADS CREATING
     Route::get('/announcement/plans',
         [\App\Http\Controllers\AnnouncementController::class, 'plans'])
         ->name('announcements.plans');
@@ -166,5 +154,3 @@ Route::post('/contact', [ContactController::class, 'store'])
     ->name('contact.store');
 Route::get('/contact', [\App\Http\Controllers\ContactController::class, 'create'])
     ->name('contact');
-
-

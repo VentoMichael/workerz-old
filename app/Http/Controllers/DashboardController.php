@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Mail\AdsEarlyExpire;
@@ -17,6 +16,7 @@ use App\Models\StartMonth;
 use App\Models\User;
 use App\Models\Website;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -24,6 +24,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
@@ -41,7 +42,7 @@ class DashboardController extends Controller
             'DESC')->orderBy('created_at', 'DESC')->take(3)->get();
         $notifications = tap(\auth()->user()->unreadNotifications)->markAsRead();
 
-        return view('dashboard.index', compact('notifications','lastAnnouncements', 'messages'));
+        return view('dashboard.index', compact('notifications', 'lastAnnouncements', 'messages'));
     }
 
     public function profil()
@@ -70,7 +71,7 @@ class DashboardController extends Controller
 
     public function show(Announcement $announcement)
     {
-        $this->sendExpireNotificationAccount();
+        $this->sendExpireNotificationAds();
         $this->sendExpireNotificationAccount();
         $firstAd = Auth::user()->announcements()->NotDraft()->firstOrFail();
         $user = User::where('id', '=', \auth()->user()->id)->with('announcements')->firstOrFail();
@@ -80,7 +81,7 @@ class DashboardController extends Controller
 
     public function showDraft(Announcement $announcement)
     {
-        $this->sendExpireNotificationAccount();
+        $this->sendExpireNotificationAds();
         $this->sendExpireNotificationAccount();
         $firstAdDraft = Auth::user()->announcements()->Draft()->firstOrFail();
         $user = User::where('id', '=', \auth()->user()->id)->with('announcements')->firstOrFail();
@@ -90,7 +91,7 @@ class DashboardController extends Controller
 
     public function editAdsDraft(Announcement $announcement)
     {
-        $this->sendExpireNotificationAccount();
+        $this->sendExpireNotificationAds();
         $this->sendExpireNotificationAccount();
         $firstAdDraft = Auth::user()->announcements()->first();
         $user = User::where('id', '=', \auth()->user()->id)->with('announcements')->first();
@@ -106,107 +107,16 @@ class DashboardController extends Controller
                 'announcement_categories', 'announcement_disponibilities'));
     }
 
-    public function updateAdsDraft(Announcement $announcement, Request $request)
-    {
-        $this->sendExpireNotificationAccount();
-        $this->sendExpireNotificationAccount();
-        if ($request->has('publish')) {
-            if ($announcement->plan_announcement_id == 2 || $announcement->plan_announcement_id == 3) {
-                $publish = true;
-                $ad = $announcement->id;
-                $planAd = $announcement->plan_announcement_id;
-                $announcement = Announcement::where('id', '=', $ad)->first();
-                return \redirect(route('announcements.payed', compact('publish', 'announcement', 'planAd')));
-            } else {
-                $announcement->is_draft = 0;
-                $announcement->is_payed = 1;
-                $announcement->end_plan = Carbon::now()->addDays(7)->addHours(2);
-                $announcement->update();
-                Session::flash('success-update', 'Votre annonce a bien été publié!');
-                return \redirect(route('dashboard.ads'));
-            }
-        }
-        $announcement = Announcement::withLikes()->where('slug', '=', $announcement->slug)->first();
-        if ($request->title != $announcement->getOriginal('title')) {
-            $request->validate([
-                'title' => 'required|unique:announcements'
-            ]);
-            $announcement->title = $request->title;
-        }
-        if ($request->description != $announcement->getOriginal('description')) {
-            $request->validate([
-                'description' => 'required|max:256'
-            ]);
-            $announcement->description = $request->description;
-        }
-        if ($request->job != $announcement->getOriginal('job')) {
-            $request->validate([
-                'job' => 'required|max:256'
-            ]);
-            $announcement->job = $request->job;
-        }
-        if ($request->location != $announcement->getOriginal('location')) {
-            $request->validate([
-                'location' => 'required|not_in:0'
-            ]);
-            $announcement->province_id = $request->location;
-        }
-        if ($request->price_max != $announcement->getOriginal('pricemax')) {
-            $announcement->pricemax = $request->price_max;
-        }
-        if ($request->startmonth != $announcement->getOriginal('startmonth')) {
-            $request->validate([
-                'startmonth' => 'required'
-            ]);
-            $announcement->start_month_id = $request->startmonth;
-        }
-        if ($request->categoryAds) {
-            $request->validate(['categoryAds' => 'required|array|max:'.$announcement->plan_announcement_id,]);
-
-            $ct = new AnnouncementCategory();
-            $ct->category_id = \request('categoryAds');
-            $announcement->categoryAds()->detach();
-            $announcement->categoryAds()->attach($ct->category_id);
-        }
-        if ($request->picture && $request->picture != $announcement->getOriginal('picture')) {
-            Storage::makeDirectory('ads');
-            $filename = request('picture')->hashName();
-            $img = Image::make($request->file('picture'))->resize(null, 200, function ($constraint) {
-                $constraint->aspectRatio();
-                $constraint->upsize();
-            })->save(storage_path('app/public/ads/'.$filename));
-            $announcement->picture = 'ads/'.$filename;
-        }
-        $announcement->plan_announcement_id = $announcement->getOriginal('plan_announcement_id');
-        $announcement->update();
-        if ($announcement->wasChanged()) {
-            Session::flash('success-update', 'Votre annonce a bien été mis a jour!');
-        } else {
-            Session::flash('success-update-not', 'Rien n\'a été changé');
-        }
-        return redirect('dashboard/ads/draft/'.$announcement->slug);
-    }
-
     public function updateUser(Request $request)
     {
         $this->sendExpireNotificationAccount();
         $user = \auth()->user();
-        if ($request->name != $user->getOriginal('name')) {
-            $request->validate([
-                'name' => ['required', 'string', 'max:255', Rule::unique(User::class)]
-            ]);
-        }
-        if ($request->email != $user->getOriginal('email')) {
-            $request->validate([
-                'email' => [
-                    'required',
-                    'string',
-                    'email',
-                    'max:255',
-                    Rule::unique(User::class),
-                ]
-            ]);
-        }
+        $request->validate([
+            'name' => 'sometimes|required|string|max:255', Rule::unique('users')->ignore($user->id),
+            'surname' => 'sometimes|string|max:255',
+            'email' => 'sometimes|required|string|max:255', Rule::unique('users')->ignore($user->id),
+            'picture' => ['sometimes,image:jpg,jpeg,png,svg'],
+        ]);
         if ($request->password && $request->password != $user->getOriginal('password')) {
             $request->validate([
                 'password' => [
@@ -217,9 +127,6 @@ class DashboardController extends Controller
             ]);
             $user->password = Hash::make($request->password);
         }
-        $request->validate([
-            'picture' => ['image:jpg,jpeg,png,svg'],
-        ]);
         if ($request->picture != $user->getOriginal('picture')) {
             Storage::makeDirectory('users');
             $filename = request('picture')->hashName();
@@ -231,62 +138,42 @@ class DashboardController extends Controller
         }
         if ($user->role_id == 2) {
             Validator::make(\request()->all(), [
-                'adress' => 'required',
-                'number' => 'required',
-                'pricemax' => 'max:999999',
-                'website' => 'nullable', 'url',
-                'websitetwo' => 'nullable', 'url',
-                'websitethree' => 'nullable', 'url',
-                'description' => 'required', 'max:256',
-                'job' => 'required',
-                'location' => 'required',
-                'locationtwo' => 'not_in:0',
-                'locationthree' => 'not_in:0',
-                'categoryUser' => 'required|array|max:'.$user->plan_user_id,
+                'adress' => 'sometimes|required',
+                'number' => 'sometimes|required',
+                'pricemax' => 'sometimes|max:999999',
+                'website' => 'sometimes|nullable', 'url',
+                'websitetwo' => 'sometimes|nullable', 'url',
+                'websitethree' => 'sometimes|nullable', 'url',
+                'description' => 'sometimes|required', 'max:256',
+                'job' => 'sometimes|required',
+                'location' => 'sometimes|required',
+                'locationtwo' => 'sometimes|not_in:0',
+                'locationthree' => 'sometimes|not_in:0',
+                'categoryUser' => 'sometimes|required|array|max:'.$user->plan_user_id,
                 'disponibilites' => [
-                    'array|max:7',
+                    'sometimes|array|max:7',
                 ],
             ])->validate();
         }
-        if ($request->surname && $request->surname != $user->getOriginal('surname')) {
-            $user->surname = $request->surname;
-        }
-        if ($request->catchPhrase && $request->catchPhrase != $user->getOriginal('catchPhrase')) {
-            $user->catchPhrase = $request->catchPhrase;
-        }
-        if ($request->possibility_job) {
-            $user->possibility_job = $request->possibility_job;
-        }
-        if ($request->job) {
-            $user->job = $request->job;
-        }
-        if ($request->pricemax) {
-            $user->pricemax = $request->pricemax;
-        }
-        if ($request->description) {
-            $user->description = $request->description;
-        }
-        if ($request->categoryUser) {
-            $ct = new CategoryUser();
-            $ct->category_id = \request('categoryUser');
-            $user->categoryUser()->detach();
-            $user->categoryUser()->attach($ct->category_id);
-        }
-        if ($request->website) {
-            $user->website = $request->website;
-        }
-        if ($request->disponibilities) {
-            $di = new startDate();
-            $di->start_date_id = \request('disponibilities');
-            $user->startDate()->detach();
-            $user->startDate()->attach($di->start_date_id);
-        }
-        if ($request->location) {
-            $pro = new ProvinceUser();
-            $pro->province_id = \request('location');
-            $user->provinces()->detach();
-            $user->provinces()->attach($pro->province_id);
-        }
+        $user->surname = $request->surname;
+        $user->catchPhrase = $request->catchPhrase;
+        $user->possibility_job = $request->possibility_job;
+        $user->job = $request->job;
+        $user->pricemax = $request->pricemax;
+        $user->description = $request->description;
+        $ct = new CategoryUser();
+        $ct->category_id = \request('categoryUser');
+        $user->categoryUser()->detach();
+        $user->categoryUser()->attach($ct->category_id);
+        $user->website = $request->website;
+        $di = new startDate();
+        $di->start_date_id = \request('disponibilities');
+        $user->startDate()->detach();
+        $user->startDate()->attach($di->start_date_id);
+        $pro = new ProvinceUser();
+        $pro->province_id = \request('location');
+        $user->provinces()->detach();
+        $user->provinces()->attach($pro->province_id);
         $user->websites()->delete();
         $user->websites()->saveMany([
             new Website(['link' => $request->websitetwo]),
@@ -325,20 +212,31 @@ class DashboardController extends Controller
 
     public function editAds(Announcement $announcement)
     {
-        $this->sendExpireNotificationAccount();
+        $this->sendExpireNotificationAds();
         $this->sendExpireNotificationAccount();
         $plan = $announcement->plan_announcement_id;
         $categories = Category::all();
         $regions = Province::all();
         $disponibilities = StartMonth::all();
-        return view('dashboard.updateAds', compact('announcement', 'categories', 'regions', 'plan', 'disponibilities'));
+        $announcement_categories = $announcement->categoryAds;
+        $announcement_disponibilities = $announcement->startMonth;
+        return view('dashboard.updateAds', compact('announcement', 'categories', 'regions', 'plan', 'disponibilities',
+                'announcement_categories', 'announcement_disponibilities'));
     }
 
 
     public function updateAds(Announcement $announcement, Request $request)
     {
+        $this->sendExpireNotificationAds();
         $this->sendExpireNotificationAccount();
-        $this->sendExpireNotificationAccount();
+        $request->validate([
+            'title' => 'sometimes|required', Rule::unique('announcements')->ignore($announcement->id),
+            'description' => 'sometimes|max:256|required',
+            'job' => 'sometimes|max:256|required',
+            'location' => 'sometimes|not_in:0|required',
+            'startmonth' => 'sometimes|required',
+            'categoryAds' => 'sometimes|array|required|max:'.$announcement->plan_announcement_id
+        ]);
         if ($request->has('publish')) {
             if ($announcement->plan_announcement_id == 2 || $announcement->plan_announcement_id == 3) {
                 $publish = true;
@@ -356,47 +254,16 @@ class DashboardController extends Controller
             }
         }
         $announcement = Announcement::withLikes()->where('slug', '=', $announcement->slug)->first();
-        if ($request->title != $announcement->getOriginal('title')) {
-            $request->validate([
-                'title' => 'required|unique:announcements'
-            ]);
-            $announcement->title = $request->title;
-        }
-        if ($request->description != $announcement->getOriginal('description')) {
-            $request->validate([
-                'description' => 'required|max:256'
-            ]);
-            $announcement->description = $request->description;
-        }
-        if ($request->job != $announcement->getOriginal('job')) {
-            $request->validate([
-                'job' => 'required|max:256'
-            ]);
-            $announcement->job = $request->job;
-        }
-        if ($request->location != $announcement->getOriginal('location')) {
-            $request->validate([
-                'location' => 'required|not_in:0'
-            ]);
-            $announcement->province_id = $request->location;
-        }
-        if ($request->price_max != $announcement->getOriginal('pricemax')) {
-            $announcement->pricemax = $request->price_max;
-        }
-        if ($request->startmonth != $announcement->getOriginal('startmonth')) {
-            $request->validate([
-                'startmonth' => 'required'
-            ]);
-            $announcement->start_month_id = $request->startmonth;
-        }
-        if ($request->categoryAds) {
-            $request->validate(['categoryAds' => 'required|array|max:'.$announcement->plan_announcement_id,]);
-
-            $ct = new AnnouncementCategory();
-            $ct->category_id = \request('categoryAds');
-            $announcement->categoryAds()->detach();
-            $announcement->categoryAds()->attach($ct->category_id);
-        }
+        $announcement->title = $request->title;
+        $announcement->description = $request->description;
+        $announcement->job = $request->job;
+        $announcement->province_id = $request->location;
+        $announcement->pricemax = $request->price_max;
+        $announcement->start_month_id = $request->startmonth;
+        $ct = new AnnouncementCategory();
+        $ct->category_id = \request('categoryAds');
+        $announcement->categoryAds()->detach();
+        $announcement->categoryAds()->attach($ct->category_id);
         if ($request->picture && $request->picture != $announcement->getOriginal('picture')) {
             Storage::makeDirectory('ads');
             $filename = request('picture')->hashName();
@@ -413,7 +280,11 @@ class DashboardController extends Controller
         } else {
             Session::flash('success-update-not', 'Rien n\'a été changé');
         }
-        return redirect('dashboard/ads/'.$announcement->slug);
+        if (url("dashboard/ads/draft/{$announcement->slug}")){
+            return redirect('dashboard/ads/draft/'.$announcement->slug);
+        }else{
+            return redirect('dashboard/ads/'.$announcement->slug);
+        }
     }
 
     public function deleteAds(Announcement $announcement)
@@ -430,7 +301,8 @@ class DashboardController extends Controller
         return view('dashboard.ads', compact('firstAd', 'firstAdDraft'));
     }
 
-    protected function sendExpireNotificationAccount(){
+    protected function sendExpireNotificationAccount()
+    {
         if (auth()->user()->end_plan < Carbon::now()->addHours(2)->subDays(1)) {
             if (auth()->user()->sending_time_expire == 0) {
                 auth()->user()->sending_time_expire = 1;
@@ -449,6 +321,7 @@ class DashboardController extends Controller
             auth()->user()->update();
         }
     }
+
     protected function sendExpireNotificationAds()
     {
         foreach (auth()->user()->announcements as $adsExpire) {

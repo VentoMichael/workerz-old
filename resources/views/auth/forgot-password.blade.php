@@ -13,7 +13,7 @@
             <div class="container-connexion">
                 <h2 aria-level="2">Mot de passe oublié ?</h2>
                 <p>Ce n'est qu'un oubli, pas de panique !</p>
-                <form aria-label="Mot de passe oublié" class="form-login" role="form" method="POST"
+                <form aria-label="Envoyer un mail pour réinitialisé le mot de passe" class="form-login" role="form" method="POST"
                       action="{{ route('password.email') }}">
                     @csrf
                     <div class="container-form-email">

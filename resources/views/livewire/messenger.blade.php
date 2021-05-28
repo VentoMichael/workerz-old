@@ -1,5 +1,5 @@
 <div class="container-search-ads @if(Request::is('dashboard/messages')) container-messenger-form @endif">
-    <form action="{{$firstUser->slug.request('search')}}" aria-label="Rechercher mes annonces" role="search"
+    <form action="{{$firstUser->slug.request('search')}}" aria-label="Rechercher mes messages" role="search"
           method="get" class="formSearchAd">
         <label for="search" class="hidden">Rechercher mes messages</label>
         <input type="text" name="search" value="{{request('search')}}" id="search"

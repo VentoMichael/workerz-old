@@ -22,7 +22,7 @@ class PayedUser
         if ($request->user()->plan_user_id == null && $request->user()->is_payed != 1 && $request->user()->sending_time_expire == 1){
             Session::flash('expire',
                 'Votre compte a été suspendu car aucun plan ne lui est associé, il sera opérationnel qu\'après avoir choisis votre plan !');
-            return \redirect(route('dashboard.profil'));
+            return \redirect(route('dashboard'));
         }
         if ($request->user()->plan_user_id == 2 && $request->user()->is_payed != 1 && $request->user()->sending_time_expire == 0 || $request->user()->plan_user_id == 3 && $request->user()->is_payed != 1 && $request->user()->sending_time_expire == 0) {
             $plan = $request->user()->plan_user_id;
