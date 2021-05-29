@@ -9,6 +9,10 @@
           content="Workerz.be est la plateforme qui vous aide à trouver des professionnels fiables et compétentes pour vos projets quel qu'il soit"/>
     <meta name="keywords" content="Vins, fromages, marché, exposants, billets">
     <meta name="language" content="French">
+    <meta name="author" content="Vento Michael">
+    <meta name="copyright" content="Workerz">
+    <meta name="robots" content="index, follow">
+    <meta name="rating" content="general">
     <meta name="author" content="Vento Michael"/>
     <title>
         {{ 'Workerz' }}

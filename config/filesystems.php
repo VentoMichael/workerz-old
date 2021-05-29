@@ -34,7 +34,10 @@ return [
             'driver' => 'local',
             'root' => storage_path('app'),
         ],
-
+        'svg' => [
+            'driver' => 'local',
+            'root' => public_path('svg'),
+        ],
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),

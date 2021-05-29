@@ -44,13 +44,13 @@
             </div>
 
             <div class="container-svg">
-                <img class="svg-icon" src="{{asset('svg/New Message_Monochromatic.svg')}}"
+                <img width="300" height="300" class="svg-icon" src="{{asset('svg/New Message_Monochromatic.svg')}}"
                      alt="Icone d'un ordinateur avec un mot de passe crypter">
             </div>
         </section>
     </div>
     @if (session('status') == 'verification-link-sent')
-        <div id="successMsg" role="alert" class="successMsg"><img src="{{asset('svg/good.svg')}}" alt="cross icone">
+        <div id="successMsg" role="alert" class="successMsg"><img width="40" height="60" src="{{asset('svg/good.svg')}}" alt="cross icone">
             <p>Un nouveau lien de vérification a été envoyé à l'adresse électronique que vous avez fournie lors de votre inscription.</p>
             <span class="crossHide" id="crossHide">&times;</span>
         </div>

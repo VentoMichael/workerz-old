@@ -1,19 +1,19 @@
 @extends('layouts.app')
 @section('content')
     @if (Session::has('loveOk'))
-        <div id="successMsg" role="alert" class="successMsg"><img src="{{asset('svg/good.svg')}}" alt="good icone">
+        <div id="successMsg" role="alert" class="successMsg"><img width="50" height="50" src="{{asset('svg/good.svg')}}" alt="good icone">
             <p>{{Session::get('loveOk')}}</p>
             <span class="crossHide" id="crossHide">&times;</span>
         </div>
     @endif
     @if (Session::has('loveNotOk'))
-        <div id="successMsg" role="alert" class="successMsg"><img src="{{asset('svg/good.svg')}}" alt="good icone">
+        <div id="successMsg" role="alert" class="successMsg"><img width="40" height="60" src="{{asset('svg/good.svg')}}" alt="good icone">
             <p>{{Session::get('loveNotOk')}}</p>
             <span class="crossHide" id="crossHide">&times;</span>
         </div>
     @endif
     @if (Session::has('not-permitted'))
-        <div id="successMsg" role="alert" class="successMsg"><img src="{{asset('svg/cross.svg')}}" alt="good icone">
+        <div id="successMsg" role="alert" class="successMsg"><img width="40" height="60" src="{{asset('svg/cross.svg')}}" alt="good icone">
             <p>{{Session::get('not-permitted')}}</p>
             <span class="crossHide" id="crossHide">&times;</span>
         </div>
@@ -30,17 +30,15 @@
                     </p>
                     @guest
                         <div>
-                            <a href="{{route('users.plans')}}">
-                                <button role="button" class="button-cta" type="submit">
+                            <a href="{{route('users.plans')}}" role="button" class="button-cta" type="submit">
                                     J'ajoute mon entreprise
-                                </button>
                             </a>
                         </div>
                     @endguest
                 </div>
             </div>
             <div class="container-svg">
-                <img src="{{asset('svg/Online research.svg')}}"
+                <img width="300" height="300" src="{{asset('svg/Online research.svg')}}"
                      alt="Personne choissisant la catégorie de métier">
             </div>
         </div>

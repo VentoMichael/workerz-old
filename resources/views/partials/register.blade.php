@@ -23,10 +23,10 @@
             <div id="container-checkpass" class="container-checkpass">
                 <label for="checkPass" class="hidden">Voir/masquer le mot de passe</label>
                 <input tabindex="1" type="checkbox" class="password--visibleToggle" id="checkPass" checked>
-                <div class="password--visibleToggle-eye open">
+                <div class="password--visibleToggle-eye password--visibleToggle-eye-register open">
                     <img src="{{asset('svg/eye-open.svg')}}" alt="icone de yeux ouvert"/>
                 </div>
-                <div class="password--visibleToggle-eye close">
+                <div class="password--visibleToggle-eye password--visibleToggle-eye-register close">
                     <img src="{{asset('svg/eye-close.svg')}}" alt="icone de yeux fermé"/>
                 </div>
             </div>

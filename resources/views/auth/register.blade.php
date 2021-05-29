@@ -16,7 +16,7 @@
                         @endguest
                     </div>
                     <div class="container-svg">
-                        <img class="svg-icon" src="{{asset('svg/Waiting_Monochromatic.svg')}}"
+                        <img width="300" height="300" class="svg-icon" src="{{asset('svg/Waiting_Monochromatic.svg')}}"
                              alt="Main cliquant sur un écran mobile">
                     </div>
                 </section>
@@ -38,7 +38,7 @@
                         </div>
                     </div>
                     <div class="container-svg">
-                        <img class="svg-icon" src="{{asset('svg/Waiting_Monochromatic.svg')}}"
+                        <img width="300" height="300" class="svg-icon" src="{{asset('svg/Waiting_Monochromatic.svg')}}"
                              alt="Femme attendant sur un sablier">
                     </div>
                 </section>
@@ -71,13 +71,13 @@
     <script src="{{asset('js/passwordCheck.js')}}"></script>
     <script src="{{asset('js/passwordSee.js')}}"></script>
     <script src="{{asset('js/previewPicture.js')}}"></script>
-    @if($plan == 1)
+    @if($plan == 1 || $request->plan == 1)
         <script src="{{asset('js/checkDataMaxOptions.js')}}"></script>
     @endif
-    @if($plan == 2)
+    @if($plan == 2 || $request->plan == 2)
         <script src="{{asset('js/checkDataMaxOptions2.js')}}"></script>
     @endif
-    @if($plan == 3)
+    @if($plan == 3 || $request->plan == 3)
         <script src="{{asset('js/checkDataMaxOptions3.js')}}"></script>
     @endif
 @endsection

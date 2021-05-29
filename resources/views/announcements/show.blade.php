@@ -1,13 +1,13 @@
 @extends('layouts.app')
 @section('content')
     @if (Session::has('loveOk'))
-        <div id="successMsg" role="alert" class="successMsg"><img src="{{asset('svg/good.svg')}}" alt="good icone">
+        <div id="successMsg" role="alert" class="successMsg"><img width="40" height="60" src="{{asset('svg/good.svg')}}" alt="good icone">
             <p>{{Session::get('loveOk')}}</p>
             <span class="crossHide" id="crossHide">&times;</span>
         </div>
     @endif
     @if (Session::has('loveNotOk'))
-        <div id="successMsg" role="alert" class="successMsg"><img src="{{asset('svg/good.svg')}}" alt="good icone">
+        <div id="successMsg" role="alert" class="successMsg"><img width="40" height="60" src="{{asset('svg/good.svg')}}" alt="good icone">
             <p>{{Session::get('loveNotOk')}}</p>
             <span class="crossHide" id="crossHide">&times;</span>
         </div>
@@ -28,7 +28,7 @@
                 </div>
             </div>
             <div class="container-svg">
-                <img src="{{asset('svg/Great idea_Monochromatic.svg')}}"
+                <img width="300" height="300" src="{{asset('svg/Great idea_Monochromatic.svg')}}"
                      alt="Personne choissisant la catégorie de métier">
             </div>
         </div>
@@ -58,8 +58,8 @@
                                 @csrf
 
                                 <button type="submit" class="button-loves">
-                                    <img class="heart" src="{{asset('svg/heart.svg')}}" alt="icone de coeur">
-                                    <img class="heartFul" src="{{asset('svg/heartFul.svg')}}"
+                                    <img width="60" height="60" class="heart" src="{{asset('svg/heart.svg')}}" alt="icone de coeur">
+                                    <img width="60" height="60" class="heartFul" src="{{asset('svg/heartFul.svg')}}"
                                          alt="icone de coeur">
                                     <span>
                                         {{$announcement->likes ? : 0}}</span></button>
@@ -72,7 +72,7 @@
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="button-loves">
-                                    <img class="heartFul heartLiked" src="{{asset('svg/heartFul.svg')}}"
+                                    <img width="60" height="60" class="heartFul heartLiked" src="{{asset('svg/heartFul.svg')}}"
                                          alt="icone de coeur">
                                     <span>
                                         {{$announcement->likes ? : 0}}</span></button>
@@ -85,8 +85,8 @@
                        title="Il faut se connecter pour mettre un j'aime à {{$announcement->title}}">
                         <div class="containerPrice containerLove hepling helping-like help-show">
 
-                            <img class="heart" src="{{asset('svg/heart.svg')}}" alt="icone de coeur">
-                            <img class="heartFul" src="{{asset('svg/heartFul.svg')}}"
+                            <img width="60" height="60" class="heart" src="{{asset('svg/heart.svg')}}" alt="icone de coeur">
+                            <img width="60" height="60" class="heartFul" src="{{asset('svg/heartFul.svg')}}"
                                  alt="icone de coeur">
                             <p>
                                 {{$announcement->likes? : 0}}</p>

@@ -10,7 +10,7 @@
             <div class="container-form-email">
                 <div class="avatar-container @if(auth()->user()) avatar-dashboard-profil @endif">
                     <label for="picture">Photo de profil</label>
-                    <img id="output" class="preview-picture" alt="photo du commerce"/>
+                    <img width="150" height="150" id="output" class="preview-picture" alt="photo du commerce"/>
                 </div>
                 <input type="file"
                        id="picture" class="input-field @error('picture') is-invalid @enderror email-label"

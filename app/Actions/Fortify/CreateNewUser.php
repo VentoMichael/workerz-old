@@ -8,7 +8,7 @@ use App\Models\CategoryUser;
 use App\Models\Phone;
 use App\Models\PhysicalAdress;
 use App\Models\ProvinceUser;
-use App\Models\startDate;
+use App\Models\StartDate;
 use App\Models\User;
 use App\Models\Website;
 use Carbon\Carbon;
@@ -143,7 +143,7 @@ class CreateNewUser implements CreatesNewUsers
             $ct = new CategoryUser();
             $ct->category_id = \request('categoryUser');
             $user->categoryUser()->attach($ct->category_id);
-            $di = new startDate();
+            $di = new StartDate();
             $website = new Website(['link' => $input['website']]);
             $user->websites()->save($website);
             $di->start_date_id = \request('disponibilities');
@@ -159,7 +159,7 @@ class CreateNewUser implements CreatesNewUsers
             $pic = Image::make(\request()->file('picture'))->resize(null, 200, function ($constraint) {
                 $constraint->aspectRatio();
                 $constraint->upsize();
-            })->save(storage_path('app/public/users/'.$filename));
+            })->save(public_path('users/'.$filename));
             $user->picture = 'users/'.$filename;
         } else {
             $pic = null;

@@ -106,7 +106,7 @@ class AnnouncementController extends Controller
             $img = Image::make($request->file('picture'))->resize(null, 200, function ($constraint) {
                 $constraint->aspectRatio();
                 $constraint->upsize();
-            })->save(storage_path('app/public/ads/'.$filename));
+            })->save(public_path('ads/'.$filename));
             $announcement->picture = 'ads/'.$filename;
         }
         $announcement->description = $request->description;
@@ -160,7 +160,7 @@ class AnnouncementController extends Controller
             $announcement->save();
             $announcement->categoryAds()->attach($ct->category_id);
             $planId = PlanAnnouncement::where('id', '=', $plan)->first();
-            $announcement->user()->email->notify(new AdCreated($announcement));
+            $announcement->user->notify(new AdCreated($announcement));
             Session::flash('success-ads',
                 'Votre annonce est presque finalisée, elle sera visible qu\'après reçu de votre payement !');
             return redirect(route('announcements.payed', compact('planId', 'announcement', 'plan')));

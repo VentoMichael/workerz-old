@@ -19,7 +19,7 @@
                 @endguest
             </div>
             <div class="container-svg">
-                <img class="svg-icon" src="{{asset('svg/Waiting_Monochromatic.svg')}}"
+                <img width="300" height="300" class="svg-icon" src="{{asset('svg/Waiting_Monochromatic.svg')}}"
                      alt="Main cliquant sur un écran mobile">
             </div>
         </section>
@@ -44,7 +44,7 @@
                     <div class="container-form-email">
                         <div class="avatar-container">
                             <label for="picture">Photo du commerce</label>
-                            <img id="output" class="preview-picture" alt="photo du commerce"/>
+                            <img width="150" height="150" id="output" class="preview-picture" alt="photo du commerce"/>
                         </div>
                         <input type="file"
                                id="picture" class="input-field @error('picture') is-invalid @enderror email-label"

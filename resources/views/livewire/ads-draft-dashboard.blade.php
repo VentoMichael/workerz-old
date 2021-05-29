@@ -18,7 +18,7 @@
                href="{{asset('dashboard/ads/draft/'.$announcement->slug)}}"
                aria-current="{{ Request::is('dashboard/ads/*') ? "page" : "" }}">
                 <section>
-                    <img src="{{asset('svg/ad.svg')}}" alt="icone d'annonce">
+                    <img width="150" height="150" src="{{asset('svg/ad.svg')}}" alt="icone d'annonce">
                     <div>
                         <h3 aria-level="3">
                             {{$announcement->title}}
@@ -32,7 +32,7 @@
             <div class="container-announcements"
             >
                 <section>
-                    <img src="{{asset('svg/ad.svg')}}" alt="icone d'annonce">
+                    <img width="150" height="150" src="{{asset('svg/ad.svg')}}" alt="icone d'annonce">
 
                     <div>
                         <h3 aria-level="3">

@@ -1,6 +1,7 @@
-<div class="container-search-ads @if(Request::is('dashboard/messages')) container-messenger-form @endif">
+<div class="@if($users->count() < 1) no-Users @endif container-search-ads @if(Request::is('dashboard/messages')) container-messenger-form @endif">
+    @if($users->count() > 0)
     <form action="{{$firstUser->slug.request('search')}}" aria-label="Rechercher mes messages" role="search"
-          method="get" class="formSearchAd">
+          method="get" class="formSearchAd submit-msg">
         <label for="search" class="hidden">Rechercher mes messages</label>
         <input type="text" name="search" value="{{request('search')}}" id="search"
                wire:model="search"
@@ -8,9 +9,10 @@
                class="search-announcement search-home search-ads">
         <input type="hidden" name="firstAd" value="{{$firstUser->slug}}">
         <noscript>
-            <button type="submit" class="button-cta submit-category-home submit-ad">Recherchez</button>
+            <button type="submit" class="button-cta submit-category-home submit-ad submit-msg">Recherchez</button>
         </noscript>
     </form>
+    @endif
     <div class="container-announcments-dashboard @if($users->count() < 1)container-search-without-ads @endif" wire:loading.class="load">
         @forelse($users as $user)
             <div class="container-message-index">
@@ -18,7 +20,7 @@
                    href="{{route('dashboard.messagesShow',[$user->slug])}}"
                    aria-current="{{ Request::is('dashboard/messages/*') ? "page" : "" }}">
                     <section>
-                        <img src="{{asset('svg/messenger.svg')}}" alt="icone de messages">
+                        <img width="50" height="50" src="{{asset('svg/messenger.svg')}}" alt="icone de messages">
                         <div>
                             <h3 aria-level="3">
                                 {{$user->name}} {{$user->surname}}
@@ -38,9 +40,9 @@
                 </form>
             </div>
         @empty
-            <div class="container-announcements" style="margin: 0;">
+            <div class="container-announcements container-msg-notFound" style="margin: 0;padding: 5% 3%;">
                 <section>
-                    <img src="{{asset('svg/market.svg')}}" alt="icone d'annonce">
+                    <img width="50" height="50" src="{{asset('svg/market.svg')}}" alt="icone d'annonce">
 
                     <div>
                         <h3 aria-level="3">

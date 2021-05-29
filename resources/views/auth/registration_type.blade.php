@@ -16,17 +16,15 @@
                 </div>
             </div>
             <div class="container-svg">
-                <img class="svg-icon" src="{{asset('svg/Information_carousel_Isometric.svg')}}"
+                <img width="300" height="300" class="svg-icon" src="{{asset('svg/Information_carousel_Isometric.svg')}}"
                      alt="Main cliquant sur un écran mobile">
             </div>
         </section>
     </div>
-    <section class="container-form-register container-home form-choice">
-
-
+    <section class="container-form-register container-home form-choice show-content">
         <section class="container-role">
             <div class="container-img-register container-picto-register">
-                <img src="{{asset('svg/user.svg')}}" alt="Photo de profil par défaut d'un utilisateur"></div>
+                <img width="150" height="150" src="{{asset('svg/user.svg')}}" alt="Photo de profil par défaut d'un utilisateur"></div>
             <h3 aria-level="3">
                 Je cherche un professionnel
             </h3>
@@ -57,7 +55,7 @@
         </section>
         <section class="container-role">
             <div class="container-img-register">
-                <img src="{{asset('svg/suitcase.svg')}}" alt="Photo de profil par défaut d'un professionnel">
+                <img width="150" height="150" src="{{asset('svg/suitcase.svg')}}" alt="Photo de profil par défaut d'un professionnel">
             </div>
             <h3 aria-level="3">
                 Je suis un professionnel

@@ -13,10 +13,8 @@
                 </div>
                 @guest
                     <div>
-                        <a href="{{ route('users.plans') }}">
-                            <button role="button" class="button-cta" type="submit">
+                        <a href="{{ route('users.plans') }}" role="button" class="button-cta">
                                 Je m'inscris
-                            </button>
                         </a>
                     </div>
                 @endguest

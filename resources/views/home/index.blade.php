@@ -15,7 +15,7 @@
                 </livewire:search-users>
             </div>
             <div class="container-svg">
-                <img src="{{asset('svg/Profiling_Monochromatic.svg')}}"
+                <img width="300" height="300" src="{{asset('svg/Profiling_Monochromatic.svg')}}"
                      alt="Personne choissisant la catégorie de métier">
             </div>
         </div>
@@ -31,8 +31,8 @@
             @foreach($categories as $categorie)
                 <a href="{{route('workerz').'?categoryUser%5B%5D='.$categorie->id.'#workerzLink'}}">
                     <section class="box-category">
-                        <img src="{{asset('svg/'.$categorie->profil)}}" alt="{{$categorie->alt}}">
-                        <div itemscope itemtype="http://schema.org/Person">
+                        <img width="300" height="300" src="{{asset('svg/'.$categorie->profil)}}" alt="{{$categorie->alt}}">
+                        <div itemscope itemtype="https://schema.org/Person">
                             <h3 itemprop="jobTitle" aria-level="3">{{ucfirst($categorie->name)}}</h3>
                             <p>{{$categorie->users->count()}} professionnels</p>
                         </div>
@@ -57,7 +57,7 @@
         </div>
         <section class="container-why">
             <div>
-                <img src="{{asset('svg/Thinking_Monochromatic.svg')}}"
+                <img width="400" height="350" src="{{asset('svg/Thinking_Monochromatic.svg')}}"
                      alt="Personne réflechissant et assis sur un coussin">
             </div>
             <div class="container-why-text-first">
@@ -70,9 +70,7 @@
                 <p>On vous aide à trouvez du travail !</p>
                 @guest
                     <a href="{{route('users.plans')}}" class="button-cta">
-                        <button>
                             Je m'inscris
-                        </button>
                     </a>
                 @endguest
             </div>
@@ -86,13 +84,11 @@
                     Nous recueillons les meilleurs indépendants, avec une vaste gamme de catégories.
                 </p>
                 <a href="{{route('workerz')}}" class="button-cta">
-                    <button>
                         Les indépendants
-                    </button>
                 </a>
             </div>
             <div>
-                <img src="{{asset('svg/Information carousel_Monochromatic.svg')}}"
+                <img width="400" height="350" src="{{asset('svg/Information carousel_Monochromatic.svg')}}"
                      alt="Personne choissisant parmis les nombreux indépendants">
             </div>
         </section>

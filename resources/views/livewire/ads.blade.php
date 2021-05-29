@@ -15,7 +15,7 @@
         <h2 class="hidden" aria-level="2">
             Toutes les annonces
         </h2>
-        <div class="container-all-announcement show-content">
+        <div class="container-all-announcement show-content @if($announcements->count() < 1)noAds @endif">
             @forelse($announcements as $announcement)
                 <section class="container-announcement" wire:loading.class="load" itemtype="https://schema.org/Thing"
                          itemscope>
@@ -116,21 +116,25 @@
                         </div>
                     </div>
                     @auth
-                        <form action="{{route('messages.post',[$announcement->user->slug])}}" method="POST"
-                              class="formsendmsg formsenmsg-show-view">
-                            @csrf
-                            <input type="hidden" name="from_id" id="from_id{{$announcement->user->id}}"
-                                   value="{{auth()->user()->id}}">
-                            <input type="hidden" name="to_id" id="to_id{{$announcement->user->id}}"
-                                   value="{{$announcement->user->id}}">
-                            <input type="hidden" name="slug" id="slug{{$announcement->user->id}}"
-                                   value="{{$announcement->user->slug}}">
-                            <button type="submit" class="button-cta button-msg" name="talkTo">
-                                Parler avec {{$announcement->user->name}} {{$announcement->user->surname}}
-                            </button>
-                        </form>
+
+                    @if($announcement)
+                            <form action="{{route('messages.post',[$announcement->user->slug])}}" method="POST"
+                                  class="formsendmsg formsenmsg-show-view">
+                                @csrf
+                                <input type="hidden" name="from_id" id="from_id{{$announcement->user->id}}"
+                                       value="{{auth()->user()->id}}">
+                                <input type="hidden" name="to_id" id="to_id{{$announcement->user->id}}"
+                                       value="{{$announcement->user->id}}">
+                                <input type="hidden" name="slug" id="slug{{$announcement->user->id}}"
+                                       value="{{$announcement->user->slug}}">
+                                <button type="submit" class="button-cta button-msg" name="talkTo">
+                                    Parler avec {{$announcement->user->name}} {{$announcement->user->surname}}
+                                </button>
+                            </form>
+                        @endif
                     @else
-                        <a class="formsendmsg formsenmsg-show-view-Notauth button-cta formsenmsg-show-view" style="text-align: center"
+                        <a class="formsendmsg formsenmsg-show-view-Notauth button-cta formsenmsg-show-view"
+                           style="text-align: center"
                            href="{{route('login')}}"
                            title="Il faut se connecter pour parler avec le detenteur de l'annonce">Il faut être
                             connecter
@@ -144,97 +148,114 @@
             @empty
                 <section wire:loading.class="load" class="container-announcement container-empty-ad">
                     <div class="container-infos-announcement">
-                        <img src="{{asset('svg/not-found.svg')}}" alt="Pictogramme d'une ampoule">
-                        <h3 aria-level="3">
-                            Aucune annonces trouvé avec cette recherche
-                        </h3>
+                        @if($announcements->count() < 1)
+                            <img src="{{asset('svg/question-signe-en-cercles
+.svg')}}" alt="Pictogramme d'une ampoule">
+                            <h3 aria-level="3">
+                                Oops, il n'y a encore aucune annonce !
+                            </h3>
+                        @else
+                            <img src="{{asset('svg/not-found.svg')}}" alt="Pictogramme d'une ampoule">
+                            <h3 aria-level="3">
+                                Aucune annonces trouvé avec cette recherche
+                            </h3>
+                        @endif
                         <p class="containerAllText" style="margin-top: 10px;">
-                            Oops, je n'ai rien trouvé ! Essayer une autre recherche ou <a
-                                style="text-decoration: underline;"
-                                href="{{route('announcements').'#adsLink'}}">rafraichissez la page</a>
+                            @if($announcements->count() < 1)
+                                Malheureusement je ne trouve aucune annonce dans ma base de données.
+                                <a style="text-decoration: underline;"
+                                   href="{{route('announcements.plans')}}">Je met la première annonce dans
+                                    Workerz !</a>
+                            @else
+                                Oops, je n'ai rien trouvé ! Essayer une autre recherche ou <a
+                                    style="text-decoration: underline;"
+                                    href="{{route('announcements').'#adsLink'}}">rafraichissez la page</a>
+                            @endif
                         </p>
                     </div>
                 </section>
             @endforelse
             {{ $announcements->links() }}
         </div>
-        <div class="container-filters container-filters-workerz">
-            <form aria-label="Filtrage d'annonces" action="{{route('announcements')}}" method="get">
-                <section>
-                    <h2 aria-level="2">
-                        Filtres
-                    </h2>
-                    <section class="container-filter-categories">
-                        <h3 aria-level="3">
-                            Catégories
-                        </h3>
-                        <ul class="list-categories">
-                            <fieldset>
-                                <legend class="hidden">Catégories</legend>
-                                @foreach($categories as $category)
-                                    @if($category->announcements->count() != 0)
-                                        <li>
-                                            <input
-                                                @if(request('categoryAds') && in_array($category->id,request('categoryAds'))) checked
-                                                @else wire:model="categoryAds" @endif class="inp-cbx hiddenCheckbox"
-                                                id="categoryAds{{$category->id}}"
-                                                name="categoryAds[]"
-                                                type="checkbox" value="{{$category->id}}"/>
-                                            <label class="cbx" for="categoryAds{{$category->id}}">
+        @if($announcements->count() > 0)
+            <div class="container-filters container-filters-workerz">
+                <form aria-label="Filtrage d'annonces" action="{{route('announcements')}}" method="get">
+                    <section>
+                        <h2 aria-level="2">
+                            Filtres
+                        </h2>
+                        <section class="container-filter-categories">
+                            <h3 aria-level="3">
+                                Catégories
+                            </h3>
+                            <ul class="list-categories">
+                                <fieldset>
+                                    <legend class="hidden">Catégories</legend>
+                                    @foreach($categories as $category)
+                                        @if($category->announcements->count() != 0)
+                                            <li>
+                                                <input
+                                                    @if(request('categoryAds') && in_array($category->id,request('categoryAds'))) checked
+                                                    @else wire:model="categoryAds" @endif class="inp-cbx hiddenCheckbox"
+                                                    id="categoryAds{{$category->id}}"
+                                                    name="categoryAds[]"
+                                                    type="checkbox" value="{{$category->id}}"/>
+                                                <label class="cbx" for="categoryAds{{$category->id}}">
                                 <span>
                                     <svg width="12px" height="9px" viewbox="0 0 12 9">
                                       <polyline points="1 5 4 8 11 1"></polyline>
                                     </svg>
                                 </span>
-                                                <span>{{$category->name}}</span>
-                                            </label>
-                                        </li>
-                                    @endif
-                                @endforeach
-                            </fieldset>
-                        </ul>
-                    </section>
-                    <section class="container-filter-categories">
-                        <h3 aria-level="3">
-                            Régions
-                        </h3>
-                        <ul class="list-categories">
-                            <fieldset>
-                                <legend class="hidden">Régions</legend>
-                                @foreach($regions as $region)
-                                    @if($region->announcements->count() !=0)
-                                        <li>
-                                            <input
-                                                @if(request('province') && in_array($region->id,request('province'))) checked
-                                                @else wire:model="province" @endif role="checkbox"
-                                                aria-checked="false" class="hiddenCheckbox inp-cbx"
-                                                id="province{{$region->id}}"
-                                                name="province[]"
-                                                type="checkbox" value="{{$region->id}}"/>
-                                            <label class="cbx" for="province{{$region->id}}">
+                                                    <span>{{$category->name}}</span>
+                                                </label>
+                                            </li>
+                                        @endif
+                                    @endforeach
+                                </fieldset>
+                            </ul>
+                        </section>
+                        <section class="container-filter-categories">
+                            <h3 aria-level="3">
+                                Régions
+                            </h3>
+                            <ul class="list-categories">
+                                <fieldset>
+                                    <legend class="hidden">Régions</legend>
+                                    @foreach($regions as $region)
+                                        @if($region->announcements->count() !=0)
+                                            <li>
+                                                <input
+                                                    @if(request('province') && in_array($region->id,request('province'))) checked
+                                                    @else wire:model="province" @endif role="checkbox"
+                                                    aria-checked="false" class="hiddenCheckbox inp-cbx"
+                                                    id="province{{$region->id}}"
+                                                    name="province[]"
+                                                    type="checkbox" value="{{$region->id}}"/>
+                                                <label class="cbx" for="province{{$region->id}}">
                                 <span>
                                     <svg width="12px" height="9px" viewbox="0 0 12 9">
                                       <polyline points="1 5 4 8 11 1"></polyline>
                                     </svg>
                                 </span>
-                                                <span>{{$region->name}}</span>
-                                            </label>
-                                        </li>
-                                    @endif
+                                                    <span>{{$region->name}}</span>
+                                                </label>
+                                            </li>
+                                        @endif
 
-                                @endforeach
-                            </fieldset>
-                        </ul>
+                                    @endforeach
+                                </fieldset>
+                            </ul>
 
+                        </section>
+
+                        <noscript>
+                            <button type="submit" class="apply-filter-btn">
+                                Appliquer les filtres
+                            </button>
+                        </noscript>
                     </section>
-
-                    <noscript>
-                        <button type="submit" class="apply-filter-btn">
-                            Appliquer les filtres
-                        </button>
-                    </noscript>
-                </section>
-            </form>
-        </div>
+                </form>
+            </div>
+        @endif
     </section>
 </div>

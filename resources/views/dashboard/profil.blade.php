@@ -1,25 +1,25 @@
 @extends('layouts.appDashboard')
 @section('content')
     @if (Session::has('expire'))
-        <div id="successMsg" role="alert" class="successMsg"><img src="{{asset('svg/caution.svg')}}" alt="good icone">
+        <div id="successMsg" role="alert" class="successMsg"><img width="40" height="60" src="{{asset('svg/caution.svg')}}" alt="good icone">
             <p>{{Session::get('expire')}}</p>
             <span class="crossHide" id="crossHide">&times;</span>
         </div>
     @endif
     @if (Session::has('success-update-not'))
-        <div id="successMsg" role="alert" class="successMsg"><img src="{{asset('svg/cross.svg')}}" alt="good icone">
+        <div id="successMsg" role="alert" class="successMsg"><img width="40" height="60" src="{{asset('svg/cross.svg')}}" alt="good icone">
             <p>{{Session::get('success-update-not')}}</p>
             <span class="crossHide" id="crossHide">&times;</span>
         </div>
     @endif
     @if (Session::has('success-update'))
-        <div id="successMsg" role="alert" class="successMsg"><img src="{{asset('svg/good.svg')}}" alt="good icone">
+        <div id="successMsg" role="alert" class="successMsg"><img width="40" height="60" src="{{asset('svg/good.svg')}}" alt="good icone">
             <p>{{Session::get('success-update')}}</p>
             <span class="crossHide" id="crossHide">&times;</span>
         </div>
     @endif
     @if (Session::has('success-inscription'))
-        <div id="successMsg" role="alert" class="successMsg"><img src="{{asset('svg/good.svg')}}" alt="good icone">
+        <div id="successMsg" role="alert" class="successMsg"><img width="40" height="60" src="{{asset('svg/good.svg')}}" alt="good icone">
             <p>{{Session::get('success-inscription')}}</p>
             <span class="crossHide" id="crossHide">&times;</span>
         </div>
@@ -55,10 +55,10 @@
                                                     <p>Logo</p>
                                                 </div>
                                                 @if(auth()->user()->picture != null)
-                                                    <img src="{{asset(auth()->user()->picture)}}"
+                                                    <img width="150" height="150" src="{{asset(auth()->user()->picture)}}"
                                                          alt="logo de {{auth()->user()->name}}">
                                                 @else
-                                                    <img src="{{asset('svg/user.svg')}}"
+                                                    <img width="150" height="150" src="{{asset('svg/user.svg')}}"
                                                          alt="image de profil par défaut">
                                                 @endif
                                             </div>
@@ -274,10 +274,10 @@
                                             <p>Photo de profil</p>
                                         </div>
                                         @if(auth()->user()->picture != null)
-                                            <img src="{{asset(auth()->user()->picture)}}"
+                                            <img width="150" height="150" src="{{asset(auth()->user()->picture)}}"
                                                  alt="image de profil de {{auth()->user()->name}}">
                                         @else
-                                            <img src="{{asset('svg/user.svg')}}"
+                                            <img width="150" height="150" src="{{asset('svg/user.svg')}}"
                                                  alt="image de profil par défaut">
                                         @endif
                                     </div>

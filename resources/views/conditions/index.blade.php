@@ -14,7 +14,7 @@
                 </div>
             </div>
             <div class="container-svg">
-                <img src="{{asset('svg/proofiling.svg')}}"
+                <img width="300" height="300" src="{{asset('svg/proofiling.svg')}}"
                      alt="Personne choissisant la catégorie de métier">
             </div>
         </div>

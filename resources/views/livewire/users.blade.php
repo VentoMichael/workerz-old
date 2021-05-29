@@ -115,17 +115,19 @@
                         </div>
                     </div>
                     @auth
-                        <form action="{{route('messages.post',[$worker->slug])}}" method="POST"
-                              class="formsendmsg formsenmsg-show-view">
-                            @csrf
-                            <input type="hidden" name="from_id" id="from_id{{$worker->id}}"
-                                   value="{{auth()->user()->id}}">
-                            <input type="hidden" name="to_id" id="to_id{{$worker->id}}" value="{{$worker->id}}">
-                            <input type="hidden" name="slug" id="slug{{$worker->id}}" value="{{$worker->slug}}">
-                            <button type="submit" class="button-cta button-msg" name="talkTo">
-                                Parler avec {{$worker->name}} {{$worker->surname}}
-                            </button>
-                        </form>
+                        @if($announcement)
+                            <form action="{{route('messages.post',[$worker->slug])}}" method="POST"
+                                  class="formsendmsg formsenmsg-show-view">
+                                @csrf
+                                <input type="hidden" name="from_id" id="from_id{{$worker->id}}"
+                                       value="{{auth()->user()->id}}">
+                                <input type="hidden" name="to_id" id="to_id{{$worker->id}}" value="{{$worker->id}}">
+                                <input type="hidden" name="slug" id="slug{{$worker->id}}" value="{{$worker->slug}}">
+                                <button type="submit" class="button-cta button-msg" name="talkTo">
+                                    Parler avec {{$worker->name}} {{$worker->surname}}
+                                </button>
+                            </form>
+                        @endif
                     @else
                         <a class="formsendmsg formsenmsg-show-view-Notauth button-cta button-msg"
                            href="{{route('login')}}"
@@ -141,88 +143,105 @@
             @empty
                 <section wire:loading.class="load" class="container-announcement container-empty-ad">
                     <div class="container-infos-announcement">
-                        <img src="{{asset('svg/not-found.svg')}}" alt="Pictogramme d'une ampoule">
-                        <h3 aria-level="3">
-                            Aucun indépendant trouvé avec cette recherche
-                        </h3>
+                        @if($users->count() < 1)
+                            <img src="{{asset('svg/question-signe-en-cercles
+.svg')}}" alt="Pictogramme d'une ampoule">
+                            <h3 aria-level="3">
+                                Oops, il n'y a encore aucun indépendant !
+                            </h3>
+                        @else
+                            <img src="{{asset('svg/not-found.svg')}}" alt="Pictogramme d'une ampoule">
+                            <h3 aria-level="3">
+                                Aucun indépendant trouvé avec cette recherche
+                            </h3>
+                        @endif
                         <p class="containerAllText" style="margin-top: 10px;">
-                            Oops, je n'ai rien trouvé ! Essayer une autre recherche ou <a
-                                style="text-decoration: underline;"
-                                href="{{route('workerz').'#workerzLink'}}">rafraichissez la page</a>
+                            @if($users->count() < 1)
+                                Malheureusement je ne trouve aucun indépendant dans ma base de données.
+                                <a
+                                    style="text-decoration: underline;"
+                                    href="{{route('users.plans')}}">Je met la première annonce dans
+                                    Workerz !</a>
+                            @else
+                                Oops, je n'ai rien trouvé ! Essayer une autre recherche ou <a
+                                    style="text-decoration: underline;"
+                                    href="{{route('users').'#adsLink'}}">rafraichissez la page</a>
+                            @endif
                         </p>
                     </div>
                 </section>
             @endforelse
             {{ $workerz->links() }}
         </div>
-        @if($categories || $regions)
+        @if($workerz->count() > 0)
             <div class="container-filters container-filters-workerz">
                 <form aria-label="Filtrage d'indépendants" action="{{route('workerz')}}" method="get">
                     <section>
                         <h2 aria-level="2">
                             Filtres
                         </h2>
-                        <section class="container-filter-categories">
-                            <h3 aria-level="3">
-                                Catégories
-                            </h3>
-                            <ul class="list-categories">
-                                <fieldset>
-                                    <legend class="hidden">Catégories</legend>
-                                    @foreach($categories as $category)
-                                        @if($category->users->count() !=0)
-                                            <li>
-                                                <input
-                                                    @if(request('categoryUser') && in_array($category->id,request('categoryUser'))) checked @else wire:model="categoryUser" @endif role="checkbox"
-                                                    class="hiddenCheckbox inp-cbx"
-                                                    name="categoryUser[]"
-                                                    id="categoryUser{{$category->id}}"
-                                                    type="checkbox" value="{{$category->id}}"/>
-                                                <label class="cbx" for="categoryUser{{$category->id}}">
-                                <span>
-                                    <svg width="12px" height="9px" viewbox="0 0 12 9">
-                                      <polyline points="1 5 4 8 11 1"></polyline>
-                                    </svg>
-                                </span>
-                                                    <span>{{$category->name}}</span>
-                                                </label>
-                                            </li>
-                                        @endif
-                                    @endforeach
-                                </fieldset>
-                            </ul>
-                        </section>
-                        <section class="container-filter-categories">
-                            <h3 aria-level="3">
-                                Régions
-                            </h3>
-                            <ul class="list-categories">
-                                <fieldset>
-                                    <legend class="hidden">Régions</legend>
-                                    @foreach($regions as $region)
-                                        @if($region->users->count() !=0)
-                                            <li>
-                                                <input
-                                                    @if(request('provinces') && in_array($region->id,request('provinces'))) checked
-                                                    @endif wire:model="provinces" role="checkbox"
-                                                    aria-checked="false" class="hiddenCheckbox inp-cbx"
-                                                    id="provinces{{$region->id}}"
-                                                    name="provinces[]"
-                                                    type="checkbox" value="{{$region->id}}"/>
-                                                <label class="cbx" for="provinces{{$region->id}}">
-                                <span>
-                                    <svg width="12px" height="9px" viewbox="0 0 12 9">
-                                      <polyline points="1 5 4 8 11 1"></polyline>
-                                    </svg>
-                                </span>
-                                                    <span>{{$region->name}}</span>
-                                                </label>
-                                            </li>
-                                        @endif
-                                    @endforeach
-                                </fieldset>
-                            </ul>
-                        </section>
+                            <section class="container-filter-categories">
+                                <h3 aria-level="3">
+                                    Catégories
+                                </h3>
+                                <ul class="list-categories">
+                                    <fieldset>
+                                        <legend class="hidden">Catégories</legend>
+                                        @foreach($categories as $category)
+                                            @if($category->users->count() !=0)
+                                                <li>
+                                                    <input
+                                                        @if(request('categoryUser') && in_array($category->id,request('categoryUser'))) checked
+                                                        @else wire:model="categoryUser" @endif role="checkbox"
+                                                        class="hiddenCheckbox inp-cbx"
+                                                        name="categoryUser[]"
+                                                        id="categoryUser{{$category->id}}"
+                                                        type="checkbox" value="{{$category->id}}"/>
+                                                    <label class="cbx" for="categoryUser{{$category->id}}">
+        <span>
+            <svg width="12px" height="9px" viewbox="0 0 12 9">
+              <polyline points="1 5 4 8 11 1"></polyline>
+            </svg>
+        </span>
+                                                        <span>{{$category->name}}</span>
+                                                    </label>
+                                                </li>
+                                            @endif
+                                        @endforeach
+                                    </fieldset>
+                                </ul>
+                            </section>
+                            <section class="container-filter-categories">
+                                <h3 aria-level="3">
+                                    Régions
+                                </h3>
+                                <ul class="list-categories">
+                                    <fieldset>
+                                        <legend class="hidden">Régions</legend>
+                                        @foreach($regions as $region)
+                                            @if($region->users->count() !=0)
+                                                <li>
+                                                    <input
+                                                        @if(request('provinces') && in_array($region->id,request('provinces'))) checked
+                                                        @endif wire:model="provinces" role="checkbox"
+                                                        aria-checked="false" class="hiddenCheckbox inp-cbx"
+                                                        id="provinces{{$region->id}}"
+                                                        name="provinces[]"
+                                                        type="checkbox" value="{{$region->id}}"/>
+                                                    <label class="cbx" for="provinces{{$region->id}}">
+<span>
+<svg width="12px" height="9px" viewbox="0 0 12 9">
+<polyline points="1 5 4 8 11 1"></polyline>
+</svg>
+</span>
+                                                        <span>{{$region->name}}</span>
+                                                    </label>
+                                                </li>
+                                            @endif
+                                        @endforeach
+                                    </fieldset>
+                                </ul>
+                            </section>
                         <noscript>
                             <button class="apply-filter-btn">
                                 Appliquer les filtres

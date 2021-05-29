@@ -133,7 +133,7 @@ class DashboardController extends Controller
             $pic = Image::make(\request()->file('picture'))->resize(null, 200, function ($constraint) {
                 $constraint->aspectRatio();
                 $constraint->upsize();
-            })->save(storage_path('app/public/users/'.$filename));
+            })->save(public_path('users/'.$filename));
             $user->picture = 'users/'.$filename;
         }
         if ($user->role_id == 2) {
@@ -270,7 +270,7 @@ class DashboardController extends Controller
             $img = Image::make($request->file('picture'))->resize(null, 200, function ($constraint) {
                 $constraint->aspectRatio();
                 $constraint->upsize();
-            })->save(storage_path('app/public/ads/'.$filename));
+            })->save(public_path('ads/'.$filename));
             $announcement->picture = 'ads/'.$filename;
         }
         $announcement->plan_announcement_id = $announcement->getOriginal('plan_announcement_id');

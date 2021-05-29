@@ -1,13 +1,13 @@
 @extends('layouts.appDashboard')
 @section('content')
     @if (Session::has('success-ads'))
-        <div id="successMsg" role="alert" class="successMsg"><img src="{{asset('svg/good.svg')}}" alt="good icone">
+        <div id="successMsg" role="alert" class="successMsg"><img width="40" height="60" src="{{asset('svg/good.svg')}}" alt="good icone">
             <p>{{Session::get('success-ads')}}</p>
             <span class="crossHide" id="crossHide">&times;</span>
         </div>
     @endif
     @if($errors->has('message'))
-        <div id="successMsg" role="alert" class="successMsg"><img src="{{asset('svg/cross.svg')}}" alt="good icone">
+        <div id="successMsg" role="alert" class="successMsg"><img width="40" height="60" src="{{asset('svg/cross.svg')}}" alt="good icone">
             <p>{{$errors->first('message')}}</p>
             <span class="crossHide" id="crossHide">&times;</span>
         </div>
@@ -58,10 +58,10 @@
                                      @endif class="container-message">
                                     <div class="container-picture-message">
                                         @if($message->user->picture)
-                                            <img itemprop="image" src="{{ asset($message->user->picture) }}"
+                                            <img width="40" height="60" itemprop="image" src="{{ asset($message->user->picture) }}"
                                                  alt="photo de profil de {{ucfirst($message->user->name)}}"/>
                                         @else
-                                            <img itemprop="image" src="{{asset('svg/user.svg')}}"
+                                            <img width="40" height="60" itemprop="image" src="{{asset('svg/user.svg')}}"
                                                  alt="icone d'annonces">
                                         @endif
                                     </div>

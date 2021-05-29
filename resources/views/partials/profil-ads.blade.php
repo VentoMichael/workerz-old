@@ -6,10 +6,10 @@
     @endif
     <div class="container-picture-dashboard">
         @if($announcement->picture)
-            <img itemprop="image" src="{{ asset($announcement->picture) }}"
+            <img itemprop="image" width="200" height="200" src="{{ asset($announcement->picture) }}"
                  alt="photo de profil de {{ucfirst($announcement->title)}}"/>
         @else
-            <img itemprop="image" src="{{asset('svg/ad.svg')}}" alt="icone d'annonces">
+            <img itemprop="image" width="200" height="200" src="{{asset('svg/ad.svg')}}" alt="icone d'annonces">
         @endif
         <h3 aria-level="3">
             <span class="hidden">Annonce séléctionnée</span> {{ucfirst($announcement->title)}}
@@ -22,26 +22,26 @@
 <div class="container-perso-infos container-six-category-home" itemscope
      itemtype="https://schema.org/Person">
     <div>
-        <img src="{{asset('svg/envelope.svg')}}" alt="icone de mail">
+        <img width="60" height="60" src="{{asset('svg/envelope.svg')}}" alt="icone de mail">
         <a itemprop="email"
            href="mailto:{{$announcement->user->email}}">{{$announcement->user->email}}</a>
     </div>
     @foreach($announcement->user->phones as $up)
         @if($up->number != null)
             <div>
-                <img src="{{asset('svg/phone.svg')}}" alt="icone de téléphone">
+                <img width="60" height="60" src="{{asset('svg/phone.svg')}}" alt="icone de téléphone">
                 <a itemprop="telephone" href="tel:{{$up->number}}">{{$up->number}}</a>
             </div>
         @endif
     @endforeach
     <div>
-        <img src="{{asset('svg/calendar.svg')}}" alt="icone de calendrier">
+        <img width="60" height="60" src="{{asset('svg/calendar.svg')}}" alt="icone de calendrier">
         <span>
                             Pour le mois de {{$announcement->startmonth->name}}
                         </span>
     </div>
     <div>
-        <img src="{{asset('svg/suitcase.svg')}}" alt="icone de malette">
+        <img width="60" height="60" src="{{asset('svg/suitcase.svg')}}" alt="icone de malette">
         <span class="job-cat-ads" itemprop="jobTitle">
                         <span>{{ucfirst($announcement->job)}}</span>
                         @if($announcement->categoryAds->count())
@@ -53,17 +53,17 @@
     </div>
     @if(!$announcement->pricemax)
         <div itemscope itemtype="https://schema.org/PriceSpecification">
-            <img src="{{asset('svg/euro.svg')}}" alt="icone d'euro">
+            <img width="60" height="60" src="{{asset('svg/euro.svg')}}" alt="icone d'euro">
             <span itemprop="price">Max : non déterminer</span>
         </div>
     @else
         <div itemscope itemtype="https://schema.org/PriceSpecification">
-            <img src="{{asset('svg/euro.svg')}}" alt="icone d'euro">
+            <img width="60" height="60" src="{{asset('svg/euro.svg')}}" alt="icone d'euro">
             <span itemprop="price">Max : {{$announcement->pricemax}} €</span>
         </div>
     @endif
     <div itemscope itemtype="https://schema.org/PostalAddress">
-        <img src="{{asset('svg/placeholder.svg')}}" alt="icone de position">
+        <img width="60" height="60" src="{{asset('svg/placeholder.svg')}}" alt="icone de position">
         <span>
                             @if($announcement->adress)
                 <span itemprop="streetAddress">{{ucfirst($announcement->adress)}}</span>

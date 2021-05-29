@@ -2,19 +2,19 @@
 
 @section('content')
     @if (Session::has('messageBanned'))
-        <div id="successMsg" role="alert" class="successMsg"><img src="{{asset('svg/good.svg')}}" alt="cross icone">
+        <div width="40" height="60" id="successMsg" role="alert" class="successMsg"><img src="{{asset('svg/good.svg')}}" alt="cross icone">
             <p>{{Session::get('messageBanned')}}</p>
             <span class="crossHide" id="crossHide">&times;</span>
         </div>
     @endif
     @if (Session::has('forbidden'))
-        <div id="successMsg" role="alert" class="successMsg"><img style="max-width: 50px;" src="{{asset('svg/question-signe-en-cercles.svg')}}" alt="cross icone">
+        <div width="40" height="60" id="successMsg" role="alert" class="successMsg"><img style="max-width: 50px;" src="{{asset('svg/question-signe-en-cercles.svg')}}" alt="cross icone">
             <p>{{Session::get('forbidden')}}</p>
             <span class="crossHide" id="crossHide">&times;</span>
         </div>
     @endif
     @if (Session::has('success-update'))
-        <div id="successMsg" role="alert" class="successMsg"><img src="{{asset('svg/good.svg')}}" alt="cross icone">
+        <div width="40" height="60" id="successMsg" role="alert" class="successMsg"><img src="{{asset('svg/good.svg')}}" alt="cross icone">
             <p>{{Session::get('success-update')}}</p>
             <span class="crossHide" id="crossHide">&times;</span>
         </div>
@@ -52,10 +52,10 @@
                                 <label for="checkPass" class="hidden">Voir/masquer le mot de passe</label>
                                 <input type="checkbox" class="password--visibleToggle" id="checkPass" checked>
                                 <div class="password--visibleToggle-eye open">
-                                    <img src="{{asset('svg/eye-open.svg')}}" alt="icone de yeux ouvert"/>
+                                    <img width="40" height="40" src="{{asset('svg/eye-open.svg')}}" alt="icone de yeux ouvert"/>
                                 </div>
                                 <div class="password--visibleToggle-eye close">
-                                    <img src="{{asset('svg/eye-close.svg')}}" alt="icone de yeux fermé"/>
+                                    <img width="40" height="40" src="{{asset('svg/eye-close.svg')}}" alt="icone de yeux fermé"/>
                                 </div>
                             </div>
 
@@ -95,7 +95,7 @@
 
             </div>
             <div class="container-svg">
-                <img class="svg-icon" src="{{asset('svg/Innovation _Monochromatic.svg')}}"
+                <img width="300" height="300" class="svg-icon" src="{{asset('svg/Innovation _Monochromatic.svg')}}"
                      alt="icone d'ampoule">
             </div>
         </section>

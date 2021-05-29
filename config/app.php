@@ -169,6 +169,7 @@ return [
         Spatie\Newsletter\NewsletterServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
+        \Vento\Workerz\ThemeServiceProvider::class,
         /*
          * Application Service Providers...
          */

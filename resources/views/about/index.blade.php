@@ -15,25 +15,21 @@
                 </div>
                 @guest
                     <div>
-                        <a href="{{ route('users.plans') }}">
-                            <button role="button" class="button-cta" type="submit">
+                        <a href="{{ route('users.plans') }}" role="button" class="button-cta">
                                 Je m'inscris
-                            </button>
                         </a>
                     </div>
                 @endguest
                 @auth
                     <div>
-                        <a href="{{route('announcements.plans')}}">
-                            <button role="button" class="button-cta" type="submit">
+                        <a href="{{route('announcements.plans')}}" role="button" class="button-cta">
                                 J'ajoute une annonce
-                            </button>
                         </a>
                     </div>
                 @endauth
             </div>
             <div class="container-svg">
-                <img src="{{asset('svg/us.svg')}}"
+                <img width="300" height="300" src="{{asset('svg/us.svg')}}"
                      alt="Personne choissisant la catégorie de métier">
             </div>
         </div>
@@ -46,7 +42,7 @@
         </div>
         <div class="container-six-category-home show-content container-about-sections">
             <section class="box-category box-about">
-                <img src="{{asset('svg/Video tutorial _Monochromatic.svg')}}"
+                <img width="300" height="300" src="{{asset('svg/Video tutorial _Monochromatic.svg')}}"
                      alt="Icone d'un cahier avec une personne voulant écrire dedans">
                 <div>
                     <h3 aria-level="3" itemprop="makesOffer">Développement d'une annonce</h3>
@@ -55,7 +51,7 @@
                 </div>
             </section>
             <section class="box-category box-about">
-                <img src="{{asset('svg/Data analytics _Monochromatic.svg')}}" alt="Icone d'analyser de données">
+                <img width="300" height="300" src="{{asset('svg/Data analytics _Monochromatic.svg')}}" alt="Icone d'analyser de données">
                 <div>
                     <h3 aria-level="3" itemprop="makesOffer">Déployez votre entreprise</h3>
                     <p>Inscrivez-vous et développer votre entreprise afin d’être contacté parmi des centaines de
@@ -63,7 +59,7 @@
                 </div>
             </section>
             <section class="box-category box-about">
-                <img src="{{asset('svg/payment.svg')}}" alt="Icone de deux cartes bancaires">
+                <img width="200" height="200" src="{{asset('svg/payment.svg')}}" alt="Icone de deux cartes bancaires">
                 <div>
                     <h3 aria-level="3">Aucun paiement nécessaire</h3>
                     <p>Une inscription avec ces fonctionnalités sans paiement, c’est rare.
@@ -87,19 +83,15 @@
                 </div>
                 @guest
                     <div>
-                        <a href="{{ route('users.plans') }}">
-                            <button role="button" class="button-cta" type="submit">
+                        <a href="{{ route('users.plans') }}" role="button" class="button-cta">
                                 Je m'inscris
-                            </button>
                         </a>
                     </div>
                 @endguest
                 @auth
                     <div>
-                        <a href="{{route('announcements.plans')}}">
-                            <button role="button" class="button-cta" type="submit">
+                        <a href="{{route('announcements.plans')}}" role="button" class="button-cta">
                                 J'ajoute une annonce
-                            </button>
                         </a>
                     </div>
                 @endauth

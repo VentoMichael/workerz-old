@@ -36,17 +36,25 @@ class Users extends Component
                 ->orderBy('created_at', 'DESC')
                 ->when(
                     $this->categoryUser,
-                    fn($query) => $query->whereHas(
-                        'categoryUser',
-                        fn($query) => $query->whereIn('category_id', $this->categoryUser)
-                    )
+                    function ($query) {
+                        return $query->whereHas(
+                            'categoryUser',
+                            function ($query) {
+                                return $query->whereIn('category_id', $this->categoryUser);
+                            }
+                        );
+                    }
                 )
                 ->when(
                     $this->provinces,
-                    fn($query) => $query->whereHas(
-                        'adresses',
-                        fn($query) => $query->whereIn('province_id', $this->provinces)
-                    )
+                    function ($query) {
+                        return $query->whereHas(
+                            'adresses',
+                            function ($query) {
+                                return $query->whereIn('province_id', $this->provinces);
+                            }
+                        );
+                    }
                 )
                 ->withLikes()
                 ->where('name', 'like', '%'.$this->search.'%')

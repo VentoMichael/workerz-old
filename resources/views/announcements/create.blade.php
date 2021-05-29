@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
     @if (Session::has('success-inscription'))
-        <div id="successMsg" role="alert" class="successMsg"><img src="{{asset('svg/good.svg')}}" alt="cross icone">
+        <div id="successMsg" role="alert" class="successMsg"><img width="40" height="60" src="{{asset('svg/good.svg')}}" alt="cross icone">
             <p>{{Session::get('success-inscription')}}</p>
             <span class="crossHide" id="crossHide">&times;</span>
         </div>
@@ -19,7 +19,7 @@
                 </div>
             </div>
             <div class="container-svg">
-                <img src="{{asset('svg/Great idea_Monochromatic.svg')}}"
+                <img width="300" height="300" src="{{asset('svg/Great idea_Monochromatic.svg')}}"
                      alt="Personne choissisant la catégorie de métier">
             </div>
         </div>
@@ -51,7 +51,7 @@
                     <div class="container-form-email">
                         <div class="avatar-container">
                             <label for="picture">Photo descriptive</label>
-                            <img id="output" class="preview-picture" alt="photo du commerce"/>
+                            <img width="200" height="200" id="output" class="preview-picture" alt="photo du commerce"/>
                         </div>
                         <input type="file"
                                id="picture" class="input-field @error('picture') is-invalid @enderror email-label"

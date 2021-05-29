@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
     @if (session('status'))
-        <div id="successMsg" role="alert" class="successMsg"><img src="{{asset('svg/good.svg')}}" alt="good icone">
+        <div id="successMsg" role="alert" class="successMsg"><img width="40" height="60" src="{{asset('svg/good.svg')}}" alt="good icone">
             <div class="alert alert-success" role="alert">
                 <p>{{ session('status') }}</p>
             </div>
@@ -52,7 +52,7 @@
                 </form>
             </div>
             <div class="container-svg">
-                <img class="svg-icon" src="{{asset('svg/Password_Monochromatic.svg')}}"
+                <img width="300" height="300" class="svg-icon" src="{{asset('svg/Password_Monochromatic.svg')}}"
                      alt="Icone d'un ordinateur avec un mot de passe crypter">
             </div>
         </section>

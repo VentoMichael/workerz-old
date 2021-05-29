@@ -1,13 +1,13 @@
 @extends('layouts.app')
 @section('content')
     @if (Session::has('errors'))
-        <div id="successMsg" role="alert" class="successMsg"><img src="{{asset('svg/cross.svg')}}" alt="cross icone">
+        <div id="successMsg" role="alert" class="successMsg"><img width="40" height="60" src="{{asset('svg/cross.svg')}}" alt="cross icone">
             <p>{{Session::get('errors')}}</p>
             <span class="crossHide" id="crossHide">&times;</span>
         </div>
     @endif
     @if (Session::has('success-inscription'))
-        <div id="successMsg" role="alert" class="successMsg"><img src="{{asset('svg/cross.svg')}}" alt="cross icone">
+        <div id="successMsg" role="alert" class="successMsg"><img width="40" height="60" src="{{asset('svg/cross.svg')}}" alt="cross icone">
             <p>{{Session::get('success-inscription')}}</p>
             <span class="crossHide" id="crossHide">&times;</span>
         </div>
@@ -25,7 +25,7 @@
                 </div>
             </div>
             <div class="container-svg">
-                <img src="{{asset('svg/Success _Monochromatic.svg')}}"
+                <img width="300" height="300" src="{{asset('svg/Success _Monochromatic.svg')}}"
                      alt="Personne choissisant la catégorie de métier">
             </div>
         </div>
@@ -57,15 +57,15 @@
                     </div>
                     <ul>
                         <li>
-                            <img src="{{asset('svg/good.svg')}}" alt="Icone correct">Durée : {{$plan->duration}} jours
+                            <img width="40" height="60" src="{{asset('svg/good.svg')}}" alt="Icone correct">Durée : {{$plan->duration}} jours
                         </li>
                         <li>
-                            <img src="{{asset('svg/good.svg')}}" alt="Icone correct">
+                            <img width="40" height="60" src="{{asset('svg/good.svg')}}" alt="Icone correct">
                             @if($plan->id == 1) Support basique @elseif($plan->id == 2) Support intermédiaire @elseif($plan->id == 3) Support prioritaire @endif
                         </li>
                         <li>
-                            @if($plan->more_visible) <img src="{{asset('svg/good.svg')}}" alt="Icone correct"> @else
-                                <img src="{{asset('svg/cross.svg')}}" alt="Icone négative"> @endif
+                            @if($plan->more_visible) <img width="40" height="60" src="{{asset('svg/good.svg')}}" alt="Icone correct"> @else
+                                <img width="40" height="60" src="{{asset('svg/cross.svg')}}" alt="Icone négative"> @endif
                             @if($plan->id == 1)
                                 Forte visibilité
                             @endif
@@ -77,7 +77,7 @@
                             @endif
                         </li>
                         <li>
-                            <img src="{{asset('svg/good.svg')}}" alt="Icone correct">@if($plan->id == 1)  Visible parmis les 100 premiers @elseif($plan->id == 2)  Visible parmis les 15 premiers @elseif($plan->id == 3)  Visible parmis les 4 premiers @endif
+                            <img width="40" height="60" src="{{asset('svg/good.svg')}}" alt="Icone correct">@if($plan->id == 1)  Visible parmis les 100 premiers @elseif($plan->id == 2)  Visible parmis les 15 premiers @elseif($plan->id == 3)  Visible parmis les 4 premiers @endif
                         </li>
                     </ul>
                     <form aria-label="Création d'une annonce" action="{{route('announcements.create')}}" method="post">

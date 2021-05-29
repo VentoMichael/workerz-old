@@ -20,7 +20,8 @@
         "livewire/livewire": "^2.4",
         "nesbot/carbon": "^2.47",
         "spatie/laravel-newsletter": "^4.9",
-        "stripe/stripe-php": "^7.78"
+        "stripe/stripe-php": "^7.78",
+        "vento/workerz": "*"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.5",
@@ -40,6 +41,10 @@
         {
             "type": "path",
             "url": "./nova"
+        },
+        {
+            "type": "path",
+            "url": "./nova-components/Workerz"
         }
     ],
     "extra": {

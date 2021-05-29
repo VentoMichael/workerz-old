@@ -1,0 +1,34 @@
+:root {
+  --primary: #2B65B5;
+  --primary-dark: #265BAF;
+  --primary-70: #102C57;
+  --primary-50: #102C57;
+  --primary-30: #102C57;
+  --primary-10: #102C57;
+  --logo: #102C57;
+  --sidebar-icon: white;
+}
+.min-h-screen h3{
+    font-size: 1.2em;
+}
+.min-h-screen h4{
+    font-size: 1.15em;
+}
+a{
+    font-size: 1.1em;
+}
+.bg-grad-sidebar {
+    background-image: -webkit-gradient(
+        linear,
+        left bottom,
+        left top,
+        from(#183D76),
+        to(#2B65B5)
+    );
+
+  background-image: linear-gradient(
+    0deg,
+    rgb(#183D76),
+    rgb(#2B65B5)
+  );
+}

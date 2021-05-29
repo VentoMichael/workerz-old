@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
     @if (Session::has('success-ads'))
-        <div id="successMsg" role="alert" class="successMsg"><img src="{{asset('svg/good.svg')}}" alt="good icone">
+        <div id="successMsg" role="alert" class="successMsg"><img width="40" height="60" src="{{asset('svg/good.svg')}}" alt="good icone">
             <p>{{Session::get('success-ads')}}</p>
             <span class="crossHide" id="crossHide">&times;</span>
         </div>
@@ -19,7 +19,7 @@
                 </div>
             </div>
             <div class="container-svg">
-                <img src="{{asset('svg/Card Payment_Monochromatic.svg')}}"
+                <img width="300" height="300" src="{{asset('svg/Card Payment_Monochromatic.svg')}}"
                      alt="icone de carte">
             </div>
         </div>
@@ -51,16 +51,16 @@
                             </div>
                             <ul>
                                 <li>
-                                    <img src="{{asset('svg/good.svg')}}" alt="Icone correct">Durée
+                                    <img width="40" height="60" src="{{asset('svg/good.svg')}}" alt="Icone correct">Durée
                                     : {{$planId->duration}} jours
                                 </li>
                                 <li>
-                                    <img src="{{asset('svg/good.svg')}}" alt="Icone correct">
+                                    <img width="40" height="60" src="{{asset('svg/good.svg')}}" alt="Icone correct">
                                     @if($plan == 1) Support basique @elseif($plan == 2) Support intermédiaire @elseif($plan == 3) Support prioritaire @endif
                                 </li>
                                 <li>
-                                    @if($planId->more_visible) <img src="{{asset('svg/good.svg')}}" alt="Icone correct"> @else
-                                        <img src="{{asset('svg/cross.svg')}}" alt="Icone négative"> @endif
+                                    @if($planId->more_visible) <img width="40" height="60" src="{{asset('svg/good.svg')}}" alt="Icone correct"> @else
+                                        <img width="40" height="60" src="{{asset('svg/cross.svg')}}" alt="Icone négative"> @endif
                                     @if($plan == 1)
                                         Forte visibilité
                                     @endif
@@ -72,7 +72,7 @@
                                     @endif
                                 </li>
                                 <li>
-                                    <img src="{{asset('svg/good.svg')}}" alt="Icone correct">@if($plan == 1)  Visible parmis les 100 premiers @elseif($plan == 2)  Visible parmis les 15 premiers @elseif($plan == 3)  Visible parmis les 4 premiers @endif
+                                    <img width="40" height="60" src="{{asset('svg/good.svg')}}" alt="Icone correct">@if($plan == 1)  Visible parmis les 100 premiers @elseif($plan == 2)  Visible parmis les 15 premiers @elseif($plan == 3)  Visible parmis les 4 premiers @endif
                                 </li>
                             </ul>
                         </section>

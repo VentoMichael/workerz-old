@@ -16,7 +16,6 @@ class Ads extends Component
     public $search = "";
     public $province=[];
     public $categoryAds=[];
-
     protected $queryString = ['search','province','categoryAds'];
 
     public function render()
@@ -38,17 +37,25 @@ class Ads extends Component
                 ->orderBy('created_at', 'DESC')
                 ->when(
                     $this->categoryAds,
-                    fn($query) => $query->whereHas(
-                        'categoryAds',
-                        fn($query) => $query->whereIn('category_id', $this->categoryAds)
-                    )
+                    function ($query) {
+                        return $query->whereHas(
+                            'categoryAds',
+                            function ($query) {
+                                return $query->whereIn('category_id', $this->categoryAds);
+                            }
+                        );
+                    }
                 )
                 ->when(
                     $this->province,
-                    fn($query) => $query->whereHas(
-                        'province',
-                        fn($query) => $query->whereIn('province_id', $this->province)
-                    ))
+                    function ($query) {
+                        return $query->whereHas(
+                            'province',
+                            function ($query) {
+                                return $query->whereIn('province_id', $this->province);
+                            }
+                        );
+                    })
                 ->withLikes()
                 ->where('title', 'like',
                     '%'.$this
