@@ -2,7 +2,7 @@
     <div class="container-form-search">
         <form aria-label="Recherche d'indépendants" role="search" action="{{route('workerz')}}" method="get">
             <label for="search" class="hidden">Recherche d'indépendants</label>
-            <input type="search" spellcheck="false" placeholder="Quel catégorie recherchez-vous ? " wire:model="search" name="search" class="search-home" id="search">
+            <input type="search" spellcheck="false" placeholder="Quelle catégorie recherchez-vous ? " wire:model="search" name="search" class="search-home" id="search">
             <input type="submit" class="submit-category-home" value="Recherchez">
         </form>
     </div>

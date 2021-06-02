@@ -184,7 +184,12 @@
                             <ul class="list-categories list-checkboxes-register list-dispo-profil">
                                 @foreach($categories as $c)
                                     <li>
-                                        <input @if(auth()->user() && $user_categories->contains($c->id)) checked @endif role="checkbox"
+                                        <input
+                                        @for($i=0;$i<=2;$i++)
+@if(isset(old('categoryUser')[$i]) && old('categoryUser')[$i] == $c->id) checked @endif
+                                            @endfor
+                                        @if(auth()->user() && $user_categories->contains($c->id)) checked
+                                            @endif role="checkbox"
                                                aria-checked="false" class="checkCat hiddenCheckbox inp-cbx"
                                                name="categoryUser[]" id="categoryUser{{$c->id}}"
                                                type="checkbox" value="{{$c->id}}"/>
@@ -226,16 +231,19 @@
                         @endif
 
                     </div>
-
                     <div class="container-form-email selectdiv container-disponibilities-edit container-disponibilities-register">
                         <label for="disponibilities">Disponibilités</label>
                         <div class="container-category">
                             <ul class="list-categories list-checkboxes-register list-dispo-profil"  style="overflow-y: scroll; -webkit-overflow-scrolling: touch;">
                                 @foreach($disponibilities as $disponibility)
+
                                     <li>
                                         <input
-                                            @if(auth()->user() && $user_disponibilities->contains($disponibility->id)) checked
-                                            @else                                             @endif @if(!auth()->user() && $disponibility->pre_selected == true) checked
+                                            @for($i=0;$i<=6;$i++)
+@if(isset(old('disponibilities')[$i]) && old('disponibilities')[$i] == $disponibility->id) checked @endif
+@endfor
+@if(auth()->user() && $user_disponibilities->contains($disponibility->id)) checked
+                                            @else                                             @endif @if(!auth()->user() && $disponibility->pre_selected == true && !old('disponibilities')) checked
                                             @endif role="checkbox"
                                             aria-checked="false" class=" hiddenCheckbox inp-cbx"
                                             name="disponibilities[]" id="disponibilities{{$disponibility->id}}"
@@ -392,17 +400,17 @@
 
                     @if(!auth())
                 </div>
-
                 <div
                     class="container-register-form container-register @if(auth()->user()) container-edit-formulary @endif">
                     @endif
                     @if(!auth())
                         <div class="container-form-email selectdiv">
                             <label for="location">Région <span class="required">*</span></label>
-                            <select required aria-required="true" class="select-register select-regions"
+                            <select
+                            required aria-required="true" class="select-register select-regions"
                                     data-maxoption="1"
                                     name="location" id="location">
-                                @if(!auth())
+                                @if(!auth() && !old('location'))
                                     <option value="0" disabled selected>-- Votre région --</option>
                                 @endif
                                 @foreach($regions as $region)
@@ -467,11 +475,11 @@
                         <label for="location">Région <span class="required">*</span></label>
                         <select required aria-required="true" class="select-register select-regions" data-maxoption="1"
                                 name="location" id="location">
-                            @if(!auth()->user())
+                            @if(!auth()->user() && !old('location'))
                                 <option value="0" disabled selected>-- Votre région --</option>
                             @endif
                             @foreach($regions as $region)
-                                <option
+                                <option @if(old('location') == $region->id) selected @endif
                                      @if(auth()->user() && auth()->user()->adresses->first()->province_id == $region->id) selected @else @endif value="{{$region->id}}">{{$region->name}}</option>
                             @endforeach
                         </select>
@@ -502,6 +510,7 @@
                                 <input role="radio" class="hiddenRadio inp-cbx"
                                        id="jobOpportunityYes"
                                        name="possibility_job"
+                                       @if(old('possibility_job') === 'yes') checked @endif
                                        @if(!auth()->user()) aria-checked="false"  @endif
                                        @if(auth()->user() && auth()->user()->possibility_job == 'yes') checked
                                        @endif type="radio" value="yes"/>
@@ -518,6 +527,7 @@
                                 <input role="radio"
                                        class="hiddenRadio inp-cbx"
                                        id="jobOpportunityNo"
+                                       @if(old('possibility_job') === 'no') checked @endif
                                        @if(!auth()->user()) aria-checked="false"  @endif
                                        @if(auth()->user() && auth()->user()->possibility_job == 'no') checked
                                        @else aria-checked="false" @endif name="possibility_job"
@@ -536,7 +546,8 @@
                                        class="hiddenRadio inp-cbx"
                                        id="jobOpportunityNotDetermine"
                                        @if(auth()->user() && auth()->user()->possibility_job == 'dkn') checked @endif
-                                       @if(!auth()->user()) aria-checked="true" checked
+                                       @if(old('possibility_job') === 'dkn') checked @endif
+                                       @if(!auth()->user() && !old('possibility_job')) aria-checked="true" checked
                                        @endif name="possibility_job"
                                        type="radio" value="dkn"/>
                                 <label class="cbx" for="jobOpportunityNotDetermine">
@@ -557,7 +568,7 @@
                     @endif
                     <div class="container-form-email container-description-register container-description-edit">
                         <div class="container-maxCharacters">
-                            <label for="description">Description <span class="required">*</span></label>
+                            <label for="description">Description de votre entreprise <span class="required">*</span></label>
                             <span class="maxCharacters">256 caractères max</span>
                         </div>
                         @if(auth()->user() && auth()->user()->description)

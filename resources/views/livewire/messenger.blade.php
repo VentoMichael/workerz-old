@@ -1,19 +1,21 @@
-<div class="@if($users->count() < 1) no-Users @endif container-search-ads @if(Request::is('dashboard/messages')) container-messenger-form @endif">
+<div
+    class="@if($users->count() < 1) no-Users @endif container-search-ads @if(Request::is('dashboard/messages')) container-messenger-form @endif">
     @if($users->count() > 0)
-    <form action="{{$firstUser->slug.request('search')}}" aria-label="Rechercher mes messages" role="search"
-          method="get" class="formSearchAd submit-msg">
-        <label for="search" class="hidden">Rechercher mes messages</label>
-        <input type="text" name="search" value="{{request('search')}}" id="search"
-               wire:model="search"
-               placeholder="Rechercher par nom"
-               class="search-announcement search-home search-ads">
-        <input type="hidden" name="firstAd" value="{{$firstUser->slug}}">
-        <noscript>
-            <button type="submit" class="button-cta submit-category-home submit-ad submit-msg">Recherchez</button>
-        </noscript>
-    </form>
+        <form action="{{$firstUser->slug.request('search')}}" aria-label="Rechercher mes messages" role="search"
+              method="get" class="formSearchAd submit-msg">
+            <label for="search" class="hidden">Rechercher mes messages</label>
+            <input type="text" name="search" value="{{request('search')}}" id="search"
+                   wire:model="search"
+                   placeholder="Rechercher par nom"
+                   class="search-announcement search-home search-ads">
+            <input type="hidden" name="firstAd" value="{{$firstUser->slug}}">
+            <noscript>
+                <button type="submit" class="button-cta submit-category-home submit-ad submit-msg">Recherchez</button>
+            </noscript>
+        </form>
     @endif
-    <div class="container-announcments-dashboard @if($users->count() < 1)container-search-without-ads @endif" wire:loading.class="load">
+    <div class="container-announcments-dashboard @if($users->count() < 1)container-search-without-ads @endif"
+         wire:loading.class="load">
         @forelse($users as $user)
             <div class="container-message-index">
                 <a class="{{ Request::is('dashboard/messages/'.$user->slug) || Request::is('dashboard/messages/'.$user->slug.'/*') ? "container-announcements-active" : "" }} container-announcements"
@@ -61,6 +63,27 @@
 @section('scripts')
     <script src="{{asset('js/confirmDelete-msg.js')}}"></script>
     @livewireScripts
-    <script>document.getElementById("container-message").addEventListener("click",()=>{document.getElementById("message").focus()});</script>
+    <script>
+        let btnMsg = document.getElementById("btnMsgSend")
+        let helpMsg = document.getElementById("helpMsg")
+        if (btnMsg){
+        document.getElementById("message").addEventListener('keyup',(e)=>{
+           btnMsg.classList.add('styleBtnMsg');
+           helpMsg.classList.add('helpMsg');
+           if (document.getElementById("message").value === ""){
+               btnMsg.classList.remove('styleBtnMsg');
+               helpMsg.classList.remove('helpMsg');
+           }
+        })
+        document.getElementById("container-message").addEventListener("click", () => {
+            document.getElementById("message").focus()
+        });
+        document.addEventListener('keydown',(e)=>{
+            if (event.ctrlKey && event.key === 'Enter') {
+                document.getElementById('formMsg').submit()
+            }
+        })}
+        //Cmd + enter
+    </script>
 @endsection
 @endif

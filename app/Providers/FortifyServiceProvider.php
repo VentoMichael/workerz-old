@@ -38,7 +38,6 @@ class FortifyServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-
         Fortify::loginView(function () {
             return view('auth.login')->with('success-inscription', 'Connexion réussie !');
         });
