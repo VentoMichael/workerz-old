@@ -36,7 +36,7 @@ class DashboardController extends Controller
     {
         $this->sendExpireNotificationAccount();
         $messages = Message::where('to_id', '=', \auth()->user()->id)->with('user')->orderBy('created_at',
-            'DESC')->take(3)->get();
+            'ASC')->take(3)->get();
         $lastAnnouncements = Announcement::where('user_id', '=',
             \auth()->user()->id)->WithLikes()->NoBan()->Payement()->Published()->orderBy('view_count',
             'DESC')->orderBy('created_at', 'DESC')->take(3)->get();

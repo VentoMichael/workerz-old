@@ -49,7 +49,7 @@ class AnnouncementController extends Controller
         $randomAds = Announcement::Published()
             ->NoBan()
             ->Payement()->Adspayed()->orderBy('plan_announcement_id',
-                'DESC')->withLikes()->limit(2)->inRandomOrder()->get();
+                'DESC')->withLikes()->limit(2)->inRandomOrder()->where('slug','!=',$announcement->slug)->get();
         $randomPhrasing = CatchPhraseAnnouncement::all()->random();
         $user = auth()->user();
         return view('announcements.show', compact('randomPhrasing', 'randomAds', 'announcement', 'user'));

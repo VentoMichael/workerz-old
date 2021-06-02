@@ -41,10 +41,10 @@
     <h1 aria-level="1" class="hidden">Bienvenu sur Workerz</h1>
     <div class="container-menu">
 
-        <nav class="navbar navbarId" id="navbar" role="navigation">
+        <nav class="navbar navbarId" id="navbar">
             <h2 aria-level="2" class="hidden">Navigation Principale
             </h2>
-            <li class="logo-mobile">
+            <div class="logo-mobile">
                 <a href="{{ url('/') }}">
                     <svg version="1.1" id="Calque_1" xmlns="http://www.w3.org/2000/svg"
                          xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 162.5 33.2"
@@ -106,7 +106,7 @@
                         </g>
 </svg>
                 </a>
-            </li>
+            </div>
             <input type="checkbox" id="nav" class="notVisible nav"/>
             <label for="nav" class="nav-open nav-label-open">Ouvrir le menu<i></i><i></i><i></i></label>
             <div class="nav-container">
@@ -180,30 +180,26 @@
                     </li>
                     <li>
                         <ul class="container-list-menu container-list-menu-principal">
-                            <li><a class="{{ Request::is('/') ? "current_page_item" : "" }}"
-                                   aria-current="{{ Request::is('/') ? "page" : "" }}" href="{{ url('/') }}">Accueil</a>
+                            <li><a
+                                        class="{{ Request::is('/') ? "current_page_item" : "" }}"
+                                        {{ Request::is('/') ? "aria-current='page'" : "" }}
+                                        href="{{ url('/') }}">Accueil</a>
                             </li>
                             <li>
-                                <a class="{{ Request::is('workerz') || Request::is('workerz/*') ? "current_page_item" : "" }}"
-                                   aria-current="{{ Request::is('workerz') || Request::is('workerz/*') ? "page" : "" }}"
-                                   href="{{route('workerz')}}">Travailleurs</a>
+                                <a class="{{ Request::is('workerz') || Request::is('workerz/*') ? "current_page_item" : "" }}" {{ Request::is('workerz') || Request::is('workerz/*') ? "aria-current='page'" : "" }} href="{{route('workerz')}}">Travailleurs</a>
                             </li>
                             <li>
-                                <a class="{{ Request::is('announcements') || Request::is('announcements/*') ? "current_page_item" : "" }}"
-                                   aria-current="{{ Request::is('announcements') || Request::is('announcements/*') ? "page" : "" }}"
-                                   href="{{route('announcements')}}">Annonces</a>
+                                <a class="{{ Request::is('announcements') || Request::is('announcements/*') ? "current_page_item" : "" }}" {{ Request::is('announcements') || Request::is('announcements/*') ? "aria-current='page'" : "" }} href="{{route('announcements')}}">Annonces</a>
                             </li>
                         </ul>
                     </li>
                     @if(!Auth::check())
                         <li>
                             <ul class="container-list-menu">
-                                <li class="connected-item-container {{ Request::is('login') ? "current_page_item" : "" }}"
-                                    aria-current="{{ Request::is('login') ? "page" : "" }}"><a class="connected-item"
+                                <li class="connected-item-container {{ Request::is('login') ? "current_page_item" : "" }}" {{ Request::is('login') ? "aria-current='page'" : "" }}><a class="connected-item"
                                         href="{{ route('login') }}">Se connecter</a>
                                 </li>
-                                <li class="last-menu-item"
-                                    aria-current="{{ Request::is('register') ? "page" : "" }}"><a
+                                <li class="last-menu-item" {{ Request::is('register') ? "aria-current='page'" : "" }}><a
                                         href="{{ route('users.plans') }}">S'inscrire</a>
                                 </li>
                             </ul>
@@ -220,16 +216,16 @@
                                     </form>
                                 </li>
                                 <li class="last-menu-item profil-item"
-                                    aria-current="{{ Request::is('dashboard') ? "page" : "" }}">
+                                    {{ Request::is('dashboard') ? "aria-current='page'" : "" }}>
                                     <a class="profil-user" href="{{route('dashboard')}}">Dashboard</a>
                                 </li>
                                 <li class="nav-dashboard notVisible">
                                     <ul>
-                                        <li aria-current="{{ Request::is('dashboard/profil') || Request::is('dashboard/profil/*') ? "page" : "" }}">
+                                        <li {{ Request::is('dashboard/profil') | Request::is('dashboard/profil/*') ? "aria-current='page'" : "" }}>
                                             <a href="{{route('dashboard.profil')}}">Mon profil</a></li>
-                                        <li aria-current="{{ Request::is('dashboard/ads') || Request::is('dashboard/ads/*') ? "page" : "" }}">
+                                        <li {{ Request::is('dashboard/ads') | Request::is('dashboard/ads/*') ? "aria-current='page'" : "" }}>
                                             <a href="{{route('dashboard.ads')}}">Mes annonces</a></li>
-                                        <li aria-current="{{ Request::is('dashboard/message') || Request::is('dashboard/message/*') ? "page" : "" }}">
+                                        <li {{ Request::is('dashboard/message') | Request::is('dashboard/message/*') ? "aria-current='page'" : "" }}>
                                             <a href="{{route('dashboard.messages')}}">Mes messages</a></li>
                                     </ul>
                                 </li>
@@ -254,23 +250,23 @@
             <h3 aria-level="3" class="util-links">
                 Liens utiles
             </h3>
-            <nav role="navigation">
+            <nav>
                 <ul>
                     <li>
-                        <a {{ Request::is('contact') || Request::is('contact/*') ? "page" : "" }} href="{{route('contact')}}">
+                        <a {{ Request::is('contact') || Request::is('contact/*') ? "aria-current='page'" : "" }} href="{{route('contact')}}">
                             Contact
                         </a>
                     </li>
                     <li>
-                        <a {{ Request::is('about') || Request::is('about/*') ? "page" : "" }} href="{{route('about')}}">
+                        <a {{ Request::is('about') || Request::is('about/*') ? "aria-current='page'" : "" }} href="{{route('about')}}">
                             À propos
                         </a></li>
                     <li>
-                        <a {{ Request::is('policy')? "page" : "" }} href="{{route('policy')}}">
+                        <a {{ Request::is('policy')? "aria-current='page'" : "" }} href="{{route('policy')}}">
                             Politique de confidentialité
                         </a></li>
                     <li>
-                        <a {{ Request::is('conditions') ? "page" : "" }} href="{{route('conditions')}}">
+                        <a {{ Request::is('conditions') ? "aria-current='page'" : "" }} href="{{route('conditions')}}">
                             Conditions d’utilisations
                         </a></li>
                 </ul>
@@ -286,7 +282,7 @@
                 <div class="form-newsletter">
                     <label for="newsletter" class="notVisible">Votre mail</label>
                     <input type="email" name="newsletter" id="newsletter" class="input-newsletter"
-                           placeholder="Albert01@gmail.com" required aria-required="true">
+                           placeholder="Albert01@gmail.com" aria-required="true">
                 </div>
                 <div class="form-example">
                     <input type="submit" class="submit-newsletter" value="Envoyé">

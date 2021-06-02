@@ -1,13 +1,15 @@
 @extends('layouts.app')
 @section('content')
     @if (Session::has('loveOk'))
-        <div id="successMsg" role="alert" class="successMsg"><img width="40" height="60" src="{{asset('svg/good.svg')}}" alt="good icone">
+        <div id="successMsg" role="alert" class="successMsg"><img width="40" height="60" src="{{asset('svg/good.svg')}}"
+                                                                  alt="good icone">
             <p>{{Session::get('loveOk')}}</p>
             <span class="crossHide" id="crossHide">&times;</span>
         </div>
     @endif
     @if (Session::has('loveNotOk'))
-        <div id="successMsg" role="alert" class="successMsg"><img width="40" height="60" src="{{asset('svg/good.svg')}}" alt="good icone">
+        <div id="successMsg" role="alert" class="successMsg"><img width="40" height="60" src="{{asset('svg/good.svg')}}"
+                                                                  alt="good icone">
             <p>{{Session::get('loveNotOk')}}</p>
             <span class="crossHide" id="crossHide">&times;</span>
         </div>
@@ -22,8 +24,9 @@
                     <p>Prenez contact
                         avec {{ucfirst($announcement->user->name)}} {{ucfirst($announcement->user->surname)}}, soit par
                         <a
-                            href="mailto:{{$announcement->user->email}}">mail</a> soit par <a
-                            href="tel:{{$announcement->user->phones->first()->number}}">téléphone</a>. Cette personne
+                                href="mailto:{{$announcement->user->email}}">mail</a> soit par <a
+                                href="tel:{{$announcement->user->phones->first()->number}}">téléphone</a>. Cette
+                        personne
                         s'enverra ravir !</p>
                 </div>
             </div>
@@ -33,7 +36,7 @@
             </div>
         </div>
     </section>
-    <section class="container-categories-home margin">
+    <section class="container-categories-home margin" @if($randomAds->count() < 1)style="margin-bottom:50px;" @endif>
         <div class="container-categories-text-home">
             @if($announcement->catchPhrase)
                 <h2 aria-level="2">
@@ -50,7 +53,7 @@
             <div class="container-love-show">
                 @auth
                     <div
-                        class="containerPrice container-show-love containerLove help-show @guest notHoverHeart @endguest">
+                            class="containerPrice container-show-love containerLove help-show @guest notHoverHeart @endguest">
                         @if(!$announcement->isLikedBy($user))
                             <form method="POST" title="Mettre un j'aime à {{$announcement->title}}"
                                   aria-label="Mettre un j'aime à {{$announcement->title}}"
@@ -58,7 +61,8 @@
                                 @csrf
 
                                 <button type="submit" class="button-loves">
-                                    <img width="60" height="60" class="heart" src="{{asset('svg/heart.svg')}}" alt="icone de coeur">
+                                    <img width="60" height="60" class="heart" src="{{asset('svg/heart.svg')}}"
+                                         alt="icone de coeur">
                                     <img width="60" height="60" class="heartFul" src="{{asset('svg/heartFul.svg')}}"
                                          alt="icone de coeur">
                                     <span>
@@ -72,7 +76,8 @@
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="button-loves">
-                                    <img width="60" height="60" class="heartFul heartLiked" src="{{asset('svg/heartFul.svg')}}"
+                                    <img width="60" height="60" class="heartFul heartLiked"
+                                         src="{{asset('svg/heartFul.svg')}}"
                                          alt="icone de coeur">
                                     <span>
                                         {{$announcement->likes ? : 0}}</span></button>
@@ -82,15 +87,16 @@
 
                 @else
                     <a href="{{route('login')}}"
-                       title="Il faut se connecter pour mettre un j'aime à {{$announcement->title}}">
+                       title="Il faut se connecté pour mettre un j'aime à {{$announcement->title}}">
                         <div class="containerPrice containerLove hepling helping-like help-show">
 
-                            <img width="60" height="60" class="heart" src="{{asset('svg/heart.svg')}}" alt="icone de coeur">
+                            <img width="60" height="60" class="heart" src="{{asset('svg/heart.svg')}}"
+                                 alt="icone de coeur">
                             <img width="60" height="60" class="heartFul" src="{{asset('svg/heartFul.svg')}}"
                                  alt="icone de coeur">
                             <p>
                                 {{$announcement->likes? : 0}}</p>
-                            <span> Il faut être connecter pour aimer l'annonce</span>
+                            <span> Il faut être connecté pour aimer l'annonce</span>
                         </div>
                     </a>
                 @endauth
@@ -166,7 +172,8 @@
                         </span>
                     </div>
                     @auth
-                        <form action="{{route('messages.post',[$announcement->user->slug])}}" method="POST" class="formsendmsg button-workerz">
+                        <form action="{{route('messages.post',[$announcement->user->slug])}}" method="POST"
+                              class="formsendmsg button-workerz">
                             @csrf
                             <input type="hidden" name="from_id" id="from_id" value="{{auth()->user()->id}}">
                             <input type="hidden" name="to_id" id="to_id" value="{{$announcement->user->id}}">
@@ -176,9 +183,10 @@
                             </button>
                         </form>
                     @else
-                        <a class="formsendmsg button-cta button-msg formsenmsg-show-view-Notauth" style="text-align: center"
+                        <a class="formsendmsg button-cta button-msg formsenmsg-show-view-Notauth"
+                           style="text-align: center"
                            href="{{route('login')}}"
-                           title="Il faut se connecter pour parler avec le detenteur de l'annonce">Il faut être connecter
+                           title="Il faut se connecté pour parler avec le detenteur de l'annonce">Il faut être connecté
                             pour parler avec la personne ayant poster l'annonce
                         </a>
                     @endauth
@@ -186,107 +194,110 @@
             </div>
         </section>
     </section>
-    <section class="container-categories-home margin show-content container-adss-random">
-        <div class="container-title-ads">
-            <h2 aria-level="2">
-                Ca pourrait vous intéresser
-            </h2>
-        </div>
-        <div class="container-ads-random">
-            @foreach($randomAds as $ra)
-                <section class="container-infos-perso-ads container-ad-random" itemtype="https://schema.org/Thing"
-                         itemscope>
-                    <div class="container_title__province">
-                        <div class="container-love-show">
-                            @auth
-                                <div
-                                    class="containerPrice container-show-love like-ads containerLove help-show @guest notHoverHeart @endguest">
-                                    @if(!$ra->isLikedBy($user))
-                                        <form method="POST" title="Mettre un j'aime à {{$announcement->title}}"
-                                              aria-label="Mettre un j'aime à {{$announcement->title}}"
-                                              action="/announcements/{{$ra->slug}}/like">
-                                            @csrf
+    @if($randomAds->count() > 1)
+        <section class="container-categories-home margin show-content container-adss-random">
+            <div class="container-title-ads">
+                <h2 aria-level="2">
+                    Ca pourrait vous intéresser
+                </h2>
+            </div>
+            <div class="container-ads-random">
+                @foreach($randomAds as $ra)
+                    <section class="container-infos-perso-ads container-ad-random" itemtype="https://schema.org/Thing"
+                             itemscope>
+                        <div class="container_title__province">
+                            <div class="container-love-show">
+                                @auth
+                                    <div
+                                            class="containerPrice container-show-love like-ads containerLove help-show @guest notHoverHeart @endguest">
+                                        @if(!$ra->isLikedBy($user))
+                                            <form method="POST" title="Mettre un j'aime à {{$announcement->title}}"
+                                                  aria-label="Mettre un j'aime à {{$announcement->title}}"
+                                                  action="/announcements/{{$ra->slug}}/like">
+                                                @csrf
 
-                                            <button type="submit" class="button-loves">
-                                                <img class="heart" src="{{asset('svg/heart.svg')}}"
-                                                     alt="icone de coeur">
-                                                <img class="heartFul" src="{{asset('svg/heartFul.svg')}}"
-                                                     alt="icone de coeur">
-                                                <span>
+                                                <button type="submit" class="button-loves">
+                                                    <img class="heart" src="{{asset('svg/heart.svg')}}"
+                                                         alt="icone de coeur">
+                                                    <img class="heartFul" src="{{asset('svg/heartFul.svg')}}"
+                                                         alt="icone de coeur">
+                                                    <span>
                                         {{$ra->likes ? : 0}}</span></button>
-                                        </form>
-                                    @else
+                                            </form>
+                                        @else
 
-                                        <form method="POST" title="Enlever le j'aime donner à {{$announcement->title}}"
-                                              aria-label="Enlever le j'aime donner à {{$announcement->title}}"
-                                              action="/announcements/{{$ra->slug}}/like">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="button-loves">
-                                                <img class="heartFul heartLiked" src="{{asset('svg/heartFul.svg')}}"
-                                                     alt="icone de coeur">
-                                                <span>
+                                            <form method="POST"
+                                                  title="Enlever le j'aime donner à {{$announcement->title}}"
+                                                  aria-label="Enlever le j'aime donner à {{$announcement->title}}"
+                                                  action="/announcements/{{$ra->slug}}/like">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="button-loves">
+                                                    <img class="heartFul heartLiked" src="{{asset('svg/heartFul.svg')}}"
+                                                         alt="icone de coeur">
+                                                    <span>
                                         {{$ra->likes ? : 0}}</span></button>
-                                        </form>
-                                    @endif
-                                </div>
-
-                            @else
-                                <a href="{{route('login')}}"
-                                   title="Il faut se connecter pour mettre un j'aime à {{$announcement->title}}">
-                                    <div class="containerPrice containerLove like-ads hepling helping-like help-show">
-
-                                        <img class="heart" src="{{asset('svg/heart.svg')}}" alt="icone de coeur">
-                                        <img class="heartFul" src="{{asset('svg/heartFul.svg')}}"
-                                             alt="icone de coeur">
-                                        <p>
-                                            {{$ra->likes? : 0}}</p>
-                                        <span> Il faut être connecter pour aimer l'entreprise</span>
+                                            </form>
+                                        @endif
                                     </div>
-                                </a>
-                            @endauth
-                        </div>
-                        <div class="container-picture-ads">
-                            @if($ra->picture)
-                                <img itemprop="image" src="{{ $ra->picture }}"
-                                     alt="photo de profil de {{$ra->name}}"/>
-                            @else
-                                <img itemprop="image" src="{{asset('svg/ad.svg')}}" alt="icone d'annonces">
-                            @endif
-                        </div>
-                        <div>
-                            <h3 aria-level="3" itemprop="name">
-                                {{ucfirst($ra->title)}}
-                            </h3>
-                        </div>
-                        <div>
-                            <div class="container-infos-ads-randomm">
-                                <div class="container-position-ads">
-                                    <img src="{{asset('svg/suitcase.svg')}}" alt="icone de malette">
-                                    <span class="job-cat-ads">
+
+                                @else
+                                    <a href="{{route('login')}}"
+                                       title="Il faut se connecter pour mettre un j'aime à {{$announcement->title}}">
+                                        <div class="containerPrice containerLove like-ads hepling helping-like help-show">
+
+                                            <img class="heart" src="{{asset('svg/heart.svg')}}" alt="icone de coeur">
+                                            <img class="heartFul" src="{{asset('svg/heartFul.svg')}}"
+                                                 alt="icone de coeur">
+                                            <p>
+                                                {{$ra->likes? : 0}}</p>
+                                            <span> Il faut être connecter pour aimer l'entreprise</span>
+                                        </div>
+                                    </a>
+                                @endauth
+                            </div>
+                            <div class="container-picture-ads">
+                                @if($ra->picture)
+                                    <img itemprop="image" src="{{ $ra->picture }}"
+                                         alt="photo de profil de {{$ra->name}}"/>
+                                @else
+                                    <img itemprop="image" src="{{asset('svg/ad.svg')}}" alt="icone d'annonces">
+                                @endif
+                            </div>
+                            <div>
+                                <h3 aria-level="3" itemprop="name">
+                                    {{ucfirst($ra->title)}}
+                                </h3>
+                            </div>
+                            <div>
+                                <div class="container-infos-ads-randomm">
+                                    <div class="container-position-ads">
+                                        <img src="{{asset('svg/suitcase.svg')}}" alt="icone de malette">
+                                        <span class="job-cat-ads">
                                     <p>{{ucfirst($ra->job)}}</p>
                                     @if($ra->categoryAds->count())
-                                            <p class="categoryJob">
+                                                <p class="categoryJob">
                                             (@foreach($ra->categoryAds as $a){{$a->name}}{{ ($loop->last ? '' : ', ') }}@endforeach)
                                         </p>
-                                        @endif
+                                            @endif
                                 </span>
-                                </div>
-                                <div class="container-info-announcement" itemtype="https://schema.org/PostalAddress"
-                                     itemscope>
-                                    <img src="{{asset('svg/placeholder.svg')}}" alt="icone de localité">
-                                    <div>
-                                        <p itemprop="addressRegion">{{ucfirst($announcement->province->name)}}</p>
+                                    </div>
+                                    <div class="container-info-announcement" itemtype="https://schema.org/PostalAddress"
+                                         itemscope>
+                                        <img src="{{asset('svg/placeholder.svg')}}" alt="icone de localité">
+                                        <div>
+                                            <p itemprop="addressRegion">{{ucfirst($announcement->province->name)}}</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+                            <a href="/announcements/{{$ra->slug}}" class="btn-ads button-personnal-announcement">
+                                Aller voir {{$ra->name}}
+                            </a>
                         </div>
-                        <a href="/announcements/{{$ra->slug}}" class="btn-ads button-personnal-announcement">
-                            Aller voir {{$ra->name}}
-                        </a>
-                    </div>
-                </section>
-            @endforeach
-        </div>
-    </section>
+                    </section>
+                @endforeach
+            </div>
+        </section>
+    @endif
 @endsection

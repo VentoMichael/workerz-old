@@ -59,7 +59,7 @@
                 </div>
             </section>
             <section class="box-category box-about">
-                <img width="200" height="200" src="{{asset('svg/payment.svg')}}" alt="Icone de deux cartes bancaires">
+                <img width="300" height="300" src="{{asset('svg/payment.svg')}}" alt="Icone de deux cartes bancaires">
                 <div>
                     <h3 aria-level="3">Aucun paiement nécessaire</h3>
                     <p>Une inscription avec ces fonctionnalités sans paiement, c’est rare.

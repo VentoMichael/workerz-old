@@ -39,8 +39,8 @@
                     </section>
                 </a>
             @endforeach
-            <a href="{{route('workerz')}}" class="last-box-category box-category">
-                <section>
+            <a href="{{route('workerz')}}">
+                <section class="last-box-category box-category">
                     <h3 aria-level="3">Toutes les catégories</h3>
                 </section>
             </a>

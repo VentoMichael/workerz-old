@@ -92,7 +92,7 @@
                                 <div class="container-horary-notification-dashboard container-index-dashboard">
                                     <div class="container-horary-notification-dashboard">
                                         <p>
-                                            Reçu le {{$message->created_at->locale('fr')->isoFormat('Do MMMM, hh:ss')}}
+                                            Reçu le {{$message->created_at->locale('fr')->isoFormat('Do MMMM, HH:ss')}}
                                         </p>
                                     </div>
                                     <div>

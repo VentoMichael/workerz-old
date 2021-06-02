@@ -56,7 +56,7 @@
 
                             @else
                                 <a href="{{route('login')}}"
-                                   title="Il faut se connecter pour mettre un j'aime à {{$announcement->title}}">
+                                   title="Il faut se connecté pour mettre un j'aime à {{$announcement->title}}">
                                     <div class="containerPrice containerLove like-index hepling helping-like help-show">
 
                                         <img class="heart" src="{{asset('svg/heart.svg')}}" alt="icone de coeur">
@@ -64,7 +64,7 @@
                                              alt="icone de coeur">
                                         <p>
                                             {{$announcement->likes? : 0}}</p>
-                                        <span> Il faut être connecter pour aimer l'annonce</span>
+                                        <span> Il faut être connecté pour aimer l'annonce</span>
                                     </div>
                                 </a>
                             @endauth
@@ -117,7 +117,7 @@
                     </div>
                     @auth
 
-                    @if($announcement)
+                        @if($announcement)
                             <form action="{{route('messages.post',[$announcement->user->slug])}}" method="POST"
                                   class="formsendmsg formsenmsg-show-view">
                                 @csrf
@@ -136,8 +136,8 @@
                         <a class="formsendmsg formsenmsg-show-view-Notauth button-cta formsenmsg-show-view"
                            style="text-align: center"
                            href="{{route('login')}}"
-                           title="Il faut se connecter pour parler avec le detenteur de l'annonce">Il faut être
-                            connecter
+                           title="Il faut se connecté pour parler avec le detenteur de l'annonce">Il faut être
+                            connecté
                             pour parler avec la personne ayant poster l'annonce
                         </a>
                     @endauth
@@ -148,29 +148,14 @@
             @empty
                 <section wire:loading.class="load" class="container-announcement container-empty-ad">
                     <div class="container-infos-announcement">
-                        @if($announcements->count() < 1)
-                            <img src="{{asset('svg/question-signe-en-cercles
-.svg')}}" alt="Pictogramme d'une ampoule">
-                            <h3 aria-level="3">
-                                Oops, il n'y a encore aucune annonce !
-                            </h3>
-                        @else
-                            <img src="{{asset('svg/not-found.svg')}}" alt="Pictogramme d'une ampoule">
-                            <h3 aria-level="3">
-                                Aucune annonces trouvé avec cette recherche
-                            </h3>
-                        @endif
+                        <img src="{{asset('svg/not-found.svg')}}" alt="Pictogramme d'une ampoule">
+                        <h3 aria-level="3">
+                            Aucune annonces trouvé avec cette recherche
+                        </h3>
                         <p class="containerAllText" style="margin-top: 10px;">
-                            @if($announcements->count() < 1)
-                                Malheureusement je ne trouve aucune annonce dans ma base de données.
-                                <a style="text-decoration: underline;"
-                                   href="{{route('announcements.plans')}}">Je met la première annonce dans
-                                    Workerz !</a>
-                            @else
-                                Oops, je n'ai rien trouvé ! Essayer une autre recherche ou <a
-                                    style="text-decoration: underline;"
-                                    href="{{route('announcements').'#adsLink'}}">rafraichissez la page</a>
-                            @endif
+                            Oops, je n'ai rien trouvé ! Essayer une autre recherche ou <a
+                                style="text-decoration: underline;"
+                                href="{{route('announcements').'#adsLink'}}">rafraichissez la page</a>
                         </p>
                     </div>
                 </section>

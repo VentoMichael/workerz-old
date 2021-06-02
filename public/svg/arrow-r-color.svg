@@ -1,17 +1,1 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="14px" height="25px" viewBox="0 0 14 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <title>arrow-right</title>
-    <defs>
-        <linearGradient x1="50.2717599%" y1="100.481279%" x2="49.347092%" y2="0.680416021%" id="linearGradient-1">
-            <stop stop-color="#5870E0" offset="0%"></stop>
-            <stop stop-color="#4DBBED" offset="100%"></stop>
-        </linearGradient>
-    </defs>
-    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="workers-desktop" transform="translate(-699.000000, -1815.000000)" fill="url(#linearGradient-1)" fill-rule="nonzero">
-            <g id="arrow-right" transform="translate(699.000000, 1815.318852)">
-                <path d="M14,11.6784921 C14,12.1086758 13.8315217,12.5388594 13.4945652,12.8681358 L2.94021739,23.187233 C2.26630435,23.8457857 1.17934783,23.8457857 0.505434783,23.187233 C-0.168478261,22.5286802 -0.168478261,21.4664983 0.505434783,20.8132564 L9.84782609,11.683803 L0.505434783,2.54903867 C-0.168478261,1.89048589 -0.168478261,0.828303992 0.505434783,0.175062124 C1.17934783,-0.483490653 2.26630435,-0.483490653 2.94021739,0.175062124 L13.5,10.4941593 C13.8315217,10.8181247 14,11.2483084 14,11.6784921 Z" id="Path"></path>
-            </g>
-        </g>
-    </g>
-</svg>
+<svg height="25" viewBox="0 0 14 25" width="14" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><linearGradient id="a" x1="50.27176%" x2="49.347092%" y1="100.481279%" y2=".680416%"><stop offset="0" stop-color="#5870e0"/><stop offset="1" stop-color="#4dbbed"/></linearGradient><path d="m14 11.6784921c0 .4301837-.1684783.8603673-.5054348 1.1896437l-10.55434781 10.3190972c-.67391304.6585527-1.76086956.6585527-2.43478261 0-.67391304-.6585528-.67391304-1.7207347 0-2.3739766l9.34239131-9.1294534-9.34239131-9.13476433c-.67391304-.65855278-.67391304-1.72073468 0-2.37397655.67391305-.65855277 1.76086957-.65855277 2.43478261 0l10.55978261 10.31909718c.3315217.3239654.5.7541491.5 1.1843328z" fill="url(#a)" transform="translate(0 .318852)"/></svg>

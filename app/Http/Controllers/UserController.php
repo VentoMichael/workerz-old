@@ -39,7 +39,7 @@ class UserController extends Controller
     {
         $worker = User::withLikes()->where('id', '=', $worker->id)->first();
         $randomUsers = User::Independent()->Payed()->NoBan()->orderBy('role_id',
-            'DESC')->withLikes()->limit(2)->inRandomOrder()->get();
+            'DESC')->withLikes()->limit(2)->inRandomOrder()->where('slug','!=',$worker->slug)->get();
         $randomPhrasing = CatchPhraseUser::all()->random();
         return view('workerz.show', compact('worker', 'randomPhrasing', 'randomUsers'));
     }
