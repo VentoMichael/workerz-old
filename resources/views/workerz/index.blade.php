@@ -18,7 +18,7 @@
             <span class="crossHide" id="crossHide">&times;</span>
         </div>
     @endif
-    <section class="container-home margin">
+    <section class="container-home margin hideForNewsletter" id="sectionWorkerz">
         <div class="container-home_image container-home-page">
             <div>
                 <div class="container-home-text">
@@ -46,7 +46,4 @@
     <livewire:users>
 
     </livewire:users>
-@endsection
-@section('scripts')
-    @livewireScripts
 @endsection

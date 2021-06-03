@@ -29,8 +29,7 @@
 </head>
 <body>
 <header>
-    <h1 aria-level="1" class="hidden">Bienvenu sur la page
-        {{ Request::is('dashboard') ? 'tableau de bord' : "" }}
+    <h1 aria-level="1" class="hidden">Bienvenu sur la page {{ Request::is('dashboard') ? 'tableau de bord' : "" }}
         {{ Request::is('dashboard/profil') || Request::is('dashboard/profil/*') ? 'profil' : "" }}
         {{ Request::is('dashboard/ads') || Request::is('dashboard/ads/*') ? 'annonces' : "" }}
         {{ Request::is('dashboard/messages') || Request::is('dashboard/messages/*') ? 'messages' : "" }}

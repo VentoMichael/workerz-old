@@ -1,6 +1,72 @@
 @import url(header.css);
 @import url(responsive.css);
 
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    transition: 200ms ease-in-out;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    z-index: 10;
+    background-color: white;
+    width: 500px;
+    max-width: 80%;
+}
+.crossHideNewsletter{
+    background: white url(../svg/cross.svg) no-repeat center;
+    min-width: 50px;
+    height: 50px;
+    border: none;
+}
+.modal.active {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.modal-header {
+    padding: 10px 15px;
+    margin-bottom: -20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header .title {
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.modal-header .close-button {
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.modal-body {
+    padding: 10px 15px;
+}
+
+.overlay {
+    position: fixed;
+    opacity: 0;
+    transition: 200ms ease-in-out;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, .5);
+    pointer-events: none;
+}
+
+.overlay.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
 .container-home_image {
     display: -ms-grid;
     display: grid;
@@ -1549,7 +1615,8 @@ div .current_page_item-nav {
     position: absolute;
     -webkit-appearance: none;
     -moz-appearance: none;
-    appearance: none
+    appearance: none;
+    opacity: 0;
 }
 
 div .last-item-pagination {
@@ -2576,4 +2643,24 @@ section .noAds {
 
 .container-show-boxes-ads div a {
     margin-bottom: 0;
+}
+.submit-category-home:focus:not(:focus-visible){
+    background-image: url(../svg/search.svg);
+    background-color: var(--orange);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 70%;
+}
+.form-newsletter-popup form{
+    max-width: inherit;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-newsletter-popup .form-newsletter{
+    flex-direction: column;
+    margin:10px 0;
+}
+.crossHideNewsletter:focus:not(:focus-visible) {
+    background: white url(../svg/cross.svg) no-repeat center;
 }

@@ -49,10 +49,9 @@
         {{ Request::is('policy') ? 'politique de confidentialité' : "" }}
         {{ Request::is('conditions') ? 'conditions d’utilisations' : "" }}
         {{ Request::is('announcements') || Request::is('announcements/*')  || Request::is('announcement/*')  ? 'annonces' : "" }}
-        {{ Request::is('workerz') || Request::is('workerz/*') ? 'travailleurs' : "" }}de Workerz
+        {{ Request::is('workerz') || Request::is('workerz/*') ? 'travailleurs' : "" }} de Workerz
     </h1>
     <div class="container-menu">
-
         <nav class="navbar navbarId" id="navbar">
             <h2 aria-level="2" class="hidden">Navigation Principale
             </h2>
@@ -259,7 +258,7 @@
     </div>
 </header>
 <main class="content">
-    <img class="img-cover" src="{{asset('../svg/background.svg')}}" alt="photo de couverture">
+    <img class="img-cover hideForNewsletter" src="{{asset('../svg/background.svg')}}" alt="photo de couverture">
     @yield('content')
 </main>
 <footer class="footer">

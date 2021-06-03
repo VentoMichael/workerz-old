@@ -10,6 +10,7 @@ class HomeController extends Controller
 {
     public function index()
     {
+        \request()->session()->forget('newsletter');
         $categories = Category::with(['users'=>function($q){
             $q->NoBan()->Payed()->withCount('categoryUser');
         }])->take(5)->get()->sortByDesc(function($categorie)

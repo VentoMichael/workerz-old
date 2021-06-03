@@ -38,8 +38,7 @@ class AnnouncementController extends Controller
 
     public function index()
     {
-        $user = auth()->user();
-        return view('announcements.index', compact('user'));
+        return view('announcements.index');
     }
 
     public function show(Announcement $announcement)

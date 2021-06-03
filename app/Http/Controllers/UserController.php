@@ -12,11 +12,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Validator;
+use Spatie\Newsletter\NewsletterFacade as Newsletter;
 
 class UserController extends Controller
 {
     public function plans()
     {
+        $this->forgetNewsletter();
         $plans = PlanUser::all();
         $plan = request('plan');
         return view('users.plans', compact('plans', 'plan'));
@@ -24,6 +27,7 @@ class UserController extends Controller
 
     public function registration_type()
     {
+        $this->forgetNewsletter();
         $plan = request('plan');
         Session::put('plan', $plan);
         $type = \request('type');
@@ -37,6 +41,7 @@ class UserController extends Controller
 
     public function show(User $worker)
     {
+        $this->forgetNewsletter();
         $worker = User::withLikes()->where('id', '=', $worker->id)->first();
         $randomUsers = User::Independent()->Payed()->NoBan()->orderBy('role_id',
             'DESC')->withLikes()->limit(2)->inRandomOrder()->where('slug','!=',$worker->slug)->get();
@@ -46,6 +51,7 @@ class UserController extends Controller
 
     public function payed(Request $request, User $user)
     {
+        $this->forgetNewsletter();
         if (\auth()) {
             if ($request->plan == 1) {
                 $user = \auth()->user();
@@ -82,12 +88,14 @@ class UserController extends Controller
 
     public function plansAlreadyUser()
     {
+        $this->forgetNewsletter();
         $plans = PlanUser::all();
         return view('users.plans', compact('plans'));
     }
 
     public function payedUser(Request $request, User $user)
     {
+        $this->forgetNewsletter();
         $user = Auth::user();
         $user->is_payed = 1;
         $user->update();
@@ -110,5 +118,7 @@ class UserController extends Controller
             ->send(new NewUser($user));
         return \redirect(route('dashboard.profil'));
     }
-
+    protected function forgetNewsletter(){
+        \request()->session()->forget('newsletter');
+    }
 }

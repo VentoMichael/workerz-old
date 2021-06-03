@@ -1,10 +1,13 @@
-<div id="adsLink">
+@if(request('search') && count($announcements) === 0 && !$newsletterValidated)
+    @include('partials.newsletter')
+@endif
+<div id="adsLink" class="hideForNewsletter">
     <div class="container-home container-search">
         <form action="{{route('announcements')}}" aria-label="Recherche d'annonce" role="search" method="get"
               class="formSearchAd">
             <label for="search" class="hidden">Recherche d'annonces</label>
             <input type="text" name="search" value="{{request('search')}}" id="search" wire:model="search"
-                   placeholder="Rechercher par titre d'annonce"
+                   placeholder="Quelle catégorie recherchez-vous ?"
                    class="search-announcement search-home">
             <noscript>
                 <input type="submit" class="submit-category-home submit-ad" value="Recherchez">
@@ -153,7 +156,7 @@
                             Aucune annonces trouvé avec cette recherche
                         </h3>
                         <p class="containerAllText" style="margin-top: 10px;">
-                            Oops, je n'ai rien trouvé&nbsp;! Essayer une autre recherche ou <a
+                            Oops, je n'ai rien trouvé&nbsp;avec cette recherche <i>"{{request('search')}}"</i>&nbsp;! Essayer une autre recherche ou <a
                                 style="text-decoration: underline;"
                                 href="{{route('announcements').'#adsLink'}}">rafraichissez la page</a>
                         </p>
@@ -176,7 +179,6 @@
                             <fieldset>
                                 <legend class="hidden">Catégories</legend>
                                 @foreach($categories as $category)
-                                    @if($category->announcements->count() != 0)
                                         <li>
                                             <input
                                                 @if(request('categoryAds') && in_array($category->id,request('categoryAds'))) checked
@@ -193,7 +195,6 @@
                                                 <span>{{$category->name}}</span>
                                             </label>
                                         </li>
-                                    @endif
                                 @endforeach
                             </fieldset>
                         </ul>
@@ -206,7 +207,6 @@
                             <fieldset>
                                 <legend class="hidden">Régions</legend>
                                 @foreach($regions as $region)
-                                    @if($region->announcements->count() !=0)
                                         <li>
                                             <input
                                                 @if(request('province') && in_array($region->id,request('province'))) checked
@@ -224,7 +224,6 @@
                                                 <span>{{$region->name}}</span>
                                             </label>
                                         </li>
-                                    @endif
 
                                 @endforeach
                             </fieldset>
@@ -242,3 +241,7 @@
         </div>
     </section>
 </div>
+@section('scripts')
+    @livewireScripts
+    <script src="{{asset('js/newsletter.js')}}"></script>
+@endsection

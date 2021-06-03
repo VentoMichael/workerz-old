@@ -987,7 +987,7 @@
         -webkit-transition: .3s;
         -o-transition: .3s;
         transition: .3s;
-        margin-left: -60px
+        margin-left: -135px
     }
 
     .container-about-sections section:last-child {
@@ -1045,9 +1045,9 @@
     }
 
     .menuDashboard:checked {
-        -webkit-transform: translateX(69px);
-        -ms-transform: translateX(69px);
-        transform: translateX(69px);
+        -webkit-transform: translateX(145px);
+        -ms-transform: translateX(145px);
+        transform: translateX(145px);
         -webkit-transition: .3s;
         -o-transition: .3s;
         transition: .3s
