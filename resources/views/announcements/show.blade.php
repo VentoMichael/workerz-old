@@ -27,7 +27,7 @@
                                 href="mailto:{{$announcement->user->email}}">mail</a> soit par <a
                                 href="tel:{{$announcement->user->phones->first()->number}}">téléphone</a>. Cette
                         personne
-                        s'enverra ravir !</p>
+                        s'enverra ravir&nbsp;!</p>
                 </div>
             </div>
             <div class="container-svg">

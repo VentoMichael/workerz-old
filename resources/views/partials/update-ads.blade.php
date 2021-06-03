@@ -123,7 +123,7 @@
 
 <div class="container-register-form container-register">
     <div class="container-form-email">
-        <label for="price_max">Combien voulez vous dépensez au maximum ?</label>
+        <label for="price_max">Combien voulez vous dépensez au maximum&nbsp;?</label>
         <input max="999999" type="text" pattern="^[0-9-+\s()]*$" id="price_max"
                name="price_max"
                @if(auth()->user()) value="{{$announcement->pricemax}}"

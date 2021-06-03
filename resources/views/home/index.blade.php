@@ -5,10 +5,10 @@
             <div>
                 <div class="container-home-text">
                     <h2 aria-level="2">
-                        Trouvez le professionnel idéal
+                        Trouver le professionnel idéal
                     </h2>
                     <p>
-                        On vous aide a choisir le meilleur professionnel pour vos demandes
+                        On vous aide à choisir le professionnel idéal pour vos demandes
                     </p>
                 </div>
                 <livewire:search-users>
@@ -29,27 +29,29 @@
         </div>
         <div class="container-six-category-home show-content">
             @foreach($categories as $categorie)
-                <a href="{{route('workerz').'?categoryUser%5B%5D='.$categorie->id.'#workerzLink'}}">
-                    <section class="box-category">
-                        <img width="300" height="300" src="{{asset('svg/'.$categorie->profil)}}" alt="{{$categorie->alt}}">
+                <section>
+                    <a class="box-category"
+                       href="{{route('workerz').'?categoryUser%5B%5D='.$categorie->id.'#workerzLink'}}">
+                        <img width="300" height="300" src="{{asset('svg/'.$categorie->profil)}}"
+                             alt="{{$categorie->alt}}">
                         <div itemscope itemtype="https://schema.org/Person">
                             <h3 itemprop="jobTitle" aria-level="3">{{ucfirst($categorie->name)}}</h3>
                             <p>{{$categorie->users->count()}} professionnels</p>
                         </div>
-                    </section>
-                </a>
-            @endforeach
-            <a href="{{route('workerz')}}">
-                <section class="last-box-category box-category">
-                    <h3 aria-level="3">Toutes les catégories</h3>
+                    </a>
                 </section>
-            </a>
+            @endforeach
+            <section>
+                <a class="last-box-category box-category" href="{{route('workerz')}}">
+                    <h3 aria-level="3">Toutes les catégories</h3>
+                </a>
+            </section>
         </div>
     </section>
     <section class="container-home-why show-content">
         <div class="container-title-why">
             <h2 aria-level="2">
-                Pourquoi Workerz ?
+                Pourquoi Workerz&nbsp;?
             </h2>
             <p>
                 Nous avons les indépendants les plus reconnus de votre région
@@ -62,15 +64,15 @@
             </div>
             <div class="container-why-text-first">
                 <h3 aria-level="3">
-                    Arretez de penser !
+                    Arretez de penser&nbsp;!
                 </h3>
                 <p class="text-why">
-                    Vous êtes indépendant et souhaitez vendre vos services au monde entier ?
+                    Vous êtes indépendant et souhaitez proposer vos services à notre portefeuille clients&nbsp;?
                 </p>
-                <p>On vous aide à trouvez du travail !</p>
+                <p>On vous aide à trouver du travail&nbsp;!</p>
                 @guest
                     <a href="{{route('users.plans')}}" class="button-cta">
-                            Je m'inscris
+                        Je m'inscris
                     </a>
                 @endguest
             </div>
@@ -81,15 +83,32 @@
                     Un choix immense
                 </h3>
                 <p class="text-why">
-                    Nous recueillons les meilleurs indépendants, avec une vaste gamme de catégories.
+                    Nous affilions les meilleurs indépendants, proposant une vaste gamme de catégories.
                 </p>
                 <a href="{{route('workerz')}}" class="button-cta">
-                        Les indépendants
+                    Les indépendants
                 </a>
             </div>
             <div>
                 <img width="400" height="350" src="{{asset('svg/Information carousel_Monochromatic.svg')}}"
                      alt="Personne choissisant parmis les nombreux indépendants">
+            </div>
+        </section>
+        <section class="container-why">
+            <div>
+                <img width="400" height="350" src="{{asset('svg/Marketing _Monochromaticc.svg')}}"
+                     alt="Personne réflechissant et assis sur un coussin">
+            </div>
+            <div class="container-why-text-first">
+                <h3 aria-level="3">
+                    Vendez vos services ou recherché en&nbsp;!
+                </h3>
+                <p class="text-why">
+                    Vous avez besoin d'un indépendant ou vous souhaitez proposer vos services&nbsp;?
+                </p>
+                <a href="{{route('announcements.plans')}}" class="button-cta">
+                    Je poste une annonce
+                </a>
             </div>
         </section>
     </section>

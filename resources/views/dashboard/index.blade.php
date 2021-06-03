@@ -27,7 +27,7 @@
             <div class="container-sections-dashboard container-dashboards">
                 <section class="container-dashboard-notif">
                     <h3 aria-level="3">
-                        Dernières notifications
+                        Les dernières notifications
                     </h3>
                     <div class="container-picto-dashboard">
                         <div class="container-messages">
@@ -50,7 +50,7 @@
                                                  alt="icone d'annonces">
                                             <h4 aria-level="4">
                                                 Votre annonce {{$notification->data['announcement']['title'] }} est en
-                                                ligne !
+                                                ligne&nbsp;!
                                             </h4>
                                         </div>
                                     @endif
@@ -84,7 +84,7 @@
                 </section>
                 <section class="container-dashboard-notif container-dashboard-messenger">
                     <h3>
-                        3 derniers messages
+                        Les 3 derniers messages
                     </h3>
                     <div class="container-picto-dashboard">
                         @forelse($messages as $message)
@@ -106,7 +106,7 @@
                         @empty
                             <section class="messages-container">
                                 <h4 aria-level="4">
-                                    Aucun message trouver ...
+                                    Aucun message trouvé ...
                                 </h4>
                                 <div class="button-dashboard-notifications">
                                     <a class="button-cta button-edition button-personnal-dashboard"
@@ -127,7 +127,7 @@
                 </section>
                 <section class="container-dashboard-notif container-dashboard-ads">
                     <h3 aria-level="3">
-                        3 annonces ayant le plus de succés
+                        Les 3 annonces ayant le plus de succés
                     </h3>
                     <div class="container-picto-dashboard">
                         <div class="container-messages container-ads-index">

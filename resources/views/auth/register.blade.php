@@ -6,7 +6,7 @@
                 <section class="container-home_image">
                     <div class="container-connexion">
                         <h2 aria-level="2">On vous attend</h2>
-                        <p>Vous recherchez du travail ? Engagez-vous !</p>
+                        <p>Vous recherchez du travail&nbsp;? Engagez-vous&nbsp;!</p>
                         @guest
                             <div>
                                 <a class="button-cta" href="{{ route('login') }}">
@@ -28,7 +28,7 @@
                     <div class="container-connexion">
 
                         <h2 aria-level="2">On vous attend</h2>
-                        <p>Vous ne trouvez pas le bon travailleur ? Inscrivez-vous et poster une annonce !</p>
+                        <p>Vous ne trouvez pas le bon travailleur&nbsp;? Inscrivez-vous et postez une annonce&nbsp;!</p>
                         <div>
                             <a href="{{ route('login') }}">
                                 <button role="button" class="button-cta" type="submit">
@@ -49,7 +49,7 @@
         <div class="title-first-step-register">
             <h2 aria-level="2">Formulaire d'inscription</h2>
             @if($type == 'company' || $type == 'user' || $request->type == 'user' || $request->type == 'company')
-                <p>Après cette étape, vous serez immédiatement inscris et pourrez y intégrer des annonces !</p>
+                <p>Après cette étape, vous serez immédiatement inscris et pourrez insérer des annonces&nbsp;!</p>
             @endif
         </div>
         @if($type == 'company' || $type == 'user' || $request->type == 'user' || $request->type == 'company')

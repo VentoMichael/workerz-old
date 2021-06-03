@@ -58,11 +58,10 @@
                     </div>
                     <section class="container-ads-give">
                         <h3>
-                            Que peux vous apportez une annonce ?
+                            Que peux vous apporter une annonce&nbsp;?
                         </h3>
-                        <p>Une annonce vous permets de trouver de nombreux clients potentiels, elle vous permet non
-                            seulement d'avoir un choix de clients variant mais elle permet également de
-                            vendre/recherchez facilement !</p>
+                        <p>Une annonce vous permet de trouver de nombreux clients potentiels.
+                            Elle vous permet non seulement d'avoir un choix de clients varié mais permet également de vendre ou de rechercher facilement&nbsp;!</p>
                         <a class="button-cta button-edition" href="{{route('announcements.plans')}}">
                             J'en poste une
                         </a>

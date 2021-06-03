@@ -1,6 +1,6 @@
 @if ($errors->any())
     <div>
-        <div>{{ __('Oups ! Un problème est survenu.') }}</div>
+        <div>Oups&nbsp;! Un problème est survenu&nbsp;!</div>
 
         <ul>
             @foreach ($errors->all() as $error)
@@ -19,29 +19,27 @@
         to toggle the visibility of each field
     --}}
 
-    <div>
-        {{ __('Veuillez confirmer l\'accès à votre compte en saisissant le code d\'authentification fourni par votre application d\'authentification.') }}
+    <div>Veuillez confirmer l'accès à votre compte en saisissant le code d'authentification fourni par votre application d'authentification.
     </div>
 
     <div>
-        <label>{{ __('Code') }}</label>
+        <label>Code</label>
         <input type="text" name="code" autofocus autocomplete="one-time-code" />
     </div>
 
     {{-- ** OR ** --}}
 
-    <div>
-        {{ __('Veuillez confirmer l\'accès à votre compte en saisissant l\'un de vos codes de récupération d\'urgence.') }}
+    <div>Veuillez confirmer l'accès à votre compte en saisissant l'un de vos codes de récupération d'urgence.
     </div>
 
     <div>
-        <label>{{ __('Code de récupération') }}</label>
+        <label>Code de récupération</label>
         <input type="text" name="recovery_code" autocomplete="one-time-code" />
     </div>
 
     <div>
         <button type="submit">
-            {{ __('Connexion') }}
+            Connexion
         </button>
     </div>
 </form>

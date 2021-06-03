@@ -11,7 +11,7 @@
             <div>
                 <div class="container-home-text">
                     <h2 aria-level="2">
-                        Développons cette annonce !
+                        Développons cette annonce&nbsp;!
                     </h2>
                     <p>
                         Vous souhaitez un indépendant pour réaliser vos demandes, ca se trouve ici

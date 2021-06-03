@@ -22,12 +22,8 @@ class Users extends Component
     {
         sleep(1);
         return view('livewire.users', [
-            'regions' => Province::with(['users'=>function($q){
-                $q->NoBan()->Payed()->withCount('provinces');
-            }])->orderBy('name')->get(),
-            'categories' => Category::with(['users'=>function($q){
-                $q->NoBan()->Payed()->withCount('categoryUser');
-            }])->orderBy('name')->get(),
+            'regions' => Province::all(),
+            'categories' => Category::all(),
             'workerz' => User::query()
                 ->Independent()
                 ->Payed()

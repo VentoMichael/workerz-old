@@ -23,7 +23,7 @@
         <section class="container-home_image">
             <div class="container-connexion">
                 <h2 aria-level="2">Connexion</h2>
-                <p>Revenez voir les nouveautés !</p>
+                <p>Revenez voir les nouveautés&nbsp;!</p>
                 <form class="form-login" aria-label="Connexion" role="form" method="POST" action="{{ route('login') }}">
                     @csrf
                     <div class="container-form-email">
@@ -81,7 +81,7 @@
                             @endif
                             @if (Route::has('password.request'))
                                 <a href="{{ route('password.request') }}">
-                                    Mot de passe oublié ?
+                                    Mot de passe oublié&nbsp;?
                                 </a>
                             @endif
                         </div>

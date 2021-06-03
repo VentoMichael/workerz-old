@@ -62,20 +62,19 @@
                                     @if($plan->id == 1) Support basique @elseif($plan->id == 2) Support intermédiaire @elseif($plan->id == 3) Support prioritaire @endif
                                 </li>
                                 <li class="container-visibility">
-                                    @if($plan->more_visible) <img width="40" height="60" src="{{asset('svg/good.svg')}}" alt="Icone correct"> @else
-                                        <img width="40" height="60" src="{{asset('svg/cross.svg')}}" alt="Icone négative"> @endif
+                                    <img width="40" height="60" src="{{asset('svg/good.svg')}}" alt="Icone correct">
                                     @if($plan->id == 1)
-                                        Forte visibilité
+                                        Basse visibilité
                                     @endif
                                     @if($plan->id == 2)
-                                        Votre entreprise sera visible {{$plan->id * 3}} fois plus souvent
+                                        Moyenne visibilité
                                     @endif
                                     @if($plan->id == 3)
-                                        Votre entreprise sera visible {{$plan->id * 5}} fois plus souvent
+                                        Haute visibilité
                                     @endif *
                                 </li>
                                 <li class="container-visibility">
-                                    <img width="40" height="60" src="{{asset('svg/good.svg')}}" alt="Icone correct">@if($plan->id == 1)  Visible parmis les 100 premiers @elseif($plan->id == 2)  Visible parmis les premiers 15 premiers @elseif($plan->id == 3)  Visible parmis les 4 premiers @endif *
+                                    <img width="40" height="60" src="{{asset('svg/good.svg')}}" alt="Icone correct">@if($plan->id == 1)  Visible parmis les top 100 @elseif($plan->id == 2)  Visible parmis les top 15 @elseif($plan->id == 3)  Visible parmis les top 4 @endif *
                                 </li>
                             </ul>
                         </section>
@@ -95,7 +94,6 @@
                             <label class="hidden" for="payed-info"
                             >Informations de paiement</label>
                             <div id="card-element" class=" email-label">
-                                <!-- A Stripe Element will be inserted here. -->
                             </div>
                             <div id="card-errors" role="alert"></div>
 

@@ -26,7 +26,7 @@
                         Une annonce particulière
                     </h2>
                     <p>
-                        Parmis les diverses annonces, il ne vous reste plus qu'à trouver l'annonce qui vous convient
+                        Parmi les diverses annonces, il ne vous reste plus qu'à trouver l'annonce qui vous convient
                     </p>
                     <div>
                         <a href="{{route('announcements.plans')}}" role="button" class="button-cta">

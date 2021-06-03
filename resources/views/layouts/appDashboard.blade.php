@@ -29,7 +29,12 @@
 </head>
 <body>
 <header>
-    <h1 aria-level="1" class="hidden">Dashboard de Workerz</h1>
+    <h1 aria-level="1" class="hidden">Bienvenu sur la page
+        {{ Request::is('dashboard') ? 'tableau de bord' : "" }}
+        {{ Request::is('dashboard/profil') || Request::is('dashboard/profil/*') ? 'profil' : "" }}
+        {{ Request::is('dashboard/ads') || Request::is('dashboard/ads/*') ? 'annonces' : "" }}
+        {{ Request::is('dashboard/messages') || Request::is('dashboard/messages/*') ? 'messages' : "" }}
+        {{ Request::is('dashboard/notifications') || Request::is('dashboard/notifications/*') ? 'notifications' : "" }} de Workerz</h1>
     <div>
         <nav class="navbar navbarId" id="navbar" role="navigation">
             <h2 aria-level="2" class="hidden">Navigation Principale
@@ -38,6 +43,7 @@
                 <ul class="nav-container-top">
                     <li class="container-list-menu-dashboard">
                         <a class="logo" href="{{ url('/') }}">
+                            <span class="hidden">retour à la page d'accueil</span>
                             <svg version="1.1" id="Calque_1" xmlns="http://www.w3.org/2000/svg"
                                  xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                                  viewBox="0 0 162.5 33.2" style="enable-background:new 0 0 162.5 33.2;"

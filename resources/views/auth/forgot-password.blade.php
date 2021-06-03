@@ -11,8 +11,8 @@
     <div class="container-home">
         <section class="container-home_image">
             <div class="container-connexion">
-                <h2 aria-level="2">Mot de passe oublié ?</h2>
-                <p>Ce n'est qu'un oubli, pas de panique !</p>
+                <h2 aria-level="2">Mot de passe oublié&nbsp;?</h2>
+                <p>Ce n'est qu'un oubli, pas de panique&nbsp;!</p>
                 <form aria-label="Envoyer un mail pour réinitialisé le mot de passe" class="form-login" role="form" method="POST"
                       action="{{ route('password.email') }}">
                     @csrf

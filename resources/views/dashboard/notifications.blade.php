@@ -53,7 +53,7 @@
 
                                     <div>
                                         <h3 aria-level="3">
-                                            Aucune notification trouvée ...
+                                            Aucune notification trouv ...
                                         </h3>
                                     </div>
                                 </section>
@@ -65,7 +65,7 @@
                     <div class="container-picture-title-dashboard-ads">
                         <div class="container-picture-dashboard">
                             <h4 aria-level="4">
-                                Sélectionné une notification pour avoir plus de détails
+                                Sélectionner une notification pour avoir plus de détails
                             </h4>
                         </div>
                     </div>

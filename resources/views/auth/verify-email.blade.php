@@ -5,8 +5,8 @@
         <section class="container-home_image">
             <div class="container-connexion">
                 <h2 aria-level="2">Vérification de votre email</h2>
-                <p>Merci de vous être inscrit ! Avant de commencer, pourriez-vous vérifier votre adresse e-mail en
-                    cliquant sur le lien que nous vous avons envoyer par e-mail ?</p>
+                <p>Merci de vous être inscrit&nbsp;! Avant de commencer, pourriez-vous vérifier votre adresse e-mail en
+                    cliquant sur le lien que nous vous avons envoyé par e-mail&nbsp;?</p>
                     <div class="container-form-email notVisible">
                         <label for="email"
                         >Email</label>

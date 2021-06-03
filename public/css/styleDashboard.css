@@ -706,7 +706,7 @@ div .btn-remove-phone:before {
 
 .form-edit-preview div .email-label {
     border: 0;
-    word-break: break-all;
+    word-break: break-word;
     border-bottom: 2px solid var(--blue);
     border-radius: 0
 }
@@ -1338,7 +1338,7 @@ div .container-perso-infos {
 
 .container-ads-catch_phrase-dashboard {
     font-size: 1.8em;
-    word-break: break-all;
+    word-break: break-word;
     margin: 0 auto 20px
 }
 

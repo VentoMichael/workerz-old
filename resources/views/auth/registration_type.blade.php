@@ -5,8 +5,8 @@
         <section class="container-home_image">
             <div class="container-connexion">
 
-                <h2 aria-level="2">L'inscription à bout de main !</h2>
-                <p>Recherchez vous un travailleur ou en êtes vous un ?</p>
+                <h2 aria-level="2">L'inscription à bout de main&nbsp;!</h2>
+                <p>Recherchez vous un travailleur ou en êtes vous un&nbsp;?</p>
                 <div>
                     <a href="{{ route('login') }}">
                         <button role="button" class="button-cta" type="submit">
@@ -34,9 +34,9 @@
                 </h4>
                 <ul class="list-advantages">
                     <li><span>&bull;</span> Accès à un tableau de bord personnel</li>
-                    <li><span>&bull;</span> Intègration d'une annonce</li>
+                    <li><span>&bull;</span> Intègration d'annonces</li>
                     <li><span>&bull;</span> Choix parmi une multitude d'entreprises</li>
-                    <li><span>&bull;</span> Pleins d'autres avantages</li>
+                    <li><span>&bull;</span> D'autres avantages intéressants</li>
                 </ul>
             </section>
             <div class="container-button-register">
@@ -66,9 +66,9 @@
                 </h4>
                 <ul class="list-advantages">
                     <li><span>&bull;</span> Accès à un tableau de bord personnel</li>
-                    <li><span>&bull;</span> Intègration d'une annonce & de votre entreprise</li>
-                    <li><span>&bull;</span> Des centaines de clients potentiels</li>
-                    <li><span>&bull;</span> Pleins d'autres avantages</li>
+                    <li><span>&bull;</span> Intègration de plusieurs annonces & de votre entreprise</li>
+                    <li><span>&bull;</span> Un portefeuille de clients potentiels</li>
+                    <li><span>&bull;</span> D'autres avantages intéressants</li>
                 </ul>
             </section>
             <div class="container-button-register">

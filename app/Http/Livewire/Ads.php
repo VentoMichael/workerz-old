@@ -22,12 +22,8 @@ class Ads extends Component
     {
         sleep(1);
         return view('livewire.ads', [
-            'regions' => Province::with(['announcements'=>function($q){
-                $q->Published()->NoBan()->Payement()->withCount('province');
-            }])->orderBy('name')->get(),
-            'categories' => Category::with(['announcements'=>function($q){
-                $q->Published()->NoBan()->Payement()->withCount('categoryAds');
-            }])->orderBy('name')->get(),
+            'regions' => Province::all(),
+            'categories' => Category::all(),
             'user' => auth()->user(),
             'announcements' => Announcement::query()
                 ->Published()

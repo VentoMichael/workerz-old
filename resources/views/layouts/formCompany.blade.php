@@ -376,7 +376,7 @@
                     @endif
 
                     <div class="container-form-email">
-                        <label for="pricemax">Votre prix horaire</label>
+                        <label for="pricemax">Votre taux horaire</label>
                         <input max="999999" type="text" id="pricemax" pattern="^[0-9-+\s()]*$" name="pricemax"
                                @if(auth()->user()) value="{{auth()->user()->pricemax}}"
                                @else  value="{{old('pricemax')}}"

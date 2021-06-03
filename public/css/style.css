@@ -43,6 +43,7 @@
 
 .container-home_image form {
     position: relative;
+    max-width: 500px;
 }
 
 .search-home {
@@ -53,7 +54,6 @@
     border-radius: 5px;
     font-size: 1em;
     width: 100%;
-    max-width: 500px
 }
 
 .container-home_image div:nth-child(2) {
@@ -132,6 +132,12 @@
     margin-top: 0
 }
 
+.box-category p {
+    font-family: 'fira', 'sans-serif';
+    font-weight: bolder;
+    letter-spacing: .5px;
+}
+
 .box-category {
     position: relative;
     -webkit-transition: .3s;
@@ -139,7 +145,7 @@
     transition: .3s;
     -webkit-box-shadow: var(--shadow);
     box-shadow: var(--shadow);
-    padding: 40px 10px 10px;
+    padding: 40px 20px 15px;
     justify-self: center;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -153,7 +159,6 @@
     -ms-flex-pack: justify;
     justify-content: space-between;
     min-width: 250px;
-    width: 95%;
     min-height: 300px;
     max-height: 300px;
     overflow: hidden
@@ -1789,7 +1794,7 @@ div .container-perso-infos {
     align-items: center;
     grid-gap: 10px;
     margin-top: 10px;
-    word-break: break-all
+    word-break: break-word
 }
 
 .container-position-ads img {
@@ -2567,10 +2572,6 @@ section div .no-Users {
 section .noAds {
     width: 100%;
     grid-template-columns: repeat(1, minmax(0, 1fr));
-}
-
-.container-six-category-home a {
-    margin-bottom: 20px;
 }
 
 .container-show-boxes-ads div a {

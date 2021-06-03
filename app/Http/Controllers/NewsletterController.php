@@ -16,8 +16,6 @@ class NewsletterController extends Controller
 
             if (!Newsletter::hasMember($request->newsletter)) {
                 Newsletter::subscribe($request->newsletter);
-                Mail::to(env('MAIL_FROM_ADDRESS'))
-                    ->send(new NewNewsletterUser());
                 return back()->with('successNew', 'Votre inscription à notre newsletter a bien été prise en compte !');
             }else{
                 return back()->with('failureNew', 'Oops ! Vous êtes déjà inscris !');

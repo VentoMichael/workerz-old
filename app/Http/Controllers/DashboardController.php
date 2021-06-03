@@ -115,7 +115,7 @@ class DashboardController extends Controller
             'name' => 'sometimes|required|string|max:255', Rule::unique('users')->ignore($user->id),
             'surname' => 'sometimes|string|max:255',
             'email' => 'sometimes|required|string|max:255', Rule::unique('users')->ignore($user->id),
-            'picture' => ['sometimes,image:jpg,jpeg,png,svg'],
+            'picture' => 'sometimes','file','image','mimes:jpeg,png,jpg,gif,svg','max:2048',
         ]);
         if ($request->password && $request->password != $user->getOriginal('password')) {
             $request->validate([

@@ -25,7 +25,7 @@
                     <div class="container-picture-title-dashboard-ads">
                         <div class="container-picture-dashboard">
                             <h4 aria-level="4">
-                                Sélectionné un utilisateur pour voir la discussion
+                                Sélectionner un utilisateur pour voir la discussion
                             </h4>
                         </div>
                     </div>

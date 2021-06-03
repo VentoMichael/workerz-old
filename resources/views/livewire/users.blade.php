@@ -133,7 +133,7 @@
                            href="{{route('login')}}"
                            title="Il faut se connecté pour parler avec le détenteur de l'annonce">Il faut être
                             connecté
-                            pour parler avec la personne ayant poster l'annonce
+                            pour parler avec la personne ayant posté l'annonce
                         </a>
                     @endauth
                     <a href="/workerz/{{$worker->slug}}" class="button-personnal-announcement">
@@ -148,7 +148,7 @@
                             Aucun indépendant trouvé avec cette recherche
                         </h3>
                         <p class="containerAllText" style="margin-top: 10px;">
-                            Oops, je n'ai rien trouvé ! Essayer une autre recherche ou <a
+                            Oops, je n'ai rien trouvé&nbsp;! Essayez une autre recherche ou <a
                                 style="text-decoration: underline;"
                                 href="{{route('workerz').'#adsLink'}}">rafraichissez la page</a>
                         </p>
@@ -157,7 +157,6 @@
             @endforelse
             {{ $workerz->links() }}
         </div>
-        @if($workerz->count() > 0)
             <div class="container-filters container-filters-workerz">
                 <form aria-label="Filtrage d'indépendants" action="{{route('workerz')}}" method="get">
                     <section>
@@ -236,7 +235,6 @@
             </div>
     </section>
 </div>
-@endif
 @section('scripts')
     @livewireScripts
 @endsection

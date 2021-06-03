@@ -38,7 +38,19 @@
     <a href="{{route('announcements.plans')}}" class="btnAddAnnouncement" title="Ajouter une annonce" aria-label="Ajouter une annonce"></a>
 </div>
 <header>
-    <h1 aria-level="1" class="hidden">Bienvenu sur Workerz</h1>
+    <h1 aria-level="1" class="hidden">
+        Bienvenu sur la page {{ Request::is('/') ? "accueil" : "" }}
+        {{ Request::is('login') ? 'connexion' : "" }}
+        {{ Request::is('register') || Request::is('register/*') ? 's\'enregistrer' : "" }}
+        {{ Request::is('forgot-password') || Request::is('reset-password/*') ? 'mot de passe oublié' : "" }}
+        {{ Request::is('email/verify') || Request::is('email/verify/*') ? 'vérification d\'email' : "" }}
+        {{ Request::is('contact') ? 'contact' : "" }}
+        {{ Request::is('about') ? 'à propos de nous' : "" }}
+        {{ Request::is('policy') ? 'politique de confidentialité' : "" }}
+        {{ Request::is('conditions') ? 'conditions d’utilisations' : "" }}
+        {{ Request::is('announcements') || Request::is('announcements/*')  || Request::is('announcement/*')  ? 'annonces' : "" }}
+        {{ Request::is('workerz') || Request::is('workerz/*') ? 'travailleurs' : "" }}de Workerz
+    </h1>
     <div class="container-menu">
 
         <nav class="navbar navbarId" id="navbar">
@@ -217,7 +229,16 @@
                                 </li>
                                 <li class="last-menu-item profil-item"
                                     {{ Request::is('dashboard') ? "aria-current='page'" : "" }}>
-                                    <a class="profil-user" href="{{route('dashboard')}}">Dashboard</a>
+                                    <a class="profil-user @if(auth()->user()->picture != null) picto-profil-user @endif" href="{{route('dashboard')}}">
+                                        @if(auth()->user()->picture != null)
+                                            <img class="picto-user" width="25" height="32" src="{{asset(auth()->user()->picture)}}"
+                                                 alt="image de profil de {{auth()->user()->name}}">
+                                        @else
+                                            <img class="picto-user" width="25" height="32" src="{{asset('svg/user-w.svg')}}"
+                                                 alt="image de profil par défaut">
+                                        @endif
+
+                                        Dashboard</a>
                                 </li>
                                 <li class="nav-dashboard notVisible">
                                     <ul>
@@ -308,8 +329,6 @@
 
 </footer>
 <script src="{{asset('js/successMsg.js')}}"></script>
-
-<script>const nodeList=document.querySelectorAll(".show-content"),scroll=Array.from(nodeList);if(scroll){let l=function(){let l=window.scrollY;if(window.screen.height>=568&&window.screen.height<600)for(let o=0;scroll.length-1>=o;o++)l>=scroll[o].offsetTop-450?(scroll[o].style.opacity=1,scroll[o].style.transition="1s"):scroll[o].style.opacity=0;else if(window.screen.height>=600&&window.screen.height<650)for(let o=0;scroll.length-1>=o;o++)l>=scroll[o].offsetTop-500?(scroll[o].style.opacity=1,scroll[o].style.transition="1s"):scroll[o].style.opacity=0;else if(window.screen.height>=650&&window.screen.height<850)for(let o=0;scroll.length-1>=o;o++)l>=scroll[o].offsetTop-600?(scroll[o].style.opacity=1,scroll[o].style.transition="1s"):scroll[o].style.opacity=0;else if(window.screen.height>=850)for(let o=0;scroll.length-1>=o;o++)l>=scroll[o].offsetTop-700?(scroll[o].style.opacity=1,scroll[o].style.transition="1s"):scroll[o].style.opacity=1};window.addEventListener("scroll",l)}</script>
 @yield('scripts')
 </body>
 </html>

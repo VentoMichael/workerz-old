@@ -37,7 +37,7 @@
                                 </li>
                                 <li>
                                     <p>
-                                    Je n'ai trouvé aucun indépendant avec ce nom. <a style="text-decoration: underline;"
+                                    Je n'ai trouvé aucun indépendant avec ce métier. <a style="text-decoration: underline;"
                                         href="{{route('workerz')}}">Je vais voir tous les indépendants</a></p>
                                 </li>
                             </ul>

@@ -5,7 +5,7 @@
         <section class="container-home_image">
             <div class="container-connexion">
                 <h2 aria-level="2">Réinitialisation de votre mot de passe</h2>
-                <p>Ce n'est qu'un oubli, pas de panique !</p>
+                <p>Ce n'est qu'un oubli, pas de panique&nbsp;!</p>
                 <form aria-label="Modification du mot de passe" role="form" class="form-login" method="POST"
                       action="{{ route('password.update') }}">
                     @csrf

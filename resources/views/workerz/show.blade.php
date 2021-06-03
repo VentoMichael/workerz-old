@@ -17,12 +17,12 @@
         <div>
             <div class="container-home-text">
                 <h2 aria-level="2">
-                    Vous avez fais le bon choix !
+                    Vous avez fait le bon choix&nbsp;!
                 </h2>
                 <p>Prenez contact avec {{ucfirst($worker->name)}}, soit par <a
                             href="mailto:{{$worker->email}}">mail</a> soit par <a
                             href="tel:{{$worker->phones()->first()->number}}">téléphone</a>. Cette entreprise s'enverra
-                    ravir !</p>
+                    ravir&nbsp;!</p>
             </div>
         </div>
         <div class="container-svg">
@@ -292,7 +292,7 @@
 
                     @else
                     <a href="{{route('login')}}"
-                       title="Il faut se connecter pour mettre un j'aime à {{$worker->name}}">
+                       title="Il faut se connecté pour mettre un j'aime à {{$worker->name}}">
                         <div
                                 class="containerPrice containerLove like-users like-ads hepling helping-like help-show">
 
@@ -301,7 +301,7 @@
                                  alt="icone de coeur">
                             <p>
                                 {{$ra->likes? : 0}}</p>
-                            <span> Il faut être connecter pour aimer l'entreprise</span>
+                            <span> Il faut être connecté pour aimer l'entreprise</span>
                         </div>
                     </a>
                     @endauth

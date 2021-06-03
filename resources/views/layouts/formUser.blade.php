@@ -22,6 +22,13 @@
                            accept="image/png, image/jpeg">
 
                 </div>
+                @error('picture')
+                <div class="container-error">
+                <span role="alert" class="error">
+                                        <strong>{{ ucfirst($message) }}</strong>
+                                    </span>
+                </div>
+                @enderror
                 <div class="container-form-email container-phone">
                     <label for="number">Numéro de téléphone <span class="required">*</span></label>
 
@@ -40,7 +47,7 @@
                     @enderror
                     @if(!auth()->user())
                         @if($plan == 1)
-                            <p class="help"><a href="{{route('users.plans')}}#plans">Augmenter votre plan</a> et
+                            <p class="help"><a href="{{route('users.plans')}}#plans">Augmentez votre plan</a> et
                                 vous aurez la possibilité d'en ajouter jusqu'à 3</p>
                         @endif
                         @if($plan == 2)

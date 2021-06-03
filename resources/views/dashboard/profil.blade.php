@@ -200,7 +200,7 @@
                                 </div>
                                 @if(auth()->user()->pricemax)
                                     <div class="container-form-email" style="    align-self: baseline;">
-                                        <p>Votre prix horaire</p>
+                                        <p>Votre taux horaire</p>
                                         <span class="email-label">{{auth()->user()->pricemax}}</span>
                                         <span class="horary-cost horary-profil">€/h</span>
                                     </div>

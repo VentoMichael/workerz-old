@@ -59,20 +59,23 @@
                                     @if($plan == 1) Support basique @elseif($plan == 2) Support intermédiaire @elseif($plan == 3) Support prioritaire @endif
                                 </li>
                                 <li>
-                                    @if($planId->more_visible) <img width="40" height="60" src="{{asset('svg/good.svg')}}" alt="Icone correct"> @else
-                                        <img width="40" height="60" src="{{asset('svg/cross.svg')}}" alt="Icone négative"> @endif
-                                    @if($plan == 1)
-                                        Forte visibilité
+                                    <img width="40" height="60" src="{{asset('svg/good.svg')}}" alt="Icone correct">
+                                    @if($plan->id == 1) Support basique @elseif($plan->id == 2) Support intermédiaire @elseif($plan->id == 3) Support prioritaire @endif
+                                </li>
+                                <li>
+                                    <img width="40" height="60" src="{{asset('svg/good.svg')}}" alt="Icone correct">
+                                    @if($plan->id == 1)
+                                        Basse visibilité
                                     @endif
-                                    @if($plan == 2)
-                                        Votre annonce sera visible {{$plan * 3}} fois plus souvent
+                                    @if($plan->id == 2)
+                                        Moyenne visibilité
                                     @endif
-                                    @if($plan == 3)
-                                        Votre annonce sera visible {{$plan * 5}} fois plus souvent
+                                    @if($plan->id == 3)
+                                        Haute visibilité
                                     @endif
                                 </li>
                                 <li>
-                                    <img width="40" height="60" src="{{asset('svg/good.svg')}}" alt="Icone correct">@if($plan == 1)  Visible parmis les 100 premiers @elseif($plan == 2)  Visible parmis les 15 premiers @elseif($plan == 3)  Visible parmis les 4 premiers @endif
+                                    <img width="40" height="60" src="{{asset('svg/good.svg')}}" alt="Icone correct">@if($plan->id == 1)  Visible parmis les top 100 @elseif($plan->id == 2)  Visible parmis les top 15 @elseif($plan->id == 3)  Visible parmis les top 4 @endif
                                 </li>
                             </ul>
                         </section>
@@ -92,7 +95,7 @@
                             <label class="hidden" for="payed-info"
                             >Informations de paiement</label>
                             <div id="card-element" class=" email-label">
-                                <!-- A Stripe Element will be inserted here. -->
+
                             </div>
                             <div id="card-errors" role="alert"></div>
 

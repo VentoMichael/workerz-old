@@ -30,8 +30,9 @@
         transition: all .2s ease
     }
 
-    li .container-list-menu form button {
+    ul li .container-list-menu form button {
         opacity: 1;
+        font-size: 1em;
         -webkit-transform: translateY(-2px);
         -ms-transform: translateY(-2px);
         transform: translateY(-2px)
@@ -1366,11 +1367,16 @@
     section .container-six-category-home {
         display: -ms-grid;
         display: grid;
-        -ms-grid-columns:(minmax(270px, 1fr)) [ 3 ];
         grid-template-columns:repeat(3, minmax(270px, 1fr))
     }
 
     div.container-home_image div:first-child {
         max-width: 95%
+    }
+    .container-why div{
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
     }
 }

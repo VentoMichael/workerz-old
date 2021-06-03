@@ -54,7 +54,7 @@ class CreateNewUser implements CreatesNewUsers
         if (\request('type') == 'user') {
             Validator::make($input, [
                 'name' => ['required', 'string', 'max:255', Rule::unique(User::class)],
-                'picture' => ['image:jpg,jpeg,png,svg','file|size:2048'],
+                'picture' => 'file','image','mimes:jpeg,png,jpg,gif,svg','max:2048',
                 'email' => [
                     'required',
                     'string',
@@ -89,7 +89,7 @@ class CreateNewUser implements CreatesNewUsers
         if (\request('type') == 'company') {
             Validator::make($input, [
                 'name' => ['required', 'string', 'max:255', Rule::unique(User::class)],
-                'picture' => ['image:jpg,jpeg,png,svg'],
+                'picture' => 'file','image','mimes:jpeg,png,jpg,gif,svg','max:2048',
                 'email' => [
                     'required',
                     'string',

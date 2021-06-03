@@ -9,7 +9,7 @@
                         Notre déclaration de confidentialité
                     </h2>
                     <p>
-                        Tous vos droits sont listé ci-dessous
+                        Tous vos droits sont listés ci-dessous
                     </p>
                 </div>
             </div>
@@ -42,7 +42,7 @@
             <section>
                 <h4 aria-level="4">{{ucfirst(strtolower('ARTICLE 2 - CONSENTEMENT'))}}</h4>
                 <section>
-                    <h4 aria-level="4">Comment obtenez-vous mon consentement?</h4>
+                    <h4 aria-level="4">Comment obtenez-vous mon consentement&nbsp;?</h4>
 
                     <p>Si nous vous demandons de nous fournir vos renseignements personnels pour une autre raison, à des
                         fins de
@@ -52,7 +52,7 @@
                 </section>
                 <section>
 
-                    <h4 aria-level="4">Comment puis-je retirer mon consentement?</h4>
+                    <h4 aria-level="4">Comment puis-je retirer mon consentement&nbsp;?</h4>
                     <p>
                         Si après nous avoir donné votre consentement, vous changez d’avis et ne consentez plus à ce que
                         nous

@@ -7,7 +7,7 @@
             <div class="container-connexion">
 
                 <h2 aria-level="2">On vous attend</h2>
-                <p>Vous recherchez du travail ? Engagez-vous !</p>
+                <p>Vous recherchez du travail&nbsp;? Engagez-vous&nbsp;!</p>
                 @guest
                     <div>
                         <a href="{{ route('login') }}">
@@ -27,7 +27,7 @@
     <section class="container-form-register container-home">
         <div class="title-first-step-register">
             <h2 aria-level="2">Formulaire d'inscription</h2>
-            <p>Après cette étape, vous serez immédiatement inscris et pourrez y intégrer des annonces !</p>
+            <p>Après cette étape, vous serez immédiatement inscris et pourrez insérer des annonces&nbsp;!</p>
         </div>
         <a class="link-back" href="{{route('users.type')}}">
             <button class="button-back button-cta">
@@ -71,7 +71,7 @@
                                pattern="^[0-9-+\s()]*$" id="phone" value="{{old("phone")}}"
                                class=" @error('phone') is-invalid @enderror email-label" name="phone" required aria-required="true">
                         @if($request->plan_user_id == 1)
-                            <p class="help"><a href="{{route('users.plans')}}#plans">Augmenter votre plan</a> et
+                            <p class="help"><a href="{{route('users.plans')}}#plans">Augmentez votre plan</a> et
                                 vous aurez la possibilité d'en ajouter jusqu'à 3</p>
                         @endif
                         @if($request->plan_user_id == 2)
@@ -89,7 +89,7 @@
                         <input placeholder="www.workerz.be" type="text" id="website" value="{{old("website")}}"
                                class=" @error('website') is-invalid @enderror email-label" name="website">
                         @if($request->plan_user_id == 1)
-                            <p class="help"><a href="{{route('users.plans')}}#plans">Augmenter votre plan</a> et
+                            <p class="help"><a href="{{route('users.plans')}}#plans">Augmentez votre plan</a> et
                                 vous aurez la possibilité d'en ajouter jusqu'à 3</p>
                         @endif
                         @if($request->plan_user_id == 2)
@@ -119,7 +119,7 @@
                             @endforeach
                         </select>
                         @if($request->plan_user_id == 1)
-                            <p class="help"><a href="{{route('users.plans')}}#plans">Augmenter votre plan</a> et
+                            <p class="help"><a href="{{route('users.plans')}}#plans">Augmentez votre plan</a> et
                                 vous aurez la possibilité d'en ajouter jusqu'à 3</p>
                         @endif
                         @if($request->plan_user_id == 2)
@@ -147,7 +147,7 @@
                             @endforeach
                         </select>
                         @if($request->plan_user_id == 1)
-                            <p class="help"><a href="{{route('users.plans')}}#plans">Augmenter votre plan</a> et
+                            <p class="help"><a href="{{route('users.plans')}}#plans">Augmentez votre plan</a> et
                                 vous aurez la possibilité d'en ajouter jusqu'à 3</p>
                         @endif
                         @if($request->plan_user_id == 2)
@@ -158,7 +158,7 @@
                         @endif
                     </div>
                     <div class="container-form-email">
-                        <label for="pricemax">Votre prix horaire</label>
+                        <label for="pricemax">Votre taux horaire</label>
                         <input type="text" id="pricemax" pattern="^[0-9-+\s()]*$" name="pricemax"
                                value="{{old("pricemax")}}"
                                class=" @error('pricemax') is-invalid @enderror email-label" placeholder="55"><span

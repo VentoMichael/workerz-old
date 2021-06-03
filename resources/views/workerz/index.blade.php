@@ -23,7 +23,7 @@
             <div>
                 <div class="container-home-text">
                     <h2 aria-level="2">
-                        Une profession particulière ?
+                        Une profession particulière&nbsp;?
                     </h2>
                     <p>
                         Parmi nos diverses propositions, il ne vous reste plus qu'à trouver celui qui vous conviens

@@ -5,7 +5,7 @@
             <div class="container-about-text">
                 <div class="container-home-text">
                     <h2 aria-level="2">
-                        Une demande ?
+                        Une demande&nbsp;?
                     </h2>
                     <p>
                         Pour la moindre question ou une simple demande, n'hésitez pas à nous contacter
@@ -36,7 +36,7 @@
             <h2 aria-level="2">
                 Formulaire de contact
             </h2>
-            <p>Il n'y a pas de mauvaises questions, la réponse sera presque imminente !</p>
+            <p>Il n'y a pas de mauvaises questions, la réponse sera presque imminente&nbsp;!</p>
         </div>
         <div id="createMsg">
             <form class="show-content form-login form-register form-message"
@@ -90,7 +90,7 @@
                     </div>
                     <div class="container-form-email">
                         <label for="subject">Sujet <span class="required">*</span></label>
-                        <input type="text" placeholder="Engagez un menuisier" id="subject" value="{{old("subject")}}"
+                        <input type="text" placeholder="Engager un menuisier" id="subject" value="{{old("subject")}}"
                                class=" @error('subject') is-invalid @enderror email-label" name="subject" required
                                aria-required="true">
                         @error('subject')
