@@ -1978,10 +1978,17 @@ div .help-show {
 }
 
 .container-plan-paied h3 {
-    margin-bottom: 80px;
     font-size: 2em
 }
-
+.container-plan-paied form {
+    margin-bottom: 80px;
+}
+.changedplan{
+    border: none;
+    background: none;
+    color: var(--blueLight);
+    padding-left: 0;
+}
 a .like-ads, div .like-ads {
     top: -63px;
     left: 5px

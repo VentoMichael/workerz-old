@@ -32,6 +32,13 @@
             <section>
                 <div class="container-connexion container-plan-paied">
                     <h3 aria-level="3">Plan sélectionné</h3>
+                    <form action="{{route('users.plans')}}" method="get">
+                        @csrf
+                        <input type="hidden" name="changePlan">
+                        <button class="help changedplan">
+                            Je change de plan
+                        </button>
+                    </form>
                     <div class="container-all-announcement show-content container-create-ads-infos container-plans">
                         <section
                             class="container-plan container-payed-plan @if($plan->id === 2) container-hot-plan @endif">

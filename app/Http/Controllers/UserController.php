@@ -19,6 +19,12 @@ class UserController extends Controller
 {
     public function plans()
     {
+        if (\request()->has('changePlan')){
+            $newPlan = \request('plan');
+            $user = \auth()->user();
+            $user->plan_user_id = $newPlan;
+            $user->update();
+        }
         $this->forgetNewsletter();
         $plans = PlanUser::all();
         $plan = request('plan');

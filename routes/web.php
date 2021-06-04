@@ -42,11 +42,10 @@ Route::get('/workerz/{worker}',
     ->name('workerz.show')
     ->middleware('userroute');
 
-
+Route::get('/register/plans', [\App\Http\Controllers\UserController::class, 'plans'])
+    ->name('users.plans');
 // INSCRIPTION
 Route::prefix('')->middleware(['guest'])->group(function () {
-    Route::get('/register/plans', [\App\Http\Controllers\UserController::class, 'plans'])
-        ->name('users.plans');
     Route::get('/register/plans/registration_type',
         [\App\Http\Controllers\UserController::class, 'registration_type'])
         ->name('users.type')
