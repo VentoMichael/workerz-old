@@ -1,8 +1,8 @@
-@if(request('search') && count($workerz) === 0 && !$newsletterValidated)
-    @include('partials.newsletter')
-@endif
-<div class="container-home container-search hideForNewsletter" id="workerzLink">
-    <div class="container-search">
+<div class="container-home container-search" id="workerzLink">
+    @if($search && count($workerz) === 0 && !$newsletterValidated)
+        @include('partials.newsletter')
+    @endif
+    <div class="container-search hideForNewsletter">
         <form action="{{route('workerz')}}" aria-label="Recherche d'indépendants" role="search" method="get"
               class="formSearchAd">
             <label for="search" class="hidden">Recherche d'entreprises</label>
@@ -14,7 +14,7 @@
             </noscript>
         </form>
     </div>
-    <section class="container-announcements show-content">
+    <section class="container-announcements show-content hideForNewsletter">
         <h2 class="hidden" aria-level="2">
             Toutes les entreprises
         </h2>
@@ -151,7 +151,7 @@
                             Aucun indépendant trouvé avec cette recherche
                         </h3>
                         <p class="containerAllText" style="margin-top: 10px;">
-                            Oops, je n'ai rien trouvé avec cette recherche <i>"{{request('search')}}"</i>&nbsp;! Essayez une autre recherche ou <a
+                            Oops, je n'ai rien trouvé avec cette recherche <i>"{{$search}}"</i>&nbsp;! Essayez une autre recherche ou <a
                                 style="text-decoration: underline;"
                                 href="{{route('workerz').'#adsLink'}}">rafraichissez la page</a>
                         </p>

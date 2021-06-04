@@ -12,11 +12,7 @@
                     </p>
                 </div>
                 @guest
-                    <div>
-                        <a href="{{ route('users.plans') }}" role="button" class="button-cta">
-                                Je m'inscris
-                        </a>
-                    </div>
+                    @include('partials.btnInscription')
                 @endguest
             </div>
             <div class="container-svg">

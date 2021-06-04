@@ -5,7 +5,6 @@
           @else action="{{ route('register') }}" @endif>
         @csrf
         @if(auth()->user()) @method('PUT') @endif
-
         <div
             class="container-register-form container-register @if(auth()->user()) container-edition-formulary @endif container-register-user">
             <div class="container-form-email">
@@ -17,6 +16,8 @@
                        id="picture" class="input-field @error('picture') is-invalid @enderror email-label"
                        name="picture"
                        accept="image/png, image/jpeg">
+                <p class="help">Format acceptés : jpg, png, jpeg ou svg</p>
+                <p class="helpSecond">Poid maximum : 2048KO</p>
                 @error('picture')
                 <div class="container-error">
                 <span role="alert" class="error">

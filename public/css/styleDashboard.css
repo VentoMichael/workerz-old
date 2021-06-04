@@ -440,7 +440,7 @@ div .container-form-email .inputPhone {
 }
 
 .form-register .container-error {
-    margin: -20px 0 10px
+    margin: -22px 0 10px
 }
 
 .container-form-register {
@@ -643,7 +643,21 @@ div .password--visibleToggle {
 .preview-picture {
     display: none
 }
-
+div .preview-edit{
+    display: inherit;
+    max-width: 150px;
+    max-height: 150px;
+}
+.help {
+    font-size: .8em;
+    margin-top: -20px;
+    margin-bottom: 10px
+}
+.helpSecond {
+    font-size: .8em;
+    margin-top: -12px;
+    margin-bottom: 10px
+}
 .preview-picture {
     max-width: 200px;
     -ms-flex-item-align: end;
@@ -1251,7 +1265,7 @@ div .container-search-without-ads {
 }
 
 .container-form-ads .button-cta:after {
-    top: 12px
+    top: 9px
 }
 
 .container-ads-dashboard h3 {
@@ -1901,7 +1915,7 @@ div .container-form-ads {
 }
 
 .button-back.button-cta.button-draft:after {
-    top: 10px
+    top: 8px
 }
 
 div section .container-messenger-form {

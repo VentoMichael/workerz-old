@@ -215,6 +215,9 @@
                         @enderror
                     </div>
                 </div>
+                <div class="conditionsAds">
+                    <p>Les <a href="{{route('conditions')}}">conditions d’utilisations</a> et la <a href="{{route('policy')}}">politique de confidentialité</a> du site s'applique</p>
+                </div>
                 <input id="plan" name="plan" type="hidden" value="{{$plan ? $plan : old('plan')}}">
                 <div class="container-buttons-ads">
                     <div class="link-back">

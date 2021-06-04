@@ -7,28 +7,29 @@
         @auth
             @method('PUT')
         @endauth
-
         @if(auth()->user())
             <div class="container-register-form container-register">
                 @endif
                 <div class="container-form-email">
                     <div class="avatar-container @if(auth()->user()) avatar-dashboard-profil @endif">
                         <label for="picture">Photo de profil</label>
-                        <img @if(auth()->user()) src="{{asset(auth()->user()->picture)}}" @endif width="150" height="150" id="output" class="preview-picture" alt="photo du commerce"/>
+                        <img @if(auth()->user() && auth()->user()->picture !== null) src="{{asset(auth()->user()->picture)}}" @elseif(auth()->user() && auth()->user()->picture === null) src="{{asset('svg/user.svg')}}" @endif width="150" height="150" id="output" class="preview-picture preview-edit" alt="photo du commerce"/>
                     </div>
                     <input type="file"
                            id="picture" class="input-field @error('picture') is-invalid @enderror email-label"
                            name="picture"
                            accept="image/png, image/jpeg">
-
-                </div>
-                @error('picture')
-                <div class="container-error">
+                    <p class="help">Format acceptés : jpg, png, jpeg ou svg</p>
+                    <p class="helpSecond">Poid maximum : 2048KO</p>
+                    @error('picture')
+                    <div class="container-error">
                 <span role="alert" class="error">
                                         <strong>{{ ucfirst($message) }}</strong>
                                     </span>
+                    </div>
+                    @enderror
                 </div>
-                @enderror
+
                 <div class="container-form-email container-phone">
                     <label for="number">Numéro de téléphone <span class="required">*</span></label>
 
@@ -127,6 +128,7 @@
                 @if(auth()->user())
             </div>
         @endif
+
         <div>
             @if(!\Illuminate\Support\Facades\Auth::user())
                 <input id="role_id" name="role_id" type="hidden" value="3">

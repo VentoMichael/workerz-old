@@ -30,9 +30,15 @@
                         </form>
                     </div>
                     @include('partials.profil-ads')
-                    <a href="{{route('update.ads.dashboard',$announcement->slug)}}" class="button-cta">
-                        J'édite <i>{{ucfirst($announcement->title)}}</i>
-                    </a>
+                    <div class="container-buttons-delete-back">
+                        <a class="link-back button-back button-cta button-draft" href="{{route('announcements.show',$announcement->slug)}}">
+                                Je vais la voir en ligne
+                        </a>
+                        <a href="{{route('update.ads.dashboard',$announcement->slug)}}" class="button-cta">
+                            J'édite <i>{{ucfirst($announcement->title)}}</i>
+                        </a>
+                    </div>
+
                 </section>
             </div>
         </section>

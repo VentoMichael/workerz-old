@@ -13,11 +13,12 @@ class Users extends Component
     use WithPagination;
 
     public $search = "";
-    public $provinces=[];
-    public $categoryUser=[];
-    protected $queryString = ['search','provinces',
-'categoryUser'];
-
+    public $provinces = [];
+    public $categoryUser = [];
+    protected $queryString = [
+        'search', 'provinces',
+        'categoryUser'
+    ];
     public function render()
     {
         sleep(1);
@@ -26,9 +27,6 @@ class Users extends Component
             'regions' => Province::all(),
             'categories' => Category::all(),
             'workerz' => User::query()
-                ->Independent()
-                ->Payed()
-                ->NoBan()
                 ->orderBy('plan_user_id', 'DESC')
                 ->orderBy('created_at', 'DESC')
                 ->with('categoryUser')
@@ -57,6 +55,9 @@ class Users extends Component
                 ->withLikes()
                 ->where('job', 'like', '%'.$this->search.'%')
                 ->orWhere('name', 'like', '%'.$this->search.'%')
+                ->Independent()
+                ->Payed()
+                ->NoBan()
                 ->paginate(4)
                 ->onEachSide(0),
         ]);

@@ -19,6 +19,7 @@
         "laravel/tinker": "^2.5",
         "livewire/livewire": "^2.4",
         "nesbot/carbon": "^2.47",
+        "pusher/pusher-php-server": "^7.0",
         "spatie/laravel-newsletter": "^4.9",
         "stripe/stripe-php": "^7.78",
         "vento/workerz": "*"

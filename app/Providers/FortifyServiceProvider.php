@@ -3,7 +3,6 @@
 namespace App\Providers;
 
 use App\Actions\Fortify\CreateNewUser;
-use App\Actions\Fortify\CreateNewWorker;
 use App\Actions\Fortify\ResetUserPassword;
 use App\Actions\Fortify\UpdateUserPassword;
 use App\Actions\Fortify\UpdateUserProfileInformation;
@@ -46,7 +45,12 @@ class FortifyServiceProvider extends ServiceProvider
             $regions = Province::all()->sortBy('name');
             $categories = Category::all()->sortBy('name');
             $plan = Session::get('plan');
+            $type = $request->type;
+            Session::put('type',$type);
             $type = Session::get('type');
+            if ($request->old('type') == null && $request->type == null){
+                return redirect(route('users.plans'))->with('errors','Oops, il y a eu un souci, veuillez réessayer dans quelques instants.');
+            }
             return view('auth.register',
                 compact('plan', 'type', 'disponibilities', 'regions', 'categories', 'request'));
         });

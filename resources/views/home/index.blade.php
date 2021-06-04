@@ -71,9 +71,7 @@
                 </p>
                 <p>On vous aide à trouver du travail&nbsp;!</p>
                 @guest
-                    <a href="{{route('users.plans')}}" class="button-cta">
-                        Je m'inscris
-                    </a>
+                    @include('partials.btnInscription')
                 @endguest
             </div>
         </section>

@@ -572,7 +572,7 @@
     .container-disponibilities-register div.container-category {
         min-height: 150px
     }
-
+    form .condition-newsletter-container div:nth-child(2){margin-top: 30px;margin-bottom: 20px;}
     div div .container-message-index:first-child {
         margin-top: 0
     }
@@ -964,6 +964,11 @@
 
     .container-facebook-edit {
         margin-top: 25px
+    }
+    section .container-helper-message{
+        -webkit-transform: translateY(-30px);
+        -ms-transform: translateY(-30px);
+        transform: translateY(-30px);
     }
 }
 

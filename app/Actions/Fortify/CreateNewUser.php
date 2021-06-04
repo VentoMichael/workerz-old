@@ -51,10 +51,12 @@ class CreateNewUser implements CreatesNewUsers
             $pic = null;
         }
 
-        if (\request('type') == 'user') {
+        if ($type == 'user') {
+
             Validator::make($input, [
                 'name' => ['required', 'string', 'max:255', Rule::unique(User::class)],
-                'picture' => 'file','image','mimes:jpeg,png,jpg,gif,svg','max:2048',
+                'picture' => 'image','mimes:jpeg,png,jpg,gif,svg','max:2048',
+                'conditions'=> 'required',
                 'email' => [
                     'required',
                     'string',
@@ -77,6 +79,7 @@ class CreateNewUser implements CreatesNewUsers
                 'picture' => $pic,
                 'role_id' => $input['role_id'],
                 'plan_user_id' => $input['plan_user_id'],
+                'conditions'=> $input['conditions'],
                 'is_payed' => $payed,
                 'slug' => Str::slug($input['name']),
                 'password' => Hash::make($input['password']),
@@ -89,7 +92,7 @@ class CreateNewUser implements CreatesNewUsers
         if (\request('type') == 'company') {
             Validator::make($input, [
                 'name' => ['required', 'string', 'max:255', Rule::unique(User::class)],
-                'picture' => 'file','image','mimes:jpeg,png,jpg,gif,svg','max:2048',
+                'picture' => 'image','mimes:jpeg,png,jpg,gif,svg','max:2048',
                 'email' => [
                     'required',
                     'string',
@@ -100,6 +103,7 @@ class CreateNewUser implements CreatesNewUsers
                 'adress' => 'required',
                 'website' => 'nullable', 'url',
                 'description' => 'required', 'max:256',
+                'conditions'=> 'required',
                 'job' => 'required',
                 'number' => ['required',Rule::unique(Phone::class)],
                 'location' => 'required|not_in:0',
@@ -118,6 +122,7 @@ class CreateNewUser implements CreatesNewUsers
                 'name' => $input['name'],
                 'email' => $input['email'],
                 'picture' => $pic,
+                'conditions'=> $input['conditions'],
                 'role_id' => $input['role_id'],
                 'plan_user_id' => $input['plan_user_id'],
                 'website' => $input['website'],

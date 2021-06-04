@@ -619,7 +619,7 @@ select option:checked {
 }
 
 .form-register .container-error {
-    margin: -22px 0 15px
+    margin: -15px 0 15px
 }
 
 .container-why div {
@@ -1277,7 +1277,11 @@ form .search-announcement {
     margin-top: -20px;
     margin-bottom: 10px
 }
-
+.helpSecond {
+    font-size: .8em;
+    margin-top: -12px;
+    margin-bottom: 10px
+}
 .container-positive-response {
     margin-top: 10px;
     margin-bottom: 5px
@@ -1536,8 +1540,10 @@ div .monthCost {
 }
 
 .successMsg {
+    transform: scale(1);
     position: fixed;
     font-family: fira, sans-serif;
+    z-index: 22;
     bottom: 10%;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -1552,7 +1558,6 @@ div .monthCost {
     -webkit-box-shadow: var(--shadow);
     box-shadow: var(--shadow);
     border-radius: 5px;
-    z-index: 5;
     background: #fff
 }
 
@@ -2313,11 +2318,11 @@ div .like-users-connected:hover span {
 }
 
 .container-register .horary-cost {
-    top: 33px
+    top: 36px
 }
 
 .button-save-company {
-    margin-top: -50px
+    margin-top: -10px
 }
 
 div .hepl-price {
@@ -2635,7 +2640,9 @@ div a .container-love-notAuth {
 section div .no-Users {
     height: calc(100% - 15px)
 }
-
+.conditionsAds p{
+    max-width: inherit;
+}
 section .noAds {
     width: 100%;
     grid-template-columns: repeat(1, minmax(0, 1fr));
@@ -2663,4 +2670,18 @@ section .noAds {
 }
 .crossHideNewsletter:focus:not(:focus-visible) {
     background: white url(../svg/cross.svg) no-repeat center;
+}
+.condition-newsletter-container{
+    grid-column-start: 1;
+    grid-column-end: 3;
+    display: flex;
+    flex-direction: column;
+}
+.condition-newsletter-container div {
+    position: relative;
+    display: inline-block;
+}
+
+.condition-newsletter-container div:first-child {
+    margin-bottom: 5px;
 }

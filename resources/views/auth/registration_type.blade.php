@@ -1,5 +1,4 @@
 @extends('layouts.app')
-
 @section('content')
     <div class="container-home">
         <section class="container-home_image">
@@ -76,7 +75,7 @@
                       action="{{ route('register') }}">
                     @method('get')
                     @csrf
-                    <input id="companyplan{{$plan}}" name="plan" type="hidden" value="{{$plan}}">
+                    <input id="companyplan{{$plan}}" name="plan" type="hidden" value="{{request('plan')}}">
                     <input type="hidden" name="type" value="company">
 
                     <button class="button-cta" title="Je sélectionne la section 'Je suis un professionnel'"

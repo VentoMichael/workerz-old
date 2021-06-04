@@ -14,18 +14,10 @@
                     </p>
                 </div>
                 @guest
-                    <div>
-                        <a href="{{ route('users.plans') }}" role="button" class="button-cta">
-                                Je m'inscris
-                        </a>
-                    </div>
+                    @include('partials.btnInscription')
                 @endguest
                 @auth
-                    <div>
-                        <a href="{{route('announcements.plans')}}" role="button" class="button-cta">
-                                J'ajoute une annonce
-                        </a>
-                    </div>
+                    @include('partials.newAd')
                 @endauth
             </div>
             <div class="container-svg">
@@ -79,18 +71,10 @@
                     </p>
                 </div>
                 @guest
-                    <div>
-                        <a href="{{ route('users.plans') }}" role="button" class="button-cta">
-                                Je m'inscris
-                        </a>
-                    </div>
+                    @include('partials.btnInscription')
                 @endguest
                 @auth
-                    <div>
-                        <a href="{{route('announcements.plans')}}" role="button" class="button-cta">
-                                J'ajoute une annonce
-                        </a>
-                    </div>
+                    @include('partials.newAd')
                 @endauth
             </div>
         </div>

@@ -27,7 +27,7 @@
                         <form aria-label="Vérification d'email" method="POST" action="{{ route('verification.send') }}">
                             @csrf
                             <button class="button-cta" type="submit">
-                                {{ __('Renvoyer l\'e-mail de vérification') }}
+                                Renvoyer l'e-mail de vérification
                             </button>
                         </form>
                     </div>
@@ -37,7 +37,7 @@
                             @csrf
 
                             <button class="button-cta">
-                                {{ __('Déconnexion') }}
+                                Déconnexion
                             </button>
                         </form>
                     </div>

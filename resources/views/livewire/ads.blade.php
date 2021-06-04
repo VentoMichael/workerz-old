@@ -1,8 +1,9 @@
-@if(request('search') && count($announcements) === 0 && !$newsletterValidated)
-    @include('partials.newsletter')
-@endif
-<div id="adsLink" class="hideForNewsletter">
-    <div class="container-home container-search">
+
+<div id="adsLink">
+    @if(request('search') && count($announcements) === 0 && !$newsletterValidated || $search && count($announcements) === 0 && !$newsletterValidated)
+        @include('partials.newsletter')
+    @endif
+    <div class="container-home container-search hideForNewsletter">
         <form action="{{route('announcements')}}" aria-label="Recherche d'annonce" role="search" method="get"
               class="formSearchAd">
             <label for="search" class="hidden">Recherche d'annonces</label>
@@ -14,7 +15,7 @@
             </noscript>
         </form>
     </div>
-    <section class="container-home container-announcements">
+    <section class="container-home container-announcements hideForNewsletter">
         <h2 class="hidden" aria-level="2">
             Toutes les annonces
         </h2>
@@ -156,7 +157,7 @@
                             Aucune annonces trouvé avec cette recherche
                         </h3>
                         <p class="containerAllText" style="margin-top: 10px;">
-                            Oops, je n'ai rien trouvé&nbsp;avec cette recherche <i>"{{request('search')}}"</i>&nbsp;! Essayer une autre recherche ou <a
+                            Oops, je n'ai rien trouvé&nbsp;avec cette recherche <i>"{{$search}}"</i>&nbsp;! Essayer une autre recherche ou <a
                                 style="text-decoration: underline;"
                                 href="{{route('announcements').'#adsLink'}}">rafraichissez la page</a>
                         </p>

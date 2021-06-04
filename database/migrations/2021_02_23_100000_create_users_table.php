@@ -28,6 +28,7 @@ class CreateUsersTable extends Migration
             $table->string('linkedin')->nullable();
             $table->string('instagram')->nullable();
             $table->text('description')->nullable();
+            $table->boolean('conditions');
             $table->string('possibility_job')->nullable();
             $table->boolean('sending_time_expire')->default(false);
             $table->dateTime('end_plan')->nullable();

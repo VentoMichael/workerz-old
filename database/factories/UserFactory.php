@@ -33,6 +33,7 @@ class UserFactory extends Factory
             'linkedin' => $this->faker->url,
             'instagram' => $this->faker->url,
             'job' => $this->faker->name,
+            'conditions' => $this->faker->boolean(true),
             'pricemax' => $this->faker->numberBetween($min = 10, $max = 100),
             'plan_user_id' => $this->faker->numberBetween($min = 1, $max = 3),
             'role_id' => $this->faker->numberBetween($min = 2, $max = 3),

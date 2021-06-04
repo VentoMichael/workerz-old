@@ -83,7 +83,6 @@
                 document.getElementById('formMsg').submit()
             }
         })}
-        //Cmd + enter
     </script>
 @endsection
 @endif

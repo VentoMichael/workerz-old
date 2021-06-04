@@ -2,8 +2,9 @@
 
 use App\Http\Controllers\ContactController;
 use Illuminate\Support\Facades\Route;
-use Laravel\Fortify\Features;
-use Laravel\Fortify\Http\Controllers\RegisteredUserController;
+use App\Events\Message;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,7 +49,8 @@ Route::prefix('')->middleware(['guest'])->group(function () {
         ->name('users.plans');
     Route::get('/register/plans/registration_type',
         [\App\Http\Controllers\UserController::class, 'registration_type'])
-        ->name('users.type');
+        ->name('users.type')
+    ->middleware('noplansuser');
 });
 
 Route::post('/register/payed', [\App\Http\Controllers\UserController::class, 'payedUser'])->name('users.paied');

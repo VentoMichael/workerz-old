@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
-    @if($type == 'user' || $request->type == 'user' || $request->type == 'company' || $type == 'company')
-        @if($type == 'company' || $request->type == 'company')
+    @if($type == 'user' || $type == 'company' || $request->old('type') == 'user' || $request->old('type') == 'company')
+        @if($type == 'company' || $request->type == 'company' || $request->old('type') == 'company')
             <div class="container-home">
                 <section class="container-home_image">
                     <div class="container-connexion">
@@ -10,7 +10,7 @@
                         @guest
                             <div>
                                 <a class="button-cta" href="{{ route('login') }}">
-                                        J'ai déjà un compte
+                                    J'ai déjà un compte
                                 </a>
                             </div>
                         @endguest
@@ -22,7 +22,7 @@
                 </section>
             </div>
         @endif
-        @if($type == 'user' || $request->type == 'user')
+        @if($type == 'user' || $request->type == 'user' || $request->old('type') == 'user')
             <div class="container-home">
                 <section class="container-home_image">
                     <div class="container-connexion">
@@ -48,25 +48,29 @@
     <section class="container-form-register container-home">
         <div class="title-first-step-register">
             <h2 aria-level="2">Formulaire d'inscription</h2>
-            @if($type == 'company' || $type == 'user' || $request->type == 'user' || $request->type == 'company')
+            @if($type == 'company' || $type == 'user' || $request->type == 'user' || $request->type == 'company' || $request->old('type') == 'user' || $request->old('type') == 'company')
                 <p>Après cette étape, vous serez immédiatement inscris et pourrez insérer des annonces&nbsp;!</p>
             @endif
         </div>
-        @if($type == 'company' || $type == 'user' || $request->type == 'user' || $request->type == 'company')
-            <a class="link-back button-back button-cta" href="{{route('users.type')}}">
-                    Retour
-            </a>
+        @if($type == 'company' || $type == 'user' || $request->type == 'user' || $request->type == 'company' || $request->old('type') == 'user' || $request->old('type') == 'company')
+                <form action="{{route('users.type')}}" method="get">
+                    @csrf
+                    <input type="hidden" name="plan" value="{{request()->session()->get('plan')}}">
+                    <button class="link-back button-back button-cta">
+                        Retour
+                    </button>
+                </form>
         @endif
 
-        @if($type == 'user' || $request->type == 'user')
+        @if($type == 'user' || $request->type == 'user' || $request->old('type') == 'user')
             @include('layouts.formUser')
         @endif
-        @if($type == 'company' || $request->type == 'company')
+        @if($type == 'company' || $request->type == 'company' || $request->old('type') == 'company')
             @include('layouts.formCompany')
         @endif
     </section>
 @endsection
-@if($type == 'company' || $type == 'user' || $request->type == 'user' || $request->type == 'company')
+@if($type == 'company' || $type == 'user' || $request->type == 'user' || $request->type == 'company' || $request->old('type') == 'user' || $request->old('type') == 'company')
 @section('scripts')
     <script src="{{asset('js/passwordCheck.js')}}"></script>
     <script src="{{asset('js/passwordSee.js')}}"></script>

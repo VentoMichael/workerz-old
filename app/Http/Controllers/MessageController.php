@@ -64,6 +64,11 @@ class MessageController extends Controller
         $message->to_id = $request->to_id;
         $message->created_at = Carbon::now()->addHours(2);
         $message->save();
+        event(
+            new \App\Events\Message(
+                $message->user->name,
+                $message->content
+            ));
         $receiper = User::where('email',$message->user->email)->first();
         $receiper->notify(new MessageReceived($message));
         Session::flash('success-ads',

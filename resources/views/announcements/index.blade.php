@@ -28,11 +28,7 @@
                     <p>
                         Parmi les diverses annonces, il ne vous reste plus qu'à trouver l'annonce qui vous convient
                     </p>
-                    <div>
-                        <a href="{{route('announcements.plans')}}" role="button" class="button-cta">
-                                J'ajoute une annonce
-                        </a>
-                    </div>
+                    @include('partials.newAd')
                 </div>
             </div>
             <div class="container-svg">

@@ -16,7 +16,6 @@ use App\Models\StartMonth;
 use App\Models\User;
 use App\Models\Website;
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -24,7 +23,6 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
@@ -115,7 +113,7 @@ class DashboardController extends Controller
             'name' => 'sometimes|required|string|max:255', Rule::unique('users')->ignore($user->id),
             'surname' => 'sometimes|string|max:255',
             'email' => 'sometimes|required|string|max:255', Rule::unique('users')->ignore($user->id),
-            'picture' => 'sometimes','file','image','mimes:jpeg,png,jpg,gif,svg','max:2048',
+            'picture' => 'sometimes|image|mimes:jpg,png,jpeg,svg|max:2048',
         ]);
         if ($request->password && $request->password != $user->getOriginal('password')) {
             $request->validate([
@@ -127,7 +125,7 @@ class DashboardController extends Controller
             ]);
             $user->password = Hash::make($request->password);
         }
-        if ($request->picture != $user->getOriginal('picture')) {
+        if ($request->picture && $request->picture != $user->getOriginal('picture')) {
             Storage::makeDirectory('users');
             $filename = request('picture')->hashName();
             $pic = Image::make(\request()->file('picture'))->resize(null, 200, function ($constraint) {

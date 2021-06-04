@@ -133,6 +133,7 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
+        'conditions.required' => 'Vous devez être en accord avec les conditions',
     ],
     'attributes' => [
         'title' => 'titre',
