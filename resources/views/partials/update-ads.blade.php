@@ -6,7 +6,7 @@
                @else value="{{old("catchPhrase")}}" @endif
                class="email-label" name="catchPhrase"
                placeholder="Une entreprise qui vous satisfera">
-        <p class="help">
+        <p class="help informations">
             Attirer la clientèle à votre façon (optionnel)
         </p>
     </div>
@@ -28,7 +28,7 @@
     </div>
 </div>
 <div class="container-register-form container-register">
-    <div class="container-form-email category-input">
+    <div class="container-form-email category-input container-title-ad">
         <label for="title">Titre <span class="required">*</span></label>
         <input type="text" id="title" @if(auth()->user()) value="{{$announcement->title}}"
                @else value="{{old("title")}}" @endif
@@ -40,7 +40,7 @@
         </p>
         @enderror
     </div>
-    <div class="container-form-email container-email-form category-input">
+    <div class="container-form-email container-email-form category-input container-title-ad">
         <label for="location">Région <span class="required">*</span></label>
         <select required aria-required="true" class="select-register select-regions"
                 data-maxoption="1" name="location" id="location">
@@ -73,7 +73,7 @@
         </p>
         @enderror
     </div>
-    <div class="container-form-email category-input">
+    <div class="container-form-email category-input container-title-ad">
 
         <label for="categoryAds">Catégorie de métier <span class="required">*</span></label>
         <div class="container-filter-categories container-category">
@@ -106,15 +106,15 @@
         </p>
         @enderror
         @if($plan == 1)
-            <p class="help"><a href="{{route('announcements.plans')}}#plans">Augmenter votre
+            <p class="help informations"><a href="{{route('announcements.plans')}}#plans">Augmenter votre
                     plan</a> et
                 vous aurez la possibilité d'en ajouter jusqu'à 3</p>
         @endif
         @if($plan == 2)
-            <p class="help">Vous avez la possibilité d'en intégrer jusqu'à 2</p>
+            <p class="help informations">Vous avez la possibilité d'en intégrer jusqu'à 2</p>
         @endif
         @if($plan == 3)
-            <p class="help">Vous avez la possibilité d'en intégrer jusqu'à 3</p>
+            <p class="help informations">Vous avez la possibilité d'en intégrer jusqu'à 3</p>
         @endif
 
 
@@ -130,7 +130,7 @@
                @else value="{{old("price-max")}}" @endif
                class="email-label" maxlength="999999" placeholder="500"><span
             class="horary-cost">€</span>
-        <p class="help hepl-price">
+        <p class="help hepl-price informations">
             Cela donne une idée à l'indépendant (optionnel)
         </p>
     </div>
@@ -167,7 +167,7 @@
             {{$errors->first('startmonth')}}
         </p>
         @enderror
-        <p class="help">Vous avez la possibilité d'en ajouter qu'un seul</p>
+        <p class="help informations">Vous avez la possibilité d'en ajouter qu'un seul</p>
 
     </div>
 

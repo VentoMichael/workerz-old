@@ -53,7 +53,7 @@
 
                                     <div>
                                         <h3 aria-level="3">
-                                            Aucune notification trouv ...
+                                            Aucune notification trouvée ...
                                         </h3>
                                     </div>
                                 </section>

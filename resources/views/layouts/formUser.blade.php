@@ -13,14 +13,14 @@
                 <div class="container-form-email">
                     <div class="avatar-container @if(auth()->user()) avatar-dashboard-profil @endif">
                         <label for="picture">Photo de profil</label>
-                        <img @if(auth()->user() && auth()->user()->picture !== null) src="{{asset(auth()->user()->picture)}}" @elseif(auth()->user() && auth()->user()->picture === null) src="{{asset('svg/user.svg')}}" @endif width="150" height="150" id="output" class="preview-picture preview-edit" alt="photo du commerce"/>
+                        <img @if(auth()->user() && auth()->user()->picture !== null) src="{{asset(auth()->user()->picture)}}" @elseif(auth()->user() && auth()->user()->picture == null) src="{{asset('svg/user.svg')}}" @endif width="150" height="150" id="output" class="preview-picture preview-edit" alt="photo du commerce"/>
                     </div>
                     <input type="file"
                            id="picture" class="input-field @error('picture') is-invalid @enderror email-label"
                            name="picture"
                            accept="image/png, image/jpeg">
-                    <p class="help">Format acceptés : jpg, png, jpeg ou svg</p>
-                    <p class="helpSecond">Poid maximum : 2048KO</p>
+                    <p class="help helppicture">Format acceptés : jpg, png, jpeg ou svg</p>
+                    <p class="helpSecond helppicture">Poid maximum : 2048KO</p>
                     @error('picture')
                     <div class="container-error">
                 <span role="alert" class="error">
@@ -148,9 +148,21 @@
 </div>
 @auth
 @section('scripts')
+    @if(auth()->user()->plan_user_id !== 1)
+    <script>function confirmDelete(e){return!0===confirm("Le paiement ne sera pas rembourser, êtes vous sûr de changer de plan ?")||(e.preventDefault(),!1)}
+        document.getElementById('changePlan').addEventListener("click",confirmDelete)</script>
+    @endif
     <script src="{{asset('js/passwordCheck.js')}}"></script>
     <script src="{{asset('js/passwordSee.js')}}"></script>
     <script src="{{asset('js/previewPicture.js')}}"></script>
-    <script src="{{asset('js/checkDataMaxOptions.js')}}"></script>
+    @if(auth()->user()->plan_user_id == 1)
+        <script src="{{asset('js/checkDataMaxOptions.js')}}"></script>
+    @endif
+    @if(auth()->user()->plan_user_id == 2)
+        <script src="{{asset('js/checkDataMaxOptions2.js')}}"></script>
+    @endif
+    @if(auth()->user()->plan_user_id == 3)
+        <script src="{{asset('js/checkDataMaxOptions3.js')}}"></script>
+    @endif
 @endsection
 @endauth

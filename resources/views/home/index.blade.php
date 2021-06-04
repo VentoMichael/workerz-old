@@ -99,7 +99,7 @@
             </div>
             <div class="container-why-text-first">
                 <h3 aria-level="3">
-                    Vendez vos services ou recherché en&nbsp;!
+                    Vendez vos services ou rechercher en&nbsp;!
                 </h3>
                 <p class="text-why">
                     Vous avez besoin d'un indépendant ou vous souhaitez proposer vos services&nbsp;?

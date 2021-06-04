@@ -19,7 +19,7 @@ class UserController extends Controller
 {
     public function plans()
     {
-        if (\request()->has('changePlan')){
+        if (\request()->has('changePlan')) {
             $newPlan = \request('plan');
             $user = \auth()->user();
             $user->plan_user_id = $newPlan;
@@ -50,13 +50,22 @@ class UserController extends Controller
         $this->forgetNewsletter();
         $worker = User::withLikes()->where('id', '=', $worker->id)->first();
         $randomUsers = User::Independent()->Payed()->NoBan()->orderBy('role_id',
-            'DESC')->withLikes()->limit(2)->inRandomOrder()->where('slug','!=',$worker->slug)->get();
+            'DESC')->withLikes()->limit(2)->inRandomOrder()->where('slug', '!=', $worker->slug)->get();
         $randomPhrasing = CatchPhraseUser::all()->random();
         return view('workerz.show', compact('worker', 'randomPhrasing', 'randomUsers'));
     }
 
     public function payed(Request $request, User $user)
     {
+        if (\request()->has('plan')) {
+            $newPlan = \request('plan');
+            $user = \auth()->user();
+            $user->plan_user_id = $newPlan;
+            $user->end_plan = null;
+            $user->sending_time_expire = 0;
+            $user->is_payed = 0;
+            $user->update();
+        }
         $this->forgetNewsletter();
         if (\auth()) {
             if ($request->plan == 1) {
@@ -124,7 +133,9 @@ class UserController extends Controller
             ->send(new NewUser($user));
         return \redirect(route('dashboard.profil'));
     }
-    protected function forgetNewsletter(){
+
+    protected function forgetNewsletter()
+    {
         \request()->session()->forget('newsletter');
     }
 }

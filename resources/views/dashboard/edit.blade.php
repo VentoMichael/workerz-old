@@ -7,12 +7,19 @@
                 Profil
             </h2>
             <div class="container-profil-dashboard">
-                <div class="container-link-to-back">
-                <a class="link-back" href="{{route('dashboard.profil')}}">
-                    <button class="button-back button-cta button-draft">
+                <div class="container-link-to-back container-change-plan">
+                    <a class="link-back button-back button-cta button-draft" href="{{route('dashboard.profil')}}">
                         Retour
-                    </button>
-                </a>
+                    </a>
+                    @if(auth()->user())
+                        <form action="{{route('users.plans')}}" method="get">
+                            @csrf
+                            <input type="hidden" name="changeCurrentPlan">
+                            <button class="button-cta" id="changePlan">
+                                Je change de plan
+                            </button>
+                        </form>
+                    @endif
                 </div>
                 @if(auth()->user()->role_id == 2)
                     @include('layouts.formCompany')
@@ -22,18 +29,4 @@
             </div>
         </section>
     </div>
-@endsection
-@section('scripts')
-    <script src="{{asset('js/passwordCheck.js')}}"></script>
-    <script src="{{asset('js/passwordSee.js')}}"></script>
-    <script src="{{asset('js/previewPicture.js')}}"></script>
-    @if(auth()->user()->plan_user_id == 1)
-        <script src="{{asset('js/checkDataMaxOptions.js')}}"></script>
-    @endif
-    @if(auth()->user()->plan_user_id == 2)
-        <script src="{{asset('js/checkDataMaxOptions2.js')}}"></script>
-    @endif
-    @if(auth()->user()->plan_user_id == 3)
-        <script src="{{asset('js/checkDataMaxOptions3.js')}}"></script>
-    @endif
 @endsection

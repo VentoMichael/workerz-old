@@ -228,9 +228,9 @@
                                 </li>
                                 <li class="last-menu-item profil-item"
                                     {{ Request::is('dashboard') ? "aria-current='page'" : "" }}>
-                                    <a class="profil-user @if(auth()->user()->picture != null) picto-profil-user @endif" href="{{route('dashboard')}}">
+                                    <a class="@if(auth()->user()->picture != null) picto-img-user @endif profil-user @if(auth()->user()->picture != null) picto-profil-user @endif" href="{{route('dashboard')}}">
                                         @if(auth()->user()->picture != null)
-                                            <img class="picto-user" width="25" height="32" src="{{asset(auth()->user()->picture)}}"
+                                            <img class="picto-user picto-last" width="25" height="32" src="{{asset(auth()->user()->picture)}}"
                                                  alt="image de profil de {{auth()->user()->name}}">
                                         @else
                                             <img class="picto-user" width="25" height="32" src="{{asset('svg/user-w.svg')}}"

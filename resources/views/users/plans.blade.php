@@ -1,7 +1,8 @@
 @extends('layouts.app')
 @section('content')
     @if (Session::has('errors'))
-        <div id="successMsg" role="alert" class="successMsg"><img width="40" height="60" src="{{asset('svg/cross.svg')}}" alt="good icone">
+        <div id="successMsg" role="alert" class="successMsg"><img width="40" height="60"
+                                                                  src="{{asset('svg/cross.svg')}}" alt="good icone">
             <p>{{Session::get('errors')}}</p>
             <span class="crossHide" id="crossHide">&times;</span>
         </div>
@@ -25,6 +26,13 @@
         </div>
     </section>
     <section class="container-home container-announcements container-create-ads" id="plans">
+        @if(auth()->user())
+            <div class="container-link-to-back container-change-plan">
+                <a class="link-back button-back button-cta button-draft" href="{{route('dashboard.profil')}}">
+                    Retour
+                </a>
+            </div>
+        @endif
         <div class="title-first-step-register">
             <h2 aria-level="2">Plan pour votre inscription</h2>
         </div>
@@ -51,14 +59,16 @@
                     </div>
                     <ul>
                         <li>
-                            <img width="40" height="60" src="{{asset('svg/good.svg')}}" alt="Icone correct">Durée : @if($plan->id == 1) {{$plan->duration}} jours @else {{$plan->duration / 30}} mois @endif
+                            <img width="40" height="60" src="{{asset('svg/good.svg')}}" alt="Icone correct">Durée
+                            : @if($plan->id == 1) {{$plan->duration}} jours @else {{$plan->duration / 30}} mois @endif
                         </li>
                         <li>
                             <img width="40" height="60" src="{{asset('svg/good.svg')}}" alt="Icone correct">
-                            @if($plan->id == 1) Support basique @elseif($plan->id == 2) Support intermédiaire @elseif($plan->id == 3) Support prioritaire @endif
+                            @if($plan->id == 1) Support basique @elseif($plan->id == 2) Support
+                            intermédiaire @elseif($plan->id == 3) Support prioritaire @endif
                         </li>
                         <li class="container-visibility">
-                          <img width="40" height="60" src="{{asset('svg/good.svg')}}" alt="Icone correct">
+                            <img width="40" height="60" src="{{asset('svg/good.svg')}}" alt="Icone correct">
                             @if($plan->id == 1)
                                 Basse visibilité
                             @endif
@@ -70,14 +80,18 @@
                             @endif *
                         </li>
                         <li class="container-visibility">
-                            <img width="40" height="60" src="{{asset('svg/good.svg')}}" alt="Icone correct">@if($plan->id == 1)  Visible parmis les top 100 @elseif($plan->id == 2)  Visible parmis les top 15 @elseif($plan->id == 3)  Visible parmis les top 4 @endif *
+                            <img width="40" height="60" src="{{asset('svg/good.svg')}}"
+                                 alt="Icone correct">@if($plan->id == 1)  Visible parmis les top
+                            100 @elseif($plan->id == 2)  Visible parmis les top 15 @elseif($plan->id == 3)  Visible
+                            parmis les top 4 @endif *
                         </li>
                     </ul>
-                    <form aria-label="Choix du plan pour devenir utilisateur" @auth action="{{route('users.payed')}}" @else action="{{route('users.type')}}" @endauth method="post">
+                    <form aria-label="Choix du plan pour devenir utilisateur" @auth action="{{route('users.payed')}}"
+                          @else action="{{route('users.type')}}" @endauth method="post">
                         @method('get')
                         @csrf
                         <input id="plan{{$plan->id}}" name="plan" type="hidden" value="{{$plan->id}}">
-                        <button>
+                        <button class="buttonChanged">
                             Je séléctionne {{ucfirst($plan->name)}}
                         </button>
                     </form>
@@ -86,3 +100,10 @@
         </div>
     </section>
 @endsection
+@if(auth()->user())
+@section('scripts')
+    <script>let btns=document.querySelectorAll('.buttonChanged')
+        function confirmDelete(e){return!0===confirm("Après cette étape, le nouveau plan sera actif")||(e.preventDefault(),!1)}
+        btns.forEach(function(btn){btn.addEventListener("click",confirmDelete)})</script>
+@endsection
+@endif
