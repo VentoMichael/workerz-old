@@ -17,6 +17,7 @@
         "laravel/framework": "^8.12",
         "laravel/nova": "*",
         "laravel/tinker": "^2.5",
+        "laravel/ui": "^3.3",
         "livewire/livewire": "^2.4",
         "nesbot/carbon": "^2.47",
         "pusher/pusher-php-server": "^7.0",
