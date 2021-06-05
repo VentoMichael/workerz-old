@@ -123,16 +123,21 @@
 
 <div class="container-register-form container-register">
     <div class="container-form-email">
-        <label for="price_max">Combien voulez vous dépensez au maximum&nbsp;?</label>
-        <input max="999999" type="text" pattern="^[0-9-+\s()]*$" id="price_max"
-               name="price_max"
+        <label for="pricemax">Combien voulez vous dépensez au maximum&nbsp;?</label>
+        <input max="999999" type="text" pattern="^[0-9-+\s()]*$" id="pricemax"
+               name="pricemax"
                @if(auth()->user()) value="{{$announcement->pricemax}}"
-               @else value="{{old("price-max")}}" @endif
+               @else value="{{old("pricemax")}}" @endif
                class="email-label" maxlength="999999" placeholder="500"><span
             class="horary-cost">€</span>
         <p class="help hepl-price informations">
             Cela donne une idée à l'indépendant (optionnel)
         </p>
+        @error('pricemax')
+        <p class="danger dangerCategory help">
+            {{$errors->first('pricemax')}}
+        </p>
+        @enderror
     </div>
     <div class="container-form-email selectdiv">
         <label for="startmonth">Disponible à partir du mois de <span
@@ -182,8 +187,7 @@
         <textarea id="description" name="description" required
                   class=" @error('description') is-invalid @enderror email-label"
                   placeholder="Description de votre annonce..."
-                  rows="5" cols="33">@if(auth()->user()){{$announcement->description}}
-            @else{{old("description")}} @endif</textarea>
+                  rows="5" cols="33">@if(auth()->user()){{$announcement->description}} @else{{old("description")}} @endif</textarea>
         @error('description')
         <p class="danger help">
             {{$errors->first('description')}}
@@ -192,11 +196,13 @@
     </div>
 </div>
 <div class="container-draft-publish-dashboard container-btn-draft">
+    @if($announcement->is_draft === 1)
     <div class="link-back">
         <button class="button-back button-cta button-draft" name="publish">
             Je la poste
         </button>
     </div>
+    @endif
     <div class="container-buttons-ads btn-save-dashboard">
         <button role="button" class="button-cta" type="submit">
             Je sauvegarde les données

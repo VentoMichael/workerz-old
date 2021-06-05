@@ -23,8 +23,8 @@ class Ads extends Component
         sleep(1);
         return view('livewire.ads', [
             'newsletterValidated' => request()->session()->get('newsletter'),
-            'regions' => Province::all(),
-            'categories' => Category::all(),
+            'regions' => Province::orderBy('name')->get(),
+            'categories' => Category::orderBy('name')->get(),
             'user' => auth()->user(),
             'announcements' => Announcement::query()
                 ->Published()
@@ -57,7 +57,6 @@ class Ads extends Component
                 ->where('job', 'like',
                     '%'.$this
                         ->search.'%')
-                ->orWhere('title', 'like', '%'.$this->search.'%')
                 ->paginate(4)
                 ->onEachSide(0),
         ]);

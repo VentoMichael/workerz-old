@@ -692,6 +692,7 @@
         border-top: 3px solid #69696969;
         border-bottom: 3px solid #69696969;
         padding-bottom: 30px;
+        margin-bottom: -30px;
     }
     div .container-ads-index section:nth-child(2){
         border: none;
@@ -1023,7 +1024,6 @@
     .box-category {
         margin: 10px 0;
     }
-
     div form .search-announcement {
         padding-right: 0
     }

@@ -16,6 +16,7 @@ use App\Models\StartMonth;
 use App\Models\User;
 use App\Models\Website;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -53,56 +54,6 @@ class DashboardController extends Controller
         $planId = auth()->user()->plan_user_id;
         $plan = \App\Models\PlanUser::where('id', '=', $planId)->first();
         return view('dashboard.profil', compact('plan', 'disponibilities', 'categories', 'regions'));
-    }
-
-    public function settings()
-    {
-        $this->sendExpireNotificationAccount();
-        $user_categories = auth()->user()->categoryUser;
-        $user_disponibilities = auth()->user()->startDate;
-        $disponibilities = StartDate::orderBy('id')->get();
-        $regions = Province::orderBy('name')->get();
-        $categories = Category::orderBy('name')->get();
-        return view('dashboard.edit',
-            compact('disponibilities', 'categories', 'regions', 'user_categories', 'user_disponibilities'));
-    }
-
-    public function show(Announcement $announcement)
-    {
-        $this->sendExpireNotificationAds();
-        $this->sendExpireNotificationAccount();
-        $firstAd = Auth::user()->announcements()->NotDraft()->firstOrFail();
-        $user = User::where('id', '=', \auth()->user()->id)->with('announcements')->firstOrFail();
-        $announcement = Announcement::withLikes()->where('id', '=', $announcement->id)->firstOrFail();
-        return view('dashboard.show', compact('announcement', 'user', 'firstAd'));
-    }
-
-    public function showDraft(Announcement $announcement)
-    {
-        $this->sendExpireNotificationAds();
-        $this->sendExpireNotificationAccount();
-        $firstAdDraft = Auth::user()->announcements()->Draft()->firstOrFail();
-        $user = User::where('id', '=', \auth()->user()->id)->with('announcements')->firstOrFail();
-        $announcement = Announcement::withLikes()->where('id', '=', $announcement->id)->firstOrFail();
-        return view('dashboard.draftAd', compact('announcement', 'user', 'firstAdDraft'));
-    }
-
-    public function editAdsDraft(Announcement $announcement)
-    {
-        $this->sendExpireNotificationAds();
-        $this->sendExpireNotificationAccount();
-        $firstAdDraft = Auth::user()->announcements()->first();
-        $user = User::where('id', '=', \auth()->user()->id)->with('announcements')->first();
-        $announcement = Announcement::withLikes()->where('slug', '=', $announcement->slug)->first();
-        $plan = $announcement->plan_announcement_id;
-        $categories = Category::all();
-        $regions = Province::all();
-        $disponibilities = StartMonth::all();
-        $announcement_categories = $announcement->categoryAds;
-        $announcement_disponibilities = $announcement->startMonth;
-        return view('dashboard.updateAdsDraft',
-            compact('announcement', 'categories', 'regions', 'plan', 'disponibilities', 'user', 'firstAdDraft',
-                'announcement_categories', 'announcement_disponibilities'));
     }
 
     public function updateUser(Request $request)
@@ -208,6 +159,49 @@ class DashboardController extends Controller
 
     }
 
+    public function settings()
+    {
+        $this->sendExpireNotificationAccount();
+        $user_categories = auth()->user()->categoryUser;
+        $user_disponibilities = auth()->user()->startDate;
+        $disponibilities = StartDate::orderBy('id')->get();
+        $regions = Province::orderBy('name')->get();
+        $categories = Category::orderBy('name')->get();
+        return view('dashboard.edit',
+            compact('disponibilities', 'categories', 'regions', 'user_categories', 'user_disponibilities'));
+    }
+
+    public function show(Announcement $announcement)
+    {
+        $this->sendExpireNotificationAds();
+        $this->sendExpireNotificationAccount();
+        $firstAd = Auth::user()->announcements()->NotDraft()->firstOrFail();
+        $user = User::where('id', '=', \auth()->user()->id)->with('announcements')->firstOrFail();
+        $announcement = Announcement::withLikes()->where('id', '=', $announcement->id)->firstOrFail();
+        return view('dashboard.show', compact('announcement', 'user', 'firstAd'));
+    }
+
+    public function showDraft(Announcement $announcement)
+    {
+        $firstAdDraft = Auth::user()->announcements()->Draft()->firstOrFail();
+        $user = User::where('id', '=', \auth()->user()->id)->with('announcements')->firstOrFail();
+        $announcement = Announcement::withLikes()->where('id', '=', $announcement->id)->firstOrFail();
+        return view('dashboard.draftAd', compact('announcement', 'user', 'firstAdDraft'));
+    }
+
+    public function editAdsDraft(Announcement $announcement)
+    {
+        $plan = $announcement->plan_announcement_id;
+        $categories = Category::all();
+        $regions = Province::all();
+        $disponibilities = StartMonth::all();
+        $announcement_categories = $announcement->categoryAds;
+        $announcement_disponibilities = $announcement->startMonth;
+        return view('dashboard.updateAdsDraft',
+            compact( 'announcement','categories', 'regions', 'plan', 'disponibilities',
+                'announcement_categories', 'announcement_disponibilities'));
+    }
+
     public function editAds(Announcement $announcement)
     {
         $this->sendExpireNotificationAds();
@@ -222,25 +216,24 @@ class DashboardController extends Controller
                 'announcement_categories', 'announcement_disponibilities'));
     }
 
-
     public function updateAds(Announcement $announcement, Request $request)
     {
-        $this->sendExpireNotificationAds();
-        $this->sendExpireNotificationAccount();
         $request->validate([
             'title' => 'sometimes|required', Rule::unique('announcements')->ignore($announcement->id),
             'description' => 'sometimes|max:256|required',
             'job' => 'sometimes|max:256|required',
             'location' => 'sometimes|not_in:0|required',
+            'pricemax' => 'max:99999',
             'startmonth' => 'sometimes|required',
             'categoryAds' => 'sometimes|array|required|max:'.$announcement->plan_announcement_id
         ]);
+
         if ($request->has('publish')) {
             if ($announcement->plan_announcement_id == 2 || $announcement->plan_announcement_id == 3) {
                 $publish = true;
-                $ad = $announcement->id;
+                $ad = $announcement->slug;
                 $planAd = $announcement->plan_announcement_id;
-                $announcement = Announcement::where('id', '=', $ad)->first();
+                $announcement = Announcement::where('slug', '=', $ad)->first();
                 return \redirect(route('announcements.payed', compact('publish', 'announcement', 'planAd')));
             } else {
                 $announcement->is_draft = 0;
@@ -251,8 +244,12 @@ class DashboardController extends Controller
                 return \redirect(route('dashboard.ads'));
             }
         }
+
+
         $announcement = Announcement::withLikes()->where('slug', '=', $announcement->slug)->first();
         $announcement->title = $request->title;
+        $announcement->catchPhrase = $request->catchPhrase;
+        $announcement->slug = Str::slug($request->title);
         $announcement->description = $request->description;
         $announcement->job = $request->job;
         $announcement->province_id = $request->location;
@@ -278,7 +275,7 @@ class DashboardController extends Controller
         } else {
             Session::flash('success-update-not', 'Rien n\'a été changé&nbsp;!');
         }
-        if (url("dashboard/ads/draft/{$announcement->slug}")){
+        if ($announcement->is_draft === 1){
             return redirect('dashboard/ads/draft/'.$announcement->slug);
         }else{
             return redirect('dashboard/ads/'.$announcement->slug);

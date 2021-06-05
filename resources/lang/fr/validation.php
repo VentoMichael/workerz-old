@@ -134,6 +134,7 @@ return [
             'rule-name' => 'custom-message',
         ],
         'conditions.required' => 'Vous devez être en accord avec les conditions',
+        'pricemax.max' => 'Grand',
     ],
     'attributes' => [
         'title' => 'titre',

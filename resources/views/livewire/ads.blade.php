@@ -86,7 +86,7 @@
                                 <img itemprop="image" src="{{asset('svg/ad.svg')}}" alt="icone d'annonces">
                             @endif
                         </div>
-                        <h3 aria-level="3" itemprop="name">
+                        <h3 aria-level="3" itemprop="name" id="ad{{$announcement->id}}">
                             {{ucfirst($announcement->title)}}
                         </h3>
                         <p class="paragraph-ann" itemprop="description">
@@ -125,14 +125,14 @@
                             <form action="{{route('messages.post',[$announcement->user->slug])}}" method="POST"
                                   class="formsendmsg formsenmsg-show-view">
                                 @csrf
-                                <input type="hidden" name="from_id" id="from_id{{$announcement->user->id}}"
+                                <input type="hidden" name="from_id" id="from_id{{$loop->index}}"
                                        value="{{auth()->user()->id}}">
-                                <input type="hidden" name="to_id" id="to_id{{$announcement->user->id}}"
+                                <input type="hidden" name="to_id" id="to_id{{$loop->index}}"
                                        value="{{$announcement->user->id}}">
-                                <input type="hidden" name="slug" id="slug{{$announcement->user->id}}"
+                                <input type="hidden" name="slug" id="slug{{$loop->index}}"
                                        value="{{$announcement->user->slug}}">
                                 <button type="submit" class="button-cta button-msg" name="talkTo">
-                                    Parler avec {{$announcement->user->name}} {{$announcement->user->surname}}
+                                    Parler avec {{ucfirst($announcement->user->name)}} {{ucfirst($announcement->user->surname)}}
                                 </button>
                             </form>
                         @endif
@@ -157,9 +157,9 @@
                             Aucune annonces trouvé avec cette recherche
                         </h3>
                         <p class="containerAllText" style="margin-top: 10px;">
-                            Oops, je n'ai rien trouvé&nbsp;avec cette recherche <i>"{{$search}}"</i>&nbsp;! Essayer une autre recherche ou <a
+                            Oops, je n'ai rien trouvé @if($search)avec cette recherche <i>"{{$search}}"</i>@endif&nbsp;! Essayez une autre recherche ou <a
                                 style="text-decoration: underline;"
-                                href="{{route('announcements').'#adsLink'}}">rafraichissez la page</a>
+                                href="{{route('workerz').'#adsLink'}}">rafraichissez la page</a>
                         </p>
                     </div>
                 </section>

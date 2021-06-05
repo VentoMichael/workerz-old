@@ -30,7 +30,7 @@ class AnnouncementFactory extends Factory
             'province_id' => $this->faker->numberBetween($min = 1, $max = 11),
             'start_month_id' => $this->faker->numberBetween($min = 1, $max = 12),
             'pricemax' => $this->faker->numberBetween($min = 10, $max = 100),
-            'user_id' => $this->faker->numberBetween($min = 1, $max = 100),
+            'user_id' => $this->faker->numberBetween($min = 1, $max = 1),
             'is_draft' => $this->faker->boolean($chanceOfGettingTrue = 50),
             'is_payed' => $this->faker->boolean($chanceOfGettingTrue = 50),
             'plan_announcement_id'=> $this->faker->numberBetween($min = 1, $max = 3),

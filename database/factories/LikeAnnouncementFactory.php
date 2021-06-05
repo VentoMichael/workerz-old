@@ -22,8 +22,8 @@ class LikeAnnouncementFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => $this->faker->numberBetween($min = 1, $max = 99),
-            'announcement_id' => $this->faker->numberBetween($min = 1, $max = 99),
+            'user_id' => $this->faker->numberBetween($min = 1, $max = 1),
+            'announcement_id' => $this->faker->numberBetween($min = 1, $max = 1),
             'liked' => $this->faker->boolean(50),
         ];
     }

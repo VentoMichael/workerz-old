@@ -12,11 +12,11 @@ class HomeController extends Controller
     {
         \request()->session()->forget('newsletter');
         $categories = Category::with(['users'=>function($q){
-            $q->NoBan()->Payed()->withCount('categoryUser');
-        }])->take(5)->get()->sortByDesc(function($categorie)
+            $q->NoBan()->Payed()->Independent()->withCount('categoryUser');
+        }])->get()->sortByDesc(function($categorie)
         {
             return $categorie->users->count();
-        });
+        })->take(5);
         return view('home.index', compact('categories'));
     }
 }

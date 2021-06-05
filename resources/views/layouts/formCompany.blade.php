@@ -444,7 +444,7 @@
                     @endif
 
                     <div class="container-form-email container-job-dashboard">
-                        <label for="adress">Adresse du siège social <span class="required">*</span></label>
+                        <label for="adress">Adresse du siège social et n° <span class="required">*</span></label>
                         <input type="text" id="adress"
                                @if(auth()->user()) value="{{auth()->user()->adresses()->first()->postal_adress}}"
                                @else value="{{old("adress")}}" @endif

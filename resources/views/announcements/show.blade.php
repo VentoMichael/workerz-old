@@ -194,7 +194,7 @@
             </div>
         </section>
     </section>
-    @if($randomAds->count() > 1)
+    @if($randomAds->count() > 0)
         <section class="container-categories-home margin show-content container-adss-random">
             <div class="container-title-ads">
                 <h2 aria-level="2">

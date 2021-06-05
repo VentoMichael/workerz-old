@@ -193,9 +193,9 @@ class AnnouncementController extends Controller
             compact('planId', 'plan', 'intent', 'stripe_key'));
     }
 
-    public function payedAds()
+    public function payedAds(Announcement $announcement)
     {
-        $announcement = Announcement::where('user_id', '=', \auth()->user()->id)->latest('created_at')->first();
+        $announcement = Announcement::where('slug', '=', \request()->slug)->first();
         $announcement->is_payed = true;
         $announcement->is_draft = false;
         if ($announcement->plan_announcement_id == 2) {

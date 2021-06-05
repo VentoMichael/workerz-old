@@ -21,6 +21,7 @@ use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 use Intervention\Image\Facades\Image;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
+use Spatie\Newsletter\NewsletterFacade as Newsletter;
 
 class CreateNewUser implements CreatesNewUsers
 {
@@ -55,8 +56,8 @@ class CreateNewUser implements CreatesNewUsers
 
             Validator::make($input, [
                 'name' => ['required', 'string', 'max:255', Rule::unique(User::class)],
-                'picture' => 'image','mimes:jpeg,png,jpg,gif,svg','max:2048',
-                'conditions'=> 'required',
+                'picture' => 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048',
+                'conditions' => 'required',
                 'email' => [
                     'required',
                     'string',
@@ -64,7 +65,7 @@ class CreateNewUser implements CreatesNewUsers
                     'max:255',
                     Rule::unique(User::class),
                 ],
-                'number' => ['required',Rule::unique(Phone::class)],
+                'number' => ['required', Rule::unique(Phone::class)],
                 'password' => [
                     'required',
                     'min:8',
@@ -79,7 +80,7 @@ class CreateNewUser implements CreatesNewUsers
                 'picture' => $pic,
                 'role_id' => $input['role_id'],
                 'plan_user_id' => $input['plan_user_id'],
-                'conditions'=> $input['conditions'],
+                'conditions' => $input['conditions'],
                 'is_payed' => $payed,
                 'slug' => Str::slug($input['name']),
                 'password' => Hash::make($input['password']),
@@ -92,7 +93,7 @@ class CreateNewUser implements CreatesNewUsers
         if (\request('type') == 'company') {
             Validator::make($input, [
                 'name' => ['required', 'string', 'max:255', Rule::unique(User::class)],
-                'picture' => 'image','mimes:jpeg,png,jpg,gif,svg','max:2048',
+                'picture' => 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048',
                 'email' => [
                     'required',
                     'string',
@@ -103,9 +104,9 @@ class CreateNewUser implements CreatesNewUsers
                 'adress' => 'required',
                 'website' => 'nullable', 'url',
                 'description' => 'required', 'max:256',
-                'conditions'=> 'required',
+                'conditions' => 'required',
                 'job' => 'required',
-                'number' => ['required',Rule::unique(Phone::class)],
+                'number' => ['required', Rule::unique(Phone::class)],
                 'location' => 'required|not_in:0',
                 'categoryUser' => 'required|array|max:'.$input['plan_user_id'],
                 'disponibilites' => [
@@ -122,7 +123,7 @@ class CreateNewUser implements CreatesNewUsers
                 'name' => $input['name'],
                 'email' => $input['email'],
                 'picture' => $pic,
-                'conditions'=> $input['conditions'],
+                'conditions' => $input['conditions'],
                 'role_id' => $input['role_id'],
                 'plan_user_id' => $input['plan_user_id'],
                 'website' => $input['website'],
@@ -171,6 +172,9 @@ class CreateNewUser implements CreatesNewUsers
         }
         $phone = new Phone(['number' => $input['number']]);
         $user->phones()->save($phone);
+        if (request()->newslettersignin === 1) {
+            Newsletter::subscribe(request()->newsletter);
+        }
         $user->plan_user_id = request('plan_user_id');
         $user->save();
         Session::forget('type');

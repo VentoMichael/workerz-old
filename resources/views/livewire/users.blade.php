@@ -110,8 +110,7 @@
                                     <img src="{{asset('svg/placeholder.svg')}}" alt="icone de localité">
                                     <div class="container-location" itemprop="address">
                                         <p>{{ucfirst($worker->adresses->first()->postal_adress)}}</p>
-                                        <p class="categoryJob">({{ucfirst($worker->adresses->first()->province->name)}}
-                                            )</p>
+                                        <p class="categoryJob">({{ucfirst($worker->adresses->first()->province->name)}})</p>
                                     </div>
                                 </div>
                             @endif
@@ -122,12 +121,12 @@
                             <form action="{{route('messages.post',[$worker->slug])}}" method="POST"
                                   class="formsendmsg formsenmsg-show-view">
                                 @csrf
-                                <input type="hidden" name="from_id" id="from_id{{$worker->id}}"
+                                <input type="hidden" name="from_id" id="from_id{{$loop->index}}"
                                        value="{{auth()->user()->id}}">
-                                <input type="hidden" name="to_id" id="to_id{{$worker->id}}" value="{{$worker->id}}">
-                                <input type="hidden" name="slug" id="slug{{$worker->id}}" value="{{$worker->slug}}">
+                                <input type="hidden" name="to_id" id="to_id{{$loop->index}}" value="{{$worker->id}}">
+                                <input type="hidden" name="slug" id="slug{{$loop->index}}" value="{{$worker->slug}}">
                                 <button type="submit" class="button-cta button-msg" name="talkTo">
-                                    Parler avec {{$worker->name}} {{$worker->surname}}
+                                    Parler avec {{ucfirst($worker->name)}} {{ucfirst($worker->surname)}}
                                 </button>
                             </form>
                         @endif
@@ -136,11 +135,11 @@
                            href="{{route('login')}}"
                            title="Il faut se connecté pour parler avec le détenteur de l'annonce">Il faut être
                             connecté
-                            pour parler avec la personne ayant posté l'annonce
+                            pour parler avec {{ucfirst($worker->name)}} {{ucfirst($worker->surname)}}
                         </a>
                     @endauth
                     <a href="/workerz/{{$worker->slug}}" class="button-personnal-announcement">
-                        Aller voir {{$worker->name}}
+                        Aller voir {{ucfirst($worker->name)}}
                     </a>
                 </section>
             @empty
@@ -151,7 +150,7 @@
                             Aucun indépendant trouvé avec cette recherche
                         </h3>
                         <p class="containerAllText" style="margin-top: 10px;">
-                            Oops, je n'ai rien trouvé avec cette recherche <i>"{{$search}}"</i>&nbsp;! Essayez une autre recherche ou <a
+                            Oops, je n'ai rien trouvé @if($search)avec cette recherche <i>"{{$search}}"</i>@endif&nbsp;! Essayez une autre recherche ou <a
                                 style="text-decoration: underline;"
                                 href="{{route('workerz').'#adsLink'}}">rafraichissez la page</a>
                         </p>

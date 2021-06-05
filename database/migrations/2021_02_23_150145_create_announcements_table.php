@@ -15,7 +15,6 @@ class CreateAnnouncementsTable extends Migration
     {
         Schema::create('announcements', function (Blueprint $table) {
             $table->id();
-            // TODO put unique
             $table->string('title');
             $table->string('catchPhrase')->nullable();
             $table->string('slug')->unique();
@@ -23,7 +22,7 @@ class CreateAnnouncementsTable extends Migration
             $table->string('description',256);
             $table->string('job');
             $table->boolean('banned')->default(false);
-            $table->unsignedFloat('pricemax')->nullable();
+            $table->bigInteger('pricemax')->nullable();
             $table->boolean('is_draft');
             $table->bigInteger('view_count')->default(0);
             $table->boolean('sending_time_expire')->default(false);

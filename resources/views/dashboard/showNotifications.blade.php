@@ -28,8 +28,8 @@
 
                                                 <h3 aria-level="3">
                                                     Votre nouvelle
-                                                    annonce {{$notification->data['announcement']['title']}}
-                                                </h3>
+                                                    annonce <i>{{$notification->data['announcement']['title']}}
+</i>                                                </h3>
                                             </div>
                                         @else
                                             <img src="{{asset('svg/messenger.svg')}}" alt="icone de messages">
@@ -37,7 +37,7 @@
                                             <div>
                                                 <h3 aria-level="3">
                                                     Un nouveau message
-                                                    de {{$notification->data['message']['user']['name']}}
+                                                    de <i>{{$notification->data['message']['user']['name']}}</i>
                                                 </h3>
                                             </div>
                                         @endif

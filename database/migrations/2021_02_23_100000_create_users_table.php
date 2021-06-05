@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('surname')->nullable();
             $table->string('website')->nullable();
             $table->string('job')->nullable();
-            $table->string('pricemax')->nullable();
+            $table->bigInteger('pricemax')->nullable();
             $table->string('facebook')->nullable();
             $table->string('twitter')->nullable();
             $table->string('linkedin')->nullable();

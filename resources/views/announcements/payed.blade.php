@@ -24,7 +24,6 @@
             </div>
         </div>
     </section>
-
     <section class="container-home container-announcements container-create-ads">
         <div class="title-first-step-register">
             <h2 aria-level="2" class="hidden">Plan sélectionné pour votre inscription</h2>
@@ -60,22 +59,18 @@
                                 </li>
                                 <li>
                                     <img width="40" height="60" src="{{asset('svg/good.svg')}}" alt="Icone correct">
-                                    @if($plan->id == 1) Support basique @elseif($plan->id == 2) Support intermédiaire @elseif($plan->id == 3) Support prioritaire @endif
-                                </li>
-                                <li>
-                                    <img width="40" height="60" src="{{asset('svg/good.svg')}}" alt="Icone correct">
-                                    @if($plan->id == 1)
+                                    @if($plan == 1)
                                         Basse visibilité
                                     @endif
-                                    @if($plan->id == 2)
+                                    @if($plan == 2)
                                         Moyenne visibilité
                                     @endif
-                                    @if($plan->id == 3)
+                                    @if($plan == 3)
                                         Haute visibilité
                                     @endif
                                 </li>
                                 <li>
-                                    <img width="40" height="60" src="{{asset('svg/good.svg')}}" alt="Icone correct">@if($plan->id == 1)  Visible parmis les top 100 @elseif($plan->id == 2)  Visible parmis les top 15 @elseif($plan->id == 3)  Visible parmis les top 4 @endif
+                                    <img width="40" height="60" src="{{asset('svg/good.svg')}}" alt="Icone correct">@if($plan == 1)  Visible parmis les top 100 @elseif($plan == 2)  Visible parmis les top 15 @elseif($plan == 3)  Visible parmis les top 4 @endif
                                 </li>
                             </ul>
                         </section>
@@ -109,6 +104,7 @@
                         </div>
                         <div>
                             <input type="hidden" name="plan" value="{{$plan}}">
+                            <input type="hidden" name="slug" value="{{request()->announcement}}">
                             <button
                                 id="card-button"
                                 class="button-cta"

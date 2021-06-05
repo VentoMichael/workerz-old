@@ -244,7 +244,7 @@
 
     </section>
 </section>
-@if($randomUsers->count() > 1)
+@if($randomUsers->count() > 0)
 <section class="container-categories-home margin show-content container-adss-random">
     <div class="container-title-ads">
         <h2 aria-level="2">

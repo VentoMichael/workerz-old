@@ -24,8 +24,8 @@ class Users extends Component
         sleep(1);
         return view('livewire.users', [
             'newsletterValidated' => request()->session()->get('newsletter'),
-            'regions' => Province::all(),
-            'categories' => Category::all(),
+            'regions' => Province::orderBy('name')->get(),
+            'categories' => Category::orderBy('name')->get(),
             'workerz' => User::query()
                 ->orderBy('plan_user_id', 'DESC')
                 ->orderBy('created_at', 'DESC')
@@ -53,11 +53,10 @@ class Users extends Component
                     }
                 )
                 ->withLikes()
-                ->where('job', 'like', '%'.$this->search.'%')
-                ->orWhere('name', 'like', '%'.$this->search.'%')
                 ->Independent()
                 ->Payed()
                 ->NoBan()
+                ->where('job', 'like', '%'.$this->search.'%')
                 ->paginate(4)
                 ->onEachSide(0),
         ]);

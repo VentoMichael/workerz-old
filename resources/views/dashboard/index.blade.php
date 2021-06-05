@@ -49,7 +49,7 @@
                                             <img itemprop="image" src="{{asset('svg/ad.svg')}}"
                                                  alt="icone d'annonces">
                                             <h4 aria-level="4">
-                                                Votre annonce {{$notification->data['announcement']['title'] }} est en
+                                                Votre annonce <i>{{$notification->data['announcement']['title'] }}</i> est en
                                                 ligne&nbsp;!
                                             </h4>
                                         </div>
@@ -60,7 +60,7 @@
                                                  alt="icone de messages">
                                             <h4 aria-level="4">
                                                 Vous avez reçu un message
-                                                de {{$notification->data['message']['user']['name'] }}
+                                                de <i>{{$notification->data['message']['user']['name'] }}</i>
                                             </h4>
                                         </div>
                                     @endif
@@ -98,7 +98,8 @@
                                     <div>
                                         <h4 aria-level="4">
                                             Vous avez reçu un message de la part
-                                            de {{ucfirst($message->user->name)}} {{ucfirst($message->user->surname)}}
+                                            de <i>
+                                            {{ucfirst($message->user->name)}} {{ucfirst($message->user->surname)}}</i>
                                         </h4>
                                     </div>
                                 </div>
@@ -145,7 +146,7 @@
                                         </div>
 
                                         <h4 aria-level="4">
-                                            {{ucfirst($ad->title)}}
+                                            <i>{{ucfirst($ad->title)}}</i>
                                         </h4>
                                     </div>
                                     <div>
@@ -162,7 +163,7 @@
                                     <div class="button-dashboard-notifications">
                                         <a class="button-cta button-edition button-personnal-dashboard"
                                            href="dashboard/ads/{{$ad->slug}}">
-                                            Voir {{ucfirst($ad->title)}}
+                                            Voir <i>{{ucfirst($ad->title)}}</i>
                                         </a>
                                     </div>
                                 </section>

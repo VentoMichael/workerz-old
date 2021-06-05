@@ -26,8 +26,8 @@ class PlanAnnouncementSeeder extends Seeder
         PlanAnnouncement::create([
             'id' => 2,
             'name' => 'Premium',
-            'price' => 2.99,
-            'oldprice' => 3.99,
+            'price' => 1.99,
+            'oldprice' => 2.99,
             'duration' => 15,
             'hight_visibility' => true,
             'priority' => true,
@@ -36,7 +36,7 @@ class PlanAnnouncementSeeder extends Seeder
         PlanAnnouncement::create([
             'id' => 3,
             'name' => 'Star',
-            'price' => 7.99,
+            'price' => 4.99,
             'duration' => 30,
             'hight_visibility' => true,
             'priority' => true,

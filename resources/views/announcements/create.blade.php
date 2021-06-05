@@ -81,7 +81,7 @@
                         <select required aria-required="true" class="select-register select-regions" data-maxoption="1" name="location" id="location">
                             <option value="0" disabled selected>-- Votre région --</option>
                         @foreach($regions as $region)
-                                <option value="{{$region->id}}">{{$region->name}}</option>
+                                <option @if(old('location') == $region->id) selected @endif value="{{$region->id}}">{{$region->name}}</option>
                             @endforeach
                         </select>
                         @error('location')
@@ -112,7 +112,11 @@
                             <ul class="list-categories">
                                 @foreach($categories as $c)
                                     <li>
-                                        <input role="checkbox"
+                                        <input
+                                            @for($i=0;$i<=2;$i++)
+                                            @if(isset(old('categoryAds')[$i]) && old('categoryAds')[$i] == $c->id) checked @endif
+                                            @endfor
+                                        role="checkbox"
                                                aria-checked="false" class="checkCat hiddenCheckbox inp-cbx"
                                                name="categoryAds[]" id="categoryAds{{$c->id}}"
                                                type="checkbox" value="{{$c->id}}"/>
@@ -169,7 +173,8 @@
                             <ul class="list-categories">
                                 @foreach($disponibilities as $disponibility)
                                     <li id="checkDispo">
-                                        <input role="checkbox"
+                                        <input @if(old('startmonth') == $disponibility->id) checked @endif
+                                        role="checkbox"
                                                aria-checked="false" class="checkDispo hiddenCheckbox inp-cbx"
                                                name="startmonth" id="startmonth{{$disponibility->id}}"
                                                type="checkbox" value="{{$disponibility->id}}"/>
