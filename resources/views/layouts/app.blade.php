@@ -221,7 +221,7 @@
                                 <li>
                                     <form aria-label="Déconnexion" role="form" id="logout-form"
                                           action="{{route('logout')}}" method="POST"> @csrf
-                                        <button type="submit" role="button">
+                                        <button type="submit" role="button" class="deconnexionBtn">
                                             Se déconnecter
                                         </button>
                                     </form>
@@ -315,13 +315,13 @@
     </div>
     @if (Session::has('successNew'))
         <div id="successMsg" role="alert" class="successMsg"><img src="{{asset('svg/good.svg')}}" alt="good icone">
-            <p>{{Session::get('successNew')}}</p>
+            <p>{!!session('successNew')!!}</p>
             <span class="crossHide" id="crossHide">&times;</span>
         </div>
     @endif
     @if (Session::has('failureNew'))
         <div id="successMsg" role="alert" class="successMsg"><img src="{{asset('svg/cross.svg')}}" alt="cross icone">
-            <p>{{Session::get('failureNew')}}</p>
+            <p>{!!session('failureNew')!!}</p>
             <span class="crossHide" id="crossHide">&times;</span>
         </div>
     @endif

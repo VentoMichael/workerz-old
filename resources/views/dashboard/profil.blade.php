@@ -2,25 +2,25 @@
 @section('content')
     @if (Session::has('expire'))
         <div id="successMsg" role="alert" class="successMsg"><img width="40" height="60" src="{{asset('svg/caution.svg')}}" alt="good icone">
-            <p>{{Session::get('expire')}}</p>
+            <p>{!!session('expire')!!}</p>
             <span class="crossHide" id="crossHide">&times;</span>
         </div>
     @endif
     @if (Session::has('success-update-not'))
         <div id="successMsg" role="alert" class="successMsg"><img width="40" height="60" src="{{asset('svg/cross.svg')}}" alt="good icone">
-            <p>{{Session::get('success-update-not')}}</p>
+            <p>{!!session('success-update-not')!!}</p>
             <span class="crossHide" id="crossHide">&times;</span>
         </div>
     @endif
     @if (Session::has('success-update'))
         <div id="successMsg" role="alert" class="successMsg"><img width="40" height="60" src="{{asset('svg/good.svg')}}" alt="good icone">
-            <p>{{Session::get('success-update')}}</p>
+            <p>{!!session('success-update')!!}</p>
             <span class="crossHide" id="crossHide">&times;</span>
         </div>
     @endif
     @if (Session::has('success-inscription'))
         <div id="successMsg" role="alert" class="successMsg"><img width="40" height="60" src="{{asset('svg/good.svg')}}" alt="good icone">
-            <p>{{Session::get('success-inscription')}}</p>
+            <p>{!!session('success-inscription')!!}</p>
             <span class="crossHide" id="crossHide">&times;</span>
         </div>
     @endif

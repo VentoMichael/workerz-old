@@ -16,16 +16,21 @@
     @endif
     <div class="container-announcments-dashboard @if($users->count() < 1)container-search-without-ads @endif"
          wire:loading.class="load">
-        @forelse($users as $user)
+    @forelse($users as $user)
             <div class="container-message-index">
                 <a class="{{ Request::is('dashboard/messages/'.$user->slug) || Request::is('dashboard/messages/'.$user->slug.'/*') ? "container-announcements-active" : "" }} container-announcements"
                    href="{{route('dashboard.messagesShow',[$user->slug])}}"
                    aria-current="{{ Request::is('dashboard/messages/*') ? "page" : "" }}">
                     <section>
                         <img width="50" height="50" src="{{asset('svg/messenger.svg')}}" alt="icone de messages">
+                        @if(count($user->relatedTo->where('is_read',0)))
+                            <span class="counter-read-message">
+                                {{count($user->relatedTo->where('is_read',0))}}
+                            </span>
+                        @endif
                         <div>
                             <h3 aria-level="3">
-                                {{$user->name}} {{$user->surname}}
+                                {{ucfirst($user->name)}} {{ucfirst($user->surname)}}
                             </h3>
                             <p>
                                 {{$user->job}}
@@ -66,23 +71,24 @@
     <script>
         let btnMsg = document.getElementById("btnMsgSend")
         let helpMsg = document.getElementById("helpMsg")
-        if (btnMsg){
-        document.getElementById("message").addEventListener('keyup',(e)=>{
-           btnMsg.classList.add('styleBtnMsg');
-           helpMsg.classList.add('helpMsg');
-           if (document.getElementById("message").value === ""){
-               btnMsg.classList.remove('styleBtnMsg');
-               helpMsg.classList.remove('helpMsg');
-           }
-        })
-        document.getElementById("container-message").addEventListener("click", () => {
-            document.getElementById("message").focus()
-        });
-        document.addEventListener('keydown',(e)=>{
-            if (event.ctrlKey && event.key === 'Enter') {
-                document.getElementById('formMsg').submit()
-            }
-        })}
+        if (btnMsg) {
+            document.getElementById("message").addEventListener('keyup', (e) => {
+                btnMsg.classList.add('styleBtnMsg');
+                helpMsg.classList.add('helpMsg');
+                if (document.getElementById("message").value === "") {
+                    btnMsg.classList.remove('styleBtnMsg');
+                    helpMsg.classList.remove('helpMsg');
+                }
+            })
+            document.getElementById("container-message").addEventListener("click", () => {
+                document.getElementById("message").focus()
+            });
+            document.addEventListener('keydown', (e) => {
+                if (event.ctrlKey && event.key === 'Enter') {
+                    document.getElementById('formMsg').submit()
+                }
+            })
+        }
     </script>
 @endsection
 @endif

@@ -3,14 +3,14 @@
     @if (Session::has('loveOk'))
         <div id="successMsg" role="alert" class="successMsg"><img width="40" height="60" src="{{asset('svg/good.svg')}}"
                                                                   alt="good icone">
-            <p>{{Session::get('loveOk')}}</p>
+            <p>{!!session('loveOk')!!}</p>
             <span class="crossHide" id="crossHide">&times;</span>
         </div>
     @endif
     @if (Session::has('loveNotOk'))
         <div id="successMsg" role="alert" class="successMsg"><img width="40" height="60" src="{{asset('svg/good.svg')}}"
                                                                   alt="good icone">
-            <p>{{Session::get('loveNotOk')}}</p>
+            <p>{!!session('loveNotOk')!!}</p>
             <span class="crossHide" id="crossHide">&times;</span>
         </div>
     @endif

@@ -122,7 +122,7 @@ class AnnouncementController extends Controller
                 $announcement->is_draft = true;
                 $payed = false;
                 Session::forget('plan');
-                Session::flash('success-inscription', 'Votre annonce a été enregistrer dans vos brouillons !');
+                Session::flash('success-inscription', 'Votre annonce a été enregistrer dans vos brouillons&nbsp;!');
             } else {
                 $announcement->is_draft = false;
                 $payed = true;
@@ -132,7 +132,7 @@ class AnnouncementController extends Controller
                     ->send(new AdsCreated($data));
                 Session::forget('plan');
                 Session::flash('success-inscription',
-                    'Votre annonce a été bien mise en ligne !');
+                    'Votre annonce a été bien mise en ligne&nbsp;!');
             }
             $announcement->is_payed = $payed;
             $announcement->save();
@@ -143,7 +143,7 @@ class AnnouncementController extends Controller
             if ($request->has('is_draft')) {
                 $announcement->is_draft = true;
                 $payed = false;
-                Session::flash('success-inscription', 'Votre annonce a été enregistrer dans vos brouillons !');
+                Session::flash('success-inscription', 'Votre annonce a été enregistrer dans vos brouillons&nbsp;!');
                 $announcement->is_payed = $payed;
                 $announcement->save();
                 $announcement->categoryAds()->attach($ct->category_id);
@@ -153,7 +153,7 @@ class AnnouncementController extends Controller
                 $announcement->is_draft = false;
                 $payed = false;
                 Session::flash('success-inscription',
-                    'Votre annonce ne sera visible qu\'aprés payement !');
+                    'Votre annonce ne sera visible qu\'aprés payement&nbsp;!');
             }
             $announcement->is_payed = $payed;
             $announcement->save();
@@ -161,7 +161,7 @@ class AnnouncementController extends Controller
             $planId = PlanAnnouncement::where('id', '=', $plan)->first();
             $announcement->user->notify(new AdCreated($announcement));
             Session::flash('success-ads',
-                'Votre annonce est presque finalisée, elle sera visible qu\'après reçu de votre payement !');
+                'Votre annonce est presque finalisée, elle sera visible qu\'après reçu de votre payement&nbsp;!');
             return redirect(route('announcements.payed', compact('planId', 'announcement', 'plan')));
         }
     }
@@ -206,7 +206,7 @@ class AnnouncementController extends Controller
         $trial = Carbon::now()->addDays($days)->addHours(2);
         $announcement->end_plan = $trial;
         Session::flash('success-inscription',
-            'Votre annonce est désormais en ligne, merci de votre confiance !');
+            'Votre annonce est désormais en ligne, merci de votre confiance&nbsp;!');
         $announcement->update();
         Mail::to(env('MAIL_FROM_ADDRESS'))
             ->send(new AdsCreated($announcement));

@@ -2,13 +2,13 @@
 @section('content')
     @if (Session::has('errors'))
         <div id="successMsg" role="alert" class="successMsg"><img width="40" height="60" src="{{asset('svg/cross.svg')}}" alt="cross icone">
-            <p>{{Session::get('errors')}}</p>
+            <p>{!!session('errors')!!}</p>
             <span class="crossHide" id="crossHide">&times;</span>
         </div>
     @endif
     @if (Session::has('success-inscription'))
         <div id="successMsg" role="alert" class="successMsg"><img width="40" height="60" src="{{asset('svg/cross.svg')}}" alt="cross icone">
-            <p>{{Session::get('success-inscription')}}</p>
+            <p>{!!session('success-inscription')!!}</p>
             <span class="crossHide" id="crossHide">&times;</span>
         </div>
     @endif

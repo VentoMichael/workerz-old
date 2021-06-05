@@ -2,7 +2,7 @@
 @section('content')
     @if (Session::has('success-inscription'))
         <div id="successMsg" role="alert" class="successMsg"><img width="40" height="60" src="{{asset('svg/good.svg')}}" alt="cross icone">
-            <p>{{Session::get('success-inscription')}}</p>
+            <p>{!!session('success-inscription')!!}</p>
             <span class="crossHide" id="crossHide">&times;</span>
         </div>
     @endif

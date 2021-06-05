@@ -20,9 +20,9 @@ class NewsletterController extends Controller
             $request->session()->put('newsletter', '1');
             if (!Newsletter::hasMember($request->newsletter)) {
                 Newsletter::subscribe($request->newsletter);
-                return back()->with('successNew', 'Votre inscription à notre newsletter a bien été prise en compte !');
+                return back()->with('successNew', 'Votre inscription à notre newsletter a bien été prise en compte&nbsp!');
             }else{
-                return back()->with('failureNew', 'Oops ! Vous êtes déjà inscris !');
+                return back()->with('failureNew', 'Oops&nbsp! Vous êtes déjà inscris&nbsp!');
             }
         }
     }

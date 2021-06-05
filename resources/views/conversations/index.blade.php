@@ -2,13 +2,13 @@
 @section('content')
     @if (Session::has('success-delete'))
         <div id="successMsg" role="alert" class="successMsg"><img src="{{asset('svg/good.svg')}}" alt="good icone">
-            <p>{{Session::get('success-delete')}}</p>
+            <p>{!!session('success-delete')!!}</p>
             <span class="crossHide" id="crossHide">&times;</span>
         </div>
     @endif
     @if (Session::has('success'))
         <div id="successMsg" role="alert" class="successMsg"><img src="{{asset('svg/cross.svg')}}" alt="good icone">
-            <p>{{Session::get('success')}}</p>
+            <p>{!!session('success')!!}</p>
             <span class="crossHide" id="crossHide">&times;</span>
         </div>
     @endif

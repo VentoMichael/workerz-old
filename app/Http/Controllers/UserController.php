@@ -97,7 +97,7 @@ class UserController extends Controller
         ]);
         $intent = $payment_intent->client_secret;
         Session::flash('success-users',
-            'Votre compte est presque finalisé, il sera opérationnel qu\'après reçu de votre payement !');
+            'Votre compte est presque finalisé, il sera opérationnel qu\'après reçu de votre payement&nbsp;!');
         return view('users.payed', compact('plan', 'intent', 'stripe_key'));
     }
 
@@ -123,7 +123,7 @@ class UserController extends Controller
         $user->end_plan = $trial;
         $user->plan_user_id = $request->plan;
         Session::flash('success-inscription',
-            'Votre compte est désormais opérationnel, merci de votre confiance !');
+            'Votre compte est désormais opérationnel, merci de votre confiance&nbsp;!');
         $user->update();
         Session::forget('plan');
         Session::forget('user');

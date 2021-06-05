@@ -54,7 +54,7 @@ class ContactController extends Controller
         Mail::to($data['email'])
             ->send(new ContactUser($data));
         return Redirect::to(URL::previous()."#createMsg")->with('success-send', 'Votre message a été envoyé avec succès.
-        Nous vous contacterons bientôt !');
+        Nous vous contacterons bientôt&nbsp!');
     }
 
 }

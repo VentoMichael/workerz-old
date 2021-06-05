@@ -19,10 +19,11 @@ class Messenger extends Component
         sleep(1);
         return view('livewire.messenger', [
             'firstUser' => User::where('id', '!=', auth()->user()->id)->first(),
-            'users' => User::query()->whereHas('talkedTo', function ($q) {
-                $q->where('from_id', '=', \auth()->id());
+            'users' => User::query()->whereHas('relatedTo', function ($q) {
+                $q->where('to_id', \auth()->id());
             })->where('name', 'like',
                 '%'.$this->search.'%')->get()
+
         ]);
     }
 }

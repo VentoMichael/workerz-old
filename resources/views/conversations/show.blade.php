@@ -2,7 +2,7 @@
 @section('content')
     @if (Session::has('success-ads'))
         <div id="successMsg" role="alert" class="successMsg"><img width="40" height="60" src="{{asset('svg/good.svg')}}" alt="good icone">
-            <p>{{Session::get('success-ads')}}</p>
+            <p>{!!session('success-ads')!!}</p>
             <span class="crossHide" id="crossHide">&times;</span>
         </div>
     @endif
@@ -66,13 +66,12 @@
                                         @endif
                                     </div>
                                     <div>
-                                        <p class="date-message"> @if($message->user->id == $user->id)
-                                                Moi  @else {{$message->user->name}} @endif {{$message->created_at->locale('fr')->isoFormat('Do MMMM, H:mm')}}</p>
+                                        <p class="date-message"> @if($message->receiver->id == $user->id)
+                                                Moi,  @else {{$message->user->name}}, @endif {{$message->created_at->locale('fr')->isoFormat('Do MMMM, H:mm')}}</p>
                                         <p class="content-message">{{$message->content}}</p>
                                     </div>
                                 </div>
                             @endif
-
                         @endforeach
                     </section>
                     <form id="formMsg" class="form-login" style="position: relative" enctype="multipart/form-data"
@@ -85,8 +84,8 @@
                                   placeholder="Votre message ..." name="message"
                                   id="message"></textarea>
 
-                        <input type="hidden" name="from_id" id="from_id" value="{{$user->id}}">
-                        <input type="hidden" name="to_id" id="to_id" value="{{auth()->user()->id}}">
+                        <input type="hidden" name="from_id" id="from_id" value="{{auth()->user()->id}}">
+                        <input type="hidden" name="to_id" id="to_id" value="{{$user->id}}">
                         <button type="submit" id="btnMsgSend" class="submit-message" title="Envoyer le message à {{$user->name}}"><span class="helpSendMsg" id="helpMsg">Ctrl + Enter</span></button>
 
                         @error('message')

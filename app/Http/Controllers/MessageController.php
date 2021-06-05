@@ -34,6 +34,12 @@ class MessageController extends Controller
     {
         $messages = Message::with('user')->whereRaw("((from_id = ".\auth()->user()->id." AND to_id = $user->id) OR (from_id = $user->id AND to_id =".\auth()->user()->id."))")->orderBy('created_at',
             'DESC')->paginate(20);
+        foreach ($messages as $message) {
+            if ($message->receiver->id === auth()->id()){
+                $message->is_read = 1;
+                $message->save();
+            }
+        }
         return view('conversations.show', compact('messages','user'));
     }
 
@@ -72,7 +78,7 @@ class MessageController extends Controller
         $receiper = User::where('email',$message->user->email)->first();
         $receiper->notify(new MessageReceived($message));
         Session::flash('success-ads',
-            'Votre message a bien été envoyer');
+            'Votre message a bien été envoyer&nbsp;!');
         return Redirect::back();
     }
 
@@ -85,6 +91,6 @@ class MessageController extends Controller
     public function deleteConversations(User $user)
     {
         Message::where('from_id','=',\auth()->id())->where('to_id','=',$user->id)->delete();
-        return Redirect::route('dashboard.messages')->with('success-delete', 'Conversation supprimée !');
+        return Redirect::route('dashboard.messages')->with('success-delete', 'Conversation supprimée&nbsp!');
     }
 }

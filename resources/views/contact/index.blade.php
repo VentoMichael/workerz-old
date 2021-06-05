@@ -23,7 +23,7 @@
     </section>
     @if (Session::has('success-send'))
         <div id="successMsg" role="alert" class="successMsg"><img src="{{asset('svg/good.svg')}}" alt="good icone">
-            <p>{{Session::get('success-send')}}</p>
+            <p>{!!session('success-send')!!}</p>
             <span class="crossHide" id="crossHide">&times;</span>
         </div>
     @endif

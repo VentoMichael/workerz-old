@@ -2,19 +2,19 @@
 @section('content')
     @if (Session::has('expire'))
         <div id="successMsg" role="alert" class="successMsg"><img src="{{asset('svg/caution.svg')}}" alt="good icone">
-            <p>{{Session::get('expire')}}</p>
+            <p>{!!session('expire')!!}</p>
             <span class="crossHide" id="crossHide">&times;</span>
         </div>
     @endif
     @if (Session::has('success-inscription'))
         <div id="successMsg" role="alert" class="successMsg"><img src="{{asset('svg/good.svg')}}" alt="cross icone">
-            <p>{{Session::get('success-inscription')}}</p>
+            <p>{!!session('success-inscription')!!}</p>
             <span class="crossHide" id="crossHide">&times;</span>
         </div>
     @endif
     @if (Session::has('errors'))
         <div id="successMsg" role="alert" class="successMsg"><img src="{{asset('svg/cross.svg')}}" alt="cross icone">
-            <p>{{Session::get('errors')}}</p>
+            <p>{!!session('errors')!!}</p>
             <span class="crossHide" id="crossHide">&times;</span>
         </div>
     @endif

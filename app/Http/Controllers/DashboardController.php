@@ -38,7 +38,7 @@ class DashboardController extends Controller
         $lastAnnouncements = Announcement::where('user_id', '=',
             \auth()->user()->id)->WithLikes()->NoBan()->Payement()->Published()->orderBy('view_count',
             'DESC')->orderBy('created_at', 'DESC')->take(3)->get();
-        $notifications = tap(\auth()->user()->unreadNotifications)->markAsRead();
+        $notifications = tap(\auth()->user()->unreadNotifications)->markAsRead()->take(3);
 
         return view('dashboard.index', compact('notifications', 'lastAnnouncements', 'messages'));
     }
@@ -200,9 +200,9 @@ class DashboardController extends Controller
 
         $user->update();
         if ($user->wasChanged()) {
-            Session::flash('success-update', 'Votre profil a bien été mis a jour!');
+            Session::flash('success-update', 'Votre profil a bien été mis a jour&nbsp;!');
         } else {
-            Session::flash('success-update-not', 'Rien n\'a été changé');
+            Session::flash('success-update-not', 'Rien n\'a été changé&nbsp;!');
         }
         return redirect(route('dashboard.profil'));
 
@@ -247,7 +247,7 @@ class DashboardController extends Controller
                 $announcement->is_payed = 1;
                 $announcement->end_plan = Carbon::now()->addDays(7)->addHours(2);
                 $announcement->update();
-                Session::flash('success-update', 'Votre annonce a bien été publié!');
+                Session::flash('success-update', 'Votre annonce a bien été publié&nbsp;!');
                 return \redirect(route('dashboard.ads'));
             }
         }
@@ -274,9 +274,9 @@ class DashboardController extends Controller
         $announcement->plan_announcement_id = $announcement->getOriginal('plan_announcement_id');
         $announcement->update();
         if ($announcement->wasChanged()) {
-            Session::flash('success-update', 'Votre annonce a bien été mis a jour!');
+            Session::flash('success-update', 'Votre annonce a bien été mis a jour&nbsp;!');
         } else {
-            Session::flash('success-update-not', 'Rien n\'a été changé');
+            Session::flash('success-update-not', 'Rien n\'a été changé&nbsp;!');
         }
         if (url("dashboard/ads/draft/{$announcement->slug}")){
             return redirect('dashboard/ads/draft/'.$announcement->slug);
@@ -288,7 +288,7 @@ class DashboardController extends Controller
     public function deleteAds(Announcement $announcement)
     {
         Announcement::where('id', '=', $announcement->id)->delete();
-        return Redirect::route('dashboard.ads')->with('success-delete', 'Annonce supprimée !');
+        return Redirect::route('dashboard.ads')->with('success-delete', 'Annonce supprimée&nbsp!');
     }
 
     public function ads(Announcement $announcement)
@@ -309,7 +309,7 @@ class DashboardController extends Controller
                 auth()->user()->save();
                 Mail::to(env('MAIL_FROM_ADDRESS'))
                     ->send(new AdsEarlyExpire(auth()->user()));
-                Session::flash('expire', 'Attention, votre compte va expirer dans un jour !');
+                Session::flash('expire', 'Attention, votre compte va expirer dans un jour&nbsp;!');
             }
         }
         if (auth()->user()->end_plan <= Carbon::now()) {
@@ -329,7 +329,7 @@ class DashboardController extends Controller
                     $adsExpire->update();
                     Mail::to(auth()->user()->email)
                         ->send(new AdsEarlyExpire($adsExpire));
-                    Session::flash('expire', 'Attention, une de vos annonce va expirer dans un jour !');
+                    Session::flash('expire', 'Attention, une de vos annonce va expirer dans un jour&nbsp;!');
                 }
             }
             if ($adsExpire->end_plan <= Carbon::now()->addHours(2)) {

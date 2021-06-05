@@ -20,7 +20,7 @@
         padding: 10px 25px;
         opacity: 0;
         color: var(--blueLight);
-        font-size: 24px;
+        font-size: 1.5em;
         font-weight: 600;
         -webkit-transform: translateY(-20px);
         -ms-transform: translateY(-20px);
@@ -29,7 +29,11 @@
         -o-transition: all .2s ease;
         transition: all .2s ease
     }
-
+    a .picto-user {
+        top: 11px;
+        right: 12px;
+    }
+    .container-list-menu .deconnexionBtn{font-size: 1.5em}
     ul li .container-list-menu form button {
         opacity: 1;
         font-size: 1em;
@@ -669,6 +673,10 @@
     .container-dashboard-ads{
         grid-column-end: 3;
         grid-column-start: 1;
+    }
+    section .counter-read-message {
+        top: 17%;.container-messages-all
+        left: 6%;
     }
 }
 
