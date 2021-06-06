@@ -16,25 +16,37 @@
     @endif
     <div class="container-announcments-dashboard @if($users->count() < 1)container-search-without-ads @endif"
          wire:loading.class="load">
-    @forelse($users as $user)
+        @forelse($users as $user)
             <div class="container-message-index">
                 <a class="{{ Request::is('dashboard/messages/'.$user->slug) || Request::is('dashboard/messages/'.$user->slug.'/*') ? "container-announcements-active" : "" }} container-announcements"
                    href="{{route('dashboard.messagesShow',[$user->slug])}}"
                    aria-current="{{ Request::is('dashboard/messages/*') ? "page" : "" }}">
                     <section>
                         <img width="50" height="50" src="{{asset('svg/messenger.svg')}}" alt="icone de messages">
-                        @if(count($user->relatedTo->where('is_read',0)))
+                        @if(count($user->relatedTo->where('is_read',0)) > 0 && count($user->relatedTo->where('is_read',0)) > 9)
                             <span class="counter-read-message">
-                                {{count($user->relatedTo->where('is_read',0))}}
-                            </span>
+                                    9+
+                                </span>
+                        @else
+                            @if(count($user->relatedTo->where('is_read',0)) !== 0)
+                                <span class="counter-read-message">
+                                    {{count($user->relatedTo->where('is_read',0)->where('to_id','!=',ucfirst($user->name)))}}
+                                </span>
+                            @endif
                         @endif
                         <div>
                             <h3 aria-level="3">
                                 {{ucfirst($user->name)}} {{ucfirst($user->surname)}}
                             </h3>
-                            <p>
-                                {{$user->job}}
-                            </p>
+                            @if($user->role_id === 2)
+                                <p>
+                                    {{$user->job}}
+                                </p>
+                            @else
+                                <p>
+                                    {{$user->job}}
+                                </p>
+                            @endif
                         </div>
                     </section>
                 </a>

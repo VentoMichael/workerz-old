@@ -44,7 +44,7 @@
             </div>
 
             <div class="container-svg">
-                <img width="300" height="300" class="svg-icon" src="{{asset('svg/New Message_Monochromatic.svg')}}"
+                <img width="300" height="300" class="svg-icon" src="{{asset('svg/New_Message_Monochromatic.svg')}}"
                      alt="Icone d'un ordinateur avec un mot de passe crypter">
             </div>
         </section>

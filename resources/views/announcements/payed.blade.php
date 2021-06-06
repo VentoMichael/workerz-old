@@ -19,7 +19,7 @@
                 </div>
             </div>
             <div class="container-svg">
-                <img width="300" height="300" src="{{asset('svg/Card Payment_Monochromatic.svg')}}"
+                <img width="300" height="300" src="{{asset('svg/Card_Payment_Monochromatic.svg')}}"
                      alt="icone de carte">
             </div>
         </div>

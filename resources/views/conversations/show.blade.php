@@ -67,7 +67,7 @@
                                     </div>
                                     <div>
                                         <p class="date-message"> @if($message->receiver->id == $user->id)
-                                                Moi,  @else {{$message->user->name}}, @endif {{$message->created_at->locale('fr')->isoFormat('Do MMMM, H:mm')}}</p>
+                                                Moi,  @else {{$message->user->name}} {{$message->user->surname}}, @endif {{$message->created_at->locale('fr')->isoFormat('Do MMMM, H:mm')}}</p>
                                         <p class="content-message">{{$message->content}}</p>
                                     </div>
                                 </div>

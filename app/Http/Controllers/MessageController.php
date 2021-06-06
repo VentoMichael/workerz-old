@@ -20,8 +20,10 @@ class MessageController extends Controller
      */
     public function index()
     {
+        $notificationsReaded = auth()->user()->notifications->where('read_at',null);
+        $noReadMsgs = count(auth()->user()->talkedTo->where('is_read',0));
         $firstUser = User::first();
-        return view('conversations.index', compact('firstUser'));
+        return view('conversations.index', compact('firstUser','notificationsReaded','noReadMsgs'));
     }
 
     /**
@@ -32,6 +34,8 @@ class MessageController extends Controller
      */
     public function show(User $user)
     {
+        $notificationsReaded = auth()->user()->notifications->where('read_at',null);
+        $noReadMsgs = count(auth()->user()->talkedTo->where('is_read',0));
         $messages = Message::
         with('user','receiver')
 ->whereRaw("((from_id = ".\auth()->id()." AND to_id = $user->id) OR (from_id = $user->id AND to_id =".\auth()->id()."))")
@@ -42,7 +46,7 @@ class MessageController extends Controller
                 $message->save();
             }
         }
-        return view('conversations.show', compact('messages','user'));
+        return view('conversations.show', compact('messages','notificationsReaded','noReadMsgs','user'));
     }
 
     /**

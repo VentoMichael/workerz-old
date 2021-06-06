@@ -16,7 +16,6 @@ use App\Models\StartMonth;
 use App\Models\User;
 use App\Models\Website;
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -33,6 +32,8 @@ class DashboardController extends Controller
 {
     public function index()
     {
+        $noReadMsgs = count(auth()->user()->talkedTo->where('is_read',0));
+                $notificationsReaded = auth()->user()->notifications->where('read_at',null);
         $this->sendExpireNotificationAccount();
         $messages = Message::where('to_id', '=', \auth()->user()->id)->with('user')->orderBy('created_at',
             'ASC')->take(3)->get();
@@ -41,11 +42,13 @@ class DashboardController extends Controller
             'DESC')->orderBy('created_at', 'DESC')->take(3)->get();
         $notifications = tap(\auth()->user()->unreadNotifications)->markAsRead()->take(3);
 
-        return view('dashboard.index', compact('notifications', 'lastAnnouncements', 'messages'));
+        return view('dashboard.index', compact('notifications','notificationsReaded', 'lastAnnouncements', 'messages','noReadMsgs'));
     }
 
     public function profil()
     {
+        $noReadMsgs = count(auth()->user()->talkedTo->where('is_read',0));
+                $notificationsReaded = auth()->user()->notifications->where('read_at',null);
         $this->sendExpireNotificationAccount();
         $disponibilities = auth()->user()->startDate;
         $regions = auth()->user()->provinces;
@@ -53,7 +56,7 @@ class DashboardController extends Controller
         $this->sendExpireNotificationAccount();
         $planId = auth()->user()->plan_user_id;
         $plan = \App\Models\PlanUser::where('id', '=', $planId)->first();
-        return view('dashboard.profil', compact('plan', 'disponibilities', 'categories', 'regions'));
+        return view('dashboard.profil', compact('plan','notificationsReaded', 'disponibilities', 'categories', 'regions','noReadMsgs'));
     }
 
     public function updateUser(Request $request)
@@ -161,6 +164,8 @@ class DashboardController extends Controller
 
     public function settings()
     {
+        $notificationsReaded = auth()->user()->notifications->where('read_at',null);
+        $noReadMsgs = count(auth()->user()->talkedTo->where('is_read',0));
         $this->sendExpireNotificationAccount();
         $user_categories = auth()->user()->categoryUser;
         $user_disponibilities = auth()->user()->startDate;
@@ -168,29 +173,35 @@ class DashboardController extends Controller
         $regions = Province::orderBy('name')->get();
         $categories = Category::orderBy('name')->get();
         return view('dashboard.edit',
-            compact('disponibilities', 'categories', 'regions', 'user_categories', 'user_disponibilities'));
+            compact('disponibilities','notificationsReaded', 'categories', 'regions', 'user_categories', 'user_disponibilities','noReadMsgs'));
     }
 
     public function show(Announcement $announcement)
     {
+        $noReadMsgs = count(auth()->user()->talkedTo->where('is_read',0));
+        $notificationsReaded = auth()->user()->notifications->where('read_at',null);
         $this->sendExpireNotificationAds();
         $this->sendExpireNotificationAccount();
         $firstAd = Auth::user()->announcements()->NotDraft()->firstOrFail();
         $user = User::where('id', '=', \auth()->user()->id)->with('announcements')->firstOrFail();
         $announcement = Announcement::withLikes()->where('id', '=', $announcement->id)->firstOrFail();
-        return view('dashboard.show', compact('announcement', 'user', 'firstAd'));
+        return view('dashboard.show', compact('announcement','notificationsReaded','noReadMsgs', 'user', 'firstAd'));
     }
 
     public function showDraft(Announcement $announcement)
     {
+        $noReadMsgs = count(auth()->user()->talkedTo->where('is_read',0));
+                $notificationsReaded = auth()->user()->notifications->where('read_at',null);
         $firstAdDraft = Auth::user()->announcements()->Draft()->firstOrFail();
         $user = User::where('id', '=', \auth()->user()->id)->with('announcements')->firstOrFail();
         $announcement = Announcement::withLikes()->where('id', '=', $announcement->id)->firstOrFail();
-        return view('dashboard.draftAd', compact('announcement', 'user', 'firstAdDraft'));
+        return view('dashboard.draftAd', compact('announcement','notificationsReaded','noReadMsgs', 'user', 'firstAdDraft'));
     }
 
     public function editAdsDraft(Announcement $announcement)
     {
+        $noReadMsgs = count(auth()->user()->talkedTo->where('is_read',0));
+                $notificationsReaded = auth()->user()->notifications->where('read_at',null);
         $plan = $announcement->plan_announcement_id;
         $categories = Category::all();
         $regions = Province::all();
@@ -198,12 +209,14 @@ class DashboardController extends Controller
         $announcement_categories = $announcement->categoryAds;
         $announcement_disponibilities = $announcement->startMonth;
         return view('dashboard.updateAdsDraft',
-            compact( 'announcement','categories', 'regions', 'plan', 'disponibilities',
-                'announcement_categories', 'announcement_disponibilities'));
+            compact( 'announcement','categories','notificationsReaded', 'regions', 'plan', 'disponibilities',
+                'announcement_categories','noReadMsgs', 'announcement_disponibilities'));
     }
 
     public function editAds(Announcement $announcement)
     {
+        $noReadMsgs = count(auth()->user()->talkedTo->where('is_read',0));
+                $notificationsReaded = auth()->user()->notifications->where('read_at',null);
         $this->sendExpireNotificationAds();
         $this->sendExpireNotificationAccount();
         $plan = $announcement->plan_announcement_id;
@@ -213,13 +226,13 @@ class DashboardController extends Controller
         $announcement_categories = $announcement->categoryAds;
         $announcement_disponibilities = $announcement->startMonth;
         return view('dashboard.updateAds', compact('announcement', 'categories', 'regions', 'plan', 'disponibilities',
-                'announcement_categories', 'announcement_disponibilities'));
+                'announcement_categories','noReadMsgs','notificationsReaded', 'announcement_disponibilities'));
     }
 
     public function updateAds(Announcement $announcement, Request $request)
     {
         $request->validate([
-            'title' => 'sometimes|required', Rule::unique('announcements')->ignore($announcement->id),
+            'title' => 'sometimes|required',
             'description' => 'sometimes|max:256|required',
             'job' => 'sometimes|max:256|required',
             'location' => 'sometimes|not_in:0|required',
@@ -290,12 +303,13 @@ class DashboardController extends Controller
 
     public function ads(Announcement $announcement)
     {
+        $noReadMsgs = count(auth()->user()->talkedTo->where('is_read',0));
+        $notificationsReaded = auth()->user()->notifications->where('read_at',null);
         $this->sendExpireNotificationAccount();
         $firstAd = Auth::user()->announcements()->NotDraft()->first();
         $firstAdDraft = Auth::user()->announcements()->Draft()->first();
-        return view('dashboard.ads', compact('firstAd', 'firstAdDraft'));
+        return view('dashboard.ads', compact('firstAd','notificationsReaded','noReadMsgs', 'firstAdDraft'));
     }
-
     protected function sendExpireNotificationAccount()
     {
         if (auth()->user()->end_plan < Carbon::now()->addHours(2)->subDays(1)) {

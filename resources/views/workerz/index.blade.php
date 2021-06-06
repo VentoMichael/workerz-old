@@ -38,7 +38,7 @@
                 </div>
             </div>
             <div class="container-svg">
-                <img width="300" height="300" src="{{asset('svg/Online research.svg')}}"
+                <img width="300" height="300" src="{{asset('svg/Online_research.svg')}}"
                      alt="Personne choissisant la catégorie de métier">
             </div>
         </div>

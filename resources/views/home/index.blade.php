@@ -94,7 +94,7 @@
         </section>
         <section class="container-why">
             <div>
-                <img width="400" height="350" src="{{asset('svg/Marketing _Monochromaticc.svg')}}"
+                <img width="400" height="350" src="{{asset('svg/Marketing_Monochromaticc.svg')}}"
                      alt="Personne réflechissant et assis sur un coussin">
             </div>
             <div class="container-why-text-first">

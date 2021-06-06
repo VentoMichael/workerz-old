@@ -25,7 +25,7 @@
                 </div>
             </div>
             <div class="container-svg">
-                <img width="300" height="300" src="{{asset('svg/Success _Monochromatic.svg')}}"
+                <img width="300" height="300" src="{{asset('svg/Success_Monochromatic.svg')}}"
                      alt="Personne choissisant la catégorie de métier">
             </div>
         </div>

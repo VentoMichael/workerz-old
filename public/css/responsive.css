@@ -295,6 +295,9 @@
         overflow-y: scroll;
         border:1px solid #69696969
     }
+    section div.container-profil-cat{
+        border:0
+    }
 
     .container-filter-categories::-webkit-scrollbar-track {
         margin: 40px 5px 20px 0
@@ -689,8 +692,8 @@
         grid-column-start: 1;
     }
     .container-sections-dashboard section:nth-child(2){
-        border-top: 3px solid #69696969;
-        border-bottom: 3px solid #69696969;
+        border-top: 3px solid lightgrey;
+        border-bottom: 3px solid lightgrey;
         padding-bottom: 30px;
         margin-bottom: -30px;
     }

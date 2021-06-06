@@ -31,7 +31,7 @@
                 </div>
             </div>
             <div class="container-svg">
-                <img width="300" height="300" src="{{asset('svg/Great idea_Monochromatic.svg')}}"
+                <img width="300" height="300" src="{{asset('svg/Great_idea_Monochromatic.svg')}}"
                      alt="Personne choissisant la catégorie de métier">
             </div>
         </div>

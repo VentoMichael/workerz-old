@@ -14,7 +14,7 @@
                 </div>
             </div>
             <div class="container-svg">
-                <img src="{{asset('svg/Online campaign_Monochromatic.svg')}}"
+                <img src="{{asset('svg/Online_campaign_Monochromatic.svg')}}"
                      alt="Personne choissisant la catégorie de métier">
             </div>
         </div>

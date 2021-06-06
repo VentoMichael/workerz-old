@@ -85,7 +85,7 @@ class AnnouncementController extends Controller
         $plan = Session::get('plan');
         if (!$request->has('is_payed')) {
             $data = Validator::make($request->all(), [
-                'title' => 'required|unique:announcements',
+                'title' => 'required',
                 'picture' => 'image:jpg,jpeg,png,svg|file',
                 'description' => 'required|max:256',
                 'job' => 'required|max:256',

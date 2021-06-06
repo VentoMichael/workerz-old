@@ -95,7 +95,7 @@
 
             </div>
             <div class="container-svg">
-                <img width="300" height="300" class="svg-icon" src="{{asset('svg/Innovation _Monochromatic.svg')}}"
+                <img width="300" height="300" class="svg-icon" src="{{asset('svg/Innovation_Monochromatic.svg')}}"
                      alt="icone d'ampoule">
             </div>
         </section>

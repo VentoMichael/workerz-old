@@ -34,7 +34,7 @@
         </div>
         <div class="container-six-category-home show-content container-about-sections">
             <section class="box-category box-about">
-                <img width="300" height="300" src="{{asset('svg/Video tutorial _Monochromatic.svg')}}"
+                <img width="300" height="300" src="{{asset('svg/Video_tutorial_Monochromatic.svg')}}"
                      alt="Icone d'un cahier avec une personne voulant écrire dedans">
                 <div>
                     <h3 aria-level="3" itemprop="makesOffer">Développement d'une annonce</h3>
@@ -42,7 +42,7 @@
                 </div>
             </section>
             <section class="box-category box-about">
-                <img width="300" height="300" src="{{asset('svg/Data analytics _Monochromatic.svg')}}" alt="Icone d'analyser de données">
+                <img width="300" height="300" src="{{asset('svg/Data_analytics_Monochromatic.svg')}}" alt="Icone d'analyser de données">
                 <div>
                     <h3 aria-level="3" itemprop="makesOffer">Déployez votre entreprise</h3>
                     <p>Inscrivez-vous et développez votre entreprise afin d’être mis en relation avec notre portefeuille clients</p>
