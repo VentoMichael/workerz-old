@@ -114,7 +114,7 @@
         </nav>
     </div>
 </header>
-<main class="content">
+<main class="content" id="app">
     @yield('content')
 </main>
 <footer class="footer-container">

@@ -23,7 +23,7 @@
                    aria-current="{{ Request::is('dashboard/messages/*') ? "page" : "" }}">
                     <section>
                         <img width="50" height="50" src="{{asset('svg/messenger.svg')}}" alt="icone de messages">
-                        @if(count($user->relatedTo->where('is_read',0)) > 0 && count($user->relatedTo->where('is_read',0)) > 9)
+                    @if(count($user->relatedTo->where('is_read',0)) > 0 && count($user->relatedTo->where('is_read',0)) > 9)
                             <span class="counter-read-message">
                                     9+
                                 </span>
@@ -80,27 +80,6 @@
 @section('scripts')
     <script src="{{asset('js/confirmDelete-msg.js')}}"></script>
     @livewireScripts
-    <script>
-        let btnMsg = document.getElementById("btnMsgSend")
-        let helpMsg = document.getElementById("helpMsg")
-        if (btnMsg) {
-            document.getElementById("message").addEventListener('keyup', (e) => {
-                btnMsg.classList.add('styleBtnMsg');
-                helpMsg.classList.add('helpMsg');
-                if (document.getElementById("message").value === "") {
-                    btnMsg.classList.remove('styleBtnMsg');
-                    helpMsg.classList.remove('helpMsg');
-                }
-            })
-            document.getElementById("container-message").addEventListener("click", () => {
-                document.getElementById("message").focus()
-            });
-            document.addEventListener('keydown', (e) => {
-                if (event.ctrlKey && event.key === 'Enter') {
-                    document.getElementById('formMsg').submit()
-                }
-            })
-        }
-    </script>
+    <script>let btnMsg=document.getElementById("btnMsgSend"),helpMsg=document.getElementById("helpMsg");btnMsg&&(document.getElementById("message").addEventListener("keyup",e=>{btnMsg.classList.add("styleBtnMsg"),helpMsg.classList.add("helpMsg"),""===document.getElementById("message").value&&(btnMsg.classList.remove("styleBtnMsg"),helpMsg.classList.remove("helpMsg"))}),document.getElementById("container-message").addEventListener("click",()=>{document.getElementById("message").focus()}),document.addEventListener("keydown",e=>{event.ctrlKey&&"Enter"===event.key&&document.getElementById("formMsg").submit()}));</script>
 @endsection
 @endif

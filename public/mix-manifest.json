@@ -1,13 +1,3 @@
 {
-    "/js/app.js": "/js/app.js",
-    "/js/checkDataMaxOptions.js": "/js/checkDataMaxOptions.js",
-    "/js/checkDataMaxOptions2.js": "/js/checkDataMaxOptions2.js",
-    "/js/checkDataMaxOptions3.js": "/js/checkDataMaxOptions3.js",
-    "/js/confirmDelete.js": "/js/confirmDelete.js",
-    "/js/confirmDelete-msg.js": "/js/confirmDelete-msg.js",
-    "/js/newsletter.js": "/js/newsletter.js",
-    "/js/passwordCheck.js": "/js/passwordCheck.js",
-    "/js/passwordSee.js": "/js/passwordSee.js",
-    "/js/previewPicture.js": "/js/previewPicture.js",
-    "/js/successMsg.js": "/js/successMsg.js"
+    "/js/app.js": "/js/app.js"
 }

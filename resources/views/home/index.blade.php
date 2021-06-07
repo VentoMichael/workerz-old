@@ -23,6 +23,7 @@
     <section class="container-categories-home margin">
         <div class="container-categories-text-home">
             <h2 aria-level="2">
+
                 Les professionnels par catégories
             </h2>
             <p class="text-categories-home">Choisissez une catégorie parmi les plus populaires</p>

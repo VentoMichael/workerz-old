@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\MessageCreated;
 use App\Models\Message;
 use App\Models\User;
 use App\Notifications\MessageReceived;
@@ -78,13 +79,9 @@ class MessageController extends Controller
         $message->save();
         Session::flash('success-ads',
             'Votre message a bien été envoyer&nbsp;!');
-        event(
-            new \App\Events\Message(
-                $message->user->name,
-                $message->content
-            ));
-        $receiper = User::where('email',$message->user->email)->first();
+        $receiper = User::where('email',$message->receiver->email)->first();
         $receiper->notify(new MessageReceived($message));
+        //broadcast(new MessageCreated($message));
         return Redirect::back();
     }
 

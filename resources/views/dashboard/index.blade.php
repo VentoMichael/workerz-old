@@ -155,9 +155,9 @@
                                         </p>
                                     </div>
                                     <div class="container-counter-view">
-                                        <p class="view-counter view-counter-dashboard">{{ $ad->view_count }} @if($ad->view_count >1 )
+                                        <p class="view-counter view-counter-dashboard">@if($ad->view_count > 999) 1K @else {{ $ad->view_count }} @endif @if($ad->view_count >1 )
                                                 vues @else vue @endif</p>
-                                        <p class="view-like view-counter-dashboard">{{$ad->likes ? : 0}} @if($ad->likes == null || $ad->likes <= 1)
+                                        <p class="view-like view-counter-dashboard">@if($ad->likes > 999) 1K @else{{$ad->likes ? : 0}} @endif @if($ad->likes == null || $ad->likes <= 1)
                                                 j'aime @else j'aimes @endif</p>
                                     </div>
                                     <div class="button-dashboard-notifications">
