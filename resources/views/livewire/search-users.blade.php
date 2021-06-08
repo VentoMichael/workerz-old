@@ -1,8 +1,13 @@
 <div>
     <div class="container-form-search">
-        <form aria-label="Recherche d'indépendants" role="search" action="{{route('workerz')}}" method="get">
+        @if($helpText !== '')
+        <div class="helpSearch">
+        <span>Il faut 2 caractères au minimum</span>    
+        </div>
+        @endif
+        <form aria-label="Recherche d'indépendants" @if($helpText !== '') style="margin-top:80px;" @endif role="search" action="{{route('workers')}}" method="get">
             <label for="search" class="hidden">Recherche d'indépendants</label>
-            <input type="search" spellcheck="false" placeholder="Quelle catégorie recherchez-vous ?" wire:model="search" name="search" class="search-home" id="search">
+            <input type="search" spellcheck="false" placeholder="Quel métier recherchez-vous ?" wire:model="search" name="search" class="search-home" id="search">
             <input type="submit" class="submit-category-home" value="Recherchez">
         </form>
     </div>
@@ -12,7 +17,7 @@
                 <ul>
                     <li class="container-all-users-boxes">
                         @forelse($workerz as $worker)
-                            <a wire:loading.class="load" class="link-container-infos-user-box" href="/workerz/{{$worker->slug}}">
+                            <a wire:loading.class="load" class="link-container-infos-user-box" href="/workers/{{$worker->slug}}">
                                 <ul class="container-infos-user-box" itemscope
                          itemtype="https://schema.org/Person">
                                     <li>
@@ -38,7 +43,7 @@
                                 <li>
                                     <p>
                                     Je n'ai trouvé aucun indépendant avec ce métier. <a style="text-decoration: underline;"
-                                        href="{{route('workerz')}}">Je vais voir tous les indépendants</a></p>
+                                        href="{{route('workers')}}">Je vais voir tous les indépendants</a></p>
                                 </li>
                             </ul>
                         @endforelse

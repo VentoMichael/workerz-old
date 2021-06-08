@@ -171,6 +171,7 @@
                                 <span itemprop="addressRegion">{{ucfirst($announcement->province->name)}}</span>
                         </span>
                     </div>
+                    @if(auth()->id() !== $announcement->user_id)
                     @auth
                         <form action="{{route('messages.post',[$announcement->user->slug])}}" method="POST"
                               class="formsendmsg button-workerz">
@@ -190,6 +191,7 @@
                             pour parler avec la personne ayant poster l'annonce
                         </a>
                     @endauth
+                    @endif
                 </section>
             </div>
         </section>
@@ -256,9 +258,9 @@
                                     </a>
                                 @endauth
                             </div>
-                            <div class="container-picture-ads">
+                            <div class="container-picture-ads container-profil-img">
                                 @if($ra->picture)
-                                    <img itemprop="image" src="{{ $ra->picture }}"
+                                    <img itemprop="image" src="{{ asset($ra->picture) }}"
                                          alt="photo de profil de {{$ra->name}}"/>
                                 @else
                                     <img itemprop="image" src="{{asset('svg/ad.svg')}}" alt="icone d'annonces">

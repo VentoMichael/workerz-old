@@ -56,7 +56,7 @@
                         <input type="file"
                                id="picture" class="input-field @error('picture') is-invalid @enderror email-label"
                                name="picture"
-                               accept="image/png, image/jpeg">
+                       accept=".jpg, .jpeg, .png">
                         @error('picture')
                         <p class="danger help">
                             {{$errors->first('picture')}}

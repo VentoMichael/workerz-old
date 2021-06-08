@@ -22,7 +22,9 @@
         {{ Request::is('dashboard/messages') || Request::is('dashboard/messages/*') ? ' | Messages' : "" }}
         {{ Request::is('dashboard/notifications') || Request::is('dashboard/notifications/*') ? ' | Notifications' : "" }}
     </title>
+    <link href="{{ asset('css/appDashboard.css') }}" rel="stylesheet">
     <link href="{{ asset('css/styleDashboard.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/responsive.css') }}" rel="stylesheet">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="manifest" href="/site.webmanifest">
     <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
@@ -126,7 +128,7 @@
                 Michael</a></small>
     </div>
 </footer>
-<script src="{{asset('js/successMsg.js')}}"></script>
+<script src="{{asset('js/successMsg.js')}}" defer></script>
 @yield('scripts')
 </body>
 </html>

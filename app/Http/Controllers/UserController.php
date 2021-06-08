@@ -42,7 +42,7 @@ class UserController extends Controller
 
     public function index(Request $request)
     {
-        return view('workerz.index');
+        return view('workers.index');
     }
 
     public function show(User $worker)
@@ -52,7 +52,7 @@ class UserController extends Controller
         $randomUsers = User::Independent()->Payed()->NoBan()->orderBy('role_id',
             'DESC')->withLikes()->limit(2)->inRandomOrder()->where('slug', '!=', $worker->slug)->get();
         $randomPhrasing = CatchPhraseUser::all()->random();
-        return view('workerz.show', compact('worker', 'randomPhrasing', 'randomUsers'));
+        return view('workers.show', compact('worker', 'randomPhrasing', 'randomUsers'));
     }
 
     public function payed(Request $request, User $user)

@@ -1,6 +1,7 @@
 <label for="menuDashboard" class="hidden">Ouverture du menu</label><input id="menuDashboard" type="checkbox"
                                                                           class="menuDashboard">
 <nav>
+    <h2 class="hidden">Navigation principale</h2>
     <li class="container-nav-principal">
         <ul class="full-height">
             <li class="container-list-menu full-height">

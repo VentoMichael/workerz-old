@@ -25,10 +25,12 @@
         {{ Request::is('policy') ? ' | Politique de confidentialité' : "" }}
         {{ Request::is('conditions') ? ' | Conditions d’utilisations' : "" }}
         {{ Request::is('announcements') || Request::is('announcements/*')  || Request::is('announcement/*')  ? ' | Annonces' : "" }}
-        {{ Request::is('workerz') || Request::is('workerz/*') ? ' | Travailleurs' : "" }}
+        {{ Request::is('workers') || Request::is('workers/*') ? ' | Travailleurs' : "" }}
         {{ Request::is('dashboard') || Request::is('dashboard/*') ? ' | Tableau de bord' : "" }}
     </title>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/responsive.css') }}" rel="stylesheet">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="manifest" href="/site.webmanifest">
     <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
@@ -49,7 +51,7 @@
         {{ Request::is('policy') ? 'politique de confidentialité' : "" }}
         {{ Request::is('conditions') ? 'conditions d’utilisations' : "" }}
         {{ Request::is('announcements') || Request::is('announcements/*')  || Request::is('announcement/*')  ? 'annonces' : "" }}
-        {{ Request::is('workerz') || Request::is('workerz/*') ? 'travailleurs' : "" }} de Workerz
+        {{ Request::is('workers') || Request::is('workers/*') ? 'travailleurs' : "" }} de Workerz
     </h1>
     <div class="container-menu">
         <nav class="navbar navbarId" id="navbar">
@@ -197,7 +199,7 @@
                                         href="{{ url('/') }}">Accueil</a>
                             </li>
                             <li>
-                                <a class="{{ Request::is('workerz') || Request::is('workerz/*') ? "current_page_item" : "" }}" {{ Request::is('workerz') || Request::is('workerz/*') ? "aria-current='page'" : "" }} href="{{route('workerz')}}">Travailleurs</a>
+                                <a class="{{ Request::is('workers') || Request::is('workers/*') ? "current_page_item" : "" }}" {{ Request::is('workers') || Request::is('workers/*') ? "aria-current='page'" : "" }} href="{{route('workers')}}">Travailleurs</a>
                             </li>
                             <li>
                                 <a class="{{ Request::is('announcements') || Request::is('announcements/*') ? "current_page_item" : "" }}" {{ Request::is('announcements') || Request::is('announcements/*') ? "aria-current='page'" : "" }} href="{{route('announcements')}}">Annonces</a>
@@ -236,8 +238,20 @@
                                             <img class="picto-user" width="25" height="32" src="{{asset('svg/user-w.svg')}}"
                                                  alt="image de profil par défaut">
                                         @endif
-
                                         Dashboard</a>
+                                        @if(count($notificationsReaded) > 9 && count($notificationsReaded) > 0)
+
+                                    <a class="counter-read-message" href="{{route('dashboard.notifications')}}">
+                                    9+
+                                    </a>
+
+                            @else
+                                @if(count($notificationsReaded))
+                                        <a href="{{route('dashboard.notifications')}}" class="counter-read-message">
+                                    {{count($notificationsReaded)}}
+                                    </a>
+                                @endif
+                            @endif
                                 </li>
                                 <li class="nav-dashboard notVisible">
                                     <ul>
@@ -271,6 +285,7 @@
                 Liens utiles
             </h3>
             <nav>
+                <h4 aria-level="4" class="hidden">Navigation secondaire</h4>
                 <ul>
                     <li>
                         <a {{ Request::is('contact') || Request::is('contact/*') ? "aria-current='page'" : "" }} href="{{route('contact')}}">
@@ -327,7 +342,7 @@
     @endif
 
 </footer>
-<script src="{{asset('js/successMsg.js')}}"></script>
+<script src="{{asset('js/successMsg.js')}}" defer></script>
 @yield('scripts')
 </body>
 </html>

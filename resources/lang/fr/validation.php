@@ -134,7 +134,10 @@ return [
             'rule-name' => 'custom-message',
         ],
         'conditions.required' => 'Vous devez être en accord avec les conditions',
-        'pricemax.max' => 'Grand',
+        'pricemax.max' => 'Le prix est trop grand',
+        'number.required' => 'Le numéro de téléphone est requis',
+        'number.max' => 'Le numéro de téléphone ne peux pas comporter plus de 12 caractères',
+        'number.min' => 'Le numéro de téléphone doit comporter au minimum 10 caractères',
     ],
     'attributes' => [
         'title' => 'titre',

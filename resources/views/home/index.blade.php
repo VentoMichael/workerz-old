@@ -32,18 +32,18 @@
             @foreach($categories as $categorie)
                 <section>
                     <a class="box-category"
-                       href="{{route('workerz').'?categoryUser%5B%5D='.$categorie->id.'#workerzLink'}}">
+                       href="{{route('workers').'?categoryUser%5B%5D='.$categorie->id.'#workerzLink'}}">
                         <img width="300" height="300" src="{{asset('svg/'.$categorie->profil)}}"
                              alt="{{$categorie->alt}}">
                         <div itemscope itemtype="https://schema.org/Person">
                             <h3 itemprop="jobTitle" aria-level="3">{{ucfirst($categorie->name)}}</h3>
-                            <p>{{$categorie->users->count()}} professionnels</p>
+                            <p>{{$categorie->users->count()}} @if($categorie->users->count() <= 1) professionnel @else professionnels @endif</p>
                         </div>
                     </a>
                 </section>
             @endforeach
             <section>
-                <a class="last-box-category box-category" href="{{route('workerz')}}">
+                <a class="last-box-category box-category" href="{{route('workers')}}">
                     <h3 aria-level="3">Toutes les catégories</h3>
                 </a>
             </section>
@@ -84,7 +84,7 @@
                 <p class="text-why">
                     Nous affilions les meilleurs indépendants, proposant une vaste gamme de catégories.
                 </p>
-                <a href="{{route('workerz')}}" class="button-cta">
+                <a href="{{route('workers')}}" class="button-cta">
                     Les indépendants
                 </a>
             </div>

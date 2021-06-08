@@ -86,7 +86,7 @@
                                 <div class="container-message container-notification">
                                     <img src="{{asset('svg/user.svg')}}" alt="icone de notifications">
                                     <div>
-                                        <h4 aria-level="4">{{$n->data['message']['user']['name']}}</h4>
+                                        <h4 aria-level="4">{{$n->data['message']['receiver']['name']}}</h4>
                                         <a href="{{$n->data['message']['user']['email']}}">{{$n->data['message']['user']['email']}}</a>
                                         <p>{{$n->created_at->locale('fr')->isoFormat('Do MMMM YYYY, H:mm')}}</p>
                                     </div>

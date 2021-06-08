@@ -18,10 +18,10 @@ class UserNotificationController extends Controller
      */
     public function index()
     {
+        
         $noReadMsgs = count(auth()->user()->talkedTo->where('is_read',0));
-        $notifications = auth()->user()->notifications;
         $notificationsReaded = auth()->user()->notifications->where('read_at',null);
-
+        $notifications = \auth()->user()->notifications;
         foreach ($notifications as $notification) {
             if($notification->read_at !== null && $notification->read_at <= Carbon::now()->subDays(7)){
                 $notification->delete();

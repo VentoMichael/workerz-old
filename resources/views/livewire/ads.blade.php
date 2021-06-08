@@ -4,11 +4,16 @@
         @include('partials.newsletter')
     @endif
     <div class="container-home container-search hideForNewsletter">
-        <form action="{{route('announcements')}}" aria-label="Recherche d'annonce" role="search" method="get"
+        @if($helpText !== '')
+        <div class="helpSearch">
+        <span>Il faut 2 caractères au minimum</span>    
+        </div>
+        @endif
+        <form action="{{route('announcements')}}" @if($helpText !== '') style="margin-top:80px;" @endif aria-label="Recherche d'annonce" role="search" method="get"
               class="formSearchAd">
             <label for="search" class="hidden">Recherche d'annonces</label>
             <input type="text" name="search" value="{{request('search')}}" id="search" wire:model="search"
-                   placeholder="Quelle catégorie recherchez-vous ?"
+                   placeholder="Quel métier recherchez-vous ?"
                    class="search-announcement search-home">
             <noscript>
                 <input type="submit" class="submit-category-home submit-ad" value="Recherchez">
@@ -78,7 +83,7 @@
                                 <img src="{{asset('svg/euro.svg')}}" alt="icone d'euro"><span>Max: {{$announcement->pricemax}}€</span>
                             </div>
                         @endif
-                        <div class="container-image-announcement">
+                        <div class="container-image-announcement container-profil-img">
                             @if($announcement->picture)
                                 <img itemprop="image" src="{{ $announcement->picture }}"
                                      alt="image de profil de {{$announcement->title}}"/>
@@ -119,6 +124,8 @@
                             </div>
                         </div>
                     </div>
+                                        @if(auth()->id() !== $announcement->user_id)
+
                     @auth
 
                         @if($announcement)
@@ -145,6 +152,7 @@
                             pour parler avec la personne ayant poster l'annonce
                         </a>
                     @endauth
+                    @endif
                     <a href="/announcements/{{$announcement->slug}}" class="button-personnal-announcement">
                         Aller voir {{$announcement->title}}
                     </a>
@@ -159,7 +167,7 @@
                         <p class="containerAllText" style="margin-top: 10px;">
                             Oops, je n'ai rien trouvé @if($search)avec cette recherche <i>"{{$search}}"</i>@endif&nbsp;! Essayez une autre recherche ou <a
                                 style="text-decoration: underline;"
-                                href="{{route('workerz').'#adsLink'}}">rafraichissez la page</a>
+                                href="{{route('workers').'#adsLink'}}">rafraichissez la page</a>
                         </p>
                     </div>
                 </section>

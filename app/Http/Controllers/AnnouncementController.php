@@ -86,7 +86,7 @@ class AnnouncementController extends Controller
         if (!$request->has('is_payed')) {
             $data = Validator::make($request->all(), [
                 'title' => 'required',
-                'picture' => 'image:jpg,jpeg,png,svg|file',
+                'picture' => 'image:jpg,jpeg,png|max:2048',
                 'description' => 'required|max:256',
                 'job' => 'required|max:256',
                 'location' => 'required|not_in:0',
@@ -138,7 +138,7 @@ class AnnouncementController extends Controller
             $announcement->save();
             $announcement->categoryAds()->attach($ct->category_id);
             \auth()->user()->notify(new AdCreated($announcement));
-            return redirect(route('dashboard.ads'));
+            return redirect('/dashboard/ads/'.$announcement->slug);
         } else {
             if ($request->has('is_draft')) {
                 $announcement->is_draft = true;
@@ -148,7 +148,7 @@ class AnnouncementController extends Controller
                 $announcement->save();
                 $announcement->categoryAds()->attach($ct->category_id);
                 Session::forget('plan');
-                return redirect(route('dashboard.ads'));
+                return redirect('/dashboard/ads/'.$announcement->slug);
             } else {
                 $announcement->is_draft = false;
                 $payed = false;
@@ -212,6 +212,6 @@ class AnnouncementController extends Controller
             ->send(new AdsCreated($announcement));
         \auth()->user()->notify(new AdCreated($announcement));
         Session::forget('plan');
-        return redirect(route('dashboard.ads'));
+        return redirect('/dashboard/ads/'.$announcement->slug);
     }
 }

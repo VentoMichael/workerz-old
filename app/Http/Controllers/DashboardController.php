@@ -35,7 +35,7 @@ class DashboardController extends Controller
         $noReadMsgs = count(auth()->user()->talkedTo->where('is_read',0));
                 $notificationsReaded = auth()->user()->notifications->where('read_at',null);
         $this->sendExpireNotificationAccount();
-        $messages = Message::where('to_id', '=', \auth()->user()->id)->with('user')->orderBy('created_at',
+        $messages = Message::where('to_id', '=', \auth()->user()->id)->with('user')->orderByDesc('created_at',
             'ASC')->take(3)->get();
         $lastAnnouncements = Announcement::where('user_id', '=',
             \auth()->user()->id)->WithLikes()->NoBan()->Payement()->Published()->orderBy('view_count',
@@ -66,8 +66,10 @@ class DashboardController extends Controller
         $request->validate([
             'name' => 'sometimes|required|string|max:255', Rule::unique('users')->ignore($user->id),
             'surname' => 'sometimes|string|max:255',
+            'phones.number'=>'regex:/^([0-9\s\-\+\(\)]*)$/|min:10|max:12',
+            'number' => 'sometimes|required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10|max:12',
             'email' => 'sometimes|required|string|max:255', Rule::unique('users')->ignore($user->id),
-            'picture' => 'sometimes|image|mimes:jpg,png,jpeg,svg|max:2048',
+            'picture' => 'sometimes|image|mimes:jpg,png,jpeg|max:2048',
         ]);
         if ($request->password && $request->password != $user->getOriginal('password')) {
             $request->validate([
@@ -91,7 +93,6 @@ class DashboardController extends Controller
         if ($user->role_id == 2) {
             Validator::make(\request()->all(), [
                 'adress' => 'sometimes|required',
-                'number' => 'sometimes|required',
                 'pricemax' => 'sometimes|max:999999',
                 'website' => 'sometimes|nullable', 'url',
                 'websitetwo' => 'sometimes|nullable', 'url',
@@ -147,7 +148,6 @@ class DashboardController extends Controller
 
         $user->phones()->delete();
         $user->phones()->saveMany([
-            new Phone(['number' => $request->number]),
             new Phone(['number' => $request->phonetwo]),
             new Phone(['number' => $request->phonethree]),
         ]);

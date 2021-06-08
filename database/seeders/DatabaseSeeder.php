@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
         $this->call(PlanUserSeeder::class);
         $this->call(PlanAnnouncementSeeder::class);
         $this->call(RoleSeeder::class);
-        $this->call(UserSeeder::class);
+        //$this->call(UserSeeder::class);
         $this->call(ProvinceSeeder::class);
         //$this->call(MessageSeeder::class);
         //$this->call(PhysicalAdressSeeder::class);

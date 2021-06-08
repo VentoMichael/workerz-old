@@ -56,7 +56,7 @@ class CreateNewUser implements CreatesNewUsers
 
             Validator::make($input, [
                 'name' => ['required', 'string', 'max:255', Rule::unique(User::class)],
-                'picture' => 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048',
+                'picture' => 'image', 'mimes:jpeg,png,jpg', 'max:2048',
                 'conditions' => 'required',
                 'email' => [
                     'required',
@@ -65,7 +65,7 @@ class CreateNewUser implements CreatesNewUsers
                     'max:255',
                     Rule::unique(User::class),
                 ],
-                'number' => ['required', Rule::unique(Phone::class)],
+                'number' => ['required', Rule::unique(Phone::class),'regex:/^([0-9\s\-\+\(\)]*)$/','min:10','max:12'],
                 'password' => [
                     'required',
                     'min:8',
@@ -93,7 +93,7 @@ class CreateNewUser implements CreatesNewUsers
         if (\request('type') == 'company') {
             Validator::make($input, [
                 'name' => ['required', 'string', 'max:255', Rule::unique(User::class)],
-                'picture' => 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048',
+                'picture' => 'image', 'mimes:jpeg,png,jpg', 'max:2048',
                 'email' => [
                     'required',
                     'string',
@@ -150,8 +150,6 @@ class CreateNewUser implements CreatesNewUsers
             $ct->category_id = \request('categoryUser');
             $user->categoryUser()->attach($ct->category_id);
             $di = new StartDate();
-            $website = new Website(['link' => $input['website']]);
-            $user->websites()->save($website);
             $di->start_date_id = \request('disponibilities');
             $user->startDate()->attach($di->start_date_id);
             if ($user->plan_user_id == 1) {

@@ -35,11 +35,11 @@ Route::get('/announcements/{announcement}',
 
 
 // WORKERS VIEW
-Route::get('/workerz', [\App\Http\Controllers\UserController::class, 'index'])
-    ->name('workerz');
-Route::get('/workerz/{worker}',
+Route::get('/workers', [\App\Http\Controllers\UserController::class, 'index'])
+    ->name('workers');
+Route::get('/workers/{worker}',
     [\App\Http\Controllers\UserController::class, 'show'])
-    ->name('workerz.show')
+    ->name('workers.show')
     ->middleware('userroute');
 
 Route::get('/register/plans', [\App\Http\Controllers\UserController::class, 'plans'])
@@ -113,8 +113,8 @@ Route::prefix('')->middleware(['auth','verified'])->group(function () {
     Route::put('/dashboard/profil/edit', [\App\Http\Controllers\DashboardController::class, 'updateUser'])->name('dashboard.update');
 
     // WORKERS
-    Route::post('/workerz/{worker}/like', [\App\Http\Controllers\UserLikeController::class, 'store']);
-    Route::delete('/workerz/{worker}/like', [\App\Http\Controllers\UserLikeController::class, 'delete']);
+    Route::post('/workers/{worker}/like', [\App\Http\Controllers\UserLikeController::class, 'store']);
+    Route::delete('/workers/{worker}/like', [\App\Http\Controllers\UserLikeController::class, 'delete']);
 
     // ADS CREATING
     Route::get('/announcement/plans',

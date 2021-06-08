@@ -23,14 +23,14 @@
                    aria-current="{{ Request::is('dashboard/messages/*') ? "page" : "" }}">
                     <section>
                         <img width="50" height="50" src="{{asset('svg/messenger.svg')}}" alt="icone de messages">
-                    @if(count($user->relatedTo->where('is_read',0)) > 0 && count($user->relatedTo->where('is_read',0)) > 9)
+                    @if(count($user->relatedTo->where('is_read',0)) > 0 && count($user->relatedTo->where('is_read',0)) > 9 && $user->relatedTo->where('content','!=', null))
                             <span class="counter-read-message">
                                     9+
                                 </span>
                         @else
-                            @if(count($user->relatedTo->where('is_read',0)) !== 0)
+                            @if(count($user->relatedTo->where('is_read',0)) !== 0 )
                                 <span class="counter-read-message">
-                                    {{count($user->relatedTo->where('is_read',0)->where('to_id','!=',ucfirst($user->name)))}}
+                                    {{count($user->relatedTo->where('is_read',0)->where('to_id','!=',ucfirst($user->name))->where('content','!==',null))}}
                                 </span>
                             @endif
                         @endif
@@ -67,7 +67,7 @@
                         <h3 aria-level="3">
                             Aucune conversation trouvée ...
                         </h3>
-                        <a class="button-cta" href="{{route('workerz')}}">
+                        <a class="button-cta" href="{{route('workers')}}">
                             <span>Toutes les entreprises</span>
                         </a>
                     </div>

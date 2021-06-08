@@ -61,7 +61,8 @@ class FortifyServiceProvider extends ServiceProvider
             return view('auth.reset-password');
         });
         Fortify::verifyEmailView(function () {
-            return view('auth.verify-email');
+            $notificationsReaded = auth()->user()->notifications->where('read_at',null);
+            return view('auth.verify-email',compact('notificationsReaded'));
         });
         Fortify::createUsersUsing(CreateNewUser::class);
         Fortify::updateUserProfileInformationUsing(UpdateUserProfileInformation::class);

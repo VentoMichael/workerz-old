@@ -15,18 +15,16 @@ class Users extends Component
     public $search = "";
     public $provinces = [];
     public $categoryUser = [];
+    public $helpText = "";
     protected $queryString = [
         'search', 'provinces',
         'categoryUser'
     ];
     public function render()
     {
-        sleep(1);
-        return view('livewire.users', [
-            'newsletterValidated' => request()->session()->get('newsletter'),
-            'regions' => Province::orderBy('name')->get(),
-            'categories' => Category::orderBy('name')->get(),
-            'workerz' => User::query()
+         if (strlen($this->search) > 1) {
+             sleep(.7);
+            $workerz = User::query()
                 ->orderBy('plan_user_id', 'DESC')
                 ->orderBy('created_at', 'DESC')
                 ->with('categoryUser')
@@ -58,7 +56,30 @@ class Users extends Component
                 ->NoBan()
                 ->where('job', 'like', '%'.$this->search.'%')
                 ->paginate(4)
-                ->onEachSide(0),
+                ->onEachSide(0);
+                $this->helpText = '';
+        } else {
+            if (strlen($this->search) === 1) {
+               $this->helpText = '3 caractères minimum';
+            }else{
+                $this->helpText = '';
+            }
+            $workerz = User::orderBy('plan_user_id', 'DESC')
+                ->orderBy('created_at', 'DESC')
+                ->with('categoryUser')
+                ->withLikes()
+                ->Independent()
+                ->Payed()
+                ->NoBan()
+                ->paginate(4)
+                ->onEachSide(0);
+        }
+        return view('livewire.users', [
+            'newsletterValidated' => request()->session()->get('newsletter'),
+            'regions' => Province::orderBy('name')->get(),
+            'categories' => Category::orderBy('name')->get(),
+            'workerz' => $workerz,
+            'helpText' => $this->helpText,
         ]);
     }
 }

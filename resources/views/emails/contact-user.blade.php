@@ -16,7 +16,7 @@ ___
 
 {{$data["message"]}}
 
-@component('mail::button',['url' => env('APP_URL').'/workerz'])
+@component('mail::button',['url' => env('APP_URL').'/workers'])
 Les nouveaux indépendents
 @endcomponent
 

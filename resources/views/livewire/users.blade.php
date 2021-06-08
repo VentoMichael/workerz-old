@@ -3,11 +3,16 @@
         @include('partials.newsletter')
     @endif
     <div class="container-search hideForNewsletter">
-        <form action="{{route('workerz')}}" aria-label="Recherche d'indépendants" role="search" method="get"
+        @if($helpText !== '')
+        <div class="helpSearch">
+        <span>Il faut 2 caractères au minimum</span>    
+        </div>
+        @endif
+        <form action="{{route('workers')}}" @if($helpText !== '') style="margin-top:80px;" @endif aria-label="Recherche d'indépendants" role="search" method="get"
               class="formSearchAd">
             <label for="search" class="hidden">Recherche d'entreprises</label>
             <input type="text" name="search" value="{{request('search')}}" id="search" wire:model="search"
-                   placeholder="Quelle catégorie recherchez-vous ?"
+                   placeholder="Quel métier recherchez-vous ?"
                    class="search-announcement search-home">
             <noscript>
                 <input type="submit" class="submit-category-home submit-ad" value="Recherchez">
@@ -20,6 +25,7 @@
         </h2>
         <div class="container-all-announcement show-content @if($workerz->count() < 1) noAds @endif">
             @forelse($workerz as $worker)
+            
                 <section class="container-announcement" wire:loading.class="load" itemscope
                          itemtype="https://schema.org/Person">
                     <div class="container-infos-announcement">
@@ -30,7 +36,7 @@
                                     @if(!$worker->isLikedUBy($worker))
                                         <form method="POST" title="Mettre un j'aime à {{$worker->name}}"
                                               aria-label="Mettre un j'aime à {{$worker->name}}"
-                                              action="/workerz/{{$worker->slug}}/like">
+                                              action="/workers/{{$worker->slug}}/like">
                                             @csrf
 
                                             <button type="submit" class="button-loves">
@@ -45,7 +51,7 @@
 
                                         <form method="POST" title="Enlever le j'aime donner à {{$worker->name}}"
                                               aria-label="Enlever le j'aime donner à {{$worker->name}}"
-                                              action="/workerz/{{$worker->slug}}/like">
+                                              action="/workers/{{$worker->slug}}/like">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="button-loves">
@@ -79,7 +85,7 @@
                                 <span itemprop="price">{{$worker->pricemax}} €/h</span>
                             </div>
                         @endif
-                        <div class="container-image-announcement">
+                        <div class="container-image-announcement container-profil-img">
                             @if($worker->picture)
                                 <img src="{{ $worker->picture }}"
                                      alt="image de profil de {{$worker->name}} @if($worker->surname) {{$worker->surname}} @endif">
@@ -116,29 +122,31 @@
                             @endif
                         </div>
                     </div>
-                    @auth
-                        @if($workerz)
-                            <form action="{{route('messages.post',[$worker->slug])}}" method="POST"
-                                  class="formsendmsg formsenmsg-show-view">
-                                @csrf
-                                <input type="hidden" name="from_id" id="from_id{{$loop->index}}"
-                                       value="{{auth()->user()->id}}">
-                                <input type="hidden" name="to_id" id="to_id{{$loop->index}}" value="{{$worker->id}}">
-                                <input type="hidden" name="slug" id="slug{{$loop->index}}" value="{{$worker->slug}}">
-                                <button type="submit" class="button-cta button-msg" name="talkTo">
-                                    Parler avec {{ucfirst($worker->name)}} {{ucfirst($worker->surname)}}
-                                </button>
-                            </form>
-                        @endif
-                    @else
-                        <a class="formsendmsg formsenmsg-show-view-Notauth button-cta button-msg"
-                           href="{{route('login')}}"
-                           title="Il faut se connecté pour parler avec le détenteur de l'annonce">Il faut être
-                            connecté
-                            pour parler avec {{ucfirst($worker->name)}} {{ucfirst($worker->surname)}}
-                        </a>
-                    @endauth
-                    <a href="/workerz/{{$worker->slug}}" class="button-personnal-announcement">
+                    @if(auth()->id() !== $worker->id)
+                        @auth
+                            @if($workerz)
+                                <form action="{{route('messages.post',[$worker->slug])}}" method="POST"
+                                      class="formsendmsg formsenmsg-show-view">
+                                    @csrf
+                                    <input type="hidden" name="from_id" id="from_id{{$loop->index}}"
+                                           value="{{auth()->user()->id}}">
+                                    <input type="hidden" name="to_id" id="to_id{{$loop->index}}" value="{{$worker->id}}">
+                                    <input type="hidden" name="slug" id="slug{{$loop->index}}" value="{{$worker->slug}}">
+                                    <button type="submit" class="button-cta button-msg" name="talkTo">
+                                        Parler avec {{ucfirst($worker->name)}} {{ucfirst($worker->surname)}}
+                                    </button>
+                                </form>
+                            @endif
+                        @else
+                            <a class="formsendmsg formsenmsg-show-view-Notauth button-cta button-msg"
+                               href="{{route('login')}}"
+                               title="Il faut se connecté pour parler avec le détenteur de l'annonce">Il faut être
+                                connecté
+                                pour parler avec {{ucfirst($worker->name)}} {{ucfirst($worker->surname)}}
+                            </a>
+                        @endauth
+                    @endif
+                    <a href="/workers/{{$worker->slug}}" class="button-personnal-announcement">
                         Aller voir {{ucfirst($worker->name)}}
                     </a>
                 </section>
@@ -152,7 +160,7 @@
                         <p class="containerAllText" style="margin-top: 10px;">
                             Oops, je n'ai rien trouvé @if($search)avec cette recherche <i>"{{$search}}"</i>@endif&nbsp;! Essayez une autre recherche ou <a
                                 style="text-decoration: underline;"
-                                href="{{route('workerz').'#adsLink'}}">rafraichissez la page</a>
+                                href="{{route('workers').'#adsLink'}}">rafraichissez la page</a>
                         </p>
                     </div>
                 </section>
@@ -160,7 +168,7 @@
             {{ $workerz->links() }}
         </div>
         <div class="container-filters container-filters-workerz">
-            <form aria-label="Filtrage d'indépendants" action="{{route('workerz')}}" method="get">
+            <form aria-label="Filtrage d'indépendants" action="{{route('workers')}}" method="get">
                 <section>
                     <h2 aria-level="2">
                         Filtres

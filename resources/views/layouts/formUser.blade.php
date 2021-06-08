@@ -7,18 +7,18 @@
         @auth
             @method('PUT')
         @endauth
-        @if(auth()->user())
-            <div class="container-register-form container-register">
-                @endif
+            <div class="container-register-form container-register @if(!auth()->user()) container-form-registers @endif">
                 <div class="container-form-email">
                     <div class="avatar-container @if(auth()->user()) avatar-dashboard-profil @endif">
                         <label for="picture">Photo de profil</label>
+                        <div class="container-profil-img">
                         <img @if(auth()->user() && auth()->user()->picture !== null) src="{{asset(auth()->user()->picture)}}" @elseif(auth()->user() && auth()->user()->picture == null) src="{{asset('svg/user.svg')}}" @endif width="150" height="150" id="output" class="preview-picture preview-edit" alt="photo du commerce"/>
+                        </div>
                     </div>
                     <input type="file"
                            id="picture" class="input-field @error('picture') is-invalid @enderror email-label"
                            name="picture"
-                           accept="image/png, image/jpeg">
+                       accept=".jpg, .jpeg, .png">
                     <p class="help helppicture">Format acceptés : jpg, png, jpeg ou svg</p>
                     <p class="helpSecond helppicture">Poid maximum : 2048KO</p>
                     @error('picture')
@@ -33,7 +33,7 @@
                 <div class="container-form-email container-phone">
                     <label for="number">Numéro de téléphone <span class="required">*</span></label>
 
-                    <input minlength="6" maxlength="15" type="tel" id="number" pattern="^[0-9-+\s()]*$"
+                    <input minlength="10" maxlength="12" type="tel" id="number" pattern="^[0-9-+\s()]*$"
                            @if(auth()->user()) value="{{auth()->user()->phones()->first()->number}}"
                            @else value="{{old('number')}}"
                            @endif placeholder="0494827235"
@@ -61,41 +61,36 @@
 
                 </div>
                 @if(auth()->user() && auth()->user()->plan_user_id ==2)
-
-                    @if(auth()->user()->phones()->count() > 1)
+                    @if(auth()->user()->phones()->count() >= 1)
+                    <div class="container-form-email">
                         <label for="phonetwo">2<sup>é</sup> Numéro de téléphone</label>
-                        <input minlength="6" maxlength="15" type="tel" id="phonetwo" pattern="^[0-9-+\s()]*$"
-                               placeholder="0494827235" value="{{auth()->user()->phones()->skip(1)->first()->number}}"
+                        <input minlength="10" maxlength="12" type="tel" id="phonetwo" pattern="^[0-9-+\s()]*$"
+                               placeholder="0494827235" value="{{auth()->user()->phones()->first()->number}}"
 
                                class=" @error('phone') is-invalid @enderror email-label" name="phonetwo">
+                               </div>
                     @endif
                 @endif
                 @if(auth()->user() && auth()->user()->plan_user_id ==3)
                     <div class="container-form-email">
                         <label for="phonetwo">2<sup>é</sup> Numéro de téléphone</label>
-                        <input minlength="6" maxlength="15" type="tel" id="phonetwo" pattern="^[0-9-+\s()]*$"
+                        <input minlength="10" maxlength="12" type="tel" id="phonetwo" pattern="^[0-9-+\s()]*$"
                                placeholder="0494827235"
                                @if(auth()->user()->phones()->count() > 1)
-                               value="{{auth()->user()->phones()->skip(1)->first()->number}}"
+                               value="{{auth()->user()->phones()->first()->number}}"
                                @endif class=" @error('phone') is-invalid @enderror email-label" name="phonetwo">
                     </div>
                     <div class="container-form-email">
                         <label for="phonethree">3<sup>é</sup> Numéro de téléphone</label>
-                        <input minlength="6" maxlength="15" type="tel" id="phonethree" pattern="^[0-9-+\s()]*$"
+                        <input minlength="10" maxlength="12" type="tel" id="phonethree" pattern="^[0-9-+\s()]*$"
                                placeholder="0494827235"
                                @if(auth()->user()->phones()->count() > 2)
-                               value="{{auth()->user()->phones()->skip(2)->first()->number}}"
+                               value="{{auth()->user()->phones()->skip(1)->first()->number}}"
                                @endif
                                class=" @error('phone') is-invalid @enderror email-label" name="phonethree">
                     </div>
                 @endif
-                @if(auth()->user())
-            </div>
-        @endif
 
-        @if(auth()->user())
-            <div class="container-register-form container-register container-edit-name">
-                @endif
                 <div class="container-form-email">
                     <label for="name">Nom<span class="required"> *</span></label>
                     <input type="text" id="name" @if(auth()->user()) value="{{auth()->user()->name}}"
@@ -120,14 +115,8 @@
                            class=" @error('surname') is-invalid @enderror email-label" name="surname">
                 </div>
 
-                @if(auth()->user())
-            </div>
-            <div class="container-connexion-logins">
-                @endif
                 @include('partials.register')
-                @if(auth()->user())
             </div>
-        @endif
 
         <div>
             @if(!\Illuminate\Support\Facades\Auth::user())

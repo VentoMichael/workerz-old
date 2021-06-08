@@ -6,16 +6,18 @@
         @csrf
         @if(auth()->user()) @method('PUT') @endif
         <div
-            class="container-register-form container-register @if(auth()->user()) container-edition-formulary @endif container-register-user">
+            class="container-register-form container-register @if(auth()->user()) container-edition-formulary @else container-form-registers @endif container-register-user">
             <div class="container-form-email">
                 <div class="avatar-container">
                     <label for="picture">Logo</label>
-                    <img id="output" class="preview-picture" alt="logo du commerce"/>
+                    <div class="container-profil-img">
+                    <img @if(auth()->user() && auth()->user()->picture !== null) src="{{asset(auth()->user()->picture)}}" @elseif(auth()->user() && auth()->user()->picture == null) src="{{asset('svg/user.svg')}}" @endif width="150" height="150" id="output" class="preview-picture preview-edit" alt="photo du commerce"/>
+                    </div>
                 </div>
                 <input type="file"
                        id="picture" class="input-field @error('picture') is-invalid @enderror email-label"
                        name="picture"
-                       accept="image/png, image/jpeg">
+                       accept=".jpg, .jpeg, .png">
                 <p class="help">Format acceptés : jpg, png, jpeg ou svg</p>
                 <p class="helpSecond">Poid maximum : 2048KO</p>
                 @error('picture')
@@ -28,7 +30,7 @@
             </div>
             <div class="container-form-email">
                 <label for="number">Numéro de téléphone <span class="required">*</span></label>
-                <input minlength="6" maxlength="15" type="tel" id="phone" pattern="^[0-9-+\s()]*$"
+                <input minlength="10" maxlength="12" type="tel" id="phone" pattern="^[0-9-+\s()]*$"
                        @if(auth()->user()) value="{{auth()->user()->phones()->first()->number}}"
                        @else value="{{old('number')}}"                        @endif placeholder="0494827235"
                        class=" @error('number') is-invalid @enderror email-label" name="number" required
@@ -60,7 +62,7 @@
                     <div class="container-form-email">
                         <label for="phonetwo">2<sup>é</sup> numéro de téléphone <span
                                 class="required">*</span></label>
-                        <input minlength="6" maxlength="15" type="tel" id="phonetwo" pattern="^[0-9-+\s()]*$"
+                        <input minlength="10" maxlength="12" type="tel" id="phonetwo" pattern="^[0-9-+\s()]*$"
                                placeholder="0494827235"
                                value="{{auth()->user()->phones()->skip(1)->first()->number}}"
                                class=" @error('phone') is-invalid @enderror email-label" name="phonetwo">
@@ -72,7 +74,7 @@
                 <div class="container-form-email">
                     <label for="phonetwo">2<sup>é</sup> numéro de téléphone</label>
 
-                    <input minlength="6" maxlength="15" type="tel" id="phonetwo" pattern="^[0-9-+\s()]*$"
+                    <input minlength="10" maxlength="12" type="tel" id="phonetwo" pattern="^[0-9-+\s()]*$"
                            placeholder="0494827235"
                            @if(auth()->user()->phones()->count() > 1)
                            value="{{auth()->user()->phones()->skip(1)->first()->number}}"
@@ -81,7 +83,7 @@
                 <div class="container-form-email">
                     <label for="phonethree">3<sup>é</sup> numéro de téléphone</label>
 
-                    <input minlength="6" maxlength="15" type="tel" id="phonethree" pattern="^[0-9-+\s()]*$"
+                    <input minlength="10" maxlength="12" type="tel" id="phonethree" pattern="^[0-9-+\s()]*$"
                            placeholder="0494827235"
                            @if(auth()->user()->phones()->count() > 2)
                            value="{{auth()->user()->phones()->skip(2)->first()->number}}"
@@ -674,3 +676,6 @@
 
     </form>
 </div>
+@section('scripts')
+    <script src="{{asset('js/previewPicture.js')}}"></script>
+@endsection

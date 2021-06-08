@@ -54,6 +54,7 @@
                                                 <div class="avatar-container">
                                                     <p>Logo</p>
                                                 </div>
+                                                <div class="container-profil-img container-profil-img">
                                                 @if(auth()->user()->picture != null)
                                                     <img width="150" height="150" src="{{asset(auth()->user()->picture)}}"
                                                          alt="logo de {{auth()->user()->name}}">
@@ -61,6 +62,7 @@
                                                     <img width="150" height="150" src="{{asset('svg/user.svg')}}"
                                                          alt="image de profil par défaut">
                                                 @endif
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -273,6 +275,7 @@
                                         <div class="avatar-container">
                                             <p>Photo de profil</p>
                                         </div>
+                                        <div class="container-profil-img container-profil-img">
                                         @if(auth()->user()->picture != null)
                                             <img width="150" height="150" src="{{asset(auth()->user()->picture)}}"
                                                  alt="image de profil de {{auth()->user()->name}}">
@@ -280,6 +283,7 @@
                                             <img width="150" height="150" src="{{asset('svg/user.svg')}}"
                                                  alt="image de profil par défaut">
                                         @endif
+                                        </div>
                                     </div>
                                     <div class="container-form-email">
                                         <p>Numéro de téléphone</p>

@@ -15,18 +15,15 @@ class Ads extends Component
 
     public $search = "";
     public $province=[];
+    public $helpText = "";
     public $categoryAds=[];
     protected $queryString = ['search','province','categoryAds'];
 
     public function render()
     {
-        sleep(1);
-        return view('livewire.ads', [
-            'newsletterValidated' => request()->session()->get('newsletter'),
-            'regions' => Province::orderBy('name')->get(),
-            'categories' => Category::orderBy('name')->get(),
-            'user' => auth()->user(),
-            'announcements' => Announcement::query()
+        if (strlen($this->search) > 1) {
+             sleep(.7);
+             $announcements = Announcement::query()
                 ->Published()
                 ->NoBan()
                 ->Payement()
@@ -58,7 +55,30 @@ class Ads extends Component
                     '%'.$this
                         ->search.'%')
                 ->paginate(4)
-                ->onEachSide(0),
+                ->onEachSide(0);
+                $this->helpText = '';
+        } else {
+            if (strlen($this->search) === 1) {
+               $this->helpText = '3 caractères minimum';
+            }else{
+                $this->helpText = '';
+            }
+            $announcements = Announcement::Published()
+                ->NoBan()
+                ->Payement()
+                ->orderBy('plan_announcement_id', 'DESC')
+                ->orderBy('created_at', 'DESC')
+                ->withLikes()
+                ->paginate(4)
+                ->onEachSide(0);
+        }
+        return view('livewire.ads', [
+            'newsletterValidated' => request()->session()->get('newsletter'),
+            'regions' => Province::orderBy('name')->get(),
+            'categories' => Category::orderBy('name')->get(),
+            'user' => auth()->user(),
+            'announcements' => $announcements,
+            'helpText' => $this->helpText,
         ]);
     }
 }

@@ -4,11 +4,8 @@ namespace App\Http;
 
 use App\Http\Middleware\AnnouncementRoute;
 use App\Http\Middleware\CheckPayed;
-use App\Http\Middleware\CheckType;
 use App\Http\Middleware\NoPlansAds;
-use App\Http\Middleware\noPlansUser;
-use App\Http\Middleware\NoRoleUser;
-use App\Http\Middleware\NoTypeAd;
+use App\Http\Middleware\NoPlansUser;
 use App\Http\Middleware\PayedAds;
 use App\Http\Middleware\PayedUser;
 use App\Http\Middleware\UserRoute;
