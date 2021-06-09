@@ -128,7 +128,7 @@
                 </section>
                 <section class="container-dashboard-notif container-dashboard-ads">
                     <h3 aria-level="3">
-                        Les 3 annonces ayant le plus de succés
+                        Les 3 annonces ayant le plus de succès
                     </h3>
                     <div class="container-picto-dashboard">
                         <div class="container-messages container-ads-index">

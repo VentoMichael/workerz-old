@@ -5,7 +5,7 @@
     <div class="container-search hideForNewsletter">
         @if($helpText !== '')
         <div class="helpSearch">
-        <span>Il faut 2 caractères au minimum</span>    
+        <span>Il faut 2 caractères au minimum</span>
         </div>
         @endif
         <form action="{{route('workers')}}" @if($helpText !== '') style="margin-top:80px;" @endif aria-label="Recherche d'indépendants" role="search" method="get"
@@ -25,7 +25,7 @@
         </h2>
         <div class="container-all-announcement show-content @if($workerz->count() < 1) noAds @endif">
             @forelse($workerz as $worker)
-            
+
                 <section class="container-announcement" wire:loading.class="load" itemscope
                          itemtype="https://schema.org/Person">
                     <div class="container-infos-announcement">

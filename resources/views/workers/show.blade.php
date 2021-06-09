@@ -329,7 +329,7 @@
                 <div class="container-infos-ads-randomm">
 
                     <div class="container-position-ads">
-                        <img src="{{asset('svg/suitcase.svg')}}" alt="icone de malette">
+                        <img width="40px" height="40px" src="{{asset('svg/suitcase.svg')}}" alt="icone de malette">
                         <span class="job-cat-ads" itemprop="jobTitle">
                                     <p>{{ucfirst($ra->job)}}</p>
                                     @if($ra->categoryUser->count())
@@ -341,7 +341,7 @@
                     </div>
                     @if($ra->adresses->count())
                     <div class="container-info-announcement">
-                        <img src="{{asset('svg/placeholder.svg')}}" alt="icone de localité">
+                        <img width="40px" height="40px" src="{{asset('svg/placeholder.svg')}}" alt="icone de localité">
                         <div class="container-location" itemprop="address">
                             <p>{{ucfirst($ra->adresses->first()->postal_adress)}}</p>
                             <p class="categoryJob">({{ucfirst($ra->adresses->first()->province->name)}})</p>

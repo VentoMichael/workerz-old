@@ -1,5 +1,4 @@
 <div class="container-search-ads">
-        @if($firstAdDraft->count() >0)
         <form action="{{route('dashboard.ads.showDraft',['announcement' => $firstAdDraft->slug]) }}" aria-label="Rechercher mes brouillons" role="search"
               method="get" class="formSearchAd">
             <label for="search" class="hidden">Rechercher mes brouillons</label>
@@ -11,7 +10,6 @@
                 <button type="submit" class="button-cta submit-category-home submit-ad" >Recherchez</button>
             </noscript>
         </form>
-        @endif
     <div class="container-announcments-dashboard" wire:loading.class="load">
         @forelse($announcements as $announcement)
             <a class="{{ Request::is('dashboard/ads/draft/'.$announcement->slug) || Request::is('dashboard/ads/draft/'.$announcement->slug.'/*') ? "container-announcements-active" : "" }} container-announcements"

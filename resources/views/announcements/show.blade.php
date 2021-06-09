@@ -274,7 +274,7 @@
                             <div>
                                 <div class="container-infos-ads-randomm">
                                     <div class="container-position-ads">
-                                        <img src="{{asset('svg/suitcase.svg')}}" alt="icone de malette">
+                                        <img width="40px" height="40px" src="{{asset('svg/suitcase.svg')}}" alt="icone de malette">
                                         <span class="job-cat-ads">
                                     <p>{{ucfirst($ra->job)}}</p>
                                     @if($ra->categoryAds->count())
@@ -286,7 +286,7 @@
                                     </div>
                                     <div class="container-info-announcement" itemtype="https://schema.org/PostalAddress"
                                          itemscope>
-                                        <img src="{{asset('svg/placeholder.svg')}}" alt="icone de localité">
+                                        <img width="40px" height="40px" src="{{asset('svg/placeholder.svg')}}" alt="icone de localité">
                                         <div>
                                             <p itemprop="addressRegion">{{ucfirst($announcement->province->name)}}</p>
                                         </div>

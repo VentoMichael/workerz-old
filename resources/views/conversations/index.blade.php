@@ -27,7 +27,6 @@
                             <h4 aria-level="4">
                                 Sélectionner un utilisateur pour voir la discussion
                             </h4>
-                            </div>
                         </div>
                     </div>
                 </section>

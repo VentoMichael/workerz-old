@@ -1,6 +1,5 @@
 <div
     class="@if($users->count() < 1) no-Users @endif container-search-ads @if(Request::is('dashboard/messages')) container-messenger-form @endif">
-    @if($users->count() > 0)
         <form action="{{$firstUser->slug.request('search')}}" aria-label="Rechercher mes messages" role="search"
               method="get" class="formSearchAd submit-msg">
             <label for="search" class="hidden">Rechercher mes messages</label>
@@ -13,7 +12,6 @@
                 <button type="submit" class="button-cta submit-category-home submit-ad submit-msg">Recherchez</button>
             </noscript>
         </form>
-    @endif
     <div class="container-announcments-dashboard @if($users->count() < 1)container-search-without-ads @endif"
          wire:loading.class="load">
         @forelse($users as $user)
@@ -79,7 +77,7 @@
 @if($users->count())
 @section('scripts')
     <script src="{{asset('js/confirmDelete-msg.js')}}"></script>
+    <script src="{{asset('js/sendForm.js')}}"></script>
     @livewireScripts
-    <script>let btnMsg=document.getElementById("btnMsgSend"),helpMsg=document.getElementById("helpMsg");btnMsg&&(document.getElementById("message").addEventListener("keyup",e=>{btnMsg.classList.add("styleBtnMsg"),helpMsg.classList.add("helpMsg"),""===document.getElementById("message").value&&(btnMsg.classList.remove("styleBtnMsg"),helpMsg.classList.remove("helpMsg"))}),document.getElementById("container-message").addEventListener("click",()=>{document.getElementById("message").focus()}),document.addEventListener("keydown",e=>{event.ctrlKey&&"Enter"===event.key&&document.getElementById("formMsg").submit()}));</script>
 @endsection
 @endif

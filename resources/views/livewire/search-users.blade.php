@@ -2,7 +2,7 @@
     <div class="container-form-search">
         @if($helpText !== '')
         <div class="helpSearch">
-        <span>Il faut 2 caractères au minimum</span>    
+        <span>Il faut 2 caractères au minimum</span>
         </div>
         @endif
         <form aria-label="Recherche d'indépendants" @if($helpText !== '') style="margin-top:80px;" @endif role="search" action="{{route('workers')}}" method="get">
@@ -11,7 +11,7 @@
             <input type="submit" class="submit-category-home" value="Recherchez">
         </form>
     </div>
-    @if($search !== "")
+    @if($search !== "" && strlen($search) >1)
         <div wire:loading.class="load" class="container-boxes">
             <div class="container-users-box">
                 <ul>

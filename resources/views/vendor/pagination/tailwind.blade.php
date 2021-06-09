@@ -59,7 +59,7 @@
                     </div>
                     {{-- Next Page Link --}}
                         @if ($paginator->hasMorePages())
-                        <div>
+                        <div class="arrowPagination">
 
                             <a href="{{ $paginator->nextPageUrl() }}" rel="next"
                                aria-label="{{ __('pagination.next') }}">

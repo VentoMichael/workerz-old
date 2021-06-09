@@ -61,7 +61,7 @@
                                                    aria-label="{{ __('Aller à la page :page', ['page' => $page]) }}">
                                                 {{ $page }}</a>
                                                 @else
-                                                    <a wire:click="gotoPage({{ $page }})" href="workerz?page={{ $page }}#workerzLink"
+                                                    <a wire:click="gotoPage({{ $page }})" href="workers?page={{ $page }}#workerzLink"
                                                        aria-label="{{ __('Aller à la page :page', ['page' => $page]) }}">
                                                 {{ $page }}</a>
                                                 @endif

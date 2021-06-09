@@ -30,19 +30,34 @@ class AnnouncementController extends Controller
      */
     public function plans()
     {
+         if (auth()->user()) {
+            $notificationsReaded = auth()->user()->notifications->where('read_at', null);
+        }else{
+            $notificationsReaded = '';
+        }
         $plans = PlanAnnouncement::all();
         $plan = \request()->plan;
         Session::put('plan', $plan);
-        return view('announcements.plans', compact('plans', 'plan'));
+        return view('announcements.plans', compact('plans','notificationsReaded', 'plan'));
     }
 
     public function index()
     {
-        return view('announcements.index');
+         if (auth()->user()) {
+            $notificationsReaded = auth()->user()->notifications->where('read_at', null);
+        }else{
+            $notificationsReaded = '';
+        }
+        return view('announcements.index',compact('notificationsReaded'));
     }
 
     public function show(Announcement $announcement)
     {
+         if (auth()->user()) {
+            $notificationsReaded = auth()->user()->notifications->where('read_at', null);
+        }else{
+            $notificationsReaded = '';
+        }
         $announcement = Announcement::withLikes()->where('id', '=', $announcement->id)->first();
         $announcement->incrementReadCount();
         $randomAds = Announcement::Published()
@@ -51,7 +66,7 @@ class AnnouncementController extends Controller
                 'DESC')->withLikes()->limit(2)->inRandomOrder()->where('slug','!=',$announcement->slug)->get();
         $randomPhrasing = CatchPhraseAnnouncement::all()->random();
         $user = auth()->user();
-        return view('announcements.show', compact('randomPhrasing', 'randomAds', 'announcement', 'user'));
+        return view('announcements.show', compact('randomPhrasing', 'randomAds','notificationsReaded', 'announcement', 'user'));
     }
 
     /*
@@ -64,13 +79,18 @@ class AnnouncementController extends Controller
      */
     public function create(Request $request)
     {
+         if (auth()->user()) {
+            $notificationsReaded = auth()->user()->notifications->where('read_at', null);
+        }else{
+            $notificationsReaded = '';
+        }
         $plan = \request()->plan;
         Session::put('plan', $plan);
 
         $categories = Category::withCount("announcements")->get()->sortBy('name');
         $regions = Province::withCount("announcements")->get()->sortBy('name');
         $disponibilities = StartMonth::withCount("announcements")->get()->sortBy('id');
-        return view('announcements.create', compact('plan', 'disponibilities', 'categories', 'regions'));
+        return view('announcements.create', compact('plan', 'disponibilities','notificationsReaded', 'categories', 'regions'));
 
     }
 
@@ -89,6 +109,7 @@ class AnnouncementController extends Controller
                 'picture' => 'image:jpg,jpeg,png|max:2048',
                 'description' => 'required|max:256',
                 'job' => 'required|max:256',
+                'pricemax'=> 'numeric|max:999999',
                 'location' => 'required|not_in:0',
                 'categoryAds' => 'required|array|max:'.\request('plan'),
                 'startmonth' => 'required',
@@ -110,7 +131,7 @@ class AnnouncementController extends Controller
         }
         $announcement->description = $request->description;
         $announcement->job = $request->job;
-        $announcement->pricemax = $request->price_max;
+        $announcement->pricemax = $request->pricemax;
         $announcement->user_id = Auth::id();
         $announcement->province_id = $request->location;
         $announcement->start_month_id = $request->startmonth;
@@ -123,6 +144,9 @@ class AnnouncementController extends Controller
                 $payed = false;
                 Session::forget('plan');
                 Session::flash('success-inscription', 'Votre annonce a été enregistrer dans vos brouillons&nbsp;!');
+                $announcement->is_payed = $payed;
+                $announcement->save();
+                return redirect('/dashboard/ads/draft/'.$announcement->slug);
             } else {
                 $announcement->is_draft = false;
                 $payed = true;
@@ -148,7 +172,7 @@ class AnnouncementController extends Controller
                 $announcement->save();
                 $announcement->categoryAds()->attach($ct->category_id);
                 Session::forget('plan');
-                return redirect('/dashboard/ads/'.$announcement->slug);
+                return redirect('/dashboard/ads/draft/'.$announcement->slug);
             } else {
                 $announcement->is_draft = false;
                 $payed = false;
@@ -168,6 +192,11 @@ class AnnouncementController extends Controller
 
     public function payed(Request $request, Announcement $announcement)
     {
+         if (auth()->user()) {
+            $notificationsReaded = auth()->user()->notifications->where('read_at', null);
+        }else{
+            $notificationsReaded = '';
+        }
         if ($request->publish == true) {
             $announcement = Announcement::where('slug', '=', $request->announcement);
             $planId = PlanAnnouncement::where('id', '=', $request->planAd)->first();
@@ -190,11 +219,16 @@ class AnnouncementController extends Controller
         $intent = $payment_intent->client_secret;
 
         return view('announcements.payed',
-            compact('planId', 'plan', 'intent', 'stripe_key'));
+            compact('planId','notificationsReaded', 'plan', 'intent', 'stripe_key'));
     }
 
     public function payedAds(Announcement $announcement)
     {
+         if (auth()->user()) {
+            $notificationsReaded = auth()->user()->notifications->where('read_at', null);
+        }else{
+            $notificationsReaded = '';
+        }
         $announcement = Announcement::where('slug', '=', \request()->slug)->first();
         $announcement->is_payed = true;
         $announcement->is_draft = false;
@@ -212,6 +246,6 @@ class AnnouncementController extends Controller
             ->send(new AdsCreated($announcement));
         \auth()->user()->notify(new AdCreated($announcement));
         Session::forget('plan');
-        return redirect('/dashboard/ads/'.$announcement->slug);
+        return redirect('/dashboard/ads/'.$announcement->slug,compact('notificationsReaded'));
     }
 }

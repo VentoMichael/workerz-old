@@ -43,14 +43,14 @@
                         @enderror
                     </div>
 
-                    <div>
+                    <div class="container-login-password">
 
                         <label for="password"
                         >Mot de passe</label>
                         <div class="@error('password')is-invalid @enderror password">
                             <div id="container-checkpass" class="container-checkpass">
                                 <label for="checkPass" class="hidden">Voir/masquer le mot de passe</label>
-                                <input type="checkbox" class="password--visibleToggle" id="checkPass" checked>
+                                <input type="checkbox" tabindex="1" class="password--visibleToggle" id="checkPass" checked>
                                 <div class="password--visibleToggle-eye open">
                                     <img width="40" height="40" src="{{asset('svg/eye-open.svg')}}" alt="icone de yeux ouvert"/>
                                 </div>

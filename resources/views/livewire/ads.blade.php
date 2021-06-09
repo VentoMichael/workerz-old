@@ -6,7 +6,7 @@
     <div class="container-home container-search hideForNewsletter">
         @if($helpText !== '')
         <div class="helpSearch">
-        <span>Il faut 2 caractères au minimum</span>    
+        <span>Il faut 2 caractères au minimum</span>
         </div>
         @endif
         <form action="{{route('announcements')}}" @if($helpText !== '') style="margin-top:80px;" @endif aria-label="Recherche d'annonce" role="search" method="get"

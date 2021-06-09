@@ -1,6 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
+    @php
+        if (auth()->user()) {
+                $notificationsReaded = auth()->user()->notifications->where('read_at', null);
+            }else{
+                $notificationsReaded = '';
+            }
+    @endphp
     <div class="container-home">
         <section class="container-home_image">
             <div class="container-connexion">

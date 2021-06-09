@@ -17,8 +17,7 @@
             </div>
             @enderror
         </div>
-        <div>
-
+        <div class="container-password">
             <label for="password"> @if(auth()->user()) Nouveau mot de passe @else Mot de passe <span
                     class="required"> *</span> @endif </label>
             <div class="@error('password')is-invalid @enderror password">

@@ -34,12 +34,11 @@
                                             </h3>
                                             </div>
                                             @else
-                                            @dd($notification->data['message'])
                                             <img src="{{asset('svg/messenger.svg')}}" alt="icone de messages">
                                             <div>
                                                 <h3 aria-level="3">
                                                     Un nouveau message
-                                                    de <i>{{$notification->data['message']['receiver']['name']}}</i>
+                                                    de <i>{{$notification->data['message']['user']['name']}}</i>
                                                 </h3>
                                             </div>
                                         @endif

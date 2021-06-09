@@ -6,7 +6,7 @@
         @csrf
         @if(auth()->user()) @method('PUT') @endif
         <div
-            class="container-register-form container-register @if(auth()->user()) container-edition-formulary @else container-form-registers @endif container-register-user">
+            class="container-register-form container-register @if(auth()->user()) container-edition-formulary @else container-form-company container-form-registers @endif container-register-user">
             <div class="container-form-email">
                 <div class="avatar-container">
                     <label for="picture">Logo</label>
@@ -234,7 +234,7 @@
                         @endif
 
                     </div>
-                    <div class="container-form-email selectdiv container-disponibilities-edit container-disponibilities-register">
+                    <div class="container-form-email selectdiv container-disponibilities-edit container-disponibilities-register container-job-dashboard">
                         <label for="disponibilities">Disponibilités</label>
                         <div class="container-category">
                             <ul class="list-categories list-checkboxes-register list-dispo-profil"  style="overflow-y: scroll; -webkit-overflow-scrolling: touch;">
@@ -474,7 +474,7 @@
                         @endif
                     </div>
 
-                    <div class="container-form-email selectdiv">
+                    <div class="container-form-email selectdiv container-job-dashboard">
                         <label for="location">Région <span class="required">*</span></label>
                         <select required aria-required="true" class="select-register select-regions" data-maxoption="1"
                                 name="location" id="location">
@@ -506,7 +506,7 @@
                             @endif
                         @endif
                     </div>
-                    <div class="container-form-email">
+                    <div class="container-form-email container-job-dashboard">
                         <span>Possibilités d'emplois dans l'entreprise</span>
                         <ul id="jobOpportunity">
                             <li>

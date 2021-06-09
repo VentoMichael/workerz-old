@@ -27,7 +27,7 @@ class Users extends Component
             $workerz = User::query()
                 ->orderBy('plan_user_id', 'DESC')
                 ->orderBy('created_at', 'DESC')
-                ->with('categoryUser')
+                ->with('categoryUser','adresses')
                 ->when(
                     $this->categoryUser,
                     function ($query) {
@@ -66,7 +66,29 @@ class Users extends Component
             }
             $workerz = User::orderBy('plan_user_id', 'DESC')
                 ->orderBy('created_at', 'DESC')
-                ->with('categoryUser')
+                ->with('categoryUser','adresses')
+                ->when(
+                    $this->categoryUser,
+                    function ($query) {
+                        return $query->whereHas(
+                            'categoryUser',
+                            function ($query) {
+                                return $query->whereIn('category_id', $this->categoryUser);
+                            }
+                        );
+                    }
+                )
+                ->when(
+                    $this->provinces,
+                    function ($query) {
+                        return $query->whereHas(
+                            'adresses',
+                            function ($query) {
+                                return $query->whereIn('province_id', $this->provinces);
+                            }
+                        );
+                    }
+                )
                 ->withLikes()
                 ->Independent()
                 ->Payed()

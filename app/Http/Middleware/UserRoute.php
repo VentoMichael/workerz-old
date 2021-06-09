@@ -22,12 +22,12 @@ class UserRoute
         if ($request->route('worker') && $request->route('worker')->role_id == 3) {
             Session::flash('not-permitted',
                 'Oops ! La personne que vous recherchez n\'est pas un indépendant');
-            return Redirect(route('workerz'));
+            return Redirect(route('workers'));
         }
         if ($request->route('worker') && $request->route('worker')->banned == 1 || $request->route('worker')->is_payed == 0 ) {
             Session::flash('not-permitted',
                 'Oops ! La personne que vous recherchez n\'est pas disponible pour le moment');
-            return Redirect(route('workerz'));
+            return Redirect(route('workers'));
         }
         return $next($request);
     }

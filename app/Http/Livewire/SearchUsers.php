@@ -14,7 +14,7 @@ class SearchUsers extends Component
     public function render()
     {
         if (strlen($this->search) > 1) {
-             sleep(.7);
+             sleep(1);
              $workerz = User::Independent()
              ->Payed()
              ->NoBan()

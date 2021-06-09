@@ -100,3 +100,6 @@
         </section>
     </div>
 @endsection
+@section('scripts')
+    <script src="{{asset('js/sendForm.js')}}"></script>
+@endsection

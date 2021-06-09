@@ -106,7 +106,7 @@ class CreateNewUser implements CreatesNewUsers
                 'description' => 'required', 'max:256',
                 'conditions' => 'required',
                 'job' => 'required',
-                'number' => ['required', Rule::unique(Phone::class)],
+                'number' => ['required', Rule::unique(Phone::class),'regex:/^([0-9\s\-\+\(\)]*)$/','min:10','max:12'],
                 'location' => 'required|not_in:0',
                 'categoryUser' => 'required|array|max:'.$input['plan_user_id'],
                 'disponibilites' => [

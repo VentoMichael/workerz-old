@@ -37,7 +37,8 @@
 </head>
 <body>
 <div class="containerBtnAddAnnouncment">
-    <a href="{{route('announcements.plans')}}" class="btnAddAnnouncement" title="Ajouter une annonce" aria-label="Ajouter une annonce"></a>
+    <a href="{{route('announcements.plans')}}" class="btnAddAnnouncement" title="Ajouter une annonce"
+       aria-label="Ajouter une annonce"></a>
 </div>
 <header>
     <h1 aria-level="1" class="hidden">
@@ -194,23 +195,26 @@
                     <li>
                         <ul class="container-list-menu container-list-menu-principal">
                             <li><a
-                                        class="{{ Request::is('/') ? "current_page_item" : "" }}"
-                                        {{ Request::is('/') ? "aria-current='page'" : "" }}
-                                        href="{{ url('/') }}">Accueil</a>
+                                    class="{{ Request::is('/') ? "current_page_item" : "" }}"
+                                    {{ Request::is('/') ? "aria-current='page'" : "" }}
+                                    href="{{ url('/') }}">Accueil</a>
                             </li>
                             <li>
-                                <a class="{{ Request::is('workers') || Request::is('workers/*') ? "current_page_item" : "" }}" {{ Request::is('workers') || Request::is('workers/*') ? "aria-current='page'" : "" }} href="{{route('workers')}}">Travailleurs</a>
+                                <a class="{{ Request::is('workers') || Request::is('workers/*') ? "current_page_item" : "" }}"
+                                   {{ Request::is('workers') || Request::is('workers/*') ? "aria-current='page'" : "" }} href="{{route('workers')}}">Travailleurs</a>
                             </li>
                             <li>
-                                <a class="{{ Request::is('announcements') || Request::is('announcements/*') ? "current_page_item" : "" }}" {{ Request::is('announcements') || Request::is('announcements/*') ? "aria-current='page'" : "" }} href="{{route('announcements')}}">Annonces</a>
+                                <a class="{{ Request::is('announcements') || Request::is('announcements/*') ? "current_page_item" : "" }}"
+                                   {{ Request::is('announcements') || Request::is('announcements/*') ? "aria-current='page'" : "" }} href="{{route('announcements')}}">Annonces</a>
                             </li>
                         </ul>
                     </li>
                     @if(!Auth::check())
                         <li>
                             <ul class="container-list-menu">
-                                <li class="connected-item-container {{ Request::is('login') ? "current_page_item" : "" }}" {{ Request::is('login') ? "aria-current='page'" : "" }}><a class="connected-item"
-                                        href="{{ route('login') }}">Se connecter</a>
+                                <li class="connected-item-container {{ Request::is('login') ? "current_page_item" : "" }}" {{ Request::is('login') ? "aria-current='page'" : "" }}>
+                                    <a class="connected-item"
+                                       href="{{ route('login') }}">Se connecter</a>
                                 </li>
                                 <li class="last-menu-item" {{ Request::is('register') ? "aria-current='page'" : "" }}><a
                                         href="{{ route('users.plans') }}">S'inscrire</a>
@@ -230,28 +234,32 @@
                                 </li>
                                 <li class="last-menu-item profil-item"
                                     {{ Request::is('dashboard') ? "aria-current='page'" : "" }}>
-                                    <a class="@if(auth()->user()->picture != null) picto-img-user @endif profil-user @if(auth()->user()->picture != null) picto-profil-user @endif" href="{{route('dashboard')}}">
+                                    <a class="@if(auth()->user()->picture != null) picto-img-user @endif profil-user @if(auth()->user()->picture != null) picto-profil-user @endif"
+                                       href="{{route('dashboard')}}">
                                         @if(auth()->user()->picture != null)
-                                            <img class="picto-user picto-last" width="25" height="32" src="{{asset(auth()->user()->picture)}}"
+                                            <img class="picto-user picto-last" width="25" height="32"
+                                                 src="{{asset(auth()->user()->picture)}}"
                                                  alt="image de profil de {{auth()->user()->name}}">
                                         @else
-                                            <img class="picto-user" width="25" height="32" src="{{asset('svg/user-w.svg')}}"
+                                            <img class="picto-user" width="25" height="32"
+                                                 src="{{asset('svg/user-w.svg')}}"
                                                  alt="image de profil par défaut">
                                         @endif
                                         Dashboard</a>
                                         @if(count($notificationsReaded) > 9 && count($notificationsReaded) > 0)
 
-                                    <a class="counter-read-message" href="{{route('dashboard.notifications')}}">
-                                    9+
-                                    </a>
+                                            <a class="counter-read-message" href="{{route('dashboard.notifications')}}">
+                                                9+
+                                            </a>
 
-                            @else
-                                @if(count($notificationsReaded))
-                                        <a href="{{route('dashboard.notifications')}}" class="counter-read-message">
-                                    {{count($notificationsReaded)}}
-                                    </a>
-                                @endif
-                            @endif
+                                        @else
+                                            @if(count($notificationsReaded))
+                                                <a href="{{route('dashboard.notifications')}}"
+                                                   class="counter-read-message">
+                                                    {{count($notificationsReaded)}}
+                                                </a>
+                                            @endif
+                                        @endif
                                 </li>
                                 <li class="nav-dashboard notVisible">
                                     <ul>
@@ -312,7 +320,8 @@
                 Abonnez vous à notre newsletter
             </h3>
             <form action="{{route('newsletter.store')}}#newsletterSection" method="POST"
-                  class="form-newsletter-container" title="Inscription à notre newsletter" aria-label="Inscription à notre newsletter">
+                  class="form-newsletter-container" title="Inscription à notre newsletter"
+                  aria-label="Inscription à notre newsletter">
                 @csrf
                 <div class="form-newsletter">
                     <label for="newsletter" class="notVisible">Votre mail</label>

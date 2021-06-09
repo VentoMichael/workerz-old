@@ -32,7 +32,7 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $noReadMsgs = count(auth()->user()->talkedTo->where('is_read',0));
+        $noReadMsgs = count(auth()->user()->talkedTo->where('is_read',0)->where('content','!==',null));
                 $notificationsReaded = auth()->user()->notifications->where('read_at',null);
         $this->sendExpireNotificationAccount();
         $messages = Message::where('to_id', '=', \auth()->user()->id)->with('user')->orderByDesc('created_at',
@@ -47,7 +47,7 @@ class DashboardController extends Controller
 
     public function profil()
     {
-        $noReadMsgs = count(auth()->user()->talkedTo->where('is_read',0));
+        $noReadMsgs = count(auth()->user()->talkedTo->where('is_read',0)->where('content','!==',null));
                 $notificationsReaded = auth()->user()->notifications->where('read_at',null);
         $this->sendExpireNotificationAccount();
         $disponibilities = auth()->user()->startDate;
@@ -64,10 +64,9 @@ class DashboardController extends Controller
         $this->sendExpireNotificationAccount();
         $user = \auth()->user();
         $request->validate([
-            'name' => 'sometimes|required|string|max:255', Rule::unique('users')->ignore($user->id),
+            'name' => 'sometimes|required|string|max:255',Rule::unique('users')->ignore($user->id),
             'surname' => 'sometimes|string|max:255',
-            'phones.number'=>'regex:/^([0-9\s\-\+\(\)]*)$/|min:10|max:12',
-            'number' => 'sometimes|required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10|max:12',
+            'phones.number'=>'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10|max:12',
             'email' => 'sometimes|required|string|max:255', Rule::unique('users')->ignore($user->id),
             'picture' => 'sometimes|image|mimes:jpg,png,jpeg|max:2048',
         ]);
@@ -90,7 +89,8 @@ class DashboardController extends Controller
             })->save(public_path('users/'.$filename));
             $user->picture = 'users/'.$filename;
         }
-        if ($user->role_id == 2) {
+
+        if ($user->plan_user_id !== 1) {
             Validator::make(\request()->all(), [
                 'adress' => 'sometimes|required',
                 'pricemax' => 'sometimes|max:999999',
@@ -151,8 +151,7 @@ class DashboardController extends Controller
             new Phone(['number' => $request->phonetwo]),
             new Phone(['number' => $request->phonethree]),
         ]);
-
-        $user->update();
+        $user->save();
         if ($user->wasChanged()) {
             Session::flash('success-update', 'Votre profil a bien été mis a jour&nbsp;!');
         } else {
@@ -165,7 +164,7 @@ class DashboardController extends Controller
     public function settings()
     {
         $notificationsReaded = auth()->user()->notifications->where('read_at',null);
-        $noReadMsgs = count(auth()->user()->talkedTo->where('is_read',0));
+        $noReadMsgs = count(auth()->user()->talkedTo->where('is_read',0)->where('content','!==',null));
         $this->sendExpireNotificationAccount();
         $user_categories = auth()->user()->categoryUser;
         $user_disponibilities = auth()->user()->startDate;
@@ -178,7 +177,7 @@ class DashboardController extends Controller
 
     public function show(Announcement $announcement)
     {
-        $noReadMsgs = count(auth()->user()->talkedTo->where('is_read',0));
+        $noReadMsgs = count(auth()->user()->talkedTo->where('is_read',0)->where('content','!==',null));
         $notificationsReaded = auth()->user()->notifications->where('read_at',null);
         $this->sendExpireNotificationAds();
         $this->sendExpireNotificationAccount();
@@ -190,7 +189,7 @@ class DashboardController extends Controller
 
     public function showDraft(Announcement $announcement)
     {
-        $noReadMsgs = count(auth()->user()->talkedTo->where('is_read',0));
+        $noReadMsgs = count(auth()->user()->talkedTo->where('is_read',0)->where('content','!==',null));
                 $notificationsReaded = auth()->user()->notifications->where('read_at',null);
         $firstAdDraft = Auth::user()->announcements()->Draft()->firstOrFail();
         $user = User::where('id', '=', \auth()->user()->id)->with('announcements')->firstOrFail();
@@ -200,7 +199,7 @@ class DashboardController extends Controller
 
     public function editAdsDraft(Announcement $announcement)
     {
-        $noReadMsgs = count(auth()->user()->talkedTo->where('is_read',0));
+        $noReadMsgs = count(auth()->user()->talkedTo->where('is_read',0)->where('content','!==',null));
                 $notificationsReaded = auth()->user()->notifications->where('read_at',null);
         $plan = $announcement->plan_announcement_id;
         $categories = Category::all();
@@ -215,7 +214,7 @@ class DashboardController extends Controller
 
     public function editAds(Announcement $announcement)
     {
-        $noReadMsgs = count(auth()->user()->talkedTo->where('is_read',0));
+        $noReadMsgs = count(auth()->user()->talkedTo->where('is_read',0)->where('content','!==',null));
                 $notificationsReaded = auth()->user()->notifications->where('read_at',null);
         $this->sendExpireNotificationAds();
         $this->sendExpireNotificationAccount();
@@ -236,7 +235,7 @@ class DashboardController extends Controller
             'description' => 'sometimes|max:256|required',
             'job' => 'sometimes|max:256|required',
             'location' => 'sometimes|not_in:0|required',
-            'pricemax' => 'max:99999',
+            'pricemax' => 'numeric|max:999999',
             'startmonth' => 'sometimes|required',
             'categoryAds' => 'sometimes|array|required|max:'.$announcement->plan_announcement_id
         ]);
@@ -266,7 +265,7 @@ class DashboardController extends Controller
         $announcement->description = $request->description;
         $announcement->job = $request->job;
         $announcement->province_id = $request->location;
-        $announcement->pricemax = $request->price_max;
+        $announcement->pricemax = $request->pricemax;
         $announcement->start_month_id = $request->startmonth;
         $ct = new AnnouncementCategory();
         $ct->category_id = \request('categoryAds');
@@ -303,7 +302,7 @@ class DashboardController extends Controller
 
     public function ads(Announcement $announcement)
     {
-        $noReadMsgs = count(auth()->user()->talkedTo->where('is_read',0));
+        $noReadMsgs = count(auth()->user()->talkedTo->where('is_read',0)->where('content','!==',null));
         $notificationsReaded = auth()->user()->notifications->where('read_at',null);
         $this->sendExpireNotificationAccount();
         $firstAd = Auth::user()->announcements()->NotDraft()->first();

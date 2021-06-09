@@ -68,7 +68,8 @@
                             intermédiaire @elseif($plan->id == 3) Support prioritaire @endif
                         </li>
                         <li class="container-visibility">
-                            <img width="40" height="60" src="{{asset('svg/good.svg')}}" alt="Icone correct">
+                            <img width="40" height="60" src="{{asset('svg/good.svg')}}" alt="Icone correct">                 <span class="container-visibility-plans">
+                                <span>
                             @if($plan->id == 1)
                                 Basse visibilité
                             @endif
@@ -78,12 +79,25 @@
                             @if($plan->id == 3)
                                 Haute visibilité
                             @endif *
+                                </span>
+                                <span class="helpPlans">Uniquement si vous êtes une entreprise</span>
+                            </span>
                         </li>
                         <li class="container-visibility">
                             <img width="40" height="60" src="{{asset('svg/good.svg')}}"
-                                 alt="Icone correct">@if($plan->id == 1)  Visible parmis les top
-                            100 @elseif($plan->id == 2)  Visible parmis les top 15 @elseif($plan->id == 3)  Visible
-                            parmis les top 4 @endif *
+                                 alt="Icone correct">
+                            <span class="container-visibility-plans">
+                                <span>
+                                @if($plan->id == 1)
+                                        Visible parmis les top 100
+                                    @elseif($plan->id == 2)
+                                        Visible parmis les top 15
+                                    @elseif($plan->id == 3)
+                                        Visible parmis les top 4
+                                @endif *
+                                </span>
+                                <span class="helpPlans">Uniquement si vous êtes une entreprise</span>
+                            </span>
                         </li>
                     </ul>
                     <form aria-label="Choix du plan pour devenir utilisateur" @auth action="{{route('users.payed')}}"
@@ -102,8 +116,14 @@
 @endsection
 @if(auth()->user())
 @section('scripts')
-    <script>let btns=document.querySelectorAll('.buttonChanged')
-        function confirmDelete(e){return!0===confirm("Après cette étape, le nouveau plan sera actif")||(e.preventDefault(),!1)}
-        btns.forEach(function(btn){btn.addEventListener("click",confirmDelete)})</script>
+    <script>let btns = document.querySelectorAll('.buttonChanged')
+
+        function confirmDelete(e) {
+            return !0 === confirm("Après cette étape, le nouveau plan sera actif") || (e.preventDefault(), !1)
+        }
+
+        btns.forEach(function (btn) {
+            btn.addEventListener("click", confirmDelete)
+        })</script>
 @endsection
 @endif

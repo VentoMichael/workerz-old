@@ -22,7 +22,7 @@ class MessageController extends Controller
     public function index()
     {
         $notificationsReaded = auth()->user()->notifications->where('read_at',null);
-        $noReadMsgs = count(auth()->user()->talkedTo->where('is_read',0));
+        $noReadMsgs = count(auth()->user()->talkedTo->where('is_read',0)->where('content','!==',null));
         $firstUser = User::first();
         return view('conversations.index', compact('firstUser','notificationsReaded','noReadMsgs'));
     }
@@ -36,7 +36,7 @@ class MessageController extends Controller
     public function show(User $user)
     {
         $notificationsReaded = auth()->user()->notifications->where('read_at',null);
-        $noReadMsgs = count(auth()->user()->talkedTo->where('is_read',0));
+        $noReadMsgs = count(auth()->user()->talkedTo->where('is_read',0)->where('content','!==',null));
         $messages = Message::
         with('user','receiver')
 ->whereRaw("((from_id = ".\auth()->id()." AND to_id = $user->id) OR (from_id = $user->id AND to_id =".\auth()->id()."))")
@@ -93,7 +93,8 @@ class MessageController extends Controller
      */
     public function deleteConversations(User $user)
     {
-        Message::where('from_id','=',\auth()->id())->where('to_id','=',$user->id)->delete();
+        $d = Message::where('from_id','=',\auth()->id())->where('to_id','=',$user->id)->delete();
+        dd($d,auth()->id(),$user->id);
         return Redirect::route('dashboard.messages')->with('success-delete', 'Conversation supprimée&nbsp!');
     }
 }

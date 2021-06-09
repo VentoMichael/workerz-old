@@ -7,7 +7,7 @@
         @auth
             @method('PUT')
         @endauth
-            <div class="container-register-form container-register @if(!auth()->user()) container-form-registers @endif">
+            <div class="container-register-form container-register @if(!auth()->user()) container-form-registers @else edition-user-profil @endif">
                 <div class="container-form-email">
                     <div class="avatar-container @if(auth()->user()) avatar-dashboard-profil @endif">
                         <label for="picture">Photo de profil</label>

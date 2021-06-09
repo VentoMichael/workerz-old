@@ -18,8 +18,8 @@ class UserNotificationController extends Controller
      */
     public function index()
     {
-        
-        $noReadMsgs = count(auth()->user()->talkedTo->where('is_read',0));
+
+        $noReadMsgs = count(auth()->user()->talkedTo->where('is_read',0)->where('content','!==',null));
         $notificationsReaded = auth()->user()->notifications->where('read_at',null);
         $notifications = \auth()->user()->notifications;
         foreach ($notifications as $notification) {
@@ -33,7 +33,7 @@ class UserNotificationController extends Controller
     public function show($id)
     {
         $notificationsReaded = auth()->user()->notifications->where('read_at',null);
-        $noReadMsgs = count(auth()->user()->talkedTo->where('is_read',0));
+        $noReadMsgs = count(auth()->user()->talkedTo->where('is_read',0)->where('content','!==',null));
         $n = auth()->user()->notifications->where('id','=',$id)->first();
         $notifications = \auth()->user()->notifications;
         $notifReaded = auth()->user()->unreadNotifications->where('id', $id)->markAsRead();

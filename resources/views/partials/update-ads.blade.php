@@ -121,7 +121,7 @@
     </div>
 </div>
 
-<div class="container-register-form container-register">
+<div class="container-register-form container-register @if(!auth()->user()) container-job-ads-create @endif">
     <div class="container-form-email">
         <label for="pricemax">Combien voulez vous dépensez au maximum&nbsp;?</label>
         <input max="999999" type="text" pattern="^[0-9-+\s()]*$" id="pricemax"
@@ -130,14 +130,14 @@
                @else value="{{old("pricemax")}}" @endif
                class="email-label" maxlength="999999" placeholder="500"><span
             class="horary-cost">€</span>
-        <p class="help hepl-price informations">
-            Cela donne une idée à l'indépendant (optionnel)
-        </p>
         @error('pricemax')
-        <p class="danger dangerCategory help">
+        <p class="danger dangerCategory" style="font-size: .8em;position: absolute;bottom: -6px;">
             {{$errors->first('pricemax')}}
         </p>
         @enderror
+        <p class="help hepl-price informations">
+            Cela donne une idée à l'indépendant (optionnel)
+        </p>
     </div>
     <div class="container-form-email selectdiv">
         <label for="startmonth">Disponible à partir du mois de <span
