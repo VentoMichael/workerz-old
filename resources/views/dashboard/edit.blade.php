@@ -21,6 +21,9 @@
                         </form>
                     @endif
                 </div>
+                @if($errors->any())
+                    {{ implode('', $errors->all('<div>:message</div>')) }}
+                @endif
                 @if(auth()->user()->role_id == 2)
                     @include('layouts.formCompany')
                 @else

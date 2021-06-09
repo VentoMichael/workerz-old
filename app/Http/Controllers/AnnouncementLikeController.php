@@ -10,7 +10,7 @@ class AnnouncementLikeController extends Controller
 {
     public function store(Announcement $announcement){
         $announcement->like(auth()->id());
-        return Redirect::to(URL::previous() . "#search")->with('loveOk', $announcement->title . ' a été aimé, merci&nbsp;!');
+        return Redirect::to(URL::previous() . "#search")->with('loveOk', ucfirst($announcement->title) . ' a été aimé, merci&nbsp;!');
     }
     public function delete(Announcement $announcement){
         $announcement->dislike(auth()->id());

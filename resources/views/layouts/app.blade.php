@@ -216,7 +216,7 @@
                                     <a class="connected-item"
                                        href="{{ route('login') }}">Se connecter</a>
                                 </li>
-                                <li class="last-menu-item" {{ Request::is('register') ? "aria-current='page'" : "" }}><a
+                                <li class="last-menu-item inscription-item" {{ Request::is('register') ? "aria-current='page'" : "" }}><a
                                         href="{{ route('users.plans') }}">S'inscrire</a>
                                 </li>
                             </ul>
@@ -246,6 +246,7 @@
                                                  alt="image de profil par défaut">
                                         @endif
                                         Dashboard</a>
+                                    @if(auth()->user())
                                         @if(count($notificationsReaded) > 9 && count($notificationsReaded) > 0)
 
                                             <a class="counter-read-message" href="{{route('dashboard.notifications')}}">
@@ -260,6 +261,7 @@
                                                 </a>
                                             @endif
                                         @endif
+                                    @endif
                                 </li>
                                 <li class="nav-dashboard notVisible">
                                     <ul>

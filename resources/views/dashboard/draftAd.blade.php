@@ -33,7 +33,7 @@
                 <livewire:ads-draft-dashboard>
                 </livewire:ads-draft-dashboard>
                 <section class="container-profil-dashboard container-ads-dashboard">
-                    <div class="container-buttons-delete-back">
+                    <div class="container-buttons-delete-back container-button-delete-ad">
                         <a class="link-back" href="{{route('dashboard.ads')}}">
                             <button class="button-back button-cta button-draft button-back-ads">
                                 Retour

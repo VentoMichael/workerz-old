@@ -48,7 +48,7 @@ class DashboardController extends Controller
     public function profil()
     {
         $noReadMsgs = count(auth()->user()->talkedTo->where('is_read',0)->where('content','!==',null));
-                $notificationsReaded = auth()->user()->notifications->where('read_at',null);
+        $notificationsReaded = auth()->user()->notifications->where('read_at',null);
         $this->sendExpireNotificationAccount();
         $disponibilities = auth()->user()->startDate;
         $regions = auth()->user()->provinces;
@@ -64,9 +64,9 @@ class DashboardController extends Controller
         $this->sendExpireNotificationAccount();
         $user = \auth()->user();
         $request->validate([
-            'name' => 'sometimes|required|string|max:255',Rule::unique('users')->ignore($user->id),
+            'name' => 'sometimes|string|max:255',Rule::unique('users')->ignore(\auth()->id()),
             'surname' => 'sometimes|string|max:255',
-            'phones.number'=>'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10|max:12',
+            'number'=>'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10|max:12',
             'email' => 'sometimes|required|string|max:255', Rule::unique('users')->ignore($user->id),
             'picture' => 'sometimes|image|mimes:jpg,png,jpeg|max:2048',
         ]);
@@ -101,6 +101,10 @@ class DashboardController extends Controller
                 'job' => 'sometimes|required',
                 'location' => 'sometimes|required',
                 'locationtwo' => 'sometimes|not_in:0',
+                'facebook' => 'sometimes|nullable', 'url',
+                'twitter' => 'sometimes|nullable', 'url',
+                'instagram' => 'sometimes|nullable', 'url',
+                'linkedin' => 'sometimes|nullable', 'url',
                 'locationthree' => 'sometimes|not_in:0',
                 'categoryUser' => 'sometimes|required|array|max:'.$user->plan_user_id,
                 'disponibilites' => [
@@ -148,14 +152,13 @@ class DashboardController extends Controller
 
         $user->phones()->delete();
         $user->phones()->saveMany([
+            new Phone(['number' => $request->number]),
             new Phone(['number' => $request->phonetwo]),
             new Phone(['number' => $request->phonethree]),
         ]);
         $user->save();
         if ($user->wasChanged()) {
             Session::flash('success-update', 'Votre profil a bien été mis a jour&nbsp;!');
-        } else {
-            Session::flash('success-update-not', 'Rien n\'a été changé&nbsp;!');
         }
         return redirect(route('dashboard.profil'));
 

@@ -10,7 +10,7 @@ class UserLikeController extends Controller
 {
     public function store(User $worker){
         $worker->likeU(auth()->id());
-         return Redirect::to(URL::previous() . "#search")->with('loveOk', $worker->name . ' a été aimé, merci&nbsp!');
+         return Redirect::to(URL::previous() . "#search")->with('loveOk', ucfirst($worker->name) . ' a été aimé, merci&nbsp!');
     }
     public function delete(User $worker){
         $worker->dislikeU(auth()->id());

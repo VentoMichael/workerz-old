@@ -279,7 +279,7 @@
                     @if(auth()->user() && auth()->user()->plan_user_id ==2)
                         @if(auth()->user()->adresses()->count() >= 1)
                             <div class="container-form-email">
-                                <label for="adresstwo">Adresse secondaire</label>
+                                <label for="adresstwo">Adresse secondaire et n°</label>
                                 <input type="text" id="adresstwo"
                                        class=" @error('adresstwo') is-invalid @enderror email-label"
                                        name="adresstwo"
@@ -308,7 +308,7 @@
 
                     @if(auth()->user() && auth()->user()->plan_user_id == 3)
                         <div class="container-form-email">
-                            <label for="adresstwo">Adresse secondaire</label>
+                            <label for="adresstwo">Adresse secondaire et n°</label>
                             <input type="text" id="adresstwo"
                                    class=" @error('adresstwo') is-invalid @enderror email-label" name="adresstwo"
                                    placeholder="Rue des cocotier, 21"
@@ -331,7 +331,7 @@
                             </select>
                         </div>
                         <div class="container-form-email">
-                            <label for="adressthree">Adresse tertiaire</label>
+                            <label for="adressthree">Adresse tertiaire et n°</label>
                             <input type="text" id="adressthree"
                                    @if(auth()->user()->adresses()->count() > 2)
                                    value="{{auth()->user()->adresses()->skip(2)->first()->postal_adress}}"
@@ -677,5 +677,16 @@
     </form>
 </div>
 @section('scripts')
+    <script src="{{asset('js/passwordCheck.js')}}"></script>
+    <script src="{{asset('js/passwordSee.js')}}"></script>
     <script src="{{asset('js/previewPicture.js')}}"></script>
+    @if(request()->plan == 1)
+        <script src="{{asset('js/checkDataMaxOptions.js')}}"></script>
+    @endif
+    @if(request()->plan == 2)
+        <script src="{{asset('js/checkDataMaxOptions2.js')}}"></script>
+    @endif
+    @if(request()->plan == 3)
+        <script src="{{asset('js/checkDataMaxOptions3.js')}}"></script>
+    @endif
 @endsection

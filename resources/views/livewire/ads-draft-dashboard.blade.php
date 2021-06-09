@@ -21,8 +21,10 @@
                         <h3 aria-level="3">
                             {{$announcement->title}}
                         </h3>
+                        <div class="container-view-ads">
                         <p class="view-counter">{{ $announcement->view_count }} @if($announcement->view_count >1 )vues @else vue @endif</p>
                         <p class="view-like">{{$announcement->likes ? : 0}} @if($announcement->likes == null || $announcement->likes <= 1)j'aime @else j'aimes @endif</p>
+                        </div>
                     </div>
                 </section>
             </a>

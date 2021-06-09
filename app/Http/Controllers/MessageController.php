@@ -93,8 +93,7 @@ class MessageController extends Controller
      */
     public function deleteConversations(User $user)
     {
-        $d = Message::where('from_id','=',\auth()->id())->where('to_id','=',$user->id)->delete();
-        dd($d,auth()->id(),$user->id);
-        return Redirect::route('dashboard.messages')->with('success-delete', 'Conversation supprimée&nbsp!');
+        $d = Message::where('from_id','=',$user->id)->where('to_id','=',\auth()->id())->delete();
+        return Redirect::route('dashboard.messages')->with('success-delete', 'Conversation avec '.$user->name.' supprimée&nbsp!');
     }
 }
