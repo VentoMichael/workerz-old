@@ -2,7 +2,7 @@
 @section('content')
     @if (Session::has('errors'))
         <div id="successMsg" role="alert" class="successMsg"><img width="40" height="60"
-                                                                  src="{{asset('svg/cross.svg')}}" alt="good icone">
+                                                                  src="{{asset('svg/cross.svg')}}" alt="pictogramme d'un v correct">
             <p>{!!session('errors')!!}</p>
             <span class="crossHide" id="crossHide">&times;</span>
         </div>
@@ -59,16 +59,16 @@
                     </div>
                     <ul>
                         <li>
-                            <img width="40" height="60" src="{{asset('svg/good.svg')}}" alt="Icone correct">Durée
+                            <img width="40" height="60" src="{{asset('svg/good.svg')}}" alt="Icone d'un pictogramme v correct">Durée
                             : @if($plan->id == 1) {{$plan->duration}} jours @else {{$plan->duration / 30}} mois @endif
                         </li>
                         <li>
-                            <img width="40" height="60" src="{{asset('svg/good.svg')}}" alt="Icone correct">
+                            <img width="40" height="60" src="{{asset('svg/good.svg')}}" alt="Icone d'un pictogramme v correct">
                             @if($plan->id == 1) Support basique @elseif($plan->id == 2) Support
                             intermédiaire @elseif($plan->id == 3) Support prioritaire @endif
                         </li>
                         <li class="container-visibility">
-                            <img width="40" height="60" src="{{asset('svg/good.svg')}}" alt="Icone correct">                 <span class="container-visibility-plans">
+                            <img width="40" height="60" src="{{asset('svg/good.svg')}}" alt="Icone d'un pictogramme v correct">                 <span class="container-visibility-plans">
                                 <span>
                             @if($plan->id == 1)
                                 Basse visibilité
@@ -85,7 +85,7 @@
                         </li>
                         <li class="container-visibility">
                             <img width="40" height="60" src="{{asset('svg/good.svg')}}"
-                                 alt="Icone correct">
+                                 alt="Icone d'un pictogramme v correct">
                             <span class="container-visibility-plans">
                                 <span>
                                 @if($plan->id == 1)

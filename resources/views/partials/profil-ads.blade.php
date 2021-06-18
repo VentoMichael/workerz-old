@@ -19,7 +19,7 @@
         {{ucfirst($announcement->description)}}
     </p>
 </div>
-<div class="container-perso-infos container-six-category-home" itemscope
+<div class="container-perso-infos container-six-category-home container-six-ad" itemscope
      itemtype="https://schema.org/Person">
     <div>
         <img width="60" height="60" src="{{asset('svg/envelope.svg')}}" alt="icone de mail">

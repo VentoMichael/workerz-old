@@ -2,7 +2,7 @@
 @section('content')
     @if (Session::has('success-inscription'))
         <div id="successMsg" role="alert" class="successMsg"><img width="40" height="60" src="{{asset('svg/good.svg')}}"
-                                                                  alt="cross icone">
+                                                                  alt="pictogramme d'une croix rouge">
             <p>{!!session('success-inscription')!!}</p>
             <span class="crossHide" id="crossHide">&times;</span>
         </div>
@@ -21,7 +21,7 @@
             </div>
             <div class="container-svg">
                 <img width="300" height="300" src="{{asset('svg/Great_idea_Monochromatic.svg')}}"
-                     alt="Personne choissisant la catégorie de métier">
+                     alt="Personne choissisant une catégorie de métier">
             </div>
         </div>
     </section>
@@ -77,7 +77,7 @@
                     </div>
                     <div class="container-form-email container-email-form regions-create-ad">
                         <label for="location">Région <span class="required">*</span></label>
-                        <select required aria-required="true" class="select-register select-regions" data-maxoption="1"
+                        <select required aria-required="true" class="select-register select-regions @error('location') is-invalid @enderror" data-maxoption="1"
                                 name="location" id="location">
                             <option value="0" disabled selected>-- Votre région --</option>
                             @foreach($regions as $region)
@@ -114,6 +114,7 @@
                         <p class="help hepl-price">
                             Cela donne une idée à l'indépendant (optionnel)
                         </p>
+                        @error('pricemax')
                         <p class="danger help">
                             {{$errors->first('pricemax')}}
                         </p>
@@ -122,7 +123,7 @@
                     <div class="container-form-email">
 
                         <label for="categoryAds">Catégorie de métier <span class="required">*</span></label>
-                        <div class="container-filter-categories container-category">
+                        <div class="container-filter-categories container-category @error('categoryAds') is-invalid @enderror">
                             <ul class="list-categories">
                                 @foreach($categories as $c)
                                     <li>
@@ -150,7 +151,7 @@
                             </ul>
                         </div>
                         @error('categoryAds')
-                        <p class="danger dangerCategory help">
+                        <p class="danger dangerCategory help" style="margin-bottom: 0;margin-top: 0;">
                             {{$errors->first('categoryAds')}}
                         </p>
                         @enderror
@@ -171,7 +172,7 @@
                     <div class="container-form-email selectdiv">
                         <label for="startmonth">Disponible à partir du mois de <span
                                 class="required">*</span></label>
-                        <div class="container-filter-categories container-category">
+                        <div class="container-filter-categories container-category @error('startmonth') is-invalid @enderror">
 
                             <ul class="list-categories">
                                 @foreach($disponibilities as $disponibility)
@@ -196,7 +197,7 @@
                             </ul>
                         </div>
                         @error('startmonth')
-                        <p class="danger dangerCategory help">
+                        <p class="danger dangerCategory help" style="margin-bottom: 0;margin-top: 0;">
                             {{$errors->first('startmonth')}}
                         </p>
                         @enderror

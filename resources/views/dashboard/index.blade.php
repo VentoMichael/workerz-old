@@ -1,19 +1,19 @@
 @extends('layouts.appDashboard')
 @section('content')
     @if (Session::has('expire'))
-        <div id="successMsg" role="alert" class="successMsg"><img src="{{asset('svg/caution.svg')}}" alt="good icone">
+        <div id="successMsg" role="alert" class="successMsg"><img src="{{asset('svg/caution.svg')}}" alt="pictogramme d'un v correct">
             <p>{!!session('expire')!!}</p>
             <span class="crossHide" id="crossHide">&times;</span>
         </div>
     @endif
     @if (Session::has('success-inscription'))
-        <div id="successMsg" role="alert" class="successMsg"><img src="{{asset('svg/good.svg')}}" alt="cross icone">
+        <div id="successMsg" role="alert" class="successMsg"><img src="{{asset('svg/good.svg')}}" alt="pictogramme d'un v correct">
             <p>{!!session('success-inscription')!!}</p>
             <span class="crossHide" id="crossHide">&times;</span>
         </div>
     @endif
     @if (Session::has('errors'))
-        <div id="successMsg" role="alert" class="successMsg"><img src="{{asset('svg/cross.svg')}}" alt="cross icone">
+        <div id="successMsg" role="alert" class="successMsg"><img src="{{asset('svg/cross.svg')}}" alt="pictogramme d'une croix rouge">
             <p>{!!session('errors')!!}</p>
             <span class="crossHide" id="crossHide">&times;</span>
         </div>
@@ -36,7 +36,7 @@
                                     <div class="container-horary-notification-dashboard">
                                         @if($notification->created_at->isToday())
                                             <p>
-                                                Aujourd'hui, {{$notification->created_at->locale('fr')->isoFormat('H:mm')}}
+                                                Aujourd'hui, {{$notification->created_at->locale('fr')->isoFormat('Do MMMM, HH:ss')}}
                                             </p>
                                         @else
                                             <p>

@@ -21,7 +21,12 @@ class ContactController extends Controller
      */
     public function create()
     {
-        return view('contact.index');
+        if (auth()->user()) {
+            $notificationsReaded = auth()->user()->notifications->where('read_at', null);
+        }else{
+            $notificationsReaded = '';
+        }
+        return view('contact.index',compact('notificationsReaded'));
     }
 
     /**

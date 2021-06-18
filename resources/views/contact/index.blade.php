@@ -16,13 +16,13 @@
                 @endguest
             </div>
             <div class="container-svg">
-                <img src="{{asset('svg/us.svg')}}"
+                <img width="150" height="150" src="{{asset('svg/us.svg')}}"
                      alt="Personne choissisant la catégorie de métier">
             </div>
         </div>
     </section>
     @if (Session::has('success-send'))
-        <div id="successMsg" role="alert" class="successMsg"><img src="{{asset('svg/good.svg')}}" alt="good icone">
+        <div id="successMsg" role="alert" class="successMsg"><img width="40" height="60" src="{{asset('svg/good.svg')}}" alt="pictogramme d'un v correct">
             <p>{!!session('success-send')!!}</p>
             <span class="crossHide" id="crossHide">&times;</span>
         </div>

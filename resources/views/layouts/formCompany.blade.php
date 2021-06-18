@@ -11,7 +11,11 @@
                 <div class="avatar-container">
                     <label for="picture">Logo</label>
                     <div class="container-profil-img">
-                    <img @if(auth()->user() && auth()->user()->picture !== null) src="{{asset(auth()->user()->picture)}}" @elseif(auth()->user() && auth()->user()->picture == null) src="{{asset('svg/user.svg')}}" @endif width="150" height="150" id="output" class="preview-picture preview-edit" alt="photo du commerce"/>
+                        <img
+                            @if(auth()->user() && auth()->user()->picture !== null) src="{{asset(auth()->user()->picture)}}"
+                            @elseif(auth()->user() && auth()->user()->picture == null) src="{{asset('svg/user.svg')}}"
+                            @endif width="150" height="150" id="output" class="preview-picture preview-edit"
+                            alt="photo du commerce"/>
                     </div>
                 </div>
                 <input type="file"
@@ -30,9 +34,9 @@
             </div>
             <div class="container-form-email">
                 <label for="number">Numéro de téléphone <span class="required">*</span></label>
-                <input minlength="10" maxlength="12" type="tel" id="phone" pattern="^[0-9-+\s()]*$"
+                <input minlength="7" maxlength="15" type="tel" id="phone" pattern="^[0-9-+\s()]*$"
                        @if(auth()->user()) value="{{auth()->user()->phones()->first()->number}}"
-                       @else value="{{old('number')}}"                        @endif placeholder="0494827235"
+                       @else value="{{old('number')}}" @endif placeholder="0494827235"
                        class=" @error('number') is-invalid @enderror email-label" name="number" required
                        aria-required="true">
                 @error('number')
@@ -62,7 +66,7 @@
                     <div class="container-form-email">
                         <label for="phonetwo">2<sup>é</sup> numéro de téléphone <span
                                 class="required">*</span></label>
-                        <input minlength="10" maxlength="12" type="tel" id="phonetwo" pattern="^[0-9-+\s()]*$"
+                        <input minlength="7" maxlength="15" type="tel" id="phonetwo" pattern="^[0-9-+\s()]*$"
                                placeholder="0494827235"
                                value="{{auth()->user()->phones()->skip(1)->first()->number}}"
                                class=" @error('phone') is-invalid @enderror email-label" name="phonetwo">
@@ -74,7 +78,7 @@
                 <div class="container-form-email">
                     <label for="phonetwo">2<sup>é</sup> numéro de téléphone</label>
 
-                    <input minlength="10" maxlength="12" type="tel" id="phonetwo" pattern="^[0-9-+\s()]*$"
+                    <input minlength="7" maxlength="15" type="tel" id="phonetwo" pattern="^[0-9-+\s()]*$"
                            placeholder="0494827235"
                            @if(auth()->user()->phones()->count() > 1)
                            value="{{auth()->user()->phones()->skip(1)->first()->number}}"
@@ -83,7 +87,7 @@
                 <div class="container-form-email">
                     <label for="phonethree">3<sup>é</sup> numéro de téléphone</label>
 
-                    <input minlength="10" maxlength="12" type="tel" id="phonethree" pattern="^[0-9-+\s()]*$"
+                    <input minlength="7" maxlength="15" type="tel" id="phonethree" pattern="^[0-9-+\s()]*$"
                            placeholder="0494827235"
                            @if(auth()->user()->phones()->count() > 2)
                            value="{{auth()->user()->phones()->skip(2)->first()->number}}"
@@ -99,7 +103,7 @@
                     <div class="container-form-email">
                         <label for="name">Nom du commerce <span class="required">*</span></label>
                         <input type="text" id="name" @if(auth()->user()) value="{{auth()->user()->name}}"
-                               @else value="{{old('name')}}"                                @endif placeholder="Rotis"
+                               @else value="{{old('name')}}" @endif placeholder="Rotis"
                                class=" @error('name') is-invalid @enderror email-label" name="name" required
                                aria-required="true">
                         @error('name')
@@ -113,7 +117,8 @@
                     <div class="container-form-email">
                         <label for="website">Site internet</label>
                         <input placeholder="https://workerz.be" type="text" id="website"
-                               @if(auth()->user()) value="{{auth()->user()->website}}" @else                                value="{{old('website')}}"
+                               @if(auth()->user()) value="{{auth()->user()->website}}"
+                               @else                                value="{{old('website')}}"
                                @endif
                                class=" @error('website') is-invalid @enderror email-label" name="website">
                         @if(!auth())
@@ -183,33 +188,49 @@
                     <div
                         class="container-form-email container-job-profil selectdiv container-cat container-disponibilities-register">
                         <label for="categoryUser">Catégorie de métier <span class="required">*</span></label>
-                        <div class="container-category">
-                            <ul class="list-categories list-checkboxes-register list-dispo-profil">
+                        @if(!auth()->user() && $plan == 1)
+                            <select required aria-required="true" class="select-register select-regions"
+                                    data-maxoption="1"
+                                    name="categoryUser[]">
+                                @if(auth())
+                                    <option value="0" disabled selected>-- Votre catégorie --</option>
+                                @endif
                                 @foreach($categories as $c)
-                                    <li>
-                                        <input
-                                        @for($i=0;$i<=2;$i++)
-@if(isset(old('categoryUser')[$i]) && old('categoryUser')[$i] == $c->id) checked @endif
-                                            @endfor
-                                        @if(auth()->user() && $user_categories->contains($c->id)) checked
-                                            @endif role="checkbox"
-                                               aria-checked="false" class="checkCat hiddenCheckbox inp-cbx"
-                                               name="categoryUser[]" id="categoryUser{{$c->id}}"
-                                               type="checkbox" value="{{$c->id}}"/>
-                                        <label class="cbx" for="categoryUser{{$c->id}}">
+                                    <option
+                                        @if(auth()->user() && $user_categories->contains($c->id)) selected
+                                        @endif value="{{$c->id}}">{{$c->name}}</option>
+                                @endforeach
+                            </select>
+                        @else
+                            <div class="container-category">
+                                <ul class="list-categories list-checkboxes-register list-dispo-profil">
+                                    @foreach($categories as $c)
+                                        <li>
+                                            <input
+                                                @for($i=0;$i<=2;$i++)
+                                                @if(isset(old('categoryUser')[$i]) && old('categoryUser')[$i] == $c->id) checked
+                                                @endif
+                                                @endfor
+                                                @if(auth()->user() && $user_categories->contains($c->id)) checked
+                                                @endif role="checkbox"
+                                                aria-checked="false" class="checkCat hiddenCheckbox inp-cbx"
+                                                name="categoryUser[]" id="categoryUser{{$c->id}}"
+                                                type="checkbox" value="{{$c->id}}"/>
+                                            <label class="cbx" for="categoryUser{{$c->id}}">
                                                 <span>
                                                     <svg width="12px" height="9px" viewbox="0 0 12 9">
                                                       <polyline points="1 5 4 8 11 1"></polyline>
                                                     </svg>
                                                 </span>
-                                            <span>
+                                                <span>
                                                     {{$c->name}}
                                                 </span>
-                                        </label>
-                                    </li>
-                                @endforeach
-                            </ul>
-                        </div>
+                                            </label>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
                         @error('categoryUser')
                         <div class="@if(!auth()->user())container-error @endif categoerror">
                 <span role="alert" class="error">
@@ -217,35 +238,40 @@
                                     </span>
                         </div>
                         @enderror
-                        @if(!auth()->user())
                             @if($plan == 1)
-                                <p class="help proposed-job"><a href="{{route('users.plans')}}#plans">Augmenter votre plan</a> et
-                                    vous aurez la possibilité d'en ajouter jusqu'à 3, je ne trouve pas mon métier, <a
-                                            href="{{route('contact'). '#form'}} ">je le propose</a></p>
+                                <p class="help proposed-job" @if(!auth())style="margin-top: -15px"@else style="margin-top: 0"@endif><a href="{{route('users.plans')}}#plans">Augmenter votre
+                                        plan</a> et
+                                    vous aurez la possibilité d'en ajouter jusqu'à 3</p>
+                                <p class="help proposed-job" style="margin-top: -15px">Je ne trouve pas mon métier, <a
+                                        href="{{route('contact'). '#form'}} ">je le propose</a></p>
                             @endif
                             @if($plan == 2)
-                                <p class="help proposed-job">Vous avez la possibilité d'en intégrer jusqu'à 2, je ne trouve pas mon métier, <a
-                                            href="{{route('contact'). '#form'}} ">je le propose</a></p>
+                                <p class="help proposed-job">Vous avez la possibilité d'en intégrer jusqu'à 2, je ne
+                                    trouve pas mon métier, <a
+                                        href="{{route('contact'). '#form'}} ">je le propose</a></p>
                             @endif
                             @if($plan == 3)
-                                <p class="help proposed-job">Vous avez la possibilité d'en intégrer jusqu'à 3, je ne trouve pas mon métier, <a
-                                            href="{{route('contact'). '#form'}} ">je le propose</a></p>
+                                <p class="help proposed-job">Vous avez la possibilité d'en intégrer jusqu'à 3, je ne
+                                    trouve pas mon métier, <a
+                                        href="{{route('contact'). '#form'}} ">je le propose</a></p>
                             @endif
-                        @endif
 
                     </div>
-                    <div class="container-form-email selectdiv container-disponibilities-edit container-disponibilities-register container-job-dashboard">
+                    <div
+                        class="container-form-email selectdiv container-disponibilities-edit container-disponibilities-register container-job-dashboard">
                         <label for="disponibilities">Disponibilités</label>
                         <div class="container-category">
-                            <ul class="list-categories list-checkboxes-register list-dispo-profil"  style="overflow-y: scroll; -webkit-overflow-scrolling: touch;">
+                            <ul class="list-categories list-checkboxes-register list-dispo-profil"
+                                style="overflow-y: scroll; -webkit-overflow-scrolling: touch;">
                                 @foreach($disponibilities as $disponibility)
 
                                     <li>
                                         <input
                                             @for($i=0;$i<=6;$i++)
-@if(isset(old('disponibilities')[$i]) && old('disponibilities')[$i] == $disponibility->id) checked @endif
-@endfor
-@if(auth()->user() && $user_disponibilities->contains($disponibility->id)) checked
+                                            @if(isset(old('disponibilities')[$i]) && old('disponibilities')[$i] == $disponibility->id) checked
+                                            @endif
+                                            @endfor
+                                            @if(auth()->user() && $user_disponibilities->contains($disponibility->id)) checked
                                             @else                                             @endif @if(!auth()->user() && $disponibility->pre_selected == true && !old('disponibilities')) checked
                                             @endif role="checkbox"
                                             aria-checked="false" class=" hiddenCheckbox inp-cbx"
@@ -410,9 +436,9 @@
                         <div class="container-form-email selectdiv">
                             <label for="location">Région <span class="required">*</span></label>
                             <select
-                            required aria-required="true" class="select-register select-regions"
-                                    data-maxoption="1"
-                                    name="location" id="location">
+                                required aria-required="true" class="select-register select-regions"
+                                data-maxoption="1"
+                                name="location" id="location">
                                 @if(!auth() && !old('location'))
                                     <option value="0" disabled selected>-- Votre région --</option>
                                 @endif
@@ -427,7 +453,6 @@
                                     </span>
                             </div>
                             @enderror
-                            @if(!auth())
                                 @if($plan == 1)
                                     <p class="help"><a href="{{route('users.plans')}}#plans">Augmenter votre plan</a> et
                                         vous aurez la possibilité d'en ajouter jusqu'à 3</p>
@@ -440,7 +465,6 @@
                                     <p class="help">Vous avez la possibilité d'en intégrer jusqu'à 3 via votre
                                         profil</p>
                                 @endif
-                            @endif
 
                         </div>
                     @endif
@@ -483,7 +507,8 @@
                             @endif
                             @foreach($regions as $region)
                                 <option @if(old('location') == $region->id) selected @endif
-                                     @if(auth()->user() && auth()->user()->adresses->first()->province_id == $region->id) selected @else @endif value="{{$region->id}}">{{$region->name}}</option>
+                                @if(auth()->user() && auth()->user()->adresses->first()->province_id == $region->id) selected
+                                        @else @endif value="{{$region->id}}">{{$region->name}}</option>
                             @endforeach
                         </select>
                         @error('location')
@@ -493,7 +518,6 @@
                 </span>
                         </div>
                         @enderror
-                        @if(!auth()->user())
                             @if($plan == 1)
                                 <p class="help"><a href="{{route('users.plans')}}#plans">Augmenter votre plan</a> et
                                     vous aurez la possibilité d'en ajouter jusqu'à 3</p>
@@ -503,7 +527,6 @@
                             @endif
                             @if($plan == 3)
                                 <p class="help">Vous avez la possibilité d'en intégrer jusqu'à 3 via votre profil</p>
-                            @endif
                         @endif
                     </div>
                     <div class="container-form-email container-job-dashboard">
@@ -514,7 +537,7 @@
                                        id="jobOpportunityYes"
                                        name="possibility_job"
                                        @if(old('possibility_job') === 'yes') checked @endif
-                                       @if(!auth()->user()) aria-checked="false"  @endif
+                                       @if(!auth()->user()) aria-checked="false" @endif
                                        @if(auth()->user() && auth()->user()->possibility_job == 'yes') checked
                                        @endif type="radio" value="yes"/>
                                 <label class="cbx" for="jobOpportunityYes">
@@ -531,7 +554,7 @@
                                        class="hiddenRadio inp-cbx"
                                        id="jobOpportunityNo"
                                        @if(old('possibility_job') === 'no') checked @endif
-                                       @if(!auth()->user()) aria-checked="false"  @endif
+                                       @if(!auth()->user()) aria-checked="false" @endif
                                        @if(auth()->user() && auth()->user()->possibility_job == 'no') checked
                                        @else aria-checked="false" @endif name="possibility_job"
                                        type="radio" value="no"/>
@@ -559,7 +582,7 @@
                                       <polyline points="1 5 4 8 11 1"></polyline>
                                     </svg>
                                 </span>
-                                    <span class="jobOpportunity">Non déterminer</span>
+                                    <span class="jobOpportunity">Je ne souhaite pas le communiquer</span>
                                 </label>
                             </li>
                         </ul>
@@ -571,7 +594,8 @@
                     @endif
                     <div class="container-form-email container-description-register container-description-edit">
                         <div class="container-maxCharacters">
-                            <label for="description">Description de votre entreprise <span class="required">*</span></label>
+                            <label for="description">Description de votre entreprise <span
+                                    class="required">*</span></label>
                             <span class="maxCharacters">256 caractères max</span>
                         </div>
                         @if(auth()->user() && auth()->user()->description)
@@ -581,7 +605,7 @@
                                       rows="5" cols="33">{{auth()->user()->description}}</textarea>
                         @else
                             <textarea id="description" maxlength="256" name="description" required
-                                       class=" @error('description') is-invalid @enderror email-label"
+                                      class=" @error('description') is-invalid @enderror email-label"
                                       placeholder="Description détailée de votre profil..."
                                       rows="5" cols="33">{{old("description")}}</textarea>
                         @endif

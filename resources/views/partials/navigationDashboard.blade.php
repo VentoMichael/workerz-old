@@ -1,5 +1,5 @@
 <label for="menuDashboard" class="hidden">Ouverture du menu</label><input id="menuDashboard" type="checkbox"
-                                                                          class="menuDashboard">
+                                                                          class="menuDashboard hiddenCheckbox">
 <nav>
     <h2 class="hidden">Navigation principale</h2>
     <li class="container-nav-principal">

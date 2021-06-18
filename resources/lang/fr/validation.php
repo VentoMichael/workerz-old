@@ -142,6 +142,7 @@ return [
     'attributes' => [
         'title' => 'titre',
         'picture' => 'image',
+        'pricemax' => 'taux horaire',
         'location' => 'localité',
         'job' => 'métier',
         'category-job' => 'catégorie(s) de métier',

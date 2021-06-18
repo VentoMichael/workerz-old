@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
     @if (Session::has('success-ads'))
-        <div id="successMsg" role="alert" class="successMsg"><img width="40" height="60" src="{{asset('svg/good.svg')}}" alt="good icone">
+        <div id="successMsg" role="alert" class="successMsg"><img width="40" height="60" src="{{asset('svg/good.svg')}}" alt="pictogramme d'un v correct">
             <p>{!!session('success-ads')!!}</p>
             <span class="crossHide" id="crossHide">&times;</span>
         </div>
@@ -50,15 +50,15 @@
                             </div>
                             <ul>
                                 <li>
-                                    <img width="40" height="60" src="{{asset('svg/good.svg')}}" alt="Icone correct">Durée
+                                    <img width="40" height="60" src="{{asset('svg/good.svg')}}" alt="Icone d'un pictogramme v correct">Durée
                                     : {{$planId->duration}} jours
                                 </li>
                                 <li>
-                                    <img width="40" height="60" src="{{asset('svg/good.svg')}}" alt="Icone correct">
+                                    <img width="40" height="60" src="{{asset('svg/good.svg')}}" alt="Icone d'un pictogramme v correct">
                                     @if($plan == 1) Support basique @elseif($plan == 2) Support intermédiaire @elseif($plan == 3) Support prioritaire @endif
                                 </li>
                                 <li>
-                                    <img width="40" height="60" src="{{asset('svg/good.svg')}}" alt="Icone correct">
+                                    <img width="40" height="60" src="{{asset('svg/good.svg')}}" alt="Icone d'un pictogramme v correct">
                                     @if($plan == 1)
                                         Basse visibilité
                                     @endif
@@ -70,7 +70,7 @@
                                     @endif
                                 </li>
                                 <li>
-                                    <img width="40" height="60" src="{{asset('svg/good.svg')}}" alt="Icone correct">@if($plan == 1)  Visible parmis les top 100 @elseif($plan == 2)  Visible parmis les top 15 @elseif($plan == 3)  Visible parmis les top 4 @endif
+                                    <img width="40" height="60" src="{{asset('svg/good.svg')}}" alt="Icone d'un pictogramme v correct">@if($plan == 1)  Visible parmis les top 100 @elseif($plan == 2)  Visible parmis les top 15 @elseif($plan == 3)  Visible parmis les top 4 @endif
                                 </li>
                             </ul>
                         </section>

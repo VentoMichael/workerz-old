@@ -2,14 +2,14 @@
 @section('content')
     @if (Session::has('loveOk'))
         <div id="successMsg" role="alert" class="successMsg"><img width="40" height="60" src="{{asset('svg/good.svg')}}"
-                                                                  alt="good icone">
+                                                                  alt="pictogramme d'un v correct">
             <p>{!!session('loveOk')!!}</p>
             <span class="crossHide" id="crossHide">&times;</span>
         </div>
     @endif
     @if (Session::has('loveNotOk'))
         <div id="successMsg" role="alert" class="successMsg"><img width="40" height="60" src="{{asset('svg/good.svg')}}"
-                                                                  alt="good icone">
+                                                                  alt="pictogramme d'un v correct">
             <p>{!!session('loveNotOk')!!}</p>
             <span class="crossHide" id="crossHide">&times;</span>
         </div>
@@ -62,9 +62,9 @@
 
                                 <button type="submit" class="button-loves">
                                     <img width="60" height="60" class="heart" src="{{asset('svg/heart.svg')}}"
-                                         alt="icone de coeur">
+                                         alt="Mettre un j'aime à {{$announcement->title}}">
                                     <img width="60" height="60" class="heartFul" src="{{asset('svg/heartFul.svg')}}"
-                                         alt="icone de coeur">
+                                         alt="Le j'aime à déjà été attribuer à {{$announcement->title}}">
                                     <span>
                                         {{$announcement->likes ? : 0}}</span></button>
                             </form>
@@ -78,7 +78,7 @@
                                 <button type="submit" class="button-loves">
                                     <img width="60" height="60" class="heartFul heartLiked"
                                          src="{{asset('svg/heartFul.svg')}}"
-                                         alt="icone de coeur">
+                                         alt="Enlever le j'aime attribué à {{$announcement->title}}">
                                     <span>
                                         {{$announcement->likes ? : 0}}</span></button>
                             </form>
@@ -91,9 +91,9 @@
                         <div class="containerPrice containerLove hepling helping-like help-show">
 
                             <img width="60" height="60" class="heart" src="{{asset('svg/heart.svg')}}"
-                                 alt="icone de coeur">
+                                 alt="icone de coeur vide">
                             <img width="60" height="60" class="heartFul" src="{{asset('svg/heartFul.svg')}}"
-                                 alt="icone de coeur">
+                                 alt="icone de coeur remplis">
                             <p>
                                 {{$announcement->likes? : 0}}</p>
                             <span> Il faut être connecté pour aimer l'annonce</span>
@@ -130,7 +130,7 @@
                         @if($up->number != null)
                             <div>
                                 <img src="{{asset('svg/phone.svg')}}" alt="icone de téléphone">
-                                <a itemprop="telephone" href="tel:{{$up->number}}">{{$up->number}}</a>
+                                <a itemprop="telephone" href="tel:{{$up->number}}">{{chunk_split($up->number, 4, ' ')}}</a>
                             </div>
                         @endif
                     @endforeach
@@ -220,9 +220,9 @@
 
                                                 <button type="submit" class="button-loves">
                                                     <img class="heart" src="{{asset('svg/heart.svg')}}"
-                                                         alt="icone de coeur">
+                                                         alt="Mettre un j'aime à {{$announcement->title}}">
                                                     <img class="heartFul" src="{{asset('svg/heartFul.svg')}}"
-                                                         alt="icone de coeur">
+                                                         alt="Un j'aime à déjà été attribuer à {{$announcement->title}}">
                                                     <span>
                                         {{$ra->likes ? : 0}}</span></button>
                                             </form>
@@ -236,7 +236,7 @@
                                                 @method('DELETE')
                                                 <button type="submit" class="button-loves">
                                                     <img class="heartFul heartLiked" src="{{asset('svg/heartFul.svg')}}"
-                                                         alt="icone de coeur">
+                                                         alt="Mettre un j'aime à {{$announcement->title}}">
                                                     <span>
                                         {{$ra->likes ? : 0}}</span></button>
                                             </form>
@@ -248,9 +248,9 @@
                                        title="Il faut se connecter pour mettre un j'aime à {{$announcement->title}}">
                                         <div class="containerPrice containerLove like-ads hepling helping-like help-show">
 
-                                            <img class="heart" src="{{asset('svg/heart.svg')}}" alt="icone de coeur">
+                                            <img class="heart" src="{{asset('svg/heart.svg')}}" alt="icone de coeur vide">
                                             <img class="heartFul" src="{{asset('svg/heartFul.svg')}}"
-                                                 alt="icone de coeur">
+                                                 alt="icone de coeur remplis">
                                             <p>
                                                 {{$ra->likes? : 0}}</p>
                                             <span> Il faut être connecter pour aimer l'entreprise</span>

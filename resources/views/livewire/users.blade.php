@@ -1,14 +1,9 @@
 <div class="container-home container-search" id="workerzLink">
-    @if($search && count($workerz) === 0 && !$newsletterValidated)
+    @if(request('search') && count($workerz) === 0 && !$newsletterValidated || $search && count($workerz) === 0 && !$newsletterValidated)
         @include('partials.newsletter')
     @endif
     <div class="container-search hideForNewsletter">
-        @if($helpText !== '')
-        <div class="helpSearch">
-        <span>Il faut 2 caractères au minimum</span>
-        </div>
-        @endif
-        <form action="{{route('workers')}}" @if($helpText !== '') style="margin-top:80px;" @endif aria-label="Recherche d'indépendants" role="search" method="get"
+        <form action="{{route('workers')}}" aria-label="Recherche d'indépendants" role="search" method="get"
               class="formSearchAd">
             <label for="search" class="hidden">Recherche d'entreprises</label>
             <input type="text" name="search" value="{{request('search')}}" id="search" wire:model="search"
@@ -18,6 +13,7 @@
                 <input type="submit" class="submit-category-home submit-ad" value="Recherchez">
             </noscript>
         </form>
+        @if($helpText !== '') <span style="margin-top: 10px;">{{$helpText}}</span>@endif
     </div>
     <section class="container-announcements show-content hideForNewsletter">
         <h2 class="hidden" aria-level="2">
@@ -41,9 +37,9 @@
 
                                             <button type="submit" class="button-loves">
                                                 <img class="heart" src="{{asset('svg/heart.svg')}}"
-                                                     alt="icone de coeur">
+                                                     alt="Mettre un j'aime à {{$worker->name}}">
                                                 <img class="heartFul" src="{{asset('svg/heartFul.svg')}}"
-                                                     alt="icone de coeur">
+                                                     alt="Le j'aime à déjà été attribuer à {{$worker->name}}">
                                                 <span>
                                         {{$worker->likes ? : 0}}</span></button>
                                         </form>
@@ -56,7 +52,7 @@
                                             @method('DELETE')
                                             <button type="submit" class="button-loves">
                                                 <img class="heartFul heartLiked" src="{{asset('svg/heartFul.svg')}}"
-                                                     alt="icone de coeur">
+                                                     alt="Enlever le j'aime attribué à {{$worker->title}}">
                                                 <span>
                                         {{$worker->likes ? : 0}}</span></button>
                                         </form>
@@ -69,9 +65,9 @@
                                     <div
                                         class="containerPrice containerLove like-users like-index hepling helping-like help-show">
 
-                                        <img class="heart" src="{{asset('svg/heart.svg')}}" alt="icone de coeur">
+                                        <img class="heart" src="{{asset('svg/heart.svg')}}" alt="icone de coeur vide">
                                         <img class="heartFul" src="{{asset('svg/heartFul.svg')}}"
-                                             alt="icone de coeur">
+                                             alt="icone de coeur remplis">
                                         <p>
                                             {{$worker->likes? : 0}}</p>
                                         <span> Il faut être connecté pour aimer l'entreprise</span>
@@ -147,7 +143,7 @@
                         @endauth
                     @endif
                     <a href="/workers/{{$worker->slug}}" class="button-personnal-announcement">
-                        Aller voir {{ucfirst($worker->name)}}
+                        Voir les détails de {{ucfirst($worker->name)}}
                     </a>
                 </section>
             @empty
@@ -241,7 +237,3 @@
         </div>
     </section>
 </div>
-@section('scripts')
-    @livewireScripts
-    <script src="{{asset('js/newsletter.js')}}"></script>
-@endsection

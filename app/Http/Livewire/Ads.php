@@ -59,7 +59,7 @@ class Ads extends Component
                 $this->helpText = '';
         } else {
             if (strlen($this->search) === 1) {
-               $this->helpText = '3 caractères minimum';
+               $this->helpText = 'Il faut 2 caractères minimum';
             }else{
                 $this->helpText = '';
             }
@@ -68,6 +68,27 @@ class Ads extends Component
                 ->Payement()
                 ->orderBy('plan_announcement_id', 'DESC')
                 ->orderBy('created_at', 'DESC')
+                ->when(
+                    $this->categoryAds,
+                    function ($query) {
+                        return $query->whereHas(
+                            'categoryAds',
+                            function ($query) {
+                                return $query->whereIn('category_id', $this->categoryAds);
+                            }
+                        );
+                    }
+                )
+                ->when(
+                    $this->province,
+                    function ($query) {
+                        return $query->whereHas(
+                            'province',
+                            function ($query) {
+                                return $query->whereIn('province_id', $this->province);
+                            }
+                        );
+                    })
                 ->withLikes()
                 ->paginate(4)
                 ->onEachSide(0);

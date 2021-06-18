@@ -1,6 +1,6 @@
 @extends('layouts.appDashboard')
 @section('content')
-    <div id="successMsg" role="alert" class="successMsg"><img src="{{asset('svg/question-signe-en-cercles.svg')}}" alt="good icone">
+    <div id="successMsg" role="alert" class="successMsg"><img width="40" height="60" src="{{asset('svg/question-signe-en-cercles.svg')}}" alt="pictogramme d'un v correct">
         <p>Vos notifications seront supprimé 7 jours après lecture</p>
         <span class="crossHide" id="crossHide">&times;</span>
     </div>

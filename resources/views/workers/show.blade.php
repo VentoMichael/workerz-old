@@ -1,13 +1,13 @@
 @extends('layouts.app')
 @section('content')
 @if(Session::has('loveOk'))
-<div id="successMsg" role="alert" class="successMsg"><img src="{{asset('svg/good.svg')}}" alt="good icone">
+<div id="successMsg" role="alert" class="successMsg"><img src="{{asset('svg/good.svg')}}" alt="pictogramme d'un v correct">
     <p>{!! session('loveOk') !!}</p>
     <span class="crossHide" id="crossHide">&times;</span>
 </div>
 @endif
 @if(Session::has('loveNotOk'))
-<div id="successMsg" role="alert" class="successMsg"><img src="{{asset('svg/good.svg')}}" alt="good icone">
+<div id="successMsg" role="alert" class="successMsg"><img src="{{asset('svg/good.svg')}}" alt="pictogramme d'un v correct">
     <p>{!!session('loveNotOk')!!}</p>
     <span class="crossHide" id="crossHide">&times;</span>
 </div>
@@ -43,7 +43,7 @@
         </h2>
         @endif
     </div>
-    <section class="container-personnal-ads show-content container-worker">
+    <section class="container-personnal-ads show-content container-worker @if(!$worker->website) container-adv @endif">
         <div class="container-love-show">
             @auth
             <div
@@ -55,9 +55,9 @@
                     @csrf
 
                     <button type="submit" class="button-loves">
-                        <img class="heart" src="{{asset('svg/heart.svg')}}" alt="icone de coeur">
+                        <img class="heart" src="{{asset('svg/heart.svg')}}" alt="icone de coeur vide">
                         <img class="heartFul" src="{{asset('svg/heartFul.svg')}}"
-                             alt="icone de coeur">
+                             alt="icone de coeur remplis">
                         <span>
                                         {{$worker->likes ? : 0}}</span></button>
                 </form>
@@ -69,7 +69,7 @@
                     @method('DELETE')
                     <button type="submit" class="button-loves">
                         <img class="heartFul heartLiked" src="{{asset('svg/heartFul.svg')}}"
-                             alt="icone de coeur">
+                             alt="Mettre un j'aime à {{$worker->name}}">
                         <span>
                                         {{$worker->likes ? : 0}}</span></button>
                 </form>
@@ -80,9 +80,9 @@
             <a href="{{route('login')}}" title="Il faut se connecté pour mettre un j'aime à {{$worker->name}}">
                 <div class="containerPrice container-love-notAuth containerLove like-users hepling helping-like help-show">
 
-                    <img class="heart" src="{{asset('svg/heart.svg')}}" alt="icone de coeur">
+                    <img class="heart" src="{{asset('svg/heart.svg')}}" alt="icone de coeur vide">
                     <img class="heartFul" src="{{asset('svg/heartFul.svg')}}"
-                         alt="icone de coeur">
+                         alt="icone de coeur remplis">
                     <p>
                         {{$worker->likes? : 0}}</p>
                     <span> Il faut être connecté pour aimer l'entreprise</span>
@@ -145,7 +145,7 @@
                 @if($up->number !== null)
                 <div>
                     <img src="{{asset('svg/phone.svg')}}" alt="icone de téléphone">
-                    <a itemprop="telephone" href="tel:{{$up->number}}">{{$up->number}}</a>
+                    <a itemprop="telephone" href="tel:{{$up->number}}">{{chunk_split($up->number, 4, ' ')}}</a>
                 </div>
                 @endif
                 @endforeach
@@ -160,7 +160,7 @@
                 <div>
                     <img src="{{asset('svg/question-signe-en-cercles.svg')}}"
                          alt="icone de question pour la posibilité de job">
-                    <span>{{ucfirst($worker->name)}} n'ont pour le moment, pas d'offres d'emplois</span>
+                    <span>{{ucfirst($worker->name)}} n'a pour le moment, pas d'offre d'emplois</span>
                 </div>
                 @endif
                 <div>
@@ -237,15 +237,6 @@
                 <span itemprop="serviceUrl">Site internet</span>
             </div>
         </a>
-        @else
-        @if($worker->facebook)
-        <a class="container-website container-fcb" href="{{$worker->facebook}}">
-            <div>
-                <img src="{{asset('svg/facebook-w.svg')}}" alt="icone de facebook">
-                <span itemprop="serviceUrl">Lien Facebook</span>
-            </div>
-        </a>
-        @endif
         @endif
 
     </section>
@@ -274,9 +265,9 @@
 
                             <button type="submit" class="button-loves">
                                 <img class="heart" src="{{asset('svg/heart.svg')}}"
-                                     alt="icone de coeur">
+                                     alt="Mettre un j'aime à {{$worker->name}}">
                                 <img class="heartFul" src="{{asset('svg/heartFul.svg')}}"
-                                     alt="icone de coeur">
+                                     alt="Le j'aime a déjà été attribué à {{$worker->name}}">
                                 <span>
                                         {{$ra->likes ? : 0}}</span></button>
                         </form>
@@ -289,7 +280,7 @@
                             @method('DELETE')
                             <button type="submit" class="button-loves">
                                 <img class="heartFul heartLiked" src="{{asset('svg/heartFul.svg')}}"
-                                     alt="icone de coeur">
+                                     alt="Enlever le j'aime donné à {{$worker->name}}">
                                 <span>
                                         {{$ra->likes ? : 0}}</span></button>
                         </form>
@@ -302,9 +293,9 @@
                         <div
                                 class="containerPrice containerLove like-users like-ads hepling helping-like help-show">
 
-                            <img class="heart" src="{{asset('svg/heart.svg')}}" alt="icone de coeur">
+                            <img class="heart" src="{{asset('svg/heart.svg')}}" alt="icone de coeur vide">
                             <img class="heartFul" src="{{asset('svg/heartFul.svg')}}"
-                                 alt="icone de coeur">
+                                 alt="icone de coeur remplis">
                             <p>
                                 {{$ra->likes? : 0}}</p>
                             <span> Il faut être connecté pour aimer l'entreprise</span>

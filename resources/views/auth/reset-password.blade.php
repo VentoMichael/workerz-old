@@ -32,10 +32,10 @@
                         <div id="container-checkpass" class="container-checkpass">
                             <input type="checkbox" class="password--visibleToggle password-toggle-reset" id="checkPass" checked>
                             <div class="password--visibleToggle-eye eye-forget-pass open">
-                                <img src="{{asset('svg/eye-open.svg')}}" alt="icone de yeux ouvert"/>
+                                <img width="40" height="60" src="{{asset('svg/eye-open.svg')}}" alt="icone de yeux ouvert"/>
                             </div>
                             <div class="password--visibleToggle-eye eye-forget-pass close">
-                                <img src="{{asset('svg/eye-close.svg')}}" alt="icone de yeux fermé"/>
+                                <img width="40" height="60" src="{{asset('svg/eye-close.svg')}}" alt="icone de yeux fermé"/>
                             </div>
                         </div>
                         @error('password')
@@ -54,19 +54,19 @@
                     </div>
                     <ul role="list" class="list-password-required">
                         <li id="cara">
-                            <img src="{{asset('../svg/good.svg')}}" alt="good icon">
+                            <img width="40" height="60" src="{{asset('../svg/good.svg')}}" alt="Icone d'un pictogramme v correct">
                             <p role="listitem">
                                 <span>&bull;</span> 8 caractères
                             </p>
                         </li>
                         <li id="maj">
-                            <img src="{{asset('../svg/good.svg')}}" alt="good icon">
+                            <img width="40" height="60" src="{{asset('../svg/good.svg')}}" alt="Icone d'un pictogramme v correct">
                             <p role="listitem">
                                 <span>&bull;</span> 1 majuscule
                             </p>
                         </li>
                         <li id="symbole">
-                            <img src="{{asset('../svg/good.svg')}}" alt="good icon">
+                            <img width="40" height="60" src="{{asset('../svg/good.svg')}}" alt="Icone d'un pictogramme v correct">
                             <p role="listitem">
                                 <span>&bull;</span> 1 chiffre
                             </p>
@@ -83,7 +83,7 @@
             </div>
 
             <div class="container-svg">
-                    <img class="svg-icon" src="{{asset('svg/Settings_Monochromatic.svg')}}"
+                    <img width="300" height="300" class="svg-icon" src="{{asset('svg/Settings_Monochromatic.svg')}}"
                          alt="Icone d'un ordinateur avec un mot de passe crypter">
                 </div>
         </section>

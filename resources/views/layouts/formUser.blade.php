@@ -33,7 +33,7 @@
                 <div class="container-form-email container-phone">
                     <label for="number">Numéro de téléphone <span class="required">*</span></label>
 
-                    <input minlength="10" maxlength="12" type="tel" id="number" pattern="^[0-9-+\s()]*$"
+                    <input minlength="7" maxlength="15" type="tel" id="number" pattern="^[0-9-+\s()]*$"
                            @if(auth()->user()) value="{{auth()->user()->phones()->first()->number}}"
                            @else value="{{old('number')}}"
                            @endif placeholder="0494827235"
@@ -64,7 +64,7 @@
                     @if(auth()->user()->phones()->count() >= 1)
                     <div class="container-form-email">
                         <label for="phonetwo">2<sup>é</sup> Numéro de téléphone</label>
-                        <input minlength="10" maxlength="12" type="tel" id="phonetwo" pattern="^[0-9-+\s()]*$"
+                        <input minlength="7" maxlength="15" type="tel" id="phonetwo" pattern="^[0-9-+\s()]*$"
                                placeholder="0494827235" value="{{auth()->user()->phones()->first()->number}}"
 
                                class=" @error('phone') is-invalid @enderror email-label" name="phonetwo">
@@ -74,7 +74,7 @@
                 @if(auth()->user() && auth()->user()->plan_user_id ==3)
                     <div class="container-form-email">
                         <label for="phonetwo">2<sup>é</sup> Numéro de téléphone</label>
-                        <input minlength="10" maxlength="12" type="tel" id="phonetwo" pattern="^[0-9-+\s()]*$"
+                        <input minlength="7" maxlength="15" type="tel" id="phonetwo" pattern="^[0-9-+\s()]*$"
                                placeholder="0494827235"
                                @if(auth()->user()->phones()->count() > 1)
                                value="{{auth()->user()->phones()->first()->number}}"
@@ -82,7 +82,7 @@
                     </div>
                     <div class="container-form-email">
                         <label for="phonethree">3<sup>é</sup> Numéro de téléphone</label>
-                        <input minlength="10" maxlength="12" type="tel" id="phonethree" pattern="^[0-9-+\s()]*$"
+                        <input minlength="7" maxlength="15" type="tel" id="phonethree" pattern="^[0-9-+\s()]*$"
                                placeholder="0494827235"
                                @if(auth()->user()->phones()->count() > 2)
                                value="{{auth()->user()->phones()->skip(1)->first()->number}}"

@@ -282,7 +282,7 @@
     </div>
 </header>
 <main class="content">
-    <img class="img-cover hideForNewsletter" src="{{asset('../svg/background.svg')}}" alt="photo de couverture">
+    <img class="img-cover hideForNewsletter" src="{{asset('svg/background.svg')}}" alt="photo de couverture">
     @yield('content')
 </main>
 <footer class="footer">
@@ -340,13 +340,13 @@
         <small>{{date('Y')}} Workerz. Tous droits réservés.</small>
     </div>
     @if (Session::has('successNew'))
-        <div id="successMsg" role="alert" class="successMsg"><img src="{{asset('svg/good.svg')}}" alt="good icone">
+        <div id="successMsg" role="alert" class="successMsg"><img src="{{asset('svg/good.svg')}}" alt="pictogramme d'un v correct">
             <p>{!!session('successNew')!!}</p>
             <span class="crossHide" id="crossHide">&times;</span>
         </div>
     @endif
     @if (Session::has('failureNew'))
-        <div id="successMsg" role="alert" class="successMsg"><img src="{{asset('svg/cross.svg')}}" alt="cross icone">
+        <div id="successMsg" role="alert" class="successMsg"><img src="{{asset('svg/cross.svg')}}" alt="pictogramme d'une croix rouge">
             <p>{!!session('failureNew')!!}</p>
             <span class="crossHide" id="crossHide">&times;</span>
         </div>

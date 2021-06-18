@@ -109,7 +109,7 @@ class AnnouncementController extends Controller
                 'picture' => 'image:jpg,jpeg,png|max:2048',
                 'description' => 'required|max:256',
                 'job' => 'required|max:256',
-                'pricemax'=> 'numeric|max:999999',
+                'pricemax'=> 'numeric|max:999999|nullable',
                 'location' => 'required|not_in:0',
                 'categoryAds' => 'required|array|max:'.\request('plan'),
                 'startmonth' => 'required',
@@ -246,6 +246,6 @@ class AnnouncementController extends Controller
             ->send(new AdsCreated($announcement));
         \auth()->user()->notify(new AdCreated($announcement));
         Session::forget('plan');
-        return redirect('/dashboard/ads/'.$announcement->slug,compact('notificationsReaded'));
+        return redirect('/dashboard/ads/'.$announcement->slug);
     }
 }

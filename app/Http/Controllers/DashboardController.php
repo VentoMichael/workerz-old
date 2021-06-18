@@ -61,12 +61,13 @@ class DashboardController extends Controller
 
     public function updateUser(Request $request)
     {
+        $plan = \auth()->user()->plan_user_id;
         $this->sendExpireNotificationAccount();
         $user = \auth()->user();
         $request->validate([
             'name' => 'sometimes|string|max:255',Rule::unique('users')->ignore(\auth()->id()),
             'surname' => 'sometimes|string|max:255',
-            'number'=>'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10|max:12',
+            'number'=>'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:7|max:14',
             'email' => 'sometimes|required|string|max:255', Rule::unique('users')->ignore($user->id),
             'picture' => 'sometimes|image|mimes:jpg,png,jpeg|max:2048',
         ]);
@@ -160,7 +161,7 @@ class DashboardController extends Controller
         if ($user->wasChanged()) {
             Session::flash('success-update', 'Votre profil a bien été mis a jour&nbsp;!');
         }
-        return redirect(route('dashboard.profil'));
+        return redirect(route('dashboard.profil',compact('plan')));
 
     }
 
@@ -174,8 +175,9 @@ class DashboardController extends Controller
         $disponibilities = StartDate::orderBy('id')->get();
         $regions = Province::orderBy('name')->get();
         $categories = Category::orderBy('name')->get();
+        $plan = \auth()->user()->plan_user_id;
         return view('dashboard.edit',
-            compact('disponibilities','notificationsReaded', 'categories', 'regions', 'user_categories', 'user_disponibilities','noReadMsgs'));
+            compact('disponibilities','notificationsReaded','plan', 'categories', 'regions', 'user_categories', 'user_disponibilities','noReadMsgs'));
     }
 
     public function show(Announcement $announcement)
@@ -238,7 +240,7 @@ class DashboardController extends Controller
             'description' => 'sometimes|max:256|required',
             'job' => 'sometimes|max:256|required',
             'location' => 'sometimes|not_in:0|required',
-            'pricemax' => 'numeric|max:999999',
+            'pricemax' => 'numeric|max:999999|nullable|sometimes',
             'startmonth' => 'sometimes|required',
             'categoryAds' => 'sometimes|array|required|max:'.$announcement->plan_announcement_id
         ]);
@@ -314,7 +316,7 @@ class DashboardController extends Controller
     }
     protected function sendExpireNotificationAccount()
     {
-        if (auth()->user()->end_plan < Carbon::now()->addHours(2)->subDays(1)) {
+        if (auth()->user()->end_plan < Carbon::now()->addHours(2)->subDays(1) && auth()->user()->sending_time_expire == 1) {
             if (auth()->user()->sending_time_expire == 0) {
                 auth()->user()->sending_time_expire = 1;
                 auth()->user()->end_plan = null;
@@ -336,7 +338,7 @@ class DashboardController extends Controller
     protected function sendExpireNotificationAds()
     {
         foreach (auth()->user()->announcements as $adsExpire) {
-            if ($adsExpire->end_plan < Carbon::now()->subDay(1)->addHours(2)) {
+            if ($adsExpire->end_plan < Carbon::now()->subDay(1)->addHours(2) && $adsExpire->sending_time_expire == 1) {
                 if ($adsExpire->sending_time_expire == 0) {
                     $adsExpire->sending_time_expire = 1;
                     $adsExpire->update();

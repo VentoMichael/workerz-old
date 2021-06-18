@@ -139,15 +139,30 @@ Route::prefix('')->middleware(['auth','verified'])->group(function () {
 
 // POLICY
 Route::get('/conditions', function () {
-    return view('conditions.index');
+    if (auth()->user()) {
+            $notificationsReaded = auth()->user()->notifications->where('read_at', null);
+        }else{
+            $notificationsReaded = '';
+        }
+    return view('conditions.index',compact('notificationsReaded'));
 })->name('conditions');
 Route::get('/policy', function () {
-    return view('policy.index');
+    if (auth()->user()) {
+            $notificationsReaded = auth()->user()->notifications->where('read_at', null);
+        }else{
+            $notificationsReaded = '';
+        }
+    return view('policy.index',compact('notificationsReaded'));
 })->name('policy');
 
 // ABOUT
 Route::get('/about', function () {
-    return view('about.index');
+    if (auth()->user()) {
+            $notificationsReaded = auth()->user()->notifications->where('read_at', null);
+        }else{
+            $notificationsReaded = '';
+        }
+    return view('about.index',compact('notificationsReaded'));
 })->name('about');
 
 // CONTACT

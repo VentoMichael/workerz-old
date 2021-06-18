@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
     @if (session('status'))
-        <div id="successMsg" role="alert" class="successMsg"><img width="40" height="60" src="{{asset('svg/good.svg')}}" alt="good icone">
+        <div id="successMsg" role="alert" class="successMsg"><img width="40" height="60" src="{{asset('svg/good.svg')}}" alt="pictogramme d'un v correct">
             <div class="alert alert-success" role="alert">
                 <p>{{ session('status') }}</p>
             </div>

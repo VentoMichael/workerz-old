@@ -1,13 +1,13 @@
 @extends('layouts.appDashboard')
 @section('content')
     @if (Session::has('success-delete'))
-        <div id="successMsg" role="alert" class="successMsg"><img src="{{asset('svg/good.svg')}}" alt="good icone">
+        <div id="successMsg" role="alert" class="successMsg"><img src="{{asset('svg/good.svg')}}" alt="pictogramme d'un v correct">
             <p>{!!session('success-delete')!!}</p>
             <span class="crossHide" id="crossHide">&times;</span>
         </div>
     @endif
     @if (Session::has('success'))
-        <div id="successMsg" role="alert" class="successMsg"><img src="{{asset('svg/cross.svg')}}" alt="good icone">
+        <div id="successMsg" role="alert" class="successMsg"><img src="{{asset('svg/cross.svg')}}" alt="pictogramme d'un v correct">
             <p>{!!session('success')!!}</p>
             <span class="crossHide" id="crossHide">&times;</span>
         </div>

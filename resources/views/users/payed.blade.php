@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
     @if (Session::has('success-users'))
-        <div id="successMsg" role="alert" class="successMsg"><img width="40" height="60" src="{{asset('svg/good.svg')}}" alt="good icone">
+        <div id="successMsg" role="alert" class="successMsg"><img width="40" height="60" src="{{asset('svg/good.svg')}}" alt="pictogramme d'un v correct">
             <p>{!!session('success-users')!!}</p>
             <span class="crossHide" id="crossHide">&times;</span>
         </div>
@@ -62,27 +62,45 @@
                             </div>
                             <ul>
                                 <li>
-                                    <img width="40" height="60" src="{{asset('svg/good.svg')}}" alt="Icone correct">Durée : @if($plan->id == 1) {{$plan->duration}} jours @else {{$plan->duration / 30}} mois @endif
+                                    <img width="40" height="60" src="{{asset('svg/good.svg')}}" alt="Icone d'un pictogramme v correct">Durée : @if($plan->id == 1) {{$plan->duration}} jours @else {{$plan->duration / 30}} mois @endif
                                 </li>
                                 <li>
-                                    <img width="40" height="60" src="{{asset('svg/good.svg')}}" alt="Icone correct">
-                                    @if($plan->id == 1) Support basique @elseif($plan->id == 2) Support intermédiaire @elseif($plan->id == 3) Support prioritaire @endif
-                                </li>
-                                <li class="container-visibility">
-                                    <img width="40" height="60" src="{{asset('svg/good.svg')}}" alt="Icone correct">
-                                    @if($plan->id == 1)
-                                        Basse visibilité
-                                    @endif
-                                    @if($plan->id == 2)
-                                        Moyenne visibilité
-                                    @endif
-                                    @if($plan->id == 3)
-                                        Haute visibilité
-                                    @endif *
-                                </li>
-                                <li class="container-visibility">
-                                    <img width="40" height="60" src="{{asset('svg/good.svg')}}" alt="Icone correct">@if($plan->id == 1)  Visible parmis les top 100 @elseif($plan->id == 2)  Visible parmis les top 15 @elseif($plan->id == 3)  Visible parmis les top 4 @endif *
-                                </li>
+                            <img width="40" height="60" src="{{asset('svg/good.svg')}}" alt="Icone d'un pictogramme v correct">
+                            @if($plan->id == 1) Support basique @elseif($plan->id == 2) Support
+                            intermédiaire @elseif($plan->id == 3) Support prioritaire @endif
+                        </li>
+                        <li class="container-visibility">
+                            <img width="40" height="60" src="{{asset('svg/good.svg')}}" alt="Icone d'un pictogramme v correct">                 <span class="container-visibility-plans">
+                                <span>
+                            @if($plan->id == 1)
+                                Basse visibilité
+                            @endif
+                            @if($plan->id == 2)
+                                Moyenne visibilité
+                            @endif
+                            @if($plan->id == 3)
+                                Haute visibilité
+                            @endif *
+                                </span>
+                                <span class="helpPlans">Uniquement si vous êtes une entreprise</span>
+                            </span>
+                        </li>
+                        <li class="container-visibility">
+                            <img width="40" height="60" src="{{asset('svg/good.svg')}}"
+                                 alt="Icone d'un pictogramme v correct">
+                            <span class="container-visibility-plans">
+                                <span>
+                                @if($plan->id == 1)
+                                        Visible parmis les top 100
+                                    @elseif($plan->id == 2)
+                                        Visible parmis les top 15
+                                    @elseif($plan->id == 3)
+                                        Visible parmis les top 4
+                                @endif *
+                                </span>
+                                <span class="helpPlans">Uniquement si vous êtes une entreprise</span>
+                            </span>
+                        </li>
                             </ul>
                         </section>
                     </div>

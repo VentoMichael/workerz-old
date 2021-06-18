@@ -46,19 +46,19 @@
             @enderror
             <ul role="list" class="list-password-required">
                 <li id="cara">
-                    <img src="{{asset('../svg/good.svg')}}" alt="good icon">
+                    <img src="{{asset('../svg/good.svg')}}" alt="Icone d'un pictogramme v correct">
                     <p role="listitem">
                         <span>&bull;</span> 8 caractères
                     </p>
                 </li>
                 <li id="maj">
-                    <img src="{{asset('../svg/good.svg')}}" alt="good icon">
+                    <img src="{{asset('../svg/good.svg')}}" alt="Icone d'un pictogramme v correct">
                     <p role="listitem">
                         <span>&bull;</span> 1 majuscule
                     </p>
                 </li>
                 <li id="symbole">
-                    <img src="{{asset('../svg/good.svg')}}" alt="good icon">
+                    <img src="{{asset('../svg/good.svg')}}" alt="Icone d'un pictogramme v correct">
                     <p role="listitem">
                         <span>&bull;</span> 1 chiffre
                     </p>

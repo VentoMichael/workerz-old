@@ -50,7 +50,7 @@
         </section>
     </div>
     @if (session('status') == 'verification-link-sent')
-        <div id="successMsg" role="alert" class="successMsg"><img width="40" height="60" src="{{asset('svg/good.svg')}}" alt="cross icone">
+        <div id="successMsg" role="alert" class="successMsg"><img width="40" height="60" src="{{asset('svg/good.svg')}}" alt="pictogramme d'un v correct">
             <p>Un nouveau lien de vérification a été envoyé à l'adresse électronique que vous avez fournie lors de votre inscription.</p>
             <span class="crossHide" id="crossHide">&times;</span>
         </div>

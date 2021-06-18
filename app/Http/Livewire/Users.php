@@ -60,7 +60,7 @@ class Users extends Component
                 $this->helpText = '';
         } else {
             if (strlen($this->search) === 1) {
-               $this->helpText = '3 caractères minimum';
+               $this->helpText = 'Il faut 2 caractères minimum';
             }else{
                 $this->helpText = '';
             }

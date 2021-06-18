@@ -24,6 +24,7 @@ class UserNotificationController extends Controller
         $notifications = \auth()->user()->notifications;
         foreach ($notifications as $notification) {
             if($notification->read_at !== null && $notification->read_at <= Carbon::now()->subDays(7)){
+                
                 $notification->delete();
                 return \redirect()->route('dashboard.notifications');
             };

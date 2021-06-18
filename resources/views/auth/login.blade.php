@@ -2,19 +2,19 @@
 
 @section('content')
     @if (Session::has('messageBanned'))
-        <div width="40" height="60" id="successMsg" role="alert" class="successMsg"><img src="{{asset('svg/good.svg')}}" alt="cross icone">
+        <div width="40" height="60" id="successMsg" role="alert" class="successMsg"><img src="{{asset('svg/good.svg')}}" alt="pictogramme d'un v correct">
             <p>{!!session('messageBanned')!!}</p>
             <span class="crossHide" id="crossHide">&times;</span>
         </div>
     @endif
     @if (Session::has('forbidden'))
-        <div width="40" height="60" id="successMsg" role="alert" class="successMsg"><img style="max-width: 50px;" src="{{asset('svg/question-signe-en-cercles.svg')}}" alt="cross icone">
+        <div width="40" height="60" id="successMsg" role="alert" class="successMsg"><img style="max-width: 50px;" src="{{asset('svg/question-signe-en-cercles.svg')}}" alt="pictogramme d'une croix rouge">
             <p>{!!session('forbidden')!!}</p>
             <span class="crossHide" id="crossHide">&times;</span>
         </div>
     @endif
     @if (Session::has('success-update'))
-        <div width="40" height="60" id="successMsg" role="alert" class="successMsg"><img src="{{asset('svg/good.svg')}}" alt="cross icone">
+        <div width="40" height="60" id="successMsg" role="alert" class="successMsg"><img src="{{asset('svg/good.svg')}}" alt="pictogramme d'un v correct">
             <p>{!!session('success-update')!!}</p>
             <span class="crossHide" id="crossHide">&times;</span>
         </div>

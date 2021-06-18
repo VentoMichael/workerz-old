@@ -11,7 +11,7 @@
                 </livewire:ads-dashboard>
 
                 <section class="container-edit-ads container-create-ads">
-                    <div class="container-buttons-delete-back">
+                    <div class="container-buttons-delete-back container-button-delete-ad">
                         <a class="link-back" href="{{route('dashboard.ads')}}">
                             <button class="button-back button-cta button-draft">
                                 Retour

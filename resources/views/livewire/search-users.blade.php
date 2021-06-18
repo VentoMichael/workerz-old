@@ -1,15 +1,11 @@
 <div>
     <div class="container-form-search">
-        @if($helpText !== '')
-        <div class="helpSearch">
-        <span>Il faut 2 caractères au minimum</span>
-        </div>
-        @endif
-        <form aria-label="Recherche d'indépendants" @if($helpText !== '') style="margin-top:80px;" @endif role="search" action="{{route('workers')}}" method="get">
+        <form aria-label="Recherche d'indépendants" role="search" action="{{route('workers')}}" method="get">
             <label for="search" class="hidden">Recherche d'indépendants</label>
             <input type="search" spellcheck="false" placeholder="Quel métier recherchez-vous ?" wire:model="search" name="search" class="search-home" id="search">
             <input type="submit" class="submit-category-home" value="Recherchez">
         </form>
+            @if($helpText !== '') <span style="margin-top: 10px;">{{$helpText}}</span>@endif
     </div>
     @if($search !== "" && strlen($search) >1)
         <div wire:loading.class="load" class="container-boxes">
@@ -38,7 +34,7 @@
                         @empty
                             <ul wire:loading.class="load" class="container-infos-user-box-no-data">
                                 <li>
-                                    <img class="user-img-box" src="{{asset('svg/not-found.svg')}}" alt="Pictogramme d'une ampoule">
+                                    <img width="40" height="60" class="user-img-box" src="{{asset('svg/not-found.svg')}}" alt="Pictogramme d'une ampoule">
                                 </li>
                                 <li>
                                     <p>

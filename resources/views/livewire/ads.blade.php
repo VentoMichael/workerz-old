@@ -1,15 +1,9 @@
-
 <div id="adsLink">
     @if(request('search') && count($announcements) === 0 && !$newsletterValidated || $search && count($announcements) === 0 && !$newsletterValidated)
         @include('partials.newsletter')
     @endif
     <div class="container-home container-search hideForNewsletter">
-        @if($helpText !== '')
-        <div class="helpSearch">
-        <span>Il faut 2 caractères au minimum</span>
-        </div>
-        @endif
-        <form action="{{route('announcements')}}" @if($helpText !== '') style="margin-top:80px;" @endif aria-label="Recherche d'annonce" role="search" method="get"
+        <form action="{{route('announcements')}}" aria-label="Recherche d'annonce" role="search" method="get"
               class="formSearchAd">
             <label for="search" class="hidden">Recherche d'annonces</label>
             <input type="text" name="search" value="{{request('search')}}" id="search" wire:model="search"
@@ -19,6 +13,7 @@
                 <input type="submit" class="submit-category-home submit-ad" value="Recherchez">
             </noscript>
         </form>
+        @if($helpText !== '') <span style="margin-top: 10px;">{{$helpText}}</span>@endif
     </div>
     <section class="container-home container-announcements hideForNewsletter">
         <h2 class="hidden" aria-level="2">
@@ -41,9 +36,9 @@
 
                                             <button type="submit" class="button-loves">
                                                 <img class="heart" src="{{asset('svg/heart.svg')}}"
-                                                     alt="icone de coeur">
+                                                     alt="Mettre un j'aime à {{$announcement->title}}">
                                                 <img class="heartFul" src="{{asset('svg/heartFul.svg')}}"
-                                                     alt="icone de coeur">
+                                                     alt="Le j'aime à déjà été attribuer à {{$announcement->title}}">
                                                 <span>
                                         {{$announcement->likes ? : 0}}</span></button>
                                         </form>
@@ -56,7 +51,7 @@
                                             @method('DELETE')
                                             <button type="submit" class="button-loves">
                                                 <img class="heartFul heartLiked" src="{{asset('svg/heartFul.svg')}}"
-                                                     alt="icone de coeur">
+                                                     alt="Enlever le j'aime donner à {{$announcement->title}}">
                                                 <span>
                                         {{$announcement->likes ? : 0}}</span></button>
                                         </form>
@@ -68,9 +63,9 @@
                                    title="Il faut se connecté pour mettre un j'aime à {{$announcement->title}}">
                                     <div class="containerPrice containerLove like-index hepling helping-like help-show">
 
-                                        <img class="heart" src="{{asset('svg/heart.svg')}}" alt="icone de coeur">
+                                        <img class="heart" src="{{asset('svg/heart.svg')}}" alt="icone de coeur vide">
                                         <img class="heartFul" src="{{asset('svg/heartFul.svg')}}"
-                                             alt="icone de coeur">
+                                             alt="icone de coeur remplis">
                                         <p>
                                             {{$announcement->likes? : 0}}</p>
                                         <span> Il faut être connecté pour aimer l'annonce</span>
@@ -85,7 +80,7 @@
                         @endif
                         <div class="container-image-announcement container-profil-img">
                             @if($announcement->picture)
-                                <img itemprop="image" src="{{ $announcement->picture }}"
+                                <img itemprop="image" src="{{ asset($announcement->picture) }}"
                                      alt="image de profil de {{$announcement->title}}"/>
                             @else
                                 <img itemprop="image" src="{{asset('svg/ad.svg')}}" alt="icone d'annonces">
@@ -118,8 +113,8 @@
                                     @if($announcement->adress)
                                         <p itemprop="streetAddress">{{$announcement->adress}}</p>
                                     @endif
-                                    <p class="categoryJob" itemprop="addressRegion">
-                                        ({{ucfirst($announcement->province->name)}})</p>
+                                    <p itemprop="addressRegion">
+                                        {{ucfirst($announcement->province->name)}}</p>
                                 </div>
                             </div>
                         </div>
@@ -154,7 +149,7 @@
                     @endauth
                     @endif
                     <a href="/announcements/{{$announcement->slug}}" class="button-personnal-announcement">
-                        Aller voir {{$announcement->title}}
+                        Voir les détails de {{$announcement->title}}
                     </a>
                 </section>
             @empty

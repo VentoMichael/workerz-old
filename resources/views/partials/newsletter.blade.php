@@ -1,7 +1,7 @@
-<section class="modal" id="modal">
+<section class="modal" id="modal" @if(request('newsletter') !== null) style="display: none" @endif>
     <div class="modal-header">
         <h3 aria-level="3" class="util-links title">
-            Je n'ai rien trouvé avec <i>"{{request('search')}}"</i>&nbsp;!
+            Je n'ai rien trouvé avec <i>"@if($search){{$search}}@else{{request('search')}}@endif"</i>&nbsp;!
         </h3>
         <button data-close-button class="crossHideNewsletter" id="crossHide"></button>
     </div>
@@ -14,7 +14,7 @@
               aria-label="Inscription à notre newsletter">
             @csrf
             <div class="form-newsletter">
-                <label for="newsletterbox">Votre mail</label>
+                <label for="newsletterbox" style="margin-bottom: 10px;">Votre mail</label>
                 <input type="email" required name="newsletter" id="newsletterbox" class="input-newsletter"
                        placeholder="Albert01@gmail.com" aria-required="true">
             </div>

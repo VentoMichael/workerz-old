@@ -1,5 +1,17 @@
 @extends('layouts.appDashboard')
 @section('content')
+@if (Session::has('success-update-not'))
+        <div id="successMsg" role="alert" class="successMsg"><img width="40" height="60" src="{{asset('svg/cross.svg')}}" alt="pictogramme d'un v correct">
+            <p>{!!session('success-update-not')!!}</p>
+            <span class="crossHide" id="crossHide">&times;</span>
+        </div>
+    @endif
+    @if (Session::has('success-update'))
+        <div id="successMsg" role="alert" class="successMsg"><img width="40" height="60" src="{{asset('svg/good.svg')}}" alt="pictogramme d'un v correct">
+            <p>{!!session('success-update')!!}</p>
+            <span class="crossHide" id="crossHide">&times;</span>
+        </div>
+    @endif
     <div class="container-all-dashboard">
         @include('partials.navigationDashboard')
         <section class="container-dashboard container-ads">
@@ -15,7 +27,7 @@
                 <livewire:ads-dashboard>
                 </livewire:ads-dashboard>
                 <section class="container-profil-dashboard container-ads-dashboard">
-                    <div class="container-buttons-delete-back">
+                    <div class="container-buttons-delete-back container-button-delete-ad">
                         <a class="link-back" href="{{route('dashboard.ads')}}">
                             <button class="button-back button-cta button-draft">
                                 Retour
@@ -30,8 +42,8 @@
                         </form>
                     </div>
                     @include('partials.profil-ads')
-                    <div class="container-buttons-delete-back">
-                        <a class="link-back button-back button-cta button-draft" href="{{route('announcements.show',$announcement->slug)}}">
+                    <div class="container-buttons-delete-back container-draft-publish-dashboard">
+                        <a class="button-back button-cta button-draft button-ad-publish" href="{{route('announcements.show',$announcement->slug)}}">
                                 Je vais la voir en ligne
                         </a>
                         <a href="{{route('update.ads.dashboard',$announcement->slug)}}" class="button-cta">

@@ -1,25 +1,25 @@
 @extends('layouts.appDashboard')
 @section('content')
     @if (Session::has('expire'))
-        <div id="successMsg" role="alert" class="successMsg"><img width="40" height="60" src="{{asset('svg/caution.svg')}}" alt="good icone">
+        <div id="successMsg" role="alert" class="successMsg"><img width="40" height="60" src="{{asset('svg/caution.svg')}}" alt="pictogramme d'un v correct">
             <p>{!!session('expire')!!}</p>
             <span class="crossHide" id="crossHide">&times;</span>
         </div>
     @endif
     @if (Session::has('success-update-not'))
-        <div id="successMsg" role="alert" class="successMsg"><img width="40" height="60" src="{{asset('svg/cross.svg')}}" alt="good icone">
+        <div id="successMsg" role="alert" class="successMsg"><img width="40" height="60" src="{{asset('svg/cross.svg')}}" alt="pictogramme d'un v correct">
             <p>{!!session('success-update-not')!!}</p>
             <span class="crossHide" id="crossHide">&times;</span>
         </div>
     @endif
     @if (Session::has('success-update'))
-        <div id="successMsg" role="alert" class="successMsg"><img width="40" height="60" src="{{asset('svg/good.svg')}}" alt="good icone">
+        <div id="successMsg" role="alert" class="successMsg"><img width="40" height="60" src="{{asset('svg/good.svg')}}" alt="pictogramme d'un v correct">
             <p>{!!session('success-update')!!}</p>
             <span class="crossHide" id="crossHide">&times;</span>
         </div>
     @endif
     @if (Session::has('success-inscription'))
-        <div id="successMsg" role="alert" class="successMsg"><img width="40" height="60" src="{{asset('svg/good.svg')}}" alt="good icone">
+        <div id="successMsg" role="alert" class="successMsg"><img width="40" height="60" src="{{asset('svg/good.svg')}}" alt="pictogramme d'un v correct">
             <p>{!!session('success-inscription')!!}</p>
             <span class="crossHide" id="crossHide">&times;</span>
         </div>
@@ -88,20 +88,20 @@
                                 @endif
                                 <div class="container-form-email">
                                     <p>Numéro de téléphone</p>
-                                    <span class="email-label">{{auth()->user()->phones()->first()->number}}</span>
+                                    <span class="email-label">{{chunk_split(auth()->user()->phones()->first()->number, 4, ' ')}}</span>
                                 </div>
                                 @if(auth()->user()->phones()->count() > 1 && auth()->user()->phones()->skip(1)->first()->number != null)
                                     <div class="container-form-email">
                                         <p>2<sup>é</sup> Numéro de téléphone</p>
                                         <span
-                                            class="email-label">{{auth()->user()->phones()->skip(1)->first()->number}}</span>
+                                            class="email-label">{{chunk_split(auth()->user()->phones()->skip(1)->first()->number, 4, ' ')}}</span>
                                     </div>
                                 @endif
                                 @if(auth()->user()->phones()->count() > 2 && auth()->user()->phones()->skip(2)->first()->number != null)
                                     <div class="container-form-email">
                                         <p>3<sup>é</sup> Numéro de téléphone</p>
                                         <span
-                                            class="email-label">{{auth()->user()->phones()->skip(2)->first()->number}}</span>
+                                            class="email-label">{{chunk_split(auth()->user()->phones()->skip(2)->first()->number, 4, ' ')}}</span>
                                     </div>
                                 @endif
                                 <div class="container-register-form container-register">
@@ -288,19 +288,19 @@
                                     <div class="container-form-email">
                                         <p>Numéro de téléphone</p>
                                         <span
-                                            class="email-label">{{auth()->user()->phones()->first()->number}}</span>
+                                            class="email-label">{{chunk_split(auth()->user()->phones()->first()->number, 4, ' ')}}</span>
                                         @if(auth()->user()->phones()->count() > 1 && auth()->user()->phones()->skip(1)->first()->number != null)
                                             <div class="container-form-email">
                                                 <p>2<sup>é</sup> Numéro de téléphone</p>
                                                 <span
-                                                    class="email-label">{{auth()->user()->phones()->skip(1)->first()->number}}</span>
+                                                    class="email-label">{{chunk_split(auth()->user()->phones()->skip(1)->first()->number, 4, ' ')}}</span>
                                             </div>
                                         @endif
                                         @if(auth()->user()->phones()->count() > 2 && auth()->user()->phones()->skip(2)->first()->number != null)
                                             <div class="container-form-email">
                                                 <p>3<sup>é</sup> Numéro de téléphone</p>
                                                 <span
-                                                    class="email-label">{{auth()->user()->phones()->skip(2)->first()->number}}</span>
+                                                    class="email-label">{{chunk_split(auth()->user()->phones()->skip(2)->first()->number, 4, ' ')}}</span>
                                             </div>
                                         @endif
                                     </div>
